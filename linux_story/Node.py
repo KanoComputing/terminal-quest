@@ -164,9 +164,8 @@ class Tree:
         return prompt
 
 
-# generate from filestructure
+# Generate from file structure
 def generate_file_tree():
-
     tree = Tree()
     tree.add_node("~")  # root node
     tree["~"].add_path(os.path.join(os.path.expanduser("~"), ".linux-story"))

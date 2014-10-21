@@ -9,12 +9,14 @@
 import os
 import subprocess
 from helper_functions import colour_file_dir
+from kano.colours import colourize256
 
 
-def ls(loc, tree, line=""):
+# We edit this to colourise the output - otherwise, we could just use shell_command
+def ls(current_dir, tree, line=""):
 
     # find current_location
-    real_loc = tree[loc].path
+    real_loc = tree[current_dir].path
 
     # Don't print anything
     if not real_loc:
@@ -78,6 +80,50 @@ def ls(loc, tree, line=""):
     print output
 
 
+def grep(current_dir, tree, line):
+    # find current_location
+    real_loc = tree[current_dir].path
+
+    # Don't print anything
+    if not real_loc:
+        return
+
+    line = "grep " + line
+    coloured_output = []
+    args = line.split(" ")
+    p = subprocess.Popen(args, cwd=real_loc,
+                         stdout=subprocess.PIPE,
+                         stderr=subprocess.PIPE)
+    stdout, stderr = p.communicate()
+
+    if stderr:
+        print stderr
+
+    if stdout:
+        results = stdout.split("/n")
+        for r in results:
+            [path, contents] = r.split(":")
+            path = colourize256(path, 29, 16, True)
+            contents = colourize256(contents, 68, 16, True)
+            colon = colourize256(":", 118, 16, True)
+            coloured_output.append(colon.join([path, contents]))
+        coloured_results = "/n".join(coloured_output)
+        print coloured_results
+
+
+def sudo(current_dir, tree, line):
+    allowed_commands = ["chmod", "touch", "mkdir"]
+
+    # take the list of elements
+    elements = line.split(" ")
+
+    # take the command we're sudo-ing
+    command = elements[1]
+
+    if command in allowed_commands:
+        shell_command(current_dir, tree, line)
+
+
 def shell_command(current_dir, tree, line):
     real_loc = tree[current_dir].path
 
@@ -101,8 +147,15 @@ def shell_command(current_dir, tree, line):
 def launch_application(current_dir, tree, line):
     real_loc = tree[current_dir].path
 
+    # Don't do anything
+    if not real_loc:
+        return
+
     p = subprocess.Popen(line, cwd=real_loc, shell=True)
     stdout, stderr = p.communicate()
+
+    if stdout:
+        print stdout.strip()
 
     if stderr:
         print stderr.strip()

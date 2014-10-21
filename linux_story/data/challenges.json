@@ -9,8 +9,7 @@
         "end_dir": "~",
         "command": "ls",
         "structure": "",
-        "hint": "Type the command \"ls\"",
-        "animation": "rabbit.py 1 right-to-left"
+        "hint": "Type the command \"ls\""
     },
     "2": {
         "story": ["\nWoah, do you see that",
@@ -77,6 +76,7 @@
         "end_dir": "",
         "command": "",
         "structure": "",
-        "hint": "Type the command \"mv .key .trapdoor\""
+        "hint": "Type the command \"mv .key .trapdoor\"",
+        "animation": "rabbit.py 1 right-to-left"
     }
 }

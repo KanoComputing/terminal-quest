@@ -6,7 +6,7 @@
 * The main terminal class.
 """
 
-from cmd2 import Cmd
+from cmd import Cmd
 import os
 import sys
 import json
@@ -16,8 +16,8 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from commands_fake import cd, echo
-from commands_real import ls, shell_command, launch_application
+from commands_fake import cd
+from commands_real import ls, sudo, grep, shell_command, launch_application
 from Node import generate_file_tree
 from helper_functions import copy_file_tree, delete_file_tree, get_completion_dir
 from kano.colours import colourizeInput256, colourize256
@@ -29,7 +29,7 @@ class Terminal(Cmd):
 
     def __init__(self, start_dir, end_dir, validation, hint=""):
         Cmd.__init__(self)
-        self.filetree = generate_file_tree()
+        self.update_tree()
         self.current_dir = start_dir
         self.current_path = self.filetree[start_dir]
         self.end_dir = end_dir
@@ -67,14 +67,20 @@ class Terminal(Cmd):
     def update_tree(self):
         self.filetree = generate_file_tree()
 
-    # Do this after every command
+    # This is the cmd valid command
     def postcmd(self, stop, line):
-        # this is specific to the cmd2 module
-        last_command = self.history[-1].strip()
-        return self.validate(last_command)
+        return self.validate(line)
 
     def complete_list(self):
         return list(self.filetree.show_direct_descendents(self.current_dir))
+
+    def do_shell(self, line):
+        #"Run a shell command"
+        output = os.popen(line).read()
+        self.last_output = output
+
+    #######################################################
+    # Custom commands
 
     def do_ls(self, line):
         ls(self.current_dir, self.filetree, line)
@@ -94,13 +100,12 @@ class Terminal(Cmd):
         completions = self.autocomplete_dir(text, line, begidx, endidx)
         return completions
 
-    def do_shell(self, line):
-        #"Run a shell command"
-        output = os.popen(line).read()
-        self.last_output = output
+     # modified like ls to show colours
+    def do_grep(self, line):
+        grep(self.current_dir, self.filetree, line)
 
-    def do_echo(self, line):
-        echo(line)
+    #######################################################
+    # Standard commands called in the shell
 
     def do_chmod(self, line):
         line = self.join_command_to_line("chmod", line)
@@ -168,6 +173,17 @@ class Terminal(Cmd):
         completions = self.autocomplete(text, line, begidx, endidx)
         return completions
 
+    def do_sudo(self, line):
+        line = self.join_command_to_line("sudo", line)
+        sudo(self.current_dir, self.filetree, line)
+
+    def do_clear(self, line):
+        line = self.join_command_to_line("clear", line)
+        shell_command(self.current_dir, self.filetree, line)
+
+    #######################################################
+    # Commands that do not use piping when using subprocess
+
     def do_nano(self, line):
         line = self.join_command_to_line("nano", line)
         launch_application(self.current_dir, self.filetree, line)
@@ -176,13 +192,26 @@ class Terminal(Cmd):
         completions = self.autocomplete_dir(text, line, begidx, endidx)
         return completions
 
-    def do_clear(self, line):
-        line = self.join_command_to_line("clear", line)
-        shell_command(self.current_dir, self.filetree, line)
+    # Tis is listed with the other launched applications because
+    # the piping only works if no piping is used
+    def do_echo(self, line):
+        line = self.join_command_to_line("echo", line)
+        launch_application(self.current_dir, self.filetree, line)
 
     def do_man(self, line):
         line = self.join_command_to_line("man", line)
         launch_application(self.current_dir, self.filetree, line)
+
+    def do_less(self, line):
+        line = self.join_command_to_line("less", line)
+        launch_application(self.current_dir, self.filetree, line)
+
+    def do_more(self, line):
+        line = self.join_command_to_line("more", line)
+        launch_application(self.current_dir, self.filetree, line)
+
+    #######################################################
+    # Helper commands
 
     def autocomplete_dir(self, text, line, begidx, endidx):
         temp_dir = get_completion_dir(self.current_dir, self.filetree, line)
@@ -213,14 +242,6 @@ class Terminal(Cmd):
     def join_command_to_line(self, command_word, line):
         line = " ".join([command_word] + line.split(" "))
         return line
-
-    # overwrite
-    def redirect_output(self, statement):
-        if statement.parsed.output:
-            real_loc = self.filetree(statement.parsed.outputTo)
-            statement.parsed.outputTo = real_loc
-
-        return Cmd.redirect_output(self, statement)
 
 
 def launch_project(terminal_number=None):

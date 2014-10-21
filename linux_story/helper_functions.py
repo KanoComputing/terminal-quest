@@ -7,6 +7,7 @@
 """
 
 import os
+import sys
 import shutil
 from kano.colours import colourize256
 
@@ -19,16 +20,19 @@ hidden_dir = os.path.join(home, ".linux-story")
 def copy_file_tree(challenge_number):
     path = os.path.abspath(os.path.join(os.path.dirname(__file__), "file-system", str(challenge_number)))
     dest = os.path.join(os.path.expanduser("~"), ".linux-story")
+
     try:
         shutil.copytree(path, dest)
     except:
         # for now, silently fail
+        #print "Unexpected error:", sys.exc_info()[0]
         pass
 
 
 def delete_file_tree():
     filetree = os.path.join(os.path.expanduser("~"), ".linux-story")
-    shutil.rmtree(filetree)
+    if os.path.exists(filetree):
+        shutil.rmtree(filetree)
 
 
 def is_exe(fpath):
