@@ -19,7 +19,7 @@ if __name__ == '__main__' and __package__ is None:
 from commands_fake import cd
 from commands_real import ls, sudo, grep, shell_command, launch_application
 from Node import generate_file_tree
-from helper_functions import copy_file_tree, delete_file_tree, get_completion_dir
+from helper_functions import copy_file_tree, get_completion_dir
 from kano.colours import colourizeInput256, colourize256
 
 NUMBER_OF_CHALLENGES = 8
@@ -279,7 +279,6 @@ def launch_challenge_number(terminal_number, challenges):
     end_dir = challenge_dict["end_dir"]
     command = challenge_dict["command"]
     hint = challenge_dict["hint"]
-    delete_file_tree()
     copy_file_tree(terminal_number)
     Terminal(start_dir, end_dir, command, hint)
 

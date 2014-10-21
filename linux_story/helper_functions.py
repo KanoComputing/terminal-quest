@@ -7,7 +7,6 @@
 """
 
 import os
-import sys
 import shutil
 from kano.colours import colourize256
 
@@ -19,13 +18,20 @@ hidden_dir = os.path.join(home, ".linux-story")
 # copy files over from root to the home
 def copy_file_tree(challenge_number):
     path = os.path.abspath(os.path.join(os.path.dirname(__file__), "file-system", str(challenge_number)))
+
+    # If path does not exist, exit function
+    if not os.path.exists(path):
+        return
+
     dest = os.path.join(os.path.expanduser("~"), ".linux-story")
+    delete_file_tree()
 
     try:
         shutil.copytree(path, dest)
     except:
         # for now, silently fail
-        #print "Unexpected error:", sys.exc_info()[0]
+        # import sys
+        # print "Unexpected error:", sys.exc_info()[0]
         pass
 
 
