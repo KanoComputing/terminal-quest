@@ -22,8 +22,6 @@ from Node import generate_file_tree
 from helper_functions import copy_file_tree, get_completion_dir
 from kano.colours import colourizeInput256, colourize256
 
-NUMBER_OF_CHALLENGES = 8
-
 
 class Terminal(Cmd):
 
@@ -108,17 +106,14 @@ class Terminal(Cmd):
     # Standard commands called in the shell
 
     def do_chmod(self, line):
-        line = self.join_command_to_line("chmod", line)
-        shell_command(self.current_dir, self.filetree, line)
+        shell_command(self.current_dir, self.filetree, line, "chmod")
 
     def do_touch(self, line):
-        line = self.join_command_to_line("touch", line)
-        shell_command(self.current_dir, self.filetree, line)
+        shell_command(self.current_dir, self.filetree, line, "touch")
         self.update_tree()
 
     def do_mkdir(self, line):
-        line = self.join_command_to_line("mkdir", line)
-        shell_command(self.current_dir, self.filetree, line)
+        shell_command(self.current_dir, self.filetree, line, "mkdir")
         self.update_tree()
 
     def complete_mkdir(self, text, line, begidx, endidx):
@@ -126,8 +121,7 @@ class Terminal(Cmd):
         return completions
 
     def do_mv(self, line):
-        line = self.join_command_to_line("mv", line)
-        shell_command(self.current_dir, self.filetree, line)
+        shell_command(self.current_dir, self.filetree, line, "mv")
         self.update_tree()
 
     def complete_mv(self, text, line, begidx, endidx):
@@ -135,8 +129,7 @@ class Terminal(Cmd):
         return completions
 
     def do_rm(self, line):
-        line = self.join_command_to_line("rm", line)
-        shell_command(self.current_dir, self.filetree, line)
+        shell_command(self.current_dir, self.filetree, line, "rm")
         self.update_tree()
 
     def complete_rm(self, text, line, begidx, endidx):
@@ -144,8 +137,7 @@ class Terminal(Cmd):
         return completions
 
     def do_cp(self, line):
-        line = self.join_command_to_line("cp", line)
-        shell_command(self.current_dir, self.filetree, line)
+        shell_command(self.current_dir, self.filetree, line, "cp")
         self.update_tree()
 
     def complete_cp(self, text, line, begidx, endidx):
@@ -153,8 +145,7 @@ class Terminal(Cmd):
         return completions
 
     def do_passwd(self, line):
-        line = self.join_command_to_line("passwd", line)
-        shell_command(self.current_dir, self.filetree, line)
+        shell_command(self.current_dir, self.filetree, line, "passwd")
         self.update_tree()
 
     def complete_passwd(self, text, line, begidx, endidx):
@@ -162,31 +153,32 @@ class Terminal(Cmd):
         return completions
 
     def do_xargs(self, line):
-        line = self.join_command_to_line("xargs", line)
-        shell_command(self.current_dir, self.filetree, line)
+        shell_command(self.current_dir, self.filetree, line, "xargs")
 
     def do_cat(self, line):
-        line = self.join_command_to_line("cat", line)
-        shell_command(self.current_dir, self.filetree, line)
+        shell_command(self.current_dir, self.filetree, line, "cat")
 
     def complete_cat(self, text, line, begidx, endidx):
         completions = self.autocomplete(text, line, begidx, endidx)
         return completions
 
     def do_sudo(self, line):
-        line = self.join_command_to_line("sudo", line)
         sudo(self.current_dir, self.filetree, line)
 
     def do_clear(self, line):
-        line = self.join_command_to_line("clear", line)
-        shell_command(self.current_dir, self.filetree, line)
+        shell_command(self.current_dir, self.filetree, line, "clear")
+
+    def do_find(self, line):
+        shell_command(self.current_dir, self.filetree, line, "find")
+
+    def do_pwd(self, line):
+        shell_command(self.current_dir, self.filetree, line, "pwd")
 
     #######################################################
     # Commands that do not use piping when using subprocess
 
     def do_nano(self, line):
-        line = self.join_command_to_line("nano", line)
-        launch_application(self.current_dir, self.filetree, line)
+        launch_application(self.current_dir, self.filetree, line, "nano")
 
     def complete_nano(self, text, line, begidx, endidx):
         completions = self.autocomplete_dir(text, line, begidx, endidx)
@@ -195,20 +187,16 @@ class Terminal(Cmd):
     # Tis is listed with the other launched applications because
     # the piping only works if no piping is used
     def do_echo(self, line):
-        line = self.join_command_to_line("echo", line)
-        launch_application(self.current_dir, self.filetree, line)
+        launch_application(self.current_dir, self.filetree, line, "echo")
 
     def do_man(self, line):
-        line = self.join_command_to_line("man", line)
-        launch_application(self.current_dir, self.filetree, line)
+        launch_application(self.current_dir, self.filetree, line, "man")
 
     def do_less(self, line):
-        line = self.join_command_to_line("less", line)
-        launch_application(self.current_dir, self.filetree, line)
+        launch_application(self.current_dir, self.filetree, line, "less")
 
     def do_more(self, line):
-        line = self.join_command_to_line("more", line)
-        launch_application(self.current_dir, self.filetree, line)
+        launch_application(self.current_dir, self.filetree, line, "more")
 
     #######################################################
     # Helper commands
@@ -239,23 +227,27 @@ class Terminal(Cmd):
                            ]
         return completions
 
-    def join_command_to_line(self, command_word, line):
-        line = " ".join([command_word] + line.split(" "))
-        return line
 
+def launch_project(chapter_number=1, terminal_number=1):
+    chapters = []
+    filepath = dir_path + "/linux_story/data/chapter_" + str(chapter_number) + ".json"
 
-def launch_project(terminal_number=None):
-    filepath = dir_path + "/linux_story/data/challenges.json"
-    file_contents = ""
-    with open(filepath) as infile:
-        file_contents = infile.read().strip()
-    challenges = json.loads(file_contents)
+    while os.path.exists(filepath):
+        file_contents = ""
+        with open(filepath) as infile:
+            file_contents = infile.read().strip()
+        challenges = json.loads(file_contents)
+        chapters.append(challenges)
+        chapter_number = chapter_number + 1
+        filepath = dir_path + "/linux_story/data/chapter_" + str(chapter_number) + ".json"
 
-    if terminal_number:
-        launch_challenge_number(terminal_number, challenges)
+    for chapter in chapters:
+        # find total number of challenges
+        keys = [int(x) for x in chapter.keys()]
+        last_challenge = int(sorted(keys)[-1])
 
-    for i in range(1, NUMBER_OF_CHALLENGES):
-        launch_challenge_number(i, challenges)
+        for i in range(terminal_number, last_challenge + 1):
+            launch_challenge_number(i, chapter)
 
 
 def launch_challenge_number(terminal_number, challenges):
@@ -302,7 +294,7 @@ def launch_animation(command):
 
 if __name__ == "__main__":
     import sys
-    if len(sys.argv) == 2:
-        launch_project(sys.argv[1])
+    if len(sys.argv) == 3:
+        launch_project(int(sys.argv[1]), int(sys.argv[2]))
     else:
         launch_project()

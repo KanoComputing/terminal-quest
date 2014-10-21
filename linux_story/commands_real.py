@@ -118,13 +118,16 @@ def sudo(current_dir, tree, line):
     elements = line.split(" ")
 
     # take the command we're sudo-ing
-    command = elements[1]
+    command = elements[0]
 
     if command in allowed_commands:
-        shell_command(current_dir, tree, line)
+        shell_command(current_dir, tree, line, "sudo")
 
 
-def shell_command(current_dir, tree, line):
+def shell_command(current_dir, tree, line, command_word=""):
+
+    line = " ".join([command_word] + line.split(" "))
+
     real_loc = tree[current_dir].path
 
     # Don't do anything
@@ -144,7 +147,10 @@ def shell_command(current_dir, tree, line):
         print stderr.strip()
 
 
-def launch_application(current_dir, tree, line):
+def launch_application(current_dir, tree, line, command_word=""):
+
+    line = " ".join([command_word] + line.split(" "))
+
     real_loc = tree[current_dir].path
 
     # Don't do anything

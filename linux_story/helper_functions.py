@@ -19,9 +19,12 @@ hidden_dir = os.path.join(home, ".linux-story")
 def copy_file_tree(challenge_number):
     path = os.path.abspath(os.path.join(os.path.dirname(__file__), "file-system", str(challenge_number)))
 
-    # If path does not exist, exit function
-    if not os.path.exists(path):
-        return
+    # If path does not exist, look in lower levels
+    while not os.path.exists(path):
+        challenge_number = int(challenge_number) - 1
+        path = os.path.abspath(os.path.join(os.path.dirname(__file__), "file-system", str(challenge_number)))
+        if challenge_number < 0:
+            raise Exception("No challenges have been provided!")
 
     dest = os.path.join(os.path.expanduser("~"), ".linux-story")
     delete_file_tree()
