@@ -9,7 +9,7 @@
 import os
 import shutil
 from Node import Tree
-from kano.colours import colourize256
+from kano.colours import colourize256, decorate_string
 
 
 home = os.path.expanduser("~")
@@ -117,3 +117,67 @@ def get_completion_dir(current_dir, tree, line):
     if final_list_of_dirs:
         return final_list_of_dirs[-1]
     return current_dir
+
+
+# Colourise text
+def get_preset_from_id(id):
+    if id == 'b':
+        return "light-blue"
+    elif id == 'r':
+        return "light-red"
+    elif id == 'g':
+        return "light-green"
+    elif id == 'y':
+        return "light-yellow"
+    elif id == 'w':
+        return "white"
+    elif id == 'p':
+        return "light-magenta"
+    else:
+        return "light-cyan"
+
+
+def parse_string(string):
+    default_preset = get_preset_from_id(None)
+
+    if string.find("{{") == -1:
+        string = decorate_string(string, default_preset)
+        return string
+
+    # First part of the string
+    while string.find("{{") != -1:
+        pos1 = string.index("{{")
+        first_part = string[:pos1]
+        # Last part of the string
+        pos2 = string.index("}}")
+        last_part = string[pos2 + 2:]
+        # Preset id
+        preset_id = string[pos1 + 2]
+        preset = get_preset_from_id(preset_id)
+        # Colour part of the string
+        colour_part = string[pos1 + 3:pos2]
+        colour_part = decorate_string(colour_part, preset)
+        first_part = decorate_string(first_part, default_preset)
+
+        if string.find("{{") != -1:
+            last_part = decorate_string(last_part, default_preset)
+
+        string = first_part + colour_part + last_part
+
+    return string
+
+
+def colourizeInput256(string, fg_num=None, bg_num=None, bold=False):
+    """ Paint the text with foreground/background colours using the
+        newer 256 colour model. """
+
+    if fg_num is not None:
+        string = "\001\033[38;5;%dm\002%s\001\033[0m\002" % (fg_num, string)
+
+    if bg_num is not None:
+        string = "\001\033[48;5;%dm\002%s\001\033[0m\002" % (bg_num, string)
+
+    if bold:
+        string = "\001\033[1m\002%s\001\033[0m\002" % string
+
+    return string

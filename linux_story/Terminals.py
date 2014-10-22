@@ -19,8 +19,9 @@ if __name__ == '__main__' and __package__ is None:
 
 from commands_fake import cd
 from commands_real import ls, sudo, grep, shell_command, launch_application
-from helper_functions import generate_file_tree, copy_file_tree, get_completion_dir
-from kano.colours import colourizeInput256, colourize256
+from helper_functions import (generate_file_tree, copy_file_tree, get_completion_dir,
+                              parse_string)
+from kano.colours import colourize256
 
 
 class Terminal(Cmd):
@@ -253,7 +254,7 @@ def launch_project(chapter_number=1, terminal_number=1):
 def launch_challenge_number(terminal_number, challenges):
     challenge_dict = challenges[str(terminal_number)]
     for line in challenge_dict["story"]:
-        line = colourizeInput256(line, 147, 16, True)
+        line = parse_string(line)
         try:
             raw_input(line)
         except:
