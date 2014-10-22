@@ -132,7 +132,7 @@ def shell_command(current_dir, tree, line, command_word=""):
 
     # Don't do anything
     if not real_loc:
-        return
+        return False
 
     args = line.split(" ")
     p = subprocess.Popen(args, cwd=real_loc,
@@ -145,6 +145,8 @@ def shell_command(current_dir, tree, line, command_word=""):
 
     if stderr:
         print stderr.strip()
+
+    return True
 
 
 def launch_application(current_dir, tree, line, command_word=""):

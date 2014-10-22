@@ -8,11 +8,38 @@
 
 import os
 import shutil
+from Node import Tree
 from kano.colours import colourize256
 
 
 home = os.path.expanduser("~")
 hidden_dir = os.path.join(home, ".linux-story")
+
+
+# Generate from file structure
+def generate_file_tree():
+    tree = Tree()
+    tree.add_node("~")  # root node
+    tree["~"].add_path(os.path.join(os.path.expanduser("~"), ".linux-story"))
+
+    for dirpath, dirnames, filenames in os.walk(hidden_dir):
+        folders = dirpath.split("/")
+        folders.remove(".linux-story")
+        for d in dirnames:
+            if folders[-1] == "caroline":
+                tree.add_node(d, "~")
+            else:
+                tree.add_node(d, folders[-1])
+            tree[d].add_path(os.path.join(dirpath, d))
+        for f in filenames:
+            if folders[-1] == "caroline":
+                tree.add_node(f, "~")
+            else:
+                tree.add_node(f, folders[-1])
+            tree[f].add_path(os.path.join(dirpath, f))
+            tree[f].set_as_dir(False)
+
+    return tree
 
 
 # copy files over from root to the home

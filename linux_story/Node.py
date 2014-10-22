@@ -7,7 +7,6 @@
 """
 
 import os
-from helper_functions import hidden_dir
 
 # TODO: this is repeated!!
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
@@ -145,10 +144,7 @@ class Tree:
             queue = expansion
 
     def node_exists(self, identifier):
-        if hasattr(self, identifier):
-            return True
-        else:
-            return False
+        return hasattr(self, identifier)
 
     def __getitem__(self, key):
         return self.__nodes[key]
@@ -162,29 +158,3 @@ class Tree:
             prompt = node + "/" + prompt
         prompt = "user@kano:" + prompt
         return prompt
-
-
-# Generate from file structure
-def generate_file_tree():
-    tree = Tree()
-    tree.add_node("~")  # root node
-    tree["~"].add_path(os.path.join(os.path.expanduser("~"), ".linux-story"))
-
-    for dirpath, dirnames, filenames in os.walk(hidden_dir):
-        folders = dirpath.split("/")
-        folders.remove(".linux-story")
-        for d in dirnames:
-            if folders[-1] == "caroline":
-                tree.add_node(d, "~")
-            else:
-                tree.add_node(d, folders[-1])
-            tree[d].add_path(os.path.join(dirpath, d))
-        for f in filenames:
-            if folders[-1] == "caroline":
-                tree.add_node(f, "~")
-            else:
-                tree.add_node(f, folders[-1])
-            tree[f].add_path(os.path.join(dirpath, f))
-            tree[f].set_as_dir(False)
-
-    return tree

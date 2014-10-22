@@ -11,6 +11,7 @@ import os
 import sys
 import json
 
+terminal_path = os.path.abspath(__file__)
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
@@ -18,8 +19,7 @@ if __name__ == '__main__' and __package__ is None:
 
 from commands_fake import cd
 from commands_real import ls, sudo, grep, shell_command, launch_application
-from Node import generate_file_tree
-from helper_functions import copy_file_tree, get_completion_dir
+from helper_functions import generate_file_tree, copy_file_tree, get_completion_dir
 from kano.colours import colourizeInput256, colourize256
 
 
