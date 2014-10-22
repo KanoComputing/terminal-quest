@@ -153,8 +153,10 @@ class Tree:
         self.__nodes[key] = item
 
     def generate_prompt(self, current_dir):
+        # in kano-toolset, but for now want to avoid dependencies
+        username = os.environ['LOGNAME']
         prompt = current_dir + '$ '
         for node in self.show_all_ancestors(current_dir):
             prompt = node + "/" + prompt
-        prompt = "user@kano:" + prompt
+        prompt = username + "@kano:" + prompt
         return prompt

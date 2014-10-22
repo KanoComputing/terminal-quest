@@ -18,6 +18,8 @@ hidden_dir = os.path.join(home, ".linux-story")
 
 # Generate from file structure
 def generate_file_tree():
+    # in kano-toolset, but for now want to avoid dependencies
+    username = os.environ['LOGNAME']
     tree = Tree()
     tree.add_node("~")  # root node
     tree["~"].add_path(os.path.join(os.path.expanduser("~"), ".linux-story"))
@@ -26,13 +28,13 @@ def generate_file_tree():
         folders = dirpath.split("/")
         folders.remove(".linux-story")
         for d in dirnames:
-            if folders[-1] == "caroline":
+            if folders[-1] == username:
                 tree.add_node(d, "~")
             else:
                 tree.add_node(d, folders[-1])
             tree[d].add_path(os.path.join(dirpath, d))
         for f in filenames:
-            if folders[-1] == "caroline":
+            if folders[-1] == username:
                 tree.add_node(f, "~")
             else:
                 tree.add_node(f, folders[-1])
@@ -139,11 +141,15 @@ def get_preset_from_id(id):
         return 147
 
 
-def parse_string(string):
+def parse_string(string, input=False):
     default_preset = get_preset_from_id(None)
+    if input:
+        colour_function = colourizeInput256
+    else:
+        colour_function = colourize256
 
     if string.find("{{") == -1:
-        string = colourizeInput256(string, default_preset, bold=True)
+        string = colour_function(string, default_preset, bold=True)
         return string
 
     # First part of the string
@@ -158,11 +164,13 @@ def parse_string(string):
         preset = get_preset_from_id(preset_id)
         # Colour part of the string
         colour_part = string[pos1 + 3:pos2]
-        colour_part = colourizeInput256(colour_part, preset, bold=True)
-        first_part = colourizeInput256(first_part, default_preset, bold=True)
+
+        if input:
+            colour_part = colour_function(colour_part, preset, bold=True)
+            first_part = colour_function(first_part, default_preset, bold=True)
 
         if string.find("{{") != -1:
-            last_part = colourizeInput256(last_part, default_preset, bold=True)
+            last_part = colour_function(last_part, default_preset, bold=True)
 
         string = first_part + colour_part + last_part
 

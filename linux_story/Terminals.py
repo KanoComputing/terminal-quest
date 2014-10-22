@@ -21,7 +21,6 @@ from commands_fake import cd
 from commands_real import ls, sudo, grep, shell_command, launch_application
 from helper_functions import (generate_file_tree, copy_file_tree, get_completion_dir,
                               parse_string)
-from kano.colours import colourize256
 
 
 class Terminal(Cmd):
@@ -54,7 +53,7 @@ class Terminal(Cmd):
 
         # if user does not pass challenge, show hint
         if not (command and end_dir):
-            print colourize256(self.hint, 147, None, True)
+            print parse_string(self.hint)
 
         return command and end_dir
 
@@ -254,7 +253,7 @@ def launch_project(chapter_number=1, terminal_number=1):
 def launch_challenge_number(terminal_number, challenges):
     challenge_dict = challenges[str(terminal_number)]
     for line in challenge_dict["story"]:
-        line = parse_string(line)
+        line = parse_string(line, True)
         try:
             raw_input(line)
         except:
