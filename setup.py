@@ -7,8 +7,17 @@ import os
 # gets all directories from the directory in linux_story
 def recursively_get_dirs(start_dir):
     start_path = os.path.join("./linux_story", start_dir)
-    dir_paths = [dir.replace("./linux_story/", "") + '/*' for dir, _, _ in os.walk(start_path)]
-    return dir_paths
+    #dir_paths = [dir.replace("./linux_story/", "") + '/*' for dir, _, _ in os.walk(start_path)]
+    paths = []
+
+    for root, dir, files in os.walk(start_path):
+        for f in files:
+            file_path = os.path.join(root, f)
+            file_path = file_path.replace("./linux_story/", "")
+            paths.append(file_path)
+
+    print paths
+    return paths
 
 
 file_system = recursively_get_dirs("file-system")
