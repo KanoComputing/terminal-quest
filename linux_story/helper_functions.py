@@ -9,7 +9,7 @@
 import os
 import shutil
 from Node import Tree
-from kano.colours import colourize256, decorate_string
+from kano.colours import colourize256
 
 
 home = os.path.expanduser("~")
@@ -78,11 +78,11 @@ def is_exe(fpath):
 def colour_file_dir(path, f):
     if os.path.isfile(path):
         if is_exe(path):
-            f = colourize256(f, 118, 16, True)
+            f = colourize256(f, 118, None, True)
         else:
-            f = colourize256(f, 68, 16, True)
+            f = colourize256(f, 68, None, True)
     elif os.path.isdir(path):
-        f = colourize256(f, 29, 16, True)
+        f = colourize256(f, 29, None, True)
     return f
 
 
@@ -121,27 +121,29 @@ def get_completion_dir(current_dir, tree, line):
 
 # Colourise text
 def get_preset_from_id(id):
-    if id == 'b':
-        return "light-blue"
-    elif id == 'r':
-        return "light-red"
-    elif id == 'g':
-        return "light-green"
-    elif id == 'y':
-        return "light-yellow"
-    elif id == 'w':
-        return "white"
-    elif id == 'p':
-        return "light-magenta"
+    if id == "r":
+        return 9
+    elif id == "g":
+        return 46
+    elif id == "o":
+        return 208
+    elif id == "y":
+        return 226
+    elif id == "b":
+        return 81
+    elif id == "p":
+        return 205
+    elif id == "c":
+        return 123
     else:
-        return "light-cyan"
+        return 147
 
 
 def parse_string(string):
     default_preset = get_preset_from_id(None)
 
     if string.find("{{") == -1:
-        string = decorate_string(string, default_preset)
+        string = colourizeInput256(string, default_preset, bold=True)
         return string
 
     # First part of the string
@@ -156,11 +158,11 @@ def parse_string(string):
         preset = get_preset_from_id(preset_id)
         # Colour part of the string
         colour_part = string[pos1 + 3:pos2]
-        colour_part = decorate_string(colour_part, preset)
-        first_part = decorate_string(first_part, default_preset)
+        colour_part = colourizeInput256(colour_part, preset, bold=True)
+        first_part = colourizeInput256(first_part, default_preset, bold=True)
 
         if string.find("{{") != -1:
-            last_part = decorate_string(last_part, default_preset)
+            last_part = colourizeInput256(last_part, default_preset, bold=True)
 
         string = first_part + colour_part + last_part
 
@@ -181,3 +183,6 @@ def colourizeInput256(string, fg_num=None, bg_num=None, bold=False):
         string = "\001\033[1m\002%s\001\033[0m\002" % string
 
     return string
+
+
+

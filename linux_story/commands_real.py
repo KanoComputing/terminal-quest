@@ -103,9 +103,9 @@ def grep(current_dir, tree, line):
         results = stdout.split("/n")
         for r in results:
             [path, contents] = r.split(":")
-            path = colourize256(path, 29, 16, True)
-            contents = colourize256(contents, 68, 16, True)
-            colon = colourize256(":", 118, 16, True)
+            path = colourize256(path, 29, None, True)
+            contents = colourize256(contents, 68, None, True)
+            colon = colourize256(":", 118, None, True)
             coloured_output.append(colon.join([path, contents]))
         coloured_results = "/n".join(coloured_output)
         print coloured_results

@@ -54,7 +54,7 @@ class Terminal(Cmd):
 
         # if user does not pass challenge, show hint
         if not (command and end_dir):
-            print colourize256(self.hint, 147, 16, True)
+            print colourize256(self.hint, 147, None, True)
 
         return command and end_dir
 
