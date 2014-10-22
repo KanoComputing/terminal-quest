@@ -21,7 +21,7 @@ from linux_story.Terminals import terminal_path
 
 
 def main(terminal_number=""):
-    term_cmd = "gnome-terminal -e 'bash -c \" python " + terminal_path + "; exec bash\"'"
+    term_cmd = "lxterminal -e 'bash -c \" python " + terminal_path + "; exec bash\"'"
     subprocess.Popen(term_cmd, shell=True)
 
 

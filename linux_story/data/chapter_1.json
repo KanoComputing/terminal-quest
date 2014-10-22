@@ -1,7 +1,7 @@
 {
     "1": {
         "story": ["Hello there",
-                  "Welcome to the dark side of the Kano OS.",
+                  "{{rW}}{{oe}}{{yl}}{{gc}}{{bo}}{{pm}}{{re}} to the dark side of the Kano OS.",
                   "Have a look around",
                   "Type 'ls' (short for LiSt) to see where you are."
                   ],
@@ -34,12 +34,12 @@
         "story": ["\nThere's a sign on the wall",
                   "Let's read what it says",
                   "The command 'less' shows the text contained in a file",
-                  "Use the command 'less .scribbled_note"],
+                  "Use the command 'less scribbled_note"],
         "start_dir": "rabbithole",
         "end_dir": "rabbithole",
-        "command": "less .scribbled_note",
+        "command": "less scribbled_note",
         "structure": "",
-        "hint": "Type the command \"less .scribbled_note\""
+        "hint": "Type the command \"less scribbled_note\""
     }
 }
 
