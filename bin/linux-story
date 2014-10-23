@@ -7,7 +7,6 @@
 * Author: Caroline Clark <caroline@kano.me>
 """
 
-import subprocess
 import sys
 import os
 
@@ -21,8 +20,8 @@ from linux_story.Terminals import terminal_path
 
 
 def main(terminal_number=""):
-    term_cmd = "lxterminal -e 'bash -c \" python " + terminal_path + "; exec bash\"'"
-    subprocess.Popen(term_cmd, shell=True)
+    term_cmd = "python " + terminal_path
+    os.system(term_cmd)
 
 
 if __name__ == "__main__":
