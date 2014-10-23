@@ -7,7 +7,7 @@
 """
 
 import os
-from linux_story.helper_functions import hidden_dir, parse_string, colourizeInput256
+from linux_story.helper_functions import hidden_dir, parse_string
 
 # TODO: this is repeated!!
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
@@ -57,6 +57,7 @@ class Node:
         self.__is_dir = is_dir
 
 
+# With this class, files have to have unique names
 class Tree:
 
     def __init__(self):

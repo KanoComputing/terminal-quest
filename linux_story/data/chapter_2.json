@@ -1,94 +1,100 @@
 {
     "1": {
-        "story": ["\nHm.  I can't see anything.  You'd think there would be a rabbit in the rabbithole, right?",
-                  "We do have a special weapon.  We can see hidden objects with the tag -a",
-                  "The flag -a stands for All",
-                  "Try typing the command ls -a"],
+        "story": ["The rabbit left us a message",
+                  "We should reply back to him",
+                  "Type 'nano scribbled_note' to edit the rabbit's note"],
+        "start_dir": "rabbithole",
+        "end_dir": "rabbithole",
+        "command": "nano scribbled_note",
+        "structure": "",
+        "hint": "Type the command \"nano scribbled_note\" and write your own message to the rabbit"
+    },
+    "2": {
+        "story": ["Awesome, now let's have a look around some more.",
+                  "How about looking for all the hidden files?",
+                  "Type 'ls -a' to look at all the files in a directory"],
         "start_dir": "rabbithole",
         "end_dir": "rabbithole",
         "command": "ls -a",
         "structure": "",
-        "hint": "Type the command \"ls -a\""
-    },
-    "2": {
-        "story": ["\nWe found a trapdoor",
-                  "But there's also a key..",
-                  "Do we need the key?  It looks open.."],
+        "hint": "Type the command 'ls -a'"
+        },
+    "3": {
+        "story": ["Look!  'ls -a' lets us see all the files and directories with a . at the start",
+                  "These files are normally hidden from view",
+                  "There's a .trapdoor directory, and a .key file.",
+                  "Do we need the .key file?  The .trapdoor looks open...",
+                  "Type 'cd .trapdoor' to go into the trapdoor"],
         "start_dir": "rabbithole",
         "end_dir": ".trapdoor",
         "command": "",
         "structure": "",
-        "hint": "Type the command \"cd .trapdoor\""
+        "hint": "Type the command 'cd .trapdoor'"
     },
-    "3": {
-        "story": ["\nOk!  It looks like we didn't need the key after all!",
-                  "Look around again"],
+    "4": {
+        "story": ["It looks like we got in",
+                  "What's in this directory?",
+                  "Have a look around"],
+        "start_dir": ".trapdoor",
+        "end_dir": ".trapdoor",
+        "command": "ls",
+        "structure": "",
+        "hint": "Type the command 'ls'"
+    },
+    "5": {
+        "story": ["Look, there's another note",
+                  "What does this one say?"],
+        "start_dir": ".trapdoor",
+        "end_dir": ".trapdoor",
+        "command": ["less second_scribbled_note", "more second_scribbled_note"],
+        "structure": "",
+        "hint": "Type the command \"less second_scribbled_note\""
+    },
+    "6": {
+        "story": ["Why did the rabbit say we couldn't make changes to it?",
+                  "Ha, lets show it!  Try editing the note using 'nano'"],
+        "start_dir": ".trapdoor",
+        "end_dir": ".trapdoor",
+        "command": "",
+        "structure": "",
+        "hint": "Type the command \"nano scribbled_note\""
+    },
+    "7": {
+        "story": ["Wait, we can't make any changes to the note the rabbit left",
+                  "To check the permissions of a file, use the command 'ls -l'"],
+        "start_dir": ".trapdoor",
+        "end_dir": ".trapdoor",
+        "structure": "",
+        "hint": "Type the command \"ls -l\""
+    },
+    "8": {
+        "story": ["That's a lot of info!",
+                  "Let's break up what it means",
+                  "We get blocks of info of the form",
+                  "-r--r--r- means that the file is readable, but not writable.",
+                  "If the file was writable, it would have permissions -rw-rw-r-",
+                  "Since we can't edit the rabbit's note, let's create our own.",
+                  "Use the command 'touch note', which creates a new file called 'note'"],
+        "start_dir": ".trapdoor",
+        "end_dir": ".trapdoor",
+        "command": "touch note",
+        "structure": "",
+        "hint": "Type the command \"touch note\""
+    },
+    "9": {
+        "story": ["If you use 'ls', you'll see the new file you've created"],
         "start_dir": ".trapdoor",
         "end_dir": ".trapdoor",
         "command": "ls",
         "structure": "",
         "hint": "Type the command \"ls\""
     },
-    "4": {
-        "story": ["\nHuh, there's a locked door",
-                  "We may need to use the key!",
-                  "Go back to the previous room using 'cd ..'"],
-        "start_dir": ".trapdoor",
-        "end_dir": "rabbithole",
-        "command": "",
-        "structure": "",
-        "hint": "Type the command \"cd ..\""
-    },
-    "5": {
-        "story": ["\nMaybe we should take a closer look at the key",
-                  "Read the contents of the key file",
-                  "Use the command 'less .key'"],
-        "start_dir": "rabbithole",
-        "end_dir": "",
-        "command": "",
-        "structure": "",
-        "hint": "Type the command \"less .key\""
-    },
-    "6": {
-        "story": ["\nSome of these commands look familiar",
-                  "We learnt before that chmod would change the permission on the key",
-                  "But I don't think this key is in the right directory",
-                  "Try moving the key to the directory above"],
-        "start_dir": "rabbithole",
-        "end_dir": "rabbithole",
-        "command": "mv .key .trapdoor",
-        "structure": "",
-        "hint": "Type the command \"mv .key .trapdoor\""
-    },
-    "7": {
-        "story": ["\nOK!  Now we could run the commands in the .key file individually",
-                  "But wouldn't it be good if we could run the commands in the file directly?",
-                  "Lets check out the permissions of the file",
-                  "Do you remember how to find out more about a file?"],
-        "start_dir": "rabbithole",
-        "end_dir": ".trapdoor",
-        "command": "ls -la",
-        "structure": "",
-        "hint": "Type the command \"ls -la\" in the .trapdoor directory"
-    },
-    "8": {
-        "story": ["\nIf we make this file executable, we can run the commands in the file",
-                  "We can see this file is readable only",
-                  "Lets change it so it's also executable"],
+    "10": {
+        "story": ["Now let's edit the note using 'nano'.  Write a message and save it."],
         "start_dir": ".trapdoor",
         "end_dir": ".trapdoor",
-        "command": "chmod +x .key",
+        "command": "nano note",
         "structure": "",
-        "hint": "Type the command \"chmod +x .key\" in the .trapdoor directory"
-    },
-    "9": {
-        "story": ["\nExcellent!  Now let's run the script",
-                  "Use .key to run the executible file"],
-        "start_dir": ".trapdoor",
-        "end_dir": ".trapdoor",
-        "command": ".key",
-        "structure": "",
-        "hint": "Type the command \".key\" in the .trapdoor directory",
-        "animation": "rabbit.py 1 right-to-left"
+        "hint": "Type the command \"nano note\""
     }
 }

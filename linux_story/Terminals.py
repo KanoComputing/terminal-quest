@@ -9,7 +9,7 @@
 from cmd import Cmd
 import os
 import sys
-import json
+
 
 terminal_path = os.path.abspath(__file__)
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -19,8 +19,7 @@ if __name__ == '__main__' and __package__ is None:
 
 from commands_fake import cd
 from commands_real import ls, sudo, grep, shell_command, launch_application
-from helper_functions import (copy_file_tree, get_completion_dir,
-                              parse_string)
+from helper_functions import (get_completion_dir, parse_string)
 from Node import generate_file_tree
 
 # If this is not imported, the escape characters used for the colour prompts show up as special characters
@@ -52,7 +51,7 @@ class Terminal(Cmd):
         command = True
         end_dir = True
         if self.validation:
-            command = self.validation == line
+            command = line in self.validation
         if self.end_dir:
             end_dir = self.current_dir == self.end_dir
 
@@ -179,6 +178,26 @@ class Terminal(Cmd):
     def do_pwd(self, line):
         shell_command(self.current_dir, self.filetree, line, "pwd")
 
+    def do_wc(self, line):
+        shell_command(self.current_dir, self.filetree, line, "wc")
+
+    def complete_wc(self, text, line, begidx, endidx):
+        completions = self.autocomplete(text, line, begidx, endidx)
+        return completions
+
+    def do_alias(self, line):
+        shell_command(self.current_dir, self.filetree, line, "alias")
+
+    def do_unalias(self, line):
+        shell_command(self.current_dir, self.filetree, line, "unalias")
+
+    def do_more(self, line):
+        launch_application(self.current_dir, self.filetree, line, "more")
+
+    def complete_more(self, text, line, begidx, endidx):
+        completions = self.autocomplete(text, line, begidx, endidx)
+        return completions
+
     #######################################################
     # Commands that do not use piping when using subprocess
 
@@ -203,9 +222,6 @@ class Terminal(Cmd):
     def complete_less(self, text, line, begidx, endidx):
         completions = self.autocomplete(text, line, begidx, endidx)
         return completions
-
-    def do_more(self, line):
-        launch_application(self.current_dir, self.filetree, line, "more")
 
     #######################################################
     # Helper commands
@@ -236,74 +252,3 @@ class Terminal(Cmd):
                            ]
         return completions
 
-
-def launch_project(chapter_number=1, terminal_number=1):
-    chapters = []
-    filepath = dir_path + "/linux_story/data/chapter_" + str(chapter_number) + ".json"
-
-    while os.path.exists(filepath):
-        file_contents = ""
-        with open(filepath) as infile:
-            file_contents = infile.read().strip()
-        challenges = json.loads(file_contents)
-        chapters.append(challenges)
-        chapter_number = chapter_number + 1
-        filepath = dir_path + "/linux_story/data/chapter_" + str(chapter_number) + ".json"
-
-    for chapter in chapters:
-        # find total number of challenges
-        keys = [int(x) for x in chapter.keys()]
-        last_challenge = int(sorted(keys)[-1])
-
-        for i in range(terminal_number, last_challenge + 1):
-            launch_challenge_number(i, chapter)
-
-
-def launch_challenge_number(terminal_number, challenges):
-    challenge_dict = challenges[str(terminal_number)]
-    for line in challenge_dict["story"]:
-        line = parse_string(line, True)
-        try:
-            raw_input(line)
-        except:
-            pass
-
-    # if there's animation, play it
-    try:
-        animation_cmd = challenge_dict["animation"]
-        launch_animation(animation_cmd)
-    except:
-        # fail silently
-        pass
-
-    start_dir = challenge_dict["start_dir"]
-    end_dir = challenge_dict["end_dir"]
-    command = challenge_dict["command"]
-    hint = challenge_dict["hint"]
-    copy_file_tree(terminal_number)
-    Terminal(start_dir, end_dir, command, hint)
-
-
-def launch_animation(command):
-    # split the command into it's components
-    elements = command.split(" ")
-
-    # the filename is the first element
-    filename = elements[0]
-
-    # find complete path
-    path = os.path.join(os.path.join(os.path.dirname(__file__), "animation", filename))
-
-    # join command back up
-    command = " ".join([path] + elements[1:])
-
-    # run command
-    os.system(command)
-
-
-if __name__ == "__main__":
-    import sys
-    if len(sys.argv) == 3:
-        launch_project(int(sys.argv[1]), int(sys.argv[2]))
-    else:
-        launch_project()
