@@ -22,6 +22,10 @@ from commands_real import ls, sudo, grep, shell_command, launch_application
 from helper_functions import (generate_file_tree, copy_file_tree, get_completion_dir,
                               parse_string)
 
+# If this is not imported, the escape characters used for the colour prompts show up as special characters
+# We don't use any functions from this module, simply importing this module fixes the bug
+import readline
+
 
 class Terminal(Cmd):
 
