@@ -195,6 +195,10 @@ class Terminal(Cmd):
     def do_less(self, line):
         launch_application(self.current_dir, self.filetree, line, "less")
 
+    def complete_less(self, text, line, begidx, endidx):
+        completions = self.autocomplete(text, line, begidx, endidx)
+        return completions
+
     def do_more(self, line):
         launch_application(self.current_dir, self.filetree, line, "more")
 
