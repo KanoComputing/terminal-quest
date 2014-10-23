@@ -7,6 +7,7 @@
 """
 
 import os
+from linux_story.helper_functions import hidden_dir, parse_string, colourizeInput256
 
 # TODO: this is repeated!!
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
@@ -155,8 +156,37 @@ class Tree:
     def generate_prompt(self, current_dir):
         # in kano-toolset, but for now want to avoid dependencies
         username = os.environ['LOGNAME']
-        prompt = current_dir + '$ '
+        prompt = current_dir + ' $ '
         for node in self.show_all_ancestors(current_dir):
             prompt = node + "/" + prompt
-        prompt = username + "@kano:" + prompt
-        return prompt
+        prompt = "{{Y" + username + "@kano " + "}}" + "{{b" + prompt + "}}"
+        coloured_prompt = parse_string(prompt, input=True)
+        return coloured_prompt
+
+
+# Generate from file structure
+def generate_file_tree():
+    # in kano-toolset, but for now want to avoid dependencies
+    username = os.environ['LOGNAME']
+    tree = Tree()
+    tree.add_node("~")  # root node
+    tree["~"].add_path(os.path.join(os.path.expanduser("~"), ".linux-story"))
+
+    for dirpath, dirnames, filenames in os.walk(hidden_dir):
+        folders = dirpath.split("/")
+        folders.remove(".linux-story")
+        for d in dirnames:
+            if folders[-1] == username:
+                tree.add_node(d, "~")
+            else:
+                tree.add_node(d, folders[-1])
+            tree[d].add_path(os.path.join(dirpath, d))
+        for f in filenames:
+            if folders[-1] == username:
+                tree.add_node(f, "~")
+            else:
+                tree.add_node(f, folders[-1])
+            tree[f].add_path(os.path.join(dirpath, f))
+            tree[f].set_as_dir(False)
+
+    return tree

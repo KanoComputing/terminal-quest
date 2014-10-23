@@ -8,40 +8,11 @@
 
 import os
 import shutil
-from Node import Tree
 from kano.colours import colourize256
 
 
 home = os.path.expanduser("~")
 hidden_dir = os.path.join(home, ".linux-story")
-
-
-# Generate from file structure
-def generate_file_tree():
-    # in kano-toolset, but for now want to avoid dependencies
-    username = os.environ['LOGNAME']
-    tree = Tree()
-    tree.add_node("~")  # root node
-    tree["~"].add_path(os.path.join(os.path.expanduser("~"), ".linux-story"))
-
-    for dirpath, dirnames, filenames in os.walk(hidden_dir):
-        folders = dirpath.split("/")
-        folders.remove(".linux-story")
-        for d in dirnames:
-            if folders[-1] == username:
-                tree.add_node(d, "~")
-            else:
-                tree.add_node(d, folders[-1])
-            tree[d].add_path(os.path.join(dirpath, d))
-        for f in filenames:
-            if folders[-1] == username:
-                tree.add_node(f, "~")
-            else:
-                tree.add_node(f, folders[-1])
-            tree[f].add_path(os.path.join(dirpath, f))
-            tree[f].set_as_dir(False)
-
-    return tree
 
 
 # copy files over from root to the home
@@ -124,19 +95,31 @@ def get_completion_dir(current_dir, tree, line):
 # Colourise text
 def get_preset_from_id(id):
     if id == "r":
-        return 9
+        return 160
     elif id == "g":
-        return 46
+        return 28
     elif id == "o":
-        return 208
+        return 202
     elif id == "y":
-        return 226
+        return 220
     elif id == "b":
-        return 81
+        return 27
     elif id == "p":
-        return 205
+        return 197
     elif id == "c":
         return 123
+    elif id == "R":
+        return 9
+    elif id == "G":
+        return 46
+    elif id == "O":
+        return 208
+    elif id == "Y":
+        return 226
+    elif id == "B":
+        return 81
+    elif id == "P":
+        return 205
     else:
         return 147
 
