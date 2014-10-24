@@ -228,7 +228,7 @@ class Terminal(Cmd):
         launch_application(self.current_dir, self.filetree, line, "less")
 
     def complete_less(self, text, line, begidx, endidx):
-        completions = self.autocomplete(text, line, begidx, endidx)
+        completions = self.autocomplete_dir(text, line, begidx, endidx)
         return completions
 
     #######################################################
