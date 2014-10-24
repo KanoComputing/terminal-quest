@@ -64,6 +64,7 @@
                   "To check the permissions of a file, use the command 'ls -l'"],
         "start_dir": ".trapdoor",
         "end_dir": ".trapdoor",
+        "command": "ls -l",
         "structure": "",
         "hint": "Type the command \"ls -l\""
     },

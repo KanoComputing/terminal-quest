@@ -1,0 +1,35 @@
+{
+    "1": {
+        "story": ["Let's have a look around, see where you are"],
+        "start_dir": "woods",
+        "end_dir": "woods",
+        "command": "ls",
+        "structure": "",
+        "hint": "Type the command \"ls\""
+    },
+    "2": {
+        "story": ["Woah, that is a lot of trees",
+                  "I can't see where the rabbit could have got to.",
+                  "We need to look for a directory amoungst all these trees",
+                  "The command ls -d [extra info] will give you information about the directory secified by [all info]",
+                  "So ls -d *.txt will only show you the files that end in .txt",
+                  "We want to find information about the directories in this woods directory",
+                  "Try ls -d */"],
+        "start_dir": "woods",
+        "end_dir": "woods",
+        "command": "ls -d */",
+        "structure": "",
+        "hint": "Type the command \"ls -d *\/\""
+    },
+    "3": {
+        "story": ["Cool, we found some possible places!",
+                  "You've come a long way and learnt a lot of commands",
+                  "If you need to look these commands up again, use 'man', short of MANual.",
+                  "Use the command 'man ls' to look up information about the ls command"],
+        "start_dir": "woods",
+        "end_dir": "woods",
+        "command": "man ls",
+        "structure": "",
+        "hint": "Type the command \"man ls\""
+    }
+}
