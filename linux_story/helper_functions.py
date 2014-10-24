@@ -26,11 +26,10 @@ def copy_file_tree(challenge_number):
         if challenge_number < 0:
             raise Exception("No challenges have been provided!")
 
-    dest = os.path.join(os.path.expanduser("~"), ".linux-story")
     delete_file_tree()
 
     try:
-        shutil.copytree(path, dest)
+        shutil.copytree(path, hidden_dir)
     except:
         # for now, silently fail
         # import sys

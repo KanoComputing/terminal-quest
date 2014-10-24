@@ -176,6 +176,7 @@ def generate_file_tree():
     for dirpath, dirnames, filenames in os.walk(hidden_dir):
         folders = dirpath.split("/")
         folders.remove(".linux-story")
+
         for d in dirnames:
             if folders[-1] == username:
                 tree.add_node(d, "~")
@@ -187,6 +188,7 @@ def generate_file_tree():
                 tree.add_node(f, "~")
             else:
                 tree.add_node(f, folders[-1])
+
             tree[f].add_path(os.path.join(dirpath, f))
             tree[f].set_as_dir(False)
 

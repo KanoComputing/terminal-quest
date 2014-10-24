@@ -10,7 +10,7 @@ import os
 import json
 
 from linux_story.Terminals import Terminal
-from linux_story.helper_functions import (copy_file_tree, parse_string)
+from linux_story.helper_functions import (copy_file_tree, parse_string, hidden_dir)
 
 
 def launch_project(chapter_number=1, terminal_number=1):
@@ -35,14 +35,17 @@ def launch_project(chapter_number=1, terminal_number=1):
         for i in range(terminal_number, last_challenge + 1):
             launch_challenge_number(i, chapter)
 
+        # After the starting chapter, reset the starting challenge
+        terminal_number = 1
+
 
 def get_chapter_path(chapter_number):
     filepath = os.path.join(os.path.dirname(__file__), "data/chapter_" + str(chapter_number) + ".json")
     return filepath
 
 
-def launch_challenge_number(terminal_number, challenges):
-    challenge_dict = challenges[str(terminal_number)]
+def launch_challenge_number(terminal_number, chapter):
+    challenge_dict = chapter[str(terminal_number)]
     for line in challenge_dict["story"]:
         line = parse_string(line, True)
         try:
@@ -62,7 +65,11 @@ def launch_challenge_number(terminal_number, challenges):
     end_dir = challenge_dict["end_dir"]
     command = challenge_dict["command"]
     hint = challenge_dict["hint"]
-    copy_file_tree(terminal_number)
+
+    # if the story directory hasn't already been created
+    if not os.path.exists(hidden_dir):
+        copy_file_tree(terminal_number)
+
     Terminal(start_dir, end_dir, command, hint)
 
 

@@ -1,94 +1,34 @@
 {
     "1": {
-        "story": ["\nHm.  I can't see anything.  You'd think there would be a rabbit in the rabbithole, right?",
-                  "We do have a special weapon.  We can see hidden objects with the tag -a",
-                  "The flag -a stands for All",
-                  "Try typing the command ls -a"],
-        "start_dir": "rabbithole",
-        "end_dir": "rabbithole",
-        "command": "ls -a",
+        "story": ["Can we change the permissions of the note we just wrote?",
+                  "The command 'chmod' changes the permissions of files",
+                  "To make something writable, we use the command 'chmod +w filename'",
+                  "To remove the write permissions, use the command 'chmod -w filename'",
+                  "Run the command 'chmod -w note'"],
+        "start_dir": ".trapdoor",
+        "end_dir": ".trapdoor",
+        "command": "chmod -w note",
         "structure": "",
-        "hint": "Type the command \"ls -a\""
+        "hint": "Type the command \"chmod -w note\" to stop the rabbit writing on your note"
     },
     "2": {
-        "story": ["\nWe found a trapdoor",
-                  "But there's also a key..",
-                  "Do we need the key?  It looks open.."],
-        "start_dir": "rabbithole",
+        "story": ["If we use ls -l, we'll see that the note has lost it's write permissions",
+                  "Try using the command 'ls -l'"],
+        "start_dir": ".trapdoor",
         "end_dir": ".trapdoor",
-        "command": "",
+        "command": "ls -l",
         "structure": "",
-        "hint": "Type the command \"cd .trapdoor\""
+        "hint": "Type the command \"ls -l\""
     },
     "3": {
-        "story": ["\nOk!  It looks like we didn't need the key after all!",
-                  "Look around again"],
+        "story": ["See, now our note has permissions -r--r--r--",
+                  "This means people can only read it, but can't write to it",
+                  "Let's have a look what's in the unlocked_door",
+                  "To see everything in a directory, use ls -a [directory_name]"],
         "start_dir": ".trapdoor",
         "end_dir": ".trapdoor",
-        "command": "ls",
+        "command": "ls -a unlocked_door",
         "structure": "",
-        "hint": "Type the command \"ls\""
-    },
-    "4": {
-        "story": ["\nHuh, there's a locked door",
-                  "We may need to use the key!",
-                  "Go back to the previous room using 'cd ..'"],
-        "start_dir": ".trapdoor",
-        "end_dir": "rabbithole",
-        "command": "",
-        "structure": "",
-        "hint": "Type the command \"cd ..\""
-    },
-    "5": {
-        "story": ["\nMaybe we should take a closer look at the key",
-                  "Read the contents of the key file",
-                  "Use the command 'less .key'"],
-        "start_dir": "rabbithole",
-        "end_dir": "",
-        "command": "",
-        "structure": "",
-        "hint": "Type the command \"less .key\""
-    },
-    "6": {
-        "story": ["\nSome of these commands look familiar",
-                  "We learnt before that chmod would change the permission on the key",
-                  "But I don't think this key is in the right directory",
-                  "Try moving the key to the directory above"],
-        "start_dir": "rabbithole",
-        "end_dir": "rabbithole",
-        "command": "mv .key .trapdoor",
-        "structure": "",
-        "hint": "Type the command \"mv .key .trapdoor\""
-    },
-    "7": {
-        "story": ["\nOK!  Now we could run the commands in the .key file individually",
-                  "But wouldn't it be good if we could run the commands in the file directly?",
-                  "Lets check out the permissions of the file",
-                  "Do you remember how to find out more about a file?"],
-        "start_dir": "rabbithole",
-        "end_dir": ".trapdoor",
-        "command": "ls -la",
-        "structure": "",
-        "hint": "Type the command \"ls -la\" in the .trapdoor directory"
-    },
-    "8": {
-        "story": ["\nIf we make this file executable, we can run the commands in the file",
-                  "We can see this file is readable only",
-                  "Lets change it so it's also executable"],
-        "start_dir": ".trapdoor",
-        "end_dir": ".trapdoor",
-        "command": "chmod +x .key",
-        "structure": "",
-        "hint": "Type the command \"chmod +x .key\" in the .trapdoor directory"
-    },
-    "9": {
-        "story": ["\nExcellent!  Now let's run the script",
-                  "Use .key to run the executible file"],
-        "start_dir": ".trapdoor",
-        "end_dir": ".trapdoor",
-        "command": ".key",
-        "structure": "",
-        "hint": "Type the command \".key\" in the .trapdoor directory",
-        "animation": "rabbit.py 1 right-to-left"
+        "hint": "Type the command \"ls -a unlocked_door\""
     }
 }
