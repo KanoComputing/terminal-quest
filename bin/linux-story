@@ -11,19 +11,13 @@ import sys
 import os
 import json
 
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
 from linux_story.Terminals import Terminal
 from linux_story.helper_functions import (copy_file_tree, parse_string)
 
 
 def launch_project(chapter_number=1, terminal_number=1):
     chapters = []
-    filepath = dir_path + "/linux_story/data/chapter_" + str(chapter_number) + ".json"
+    filepath = "/usr/lib/python2.7/linux_story/data/chapter_" + str(chapter_number) + ".json"
 
     while os.path.exists(filepath):
         file_contents = ""
@@ -32,7 +26,7 @@ def launch_project(chapter_number=1, terminal_number=1):
         challenges = json.loads(file_contents)
         chapters.append(challenges)
         chapter_number = chapter_number + 1
-        filepath = dir_path + "/linux_story/data/chapter_" + str(chapter_number) + ".json"
+        filepath = "/usr/lib/python2.7/linux_story/data/chapter_" + str(chapter_number) + ".json"
 
     for chapter in chapters:
         # find total number of challenges
