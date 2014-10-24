@@ -50,8 +50,16 @@ class Terminal(Cmd):
     def validate(self, line):
         command = True
         end_dir = True
+
+        # if the validation is included
         if self.validation:
-            command = line in self.validation
+            # if only one command can pass the level
+            if isinstance(self.validation, basestring):
+                command = line == self.validation
+            # else there are multiple commands that can pass the level
+            # TODO: explicitly check for list type here?
+            else:
+                command = line in self.validation
         if self.end_dir:
             end_dir = self.current_dir == self.end_dir
 
