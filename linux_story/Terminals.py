@@ -19,7 +19,7 @@ if __name__ == '__main__' and __package__ is None:
 
 from commands_fake import cd
 from commands_real import ls, sudo, grep, shell_command, launch_application
-from helper_functions import (get_completion_dir, parse_string)
+from helper_functions import (get_completion_desc, parse_string)
 from Node import generate_file_tree
 
 # If this is not imported, the escape characters used for the colour prompts show up as special characters
@@ -107,7 +107,7 @@ class Terminal(Cmd):
             self.set_prompt()
 
     def complete_cd(self, text, line, begidx, endidx):
-        completions = self.autocomplete_dir(text, line, begidx, endidx)
+        completions = self.autocomplete_desc(text, line, begidx, endidx)
         return completions
 
      # modified like ls to show colours
@@ -234,9 +234,9 @@ class Terminal(Cmd):
     #######################################################
     # Helper commands
 
-    def autocomplete_dir(self, text, line, begidx, endidx):
-        temp_dir = get_completion_dir(self.current_dir, self.filetree, line)
-        autocomplete_list = list(self.filetree.show_direct_descendents(temp_dir))
+    def autocomplete_desc(self, text, line, begidx, endidx, completion_type="both"):
+        temp_dir = get_completion_desc(self.current_dir, self.filetree, line, completion_type)
+        autocomplete_list = list(self.filetree.show_type(temp_dir, completion_type))
         completions = []
         if not text:
             completions = autocomplete_list[:]
@@ -259,4 +259,3 @@ class Terminal(Cmd):
                            if f.startswith(text)
                            ]
         return completions
-

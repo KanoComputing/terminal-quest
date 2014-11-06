@@ -10,7 +10,8 @@ import os
 import json
 
 from linux_story.Terminals import Terminal
-from linux_story.helper_functions import (copy_file_tree, parse_string, hidden_dir)
+from linux_story.helper_functions import (copy_file_tree, parse_string,
+                                          hidden_dir)
 
 
 def launch_project(chapter_number=1, terminal_number=1):
@@ -40,7 +41,8 @@ def launch_project(chapter_number=1, terminal_number=1):
 
 
 def get_chapter_path(chapter_number):
-    filepath = os.path.join(os.path.dirname(__file__), "data/chapter_" + str(chapter_number) + ".json")
+    rel_path = "data/chapter_" + str(chapter_number) + ".json"
+    filepath = os.path.join(os.path.dirname(__file__), rel_path)
     return filepath
 
 

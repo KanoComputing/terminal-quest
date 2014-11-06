@@ -134,6 +134,16 @@ class Tree:
                 yield queue[0]
             queue = queue[1:]
 
+    def show_type(self, identifier, list_type):
+        if list_type == "both":
+            direct_descs = self.show_direct_descendents(identifier)
+        elif list_type == "dirs":
+            direct_descs = self.show_dirs(identifier)
+        else:
+            direct_descs = self.show_files(identifier)
+
+        return direct_descs
+
     def show_ancestor(self, identifier):
         parent = self[identifier].parent
         return parent
