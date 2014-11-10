@@ -55,9 +55,9 @@
                   "Ha, lets show it!  Try editing the note using 'nano'"],
         "start_dir": ".trapdoor",
         "end_dir": ".trapdoor",
-        "command": "",
+        "command": "nano second_scribbled_note",
         "structure": "",
-        "hint": "Type the command \"nano scribbled_note\""
+        "hint": "Type the command \"nano second_scribbled_note\""
     },
     "7": {
         "story": ["Wait, we can't make any changes to the note the rabbit left",
