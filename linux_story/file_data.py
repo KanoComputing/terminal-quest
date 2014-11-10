@@ -23,7 +23,12 @@ def remove_username(abs_path):
 
 
 def permission_file(challenge_number=1):
-    return os.path.join(FILE_SYSTEM_PATH, str(challenge_number), 'permissions_data')
+    directory = os.path.join(FILE_SYSTEM_PATH,
+                             'file_system_data')
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    return os.path.join(directory, str(challenge_number))
 
 
 def record_data(challenge_number=1):
