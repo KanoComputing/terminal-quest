@@ -23,17 +23,22 @@ def remove_username(abs_path):
     return "/".join(abs_path.split("/")[3:])
 
 
-def permission_file(challenge_number=1):
+def get_permission_file(challenge_number=1):
     file_system_directory = os.path.join(FILE_SYSTEM_PATH, 'file_system_data')
     if not os.path.exists(file_system_directory):
         os.makedirs(file_system_directory)
 
-    path = os.path.join(file_system_directory, str(challenge_number))
+    path = find_last_challenge_path(file_system_directory, challenge_number)
+    return path
+
+
+def find_last_challenge_path(directory, challenge_number):
+    path = os.path.join(directory, str(challenge_number))
 
     # If path does not exist, look in lower levels
     while not os.path.exists(path):
         challenge_number = str(int(challenge_number) - 1)
-        path = os.path.abspath(os.path.join(file_system_directory, challenge_number))
+        path = os.path.abspath(os.path.join(directory, challenge_number))
         debugger("path = {}".format(path))
         if challenge_number < 0:
             raise Exception("No challenges have been provided!")
@@ -42,7 +47,7 @@ def permission_file(challenge_number=1):
 
 
 def record_data(challenge_number=1):
-    pfile = permission_file(challenge_number)
+    pfile = get_permission_file(challenge_number)
     with open(pfile, 'w+') as f:
         for dir_path, files, dirs in os.walk(FILE_SYSTEM_PATH):
             for d in dirs:
@@ -54,7 +59,7 @@ def record_data(challenge_number=1):
 def copy_data(challenge_number=1):
     debugger("copy_data entered")
     copy_file_tree()
-    pfile = permission_file(challenge_number)
+    pfile = get_permission_file(challenge_number)
     debugger("Entering pfile = {}".format(pfile))
 
     with open(pfile, 'r') as permissionsfile:
@@ -74,18 +79,10 @@ def copy_data(challenge_number=1):
 
 # copy files over from root to the home
 def copy_file_tree(challenge_number=1):
-    path = os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                        "file-system",
-                                        str(challenge_number)))
 
-    # If path does not exist, look in lower levels
-    while not os.path.exists(path):
-        challenge_number = int(challenge_number) - 1
-        rel_path = "file-system/" + str(challenge_number)
-        path = os.path.abspath(os.path.join(os.path.dirname(__file__), rel_path))
-        if challenge_number < 0:
-            raise Exception("No challenges have been provided!")
-
+    directory = os.path.abspath(os.path.join(os.path.dirname(__file__),
+                                             "file-system"))
+    path = find_last_challenge_path(directory, challenge_number)
     delete_file_tree()
 
     try:
@@ -95,23 +92,6 @@ def copy_file_tree(challenge_number=1):
         # import sys
         # print "Unexpected error:", sys.exc_info()[0]
         pass
-
-
-# creates files from data file
-# this doesn't currently work because we don't get the file contents
-"""def create_file_tree(challenge_number=1):
-
-    data = get_permissions_data()
-    lines = data.split("\n")
-    new_paths = []
-
-    for line in lines:
-        elements = lines.split(" ")
-        path = elements[-1]
-        dirs = path.split("/")[:8]
-        new_path = "".join(dirs)
-        new_paths.append(new_path)
-"""
 
 
 def delete_file_tree():
@@ -160,7 +140,7 @@ def change_permissions(permission_list, rel_path, real_loc):
     stdout, stderr = change_permissions.communicate()
     if stderr:
         debugger("Exiting change_permissions, stderr = {}".format(stderr))
-        sys.exit("chown did not work")
+        sys.exit("chmod did not work")
 
 
 def change_ownership(file_owner, group_owner, rel_path, real_loc):
