@@ -20,7 +20,7 @@ if __name__ == '__main__' and __package__ is None:
 from commands_fake import cd
 from commands_real import ls, sudo, grep, shell_command, launch_application
 from helper_functions import (get_completion_desc, parse_string, get_script_cmd)
-from Node import generate_file_tree
+from Tree import generate_file_tree
 
 # If this is not imported, the escape characters used for the colour prompts
 # show up as special characters. We don't use any functions from this module,
