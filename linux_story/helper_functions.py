@@ -15,7 +15,7 @@ hidden_dir = os.path.join(home, ".linux-story")
 
 
 def debugger(text):
-    if True:
+    if False:
         print text
 
 
@@ -150,6 +150,3 @@ def colourizeInput256(string, fg_num=None, bg_num=None, bold=False):
         string = "\001\033[1m\002%s\001\033[0m\002" % string
 
     return string
-
-
-
