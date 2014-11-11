@@ -11,6 +11,7 @@ import os
 import subprocess
 import sys
 import shutil
+from helper_functions import debugger
 
 
 HOME = os.path.expanduser("~")
@@ -23,12 +24,21 @@ def remove_username(abs_path):
 
 
 def permission_file(challenge_number=1):
-    directory = os.path.join(FILE_SYSTEM_PATH,
-                             'file_system_data')
-    if not os.path.exists(directory):
-        os.makedirs(directory)
+    file_system_directory = os.path.join(FILE_SYSTEM_PATH, 'file_system_data')
+    if not os.path.exists(file_system_directory):
+        os.makedirs(file_system_directory)
 
-    return os.path.join(directory, str(challenge_number))
+    path = os.path.join(file_system_directory, str(challenge_number))
+
+    # If path does not exist, look in lower levels
+    while not os.path.exists(path):
+        challenge_number = str(int(challenge_number) - 1)
+        path = os.path.abspath(os.path.join(file_system_directory, challenge_number))
+        debugger("path = {}".format(path))
+        if challenge_number < 0:
+            raise Exception("No challenges have been provided!")
+
+    return path
 
 
 def record_data(challenge_number=1):
@@ -42,8 +52,10 @@ def record_data(challenge_number=1):
 
 
 def copy_data(challenge_number=1):
+    debugger("copy_data entered")
     copy_file_tree()
     pfile = permission_file(challenge_number)
+    debugger("Entering pfile = {}".format(pfile))
 
     with open(pfile, 'r') as permissionsfile:
         for line in permissionsfile:
@@ -133,10 +145,13 @@ def get_new_permissions(permission_list):
 
 
 def change_permissions(permission_list, rel_path, real_loc):
+    debugger("change_permissions entered")
+
     if not rel_path:
         return
 
     new_permission = get_new_permissions(permission_list)
+    debugger("new_permission = {}".format(new_permission))
     cmd = ["chmod", new_permission, rel_path]
     change_permissions = subprocess.Popen(cmd,
                                           cwd=real_loc,
@@ -144,11 +159,13 @@ def change_permissions(permission_list, rel_path, real_loc):
                                           stderr=subprocess.PIPE)
     stdout, stderr = change_permissions.communicate()
     if stderr:
-        print stderr
+        debugger("Exiting change_permissions, stderr = {}".format(stderr))
         sys.exit("chown did not work")
 
 
 def change_ownership(file_owner, group_owner, rel_path, real_loc):
+    debugger("change_ownership entered")
+
     if not rel_path:
         return
 

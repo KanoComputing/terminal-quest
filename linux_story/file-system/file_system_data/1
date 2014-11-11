@@ -5,6 +5,4 @@
 -rw-rw-r-- 1 caroline caroline 17 Oct 21 17:14 /home/caroline/kano/linux-tutorial/linux_story/file-system/1/rabbithole/scribbled_note
 -rw-rw-r-- 1 caroline caroline 65 Oct 23 14:53 /home/caroline/kano/linux-tutorial/linux_story/file-system/1/rabbithole/.key
 -r--r--r-- 1 caroline caroline 35 Oct 22 15:11 /home/caroline/kano/linux-tutorial/linux_story/file-system/1/rabbithole/.trapdoor/second_scribbled_note
------w---- 1 root root 0 Nov 10 20:01 /home/caroline/kano/linux-tutorial/linux_story/file-system/1/rabbithole/.trapdoor/unlocked_door/ultimate_door
 -rw-rw-r-- 1 caroline caroline 0 Oct 24 15:09 /home/caroline/kano/linux-tutorial/linux_story/file-system/1/rabbithole/.trapdoor/unlocked_door/bed
--rw-rw-r-- 1 caroline caroline 0 Nov 10 23:11 /home/caroline/kano/linux-tutorial/linux_story/file-system/file_system_data/1
