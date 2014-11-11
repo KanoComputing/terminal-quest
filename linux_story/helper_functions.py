@@ -19,6 +19,28 @@ def debugger(text):
         print text
 
 
+def get_script_cmd(string, current_dir, tree):
+    is_script = False
+
+    if string.startswith("./"):
+        string = string[2:]
+        real_loc = tree[current_dir].path
+        script = os.path.join(real_loc, string)
+
+    elif string.startswith("/"):
+        script = string
+
+    else:
+        real_loc = tree[current_dir].path
+        script = os.path.join(real_loc, string)
+
+    if os.path.exists(script):
+        if is_exe(script):
+            is_script = True
+
+    return is_script, script
+
+
 def is_exe(fpath):
     return os.access(fpath, os.X_OK)
 
@@ -51,8 +73,8 @@ def get_completion_desc(current_dir, tree, line, list_type="both"):
     # "command_name" -params directory/directory/(dir OR file)
     elements = line.split(" ")
 
-    # if the last element is a load of directories (no guarentee) then we need to pick the last
-    # element to compare against
+    # if the last element is a load of directories (no guarentee) then we need to pick the
+    # last element to compare against
     dirs = elements[-1].split("/")
     direct_descs = tree.show_type(current_dir, list_type)
     final_list = []

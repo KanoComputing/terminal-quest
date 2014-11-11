@@ -19,7 +19,7 @@ if __name__ == '__main__' and __package__ is None:
 
 from commands_fake import cd
 from commands_real import ls, sudo, grep, shell_command, launch_application
-from helper_functions import (get_completion_desc, parse_string)
+from helper_functions import (get_completion_desc, parse_string, get_script_cmd)
 from Node import generate_file_tree
 
 # If this is not imported, the escape characters used for the colour prompts
@@ -77,6 +77,14 @@ class Terminal(Cmd):
     # only done after commands that change the file structure
     def update_tree(self):
         self.filetree = generate_file_tree()
+
+    def onecmd(self, value):
+        # check if value entered is a shell script
+        is_script, script = get_script_cmd(value, self.current_dir, self.filetree)
+        if is_script:
+            self.do_shell(script)
+        else:
+            return Cmd.onecmd(self, value)
 
     # This is the cmd valid command
     def postcmd(self, stop, line):
