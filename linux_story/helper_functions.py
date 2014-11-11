@@ -7,7 +7,6 @@
 """
 
 import os
-import shutil
 from kano.colours import colourize256
 
 
@@ -15,32 +14,31 @@ home = os.path.expanduser("~")
 hidden_dir = os.path.join(home, ".linux-story")
 
 
-# copy files over from root to the home
-def copy_file_tree(challenge_number):
-    path = os.path.abspath(os.path.join(os.path.dirname(__file__), "file-system", str(challenge_number)))
-
-    # If path does not exist, look in lower levels
-    while not os.path.exists(path):
-        challenge_number = int(challenge_number) - 1
-        path = os.path.abspath(os.path.join(os.path.dirname(__file__), "file-system", str(challenge_number)))
-        if challenge_number < 0:
-            raise Exception("No challenges have been provided!")
-
-    delete_file_tree()
-
-    try:
-        shutil.copytree(path, hidden_dir)
-    except:
-        # for now, silently fail
-        # import sys
-        # print "Unexpected error:", sys.exc_info()[0]
-        pass
+def debugger(text):
+    if False:
+        print text
 
 
-def delete_file_tree():
-    filetree = os.path.join(os.path.expanduser("~"), ".linux-story")
-    if os.path.exists(filetree):
-        shutil.rmtree(filetree)
+def get_script_cmd(string, current_dir, tree):
+    is_script = False
+
+    if string.startswith("./"):
+        string = string[2:]
+        real_loc = tree[current_dir].path
+        script = os.path.join(real_loc, string)
+
+    elif string.startswith("/"):
+        script = string
+
+    else:
+        real_loc = tree[current_dir].path
+        script = os.path.join(real_loc, string)
+
+    # directories are executable, so exclude directories
+    if os.path.exists(script) and not os.path.isdir(script):
+        is_script = is_exe(script)
+
+    return is_script, script
 
 
 def is_exe(fpath):
@@ -66,28 +64,29 @@ def relative_loc_is_home(current_dir, tree):
 
 
 # This is to help the completion function in the classes
-# we give this function a possible list of directories
-def get_completion_dir(current_dir, tree, line):
+# we give this function a possible list of files and directories
+# list_type = "dirs", "files", or "both"
+def get_completion_desc(current_dir, tree, line, list_type="both"):
 
     # list of directories
-    # command will come of the form "command_name" -params directory/directory/file
+    # command will be of the form:
+    # "command_name" -params directory/directory/(dir OR file)
     elements = line.split(" ")
 
-    # if the last element is a load of directories (no guarentee) then we need to pick the last
-    # element to maybe compare against
+    # if the last element is a load of directories (no guarentee) then we need to pick the
+    # last element to compare against
     dirs = elements[-1].split("/")
-
-    direct_dirs = tree.show_direct_descendents(current_dir)
-    final_list_of_dirs = []
+    direct_descs = tree.show_type(current_dir, list_type)
+    final_list = []
 
     for d in dirs:
-        if d in direct_dirs:
-            final_list_of_dirs.append(d)
-            direct_dirs = tree.show_direct_descendents(d)
+        if d in direct_descs:
+            final_list.append(d)
+            direct_descs = tree.show_type(d, list_type)
 
     # return the final element
-    if final_list_of_dirs:
-        return final_list_of_dirs[-1]
+    if final_list:
+        return final_list[-1]
     return current_dir
 
 
@@ -173,6 +172,3 @@ def colourizeInput256(string, fg_num=None, bg_num=None, bold=False):
         string = "\001\033[1m\002%s\001\033[0m\002" % string
 
     return string
-
-
-

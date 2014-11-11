@@ -27,7 +27,3 @@ def cd(current_dir, tree, line=None):
                 return False
 
     return current_dir
-
-
-def echo(line):
-    print line

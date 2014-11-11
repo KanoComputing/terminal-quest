@@ -19,11 +19,12 @@ if __name__ == '__main__' and __package__ is None:
 
 from commands_fake import cd
 from commands_real import ls, sudo, grep, shell_command, launch_application
-from helper_functions import (get_completion_dir, parse_string)
+from helper_functions import (get_completion_desc, parse_string, get_script_cmd)
 from Node import generate_file_tree
 
-# If this is not imported, the escape characters used for the colour prompts show up as special characters
-# We don't use any functions from this module, simply importing this module fixes the bug
+# If this is not imported, the escape characters used for the colour prompts
+# show up as special characters. We don't use any functions from this module,
+# simply importing this module fixes the bug
 import readline
 
 
@@ -77,6 +78,14 @@ class Terminal(Cmd):
     def update_tree(self):
         self.filetree = generate_file_tree()
 
+    def onecmd(self, value):
+        # check if value entered is a shell script
+        is_script, script = get_script_cmd(value, self.current_dir, self.filetree)
+        if is_script:
+            self.do_shell(script)
+        else:
+            return Cmd.onecmd(self, value)
+
     # This is the cmd valid command
     def postcmd(self, stop, line):
         return self.validate(line)
@@ -97,7 +106,7 @@ class Terminal(Cmd):
 
     def complete_ls(self, text, line, begidx, endidx):
         text = text.split(" ")[-1]
-        completions = self.autocomplete_dir(text, line, begidx, endidx)
+        completions = self.autocomplete_desc(text, line, "both")
         return completions
 
     def do_cd(self, line):
@@ -107,7 +116,7 @@ class Terminal(Cmd):
             self.set_prompt()
 
     def complete_cd(self, text, line, begidx, endidx):
-        completions = self.autocomplete_dir(text, line, begidx, endidx)
+        completions = self.autocomplete_desc(text, line, "dirs")
         return completions
 
      # modified like ls to show colours
@@ -117,27 +126,14 @@ class Terminal(Cmd):
     #######################################################
     # Standard commands called in the shell
 
-    def do_chmod(self, line):
-        shell_command(self.current_dir, self.filetree, line, "chmod")
-
-    def do_touch(self, line):
-        shell_command(self.current_dir, self.filetree, line, "touch")
-        self.update_tree()
-
-    def do_mkdir(self, line):
-        shell_command(self.current_dir, self.filetree, line, "mkdir")
-        self.update_tree()
-
-    def complete_mkdir(self, text, line, begidx, endidx):
-        completions = self.autocomplete(text, line, begidx, endidx)
-        return completions
+    # Commands autocompleted on pressing TAB
 
     def do_mv(self, line):
         shell_command(self.current_dir, self.filetree, line, "mv")
         self.update_tree()
 
     def complete_mv(self, text, line, begidx, endidx):
-        completions = self.autocomplete(text, line, begidx, endidx)
+        completions = self.autocomplete_desc(text, line, "both")
         return completions
 
     def do_rm(self, line):
@@ -145,7 +141,7 @@ class Terminal(Cmd):
         self.update_tree()
 
     def complete_rm(self, text, line, begidx, endidx):
-        completions = self.autocomplete_dir(text, line, begidx, endidx)
+        completions = self.autocomplete_desc(text, line, "both")
         return completions
 
     def do_cp(self, line):
@@ -153,26 +149,49 @@ class Terminal(Cmd):
         self.update_tree()
 
     def complete_cp(self, text, line, begidx, endidx):
-        completions = self.autocomplete_dir(text, line, begidx, endidx)
+        completions = self.autocomplete_desc(text, line, "both")
         return completions
-
-    def do_passwd(self, line):
-        shell_command(self.current_dir, self.filetree, line, "passwd")
-        self.update_tree()
-
-    def complete_passwd(self, text, line, begidx, endidx):
-        completions = self.autocomplete_dir(text, line, begidx, endidx)
-        return completions
-
-    def do_xargs(self, line):
-        shell_command(self.current_dir, self.filetree, line, "xargs")
 
     def do_cat(self, line):
         shell_command(self.current_dir, self.filetree, line, "cat")
 
     def complete_cat(self, text, line, begidx, endidx):
-        completions = self.autocomplete(text, line, begidx, endidx)
+        completions = self.autocomplete_desc(text, line, "both")
         return completions
+
+    def do_wc(self, line):
+        shell_command(self.current_dir, self.filetree, line, "wc")
+
+    def complete_wc(self, text, line, begidx, endidx):
+        completions = self.autocomplete_desc(text, line, "both")
+        return completions
+
+    def do_more(self, line):
+        launch_application(self.current_dir, self.filetree, line, "more")
+
+    def complete_more(self, text, line, begidx, endidx):
+        completions = self.autocomplete_desc(text, line, "both")
+        return completions
+
+    # Commands not autocompleted on pressing TAB
+
+    def do_mkdir(self, line):
+        shell_command(self.current_dir, self.filetree, line, "mkdir")
+        self.update_tree()
+
+    def do_chmod(self, line):
+        shell_command(self.current_dir, self.filetree, line, "chmod")
+
+    def do_touch(self, line):
+        shell_command(self.current_dir, self.filetree, line, "touch")
+        self.update_tree()
+
+    def do_passwd(self, line):
+        shell_command(self.current_dir, self.filetree, line, "passwd")
+        self.update_tree()
+
+    def do_xargs(self, line):
+        shell_command(self.current_dir, self.filetree, line, "xargs")
 
     def do_sudo(self, line):
         sudo(self.current_dir, self.filetree, line)
@@ -186,25 +205,11 @@ class Terminal(Cmd):
     def do_pwd(self, line):
         shell_command(self.current_dir, self.filetree, line, "pwd")
 
-    def do_wc(self, line):
-        shell_command(self.current_dir, self.filetree, line, "wc")
-
-    def complete_wc(self, text, line, begidx, endidx):
-        completions = self.autocomplete(text, line, begidx, endidx)
-        return completions
-
     def do_alias(self, line):
         shell_command(self.current_dir, self.filetree, line, "alias")
 
     def do_unalias(self, line):
         shell_command(self.current_dir, self.filetree, line, "unalias")
-
-    def do_more(self, line):
-        launch_application(self.current_dir, self.filetree, line, "more")
-
-    def complete_more(self, text, line, begidx, endidx):
-        completions = self.autocomplete(text, line, begidx, endidx)
-        return completions
 
     #######################################################
     # Commands that do not use piping when using subprocess
@@ -213,7 +218,14 @@ class Terminal(Cmd):
         launch_application(self.current_dir, self.filetree, line, "nano")
 
     def complete_nano(self, text, line, begidx, endidx):
-        completions = self.autocomplete_dir(text, line, begidx, endidx)
+        completions = self.autocomplete_desc(text, line, "both")
+        return completions
+
+    def do_less(self, line):
+        launch_application(self.current_dir, self.filetree, line, "less")
+
+    def complete_less(self, text, line, begidx, endidx):
+        completions = self.autocomplete_desc(text, line, "both")
         return completions
 
     # Tis is listed with the other launched applications because
@@ -224,19 +236,13 @@ class Terminal(Cmd):
     def do_man(self, line):
         launch_application(self.current_dir, self.filetree, line, "man")
 
-    def do_less(self, line):
-        launch_application(self.current_dir, self.filetree, line, "less")
-
-    def complete_less(self, text, line, begidx, endidx):
-        completions = self.autocomplete_dir(text, line, begidx, endidx)
-        return completions
-
     #######################################################
     # Helper commands
 
-    def autocomplete_dir(self, text, line, begidx, endidx):
-        temp_dir = get_completion_dir(self.current_dir, self.filetree, line)
-        autocomplete_list = list(self.filetree.show_direct_descendents(temp_dir))
+    def autocomplete_desc(self, text, line, completion_type="both"):
+        temp_dir = get_completion_desc(self.current_dir, self.filetree,
+                                       line, completion_type)
+        autocomplete_list = list(self.filetree.show_type(temp_dir, completion_type))
         completions = []
         if not text:
             completions = autocomplete_list[:]
@@ -250,7 +256,7 @@ class Terminal(Cmd):
 
         return completions
 
-    def autocomplete(self, text, line, begidx, endidx, complete_list):
+    def autocomplete(self, text, line, complete_list):
         if not text:
             completions = complete_list[:]
         else:
@@ -259,4 +265,3 @@ class Terminal(Cmd):
                            if f.startswith(text)
                            ]
         return completions
-

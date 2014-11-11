@@ -12,7 +12,7 @@
     "2": {
         "story": ["So the key contains some linux commands",
                   "We learnt the chmod one earlier - this one changes the permissions of files",
-                  "The line 'chmod -rw unlocked_door' stops the directory being readbale or writable",
+                  "The line 'chmod +rw locked_door' stops the directory being readbale or writable",
                   "What does the 'mv' command do?  Let's look it up!",
                   "Use the command 'man mv' to look up the mv command"],
         "start_dir": "rabbithole",
@@ -32,16 +32,6 @@
         "hint": "Type the command \"mv .key .trapdoor/\""
     },
     "4": {
-        "story": ["So 'mv' MoVes or renames files",
-                  "Let's try it out.  Try moving the .key into the .trapdoor directory",
-                  "Use the command 'mv .key .trapdoor/"],
-        "start_dir": "rabbithole",
-        "end_dir": "rabbithole",
-        "command": "mv .key .trapdoor/",
-        "structure": "",
-        "hint": "Type the command \"mv .key .trapdoor/\""
-    },
-    "5": {
         "story": ["Well done!  Run the ls command to check the key has indeed moved",
                   "Check this directory first",
                   "Run ls -a"],
@@ -51,7 +41,7 @@
         "structure": "",
         "hint": "Type the command \"ls -a\""
     },
-    "6": {
+    "5": {
         "story": ["See, the .key file has moved from this directory",
                   "Check it moved to the .trapdoor directory"],
         "start_dir": "rabbithole",
@@ -60,7 +50,7 @@
         "structure": "",
         "hint": "Type the command \"ls -a .trapdoor/\""
     },
-    "7": {
+    "6": {
         "story": ["So we correctly moved the key from this directory to the .trapdoor directory",
                   "Now lets inspect this .key a little more.",
                   "Wouldn't it be cool to be able run the commands in this file without copying them into a terminal?",
@@ -69,20 +59,20 @@
                   "Run the command 'chmod +x .trapdoor/.key'"],
         "start_dir": "rabbithole",
         "end_dir": "rabbithole",
-        "command": "chmod +x .key",
+        "command": "chmod +x .trapdoor/.key",
         "structure": "",
-        "hint": "Type the command \"chmod +x .key\""
+        "hint": "Type the command \"chmod +x .trapdoor/.key\""
     },
-    "8": {
+    "7": {
         "story": ["Now use 'ls -la .trapdoor' to have a closer look at the key",
                   "Notice you can combine flags.  'ls -l -a .trapdoor' will do the same thing"],
         "start_dir": "rabbithole",
         "end_dir": "rabbithole",
-        "command": "ls -la .trapdoor",
+        "command": ["ls -la .trapdoor", "ls -la .trapdoor/"],
         "structure": "",
         "hint": "Type the command \"ls -la .trapdoor\""
     },
-    "9": {
+    "8": {
         "story": ["Notice now the permissions of the key has gone from -rw-rw-r-- to -rwxrwxr-x ",
                   "The x at the end means it has become executable.",
                   "Notice also the file name has changed colour",
@@ -94,7 +84,7 @@
         "structure": "",
         "hint": "Type the command \".trapdoor/.key\""
     },
-    "10": {
+    "9": {
         "story": ["Use ls to see what it's done"],
         "start_dir": "rabbithole",
         "end_dir": "rabbithole",
@@ -102,8 +92,8 @@
         "structure": "",
         "hint": "Type the command \"ls .trapdoor\""
     },
-    "11": {
-        "story": ["So the directory has been renamed to 'locked_door'",
+    "10": {
+        "story": ["So the directory has been renamed to 'unlocked_door'",
                   "This makes sense.  Remember the 'mv' command also renames files",
                   "Remember it also removed the readbale and writable permissions to the directory",
                   "What does this mean?  Try using cd to get into the directory"],
@@ -113,11 +103,11 @@
         "structure": "",
         "hint": "Type the command \"cd .trapdoor/locked_door\""
     },
-    "12": {
-        "story": ["We can't get in to the directory!",
-                  "So this is why it's now locked",
-                  "How do we unlock it?",
-                  "Modify the .key file so that it unlocks the locked_door"],
+    "11": {
+        "story": ["We can get in to the directory!",
+                  "So this is why it's now unlocked",
+                  "How do we lock it?",
+                  "Modify the .key file so that it locks the unlocked_door"],
         "start_dir": "rabbithole",
         "end_dir": "rabbithole",
         "command": "nano .trapdoor/.key",
