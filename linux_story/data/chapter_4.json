@@ -12,7 +12,7 @@
     "2": {
         "story": ["So the key contains some linux commands",
                   "We learnt the chmod one earlier - this one changes the permissions of files",
-                  "The line 'chmod -rw unlocked_door' stops the directory being readbale or writable",
+                  "The line 'chmod +rw locked_door' stops the directory being readbale or writable",
                   "What does the 'mv' command do?  Let's look it up!",
                   "Use the command 'man mv' to look up the mv command"],
         "start_dir": "rabbithole",
@@ -103,7 +103,7 @@
         "hint": "Type the command \"ls .trapdoor\""
     },
     "11": {
-        "story": ["So the directory has been renamed to 'locked_door'",
+        "story": ["So the directory has been renamed to 'unlocked_door'",
                   "This makes sense.  Remember the 'mv' command also renames files",
                   "Remember it also removed the readbale and writable permissions to the directory",
                   "What does this mean?  Try using cd to get into the directory"],
@@ -114,10 +114,10 @@
         "hint": "Type the command \"cd .trapdoor/locked_door\""
     },
     "12": {
-        "story": ["We can't get in to the directory!",
-                  "So this is why it's now locked",
-                  "How do we unlock it?",
-                  "Modify the .key file so that it unlocks the locked_door"],
+        "story": ["We can get in to the directory!",
+                  "So this is why it's now unlocked",
+                  "How do we lock it?",
+                  "Modify the .key file so that it locks the unlocked_door"],
         "start_dir": "rabbithole",
         "end_dir": "rabbithole",
         "command": "nano .trapdoor/.key",

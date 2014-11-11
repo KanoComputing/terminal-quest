@@ -27,8 +27,8 @@
                   "To see everything in a directory, use ls -a [directory_name]"],
         "start_dir": ".trapdoor",
         "end_dir": ".trapdoor",
-        "command": "ls -a unlocked_door",
+        "command": "ls -a locked_door",
         "structure": "",
-        "hint": "Type the command \"ls -a unlocked_door\""
+        "hint": "Type the command \"ls -a locked_door\""
     }
 }

@@ -49,9 +49,13 @@ def find_last_challenge_path(directory, challenge_number):
 def record_data(challenge_number=1):
     pfile = get_permission_file(challenge_number)
     with open(pfile, 'w+') as f:
-        for dir_path, files, dirs in os.walk(FILE_SYSTEM_PATH):
+        for dir_path, dirs, files in os.walk(FILE_SYSTEM_PATH):
+            for fi in files:
+                cmd = "ls -l " + os.path.join(dir_path, fi)
+                p = subprocess.check_output(cmd, shell=True)
+                f.write(p)
             for d in dirs:
-                cmd = "ls -l " + os.path.join(dir_path, d)
+                cmd = "ls -ld " + os.path.join(dir_path, d)
                 p = subprocess.check_output(cmd, shell=True)
                 f.write(p)
 
@@ -194,4 +198,3 @@ def get_current_user():
 
 if __name__ == "__main__":
     record_data()
-    copy_data()
