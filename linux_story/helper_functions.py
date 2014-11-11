@@ -34,9 +34,9 @@ def get_script_cmd(string, current_dir, tree):
         real_loc = tree[current_dir].path
         script = os.path.join(real_loc, string)
 
-    if os.path.exists(script):
-        if is_exe(script):
-            is_script = True
+    # directories are executable, so exclude directories
+    if os.path.exists(script) and not os.path.isdir(script):
+        is_script = is_exe(script)
 
     return is_script, script
 
