@@ -3,7 +3,7 @@
         "story": ["Hello there",
                   "{{rW}}{{oe}}{{yl}}{{gc}}{{bo}}{{pm}}{{re}} to the dark side of the Kano OS.",
                   "Have a look around",
-                  "Type {{yls}} (short for {{yL}}i{{yS}}t) to see where you are."
+                  "Type {{yls}} (short for {{yl}}i{{ys}}t) to see where you are."
                   ],
         "start_dir": "~",
         "end_dir": "~",
