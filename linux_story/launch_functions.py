@@ -8,9 +8,10 @@
 
 import os
 import json
+import subprocess
 
 from linux_story.Terminals import Terminal
-from linux_story.helper_functions import (parse_string, hidden_dir)
+from linux_story.helper_functions import (parse_string, hidden_dir, typing_animation)
 from linux_story.file_data import copy_data
 
 
@@ -49,9 +50,9 @@ def get_chapter_path(chapter_number):
 def launch_challenge_number(terminal_number, chapter):
     challenge_dict = chapter[str(terminal_number)]
     for line in challenge_dict["story"]:
-        line = parse_string(line, True)
+        line = parse_string(line, False)
         try:
-            raw_input(line)
+            typing_animation(line + "\n")
         except:
             pass
 

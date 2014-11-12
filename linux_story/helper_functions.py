@@ -7,7 +7,10 @@
 """
 
 import os
+import sys
+import time
 from kano.colours import colourize256
+import readline
 
 
 home = os.path.expanduser("~")
@@ -146,9 +149,8 @@ def parse_string(string, input=False):
         # Colour part of the string
         colour_part = string[pos1 + 3:pos2]
 
-        if input:
-            colour_part = colour_function(colour_part, preset, bold=True)
-            first_part = colour_function(first_part, default_preset, bold=True)
+        colour_part = colour_function(colour_part, preset, bold=True)
+        first_part = colour_function(first_part, default_preset, bold=True)
 
         if string.find("{{") != -1:
             last_part = colour_function(last_part, default_preset, bold=True)
@@ -172,3 +174,34 @@ def colourizeInput256(string, fg_num=None, bg_num=None, bold=False):
         string = "\001\033[1m\002%s\001\033[0m\002" % string
 
     return string
+
+
+def typing_animation(string):
+    while string:
+
+        char = string[:1]
+        e = string[:3]
+
+        if e == "[1m":
+            new_char = string[:7]
+            sys.stdout.write(new_char)
+            string = string[7:]
+        elif e == ";5;":
+            new_char = string[:7]
+            sys.stdout.write(new_char)
+            string = string[7:]
+        elif e == "[0m":
+            new_char = string[:3]
+            sys.stdout.write(new_char)
+            string = string[3:]
+        else:
+            sys.stdout.write(char)
+            string = string[1:]
+            if char == " ":
+                time.sleep(0.04)
+            elif char == "\n":
+                time.sleep(0.8)
+            else:
+                time.sleep(0.03)
+
+        sys.stdout.flush()
