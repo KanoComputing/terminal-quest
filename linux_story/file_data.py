@@ -17,7 +17,7 @@ from helper_functions import debugger
 
 
 HOME = os.path.expanduser("~")
-FILE_SYSTEM_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), "file-system")
+FILE_SYSTEM_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), "file_system")
 HIDDEN_DIR = os.path.join(HOME, ".linux-story")
 
 
@@ -85,10 +85,7 @@ def copy_data(challenge_number=1):
 
 # copy files over from root to the home
 def copy_file_tree(challenge_number=1):
-
-    directory = os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                             "file-system"))
-    path = find_last_challenge_path(directory, challenge_number)
+    path = find_last_challenge_path(FILE_SYSTEM_PATH, challenge_number)
     delete_file_tree()
 
     try:
