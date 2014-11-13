@@ -52,7 +52,7 @@ class Step3(Step):
     story = [
         "See, now our note has permissions -r--r--r--",
         "This means people can only read it, but can't write to it",
-        "Let's have a look what's in the unlocked_door",
+        "Let's have a look what's in the locked_door",
         "To see everything in a directory, use ls -a [directory_name]"
     ]
     start_dir = ".trapdoor"

@@ -12,7 +12,7 @@ from ..Step import Step
 class Step1(Step):
     story = [
         "So what does this key do?",
-        "I reckon it's got something to do with the unlocked_door directory",
+        "I reckon it's got something to do with the locked_door directory",
         "Let's read the .key file"
     ]
     start_dir = "rabbithole",
