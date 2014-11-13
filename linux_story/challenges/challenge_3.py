@@ -18,8 +18,8 @@ class Step1(Step):
         "To remove the write permissions, use the command 'chmod -w filename'",
         "Run the command 'chmod -w note'"
     ]
-    start_dir = ".trapdoor",
-    end_dir = ".trapdoor",
+    start_dir = ".trapdoor"
+    end_dir = ".trapdoor"
     command = "chmod -w note",
     hint = "Type the command \"chmod -w note\" to stop the rabbit writing on your note"
 
