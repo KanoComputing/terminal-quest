@@ -6,7 +6,7 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
 # Author: Caroline Clark <caroline@kano.me>
-# Level class to describe the flow
+# Step class to describe the flow
 
 import os
 from helper_functions import parse_string, typing_animation

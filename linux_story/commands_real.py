@@ -1,10 +1,13 @@
-"""
-* Copyright (C) 2014 Kano Computing Ltd
-* License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
-*
-* Author: Caroline Clark <caroline@kano.me>
-* Terminal commands which end up running in the terminal.
-"""
+#!/usr/bin/env python
+
+# commands_real.py
+#
+# Copyright (C) 2014 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+# Author: Caroline Clark <caroline@kano.me>
+# Terminal commands which end up running in the terminal.
+
 
 import os
 import subprocess
