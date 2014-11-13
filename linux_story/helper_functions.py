@@ -1,10 +1,13 @@
-"""
-* Copyright (C) 2014 Kano Computing Ltd
-* License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
-*
-* Author: Caroline Clark <caroline@kano.me>
-* Helper functions.
-"""
+#!/usr/bin/env python
+
+# helper_functions.py
+#
+# Copyright (C) 2014 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+# Author: Caroline Clark <caroline@kano.me>
+# Helper functions.
+
 
 import os
 import sys

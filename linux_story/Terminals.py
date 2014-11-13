@@ -1,10 +1,13 @@
-"""
-* Copyright (C) 2014 Kano Computing Ltd
-* License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
-*
-* Author: Caroline Clark <caroline@kano.me>
-* The main terminal class.
-"""
+#!/usr/bin/env python
+
+# Terminals.py
+#
+# Copyright (C) 2014 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+# Author: Caroline Clark <caroline@kano.me>
+# The main terminal class.
+
 
 from cmd import Cmd
 import os
@@ -32,12 +35,15 @@ class Terminal(Cmd):
 
     def __init__(self, start_dir, end_dir, validation, hint=""):
         Cmd.__init__(self)
+
         self.update_tree()
+
         self.current_dir = start_dir
         self.current_path = self.filetree[start_dir]
         self.end_dir = end_dir
         self.validation = validation
         self.hint = hint
+
         self.set_prompt()
         self.cmdloop()
 

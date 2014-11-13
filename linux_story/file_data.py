@@ -1,11 +1,13 @@
-"""
-* Copyright (C) 2014 Kano Computing Ltd
-* License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
-*
-* Author: Caroline Clark <caroline@kano.me>
-* Store data of filetree
-* Simply records the result of 'ls -l' into a file called permissions_data
-"""
+#!/usr/bin/env python
+
+# file_datas.py
+#
+# Copyright (C) 2014 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+# Author: Caroline Clark <caroline@kano.me>
+# Stores permissions of files in a file
+
 
 import os
 import subprocess
@@ -15,7 +17,7 @@ from helper_functions import debugger
 
 
 HOME = os.path.expanduser("~")
-FILE_SYSTEM_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), "file-system")
+FILE_SYSTEM_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), "file_system")
 HIDDEN_DIR = os.path.join(HOME, ".linux-story")
 
 
@@ -83,10 +85,7 @@ def copy_data(challenge_number=1):
 
 # copy files over from root to the home
 def copy_file_tree(challenge_number=1):
-
-    directory = os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                             "file-system"))
-    path = find_last_challenge_path(directory, challenge_number)
+    path = find_last_challenge_path(FILE_SYSTEM_PATH, challenge_number)
     delete_file_tree()
 
     try:
