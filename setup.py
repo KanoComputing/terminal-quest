@@ -21,6 +21,7 @@ def recursively_get_dirs(start_dir):
 file_system = recursively_get_dirs("file-system")
 data = recursively_get_dirs("data")
 animation = recursively_get_dirs("animation")
+gtk3 = recursively_get_dirs("gtk3")
 
 
 setup(name='Linux Story',
@@ -32,5 +33,5 @@ setup(name='Linux Story',
       packages=['linux_story'],
       package_dir={'linux_story': 'linux_story'},
       scripts=['bin/linux-story', 'bin/linux-story-gui'],
-      package_data={'linux_story': file_system + data + animation}
+      package_data={'linux_story': file_system + data + animation + gtk3}
       )
