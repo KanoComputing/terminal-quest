@@ -179,14 +179,18 @@ class Terminal(Cmd):
         completions = self.autocomplete_desc(text, line, "both")
         return completions
 
+    def do_chmod(self, line):
+        shell_command(self.current_dir, self.filetree, line, "chmod")
+
+    def complete_chmod(self, text, line, begidx, endidx):
+        completions = self.autocomplete_desc(text, line, "both")
+        return completions
+
     # Commands not autocompleted on pressing TAB
 
     def do_mkdir(self, line):
         shell_command(self.current_dir, self.filetree, line, "mkdir")
         self.update_tree()
-
-    def do_chmod(self, line):
-        shell_command(self.current_dir, self.filetree, line, "chmod")
 
     def do_touch(self, line):
         shell_command(self.current_dir, self.filetree, line, "touch")

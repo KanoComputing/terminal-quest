@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+
+# linux-story-gui
+#
+# Copyright (C) 2014 Kano Computing Ltd
+# License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
+#
+# Author: Caroline Clark <caroline@kano.me>
+# Launches linux tutorial in a Gtk application
+
+import os
+import sys
+from gi.repository import Gtk
+
+if __name__ == '__main__' and __package__ is None:
+    dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    if dir_path != '/usr':
+        sys.path.insert(1, dir_path)
+
+from linux_story.gtk3.terminal_ui import Terminal_Ui
+
+
+class MainWindow(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.connect('delete-event', Gtk.main_quit)
+
+
+def create_terminal():
+    terminal = Terminal_Ui()
+    win = MainWindow()
+    win.add(terminal)
+    filepath = os.path.abspath(os.path.join(os.path.dirname(__file__), "linux-story"))
+    command = "temp=$(tty) ; python " + filepath + " > $temp | clear\n"
+    length = len(command)
+    terminal.feed_child(command, length)
+    win.show_all()
+
+    Gtk.main()
+
+
+if __name__ == "__main__":
+    create_terminal()
