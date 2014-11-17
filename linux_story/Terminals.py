@@ -33,7 +33,7 @@ import readline
 
 class Terminal(Cmd):
 
-    def __init__(self, start_dir, end_dir, validation, hint=""):
+    def __init__(self, start_dir, end_dir, validation, hints=[""]):
         Cmd.__init__(self)
 
         self.update_tree()
@@ -42,7 +42,13 @@ class Terminal(Cmd):
         self.current_path = self.filetree[start_dir]
         self.end_dir = end_dir
         self.validation = validation
-        self.hint = hint
+
+        # if hints are a string
+        if isinstance(hints, basestring):
+            self.hints = [hints]
+        # if hints are a array
+        else:
+            self.hints = hints
 
         self.set_prompt()
         self.cmdloop()
@@ -64,15 +70,18 @@ class Terminal(Cmd):
             if isinstance(self.validation, basestring):
                 command = line == self.validation
             # else there are multiple commands that can pass the level
-            # TODO: explicitly check for list type here?
             else:
                 command = line in self.validation
         if self.end_dir:
             end_dir = self.current_dir == self.end_dir
 
-        # if user does not pass challenge, show hint
+        # if user does not pass challenge, show hints.
+        # Go through hints until we get to last hint
+        # then just keep showing last hint
         if not (command and end_dir):
-            print parse_string(self.hint)
+            print parse_string(self.hints[0])
+            if len(self.hints) > 1:
+                self.hints.pop(0)
 
         return command and end_dir
 
