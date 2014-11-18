@@ -91,7 +91,7 @@ class Step4(Step):
 class Step5(Step):
     story = [
         "\nYou can see the files and directories available in this directory",
-        "Files are shown in green, directories in blue",
+        "Files are shown in white, directories in blue",
         "Explore this office.  See what information is in here",
 
     ]
