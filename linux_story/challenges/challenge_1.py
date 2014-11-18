@@ -118,7 +118,7 @@ class Step6(Step):
     story = [
         "\nYou see an paper report titled \"Rabbit Report\".",
         "It has TOP SECRET stamped in the corner",
-        "To read a file, you use the command {{yless}}"
+        "To read a file, you use the command {{yless <filename>}}"
     ]
     start_dir = "Office"
     end_dir = "Office"
