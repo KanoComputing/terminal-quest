@@ -33,14 +33,14 @@ class Step1(Step):
 
 class Step2(Step):
     story = [
-        "\nThe room is no longer dark."
+        "\nThe room is no longer dark. ",
         "You see the door to an Office.",
         "{{yls <Directory Name>}} lets you look into the directory",
         "The office door has a window.  Have a look into the office."
     ]
     start_dir = "~"
     end_dir = "~"
-    command = "ls Office"
+    command = ["ls Office", "ls Office/"]
     hint = "Type the command {{yls Office}}"
 
     def __init__(self):
@@ -53,7 +53,7 @@ class Step2(Step):
 class Step3(Step):
     story = [
         "\nTry walking into the Office.",
-        "The command {{ycd <Directory Name>}} allows you to {{yc}}hange {{d}}irectory",
+        "The command {{ycd <Directory Name>}} allows you to {{yc}}hange {{yd}}irectory",
         "The door looks unlocked."
     ]
     start_dir = "~"
@@ -97,7 +97,7 @@ class Step5(Step):
     ]
     start_dir = "Office"
     end_dir = "Office"
-    command = "ls Missions"
+    command = ["ls Missions" "ls Missions/"]
     hint = [
         "",
         "",
@@ -122,10 +122,10 @@ class Step6(Step):
     ]
     start_dir = "Office"
     end_dir = "Office"
-    command = "ls Missions"
+    command = "less Missions/Rabbit_Report"
     hint = [
         "To read a file, type {{yless filename}}",
-        "Type {{yless Rabbit_Report}} to read the rabbit report"
+        "Type {{yless Missions/Rabbit_Report}} to read the rabbit report"
     ]
 
     def __init__(self):
@@ -140,13 +140,13 @@ class Step7(Step):
     story = [
         "You get the feeling there is something hidden in this room",
         "To view hidden files and directories, "
-        "use the command {{yls -a}} (to {{yl}}i{{ys}}t {{ya}}"
+        "use the command {{yls -a}} (to {{yl}}i{{ys}}t {{ya}}ll)"
     ]
     start_dir = "Office"
     end_dir = "Office"
     command = "ls -a"
     hint = [
-        ""
+        "Type {{yls -a}} and press ENTER"
     ]
 
     def __init__(self):
@@ -181,14 +181,14 @@ class Step8(Step):
 class Step9(Step):
     story = [
         "You decide you've found everything there is in this Office for the time being.",
-        "The directory previous is referred to as ..",
-        "So to go back a directory, the command is {{ycd ..}}"
+        "The previous directory is referred to as ..",
+        "To go back a directory, the command is {{ycd ..}}"
     ]
     start_dir = "Office"
     end_dir = "~"
     command = ""
     hint = [
-        "Type {{ycd ..}} to see what's written on the note."
+        "Type {{ycd ..}} to go back a directory."
     ]
 
     def __init__(self):
