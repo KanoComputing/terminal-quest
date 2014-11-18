@@ -10,6 +10,7 @@
 
 import sys
 import os
+import signal
 
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if __name__ == '__main__' and __package__ is None:
@@ -19,8 +20,12 @@ from linux_story.launch_functions import launch_project
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 3:
+    def sigint_handler(signum, frame):
+        pass
 
+    signal.signal(signal.SIGINT, sigint_handler)
+
+    if len(sys.argv) == 3:
         launch_project(sys.argv[1], sys.argv[2])
     else:
         launch_project()
