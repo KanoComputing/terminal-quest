@@ -1,8 +1,7 @@
-drwxrwxr-x 4 caroline caroline 4096 Nov 18 10:03 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office
--rw-rw-r-- 1 caroline caroline 0 Nov 18 10:03 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/Noticeboard
--rw-rw-r-- 1 caroline caroline 97 Nov 18 10:03 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/.sticky_note
--rw-rw-r-- 1 caroline caroline 0 Nov 18 10:03 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/chair
--rw-rw-r-- 1 caroline caroline 0 Nov 18 10:03 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/desk
-drwxrwxr-x 2 caroline caroline 4096 Nov 17 17:10 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/Spells
-drwxrwxr-x 2 caroline caroline 4096 Nov 18 10:03 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/Missions
--rw-rw-r-- 1 caroline caroline 497 Nov 18 10:03 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/Missions/Rabbit_Report
+drwxrwxr-x 3 caroline caroline 4096 Nov 18 10:48 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office
+-rw-rw-r-- 1 caroline caroline 0 Nov 18 10:37 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/Noticeboard
+-rw-rw-r-- 1 caroline caroline 97 Nov 18 10:37 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/.sticky_note
+-rw-rw-r-- 1 caroline caroline 0 Nov 18 10:37 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/chair
+-rw-rw-r-- 1 caroline caroline 0 Nov 18 10:37 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/desk
+drwxrwxr-x 2 caroline caroline 4096 Nov 18 10:47 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/Missions
+-rw-rw-r-- 1 caroline caroline 497 Nov 18 10:47 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/Missions/Rabbit_Report
