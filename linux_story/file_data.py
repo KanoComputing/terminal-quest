@@ -23,7 +23,16 @@ from helper_functions import debugger
 
 HOME = os.path.expanduser("~")
 FILE_SYSTEM_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), "file_system")
+FILE_SYSTEM_DATA_PATH = os.path.join(FILE_SYSTEM_PATH, "file_system_data")
 HIDDEN_DIR = os.path.join(HOME, ".linux-story")
+
+
+def is_number(s):
+    try:
+        int(s)
+        return True
+    except ValueError:
+        return False
 
 
 def remove_username(abs_path):
@@ -31,6 +40,8 @@ def remove_username(abs_path):
 
 
 def get_permission_file(challenge_number=1):
+    debugger("get_permssions_file, challenge_number = {}".format(challenge_number))
+
     file_system_directory = os.path.join(FILE_SYSTEM_PATH, 'file_system_data')
     if not os.path.exists(file_system_directory):
         os.makedirs(file_system_directory)
@@ -53,22 +64,37 @@ def find_last_challenge_path(directory, challenge_number):
     return path
 
 
-def record_data(challenge_number=1):
-    pfile = get_permission_file(challenge_number)
-    with open(pfile, 'w+') as f:
-        for dir_path, dirs, files in os.walk(FILE_SYSTEM_PATH):
-            for fi in files:
-                cmd = "ls -l " + os.path.join(dir_path, fi)
-                p = subprocess.check_output(cmd, shell=True)
-                f.write(p)
+# TODO: change this so that it goes thorugh the challenge dirs and
+# creates the files without arguments
+def record_data():
+    challenge_numbers = []
+
+    for dir_path, dirs, files in os.walk(FILE_SYSTEM_PATH):
+        if dir_path == FILE_SYSTEM_PATH:
             for d in dirs:
-                cmd = "ls -ld " + os.path.join(dir_path, d)
-                p = subprocess.check_output(cmd, shell=True)
-                f.write(p)
+                if is_number(d):
+                    challenge_numbers.append(d)
+
+    for number in challenge_numbers:
+        pfile = os.path.join(FILE_SYSTEM_DATA_PATH, number)
+        file_system = os.path.join(FILE_SYSTEM_PATH, number)
+        with open(pfile, 'w+') as f:
+            for dir_path, dirs, files in os.walk(file_system):
+                for fi in files:
+                    cmd = "ls -l " + os.path.join(dir_path, fi)
+                    p = subprocess.check_output(cmd, shell=True)
+                    f.write(p)
+                for d in dirs:
+                    cmd = "ls -ld " + os.path.join(dir_path, d)
+                    p = subprocess.check_output(cmd, shell=True)
+                    f.write(p)
 
 
+# TODO: this needs to be changed so if the data is already in the tree
+# it is not copied across
+# We want to preserve changes made by the user that don't conflict with the levels
 def copy_data(challenge_number=1):
-    debugger("copy_data entered")
+    debugger("copy_data entered, challenge_number = {}".format(challenge_number))
     copy_file_tree()
     pfile = get_permission_file(challenge_number)
     debugger("Entering pfile = {}".format(pfile))
@@ -97,7 +123,6 @@ def copy_file_tree(challenge_number=1):
     try:
         shutil.copytree(path, HIDDEN_DIR)
     except:
-        # for now, silently fail
         debugger("copy_file_tree failed")
         debugger("Unexpected error:", sys.exc_info()[0])
         pass
