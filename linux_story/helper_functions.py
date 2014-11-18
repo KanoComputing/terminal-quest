@@ -12,7 +12,7 @@
 import os
 import sys
 import time
-from kano.colours import colourize256
+from kano.colours import colourize256, decorate_string
 import readline
 
 
@@ -51,14 +51,16 @@ def is_exe(fpath):
     return os.access(fpath, os.X_OK)
 
 
+# TODO: tidy up
 def colour_file_dir(path, f):
-    if os.path.isfile(path):
-        if is_exe(path):
-            f = colourize256(f, 118, None, True)
-        else:
-            f = colourize256(f, 68, None, True)
+    if os.path.isfile(path) and is_exe(path):
+        f = colourize256(f, 118, None, True)
     elif os.path.isdir(path):
-        f = colourize256(f, 29, None, True)
+        f = "{{b" + f + "}}"
+        f = parse_string(f)
+    elif os.path.islink(path):
+        f = decorate_string(f, "cyan", None)
+
     return f
 
 

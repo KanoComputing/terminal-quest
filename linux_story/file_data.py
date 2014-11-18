@@ -13,8 +13,13 @@ import os
 import subprocess
 import sys
 import shutil
-from helper_functions import debugger
 
+dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if __name__ == '__main__' and __package__ is None:
+    if dir_path != '/usr':
+        sys.path.insert(1, dir_path)
+
+from helper_functions import debugger
 
 HOME = os.path.expanduser("~")
 FILE_SYSTEM_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), "file_system")
@@ -85,6 +90,7 @@ def copy_data(challenge_number=1):
 
 # copy files over from root to the home
 def copy_file_tree(challenge_number=1):
+    debugger("copy_file_tree entered")
     path = find_last_challenge_path(FILE_SYSTEM_PATH, challenge_number)
     delete_file_tree()
 
@@ -92,8 +98,8 @@ def copy_file_tree(challenge_number=1):
         shutil.copytree(path, HIDDEN_DIR)
     except:
         # for now, silently fail
-        # import sys
-        # print "Unexpected error:", sys.exc_info()[0]
+        debugger("copy_file_tree failed")
+        debugger("Unexpected error:", sys.exc_info()[0])
         pass
 
 
