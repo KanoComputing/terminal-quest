@@ -18,7 +18,7 @@ def recursively_get_dirs(start_dir):
     return paths
 
 
-file_system = recursively_get_dirs("file-system")
+file_system = recursively_get_dirs("file_system")
 data = recursively_get_dirs("data")
 animation = recursively_get_dirs("animation")
 challenges = recursively_get_dirs("challenges")
