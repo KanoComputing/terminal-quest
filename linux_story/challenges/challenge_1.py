@@ -97,7 +97,7 @@ class Step5(Step):
     ]
     start_dir = "Office"
     end_dir = "Office"
-    command = ["ls Missions" "ls Missions/"]
+    command = ["ls Missions", "ls Missions/"]
     hint = [
         "",
         "",
