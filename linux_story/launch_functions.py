@@ -11,10 +11,12 @@
 
 import inspect
 import challenges
+from file_data import copy_data
 from challenges import *
 
 
 def launch_project(challenge_number="1", step="1"):
+    copy_data(challenge_number)
     module = get_challenge_module(challenge_number)
     Step = get_class(module, step)
     Step()
