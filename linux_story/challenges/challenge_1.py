@@ -8,10 +8,19 @@
 
 
 from ..Step import Step
-#from challenge_2a import Step1 as Step1_2
+from ..terminals.terminal1 import Terminal1
+from challenge_2 import Step1 as Step1_2
 
 
-class Step1(Step):
+class Step_Template(Step):
+    def __init__(self):
+        Step.__init__(self)
+
+    def launch_terminal(self):
+        Terminal1(self.start_dir, self.end_dir, self.command, self.hint)
+
+
+class Step1(Step_Template):
     story = [
         "Hello there",
         "{{rW}}{{oe}}{{yl}}{{gc}}{{bo}}{{pm}}{{re}} to"
@@ -24,182 +33,148 @@ class Step1(Step):
     command = "ls"
     hint = ["Type {{yls}} and press Enter to have a look around."]
 
-    def __init__(self):
-        Step.__init__(self)
-
     def next(self):
         Step2()
 
 
-class Step2(Step):
+class Step2(Step_Template):
     story = [
         "\nThe room is no longer dark. ",
-        "You see the door to an Office.",
+        "You see the door to an office.",
         "{{yls <Directory Name>}} lets you look into the directory",
-        "The office door has a window.  Have a look into the office."
+        "The office door has a window.  Have a look in the office."
     ]
     start_dir = "~"
     end_dir = "~"
-    command = ["ls Office", "ls Office/"]
+    command = ["ls office", "ls office/"]
     hint = "Type the command {{yls Office}}"
-
-    def __init__(self):
-        Step.__init__(self)
 
     def next(self):
         Step3()
 
 
-class Step3(Step):
+class Step3(Step_Template):
     story = [
-        "\nTry walking into the Office.",
-        "The command {{ycd <Directory Name>}} allows you to {{yc}}hange {{yd}}irectory",
-        "The door looks unlocked."
+        "\nTo save yourself some typing, press TAB to complete commands",
+        "For example, type {{yls of}}, then press TAB.  "
+        "Enter the resulting command"
     ]
     start_dir = "~"
-    end_dir = "Office"
-    command = ""
-    hint = "Type the command {{ycd Office}}"
-
-    def __init__(self):
-        Step.__init__(self)
-
-    def next(self):
-        Step4()
-
-
-class Step4(Step):
-    story = [
-        "\nYou are now inside the Office.",
-        "It is dark."
+    end_dir = "~"
+    command = ["ls office", "ls office/"]
+    hint = [
+        "Pressing TAB should autocomplete the command,"
+        " so you should enter the command ls office/"
     ]
-    start_dir = "Office"
-    end_dir = "Office"
-    command = "ls"
-    hint = ["Remember the command for looking around you?  You used it at the start",
-            "The command {{yls}} shows what files and directories are around you",
-            "Type {{yls}} and press Enter"]
-
-    def __init__(self):
-
-        Step.__init__(self)
 
     def next(self):
         Step5()
 
 
-class Step5(Step):
+class Step4(Step_Template):
     story = [
         "\nYou can see the files and directories available in this directory",
         "Files are shown in white, directories in blue",
-        "Explore this office.  See what information is in here",
-
+        "The {{bfiling-cabinet}} has a drawer slightly ajar, "
+        "it looks like it contains some important folders.",
+        "Have a look and see what it contains."
     ]
-    start_dir = "Office"
-    end_dir = "Office"
-    command = ["ls Missions", "ls Missions/"]
+    start_dir = "~"
+    end_dir = "~"
+    command = ["ls office/filing-cabinet", "ls office/filing-cabinet/"]
     hint = [
-        "",
-        "",
         "Remember that {{yls <directory name>}} "
         "{{yl}}i{{ys}}ts the files inside a directory",
-        "Type {{yls Missions}}"
+        "You need to look through the {{boffice}} window into the {{bfiling-cabinet}}",
+        "Type {{yls office/filing-cabinet}} and press Enter"
     ]
 
-    def __init__(self):
+    def next(self):
+        Step5()
 
-        Step.__init__(self)
+
+class Step5(Step_Template):
+    story = [
+        "\nYou see two leather bound lever arch files",
+        "The one labelled {{bspells}} looks brand new, while "
+        "the {{bmissions}} lever-arch looks more battered",
+        "Have a look in the {{bmissions}} directory.",
+        "To save typing, try pressing UP to replay previous commands."
+    ]
+    start_dir = "~"
+    end_dir = "~"
+    command = [
+        "ls office/filing-cabinet/missions",
+        "ls office/filing-cabinet/missions/"
+    ]
+    hint = [
+        "You need to look through the {{boffice}} window, into the {{bfiling-cabinet}} "
+        "and into the {{bmissions}} directory",
+        "Type {{yls office/filing-cabinet/missions}} and press Enter"
+    ]
 
     def next(self):
         Step6()
 
 
-class Step6(Step):
+class Step6(Step_Template):
     story = [
-        "\nYou see an paper report titled \"Rabbit Report\".",
+        "\nYou see a paper report titled {{grabbit-report}}.",
         "It has TOP SECRET stamped in the corner",
-        "To read a file, you use the command {{yless <filename>}}"
+        "To read a file, you use the command {{ycat <filename>}}",
+        "Remember, you can use TAB to complete a command"
     ]
-    start_dir = "Office"
-    end_dir = "Office"
-    command = "less Missions/Rabbit_Report"
+    start_dir = "~"
+    end_dir = "~"
+    command = "cat office/filing-cabinet/missions/rabbit-report"
     hint = [
-        "To read a file, type {{yless filename}}",
-        "Type {{yless Missions/Rabbit_Report}} to read the rabbit report"
+        "To read a file, type {{ycat <filename>}}",
+        "The file is in the {{boffice}}, in the {{bfile-cabinet}} "
+        "and in the {{bmissions}} lever arch",
+        "Type {{ycat office/filing-cabinet/missions/rabbit-report}} "
+        "to read the rabbit report"
     ]
-
-    def __init__(self):
-
-        Step.__init__(self)
 
     def next(self):
         Step7()
 
 
-class Step7(Step):
+class Step7(Step_Template):
     story = [
-        "You get the feeling there is something hidden in this room",
+        "You get the feeling there is something hidden in the office",
         "To view hidden files and directories, "
-        "use the command {{yls -a}} (to {{yl}}i{{ys}}t {{ya}}ll)"
+        "use the command {{yls -a <Directory-name>}} (to {{yl}}i{{ys}}t {{ya}}ll) "
+        "the files in a directory"
     ]
-    start_dir = "Office"
-    end_dir = "Office"
-    command = "ls -a"
+    start_dir = "~"
+    end_dir = "~"
+    command = ["ls -a office", "ls -a office/"]
     hint = [
-        "Type {{yls -a}} and press ENTER"
+        "Type {{yls -a office}} and press ENTER"
     ]
-
-    def __init__(self):
-
-        Step.__init__(self)
 
     def next(self):
         Step8()
 
 
-class Step8(Step):
+class Step8(Step_Template):
     story = [
-        "You notice the sticky note on the desk.",
-        "The command {{ycat}} or {{yless}} will allow you "
+        "You notice the {{g.sticky_note}} on the desk.",
+        "The command {{ycat}} will allow you "
         "to read what's written on the note"
     ]
-    start_dir = "Office"
-    end_dir = "Office"
-    command = ["cat .sticky_note", "less .sticky_note"]
+    start_dir = "~"
+    end_dir = "~"
+    command = ["cat office/.sticky_note"]
     hint = [
-        "Type {{ycat .sticky_note}} to see what's written on the note."
+        "Type {{ycat office/.sticky_note}} to see what's written on the note."
     ]
-
-    def __init__(self):
-
-        Step.__init__(self)
 
     def next(self):
         Step9()
 
 
-class Step9(Step):
-    story = [
-        "You decide you've found everything there is in this Office for the time being.",
-        "The previous directory is referred to as ..",
-        "To go back a directory, the command is {{ycd ..}}"
-    ]
-    start_dir = "Office"
-    end_dir = "~"
-    command = ""
-    hint = [
-        "Type {{ycd ..}} to go back a directory."
-    ]
-
-    def __init__(self):
-
-        Step.__init__(self)
-
-    def next(self):
-        Step10()
-
-
-class Step10(Step):
+class Step9(Step_Template):
     story = [
         "Lastly, you decide you want to clean up your screen.",
         "The command {{yclear}} clears the writing on the terminal"
@@ -211,5 +186,5 @@ class Step10(Step):
         "Type {{yclear}} to clear the Terminal."
     ]
 
-    def __init__(self):
-        Step.__init__(self)
+    def next(self):
+        Step1_2()

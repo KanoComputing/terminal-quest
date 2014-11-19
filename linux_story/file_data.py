@@ -95,7 +95,7 @@ def record_data():
 # We want to preserve changes made by the user that don't conflict with the levels
 def copy_data(challenge_number=1):
     debugger("copy_data entered, challenge_number = {}".format(challenge_number))
-    copy_file_tree()
+    copy_file_tree(challenge_number)
     pfile = get_permission_file(challenge_number)
     debugger("Entering pfile = {}".format(pfile))
 
@@ -116,7 +116,7 @@ def copy_data(challenge_number=1):
 
 # copy files over from root to the home
 def copy_file_tree(challenge_number=1):
-    debugger("copy_file_tree entered")
+    debugger("copy_file_tree entered, challenge number = {}".format(challenge_number))
     path = find_last_challenge_path(FILE_SYSTEM_PATH, challenge_number)
     delete_file_tree()
 

@@ -11,11 +11,12 @@
 
 import os
 import subprocess
-from helper_functions import colour_file_dir
+from helper_functions import colour_file_dir, debugger
 from kano.colours import colourize256
 
 
 # We edit this to colourise the output - otherwise, we could just use shell_command
+# TODO: ls -d .* doesn't work
 def ls(current_dir, tree, line=""):
 
     # find current_location
@@ -50,10 +51,13 @@ def ls(current_dir, tree, line=""):
 
         args = ["ls"] + args
 
+    debugger("args = {}".format(args))
     p = subprocess.Popen(args, cwd=real_loc,
                          stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE)
     output, err = p.communicate()
+    debugger("output = {}".format(output))
+    debugger("err = {}".format(err))
 
     # need to folter output
     files = output.split('\n')
