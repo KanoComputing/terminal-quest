@@ -68,7 +68,7 @@ class Step3(Step_Template):
     ]
 
     def next(self):
-        Step5()
+        Step4()
 
 
 class Step4(Step_Template):
