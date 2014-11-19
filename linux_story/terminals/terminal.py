@@ -10,17 +10,6 @@
 
 
 from cmd import Cmd
-import os
-
-#import sys
-
-#dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-#if __name__ == '__main__' and __package__ is None:
-#    if dir_path != '/usr':
-#        sys.path.insert(1, dir_path)
-
-#from commands_fake import cd
-#from commands_real import ls, sudo, grep, shell_command, launch_application
 from ..helper_functions import (get_completion_desc, parse_string, get_script_cmd,
                                 debugger)
 from ..Tree import generate_file_tree
@@ -56,9 +45,8 @@ class Terminal(Cmd):
     def set_prompt(self):
         self.prompt = self.filetree.generate_prompt(self.current_dir)
 
-    # default behaviour - exit the application
-    def do_EOF(self, line=None):
-        return True
+    def do_help(self, line):
+        pass
 
     def validate(self, line):
         command = True
@@ -107,11 +95,6 @@ class Terminal(Cmd):
 
     def complete_list(self):
         return list(self.filetree.show_direct_descendents(self.current_dir))
-
-    def do_shell(self, line):
-        #"Run a shell command"
-        output = os.popen(line).read()
-        self.last_output = output
 
     #######################################################
     # Helper commands
