@@ -129,7 +129,6 @@ class Step6(Step_Template):
     end_dir = "~"
     command = "cat office/filing-cabinet/missions/rabbit-report"
     hint = [
-        "To read a file, type {{ycat <filename>}}",
         "The file is in the {{boffice}}, in the {{bfile-cabinet}} "
         "and in the {{bmissions}} lever arch",
         "Type {{ycat office/filing-cabinet/missions/rabbit-report}} "
@@ -160,6 +159,7 @@ class Step7(Step_Template):
 
 class Step8(Step_Template):
     story = [
+        "Hidden files start with . and cannot normally be seen",
         "You notice the {{g.sticky_note}} on the desk.",
         "The command {{ycat}} will allow you "
         "to read what's written on the note"

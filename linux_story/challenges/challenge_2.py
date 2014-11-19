@@ -21,7 +21,7 @@ class Step1(Step_Template):
     story = [
         "You are in the home directory.",
         "You remember the rabbit's note, "
-        "which told you to look harder around here"
+        "which told you to look harder in this directory"
     ]
     start_dir = "~"
     end_dir = "~"
@@ -86,7 +86,7 @@ class Step4(Step_Template):
     ]
     start_dir = ".hidden-path"
     end_dir = ".hidden-path"
-    command = "ls"
+    command = ["ls", "ls -a"]
     hint = [
         "To look around, you need to {{yl}}i{{ys}}t all the files in the directory",
         "Use {{yls}} to look around you.",
@@ -165,98 +165,3 @@ class Step8(Step_Template):
     hint = [
         "Type {{yclear}} and press Enter to clear the terminal"
     ]
-
-
-"""
-class Step7(Step):
-    story = [
-        "You see you're surrounded by a lot of plants, trees and shubbery.",
-        "There's a lot of stuff here, but you don't think you can spot anything useful.",
-        "It occurs to you that the rabbit would probably hide his hidey-hole"
-    ]
-    start_dir = "woods"
-    end_dir = "woods"
-    command = "ls -a"
-    hint = [
-        "You want to use the command we used to show hidden files and directories",
-        "The command you're looking for "
-        "{{yl}}i{{ys}}ts {{ya}}ll the files and directories",
-        "Use the command {{yls -a}} to show all hidden files and directories",
-        "Type {{yls -a}} and press Enter"
-    ]
-
-    def __init__(self):
-        Step.__init__(self)
-
-    def next(self):
-        Step8()
-
-
-class Step6(Step):
-    story = [
-        "There's too much really for you to see clearly",
-        "What would be good is if you could filter through the files",
-        "Ideally you only want to see the hidden files, "
-        "or the files/directories starting with .",
-        "{{yls -d}} allows you to filter information about the directory you are in.",
-        "For example {{yls -d}} will show you the directory you're in",
-        "Try it!"
-    ]
-    start_dir = "woods"
-    end_dir = "woods"
-    command = "ls -d"
-    hint = [
-        "Run the command {{yls -d}}"
-    ]
-
-    def __init__(self):
-        Step.__init__(self)
-
-    def next(self):
-        Step7()
-
-
-class Step7(Step):
-    story = [
-        "The command shows the current directory, which is always represented by .",
-        "We can look in the directory for filtered information "
-        "by adding information we do know",
-        "We only want to see files and directories starting with .",
-        "The character * represents any character. "
-        "So {{yls -d .*}} should show everything starting with ."
-
-    ]
-    start_dir = "woods"
-    end_dir = "woods"
-    command = "ls -d .*"
-    hint = [
-        "Run the command {{yls -d .*}}"
-    ]
-
-    def __init__(self):
-        Step.__init__(self)
-
-    def next(self):
-        Step8()
-
-
-class Step9(Step):
-    story = [
-        "You see a rabbithole hidden behind one of the trees",
-        "The rabbit that dug it must be huge.  "
-        "It looks big enough for you to squeeze through."
-    ]
-    start_dir = "woods"
-    end_dir = "cd .rabbithole"
-    command = ""
-    hint = [
-        "Enter the rabbithole",
-        "Type the command {{ycd .rabbithole}}"
-    ]
-
-    def __init__(self):
-        Step.__init__(self)
-
-    def next(self):
-        Step9()
-"""
