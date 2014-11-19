@@ -7,10 +7,11 @@
 # A chapter of the story
 
 
-from ..Step import Step
-from ..terminals.terminal1 import Terminal1
+from linux_story.Step import Step
+from linux_story.terminals.terminal1 import Terminal1
 from challenge_2 import Step1 as Step1_2
-from ..file_data import copy_data
+from linux_story.file_data import copy_data
+from linux_story.helper_functions import print_challenge_title
 
 
 class Step_Template(Step):
@@ -48,7 +49,7 @@ class Step2(Step_Template):
     start_dir = "~"
     end_dir = "~"
     command = ["ls office", "ls office/"]
-    hint = "Type the command {{yls Office}}"
+    hint = "Type the command {{yls office}}"
 
     def next(self):
         Step3()
@@ -189,4 +190,5 @@ class Step9(Step_Template):
 
     def next(self):
         copy_data(2)
+        print_challenge_title("2")
         Step1_2()

@@ -7,8 +7,8 @@
 # A chapter of the story
 
 
-from ..Step import Step
-from ..terminals.terminal2 import Terminal2
+from linux_story.Step import Step
+from linux_story.terminals.terminal2 import Terminal2
 
 
 class Step_Template(Step):
@@ -46,7 +46,12 @@ class Step2(Step_Template):
     ]
     start_dir = "~"
     end_dir = "~"
-    command = ["ls .hidden-path", "ls .hidden-path/"]
+    command = [
+        "ls .hidden-path",
+        "ls .hidden-path/",
+        "ls -a .hidden-path",
+        "ls -a .hidden-path/"
+    ]
     hint = [
         "The command {{yls <Directory name>}} lets you look into a directory",
         "To look down the hidden path, type {{yls .hidden-path}}",
