@@ -9,7 +9,7 @@
 
 
 from terminal import Terminal
-from ..commands_real import ls, shell_command, launch_application
+from ..commands_real import ls, shell_command
 
 
 class Terminal1(Terminal):
@@ -27,12 +27,6 @@ class Terminal1(Terminal):
         shell_command(self.current_dir, self.filetree, line, "cat")
 
     def complete_cat(self, text, line, begidx, endidx):
-        return self.autocomplete_desc(text, line, "both")
-
-    def do_less(self, line):
-        launch_application(self.current_dir, self.filetree, line, "less")
-
-    def complete_less(self, text, line, begidx, endidx):
         return self.autocomplete_desc(text, line, "both")
 
     def do_clear(self, line):
