@@ -10,6 +10,7 @@
 from ..Step import Step
 from ..terminals.terminal1 import Terminal1
 from challenge_2 import Step1 as Step1_2
+from ..file_data import copy_data
 
 
 class Step_Template(Step):
@@ -187,4 +188,5 @@ class Step9(Step_Template):
     ]
 
     def next(self):
+        copy_data(2)
         Step1_2()
