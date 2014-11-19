@@ -1,7 +1,10 @@
-drwxrwxr-x 3 caroline caroline 4096 Nov 18 10:48 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office
--rw-rw-r-- 1 caroline caroline 0 Nov 18 10:37 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/Noticeboard
--rw-rw-r-- 1 caroline caroline 97 Nov 18 10:37 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/.sticky_note
--rw-rw-r-- 1 caroline caroline 0 Nov 18 10:37 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/chair
--rw-rw-r-- 1 caroline caroline 0 Nov 18 10:37 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/desk
-drwxrwxr-x 2 caroline caroline 4096 Nov 18 10:47 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/Missions
--rw-rw-r-- 1 caroline caroline 497 Nov 18 10:47 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/Office/Missions/Rabbit_Report
+drwxrwxr-x 3 caroline caroline 4096 Nov 19 09:14 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/office
+-rw-rw-r-- 1 caroline caroline 97 Nov 18 11:38 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/office/.sticky_note
+-rw-rw-r-- 1 caroline caroline 0 Nov 18 11:38 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/office/chair
+-rw-rw-r-- 1 caroline caroline 134 Nov 18 14:33 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/office/noticeboard
+-rw-rw-r-- 1 caroline caroline 0 Nov 18 11:38 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/office/desk
+drwxrwxr-x 4 caroline caroline 4096 Nov 19 10:21 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/office/filing-cabinet
+drwxrwxr-x 2 caroline caroline 4096 Nov 19 10:29 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/office/filing-cabinet/missions
+drwxrwxr-x 2 caroline caroline 4096 Nov 19 10:23 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/office/filing-cabinet/spells
+-rw-rw-r-- 1 caroline caroline 499 Nov 19 10:29 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/office/filing-cabinet/missions/rabbit-report
+-rw-rw-r-- 1 caroline caroline 38 Nov 19 10:23 /home/caroline/kano/linux-tutorial/linux_story/file_system/1/office/filing-cabinet/spells/README.md
