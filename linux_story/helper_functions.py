@@ -12,8 +12,9 @@
 import os
 import sys
 import time
-from kano.colours import colourize256, decorate_string
 import readline
+
+from kano.colours import colourize256, decorate_string
 
 
 home = os.path.expanduser("~")
@@ -210,3 +211,14 @@ def typing_animation(string):
                 time.sleep(0.03)
 
         sys.stdout.flush()
+
+
+def print_challenge_title(challenge_number):
+    fpath = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        "animation/challenge_" + challenge_number
+    )
+    with open(fpath) as f:
+        for line in f.readlines():
+            print line.rstrip()
+    print ""
