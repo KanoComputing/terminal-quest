@@ -10,9 +10,9 @@
 
 
 from cmd import Cmd
-from ..helper_functions import (get_completion_desc, parse_string, get_script_cmd,
-                                debugger)
-from ..Tree import generate_file_tree
+from helper_functions import (get_completion_desc, parse_string, get_script_cmd,
+                              debugger)
+from Tree import generate_file_tree
 
 # If this is not imported, the escape characters used for the colour prompts
 # show up as special characters. We don't use any functions from this module,

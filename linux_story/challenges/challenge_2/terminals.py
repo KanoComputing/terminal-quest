@@ -8,8 +8,8 @@
 # The a terminal for one of the challenges
 
 
-from terminal1 import Terminal1
-from ..commands_fake import cd
+from linux_story.challenges.challenge_1.terminals import Terminal1
+from linux_story.commands_fake import cd
 
 
 class Terminal2(Terminal1):

@@ -6,10 +6,9 @@
 # Author: Caroline Clark <caroline@kano.me>
 # A chapter of the story
 
-
 from linux_story.Step import Step
-from linux_story.terminals.terminal1 import Terminal1
-from challenge_2 import Step1 as Step1_2
+from terminals import Terminal1
+from linux_story.challenges.challenge_2.steps import Step1 as Step1_2
 from linux_story.file_data import copy_data
 from linux_story.helper_functions import print_challenge_title
 

@@ -6,9 +6,8 @@
 # Author: Caroline Clark <caroline@kano.me>
 # A chapter of the story
 
-
 from linux_story.Step import Step
-from linux_story.terminals.terminal2 import Terminal2
+from linux_story.challenges.challenge_2.terminals import Terminal2
 
 
 class Step_Template(Step):
@@ -137,7 +136,7 @@ class Step6(Step_Template):
 
 class Step7(Step_Template):
     story = [
-        "You see you're surrounded by a lot of plants, trees and shubbery.",
+        "You see you're surrounded by a lot of plants, trees and shrubbery.",
         "There's a lot of stuff here, but you have sharp eyes and take a good look round "
         "you",
         "You're looking for a hidey-hole for a rabbit",

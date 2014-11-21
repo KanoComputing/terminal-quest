@@ -10,7 +10,6 @@
 
 import os
 from helper_functions import parse_string, typing_animation
-from terminals.complete_terminal import Complete_Terminal as Terminal
 
 
 class Step():
@@ -52,7 +51,7 @@ class Step():
 
     # default terminal
     def launch_terminal(self):
-        Terminal(self.start_dir, self.end_dir, self.command, self.hint)
+        pass
 
 
 def launch_animation(command):
