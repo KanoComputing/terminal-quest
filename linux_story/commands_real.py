@@ -55,13 +55,15 @@ def ls(current_dir, tree, line=""):
     p = subprocess.Popen(args, cwd=real_loc,
                          stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE)
-    output, err = p.communicate()
-    debugger("output = {}".format(output))
+    orig_output, err = p.communicate()
+    debugger("orig_output = {}".format(orig_output))
     debugger("err = {}".format(err))
 
     # need to folter output
-    files = output.split('\n')
+    files = orig_output.split('\n')
     coloured_files = []
+    coloured_output = ""
+    output = " ".join(files)
 
     if get_all_info:
         for f in files:
@@ -72,7 +74,7 @@ def ls(current_dir, tree, line=""):
             info.append(colour_file_dir(path, i))
             f = " ".join(info)
             coloured_files.append(f)
-        output = "\n".join(coloured_files)
+        coloured_output = "\n".join(coloured_files)
 
     else:
         for f in files:
@@ -80,11 +82,12 @@ def ls(current_dir, tree, line=""):
             coloured_files.append(colour_file_dir(path, f))
 
         if new_lines:
-            output = "\n".join(coloured_files)
+            coloured_output = "\n".join(coloured_files)
         else:
-            output = " ".join(coloured_files)
+            coloured_output = " ".join(coloured_files)
 
-    print output
+    print coloured_output
+    return output
 
 
 def grep(current_dir, tree, line):

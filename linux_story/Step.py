@@ -60,7 +60,9 @@ class Step():
         self.Terminal(
             self.start_dir,
             self.end_dir,
-            validation=self.check_command
+            self.check_command,
+            self.block_command,
+            self.check_output
         )
 
     def check_command(self, line, current_dir):
@@ -88,6 +90,12 @@ class Step():
             if len(self.hints) > 1:
                 self.hints.pop(0)
         return command_validated and end_dir_validated
+
+    def block_command(self):
+        pass
+
+    def check_output(self):
+        pass
 
 
 def launch_animation(command):
