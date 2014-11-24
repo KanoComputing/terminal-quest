@@ -40,6 +40,22 @@ class Step1(Step_Template):
     command = "ls"
     hints = ["Type {{yls}} and press Enter to have a look around."]
 
+    # this stops ls being run
+    def block_command(self, output):
+        if output == "hello":
+            return True
+        else:
+            return False
+
+    def check_output(self, output):
+        output = output.strip()
+        if output == "office":
+            print "output is correct"
+            return True
+        else:
+            print "output is incorrect"
+            return False
+
     def next(self):
         Step2()
 

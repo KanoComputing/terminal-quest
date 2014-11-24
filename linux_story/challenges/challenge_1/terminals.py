@@ -24,7 +24,7 @@ from linux_story.commands_real import ls, shell_command
 class Terminal_Template(Terminal):
 
     def do_ls(self, line):
-        ls(self.current_dir, self.filetree, line)
+        return ls(self.current_dir, self.filetree, line)
 
     def complete_ls(self, text, line, begidx, endidx):
         text = text.split(" ")[-1]
@@ -38,14 +38,3 @@ class Terminal_Template(Terminal):
 
     def do_clear(self, line):
         shell_command(self.current_dir, self.filetree, line, "clear")
-
-
-class Terminal4(Terminal_Template):
-
-    def check_command(self, line):
-        print "entered check_command"
-        if line == "ls office/filing-cabinet":
-            print "predicted line correctly"
-        else:
-            print "incorrect preiction"
-            print "line = {}".format(line)
