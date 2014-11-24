@@ -40,8 +40,12 @@ class Terminal_Template(Terminal):
         shell_command(self.current_dir, self.filetree, line, "clear")
 
 
-class Terminal1(Terminal_Template):
+class Terminal4(Terminal_Template):
 
-    def validate(self, line):
-        print line
-        print "changed validation function"
+    def check_command(self, line):
+        print "entered check_command"
+        if line == "ls office/filing-cabinet":
+            print "predicted line correctly"
+        else:
+            print "incorrect preiction"
+            print "line = {}".format(line)

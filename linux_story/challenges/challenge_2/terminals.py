@@ -7,12 +7,20 @@
 # Author: Caroline Clark <caroline@kano.me>
 # The a terminal for one of the challenges
 
+import os
+import sys
 
-from linux_story.challenges.challenge_1.terminals import Terminal1
+dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
+if __name__ == '__main__' and __package__ is None:
+    if dir_path != '/usr':
+        sys.path.insert(1, dir_path)
+        print sys.path
+
+from linux_story.challenges.challenge_1.terminals import Terminal_Template
 from linux_story.commands_fake import cd
 
 
-class Terminal2(Terminal1):
+class Terminal2(Terminal_Template):
 
     def do_cd(self, line):
         dir = cd(self.current_dir, self.filetree, line)

@@ -10,7 +10,7 @@
 
 
 from cmd import Cmd
-from helper_functions import (get_completion_desc, parse_string, get_script_cmd,
+from helper_functions import (get_completion_desc, get_script_cmd,
                               debugger)
 from Tree import generate_file_tree
 
@@ -22,7 +22,13 @@ import readline
 
 class Terminal(Cmd):
 
-    def __init__(self, start_dir, end_dir, validation, hints=[""]):
+    def __init__(
+        self,
+        start_dir,
+        end_dir,
+        validation
+    ):
+
         Cmd.__init__(self)
 
         self.update_tree()
@@ -30,14 +36,9 @@ class Terminal(Cmd):
         self.current_dir = start_dir
         self.current_path = self.filetree[start_dir]
         self.end_dir = end_dir
-        self.validation = validation
 
-        # if hints are a string
-        if isinstance(hints, basestring):
-            self.hints = [hints]
-        # if hints are a array
-        else:
-            self.hints = hints
+        # validation should be a function
+        self.validation = validation
 
         self.set_prompt()
         self.cmdloop()
@@ -49,29 +50,7 @@ class Terminal(Cmd):
         pass
 
     def validate(self, line):
-        command = True
-        end_dir = True
-
-        # if the validation is included
-        if self.validation:
-            # if only one command can pass the level
-            if isinstance(self.validation, basestring):
-                command = line == self.validation
-            # else there are multiple commands that can pass the level
-            else:
-                command = line in self.validation
-        if self.end_dir:
-            end_dir = self.current_dir == self.end_dir
-
-        # if user does not pass challenge, show hints.
-        # Go through hints until we get to last hint
-        # then just keep showing last hint
-        if not (command and end_dir):
-            print parse_string(self.hints[0])
-            if len(self.hints) > 1:
-                self.hints.pop(0)
-
-        return command and end_dir
+        return self.validation(line, self.current_dir)
 
     # do nothing if the user enters an empty line
     def emptyline(self):

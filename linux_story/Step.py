@@ -17,10 +17,16 @@ class Step():
     start_dir = "~"
     end_dir = "~"
     command = ""
-    hint = ""
+    hints = ""
     animation = None
 
-    def __init__(self):
+    def __init__(self, Terminal_Class):
+        self.Terminal = Terminal_Class
+
+        # if hints are a string
+        if isinstance(self.hints, basestring):
+            self.hints = [self.hints]
+
         self.run()
 
     def run(self):
@@ -51,7 +57,37 @@ class Step():
 
     # default terminal
     def launch_terminal(self):
-        pass
+        self.Terminal(
+            self.start_dir,
+            self.end_dir,
+            validation=self.check_command
+        )
+
+    def check_command(self, line, current_dir):
+        # check through list of commands
+        command_validated = True
+        end_dir_validated = True
+
+        # if the validation is included
+        if self.command:
+            # if only one command can pass the level
+            if isinstance(self.command, basestring):
+                command_validated = line == self.command
+            # else there are multiple commands that can pass the level
+            else:
+                command_validated = line in self.command
+
+        if self.end_dir:
+            end_dir_validated = current_dir == self.end_dir
+
+        # if user does not pass challenge, show hints.
+        # Go through hints until we get to last hint
+        # then just keep showing last hint
+        if not (command_validated and end_dir_validated):
+            print parse_string(self.hints[0])
+            if len(self.hints) > 1:
+                self.hints.pop(0)
+        return command_validated and end_dir_validated
 
 
 def launch_animation(command):

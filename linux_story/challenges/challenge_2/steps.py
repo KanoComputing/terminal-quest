@@ -6,6 +6,15 @@
 # Author: Caroline Clark <caroline@kano.me>
 # A chapter of the story
 
+import os
+import sys
+
+dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
+if __name__ == '__main__' and __package__ is None:
+    if dir_path != '/usr':
+        sys.path.insert(1, dir_path)
+        print sys.path
+
 from linux_story.Step import Step
 from linux_story.challenges.challenge_2.terminals import Terminal2
 
@@ -13,7 +22,7 @@ from linux_story.challenges.challenge_2.terminals import Terminal2
 class Step_Template(Step):
 
     def launch_terminal(self):
-        Terminal2(self.start_dir, self.end_dir, self.command, self.hint)
+        Terminal2(self.start_dir, self.end_dir, self.command, self.hints)
 
 
 class Step1(Step_Template):
@@ -25,7 +34,7 @@ class Step1(Step_Template):
     start_dir = "~"
     end_dir = "~"
     command = "ls -a"
-    hint = [
+    hints = [
         "You decide that the rabbit meant that you should look "
         "for hidden files and folders in this directory",
         "To see any hidden folders or files you need to "
@@ -51,7 +60,7 @@ class Step2(Step_Template):
         "ls -a .hidden-path",
         "ls -a .hidden-path/"
     ]
-    hint = [
+    hints = [
         "The command {{yls <Directory name>}} lets you look into a directory",
         "To look down the hidden path, type {{yls .hidden-path}}",
         "Type {{yls .hidden-path}} and press ENTER"
@@ -72,7 +81,7 @@ class Step3(Step_Template):
     start_dir = "~"
     end_dir = ".hidden-path"
     command = ""
-    hint = [
+    hints = [
         "You want to {{yc}}hange your {{yd}}irectory so are in the .hidden-path "
         "directory",
         "You want to use the command {{ycd <path to directory>}} "
@@ -91,7 +100,7 @@ class Step4(Step_Template):
     start_dir = ".hidden-path"
     end_dir = ".hidden-path"
     command = ["ls", "ls -a"]
-    hint = [
+    hints = [
         "To look around, you need to {{yl}}i{{ys}}t all the files in the directory",
         "Use {{yls}} to look around you.",
         "Type {{yls}} and press Enter"
@@ -109,7 +118,7 @@ class Step5(Step_Template):
     start_dir = ".hidden-path"
     end_dir = "woods"
     command = ""
-    hint = [
+    hints = [
         "Remember, you want to {{yc}}hange your {{yd}}irectory to the {{bwoods}} "
         "directory",
         "Type {{ycd woods}} and press Enter"
@@ -126,7 +135,7 @@ class Step6(Step_Template):
     start_dir = "woods"
     end_dir = "woods"
     command = ["ls", "ls -a"]
-    hint = [
+    hints = [
         "To look around, you need to use the command {{yls}}"
     ]
 
@@ -145,7 +154,7 @@ class Step7(Step_Template):
     start_dir = "woods"
     end_dir = "rabbithole"
     command = ""
-    hint = [
+    hints = [
         "Remember, {{bdirectories show up in blue}}",
         "If you scroll through the elements in this directory, you should be able to "
         "spot the rabbit's because it will be the only {{bblue}} one",
@@ -166,6 +175,6 @@ class Step8(Step_Template):
     start_dir = "woods"
     end_dir = "woods"
     command = "clear"
-    hint = [
+    hints = [
         "Type {{yclear}} and press Enter to clear the terminal"
     ]
