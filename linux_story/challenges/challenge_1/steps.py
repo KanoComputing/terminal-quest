@@ -39,23 +39,11 @@ class Step1(Step_Template):
     end_dir = "~"
     command = "ls"
     hints = ["Type {{yls}} and press Enter to have a look around."]
+    output_condition = lambda x, y: y == "office"
 
     # this stops ls being run
     def block_command(self, output):
-        if output == "hello":
-            return True
-        else:
-            return False
-
-    def check_output(self, output):
-        if not output:
-            return False
-
-        output = output.strip()
-        if output == "office":
-            return True
-        else:
-            return False
+        return output == "hello"
 
     def next(self):
         Step2()

@@ -19,6 +19,7 @@ class Step():
     command = ""
     hints = ""
     animation = None
+    output_conditon = lambda x, y: False
 
     def __init__(self, Terminal_Class):
         self.Terminal = Terminal_Class
@@ -95,7 +96,11 @@ class Step():
         pass
 
     def check_output(self, output):
-        pass
+        if not output:
+            return False
+
+        output = output.strip()
+        return self.output_condition(output)
 
 
 def launch_animation(command):

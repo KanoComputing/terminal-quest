@@ -20,9 +20,8 @@ from linux_story.challenges.challenge_2.terminals import Terminal2
 
 
 class Step_Template(Step):
-
-    def launch_terminal(self):
-        Terminal2(self.start_dir, self.end_dir, self.command, self.hints)
+    def __init__(self):
+        Step.__init__(self, Terminal2)
 
 
 class Step1(Step_Template):
