@@ -19,7 +19,7 @@ class Step():
     command = ""
     hints = ""
     animation = None
-    output_conditon = lambda x, y: False
+    output_condition = lambda x, y: False
 
     def __init__(self, Terminal_Class):
         self.Terminal = Terminal_Class
