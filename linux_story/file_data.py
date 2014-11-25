@@ -95,7 +95,7 @@ def record_data():
 # We want to preserve changes made by the user that don't conflict with the levels
 def copy_data(challenge_number=1):
     debugger("copy_data entered, challenge_number = {}".format(challenge_number))
-    copy_file_tree(challenge_number)
+    copy_selected_data(challenge_number)
     pfile = get_permission_file(challenge_number)
     debugger("Entering pfile = {}".format(pfile))
 
@@ -112,6 +112,27 @@ def copy_data(challenge_number=1):
 
             change_permissions(permission_list, rel_path, real_loc)
             change_ownership(file_owner, group_owner, rel_path, real_loc)
+
+
+# Only copy across the files that are missing
+def copy_selected_data(challenge_number=1):
+    challenge_dir = os.path.join(FILE_SYSTEM_PATH, str(challenge_number))
+    for src_path, src_dirs, src_files in os.walk(challenge_dir):
+        rel_path = src_path.replace(challenge_dir + "/", "")
+        for d in src_dirs:
+            dest_dir = os.path.join(HIDDEN_DIR, rel_path, d)
+            exists = os.path.exists(dest_dir)
+            if not exists:
+                src_dir = os.path.join(src_path, d)
+                debugger("\ncopying from \n{} to \n{}".format(src_dir, dest_dir))
+                shutil.copytree(src_dir, dest_dir, symlinks=True)
+        for f in src_files:
+            dest_file = os.path.join(HIDDEN_DIR, rel_path, f)
+            exists = os.path.exists(dest_file)
+            if not exists:
+                src_file = os.path.join(src_path, f)
+                debugger("\ncopying from \n{} to \n{}".format(src_file, dest_file))
+                shutil.copyfile(src_file, dest_file)
 
 
 # copy files over from root to the home
