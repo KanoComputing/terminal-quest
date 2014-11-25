@@ -14,14 +14,13 @@ dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
 if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
-        print sys.path
 
 from linux_story.Terminal import Terminal
 from linux_story.commands_real import ls, shell_command
 
 
 # Terminal that is a template for the others in this level
-class Terminal_Template(Terminal):
+class Terminal1(Terminal):
 
     def do_ls(self, line):
         return ls(self.current_dir, self.filetree, line)

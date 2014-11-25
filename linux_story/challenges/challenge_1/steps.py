@@ -16,7 +16,7 @@ if __name__ == '__main__' and __package__ is None:
         print sys.path
 
 from linux_story.Step import Step
-from terminals import Terminal_Template
+from terminals import Terminal1
 from linux_story.challenges.challenge_2.steps import Step1 as Step1_2
 from linux_story.file_data import copy_data
 from linux_story.helper_functions import print_challenge_title, parse_string
@@ -24,7 +24,7 @@ from linux_story.helper_functions import print_challenge_title, parse_string
 
 class Step_Template(Step):
     def __init__(self):
-        Step.__init__(self, Terminal_Template)
+        Step.__init__(self, Terminal1)
 
 
 class Step1(Step_Template):
@@ -143,18 +143,14 @@ class Step5(Step_Template):
         "{{yls office/filing-cabinet}}",
         "Type {{yls office/filing-cabinet/missions}} and press Enter"
     ]
-    extra_hints = [
-        "You need to look through the {{boffice}} window, into the {{bfiling-cabinet}} "
-        "and into the {{bmissions}} directory",
-        "Type {{yls office/filing-cabinet/missions}} and press Enter"
-    ]
 
     def check_command(self, line, current_dir):
         if line in ["ls missions",
                     "ls missions/"]:
-            print parse_string(self.extra_hints[0])
-            if len(self.extra_hints) > 0:
-                self.extra_hints.pop(0)
+            print parse_string(
+                "You need to look through the {{boffice}} window, "
+                "into the {{bfiling-cabinet}} and into the {{bmissions}} directory"
+            )
             return False
         else:
             return Step.check_command(self, line, current_dir)
@@ -185,7 +181,7 @@ class Step6(Step_Template):
                 "{{bfile-cabinet}}, in the {{bmissions}} lever arch"
             )
             return False
-        elif line.contains("ls "):
+        elif "ls " in line:
             print parse_string(
                 "You want to use the cat command, not ls"
             )
