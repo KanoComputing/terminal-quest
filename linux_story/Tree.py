@@ -119,7 +119,7 @@ class Tree:
             queue = expansion
 
     def node_exists(self, identifier):
-        return hasattr(self, identifier)
+        return identifier in self.__nodes
 
     def __getitem__(self, key):
         return self.__nodes[key]
