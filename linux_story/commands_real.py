@@ -11,6 +11,7 @@
 
 import os
 import subprocess
+
 from helper_functions import colour_file_dir, debugger
 from kano.colours import colourize256
 
@@ -134,6 +135,8 @@ def sudo(current_dir, tree, line):
         shell_command(current_dir, tree, line, "sudo")
 
 
+# TODO: change this so returns differently depending on whether
+# it is successful or not
 def shell_command(current_dir, tree, line, command_word=""):
 
     line = " ".join([command_word] + line.split(" "))
@@ -150,13 +153,36 @@ def shell_command(current_dir, tree, line, command_word=""):
                          stderr=subprocess.PIPE)
     stdout, stderr = p.communicate()
 
+    if stderr:
+        print stderr.strip()
+        return False
+
     if stdout:
         print stdout.strip()
 
-    if stderr:
-        print stderr.strip()
-
+    # should this return stdout?
     return True
+
+
+# Will be identical to touch
+def mkdir(current_dir, tree, line):
+    # TODO: determine if this is successful
+    if shell_command(current_dir, tree, line, "mkdir"):
+        real_loc = tree[current_dir].path
+        args = line.split(" ")
+        filepath = args[-1]
+
+        # Hopefully we're left with the filepath
+        new_dir = os.path.join(real_loc, filepath)
+
+        # If new path was created successfully
+        if os.path.exists(new_dir):
+            dirs = [current_dir] + filepath.split("/")
+
+            # Add new nodes to tree
+            for i in range(len(dirs)):
+                if not tree.node_exists(dirs[i]):
+                    tree.add_node(dirs[i], dirs[i - 1])
 
 
 def launch_application(current_dir, tree, line, command_word=""):
