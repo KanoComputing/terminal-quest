@@ -7,6 +7,6 @@ Build-Depends: debhelper (>=9.0.0)
 
 Package: linux-story
 Architecture: all
-Depends: ${misc:Depends}, python (>=2.7)
+Depends: ${misc:Depends}, python (>=2.7), libvte-2.90-9
 Description: Story to teach people basic Linux commands
  via a text based adventure game style.
