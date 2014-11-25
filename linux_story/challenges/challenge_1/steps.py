@@ -18,7 +18,6 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from terminals import Terminal1
 from linux_story.challenges.challenge_2.steps import Step1 as Step1_2
-from linux_story.file_data import copy_data
 from linux_story.helper_functions import print_challenge_title, parse_string
 
 
@@ -230,6 +229,5 @@ class Step9(Step_Template):
     ]
 
     def next(self):
-        copy_data(2)
         print_challenge_title("2")
         Step1_2()
