@@ -48,12 +48,13 @@ class Step1(Step_Template):
             return False
 
     def check_output(self, output):
+        if not output:
+            return False
+
         output = output.strip()
         if output == "office":
-            print "output is correct"
             return True
         else:
-            print "output is incorrect"
             return False
 
     def next(self):

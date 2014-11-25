@@ -39,6 +39,9 @@ class Terminal(Cmd):
         self.current_path = self.filetree[start_dir]
         self.end_dir = end_dir
 
+        # output from last command
+        self.last_cmd_output = None
+
         # validation and check_output should be functions
         self.check_command = check_command
         self.block_command = block_command
@@ -65,7 +68,6 @@ class Terminal(Cmd):
         self.filetree = generate_file_tree()
 
     def precmd(self, line):
-        print "self.block_command(line) = {}".format(self.block_command(line))
         if self.block_command(line):
             return Cmd.precmd(self, "")
         else:
@@ -77,13 +79,14 @@ class Terminal(Cmd):
         if is_script:
             self.do_shell(script)
         else:
-            print "Cmd.onecmd(self, line) = {}".format(Cmd.onecmd(self, line))
-            cmd_output = Cmd.onecmd(self, line)
-            print "self.check_output(cmd_output) = {}".format(self.check_output(cmd_output))
+            self.last_cmd_output = Cmd.onecmd(self, line)
+            return self.last_cmd_output
 
     # This is the cmd valid command
     def postcmd(self, stop, line):
-        return self.check_command(line, self.current_dir)
+        is_cmd_output_correct = False
+        is_cmd_output_correct = self.check_output(self.last_cmd_output)
+        return is_cmd_output_correct or self.check_command(line, self.current_dir)
 
     def complete_list(self):
         return list(self.filetree.show_direct_descendents(self.current_dir))

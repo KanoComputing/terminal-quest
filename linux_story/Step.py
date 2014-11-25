@@ -91,10 +91,10 @@ class Step():
                 self.hints.pop(0)
         return command_validated and end_dir_validated
 
-    def block_command(self):
+    def block_command(self, line):
         pass
 
-    def check_output(self):
+    def check_output(self, output):
         pass
 
 
