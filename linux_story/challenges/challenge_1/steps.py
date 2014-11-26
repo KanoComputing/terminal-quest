@@ -18,6 +18,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from terminals import Terminal1
 from linux_story.challenges.challenge_2.steps import Step1 as Step1_2
+from linux_story.file_data import copy_data
 from linux_story.helper_functions import print_challenge_title, parse_string
 
 
@@ -75,7 +76,7 @@ class Step3(Step_Template):
     command = ["ls office", "ls office/"]
     hints = [
         "Pressing TAB should autocomplete the command,"
-        " so you should enter the command ls office/"
+        " so you should enter the command {{yls office/}}"
     ]
 
     def next(self):
@@ -113,9 +114,9 @@ class Step4(Step_Template):
 
 class Step5(Step_Template):
     story = [
-        "\nYou see two leather bound lever arch files",
+        "\nYou see two large leather bound folders",
         "The one labelled {{bspells}} looks brand new, while "
-        "the {{bmissions}} lever-arch looks more battered",
+        "the {{bmissions}} folder looks rather battered",
         "Have a look in the {{bmissions}} directory.",
         "To save typing, try pressing UP to replay previous commands."
     ]
@@ -126,7 +127,7 @@ class Step5(Step_Template):
         "ls office/filing-cabinet/missions/"
     ]
     hints = [
-        "Remember to look in the {{bfiling_cabinet}}, the command was "
+        "Remember, to look in the {{bfiling_cabinet}}, the command was "
         "{{yls office/filing-cabinet}}",
         "Type {{yls office/filing-cabinet/missions}} and press Enter"
     ]
@@ -194,6 +195,15 @@ class Step7(Step_Template):
         "Type {{yls -a office}} and press ENTER"
     ]
 
+    def check_command(self, line, current_dir):
+        if line == "ls -a":
+            print parse_string(
+                "You want to look harder in in the {{boffice}} folder"
+            )
+            return False
+        else:
+            return Step.check_command(self, line, current_dir)
+
     def next(self):
         Step8()
 
@@ -230,4 +240,5 @@ class Step9(Step_Template):
 
     def next(self):
         print_challenge_title("2")
+        copy_data(2)
         Step1_2()
