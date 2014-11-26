@@ -16,15 +16,21 @@ if __name__ == '__main__' and __package__ is None:
         print sys.path
 
 from linux_story.Step import Step
+from linux_story.challenges.challenge_1.terminals import Terminal1
 from linux_story.challenges.challenge_2.terminals import Terminal2
 
 
-class Step_Template(Step):
+class Step_Template1(Step):
+    def __init__(self):
+        Step.__init__(self, Terminal1)
+
+
+class Step_Template2(Step):
     def __init__(self):
         Step.__init__(self, Terminal2)
 
 
-class Step1(Step_Template):
+class Step1(Step_Template1):
     story = [
         "You are in the home directory.",
         "You remember the rabbit's note, "
@@ -38,7 +44,7 @@ class Step1(Step_Template):
         "for hidden files and folders in this directory",
         "To see any hidden folders or files you need to "
         "{{yl}}i{{ys}}t {{ya}}ll the files and folders",
-        "The command {{yls -a}} lists all files and folders in a directory",
+        "The command {{yls -a}} lists all files and folders in the directory you are in",
         "Type {{yls -a}} and press ENTER"
     ]
 
@@ -46,7 +52,7 @@ class Step1(Step_Template):
         Step2()
 
 
-class Step2(Step_Template):
+class Step2(Step_Template1):
     story = [
         "You see a small shady {{b.hidden-path}} you didn't notice before.",
         "Can you see what's down the path?"
@@ -69,7 +75,7 @@ class Step2(Step_Template):
         Step3()
 
 
-class Step3(Step_Template):
+class Step3(Step_Template2):
     story = [
         "Squinting, you can just about see the path "
         "leading to a dense thicket of woodland",
@@ -92,7 +98,7 @@ class Step3(Step_Template):
         Step4()
 
 
-class Step4(Step_Template):
+class Step4(Step_Template2):
     story = [
         "Have another look around"
     ]
@@ -109,7 +115,7 @@ class Step4(Step_Template):
         Step5()
 
 
-class Step5(Step_Template):
+class Step5(Step_Template2):
     story = [
         "You are on the narrow dusty path leading into the woods",
         "You decide to walk into the woods"
@@ -127,7 +133,7 @@ class Step5(Step_Template):
         Step6()
 
 
-class Step6(Step_Template):
+class Step6(Step_Template2):
     story = [
         "Have a look around."
     ]
@@ -142,7 +148,7 @@ class Step6(Step_Template):
         Step7()
 
 
-class Step7(Step_Template):
+class Step7(Step_Template2):
     story = [
         "You see you're surrounded by a lot of plants, trees and shrubbery.",
         "There's a lot of stuff here, but you have sharp eyes and take a good look round "
@@ -164,7 +170,7 @@ class Step7(Step_Template):
         Step8()
 
 
-class Step8(Step_Template):
+class Step8(Step_Template2):
     story = [
         "You entered the rabbithole",
         "The rabbit who dug it must be huge, the rabbithole is bigger than the average "
