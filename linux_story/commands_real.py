@@ -11,6 +11,7 @@
 
 import os
 import subprocess
+
 from helper_functions import colour_file_dir, debugger
 from kano.colours import colourize256
 
@@ -55,13 +56,15 @@ def ls(current_dir, tree, line=""):
     p = subprocess.Popen(args, cwd=real_loc,
                          stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE)
-    output, err = p.communicate()
-    debugger("output = {}".format(output))
+    orig_output, err = p.communicate()
+    debugger("orig_output = {}".format(orig_output))
     debugger("err = {}".format(err))
 
     # need to folter output
-    files = output.split('\n')
+    files = orig_output.split('\n')
     coloured_files = []
+    coloured_output = ""
+    output = " ".join(files)
 
     if get_all_info:
         for f in files:
@@ -72,7 +75,7 @@ def ls(current_dir, tree, line=""):
             info.append(colour_file_dir(path, i))
             f = " ".join(info)
             coloured_files.append(f)
-        output = "\n".join(coloured_files)
+        coloured_output = "\n".join(coloured_files)
 
     else:
         for f in files:
@@ -80,11 +83,12 @@ def ls(current_dir, tree, line=""):
             coloured_files.append(colour_file_dir(path, f))
 
         if new_lines:
-            output = "\n".join(coloured_files)
+            coloured_output = "\n".join(coloured_files)
         else:
-            output = " ".join(coloured_files)
+            coloured_output = " ".join(coloured_files)
 
-    print output
+    print coloured_output
+    return output
 
 
 def grep(current_dir, tree, line):
@@ -131,6 +135,8 @@ def sudo(current_dir, tree, line):
         shell_command(current_dir, tree, line, "sudo")
 
 
+# TODO: change this so returns differently depending on whether
+# it is successful or not
 def shell_command(current_dir, tree, line, command_word=""):
 
     line = " ".join([command_word] + line.split(" "))
@@ -147,13 +153,36 @@ def shell_command(current_dir, tree, line, command_word=""):
                          stderr=subprocess.PIPE)
     stdout, stderr = p.communicate()
 
+    if stderr:
+        print stderr.strip()
+        return False
+
     if stdout:
         print stdout.strip()
 
-    if stderr:
-        print stderr.strip()
-
+    # should this return stdout?
     return True
+
+
+# Will be identical to touch
+def mkdir(current_dir, tree, line):
+    # TODO: determine if this is successful
+    if shell_command(current_dir, tree, line, "mkdir"):
+        real_loc = tree[current_dir].path
+        args = line.split(" ")
+        filepath = args[-1]
+
+        # Hopefully we're left with the filepath
+        new_dir = os.path.join(real_loc, filepath)
+
+        # If new path was created successfully
+        if os.path.exists(new_dir):
+            dirs = [current_dir] + filepath.split("/")
+
+            # Add new nodes to tree
+            for i in range(len(dirs)):
+                if not tree.node_exists(dirs[i]):
+                    tree.add_node(dirs[i], dirs[i - 1])
 
 
 def launch_application(current_dir, tree, line, command_word=""):

@@ -7,9 +7,16 @@
 # Author: Caroline Clark <caroline@kano.me>
 # The a terminal for one of the challenges
 
+import os
+import sys
 
-from terminal1 import Terminal1
-from ..commands_fake import cd
+dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
+if __name__ == '__main__' and __package__ is None:
+    if dir_path != '/usr':
+        sys.path.insert(1, dir_path)
+
+from linux_story.challenges.challenge_1.terminals import Terminal1
+from linux_story.commands_fake import cd
 
 
 class Terminal2(Terminal1):

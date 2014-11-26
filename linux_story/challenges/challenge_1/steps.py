@@ -6,20 +6,25 @@
 # Author: Caroline Clark <caroline@kano.me>
 # A chapter of the story
 
+import os
+import sys
+
+dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
+if __name__ == '__main__' and __package__ is None:
+    if dir_path != '/usr':
+        sys.path.insert(1, dir_path)
+        print sys.path
 
 from linux_story.Step import Step
-from linux_story.terminals.terminal1 import Terminal1
-from challenge_2 import Step1 as Step1_2
+from terminals import Terminal1
+from linux_story.challenges.challenge_2.steps import Step1 as Step1_2
 from linux_story.file_data import copy_data
-from linux_story.helper_functions import print_challenge_title
+from linux_story.helper_functions import print_challenge_title, parse_string
 
 
 class Step_Template(Step):
     def __init__(self):
-        Step.__init__(self)
-
-    def launch_terminal(self):
-        Terminal1(self.start_dir, self.end_dir, self.command, self.hint)
+        Step.__init__(self, Terminal1)
 
 
 class Step1(Step_Template):
@@ -33,7 +38,12 @@ class Step1(Step_Template):
     start_dir = "~"
     end_dir = "~"
     command = "ls"
-    hint = ["Type {{yls}} and press Enter to have a look around."]
+    hints = ["Type {{yls}} and press Enter to have a look around."]
+    output_condition = lambda x, y: y == "office"
+
+    # this stops ls being run
+    def block_command(self, output):
+        return output == "hello"
 
     def next(self):
         Step2()
@@ -49,7 +59,7 @@ class Step2(Step_Template):
     start_dir = "~"
     end_dir = "~"
     command = ["ls office", "ls office/"]
-    hint = "Type the command {{yls office}}"
+    hints = "Type the command {{yls office}}"
 
     def next(self):
         Step3()
@@ -64,9 +74,9 @@ class Step3(Step_Template):
     start_dir = "~"
     end_dir = "~"
     command = ["ls office", "ls office/"]
-    hint = [
+    hints = [
         "Pressing TAB should autocomplete the command,"
-        " so you should enter the command ls office/"
+        " so you should enter the command {{yls office/}}"
     ]
 
     def next(self):
@@ -84,12 +94,19 @@ class Step4(Step_Template):
     start_dir = "~"
     end_dir = "~"
     command = ["ls office/filing-cabinet", "ls office/filing-cabinet/"]
-    hint = [
+    hints = [
         "Remember that {{yls <directory name>}} "
         "{{yl}}i{{ys}}ts the files inside a directory",
-        "You need to look through the {{boffice}} window into the {{bfiling-cabinet}}",
         "Type {{yls office/filing-cabinet}} and press Enter"
     ]
+
+    def check_command(self, line, current_dir):
+        if line in ["ls filing-cabinet", "ls filing-cabinet/"]:
+            print parse_string("You need to look through the {{boffice}} window "
+                               "into the {{bfiling-cabinet}}")
+            return False
+        else:
+            return Step.check_command(self, line, current_dir)
 
     def next(self):
         Step5()
@@ -97,9 +114,9 @@ class Step4(Step_Template):
 
 class Step5(Step_Template):
     story = [
-        "\nYou see two leather bound lever arch files",
+        "\nYou see two large leather bound folders",
         "The one labelled {{bspells}} looks brand new, while "
-        "the {{bmissions}} lever-arch looks more battered",
+        "the {{bmissions}} folder looks rather battered",
         "Have a look in the {{bmissions}} directory.",
         "To save typing, try pressing UP to replay previous commands."
     ]
@@ -109,11 +126,22 @@ class Step5(Step_Template):
         "ls office/filing-cabinet/missions",
         "ls office/filing-cabinet/missions/"
     ]
-    hint = [
-        "You need to look through the {{boffice}} window, into the {{bfiling-cabinet}} "
-        "and into the {{bmissions}} directory",
+    hints = [
+        "Remember, to look in the {{bfiling_cabinet}}, the command was "
+        "{{yls office/filing-cabinet}}",
         "Type {{yls office/filing-cabinet/missions}} and press Enter"
     ]
+
+    def check_command(self, line, current_dir):
+        if line in ["ls missions",
+                    "ls missions/"]:
+            print parse_string(
+                "You need to look through the {{boffice}} window, "
+                "into the {{bfiling-cabinet}} and into the {{bmissions}} directory"
+            )
+            return False
+        else:
+            return Step.check_command(self, line, current_dir)
 
     def next(self):
         Step6()
@@ -129,12 +157,25 @@ class Step6(Step_Template):
     start_dir = "~"
     end_dir = "~"
     command = "cat office/filing-cabinet/missions/rabbit-report"
-    hint = [
-        "The file is in the {{boffice}}, in the {{bfile-cabinet}} "
-        "and in the {{bmissions}} lever arch",
+    hints = [
         "Type {{ycat office/filing-cabinet/missions/rabbit-report}} "
         "to read the rabbit report"
     ]
+
+    def check_command(self, line, current_dir):
+        if line in ["cat rabbit-report"]:
+            print parse_string(
+                "Remember, the rabbit-report is in the {{boffice}}, in the "
+                "{{bfile-cabinet}}, in the {{bmissions}} lever arch"
+            )
+            return False
+        elif "ls " in line:
+            print parse_string(
+                "You want to use the cat command, not ls"
+            )
+            return False
+        else:
+            return Step.check_command(self, line, current_dir)
 
     def next(self):
         Step7()
@@ -150,9 +191,18 @@ class Step7(Step_Template):
     start_dir = "~"
     end_dir = "~"
     command = ["ls -a office", "ls -a office/"]
-    hint = [
+    hints = [
         "Type {{yls -a office}} and press ENTER"
     ]
+
+    def check_command(self, line, current_dir):
+        if line == "ls -a":
+            print parse_string(
+                "You want to look harder in in the {{boffice}} folder"
+            )
+            return False
+        else:
+            return Step.check_command(self, line, current_dir)
 
     def next(self):
         Step8()
@@ -168,7 +218,7 @@ class Step8(Step_Template):
     start_dir = "~"
     end_dir = "~"
     command = ["cat office/.sticky_note"]
-    hint = [
+    hints = [
         "Type {{ycat office/.sticky_note}} to see what's written on the note."
     ]
 
@@ -184,11 +234,11 @@ class Step9(Step_Template):
     start_dir = "~"
     end_dir = "~"
     command = "clear"
-    hint = [
+    hints = [
         "Type {{yclear}} to clear the Terminal."
     ]
 
     def next(self):
-        copy_data(2)
         print_challenge_title("2")
+        copy_data(2)
         Step1_2()

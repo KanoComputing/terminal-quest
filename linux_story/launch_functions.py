@@ -17,31 +17,30 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 
-import inspect
-import challenges
-from file_data import copy_data
 from helper_functions import print_challenge_title
-from challenges import *
+from linux_story.file_data import copy_data
 
 
 def launch_project(challenge_number="1", step="1"):
     os.system("clear")
+    copy_data(int(challenge_number))
     print_challenge_title(challenge_number)
-    copy_data(challenge_number)
-    module = get_challenge_module(challenge_number)
-    Step = get_class(module, step)
+    Step = get_step_class(challenge_number, step)
     Step()
 
 
-def get_challenge_module(challenge_number):
-    module = "challenge_" + challenge_number
-    if hasattr(challenges, module):
-        return getattr(challenges, module)
+def get_step_class(challenge_number, step_number):
+    module_name = "challenges.challenge_" + challenge_number + ".steps"
+    step_class_name = "Step" + step_number
+    try:
+        module = __import__(
+            module_name,
+            globals(),
+            locals(),
+            [step_class_name],
+            -1
+        )
+    except ImportError as detail:
+        return None
     else:
-        raise Exception("Cannot find challenge {}".format(challenge_number))
-
-
-def get_class(module, step):
-    for name, obj in inspect.getmembers(module):
-        if inspect.isclass(obj) and name.find(step) != -1:
-            return obj
+        return getattr(module, step_class_name)

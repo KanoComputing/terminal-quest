@@ -17,7 +17,7 @@ def cd(current_dir, tree, line=None):
     else:
         folders = line.split('/')
         for f in folders:
-            if f in tree.show_direct_descendents(current_dir):
+            if f in tree.show_dirs(current_dir):
                 current_dir = f
             elif f == "..":
                 current_dir = tree.show_ancestor(current_dir)

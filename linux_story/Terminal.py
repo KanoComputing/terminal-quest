@@ -10,9 +10,9 @@
 
 
 from cmd import Cmd
-from ..helper_functions import (get_completion_desc, parse_string, get_script_cmd,
-                                debugger)
-from ..Tree import generate_file_tree
+from helper_functions import (get_completion_desc, get_script_cmd,
+                              debugger)
+from Tree import generate_file_tree
 
 # If this is not imported, the escape characters used for the colour prompts
 # show up as special characters. We don't use any functions from this module,
@@ -22,7 +22,15 @@ import readline
 
 class Terminal(Cmd):
 
-    def __init__(self, start_dir, end_dir, validation, hints=[""]):
+    def __init__(
+        self,
+        start_dir,
+        end_dir,
+        check_command,
+        block_command,
+        check_output
+    ):
+
         Cmd.__init__(self)
 
         self.update_tree()
@@ -30,14 +38,14 @@ class Terminal(Cmd):
         self.current_dir = start_dir
         self.current_path = self.filetree[start_dir]
         self.end_dir = end_dir
-        self.validation = validation
 
-        # if hints are a string
-        if isinstance(hints, basestring):
-            self.hints = [hints]
-        # if hints are a array
-        else:
-            self.hints = hints
+        # output from last command
+        self.last_cmd_output = None
+
+        # validation and check_output should be functions
+        self.check_command = check_command
+        self.block_command = block_command
+        self.check_output = check_output
 
         self.set_prompt()
         self.cmdloop()
@@ -49,29 +57,7 @@ class Terminal(Cmd):
         pass
 
     def validate(self, line):
-        command = True
-        end_dir = True
-
-        # if the validation is included
-        if self.validation:
-            # if only one command can pass the level
-            if isinstance(self.validation, basestring):
-                command = line == self.validation
-            # else there are multiple commands that can pass the level
-            else:
-                command = line in self.validation
-        if self.end_dir:
-            end_dir = self.current_dir == self.end_dir
-
-        # if user does not pass challenge, show hints.
-        # Go through hints until we get to last hint
-        # then just keep showing last hint
-        if not (command and end_dir):
-            print parse_string(self.hints[0])
-            if len(self.hints) > 1:
-                self.hints.pop(0)
-
-        return command and end_dir
+        return self.validation(line, self.current_dir)
 
     # do nothing if the user enters an empty line
     def emptyline(self):
@@ -81,17 +67,26 @@ class Terminal(Cmd):
     def update_tree(self):
         self.filetree = generate_file_tree()
 
-    def onecmd(self, value):
+    def precmd(self, line):
+        if self.block_command(line):
+            return Cmd.precmd(self, "")
+        else:
+            return Cmd.precmd(self, line)
+
+    def onecmd(self, line):
         # check if value entered is a shell script
-        is_script, script = get_script_cmd(value, self.current_dir, self.filetree)
+        is_script, script = get_script_cmd(line, self.current_dir, self.filetree)
         if is_script:
             self.do_shell(script)
         else:
-            return Cmd.onecmd(self, value)
+            self.last_cmd_output = Cmd.onecmd(self, line)
+            return self.last_cmd_output
 
     # This is the cmd valid command
     def postcmd(self, stop, line):
-        return self.validate(line)
+        is_cmd_output_correct = False
+        is_cmd_output_correct = self.check_output(self.last_cmd_output)
+        return is_cmd_output_correct or self.check_command(line, self.current_dir)
 
     def complete_list(self):
         return list(self.filetree.show_direct_descendents(self.current_dir))
