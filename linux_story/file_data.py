@@ -95,7 +95,7 @@ def record_data():
 # We want to preserve changes made by the user that don't conflict with the levels
 def copy_data(challenge_number=1):
     debugger("copy_data entered, challenge_number = {}".format(challenge_number))
-    copy_selected_data(challenge_number)
+    copy_file_tree(challenge_number)
     pfile = get_permission_file(challenge_number)
     debugger("Entering pfile = {}".format(pfile))
 
