@@ -10,6 +10,7 @@
 
 import os
 from helper_functions import parse_string, typing_animation
+from file_functions import write_to_file
 
 
 class Step():
@@ -31,7 +32,7 @@ class Step():
         self.run()
 
     def run(self):
-        self.show_story()
+        self.print_story()
         self.show_animation()
         self.launch_terminal()
         self.next()
@@ -43,6 +44,10 @@ class Step():
                 typing_animation(line + "\n")
             except:
                 pass
+
+    def print_story(self):
+        story = "\n".join(self.story)
+        write_to_file("story", story)
 
     def show_animation(self):
         # if there's animation, play it

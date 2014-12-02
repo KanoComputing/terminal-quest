@@ -11,6 +11,7 @@
 import os
 import sys
 from gi.repository import Gtk
+import threading
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -18,6 +19,7 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.gtk3.terminal_ui import Terminal_Ui
+from linux_story.StoryUi import StoryUi
 
 
 class MainWindow(Gtk.Window):
@@ -39,5 +41,18 @@ def create_terminal():
     Gtk.main()
 
 
+class guiThread(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+
+    def run(self):
+        print "Starting " + self.name
+        while True:
+            StoryUi()
+        print "Exiting " + self.name
+
+
 if __name__ == "__main__":
+    story = guiThread()
+    story.start()
     create_terminal()
