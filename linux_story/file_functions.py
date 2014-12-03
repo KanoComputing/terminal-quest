@@ -10,33 +10,55 @@
 
 import os
 
+DIRECTORY = os.path.join(
+    os.path.expanduser("~"),
+    "/tmp/linux-story"
+)
 
 STORY_FILENAME = os.path.join(
-    os.path.expanduser("~"),
-    "/tmp/linux-story/story"
+    DIRECTORY,
+    "story"
 )
 
 HINT_FILENAME = os.path.join(
-    os.path.expanduser("~"),
-    "/tmp/linux-story/hint"
+    DIRECTORY,
+    "hint"
 )
 
 COMMAND_FILENAME = os.path.join(
-    os.path.expanduser("~"),
-    "/tmp/linux-story/command"
+    DIRECTORY,
+    "command"
 )
 
 OUTPUT_FILENAME = os.path.join(
-    os.path.expanduser("~"),
-    "/tmp/linux-story/output"
+    DIRECTORY,
+    "output"
+)
+
+FINISHED_STEP = os.path.join(
+    DIRECTORY,
+    "finished"
 )
 
 FILENAMES = {
     "story": STORY_FILENAME,
     "hint": HINT_FILENAME,
     "command": COMMAND_FILENAME,
+    "output": OUTPUT_FILENAME,
+    "finished": FINISHED_STEP
+}
+
+PRINTABLES = {
+    "story": STORY_FILENAME,
+    "hint": HINT_FILENAME,
+    "command": COMMAND_FILENAME,
     "output": OUTPUT_FILENAME
 }
+
+
+def create_dir():
+    if not os.path.exists(DIRECTORY):
+        os.makedirs(DIRECTORY)
 
 
 def write_to_file(file_name, file_contents):

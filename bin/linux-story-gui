@@ -10,8 +10,8 @@
 
 import os
 import sys
-from gi.repository import Gtk
-import threading
+from gi.repository import Gtk, GObject
+GObject.threads_init()
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -19,7 +19,7 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.gtk3.terminal_ui import Terminal_Ui
-from linux_story.StoryUi import StoryUi
+from linux_story.CheckFiles import guiThread
 
 
 class MainWindow(Gtk.Window):
@@ -28,31 +28,39 @@ class MainWindow(Gtk.Window):
         self.connect('delete-event', Gtk.main_quit)
 
 
+visible = Terminal_Ui()
+
+
 def create_terminal():
+    global visible
+
     terminal = Terminal_Ui()
+
     win = MainWindow()
-    win.add(terminal)
+    box = Gtk.Box()
+    win.add(box)
+    box.pack_start(visible, False, False, 0)
+    box.pack_start(terminal, False, False, 0)
+
+    screen = win.get_screen()
+    width = screen.get_width()
+    height = screen.get_height()
+
+    # Allow for margin on bottom
+    terminal.set_size_request(width / 2, height - 20)
+    visible.set_size_request(width / 2, height - 20)
+    visible.set_can_focus(False)
+
     filepath = os.path.abspath(os.path.join(os.path.dirname(__file__), "linux-story"))
-    command = "temp=$(tty) ; python " + filepath + " > $temp | clear\n"
-    length = len(command)
-    terminal.feed_child(command, length)
+    command = "python " + filepath
+    terminal.launch_command(command)
+
     win.show_all()
 
     Gtk.main()
 
 
-class guiThread(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-
-    def run(self):
-        print "Starting " + self.name
-        while True:
-            StoryUi()
-        print "Exiting " + self.name
-
-
 if __name__ == "__main__":
-    story = guiThread()
+    story = guiThread(visible)
     story.start()
     create_terminal()

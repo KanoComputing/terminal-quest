@@ -17,14 +17,12 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 
-from helper_functions import print_challenge_title
 from linux_story.file_data import copy_data
 
 
 def launch_project(challenge_number="1", step="1"):
     os.system("clear")
     copy_data(int(challenge_number))
-    print_challenge_title(challenge_number)
     Step = get_step_class(challenge_number, step)
     Step()
 

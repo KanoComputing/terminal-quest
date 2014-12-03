@@ -131,8 +131,13 @@ def get_preset_from_id(id):
         return 147
 
 
-def parse_string(string, input=False):
-    default_preset = get_preset_from_id(None)
+def message_type_preset(message_type):
+    preset = {"hint": "r", "story": None, "command": None, "output": None}
+    return get_preset_from_id(preset[message_type])
+
+
+def parse_string(string, message_type="story", input=False):
+    default_preset = message_type_preset(message_type)
     if input:
         colour_function = colourizeInput256
     else:
@@ -216,7 +221,7 @@ def typing_animation(string):
 def print_challenge_title(challenge_number):
     fpath = os.path.join(
         os.path.dirname(os.path.realpath(__file__)),
-        "animation/challenge_" + challenge_number
+        "animation/" + challenge_number
     )
     with open(fpath) as f:
         for line in f.readlines():

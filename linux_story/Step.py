@@ -32,9 +32,12 @@ class Step():
         self.run()
 
     def run(self):
-        self.print_story()
+        self.save_story()
         self.show_animation()
         self.launch_terminal()
+        # Tell storyline the step is finished
+        write_to_file("finished", "")
+
         self.next()
 
     def show_story(self):
@@ -45,9 +48,12 @@ class Step():
             except:
                 pass
 
-    def print_story(self):
+    def save_story(self):
         story = "\n".join(self.story)
         write_to_file("story", story)
+
+    def save_hint(self, text):
+        write_to_file("hint", text)
 
     def show_animation(self):
         # if there's animation, play it
@@ -92,7 +98,7 @@ class Step():
         # Go through hints until we get to last hint
         # then just keep showing last hint
         if not (command_validated and end_dir_validated):
-            print parse_string(self.hints[0])
+            self.save_hint("\n" + self.hints[0])
             if len(self.hints) > 1:
                 self.hints.pop(0)
         return command_validated and end_dir_validated
