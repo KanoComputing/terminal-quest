@@ -19,7 +19,8 @@ from linux_story.Step import Step
 from terminals import Terminal1
 from linux_story.challenges.challenge_2.steps import Step1 as Step1_2
 from linux_story.file_data import copy_data
-from linux_story.helper_functions import print_challenge_title, parse_string
+from linux_story.helper_functions import print_challenge_title
+from linux_story.file_functions import write_to_file
 
 
 class Step_Template(Step):
@@ -102,8 +103,8 @@ class Step4(Step_Template):
 
     def check_command(self, line, current_dir):
         if line in ["ls filing-cabinet", "ls filing-cabinet/"]:
-            print parse_string("You need to look through the {{boffice}} window "
-                               "into the {{bfiling-cabinet}}")
+            write_to_file("story", "You need to look through the {{boffice}} window "
+                          "into the {{bfiling-cabinet}}")
             return False
         else:
             return Step.check_command(self, line, current_dir)
@@ -135,7 +136,8 @@ class Step5(Step_Template):
     def check_command(self, line, current_dir):
         if line in ["ls missions",
                     "ls missions/"]:
-            print parse_string(
+            write_to_file(
+                "story",
                 "You need to look through the {{boffice}} window, "
                 "into the {{bfiling-cabinet}} and into the {{bmissions}} directory"
             )
@@ -164,13 +166,15 @@ class Step6(Step_Template):
 
     def check_command(self, line, current_dir):
         if line in ["cat rabbit-report"]:
-            print parse_string(
+            write_to_file(
+                "story",
                 "Remember, the rabbit-report is in the {{boffice}}, in the "
                 "{{bfile-cabinet}}, in the {{bmissions}} lever arch"
             )
             return False
         elif "ls " in line:
-            print parse_string(
+            write_to_file(
+                "story",
                 "You want to use the cat command, not ls"
             )
             return False
@@ -197,7 +201,8 @@ class Step7(Step_Template):
 
     def check_command(self, line, current_dir):
         if line == "ls -a":
-            print parse_string(
+            write_to_file(
+                "story",
                 "You want to look harder in in the {{boffice}} folder"
             )
             return False

@@ -33,10 +33,12 @@ class Step():
 
     def run(self):
         self.save_story()
+        # This is to make sure that we clear the terminal properly
+        # before printing the story
+        write_to_file("started", "")
         self.show_animation()
         self.launch_terminal()
         # Tell storyline the step is finished
-        write_to_file("finished", "")
 
         self.next()
 

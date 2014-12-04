@@ -18,11 +18,13 @@ if __name__ == '__main__' and __package__ is None:
 
 
 from linux_story.file_data import copy_data
+from linux_story.file_functions import write_to_file
 
 
 def launch_project(challenge_number="1", step="1"):
     os.system("clear")
     copy_data(int(challenge_number))
+    write_to_file("challenge", challenge_number)
     Step = get_step_class(challenge_number, step)
     Step()
 

@@ -22,14 +22,13 @@ from helper_functions import (
     parse_string, typing_animation, print_challenge_title
 )
 from file_functions import (
-    file_exists, read_file, delete_file, create_dir, PRINTABLES, FILENAMES
+    file_exists, read_file, delete_file, create_dir, FILENAMES
 )
 from linux_story.gtk3.terminal_ui import Terminal_Ui
 
 
 class CheckFiles(Terminal_Ui):
     def __init__(self):
-        self.print_challenge_title()
         self.stop = False
         self.run()
 
@@ -37,22 +36,22 @@ class CheckFiles(Terminal_Ui):
         self.stop = True
 
     def run(self):
+        create_dir()
         while not self.stop:
-            create_dir()
             self.next_step()
-            # TODO: need to change this so we don't print multiple things
-            for message_type in PRINTABLES:
-                if self.file_exists(message_type):
-                    self.read_file(message_type)
+            if self.file_exists("hint"):
+                self.read_file("hint")
 
     def file_exists(self, file_name):
         return file_exists(file_name)
 
     def next_step(self):
-        if self.file_exists("finished"):
-            delete_file("finished")
-            print "clearing screen"
+        if self.file_exists("started"):
+            delete_file("started")
             os.system("clear")
+            challenge_number = read_file("challenge")
+            self.print_challenge_title(challenge_number)
+            self.read_file("story")
 
     def read_file(self, message_type):
         if self.file_exists(message_type):
@@ -65,7 +64,6 @@ class CheckFiles(Terminal_Ui):
         typing_animation(text)
 
     def print_challenge_title(self, challenge_number="1"):
-        #print "printing challenge title"
         print_challenge_title(challenge_number)
 
 
