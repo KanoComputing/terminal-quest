@@ -55,7 +55,7 @@ def create_terminal(challenge_number="1", step_number="1"):
 
     # Allow for margin on bottom
     terminal.set_size_request(width / 2, height - 20)
-    visible.set_size_request(width / 2, height / 2)
+    visible.set_size_request(width / 2, height - spellbook.height)
     visible.set_can_focus(False)
 
     filepath = os.path.abspath(

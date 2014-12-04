@@ -8,7 +8,6 @@
 # Author: Caroline Clark <caroline@kano.me>
 # Helper functions.
 
-
 import os
 import sys
 import time
@@ -82,8 +81,8 @@ def get_completion_desc(current_dir, tree, line, list_type="both"):
     # "command_name" -params directory/directory/(dir OR file)
     elements = line.split(" ")
 
-    # if the last element is a load of directories (no guarentee) then we need to pick the
-    # last element to compare against
+    # if the last element is a load of directories (no guarentee) then we need
+    # to pick the last element to compare against
     dirs = elements[-1].split("/")
     direct_descs = tree.show_type(current_dir, list_type)
     final_list = []

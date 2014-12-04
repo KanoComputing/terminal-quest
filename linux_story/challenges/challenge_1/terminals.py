@@ -21,6 +21,7 @@ from linux_story.commands_real import ls, shell_command
 
 # Terminal that is a template for the others in this level
 class Terminal1(Terminal):
+    commands = ["ls", "cat", "clear"]
 
     def do_ls(self, line):
         return ls(self.current_dir, self.filetree, line)

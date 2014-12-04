@@ -25,9 +25,9 @@ HINT_FILENAME = os.path.join(
     "hint"
 )
 
-COMMAND_FILENAME = os.path.join(
+COMMANDS_FILENAME = os.path.join(
     DIRECTORY,
-    "command"
+    "commands"
 )
 
 OUTPUT_FILENAME = os.path.join(
@@ -48,7 +48,7 @@ CHALLENGE_FILENAME = os.path.join(
 FILENAMES = {
     "story": STORY_FILENAME,
     "hint": HINT_FILENAME,
-    "command": COMMAND_FILENAME,
+    "commands": COMMANDS_FILENAME,
     "output": OUTPUT_FILENAME,
     "started": STARTED_STEP,
     "challenge": CHALLENGE_FILENAME
@@ -57,7 +57,7 @@ FILENAMES = {
 PRINTABLES = {
     "story": STORY_FILENAME,
     "hint": HINT_FILENAME,
-    "command": COMMAND_FILENAME,
+    "commands": COMMANDS_FILENAME,
     "output": OUTPUT_FILENAME
 }
 
