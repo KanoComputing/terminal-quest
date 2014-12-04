@@ -10,14 +10,15 @@
 
 import os
 import sys
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, GObject
+import threading
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.file_functions import read_file, file_exists
+from linux_story.file_functions import read_file, file_exists, delete_file
 from kano.gtk3.apply_styles import apply_styling_to_screen
 
 
@@ -31,6 +32,7 @@ class Spellbook(Gtk.EventBox):
 
     def __init__(self):
         apply_styling_to_screen(self.CSS_FILE)
+        self.stop = False
 
         Gtk.EventBox.__init__(self)
         self.get_style_context().add_class("spellbook")
@@ -46,8 +48,6 @@ class Spellbook(Gtk.EventBox):
         self.height = 200
 
         self.set_size_request(self.width, self.height)
-
-        self.pack_commands()
 
     def create_command(self, name):
         box = Gtk.Box()
@@ -73,20 +73,55 @@ class Spellbook(Gtk.EventBox):
 
         commands = self.get_command_list()
 
-        for command in commands:
-            total_width += self.CMD_WIDTH
-            total_height += self.CMD_HEIGHT
+        if commands:
+            for command in commands:
+                total_width += self.CMD_WIDTH
+                total_height += self.CMD_HEIGHT
 
-            if total_width > self.width:
-                top += 1
-            else:
-                left += 1
+                if total_width > self.width:
+                    top += 1
+                else:
+                    left += 1
 
-            box = self.create_command(command)
-            self.grid.attach(box, left, top, 1, 1)
+                box = self.create_command(command)
+                self.grid.attach(box, left, top, 1, 1)
+
+            self.delete_file()
+
+        self.show_all()
+
+    def unpack_commands(self):
+        for child in self.grid:
+            self.grid.remove(child)
+
+    def repack_commands(self):
+        self.unpack_commands()
+        self.pack_commands()
 
     def get_command_list(self):
         if file_exists("commands"):
             command_string = read_file("commands")
             command_list = command_string.split(" ")
             return command_list
+
+    def check_files(self):
+        while not self.stop:
+            if file_exists("commands"):
+                GObject.idle_add(self.repack_commands)
+
+    def delete_file(self):
+        delete_file("commands")
+
+
+class SpellbookThread(threading.Thread):
+    def __init__(self, spellbook):
+        threading.Thread.__init__(self)
+        self.__stop = False
+        self.spellbook = spellbook
+
+    def stop(self):
+        self.spellbook.delete_file()
+        self.__stop = True
+
+    def run(self):
+        self.spellbook.check_files()

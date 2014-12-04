@@ -19,7 +19,7 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.gtk3.terminal_ui import Terminal_Ui
-from linux_story.gtk3.Spellbook import Spellbook
+from linux_story.gtk3.Spellbook import Spellbook, SpellbookThread
 from linux_story.CheckFiles import guiThread
 
 
@@ -30,13 +30,14 @@ class MainWindow(Gtk.Window):
 
 
 visible = Terminal_Ui()
+spellbook = Spellbook()
 
 
 def create_terminal(challenge_number="1", step_number="1"):
     global visible
+    global spellbook
 
     terminal = Terminal_Ui()
-    spellbook = Spellbook()
 
     win = MainWindow()
     hbox = Gtk.Box()
@@ -74,7 +75,10 @@ def create_terminal(challenge_number="1", step_number="1"):
 
 if __name__ == "__main__":
     story = guiThread(visible)
+    spellbook_thread = SpellbookThread(spellbook)
+
     story.start()
+    spellbook_thread.start()
 
     if len(sys.argv) == 3:
         create_terminal(sys.argv[1], sys.argv[2])

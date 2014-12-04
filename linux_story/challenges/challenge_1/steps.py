@@ -16,234 +16,311 @@ if __name__ == '__main__' and __package__ is None:
         print sys.path
 
 from linux_story.Step import Step
-from terminals import Terminal1
-from linux_story.challenges.challenge_2.steps import Step1 as Step1_2
-from linux_story.file_data import copy_data
-from linux_story.helper_functions import print_challenge_title
-from linux_story.file_functions import write_to_file
+from terminals import Terminal1, Terminal2, Terminal3
+#from linux_story.file_data import copy_data
+#from linux_story.helper_functions import print_challenge_title
+#from linux_story.file_functions import write_to_file
 
 
-class Step_Template(Step):
+class Step_Template1(Step):
     def __init__(self):
         Step.__init__(self, Terminal1)
 
 
-class Step1(Step_Template):
+class Step_Template2(Step):
+    def __init__(self):
+        Step.__init__(self, Terminal2)
+
+
+class Step_Template3(Step):
+    def __init__(self):
+        Step.__init__(self, Terminal3)
+
+
+class Step1(Step_Template1):
     story = [
-        "Hello there",
-        "{{rW}}{{oe}}{{yl}}{{gc}}{{bo}}{{pm}}{{re}} to"
-        " the dark side of the Kano OS.",
-        "Type {{yls}} (short for {{yl}}i{{ys}}t) to have a look around.",
-        "You are in a dark room."
+        "....",
+        ".......",
+        "Wh..What time is it?",
+        "Wow it's dark in here. I can't see a thing!",
+        "Type {{yls}} to take a look around."
     ]
-    start_dir = "~"
-    end_dir = "~"
+    start_dir = "room"
+    end_dir = "room"
     command = "ls"
     hints = ["Type {{yls}} and press Enter to have a look around."]
-    output_condition = lambda x, y: y == "office"
-
-    # this stops ls being run
-    def block_command(self, output):
-        return output == "hello"
 
     def next(self):
         Step2()
 
 
-class Step2(Step_Template):
+class Step2(Step_Template2):
     story = [
-        "\nThe room is no longer dark. ",
-        "You see the door to an office.",
-        "{{yls <Directory Name>}} lets you look into the directory",
-        "The office door has a window.  Have a look in the office."
+        "\nI'm in my bedroom! I must have fallen asleep watching that movie.",
+        "Wow, I forgot how much cool stuff I have in my room. Let's take a look!",
+        "You can use {{ycat}} and the name of an object to learn more about it!",
+        "Try {{ycat tv}} to get started"
     ]
-    start_dir = "~"
-    end_dir = "~"
-    command = ["ls office", "ls office/"]
-    hints = "Type the command {{yls office}}"
+    start_dir = "room"
+    end_dir = "room"
+    command = "cat tv"
+    hints = "Type the command {{ycat tv}}"
 
     def next(self):
         Step3()
 
 
-class Step3(Step_Template):
+class Step3(Step_Template2):
     story = [
-        "\nTo save yourself some typing, press TAB to complete commands",
-        "For example, type {{yls of}}, then press TAB.  "
-        "Enter the resulting command"
+        "\nI can't even remember what the movie was about!",
+        "Let's use {{yls}} again to print a {{list}} of the things in my room."
     ]
-    start_dir = "~"
-    end_dir = "~"
-    command = ["ls office", "ls office/"]
+    start_dir = "room"
+    end_dir = "room"
+    command = "ls"
     hints = [
-        "Pressing TAB should autocomplete the command,"
-        " so you should enter the command {{yls office/}}"
+        "Type the command {{yls}}"
     ]
 
     def next(self):
         Step4()
 
 
-class Step4(Step_Template):
+class Step4(Step_Template2):
     story = [
-        "\nYou can see the files and directories available in this directory",
-        "Files are shown in white, directories in blue",
-        "The {{bfiling-cabinet}} has a drawer slightly ajar, "
-        "it looks like it contains some important folders.",
-        "Have a look and see what it contains."
+        "\nThere's some more things on my shelf. Let's take a look!",
+        "Type {{yls shelves}} to see what's on the shelf"
     ]
-    start_dir = "~"
-    end_dir = "~"
-    command = ["ls office/filing-cabinet", "ls office/filing-cabinet/"]
+    start_dir = "room"
+    end_dir = "room"
+    command = ["ls shelves", "ls shelves/"]
     hints = [
         "Remember that {{yls <directory name>}} "
         "{{yl}}i{{ys}}ts the files inside a directory",
-        "Type {{yls office/filing-cabinet}} and press Enter"
+        "Type {{yls shelves}} and press Enter"
     ]
-
-    def check_command(self, line, current_dir):
-        if line in ["ls filing-cabinet", "ls filing-cabinet/"]:
-            write_to_file("story", "You need to look through the {{boffice}} window "
-                          "into the {{bfiling-cabinet}}")
-            return False
-        else:
-            return Step.check_command(self, line, current_dir)
 
     def next(self):
         Step5()
 
 
-class Step5(Step_Template):
+class Step5(Step_Template2):
     story = [
-        "\nYou see two large leather bound folders",
-        "The one labelled {{bspells}} looks brand new, while "
-        "the {{bmissions}} folder looks rather battered",
-        "Have a look in the {{bmissions}} directory.",
-        "To save typing, try pressing UP to replay previous commands."
+        "\nOh wow - I forgot about some of these. Let's have a look at them.",
+        "Type {{ycat shelves/comic-book}} to look inside the comic book"
     ]
-    start_dir = "~"
-    end_dir = "~"
+    start_dir = "room"
+    end_dir = "room"
     command = [
-        "ls office/filing-cabinet/missions",
-        "ls office/filing-cabinet/missions/"
+        "cat shelves/comic-book"
     ]
     hints = [
-        "Remember, to look in the {{bfiling_cabinet}}, the command was "
-        "{{yls office/filing-cabinet}}",
-        "Type {{yls office/filing-cabinet/missions}} and press Enter"
+        "Type {{ycat shelves/comic-book}} to look inside!"
     ]
-
-    def check_command(self, line, current_dir):
-        if line in ["ls missions",
-                    "ls missions/"]:
-            write_to_file(
-                "story",
-                "You need to look through the {{boffice}} window, "
-                "into the {{bfiling-cabinet}} and into the {{bmissions}} directory"
-            )
-            return False
-        else:
-            return Step.check_command(self, line, current_dir)
 
     def next(self):
         Step6()
 
 
-class Step6(Step_Template):
+class Step6(Step_Template2):
     story = [
-        "\nYou see a paper report titled {{grabbit-report}}.",
-        "It has TOP SECRET stamped in the corner",
-        "To read a file, you use the command {{ycat <filename>}}",
-        "Remember, you can use TAB to complete a command"
+        "\nYou can look at the other books too! Use {{ycat shelves/<bookname>}} to take a peek."
     ]
-    start_dir = "~"
-    end_dir = "~"
-    command = "cat office/filing-cabinet/missions/rabbit-report"
+    start_dir = "room"
+    end_dir = "room"
+    command = "cat shelves/<bookname>"
     hints = [
-        "Type {{ycat office/filing-cabinet/missions/rabbit-report}} "
-        "to read the rabbit report"
+        "Read another book to "
     ]
-
-    def check_command(self, line, current_dir):
-        if line in ["cat rabbit-report"]:
-            write_to_file(
-                "story",
-                "Remember, the rabbit-report is in the {{boffice}}, in the "
-                "{{bfile-cabinet}}, in the {{bmissions}} lever arch"
-            )
-            return False
-        elif "ls " in line:
-            write_to_file(
-                "story",
-                "You want to use the cat command, not ls"
-            )
-            return False
-        else:
-            return Step.check_command(self, line, current_dir)
 
     def next(self):
         Step7()
 
 
-class Step7(Step_Template):
+class Step7(Step_Template2):
     story = [
-        "You get the feeling there is something hidden in the office",
-        "To view hidden files and directories, "
-        "use the command {{yls -a <Directory-name>}} (to {{yl}}i{{ys}}t {{ya}}ll) "
-        "the files in a directory"
+        "I better get dressed. Let's see what's in the wardrobe.",
+        "Type {{yls wardrobe}} to see what we have to wear!"
     ]
-    start_dir = "~"
-    end_dir = "~"
-    command = ["ls -a office", "ls -a office/"]
+    start_dir = "room"
+    end_dir = "room"
+    command = "yls wardrobe"
     hints = [
-        "Type {{yls -a office}} and press ENTER"
+        "Type {{yls wardrobe}} to see what we have to wear!"
     ]
-
-    def check_command(self, line, current_dir):
-        if line == "ls -a":
-            write_to_file(
-                "story",
-                "You want to look harder in in the {{boffice}} folder"
-            )
-            return False
-        else:
-            return Step.check_command(self, line, current_dir)
 
     def next(self):
         Step8()
 
 
-class Step8(Step_Template):
+class Step8(Step_Template2):
     story = [
-        "Hidden files start with . and cannot normally be seen",
-        "You notice the {{g.sticky_note}} on the desk.",
-        "The command {{ycat}} will allow you "
-        "to read what's written on the note"
+        "Let's choose something to wear.",
+        "Type {{ycat warbrobe/hat}}"
     ]
-    start_dir = "~"
-    end_dir = "~"
-    command = ["cat office/.sticky_note"]
+    start_dir = "room"
+    end_dir = "room"
+    command = ["cat warbrobe/hat"]
     hints = [
-        "Type {{ycat office/.sticky_note}} to see what's written on the note."
+        "Type {{ycat warbrobe/hat}} to look at the hat."
     ]
 
     def next(self):
         Step9()
 
 
-class Step9(Step_Template):
+class Step9(Step_Template3):
     story = [
-        "Lastly, you decide you want to clean up your screen.",
-        "The command {{yclear}} clears the writing on the terminal"
+        "I really like this one! I think I'll wear it.",
+        "I hear mum calling from the kitchen.",
+        "\"Halloooo?? Are you awake? Come and get your breakfast!\"",
+        "Mum is calling. Let's go to the kitchen!",
+        "Type {{ycd}} to go to the home folder"
     ]
-    start_dir = "~"
+    start_dir = "room"
     end_dir = "~"
-    command = "clear"
+    command = ""
     hints = [
-        "Type {{yclear}} to clear the Terminal."
+        "Type {{ycd}} to go to the home folder."
     ]
 
     def next(self):
-        print_challenge_title("2")
-        copy_data(2)
-        Step1_2()
+        Step10()
+
+
+class Step10(Step_Template3):
+    story = [
+        "Now we need to go to the kitchen.",
+        "Have a look around you around using {{yls}}"
+    ]
+    start_dir = "~"
+    end_dir = "~"
+    command = ""
+    hints = [
+        "Type {{yls}} to look around."
+    ]
+
+    def next(self):
+        Step11()
+
+
+class Step11(Step_Template3):
+    story = [
+        "I see the door to the kitchen!",
+        "To go to the kitchen, type {{ycd kitchen}}"
+    ]
+    start_dir = "~"
+    end_dir = "kitchen"
+    command = ""
+    hints = [
+        "Type {{ycd kitchen}} to go to the kitchen."
+    ]
+
+    def next(self):
+        Step12()
+
+
+class Step12(Step_Template3):
+    story = [
+        "Where is Mum? Use {{yls}} to {{ylist}} what's in the kitchen."
+    ]
+    start_dir = "kitchen"
+    end_dir = "kitchen"
+    command = "ls"
+    hints = [
+        "Use {{yls}} to {{ylist}} what's in the kitchen."
+    ]
+
+    def next(self):
+        Step13()
+
+
+class Step13(Step_Template3):
+    story = [
+        "There she is! Go talk to her.",
+        "Remember {{ycat}}? Use it again!"
+    ]
+    start_dir = "kitchen"
+    end_dir = "kitchen"
+    command = "cat kitchen"
+    hints = [
+        "Type {{ycat kitchen}}."
+    ]
+
+    def next(self):
+        Step14()
+
+
+class Step14(Step_Template3):
+    story = [
+        "Now we want to go to the garden ",
+        "Use {{ycd}} to move home."
+    ]
+    start_dir = "kitchen"
+    end_dir = "~"
+    command = ""
+    hints = [
+        "Use {{ycd}} to move back to your home."
+    ]
+
+    def next(self):
+        Step15()
+
+
+class Step15(Step_Template3):
+    story = [
+        "Now we want to go to the garden",
+        "Use {{ycd}} to move your current position."
+    ]
+    start_dir = "~"
+    end_dir = "garden"
+    command = ""
+    hints = [
+        "Use {{ycd garden}} to move back to your room."
+    ]
+
+    def next(self):
+        Step16()
+
+
+class Step16(Step_Template3):
+    story = [
+        "You're in the garden - let's take a look around!"
+    ]
+    start_dir = "garden"
+    end_dir = "garden"
+    command = "ls"
+    hints = [
+        "What was the command for {{yList}} again? If you get stuck - check out the spell book below",
+        "Type {{yls}} to show everything in the garden"
+    ]
+
+    def next(self):
+        Step17()
+
+
+class Step17(Step_Template3):
+    story = [
+        "When you're ready, enter {{ycd greenhouse}} to go and see Dad."
+    ]
+    start_dir = "garden"
+    end_dir = "greenhouse"
+    command = ""
+    hints = [
+        "Enter {{ycd greenhouse}} to go and see Dad."
+    ]
+
+    def next(self):
+        Step18()
+
+
+class Step18(Step_Template3):
+    story = [
+        "Use {{yls}} to look around."
+    ]
+    start_dir = "greenhouse"
+    end_dir = "greenhouse"
+    command = "ls"
+    hints = [
+        "Enter {{yls}} to have a look around."
+    ]

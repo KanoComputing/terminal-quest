@@ -29,15 +29,12 @@ from linux_story.gtk3.terminal_ui import Terminal_Ui
 
 class CheckFiles(Terminal_Ui):
     def __init__(self):
-        self.stop = False
+        #self.stop = False
         self.run()
-
-    def stop_process(self):
-        self.stop = True
 
     def run(self):
         create_dir()
-        while not self.stop:
+        while True:
             self.next_step()
             if self.file_exists("hint"):
                 self.read_file("hint")
@@ -70,13 +67,13 @@ class CheckFiles(Terminal_Ui):
 class guiThread(threading.Thread):
     def __init__(self, story_ui):
         threading.Thread.__init__(self)
-        self.__stop = False
+        #self.__stop = False
         self.story_ui = story_ui
 
-    def stop(self):
-        for message_type in FILENAMES:
-            delete_file(message_type)
-        self.__stop = True
+    #def stop(self):
+    #    for message_type in FILENAMES:
+    #        delete_file(message_type)
+    #    self.__stop = True
 
     def run(self):
         path = os.path.abspath(__file__)
