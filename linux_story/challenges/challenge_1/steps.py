@@ -73,7 +73,7 @@ class Step2(Step_Template2):
 class Step3(Step_Template2):
     story = [
         "\nI can't even remember what the movie was about!",
-        "Let's use {{yls}} again to print a {{list}} of the things in my room."
+        "Let's use {{yls}} again to print a {{ylist}} of the things in my room."
     ]
     start_dir = "room"
     end_dir = "room"
@@ -128,9 +128,10 @@ class Step6(Step_Template2):
     ]
     start_dir = "room"
     end_dir = "room"
-    command = "cat shelves/<bookname>"
+    command = "cat shelves/war-and-peace"
     hints = [
-        "Read another book to "
+        "Read another book by using {{ycat}}",
+        "Type {{ycat war-and-peace}} to look at your war-and-peace book"
     ]
 
     def next(self):
@@ -144,7 +145,7 @@ class Step7(Step_Template2):
     ]
     start_dir = "room"
     end_dir = "room"
-    command = "yls wardrobe"
+    command = ["ls wardrobe", "ls wardrobe/"]
     hints = [
         "Type {{yls wardrobe}} to see what we have to wear!"
     ]
@@ -160,7 +161,7 @@ class Step8(Step_Template2):
     ]
     start_dir = "room"
     end_dir = "room"
-    command = ["cat warbrobe/hat"]
+    command = ["cat wardrobe/hat"]
     hints = [
         "Type {{ycat warbrobe/hat}} to look at the hat."
     ]
@@ -174,7 +175,7 @@ class Step9(Step_Template3):
         "I really like this one! I think I'll wear it.",
         "I hear mum calling from the kitchen.",
         "\"Halloooo?? Are you awake? Come and get your breakfast!\"",
-        "Mum is calling. Let's go to the kitchen!",
+        "Let's go to the kitchen!",
         "Type {{ycd}} to go to the home folder"
     ]
     start_dir = "room"
