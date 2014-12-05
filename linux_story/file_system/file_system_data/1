@@ -37,7 +37,7 @@ drwxr-xr-x 1 user user 510 Dec  4 17:29 /home/user/kano/linux-tutorial/linux_sto
 -rw-r--r-- 1 user user 2187 Dec  4 17:24 /home/user/kano/linux-tutorial/linux_story/file_system/1/room/picture
 -rw-r--r-- 1 user user 0 Dec  4 17:12 /home/user/kano/linux-tutorial/linux_story/file_system/1/room/tv
 -rw-r--r-- 1 user user 0 Dec  4 17:12 /home/user/kano/linux-tutorial/linux_story/file_system/1/room/window
-drwxr-xr-x 1 user user 374 Dec  4 17:20 /home/user/kano/linux-tutorial/linux_story/file_system/1/room/shelves
+drwxr-xr-x 1 user user 340 Dec  5 13:26 /home/user/kano/linux-tutorial/linux_story/file_system/1/room/shelves
 drwxr-xr-x 1 user user 306 Dec  4 17:22 /home/user/kano/linux-tutorial/linux_story/file_system/1/room/wardrobe
 -rw-r--r-- 1 user user 0 Dec  4 17:19 /home/user/kano/linux-tutorial/linux_story/file_system/1/room/shelves/alice-and-wonderland
 -rw-r--r-- 1 user user 0 Dec  4 17:18 /home/user/kano/linux-tutorial/linux_story/file_system/1/room/shelves/big-book-of-facts
@@ -46,7 +46,6 @@ drwxr-xr-x 1 user user 306 Dec  4 17:22 /home/user/kano/linux-tutorial/linux_sto
 -rw-r--r-- 1 user user 0 Dec  4 17:19 /home/user/kano/linux-tutorial/linux_story/file_system/1/room/shelves/redwall
 -rw-r--r-- 1 user user 0 Dec  4 17:18 /home/user/kano/linux-tutorial/linux_story/file_system/1/room/shelves/war-and-peace
 -rw-r--r-- 1 user user 0 Dec  4 17:19 /home/user/kano/linux-tutorial/linux_story/file_system/1/room/shelves/watership-down
-drwxr-xr-x 1 user user 68 Dec  4 17:20 /home/user/kano/linux-tutorial/linux_story/file_system/1/room/shelves/spellbook
 -rw-r--r-- 1 user user 183 Dec  4 17:22 /home/user/kano/linux-tutorial/linux_story/file_system/1/room/wardrobe/dress
 -rw-r--r-- 1 user user 277 Dec  2 15:49 /home/user/kano/linux-tutorial/linux_story/file_system/1/room/wardrobe/hat
 -rw-r--r-- 1 user user 0 Dec  2 15:44 /home/user/kano/linux-tutorial/linux_story/file_system/1/room/wardrobe/jacket
