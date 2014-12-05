@@ -10,6 +10,8 @@
 
 import os
 import sys
+import time
+import threading
 from gi.repository import Gtk, Gdk, GObject
 GObject.threads_init()
 
@@ -27,6 +29,7 @@ class MainWindow(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self)
         self.connect('delete-event', Gtk.main_quit)
+        self.get_style_context().add_class("black")
 
 
 visible = Terminal_Ui()
@@ -66,19 +69,34 @@ def create_terminal(challenge_number="1", step_number="1"):
             "linux-story"
         )
     )
+
+    def delay_showing_elements(win):
+        time.sleep(15)
+
+        def done(win):
+            win.show_all()
+
+        GObject.idle_add(done, win)
+
+    thread = threading.Thread(target=delay_showing_elements, args=win)
+    thread.start()
+
     command = "python " + filepath + " " + challenge_number + " " + step_number
     terminal.launch_command(command)
 
     win.show_all()
+    visible.show_all()
+    spellbook.hide()
+    terminal.hide()
 
     Gtk.main()
 
 
 if __name__ == "__main__":
     story = guiThread(visible)
-    spellbook_thread = SpellbookThread(spellbook)
-
     story.start()
+
+    spellbook_thread = SpellbookThread(spellbook)
     spellbook_thread.start()
 
     if len(sys.argv) == 3:

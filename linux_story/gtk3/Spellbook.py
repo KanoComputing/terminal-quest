@@ -102,8 +102,6 @@ class Spellbook(Gtk.EventBox):
                 box = self.create_command(command)
                 self.grid.attach(box, left, top, 1, 1)
 
-        self.show_all()
-
     def unpack_commands(self):
         for child in self.grid:
             self.grid.remove(child)
