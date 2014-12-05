@@ -55,7 +55,7 @@ class Spellbook(Gtk.EventBox):
         self.win_height = screen.get_height()
 
         self.width = self.win_width / 2
-        self.height = 200
+        self.height = 160
 
         self.set_size_request(self.width, self.height)
 
