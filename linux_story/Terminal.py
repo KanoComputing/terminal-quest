@@ -65,9 +65,6 @@ class Terminal(Cmd):
     def do_help(self, line):
         pass
 
-    def validate(self, line):
-        return self.validation(line, self.current_dir)
-
     # do nothing if the user enters an empty line
     def emptyline(self):
         pass
