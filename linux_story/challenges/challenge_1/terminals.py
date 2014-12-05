@@ -38,7 +38,10 @@ class Terminal3(Terminal2):
     commands = ["ls", "cat", "cd"]
 
     def do_cd(self, line):
-        cd(self.current_dir, self.filetree, line)
+        dir = cd(self.current_dir, self.filetree, line)
+        if dir:
+            self.current_dir = dir
+            self.set_prompt()
 
     def complete_cd(self, text, line, begidx, endidx):
         return self.autocomplete_desc(text, line, "dirs")
