@@ -84,6 +84,9 @@ class Step():
         command_validated = True
         end_dir_validated = True
 
+        # strip any spaces off the beginning and end
+        line = line.strip()
+
         # if the validation is included
         if self.command:
             # if only one command can pass the level
