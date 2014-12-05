@@ -81,15 +81,13 @@ class Spellbook(Gtk.EventBox):
 
         return border
 
-    def pack_commands(self):
+    def pack_commands(self, commands):
         # these are counters monitoring where the command is placed on the
         # window
         top = 0
         left = -1
         total_width = 0
         total_height = 0
-
-        commands = self.get_command_list()
 
         if commands:
             for command in commands:
@@ -110,9 +108,9 @@ class Spellbook(Gtk.EventBox):
         for child in self.grid:
             self.grid.remove(child)
 
-    def repack_commands(self):
+    def repack_commands(self, commands):
         self.unpack_commands()
-        self.pack_commands()
+        self.pack_commands(commands)
 
     def get_command_list(self):
         if file_exists("commands"):
@@ -123,7 +121,8 @@ class Spellbook(Gtk.EventBox):
     def check_files(self):
         while not self.stop:
             if file_exists("commands"):
-                GObject.idle_add(self.repack_commands)
+                commands = self.get_command_list()
+                GObject.idle_add(self.repack_commands, commands)
                 self.delete_file()
 
     def delete_file(self):
