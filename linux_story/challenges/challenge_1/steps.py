@@ -131,7 +131,7 @@ class Step6(Step_Template2):
     command = "cat shelves/war-and-peace"
     hints = [
         "Read another book by using {{ycat}}",
-        "Type {{ycat war-and-peace}} to look at your war-and-peace book"
+        "Type {{ycat shelves/war-and-peace}} to look at your war-and-peace book"
     ]
 
     def next(self):
@@ -243,9 +243,9 @@ class Step13(Step_Template3):
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"
-    command = "cat kitchen"
+    command = "cat Mum"
     hints = [
-        "Type {{ycat kitchen}}."
+        "Type {{ycat Mum}}."
     ]
 
     def next(self):
