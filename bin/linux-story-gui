@@ -10,7 +10,7 @@
 
 import os
 import sys
-from gi.repository import Gtk, GObject
+from gi.repository import Gtk, Gdk, GObject
 GObject.threads_init()
 
 if __name__ == '__main__' and __package__ is None:
@@ -42,6 +42,7 @@ def create_terminal(challenge_number="1", step_number="1"):
     win = MainWindow()
     hbox = Gtk.Box()
     win.add(hbox)
+    win.set_decorated(False)
 
     vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
     vbox.pack_start(visible, False, False, 0)
@@ -50,12 +51,12 @@ def create_terminal(challenge_number="1", step_number="1"):
     hbox.pack_start(vbox, False, False, 0)
     hbox.pack_start(terminal, False, False, 0)
 
-    screen = win.get_screen()
+    screen = Gdk.Screen.get_default()
     width = screen.get_width()
     height = screen.get_height()
 
     # Allow for margin on bottom
-    terminal.set_size_request(width / 2, height - 20)
+    terminal.set_size_request(width / 2, height)
     visible.set_size_request(width / 2, height - spellbook.height)
     visible.set_can_focus(False)
 
