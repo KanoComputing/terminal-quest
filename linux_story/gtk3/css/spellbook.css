@@ -1,19 +1,21 @@
 
-.spell {
-	background: #000000;
-	border-width: 1px;
-	border-color: #eeeeee;
-	border-style: dotted;
+.spell_border {
+	background: #bbbbbb;
 }
 
-.spell GtkLabel {
-	color: #eeeeee;
+.spell_background {
+	background: #000000;
+}
+
+.spell_label {
+	color: #cccccc;
 	font: monospace 13px;
 }
 
-.spellbook {
+.spellbook_background {
 	background: #000000;
-	border-width: 1px;
-	border-color: #eeeeee;
-	border-style: dotted;
+}
+
+.spellbook_border {
+	background: #bbbbbb;
 }

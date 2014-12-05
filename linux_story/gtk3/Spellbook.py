@@ -29,16 +29,26 @@ class Spellbook(Gtk.EventBox):
         os.path.abspath(os.path.dirname(__file__)),
         "css/spellbook.css"
     )
+    SPELLBOOK_BORDER = 1
+    SPELL_BORDER = 1
 
     def __init__(self):
         apply_styling_to_screen(self.CSS_FILE)
         self.stop = False
 
         Gtk.EventBox.__init__(self)
-        self.get_style_context().add_class("spellbook")
+        self.get_style_context().add_class("spellbook_border")
+
+        background = Gtk.EventBox()
+        background.get_style_context().add_class("spellbook_background")
+        background.set_margin_right(self.SPELLBOOK_BORDER)
+        background.set_margin_left(self.SPELLBOOK_BORDER)
+        background.set_margin_top(self.SPELLBOOK_BORDER)
+        background.set_margin_bottom(self.SPELLBOOK_BORDER)
 
         self.grid = Gtk.Grid()
-        self.add(self.grid)
+        self.add(background)
+        background.add(self.grid)
 
         screen = Gdk.Screen.get_default()
         self.win_width = screen.get_width()
@@ -52,6 +62,7 @@ class Spellbook(Gtk.EventBox):
     def create_command(self, name):
         box = Gtk.Box()
         label = Gtk.Label(name)
+        label.get_style_context().add_class("spell_label")
         box.add(label)
 
         align = Gtk.Alignment(xalign=0.5, yalign=0.5, xscale=0, yscale=0)
@@ -59,9 +70,16 @@ class Spellbook(Gtk.EventBox):
 
         background = Gtk.EventBox()
         background.add(align)
-        background.set_size_request(self.CMD_WIDTH, self.CMD_HEIGHT)
-        background.get_style_context().add_class("spell")
-        return background
+        background.get_style_context().add_class("spell_background")
+        background.set_margin_right(self.SPELL_BORDER)
+        background.set_margin_bottom(self.SPELL_BORDER)
+
+        border = Gtk.EventBox()
+        border.get_style_context().add_class("spell_border")
+        border.set_size_request(self.CMD_WIDTH, self.CMD_HEIGHT)
+        border.add(background)
+
+        return border
 
     def pack_commands(self):
         # these are counters monitoring where the command is placed on the
@@ -86,8 +104,6 @@ class Spellbook(Gtk.EventBox):
                 box = self.create_command(command)
                 self.grid.attach(box, left, top, 1, 1)
 
-            self.delete_file()
-
         self.show_all()
 
     def unpack_commands(self):
@@ -108,6 +124,7 @@ class Spellbook(Gtk.EventBox):
         while not self.stop:
             if file_exists("commands"):
                 GObject.idle_add(self.repack_commands)
+                self.delete_file()
 
     def delete_file(self):
         delete_file("commands")
