@@ -45,7 +45,6 @@ def create_terminal(challenge_number="1", step_number="1"):
     win = MainWindow()
     hbox = Gtk.Box()
     win.add(hbox)
-    win.set_decorated(False)
 
     vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
     vbox.pack_start(visible, False, False, 0)
@@ -59,8 +58,8 @@ def create_terminal(challenge_number="1", step_number="1"):
     height = screen.get_height()
 
     # Allow for margin on bottom
-    terminal.set_size_request(width / 2, height - 44)
-    visible.set_size_request(width / 2, height - spellbook.height - 44)
+    terminal.set_size_request(width / 2, height - 2 * 44)
+    visible.set_size_request(width / 2, height - spellbook.height - 2 * 44)
     visible.set_can_focus(False)
 
     filepath = os.path.abspath(
@@ -70,15 +69,18 @@ def create_terminal(challenge_number="1", step_number="1"):
         )
     )
 
-    def delay_showing_elements(win):
+    def delay_showing_elements(win, terminal):
         time.sleep(15)
 
         def done(win):
             win.show_all()
 
+            # Terminal should be focused on
+            terminal.grab_focus()
+
         GObject.idle_add(done, win)
 
-    thread = threading.Thread(target=delay_showing_elements, args=win)
+    thread = threading.Thread(target=delay_showing_elements, args=(win, terminal))
     thread.start()
 
     command = "python " + filepath + " " + challenge_number + " " + step_number
