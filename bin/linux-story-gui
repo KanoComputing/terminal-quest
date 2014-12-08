@@ -25,15 +25,19 @@ from linux_story.gtk3.Spellbook import Spellbook, SpellbookThread
 from linux_story.CheckFiles import guiThread
 
 
+visible = Terminal_Ui()
+spellbook = Spellbook()
+
+
 class MainWindow(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self)
-        self.connect('delete-event', Gtk.main_quit)
+        self.connect('delete-event', self.close_window)
         self.get_style_context().add_class("black")
 
-
-visible = Terminal_Ui()
-spellbook = Spellbook()
+    def close_window(self, widget, event):
+        spellbook.stop = True
+        Gtk.main_quit()
 
 
 def create_terminal(challenge_number="1", step_number="1"):
