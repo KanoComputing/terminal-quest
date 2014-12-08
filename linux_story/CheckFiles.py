@@ -24,10 +24,9 @@ from helper_functions import (
 from file_functions import (
     file_exists, read_file, delete_file, delete_dir
 )
-from linux_story.gtk3.terminal_ui import Terminal_Ui
 
 
-class CheckFiles(Terminal_Ui):
+class CheckFiles():
     def __init__(self):
         self.stop = False
         self.run()
@@ -35,14 +34,11 @@ class CheckFiles(Terminal_Ui):
     def run(self):
         while not self.stop:
             self.next_step()
-            if self.file_exists("hint"):
+            if file_exists("hint"):
                 self.read_file("hint")
 
-    def file_exists(self, file_name):
-        return file_exists(file_name)
-
     def next_step(self):
-        if self.file_exists("started"):
+        if file_exists("started"):
             delete_file("started")
             os.system("clear")
             challenge_number = read_file("challenge")
@@ -50,7 +46,7 @@ class CheckFiles(Terminal_Ui):
             self.read_file("story")
 
     def read_file(self, message_type):
-        if self.file_exists(message_type):
+        if file_exists(message_type):
             file_contents = read_file(message_type)
             delete_file(message_type)
             self.type_to_terminal(file_contents, message_type)
