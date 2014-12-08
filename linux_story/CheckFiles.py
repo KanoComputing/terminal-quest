@@ -22,7 +22,7 @@ from helper_functions import (
     parse_string, typing_animation, print_challenge_title
 )
 from file_functions import (
-    file_exists, read_file, delete_file, create_dir, FILENAMES
+    file_exists, read_file, delete_file, delete_dir
 )
 from linux_story.gtk3.terminal_ui import Terminal_Ui
 
@@ -33,7 +33,6 @@ class CheckFiles(Terminal_Ui):
         self.run()
 
     def run(self):
-        create_dir()
         while not self.stop:
             self.next_step()
             if self.file_exists("hint"):
@@ -70,9 +69,7 @@ class StoryThread(threading.Thread):
         self.story_ui = story_ui
 
     def stop(self):
-        for message_type in FILENAMES:
-            if file_exists(message_type):
-                delete_file(message_type)
+        delete_dir()
 
     def run(self):
         path = os.path.abspath(__file__)

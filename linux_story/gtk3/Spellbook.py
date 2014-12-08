@@ -18,7 +18,7 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.file_functions import read_file, file_exists, delete_file
+from linux_story.file_functions import read_file, file_exists, delete_file, delete_dir
 from kano.gtk3.apply_styles import apply_styling_to_screen
 
 
@@ -135,4 +135,4 @@ class SpellbookThread(threading.Thread):
 
     def run(self):
         self.spellbook.check_files()
-        self.spellbook.delete_file()
+        delete_dir()

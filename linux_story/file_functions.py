@@ -9,6 +9,7 @@
 # Functions that read and write to file
 
 import os
+import shutil
 
 DIRECTORY = os.path.join(
     os.path.expanduser("~"),
@@ -67,7 +68,14 @@ def create_dir():
         os.makedirs(DIRECTORY)
 
 
+def delete_dir():
+    if os.path.exists(DIRECTORY):
+        shutil.rmtree(DIRECTORY)
+
+
 def write_to_file(file_name, file_contents):
+    if not os.path.exists(DIRECTORY):
+        create_dir()
     filename = FILENAMES[file_name]
     f = open(filename, 'w+')
     f.write(file_contents)
