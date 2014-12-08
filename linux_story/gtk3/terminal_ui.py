@@ -16,6 +16,7 @@ class Terminal_Ui(Vte.Terminal):
             GLib.SpawnFlags.DO_NOT_REAP_CHILD,
             None,
             None)
+        self.set_scrollback_lines(0)
 
     def launch_command(self, command):
         command = "temp=$(tty) ; " + command + " > $temp | clear\n"
