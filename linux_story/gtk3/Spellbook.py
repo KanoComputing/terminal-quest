@@ -124,18 +124,15 @@ class Spellbook(Gtk.EventBox):
                 self.delete_file()
 
     def delete_file(self):
-        delete_file("commands")
+        if file_exists("commands"):
+            delete_file("commands")
 
 
 class SpellbookThread(threading.Thread):
     def __init__(self, spellbook):
         threading.Thread.__init__(self)
-        self.__stop = False
         self.spellbook = spellbook
-
-    def stop(self):
-        self.spellbook.delete_file()
-        self.__stop = True
 
     def run(self):
         self.spellbook.check_files()
+        self.spellbook.delete_file()

@@ -29,12 +29,12 @@ from linux_story.gtk3.terminal_ui import Terminal_Ui
 
 class CheckFiles(Terminal_Ui):
     def __init__(self):
-        #self.stop = False
+        self.stop = False
         self.run()
 
     def run(self):
         create_dir()
-        while True:
+        while not self.stop:
             self.next_step()
             if self.file_exists("hint"):
                 self.read_file("hint")
@@ -64,21 +64,21 @@ class CheckFiles(Terminal_Ui):
         print_challenge_title(challenge_number)
 
 
-class guiThread(threading.Thread):
+class StoryThread(threading.Thread):
     def __init__(self, story_ui):
         threading.Thread.__init__(self)
-        #self.__stop = False
         self.story_ui = story_ui
 
-    #def stop(self):
-    #    for message_type in FILENAMES:
-    #        delete_file(message_type)
-    #    self.__stop = True
+    def stop(self):
+        for message_type in FILENAMES:
+            if file_exists(message_type):
+                delete_file(message_type)
 
     def run(self):
         path = os.path.abspath(__file__)
         command = "python " + path
         self.story_ui.launch_command(command)
+        self.stop()
 
 
 if __name__ == "__main__":

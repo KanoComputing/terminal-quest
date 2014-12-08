@@ -22,7 +22,7 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.gtk3.terminal_ui import Terminal_Ui
 from linux_story.gtk3.Spellbook import Spellbook, SpellbookThread
-from linux_story.CheckFiles import guiThread
+from linux_story.CheckFiles import StoryThread
 
 
 visible = Terminal_Ui()
@@ -99,7 +99,7 @@ def create_terminal(challenge_number="1", step_number="1"):
 
 
 if __name__ == "__main__":
-    story = guiThread(visible)
+    story = StoryThread(visible)
     story.start()
 
     spellbook_thread = SpellbookThread(spellbook)
