@@ -10,10 +10,10 @@
 
 import os
 import sys
-import time
 import threading
+import time
 from gi.repository import Gtk, Gdk, GObject
-GObject.threads_init()
+# GObject.threads_init() is called when importing KanoProgressBar
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -23,6 +23,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.gtk3.terminal_ui import Terminal_Ui
 from linux_story.gtk3.Spellbook import Spellbook, SpellbookThread
 from linux_story.CheckFiles import StoryThread
+from kano.gtk3.kano_progress import KanoProgressBar
 
 
 visible = Terminal_Ui()
@@ -38,66 +39,89 @@ class MainWindow(Gtk.Window):
 
     def close_window(self, widget, event):
         spellbook.stop = True
+        self.close()
         Gtk.main_quit()
 
 
-def create_terminal(challenge_number="1", step_number="1"):
-    global visible
-    global spellbook
+class Application(MainWindow):
+    def __init__(self):
+        MainWindow.__init__(self)
+        self.terminal = Terminal_Ui()
+        self.visible = visible
+        self.spellbook = spellbook
 
-    terminal = Terminal_Ui()
+    def create_terminal(self, challenge_number="1", step_number="1"):
 
-    win = MainWindow()
-    hbox = Gtk.Box()
-    win.add(hbox)
+        hbox = Gtk.Box()
+        self.add(hbox)
 
-    vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-    vbox.pack_start(visible, False, False, 0)
-    vbox.pack_start(spellbook, False, False, 0)
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        vbox.pack_start(self.visible, False, False, 0)
+        vbox.pack_start(self.spellbook, False, False, 0)
 
-    hbox.pack_start(vbox, False, False, 0)
-    hbox.pack_start(terminal, False, False, 0)
+        hbox.pack_start(vbox, False, False, 0)
+        hbox.pack_start(self.terminal, False, False, 0)
 
-    screen = Gdk.Screen.get_default()
-    width = screen.get_width()
-    height = screen.get_height()
+        screen = Gdk.Screen.get_default()
+        width = screen.get_width()
+        height = screen.get_height()
 
-    # Allow for margin on bottom
-    terminal.set_size_request(width / 2, height - 2 * 44)
-    visible.set_size_request(width / 2, height - spellbook.height - 2 * 44)
+        # Allow for margin on bottom
+        self.terminal.set_size_request(width / 2, height - 2 * 44)
+        self.visible.set_size_request(width / 2, height - spellbook.height - 2 * 44)
 
-    visible.set_can_focus(False)
+        self.visible.set_can_focus(False)
 
-    filepath = os.path.abspath(
-        os.path.join(
-            os.path.dirname(__file__),
-            "linux-story"
+        filepath = os.path.abspath(
+            os.path.join(
+                os.path.dirname(__file__),
+                "linux-story"
+            )
         )
-    )
 
-    def delay_showing_elements(win, terminal):
-        time.sleep(15)
+        def delay_showing_elements(win, terminal, spellbook):
+            time.sleep(18)
 
-        def done(win):
-            win.show_all()
+            def done(win):
+                win.show_all()
 
-            # Terminal should be focused on
-            terminal.grab_focus()
+                # Terminal should be focused on
+                terminal.grab_focus()
 
-        GObject.idle_add(done, win)
+            GObject.idle_add(done, win)
 
-    thread = threading.Thread(target=delay_showing_elements, args=(win, terminal))
-    thread.start()
+        thread = threading.Thread(
+            target=delay_showing_elements,
+            args=(self, self.terminal, self.spellbook)
+        )
+        thread.start()
 
-    command = "python " + filepath + " " + challenge_number + " " + step_number
-    terminal.launch_command(command)
+        command = "python " + filepath + " " + challenge_number + " " + step_number
+        self.terminal.launch_command(command)
 
-    win.show_all()
-    visible.show_all()
-    spellbook.hide()
-    terminal.hide()
+        # this to hide the spellbook and terminal from view until the story has finished
+        # displaying
+        self.show_all()
+        self.terminal.hide()
+        self.spellbook.hide()
 
-    Gtk.main()
+        Gtk.main()
+
+
+class ProgressThread(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+
+    def run(self):
+        GObject.idle_add(self.load_progress_bar)
+
+    def load_progress_bar(self):
+        pb = KanoProgressBar(
+            pulse=False,
+            title="Loading the Legendary Tutorial Tales",
+            rate=0.008
+        )
+        pb.run()
 
 
 if __name__ == "__main__":
@@ -107,7 +131,12 @@ if __name__ == "__main__":
     spellbook_thread = SpellbookThread(spellbook)
     spellbook_thread.start()
 
+    progress_thread = ProgressThread()
+    progress_thread.start()
+
+    app = Application()
+
     if len(sys.argv) == 3:
-        create_terminal(sys.argv[1], sys.argv[2])
+        app.create_terminal(sys.argv[1], sys.argv[2])
     else:
-        create_terminal()
+        app.create_terminal()

@@ -1,5 +1,14 @@
 #!/usr/bin/env python
 
+# linux-story-gui
+#
+# Copyright (C) 2014 Kano Computing Ltd
+# License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
+#
+# Author: Caroline Clark <caroline@kano.me>
+# Terminal Gtk emulator
+
+
 from gi.repository import Vte
 from gi.repository import GLib
 import os
@@ -16,6 +25,8 @@ class Terminal_Ui(Vte.Terminal):
             GLib.SpawnFlags.DO_NOT_REAP_CHILD,
             None,
             None)
+
+        # This prevents the user scrolling back through the history
         self.set_scrollback_lines(0)
 
     def launch_command(self, command):

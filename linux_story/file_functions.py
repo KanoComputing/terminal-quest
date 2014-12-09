@@ -43,7 +43,7 @@ STARTED_STEP = os.path.join(
 
 CHALLENGE_FILENAME = os.path.join(
     DIRECTORY,
-    "challenge_number"
+    "challenge-number"
 )
 
 FILENAMES = {
@@ -82,10 +82,11 @@ def write_to_file(file_name, file_contents):
     f.close()
 
 
-def read_file(file_name):
-    filename = FILENAMES[file_name]
-    with open(filename, "r") as f:
-        return f.read()
+def read_file(name):
+    if name in FILENAMES and file_exists(name):
+        filename = FILENAMES[name]
+        with open(filename, "r") as f:
+            return f.read()
 
 
 def file_exists(file_name):
@@ -98,4 +99,5 @@ def file_exists(file_name):
 
 def delete_file(file_name):
     filename = FILENAMES[file_name]
-    os.remove(filename)
+    if os.path.exists(filename):
+        os.remove(filename)

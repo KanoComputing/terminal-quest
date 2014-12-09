@@ -12,6 +12,7 @@ import os
 import sys
 from gi.repository import Gtk, Gdk, GObject
 import threading
+import time
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -35,6 +36,8 @@ class Spellbook(Gtk.EventBox):
     def __init__(self):
         apply_styling_to_screen(self.CSS_FILE)
         self.stop = False
+        # TODO: fix this, is hacky.  First time we launch the spellbook, we want to hide it
+        self.first = True
 
         Gtk.EventBox.__init__(self)
         self.get_style_context().add_class("spellbook_border")
@@ -109,6 +112,26 @@ class Spellbook(Gtk.EventBox):
     def repack_commands(self, commands):
         self.unpack_commands()
         self.pack_commands(commands)
+        if self.first:
+            self.first = False
+        else:
+            self.show_all()
+
+    # TODO: use this to hide UI?
+    def hide_ui(self):
+
+        win = self.get_toplevel()
+        win.show_all()
+        win.terminal.hide()
+        win.spellbook.hide()
+
+        time.sleep(5)
+
+        win.show_all()
+        win.spellbook.show_all()
+        win.terminal.show_all()
+
+        delete_file("hide-spellbook")
 
     def get_command_list(self):
         if file_exists("commands"):
@@ -122,6 +145,10 @@ class Spellbook(Gtk.EventBox):
                 commands = self.get_command_list()
                 GObject.idle_add(self.repack_commands, commands)
                 self.delete_file()
+            #if file_exists("hide-spellbook"):
+            #    GObject.idle_add(self.hide_ui)
+            #else:
+            #    GObject.idle_add(self.show_all)
 
     def delete_file(self):
         if file_exists("commands"):
