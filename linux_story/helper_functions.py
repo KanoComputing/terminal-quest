@@ -12,6 +12,7 @@ import os
 import sys
 import time
 import readline
+import re
 
 from kano.colours import colourize256, decorate_string
 
@@ -220,17 +221,13 @@ def typing_animation(string):
             if char == " ":
                 # calculate distance to next line
                 next_word = string.split(" ")[1]
-                penalty = 0
 
-                # Calculate penalty
-                if "\033[38;5;" in next_word:
-                    penalty += 18
-                if "\033[48;5;" in next_word:
-                    penalty += 18
-                if "\033[1m" in next_word:
-                    penalty += 14
+                # remove all ansi escape sequences to find the real word length
+                ansi_escape = re.compile(r'\x1b[^m]*m')
+                clean_word=ansi_escape.sub('', next_word)
+                next_word_len=len(clean_word)
 
-                if line_width + len(next_word) - penalty >= columns:
+                if line_width + next_word_len >= columns:
                     sys.stdout.write("\n")
                     line_width = 0
                 else:
