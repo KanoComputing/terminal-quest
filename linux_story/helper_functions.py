@@ -187,32 +187,52 @@ def colourizeInput256(string, fg_num=None, bg_num=None, bold=False):
 
 
 def typing_animation(string):
+    # Get number of characters from terminal
+    rows, columns = os.popen('stty size', 'r').read().split()
+    columns = int(columns)
+    line_width = 0
+
     while string:
 
         char = string[:1]
         e = string[:3]
 
         if e == "[1m":
+            line_width += 1
             new_char = string[:7]
             sys.stdout.write(new_char)
             string = string[7:]
         elif e == ";5;":
+            line_width += 1
             new_char = string[:7]
             sys.stdout.write(new_char)
             string = string[7:]
         elif e == "[0m":
+            line_width += 1
             new_char = string[:3]
             sys.stdout.write(new_char)
             string = string[3:]
         else:
-            sys.stdout.write(char)
-            string = string[1:]
             if char == " ":
+                # calculate distance to next line
+                next_word = string.split(" ")[1]
+                if line_width + len(next_word) >= columns:
+                    sys.stdout.write("\n")
+                    line_width = 0
+                else:
+                    sys.stdout.write(" ")
+                    line_width += 1
                 time.sleep(0.04)
+
             elif char == "\n":
+                sys.stdout.write(char)
                 time.sleep(0.8)
+                line_width = 0
             else:
+                sys.stdout.write(char)
                 time.sleep(0.03)
+                line_width += 1
+            string = string[1:]
 
         sys.stdout.flush()
 
