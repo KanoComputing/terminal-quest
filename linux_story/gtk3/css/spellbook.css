@@ -8,12 +8,22 @@
 }
 
 .spell_background {
-	background: #000000;
+	background: #313131;
 }
 
 .spell_label {
 	color: #cccccc;
 	font: monospace 13px;
+}
+
+.spell_command {
+	color: #ffffff;
+	font: Bariol Bold 16px;
+}
+
+.spell_description {
+	color: #ffffff;
+	font: Bariol 16px;
 }
 
 .spellbook_background {
@@ -22,4 +32,28 @@
 
 .spellbook_border {
 	background: #bbbbbb;
+}
+
+.light_blue {
+	background: #687980;
+}
+
+.dark_blue {
+	background: #576b73;
+}
+
+.light_grey {
+	background: #3f3f3f;
+}
+
+.dark_grey {
+	background: #313131;
+}
+
+.light_yellow_grey {
+	background: #59543e;
+}
+
+.dark_yellow_grey {
+	background: #444133;
 }

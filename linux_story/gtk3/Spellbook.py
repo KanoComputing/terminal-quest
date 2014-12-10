@@ -21,17 +21,22 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.file_functions import read_file, file_exists, delete_file, delete_dir
 from kano.gtk3.apply_styles import apply_styling_to_screen
+from kano.utils import get_user
 
 
 class Spellbook(Gtk.EventBox):
-    CMD_WIDTH = 80
-    CMD_HEIGHT = 80
     CSS_FILE = os.path.join(
         os.path.abspath(os.path.dirname(__file__)),
         "css/spellbook.css"
     )
     SPELLBOOK_BORDER = 1
     SPELL_BORDER = 1
+    DESCRIPTIONS = {
+        "ls": "Take a look around you",
+        "cd": "Go somewhere new",
+        "cat": "Print the contents of a file",
+        "title": "{}'s spellbook".format(get_user())
+    }
 
     def __init__(self):
         apply_styling_to_screen(self.CSS_FILE)
@@ -44,10 +49,6 @@ class Spellbook(Gtk.EventBox):
 
         background = Gtk.EventBox()
         background.get_style_context().add_class("spellbook_background")
-        background.set_margin_right(self.SPELLBOOK_BORDER)
-        background.set_margin_left(self.SPELLBOOK_BORDER)
-        background.set_margin_top(self.SPELLBOOK_BORDER)
-        background.set_margin_bottom(self.SPELLBOOK_BORDER)
 
         self.grid = Gtk.Grid()
         self.add(background)
@@ -58,52 +59,57 @@ class Spellbook(Gtk.EventBox):
         self.win_height = screen.get_height()
 
         self.width = self.win_width / 2
-        self.height = 160
+        self.height = 200
 
         self.set_size_request(self.width, self.height)
 
-    def create_command(self, name):
+    def create_command(self, name, top):
+
+        CMD_HEIGHT = 50
+        CMD_WIDTH = self.width
+
         box = Gtk.Box()
-        label = Gtk.Label(name)
-        label.get_style_context().add_class("spell_label")
-        box.add(label)
+        box.set_size_request(CMD_WIDTH, CMD_HEIGHT)
 
-        align = Gtk.Alignment(xalign=0.5, yalign=0.5, xscale=0, yscale=0)
-        align.add(box)
+        label_background = Gtk.EventBox()
+        label_background.set_size_request(50, 50)
+        description_background = Gtk.EventBox()
+        description_background.set_size_request(self.width - 50, 50)
 
-        background = Gtk.EventBox()
-        background.add(align)
-        background.get_style_context().add_class("spell_background")
-        background.set_margin_right(self.SPELL_BORDER)
-        background.set_margin_bottom(self.SPELL_BORDER)
+        if name == "title":
+            label_background.get_style_context().add_class("light_yellow_grey")
+            description_background.get_style_context().add_class("dark_yellow_grey")
+            # add icon
+        else:
+            label = Gtk.Label(name)
+            label.get_style_context().add_class("spell_command")
+            label_background.add(label)
+            if top % 2 == 1:
+                label_background.get_style_context().add_class("dark_blue")
+                description_background.get_style_context().add_class("dark_grey")
+            else:
+                label_background.get_style_context().add_class("light_blue")
+                description_background.get_style_context().add_class("light_grey")
 
-        border = Gtk.EventBox()
-        border.get_style_context().add_class("spell_border")
-        border.set_size_request(self.CMD_WIDTH, self.CMD_HEIGHT)
-        border.add(background)
+        description = Gtk.Label(self.DESCRIPTIONS[name])
+        description.get_style_context().add_class("spell_description")
+        description.set_alignment(0, 0.5)
+        description.set_padding(10, 0)
+        description_background.add(description)
 
-        return border
+        box.pack_start(label_background, False, False, 0)
+        box.pack_start(description_background, False, False, 0)
+
+        return box
 
     def pack_commands(self, commands):
-        # these are counters monitoring where the command is placed on the
-        # window
         top = 0
-        left = -1
-        total_width = 0
-        total_height = 0
 
         if commands:
             for command in commands:
-                total_width += self.CMD_WIDTH
-                total_height += self.CMD_HEIGHT
-
-                if total_width > self.width:
-                    top += 1
-                else:
-                    left += 1
-
-                box = self.create_command(command)
-                self.grid.attach(box, left, top, 1, 1)
+                box = self.create_command(command, top)
+                self.grid.attach(box, 0, top, 1, 1)
+                top += 1
 
     def unpack_commands(self):
         for child in self.grid:
@@ -111,6 +117,7 @@ class Spellbook(Gtk.EventBox):
 
     def repack_commands(self, commands):
         self.unpack_commands()
+        commands = ["title"] + commands
         self.pack_commands(commands)
         if self.first:
             self.first = False

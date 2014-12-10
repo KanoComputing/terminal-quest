@@ -31,10 +31,11 @@ spellbook = Spellbook()
 
 
 class MainWindow(Gtk.Window):
+
     def __init__(self):
         Gtk.Window.__init__(self)
         self.connect('delete-event', self.close_window)
-        self.get_style_context().add_class("black")
+        self.get_style_context().add_class("dark_grey")
         self.maximize()
 
     def close_window(self, widget, event):
@@ -47,28 +48,45 @@ class Application(MainWindow):
     def __init__(self):
         MainWindow.__init__(self)
         self.terminal = Terminal_Ui()
+        self.terminal.set_margin_top(10)
+        self.terminal.set_margin_left(10)
+        self.terminal.set_margin_right(10)
         self.visible = visible
+        fg_color = Gdk.Color.parse("#ffffff")[1]
+        bg_color = Gdk.Color.parse("#313131")[1]
+        self.visible.set_colors(fg_color, bg_color, [])
+        self.visible.set_margin_top(10)
+        self.visible.set_margin_left(10)
+        self.visible.set_margin_right(10)
         self.spellbook = spellbook
 
     def create_terminal(self, challenge_number="1", step_number="1"):
 
+        left_background = Gtk.EventBox()
+        left_background.get_style_context().add_class("dark_grey")
+        right_background = Gtk.EventBox()
+        right_background.get_style_context().add_class("black")
+
         hbox = Gtk.Box()
         self.add(hbox)
 
+        hbox.pack_start(left_background, False, False, 0)
+        hbox.pack_start(right_background, False, False, 0)
+
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         vbox.pack_start(self.visible, False, False, 0)
-        vbox.pack_start(self.spellbook, False, False, 0)
+        vbox.pack_end(self.spellbook, False, False, 0)
 
-        hbox.pack_start(vbox, False, False, 0)
-        hbox.pack_start(self.terminal, False, False, 0)
+        left_background.add(vbox)
+        right_background.add(self.terminal)
 
         screen = Gdk.Screen.get_default()
         width = screen.get_width()
         height = screen.get_height()
 
         # Allow for margin on bottom
-        self.terminal.set_size_request(width / 2, height - 2 * 44)
-        self.visible.set_size_request(width / 2, height - spellbook.height - 2 * 44)
+        self.terminal.set_size_request(width / 2 - 20, height - 2 * 44 - 20)
+        self.visible.set_size_request(width / 2 - 20, height - spellbook.height - 2 * 44 - 10)
 
         self.visible.set_can_focus(False)
 
