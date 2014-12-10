@@ -15,8 +15,8 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.Step import Step
-from terminals import TerminalCat
-from linux_story.challenges.challenge_3.steps import Step1 as NextChallengeStep
+from linux_story.challenges.challenge_2.terminals import TerminalCat
+from linux_story.challenges.challenge_4.steps import Step1 as NextChallengeStep
 from linux_story.file_data import copy_data
 from linux_story.file_functions import write_to_file
 
@@ -28,13 +28,13 @@ class StepTemplateCat(Step):
 
 class Step1(StepTemplateCat):
     story = [
-        "Better turn that alarm off.",
-        "\n{{wNew Spell}}: to look at objects, we type {{ycat}}."
+        "Your mum is calling you! Better get dressed...",
+        "Type {{yls wardrobe}} to find something to wear"
     ]
     start_dir = "~"
     end_dir = "~"
-    command = "cat alarm"
-    hints = "Type {{ycat alarm}} to see the alarm."
+    command = ["ls wardrobe", "ls wardrobe/"]
+    hints = "Type {{yls wardrobe}} to find something to wear"
 
     def next(self):
         Step2()
@@ -42,12 +42,12 @@ class Step1(StepTemplateCat):
 
 class Step2(StepTemplateCat):
     story = [
-        "Ok - it's switched off. There's lots of other interesting things to look at - check them out!"
+        "Type {{ycat wardrobe/hat}} to see how it looks"
     ]
     start_dir = "~"
     end_dir = "~"
-    command = ["ls shelves", "ls shelves/"]
-    hints = "Type {{yls shelves}} to look at your books"
+    command = "cat wardrobe/hat"
+    hints = "Type {{ycat wardrobe/hat}} to find something to wear"
 
     def next(self):
         Step3()
@@ -55,14 +55,16 @@ class Step2(StepTemplateCat):
 
 class Step3(StepTemplateCat):
     story = [
-        "That comic book looks fun. Take a look inside."
+        "Love it! Put it on quickly.",
+        "Hang on, there's a note on your desk...",
+        "Type {{ycat note}}"
     ]
     start_dir = "~"
     end_dir = "~"
-    command = "cat shelves/comic-book"
-    hints = "Type {{ycat shelves/comic-book}} to read the comic."
+    command = "cat note"
+    hints = "Type {{ycat note}} to read what's on your computer"
 
     def next(self):
-        copy_data(3)
-        write_to_file("challenge", "3")
+        copy_data(4)
+        write_to_file("challenge", "4")
         NextChallengeStep()
