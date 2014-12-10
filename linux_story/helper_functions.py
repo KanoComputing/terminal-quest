@@ -114,6 +114,8 @@ def get_preset_from_id(id):
         return 197
     elif id == "c":
         return 123
+    elif id == "w":
+        return 231
     elif id == "R":
         return 9
     elif id == "G":
@@ -127,7 +129,9 @@ def get_preset_from_id(id):
     elif id == "P":
         return 205
     else:
-        return 147
+        # lilac
+        # return 147
+        return 231
 
 
 def message_type_preset(message_type):
@@ -143,7 +147,7 @@ def parse_string(string, message_type="story", input=False):
         colour_function = colourize256
 
     if string.find("{{") == -1:
-        string = colour_function(string, default_preset, bold=True)
+        string = colour_function(string, default_preset, bold=False)
         return string
 
     # First part of the string
@@ -160,10 +164,10 @@ def parse_string(string, message_type="story", input=False):
         colour_part = string[pos1 + 3:pos2]
 
         colour_part = colour_function(colour_part, preset, bold=True)
-        first_part = colour_function(first_part, default_preset, bold=True)
+        first_part = colour_function(first_part, default_preset, bold=False)
 
         if string.find("{{") != -1:
-            last_part = colour_function(last_part, default_preset, bold=True)
+            last_part = colour_function(last_part, default_preset, bold=False)
 
         string = first_part + colour_part + last_part
 
