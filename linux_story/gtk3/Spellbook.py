@@ -59,57 +59,45 @@ class Spellbook(Gtk.EventBox):
         self.win_height = screen.get_height()
 
         self.width = self.win_width / 2
-        self.height = 200
+        self.height = 60
 
         self.set_size_request(self.width, self.height)
 
-    def create_command(self, name, top):
+    def create_command(self, name, left):
 
-        CMD_HEIGHT = 50
-        CMD_WIDTH = self.width
+        CMD_HEIGHT = 60
+        CMD_WIDTH = 60
 
-        box = Gtk.Box()
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.set_size_request(CMD_WIDTH, CMD_HEIGHT)
 
-        label_background = Gtk.EventBox()
-        label_background.set_size_request(50, 50)
-        description_background = Gtk.EventBox()
-        description_background.set_size_request(self.width - 50, 50)
+        background = Gtk.EventBox()
+        background.set_size_request(CMD_HEIGHT, CMD_WIDTH)
+        background.add(box)
 
         if name == "title":
-            label_background.get_style_context().add_class("light_yellow_grey")
-            description_background.get_style_context().add_class("dark_yellow_grey")
+            background.get_style_context().add_class("light_yellow_grey")
             # add icon
         else:
             label = Gtk.Label(name)
             label.get_style_context().add_class("spell_command")
-            label_background.add(label)
-            if top % 2 == 1:
-                label_background.get_style_context().add_class("dark_blue")
-                description_background.get_style_context().add_class("dark_grey")
+            label.set_alignment(xalign=0.5, yalign=0.5)
+            box.pack_start(label, True, False, 0)
+            if left % 2 == 1:
+                background.get_style_context().add_class("dark_blue")
             else:
-                label_background.get_style_context().add_class("light_blue")
-                description_background.get_style_context().add_class("light_grey")
+                background.get_style_context().add_class("light_blue")
 
-        description = Gtk.Label(self.DESCRIPTIONS[name])
-        description.get_style_context().add_class("spell_description")
-        description.set_alignment(0, 0.5)
-        description.set_padding(10, 0)
-        description_background.add(description)
-
-        box.pack_start(label_background, False, False, 0)
-        box.pack_start(description_background, False, False, 0)
-
-        return box
+        return background
 
     def pack_commands(self, commands):
-        top = 0
+        left = 0
 
         if commands:
             for command in commands:
-                box = self.create_command(command, top)
-                self.grid.attach(box, 0, top, 1, 1)
-                top += 1
+                box = self.create_command(command, left)
+                self.grid.attach(box, left, 0, 1, 1)
+                left += 1
 
     def unpack_commands(self):
         for child in self.grid:

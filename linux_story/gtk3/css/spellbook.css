@@ -18,16 +18,16 @@
 
 .spell_command {
 	color: #ffffff;
-	font: Bariol Bold 16px;
+	font: Bariol Bold 17px;
 }
 
 .spell_description {
 	color: #ffffff;
-	font: Bariol 16px;
+	font: Bariol 17px;
 }
 
 .spellbook_background {
-	background: #000000;
+	background: #576b73;
 }
 
 .spellbook_border {
