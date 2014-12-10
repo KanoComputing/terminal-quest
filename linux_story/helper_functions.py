@@ -216,7 +216,17 @@ def typing_animation(string):
             if char == " ":
                 # calculate distance to next line
                 next_word = string.split(" ")[1]
-                if line_width + len(next_word) >= columns:
+                penalty = 0
+
+                # Calculate penalty
+                if "\033[38;5;" in next_word:
+                    penalty += 18
+                if "\033[48;5;" in next_word:
+                    penalty += 18
+                if "\033[1m" in next_word:
+                    penalty += 14
+
+                if line_width + len(next_word) - penalty >= columns:
                     sys.stdout.write("\n")
                     line_width = 0
                 else:
