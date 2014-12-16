@@ -8,7 +8,6 @@
 
 import os
 import sys
-from gi.repository import Gtk
 
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
 if __name__ == '__main__' and __package__ is None:
@@ -49,4 +48,4 @@ class Step2(StepTemplateCd):
     hints = "To go to the greenhouse, type {{ycd greenhouse}}"
 
     def next(self):
-        Gtk.main_quit()
+        pass
