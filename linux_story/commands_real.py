@@ -158,7 +158,10 @@ def shell_command(current_dir, tree, line, command_word=""):
         return False
 
     if stdout:
-        print stdout.strip()
+        if command_word == "cat":
+            print stdout
+        else:
+            print stdout.strip()
 
     # should this return stdout?
     return True
