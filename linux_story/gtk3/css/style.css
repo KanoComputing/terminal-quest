@@ -1,0 +1,34 @@
+
+.main_window {
+	background: @story_background;
+}
+
+.terminal_background {
+	background: @terminal_background;
+}
+
+.story_background {
+	background: @story_background;
+}
+
+.spell_icon_background {
+	background: @spell_icon_background;
+}
+
+.spell_label_background {
+	background: @spell_label_background;
+}
+
+.spell_label {
+	color: #cccccc;
+	font: monospace 13px;
+}
+
+.spell_command {
+	color: #ffffff;
+	font: Bariol Bold 17px;
+}
+
+.spellbook_background {
+	background: @spellbook_background;
+}

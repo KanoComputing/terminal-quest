@@ -21,14 +21,10 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.file_functions import read_file, file_exists, delete_file, delete_dir
 from linux_story.paths import common_media_dir
-from kano.gtk3.apply_styles import apply_styling_to_screen
 
 
 class Spellbook(Gtk.EventBox):
-    CSS_FILE = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)),
-        "css/spellbook.css"
-    )
+
     SPELLBOOK_BORDER = 1
     SPELL_BORDER = 1
     CMD_HEIGHT = 80
@@ -36,7 +32,6 @@ class Spellbook(Gtk.EventBox):
     HEIGHT = 100
 
     def __init__(self):
-        apply_styling_to_screen(self.CSS_FILE)
         self.stop = False
 
         # TODO: fix this, is hacky.
@@ -44,7 +39,6 @@ class Spellbook(Gtk.EventBox):
         self.first = True
 
         Gtk.EventBox.__init__(self)
-        self.get_style_context().add_class("spellbook_border")
 
         background = Gtk.EventBox()
         background.get_style_context().add_class("spellbook_background")

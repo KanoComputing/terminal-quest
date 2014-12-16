@@ -9,10 +9,11 @@
 import os
 
 # setting up directories
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+current_dir = os.path.abspath(os.path.dirname(__file__))
+prev_dir = os.path.join(current_dir, "..")
 
 # media dir
-media_local = os.path.join(dir_path, 'media')
+media_local = os.path.join(prev_dir, 'media')
 media_usr = '/usr/share/linux-story/media'
 
 if os.path.exists(media_local):
@@ -21,3 +22,5 @@ elif os.path.exists(media_usr):
     common_media_dir = media_usr
 else:
     raise Exception('Neither local nor usr media dir found!')
+
+css_dir = os.path.join(current_dir, 'gtk3', 'css')
