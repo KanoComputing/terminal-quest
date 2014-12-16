@@ -16,6 +16,7 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.Step import Step
 from linux_story.challenges.challenge_4.terminals import TerminalCd
+from linux_story.file_functions import write_to_file
 
 
 class StepTemplateCd(Step):
@@ -48,4 +49,4 @@ class Step2(StepTemplateCd):
     hints = "To go to the greenhouse, type {{ycd greenhouse}}"
 
     def next(self):
-        pass
+        write_to_file("exit")

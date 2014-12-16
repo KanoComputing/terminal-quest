@@ -132,6 +132,9 @@ class Spellbook(Gtk.EventBox):
                 commands = self.get_command_list()
                 GObject.idle_add(self.repack_spells, commands)
                 self.delete_file()
+            if file_exists("exit"):
+                Gtk.main_quit()
+                sys.exit(0)
             #if file_exists("hide-spellbook"):
             #    GObject.idle_add(self.hide_ui)
             #else:

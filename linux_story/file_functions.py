@@ -46,13 +46,19 @@ CHALLENGE_FILENAME = os.path.join(
     "challenge-number"
 )
 
+EXIT_FILENAME = os.path.join(
+    DIRECTORY,
+    "exit"
+)
+
 FILENAMES = {
     "story": STORY_FILENAME,
     "hint": HINT_FILENAME,
     "commands": COMMANDS_FILENAME,
     "output": OUTPUT_FILENAME,
     "started": STARTED_STEP,
-    "challenge": CHALLENGE_FILENAME
+    "challenge": CHALLENGE_FILENAME,
+    "exit": EXIT_FILENAME
 }
 
 PRINTABLES = {
@@ -73,7 +79,7 @@ def delete_dir():
         shutil.rmtree(DIRECTORY)
 
 
-def write_to_file(file_name, file_contents):
+def write_to_file(file_name, file_contents=""):
     if not os.path.exists(DIRECTORY):
         create_dir()
     filename = FILENAMES[file_name]
