@@ -50,6 +50,7 @@ class MainWindow(Gtk.Window):
         self.connect('delete-event', self.close_window)
         self.get_style_context().add_class("main_window")
         self.maximize()
+        self.set_title("Legendary Terminal Tales")
 
     def close_window(self, widget, event):
         spellbook.stop = True
