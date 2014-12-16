@@ -53,6 +53,8 @@ class CheckFiles():
 
     def type_to_terminal(self, text, message_type):
         text = parse_string(text, message_type)
+        if message_type == "hint":
+            text = "\n" + text
         typing_animation(text)
 
     def print_challenge_title(self, challenge_number="1"):
