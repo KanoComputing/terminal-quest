@@ -17,7 +17,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from terminals import TerminalLs
 from linux_story.challenges.challenge_2.steps import Step1 as NextChallengeStep
-from linux_story.file_data import copy_data
+#from linux_story.file_data import copy_data
 from linux_story.file_functions import write_to_file
 
 
@@ -44,6 +44,6 @@ class Step1(StepTemplateLs):
     hints = ["Type {{yls}} and press Enter to take a look around your bedroom"]
 
     def next(self):
-        copy_data(2)
         write_to_file("challenge", "2")
+        #copy_data(2)
         NextChallengeStep()

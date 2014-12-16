@@ -17,7 +17,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from terminals import TerminalCat
 from linux_story.challenges.challenge_3.steps import Step1 as NextChallengeStep
-from linux_story.file_data import copy_data
+#from linux_story.file_data import copy_data
 from linux_story.file_functions import write_to_file
 
 
@@ -42,7 +42,8 @@ class Step1(StepTemplateCat):
 
 class Step2(StepTemplateCat):
     story = [
-        "Ok - it's switched off. There's lots of other interesting things to look at - check them out!"
+        "Ok - it's switched off. There's lots of other interesting things to look at - check them out!",
+        "Have a look at your {{bshelves}}"
     ]
     start_dir = "~"
     end_dir = "~"
@@ -63,6 +64,6 @@ class Step3(StepTemplateCat):
     hints = "Type {{ycat shelves/comic-book}} to read the comic."
 
     def next(self):
-        copy_data(3)
+        #copy_data(3)
         write_to_file("challenge", "3")
         NextChallengeStep()

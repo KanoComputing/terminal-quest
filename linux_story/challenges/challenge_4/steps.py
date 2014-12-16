@@ -17,7 +17,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from terminals import TerminalCd
 from linux_story.challenges.challenge_5.steps import Step1 as NextChallengeStep
-from linux_story.file_data import copy_data
+#from linux_story.file_data import copy_data
 from linux_story.file_functions import write_to_file
 
 
@@ -65,6 +65,6 @@ class Step3(StepTemplateCd):
     hints = "Stuck? Type: {{ycat mum}}"
 
     def next(self):
-        copy_data(5)
+        #copy_data(5)
         write_to_file("challenge", "5")
         NextChallengeStep()
