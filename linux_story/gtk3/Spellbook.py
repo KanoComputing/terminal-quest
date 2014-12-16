@@ -55,7 +55,9 @@ class Spellbook(Gtk.EventBox):
 
         self.set_size_request(self.WIDTH, self.HEIGHT)
 
-    def create_spell(self, name):
+        self.pack_locked_spells()
+
+    def create_spell(self, name, locked=False):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.set_size_request(self.CMD_WIDTH, self.CMD_HEIGHT)
         box.set_margin_top(10)
@@ -67,13 +69,20 @@ class Spellbook(Gtk.EventBox):
         icon_background.get_style_context().add_class("spell_icon_background")
         box.pack_start(icon_background, False, False, 0)
 
-        # Get image from the name
-        filename = os.path.join(common_media_dir, name + ".png")
+        label_background = Gtk.EventBox()
+        label_background.get_style_context().add_class("spell_label_background")
+
+        if locked:
+            filename = os.path.join(common_media_dir, "padlock.png")
+            icon_background.get_style_context().add_class("locked")
+            label_background.get_style_context().add_class("locked")
+
+        else:
+            filename = os.path.join(common_media_dir, name + ".png")
+
         icon = Gtk.Image.new_from_file(filename)
         icon_background.add(icon)
 
-        label_background = Gtk.EventBox()
-        label_background.get_style_context().add_class("spell_label_background")
         box.pack_start(label_background, False, False, 0)
 
         label = Gtk.Label(name)
@@ -88,16 +97,22 @@ class Spellbook(Gtk.EventBox):
 
         if commands:
             for command in commands:
-                box = self.create_spell(command)
-                self.grid.attach(box, left, 0, 1, 1)
-                left += 1
+                if (left + 1) * (self.CMD_WIDTH + 20) < self.win_width:
+                    box = self.create_spell(command)
+                    child = self.grid.get_child_at(left, 0)
+                    self.grid.remove(child)
+                    self.grid.attach(box, left, 0, 1, 1)
+                    left += 1
 
-    def unpack_spells(self):
-        for child in self.grid:
-            self.grid.remove(child)
+    def pack_locked_spells(self):
+        left = 0
+
+        while (left + 1) * (self.CMD_WIDTH + 20) < self.win_width:
+            locked_box = self.create_spell("...", locked=True)
+            self.grid.attach(locked_box, left, 0, 1, 1)
+            left += 1
 
     def repack_spells(self, commands):
-        self.unpack_spells()
         self.pack_spells(commands)
         if self.first:
             self.first = False
@@ -118,7 +133,7 @@ class Spellbook(Gtk.EventBox):
         win.spellbook.show_all()
         win.terminal.show_all()
 
-        delete_file("hide-spellbook")
+        #delete_file("hide-spellbook")
 
     def get_command_list(self):
         if file_exists("commands"):

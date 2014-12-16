@@ -15,8 +15,16 @@
 	background: @spell_icon_background;
 }
 
+.spell_icon_background.locked {
+	background: @spell_icon_background_locked;
+}
+
 .spell_label_background {
 	background: @spell_label_background;
+}
+
+.spell_label_background.locked {
+	background: @spell_label_background_locked;
 }
 
 .spell_label {
