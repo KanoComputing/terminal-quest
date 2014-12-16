@@ -1,14 +1,18 @@
 
 .black {
-	background: #000000;
+	background: #262626;
 }
 
 .spell_border {
 	background: #bbbbbb;
 }
 
-.spell_background {
-	background: #313131;
+.spell_icon_background {
+	background: #332f35;
+}
+
+.spell_label_background {
+	background: #262229;
 }
 
 .spell_label {
@@ -27,33 +31,9 @@
 }
 
 .spellbook_background {
-	background: #576b73;
+	background: #454048;
 }
 
 .spellbook_border {
 	background: #bbbbbb;
-}
-
-.light_blue {
-	background: #687980;
-}
-
-.dark_blue {
-	background: #576b73;
-}
-
-.light_grey {
-	background: #3f3f3f;
-}
-
-.dark_grey {
-	background: #313131;
-}
-
-.light_yellow_grey {
-	background: #59543e;
-}
-
-.dark_yellow_grey {
-	background: #444133;
 }

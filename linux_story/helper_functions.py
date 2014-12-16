@@ -224,8 +224,8 @@ def typing_animation(string):
 
                 # remove all ansi escape sequences to find the real word length
                 ansi_escape = re.compile(r'\x1b[^m]*m')
-                clean_word=ansi_escape.sub('', next_word)
-                next_word_len=len(clean_word)
+                clean_word = ansi_escape.sub('', next_word)
+                next_word_len = len(clean_word)
 
                 if line_width + next_word_len >= columns:
                     sys.stdout.write("\n")

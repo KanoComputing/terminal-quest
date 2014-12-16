@@ -20,8 +20,8 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.file_functions import read_file, file_exists, delete_file, delete_dir
+from linux_story.paths import common_media_dir
 from kano.gtk3.apply_styles import apply_styling_to_screen
-from kano.utils import get_user
 
 
 class Spellbook(Gtk.EventBox):
@@ -31,17 +31,16 @@ class Spellbook(Gtk.EventBox):
     )
     SPELLBOOK_BORDER = 1
     SPELL_BORDER = 1
-    DESCRIPTIONS = {
-        "ls": "Take a look around you",
-        "cd": "Go somewhere new",
-        "cat": "Print the contents of a file",
-        "title": "{}'s spellbook".format(get_user())
-    }
+    CMD_HEIGHT = 80
+    CMD_WIDTH = 80
+    HEIGHT = 100
 
     def __init__(self):
         apply_styling_to_screen(self.CSS_FILE)
         self.stop = False
-        # TODO: fix this, is hacky.  First time we launch the spellbook, we want to hide it
+
+        # TODO: fix this, is hacky.
+        # First time we launch the spellbook, we want to hide it
         self.first = True
 
         Gtk.EventBox.__init__(self)
@@ -58,55 +57,54 @@ class Spellbook(Gtk.EventBox):
         self.win_width = screen.get_width()
         self.win_height = screen.get_height()
 
-        self.width = self.win_width / 2
-        self.height = 60
+        self.WIDTH = self.win_width / 2
 
-        self.set_size_request(self.width, self.height)
+        self.set_size_request(self.WIDTH, self.HEIGHT)
 
-    def create_command(self, name, left):
-
-        CMD_HEIGHT = 60
-        CMD_WIDTH = 60
-
+    def create_spell(self, name):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        box.set_size_request(CMD_WIDTH, CMD_HEIGHT)
+        box.set_size_request(self.CMD_WIDTH, self.CMD_HEIGHT)
+        box.set_margin_top(10)
+        box.set_margin_left(10)
+        box.set_margin_right(10)
+        box.set_margin_bottom(10)
 
-        background = Gtk.EventBox()
-        background.set_size_request(CMD_HEIGHT, CMD_WIDTH)
-        background.add(box)
+        icon_background = Gtk.EventBox()
+        icon_background.get_style_context().add_class("spell_icon_background")
+        box.pack_start(icon_background, False, False, 0)
 
-        if name == "title":
-            background.get_style_context().add_class("light_yellow_grey")
-            # add icon
-        else:
-            label = Gtk.Label(name)
-            label.get_style_context().add_class("spell_command")
-            label.set_alignment(xalign=0.5, yalign=0.5)
-            box.pack_start(label, True, False, 0)
-            if left % 2 == 1:
-                background.get_style_context().add_class("dark_blue")
-            else:
-                background.get_style_context().add_class("light_blue")
+        # Get image from the name
+        filename = os.path.join(common_media_dir, name + ".png")
+        icon = Gtk.Image.new_from_file(filename)
+        icon_background.add(icon)
 
-        return background
+        label_background = Gtk.EventBox()
+        label_background.get_style_context().add_class("spell_label_background")
+        box.pack_start(label_background, False, False, 0)
 
-    def pack_commands(self, commands):
+        label = Gtk.Label(name)
+        label.get_style_context().add_class("spell_command")
+        label.set_alignment(xalign=0.5, yalign=0.5)
+        label_background.add(label)
+
+        return box
+
+    def pack_spells(self, commands):
         left = 0
 
         if commands:
             for command in commands:
-                box = self.create_command(command, left)
+                box = self.create_spell(command)
                 self.grid.attach(box, left, 0, 1, 1)
                 left += 1
 
-    def unpack_commands(self):
+    def unpack_spells(self):
         for child in self.grid:
             self.grid.remove(child)
 
-    def repack_commands(self, commands):
-        self.unpack_commands()
-        commands = ["title"] + commands
-        self.pack_commands(commands)
+    def repack_spells(self, commands):
+        self.unpack_spells()
+        self.pack_spells(commands)
         if self.first:
             self.first = False
         else:
@@ -138,7 +136,7 @@ class Spellbook(Gtk.EventBox):
         while not self.stop:
             if file_exists("commands"):
                 commands = self.get_command_list()
-                GObject.idle_add(self.repack_commands, commands)
+                GObject.idle_add(self.repack_spells, commands)
                 self.delete_file()
             #if file_exists("hide-spellbook"):
             #    GObject.idle_add(self.hide_ui)

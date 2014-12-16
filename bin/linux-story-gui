@@ -48,9 +48,13 @@ class Application(MainWindow):
     def __init__(self):
         MainWindow.__init__(self)
         self.terminal = Terminal_Ui()
+        fg_color = Gdk.Color.parse("#ffffff")[1]
+        bg_color = Gdk.Color.parse("#262626")[1]
+        self.terminal.set_colors(fg_color, bg_color, [])
         self.terminal.set_margin_top(10)
         self.terminal.set_margin_left(10)
         self.terminal.set_margin_right(10)
+
         self.visible = visible
         fg_color = Gdk.Color.parse("#ffffff")[1]
         bg_color = Gdk.Color.parse("#313131")[1]
@@ -86,8 +90,8 @@ class Application(MainWindow):
 
         # Allow for margin on bottom
         # TODO: this is hacky. Tidy up.
-        self.terminal.set_size_request(width / 2 - 20, height - spellbook.height - 2 * 44 - 20)
-        self.visible.set_size_request(width / 2 - 20, height - spellbook.height - 2 * 44 - 10)
+        self.terminal.set_size_request(width / 2 - 20, height - spellbook.HEIGHT - 2 * 44 - 20)
+        self.visible.set_size_request(width / 2 - 20, height - spellbook.HEIGHT - 2 * 44 - 10)
 
         self.visible.set_can_focus(False)
 
