@@ -80,7 +80,7 @@ class Application(MainWindow):
         self.visible.set_margin_right(10)
         self.spellbook = spellbook
 
-    def create_terminal(self, challenge_number="1", step_number="1"):
+    def create_terminal(self, challenge_number="", step_number=""):
 
         left_background = Gtk.EventBox()
         left_background.get_style_context().add_class("story_background")
