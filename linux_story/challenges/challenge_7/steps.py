@@ -73,6 +73,9 @@ class Step3(StepTemplateCd):
         "cat little-boy": "boy: \"Has anyone seen my dog Bernard? He's never run away before...\""
     }
 
+    last_step = True
+    challenge_number = 7
+
     def check_command(self, line, current_dir):
         # check through list of commands
         command_validated = False
