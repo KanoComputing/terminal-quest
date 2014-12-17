@@ -199,17 +199,16 @@ def typing_animation(string):
         e = string[:3]
 
         if e == "[1m":
-            line_width += 1
+            line_width -= 1
             new_char = string[:7]
             sys.stdout.write(new_char)
             string = string[7:]
         elif e == ";5;":
-            line_width += 1
+            line_width -= 1
             new_char = string[:7]
             sys.stdout.write(new_char)
             string = string[7:]
         elif e == "[0m":
-            line_width += 1
             new_char = string[:3]
             sys.stdout.write(new_char)
             string = string[3:]
