@@ -12,6 +12,7 @@ import os
 from helper_functions import parse_string, typing_animation
 from file_functions import write_to_file
 from kano_profile.badges import save_app_state_variable_with_dialog
+from kano_profile.apps import load_app_state_variable
 
 
 class Step():
@@ -77,8 +78,10 @@ class Step():
         pass
 
     def complete_challenge(self):
-        save_app_state_variable_with_dialog("linux-story", "level",
-                                            self.challenge_number)
+        level = load_app_state_variable("linux-story", "level")
+        if self.challenge_number > level:
+            save_app_state_variable_with_dialog("linux-story", "level",
+                                                self.challenge_number)
 
     # default terminal
     def launch_terminal(self):
