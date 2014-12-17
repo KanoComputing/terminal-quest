@@ -36,7 +36,7 @@ class Step1(StepTemplateLs):
         "\"...nobody can explain what is causing the phenomenon, and Mayor Hubert has "
         "called an emergency town meeting...\"\n",
         "It's time to get up sleepy head!",
-        "\n{{lNew Spell:}} {{yls}} - lets you see what's around you."
+        "\n{{wNew Spell:}} {{yls}} - lets you see what's around you."
     ]
     start_dir = "~"
     end_dir = "~"

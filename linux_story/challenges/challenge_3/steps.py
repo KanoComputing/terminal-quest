@@ -32,12 +32,12 @@ class Step1(StepTemplateCat):
         "{{gCongratulations, you earned 10 XP!}}\n",
         "Love it! Put it on quickly.",
         "There's loads more interesting stuff in your room.",
-        "Let's look in your {{bshelves}}"
+        "Let's look in your {{yshelves}}"
     ]
     start_dir = "~"
     end_dir = "~"
     command = ["ls shelves", "ls shelves/"]
-    hints = "{{rType}} {{yls shelves}} {{rto look at your books}}s"
+    hints = "{{rType}} {{yls shelves}} {{rto look at your books}}"
 
     def next(self):
         Step2()
