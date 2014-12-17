@@ -33,7 +33,7 @@ class Step1(StepTemplateCd):
     start_dir = "town"
     end_dir = "town"
     command = "ls"
-    hints = "To look around, use {{yls}}"
+    hints = "{{rTo look around, use}} {{yls}}"
 
     def next(self):
         Step2()
@@ -48,7 +48,7 @@ class Step2(StepTemplateCd):
     start_dir = "town"
     end_dir = "town"
     command = "cat note"
-    hints = "To look around, use {{ycat note}}"
+    hints = "{{rTo look around, use}} {{ycat note}}"
 
     def next(self):
         Step3()
@@ -61,7 +61,7 @@ class Step3(StepTemplateCd):
     start_dir = "town"
     end_dir = "kitchen"
     command = ""
-    hints = "Get back to the kitchen using {{ycd ..}}"
+    hints = "{{rGet back to the kitchen using}} {{ycd ..}}"
 
     def block_command(self, line):
         allowed_commands = ["cd ..", "cd ../"]
@@ -80,7 +80,7 @@ class Step4(StepTemplateCd):
     start_dir = "kitchen"
     end_dir = "kitchen"
     command = "ls"
-    hints = "Use {{yls}} to see that everything is where it should be"
+    hints = "{{rUse}} {{yls}} {{rto see that everything is where it should be}}"
 
     def next(self):
         Step5()
@@ -95,7 +95,7 @@ class Step5(StepTemplateCd):
     start_dir = "kitchen"
     end_dir = "kitchen"
     command = "cat note"
-    hints = "Use {{ycat note}} to read the note"
+    hints = "{{rUse}} {{ycat note}} {{rto read the note}}"
 
     def next(self):
         Step6()

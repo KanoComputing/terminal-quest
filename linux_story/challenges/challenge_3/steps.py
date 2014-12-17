@@ -37,7 +37,7 @@ class Step1(StepTemplateCat):
     start_dir = "~"
     end_dir = "~"
     command = ["ls shelves", "ls shelves/"]
-    hints = "Type {{yls shelves}} to look at your books"
+    hints = "{{rType}} {{yls shelves}} {{rto look at your books}}s"
 
     def next(self):
         Step2()
@@ -50,7 +50,7 @@ class Step2(StepTemplateCat):
     start_dir = "~"
     end_dir = "~"
     command = "cat shelves/comic-book"
-    hints = "Type {{ycat shelves/comic-book}} to read the comic."
+    hints = "{{rType {{ycat shelves/comic-book}} to read the comic.}}"
 
     def next(self):
         Step3()
@@ -65,7 +65,7 @@ class Step3(StepTemplateCat):
     start_dir = "~"
     end_dir = "~"
     command = "cat shelves/note"
-    hints = "Type {{ycat shelves/note}} to read the note"
+    hints = "{{rType}} {{ycat shelves/note}} {{rto read the note}}"
 
     def next(self):
         #copy_data(4)

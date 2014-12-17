@@ -117,6 +117,8 @@ def get_preset_from_id(id):
         return 123
     elif id == "w":
         return 231
+    elif id == "l":
+        return 147
     elif id == "R":
         return 9
     elif id == "G":
@@ -130,18 +132,12 @@ def get_preset_from_id(id):
     elif id == "P":
         return 205
     else:
-        # lilac
-        # return 147
+        # white
         return 231
 
 
-def message_type_preset(message_type):
-    preset = {"hint": "r", "story": None, "command": None, "output": None}
-    return get_preset_from_id(preset[message_type])
-
-
 def parse_string(string, message_type="story", input=False):
-    default_preset = message_type_preset(message_type)
+    default_preset = get_preset_from_id(message_type)
     if input:
         colour_function = colourizeInput256
     else:

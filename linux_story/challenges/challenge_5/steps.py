@@ -37,7 +37,7 @@ class Step1(StepTemplateCd):
     start_dir = "kitchen"
     end_dir = "garden"
     command = ""
-    hints = "To go to the garden, type {{ycd garden}}"
+    hints = "{{rTo go to the garden, type}} {{ycd garden}}"
 
     def block_command(self, line):
         allowed_commands = ["cd garden", "cd garden/"]
@@ -57,7 +57,7 @@ class Step2(StepTemplateCd):
     start_dir = "garden"
     end_dir = "garden"
     command = "ls"
-    hints = "To look for your Dad, type {{yls}} and press Enter"
+    hints = "{{rTo look for your Dad, type}} {{yls}} {{rand press Enter}}"
 
     def next(self):
         Step3()
@@ -71,7 +71,7 @@ class Step3(StepTemplateCd):
     start_dir = "garden"
     end_dir = "greenhouse"
     command = ""
-    hints = "To go to the greenhouse, type {{ycd greenhouse}}"
+    hints = "{{rTo go to the greenhouse, type}} {{ycd greenhouse}}"
 
     def block_command(self, line):
         allowed_commands = ["cd greenhouse", "cd greenhouse/"]
@@ -91,7 +91,7 @@ class Step4(StepTemplateCd):
     start_dir = "greenhouse"
     end_dir = "greenhouse"
     command = "ls"
-    hints = "Type {{yls}} to look for your Dad."
+    hints = "{{rType}} {{yls}} {{rto look for your Dad.}}"
 
     def next(self):
         Step5()
@@ -105,7 +105,7 @@ class Step5(StepTemplateCd):
     start_dir = "greenhouse"
     end_dir = "greenhouse"
     command = "cat note"
-    hints = "Type {{ycat note}} to see what the note says!"
+    hints = "{{rType}} {{ycat note}} {{rto see what the note says!}}"
 
     def next(self):
         Step6()
@@ -118,13 +118,13 @@ class Step6(StepTemplateCd):
     start_dir = "greenhouse"
     end_dir = "garden"
     command = ""
-    hints = "Type {{ycd ..}} to go back to the garden"
+    hints = "{{rType}} {{ycd ..}} {{rto go back to the garden}}"
 
     def block_command(self, line):
         allowed_commands = ["cd ..", "cd ../"]
         line = line.strip()
         if "cd" in line and line not in allowed_commands:
-            self.save_hint("Careful! You want to go back using {{ycd ..}}")
+            self.save_hint("{{rCareful! You want to go back using}} {{ycd ..}}")
             return True
 
     def next(self):
@@ -138,7 +138,7 @@ class Step7(StepTemplateCd):
     start_dir = "garden"
     end_dir = "kitchen"
     command = ""
-    hints = "Type {{ycd ..}} to go back to the kitchen"
+    hints = "{{rType}} {{ycd ..}} {{rto go back to the kitchen}}"
 
     def block_command(self, line):
         allowed_commands = ["cd ..", "cd ../"]

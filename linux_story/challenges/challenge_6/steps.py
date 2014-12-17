@@ -33,7 +33,7 @@ class Step1(StepTemplateCd):
     start_dir = "kitchen"
     end_dir = "kitchen"
     command = "cat mum"
-    hints = "To talk to your mum, type {{ycat mum}} and press Enter"
+    hints = "{{rTo talk to your mum, type}} {{ycat mum}} {{rand press Enter}}"
 
     def next(self):
         Step2()
@@ -50,7 +50,7 @@ class Step2(StepTemplateCd):
     start_dir = "kitchen"
     end_dir = "garden"
     command = ""
-    hints = "Type {{ycd garden}} to start the journey."
+    hints = "{{rType}} {{ycd garden}} {{rto start the journey.}}"
 
     def block_command(self, line):
         allowed_commands = ["cd garden", "cd garden/"]
@@ -70,7 +70,7 @@ class Step3(StepTemplateCd):
     start_dir = "garden"
     end_dir = "garden"
     command = ""
-    hints = "Stuck?  Type {{yls}} to look around"
+    hints = "{{rStuck?  Type}} {{yls}} {{rto look around}}"
 
     def next(self):
         Step4()
@@ -84,7 +84,7 @@ class Step4(StepTemplateCd):
     start_dir = "garden"
     end_dir = "garden"
     command = ["ls road", "ls road/"]
-    hints = "Type {{yls road}} to look down the road."
+    hints = "{{rType}} {{yls road}} {{rto look down the road.}}"
 
     def next(self):
         Step5()

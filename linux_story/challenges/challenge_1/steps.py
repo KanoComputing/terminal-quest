@@ -41,7 +41,7 @@ class Step1(StepTemplateLs):
     start_dir = "~"
     end_dir = "~"
     command = "ls"
-    hints = ["Type {{yls}} and press Enter to take a look around your bedroom"]
+    hints = ["{{rType}} {{yls}} {{rand press Enter to take a look around your bedroom}}"]
 
     def next(self):
         write_to_file("challenge", "2")

@@ -35,7 +35,7 @@ class Step1(StepTemplateCat):
     start_dir = "~"
     end_dir = "~"
     command = "cat alarm"
-    hints = "Type {{ycat alarm}} to see the alarm."
+    hints = "{{rType}} {{ycat alarm}} {{rto see the alarm.}}"
 
     def next(self):
         Step2()
@@ -49,7 +49,7 @@ class Step2(StepTemplateCat):
     start_dir = "~"
     end_dir = "~"
     command = ["ls wardrobe", "ls wardrobe/"]
-    hints = "Type {{yls wardrobe}} to find something to wear"
+    hints = "{{rType {{yls wardrobe}} to find something to wear}}"
 
     def next(self):
         Step3()
@@ -62,7 +62,7 @@ class Step3(StepTemplateCat):
     start_dir = "~"
     end_dir = "~"
     command = "cat wardrobe/hat"
-    hints = "Type {{ycat wardrobe/hat}} to find something to wear"
+    hints = "{{rType}} {{ycat wardrobe/hat}} {{rto find something to wear}}"
 
     def next(self):
         write_to_file("challenge", "3")

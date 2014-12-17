@@ -36,7 +36,7 @@ class Step1(StepTemplateCd):
     start_dir = "~"
     end_dir = "kitchen"
     command = ""
-    hints = "Type {{ycd kitchen}} to go to the kitchen"
+    hints = "{{rType}} {{ycd kitchen}} {{rto go to the kitchen}}"
 
     def block_command(self, line):
         allowed_commands = ["cd kitchen", "cd kitchen/"]
@@ -57,7 +57,7 @@ class Step2(StepTemplateCd):
     start_dir = "kitchen"
     end_dir = "kitchen"
     command = "ls"
-    hints = "Can't find her?  Type {{yls}} and press Enter"
+    hints = "{{rCan't find her?  Type}} {{yls}} {{rand press Enter}}"
 
     def next(self):
         Step3()
@@ -70,7 +70,7 @@ class Step3(StepTemplateCd):
     start_dir = "kitchen"
     end_dir = "kitchen"
     command = "cat mum"
-    hints = "Stuck? Type: {{ycat mum}}"
+    hints = "{{rStuck? Type:}} {{ycat mum}}"
 
     def next(self):
         #copy_data(5)

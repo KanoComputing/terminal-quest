@@ -34,7 +34,7 @@ class Step1(StepTemplateCd):
     start_dir = "town"
     end_dir = "town"
     command = "ls"
-    hints = "To look around, use {{yls}}"
+    hints = "{{rTo look around, use}} {{yls}}"
 
     def next(self):
         Step2()
@@ -47,7 +47,7 @@ class Step2(StepTemplateCd):
     start_dir = "town"
     end_dir = "town"
     command = "cat mayor"
-    hints = "Stuck? Type: {{ycat mayor}}"
+    hints = "{{rStuck? Type:}} {{ycat mayor}}"
 
     def next(self):
         Step3()
@@ -66,18 +66,18 @@ class Step3(StepTemplateCd):
     # Use functions here
     command = ""
     all_commands = {
-        "cat grumpy-man": "I don't know what's happening to me"
-        " - my legs have gone all bendy!",
-        "cat young-girl": "I can't find my friend Amy anywhere. If you see her, "
-        "will you let me know?",
-        "cat little-boy": "Has anyone seen my dog Bernard? He's never run away before..."
+        "cat grumpy-man": "man: \"I don't know what's happening to me"
+        " - my legs have gone all bendy!\"",
+        "cat young-girl": "girl: \"I can't find my friend Amy anywhere. If you see her, "
+        "will you let me know?\"",
+        "cat little-boy": "boy: \"Has anyone seen my dog Bernard? He's never run away before...\""
     }
 
     def check_command(self, line, current_dir):
         # check through list of commands
         command_validated = False
         end_dir_validated = False
-        self.hints = ["Use {{y" + self.all_commands.keys()[0] + "}} to progress"]
+        self.hints = ["{{rUse}} {{y" + self.all_commands.keys()[0] + "}} {{rto progress}}"]
 
         # strip any spaces off the beginning and end
         line = line.strip()
@@ -87,15 +87,15 @@ class Step3(StepTemplateCd):
         # if the validation is included
         if line in self.all_commands.keys() and end_dir_validated:
             # Print hint from person
-            self.story = "\n" + self.all_commands[line]
-            self.save_story()
             hint = "\n" + self.all_commands[line]
 
             self.all_commands.pop(line, None)
 
             if len(self.all_commands) > 0:
                 # This needs to be green
-                hint += "\nWell done!  Check on {} more people".format(len(self.all_commands))
+                hint += "\n{{gWell done!  Check on " + \
+                    str(len(self.all_commands)) + \
+                    " more people}}"
 
             else:
                 command_validated = True
