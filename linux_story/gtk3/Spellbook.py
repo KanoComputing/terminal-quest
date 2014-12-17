@@ -107,7 +107,7 @@ class Spellbook(Gtk.EventBox):
     def pack_locked_spells(self):
         left = 0
 
-        while (left + 1) * (self.CMD_WIDTH + 20) < self.win_width:
+        while left < 3:
             locked_box = self.create_spell("...", locked=True)
             self.grid.attach(locked_box, left, 0, 1, 1)
             left += 1
