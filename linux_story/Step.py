@@ -113,7 +113,6 @@ class Step():
     def block_command(self, line):
         line = line.strip()
         if "cd" in line:
-            self.save_hint("\nCareful! You don't need cd for this step")
             return True
 
     def check_output(self, output):
