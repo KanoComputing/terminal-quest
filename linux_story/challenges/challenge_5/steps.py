@@ -31,6 +31,7 @@ class Step1(StepTemplateCd):
         "{{gCongratulations, you earned 20 XP!}}\n",
         "Mum: \"Have you seen your Dad? I can't find him anywhere, "
         "and the newspaper says that people have been going missing all over Folderton!\"\n",
+        "Let's look for your Dad in the garden",
         "To go to the garden, type {{ycd garden}}"
     ]
     start_dir = "kitchen"
