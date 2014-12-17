@@ -8,6 +8,7 @@
 
 import os
 import sys
+import time
 
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
 if __name__ == '__main__' and __package__ is None:
@@ -91,12 +92,12 @@ class Step3(StepTemplateCd):
 
             self.all_commands.pop(line, None)
 
-            if len(self.all_commands) > 0:
-                # This needs to be green
+            if self.all_commands == 1:
+                hint += "\n{{gWell done! Check on 1 more person.}}"
+            elif len(self.all_commands) > 0:
                 hint += "\n{{gWell done! Check on " + \
                     str(len(self.all_commands)) + \
                     " more people.}}"
-
             else:
                 command_validated = True
 
@@ -108,6 +109,7 @@ class Step3(StepTemplateCd):
         return command_validated and end_dir_validated
 
     def next(self):
+        time.sleep(6)
         write_to_file("challenge", "8")
         copy_data(8)
         NextChallengeStep()
