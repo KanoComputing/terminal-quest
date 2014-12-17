@@ -25,19 +25,18 @@ class StepTemplateCat(Step):
     def __init__(self):
         Step.__init__(self, TerminalCat)
 
-####################
-# We expect people to trip up on this step.  More explanation needed?
+
 class Step1(StepTemplateCat):
     story = [
         "{{gCongratulations, you earned 10 XP!}}\n",
         "Love it! Put it on quickly.",
         "There's loads more interesting stuff in your room.",
-        "Let's look in your {{yshelves}}"
+        "Let's look in your {{yshelves}} using {{yls}}"
     ]
     start_dir = "~"
     end_dir = "~"
     command = ["ls shelves", "ls shelves/"]
-    hints = "{{rType}} {{yls shelves}} {{rto look at your books}}"
+    hints = "{{rType}} {{yls shelves}} {{rto look at your books.}}"
 
     def next(self):
         Step2()
@@ -50,7 +49,7 @@ class Step2(StepTemplateCat):
     start_dir = "~"
     end_dir = "~"
     command = "cat shelves/comic-book"
-    hints = "{{rType {{ycat shelves/comic-book}} to read the comic.}}"
+    hints = "{{rType}} {{ycat shelves/comic-book}} {{rto read the comic.}}"
 
     def next(self):
         Step3()
@@ -59,13 +58,13 @@ class Step2(StepTemplateCat):
 class Step3(StepTemplateCat):
     story = [
         "Why is it covered in pawprints?",
-        "Hang on, there's a note amongst your books",
+        "Hang on, there's a note amongst your books.",
         "Read the note using {{ycat}}"
     ]
     start_dir = "~"
     end_dir = "~"
     command = "cat shelves/note"
-    hints = "{{rType}} {{ycat shelves/note}} {{rto read the note}}"
+    hints = "{{rType}} {{ycat shelves/note}} {{rto read the note.}}"
 
     def next(self):
         #copy_data(4)

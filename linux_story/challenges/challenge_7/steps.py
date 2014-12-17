@@ -29,7 +29,7 @@ class StepTemplateCd(Step):
 class Step1(StepTemplateCd):
     story = [
         "{{gCongratulations, you earned 30 XP!}}\n",
-        "Have a look around to see what's going on in town"
+        "Have a look around to see what's going on in town."
     ]
     start_dir = "town"
     end_dir = "town"
@@ -56,9 +56,9 @@ class Step2(StepTemplateCd):
 class Step3(StepTemplateCd):
     story = [
         "Mayor: \"Calm down please! We have our best people looking into the "
-        "disappearances, and we're hoping to have an explanation soon\"\n",
+        "disappearances, and we're hoping to have an explanation soon.\"\n",
         "Something strange is happening. Better check everyone is ok.",
-        "Type {{ycat}} to check on everyone"
+        "Type {{ycat}} to check on everyone."
     ]
     start_dir = "town"
     end_dir = "town"
@@ -93,9 +93,9 @@ class Step3(StepTemplateCd):
 
             if len(self.all_commands) > 0:
                 # This needs to be green
-                hint += "\n{{gWell done!  Check on " + \
+                hint += "\n{{gWell done! Check on " + \
                     str(len(self.all_commands)) + \
-                    " more people}}"
+                    " more people.}}"
 
             else:
                 command_validated = True

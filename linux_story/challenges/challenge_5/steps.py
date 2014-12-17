@@ -52,7 +52,7 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "Use {{yls}} to look in the garden for your Dad"
+        "Use {{yls}} to look in the garden for your Dad."
     ]
     start_dir = "garden"
     end_dir = "garden"
@@ -65,8 +65,8 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "Hmmm...you can't see him anywhere",
-        "Maybe he's in the {{ygreenhouse}}.  Go into the greenhouse."
+        "Hmmm... you can't see him anywhere.",
+        "Maybe he's in the {{ygreenhouse}}. Go into the greenhouse."
     ]
     start_dir = "garden"
     end_dir = "greenhouse"

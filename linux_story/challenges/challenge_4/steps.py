@@ -42,7 +42,7 @@ class Step1(StepTemplateCd):
         allowed_commands = ["cd kitchen", "cd kitchen/"]
         line = line.strip()
         if "cd" in line and line not in allowed_commands:
-            self.save_hint("Careful! You want to go to the {{bkitchen}}")
+            self.save_hint("Careful! You want to go to the {{ykitchen}}.")
             return True
 
     def next(self):
@@ -57,7 +57,7 @@ class Step2(StepTemplateCd):
     start_dir = "kitchen"
     end_dir = "kitchen"
     command = "ls"
-    hints = "{{rCan't find her?  Type}} {{yls}} {{rand press Enter}}"
+    hints = "{{rCan't find her?  Type}} {{yls}} {{rand press Enter.}}"
 
     def next(self):
         Step3()
@@ -65,7 +65,7 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "Speak to mum by using {{ycat}}"
+        "Let's see what {{ymum}} wants by using {{ycat}}"
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"

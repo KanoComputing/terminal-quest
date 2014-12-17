@@ -27,7 +27,7 @@ class StepTemplateCd(Step):
 class Step1(StepTemplateCd):
     story = [
         "{{gCongratulations, you earned 35 XP!}}\n",
-        "What was that?  A rumble?",
+        "What was that? A rumble?",
         "Use {{yls}} to see what happened."
     ]
     start_dir = "town"
@@ -43,7 +43,7 @@ class Step2(StepTemplateCd):
     story = [
         "Everyone has gone.",
         "Wait - there's just a note on the floor.",
-        "Use {{ycat}} to read the note"
+        "Use {{ycat}} to read the note."
     ]
     start_dir = "town"
     end_dir = "town"
@@ -56,12 +56,13 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "Type {{ycd ..}} until you get back to the {{bkitchen}}"
+        "Oh no! Check your mum is alright.",
+        "Type {{ycd ..}} until you get back to your {{bkitchen}}."
     ]
     start_dir = "town"
     end_dir = "kitchen"
     command = ""
-    hints = "{{rUse}} {{ycd ..}} {{rto progress}}"
+    hints = "{{rUse}} {{ycd ..}} {{rto progress.}}"
     allowed_commands = ["cd ..", "cd ../"]
 
     def __init__(self):
@@ -103,12 +104,12 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "Check if everything is where it should be.  Look around."
+        "Check if everything is where it should be. Look around."
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"
     command = "ls"
-    hints = "{{rUse}} {{yls}} {{rto see that everything is where it should be}}"
+    hints = "{{rUse}} {{yls}} {{rto see that everything is where it should be.}}"
 
     def next(self):
         Step5()
@@ -118,12 +119,12 @@ class Step5(StepTemplateCd):
     story = [
         "Oh no - Mum's vanished too.",
         "Wait - there's another note.",
-        "Use {{ycat}} to read the note"
+        "Use {{ycat}} to read the note."
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"
     command = "cat note"
-    hints = "{{rUse}} {{ycat note}} {{rto read the note}}"
+    hints = "{{rUse}} {{ycat note}} {{rto read the note.}}"
 
     def next(self):
         Step6()
@@ -132,7 +133,7 @@ class Step5(StepTemplateCd):
 class Step6(StepTemplateCd):
     story = [
         "{{rTo be continued...}}\n",
-        "Press any key to exit"
+        "Press the Enter key to exit."
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"

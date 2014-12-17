@@ -33,7 +33,7 @@ class Step1(StepTemplateCd):
     start_dir = "kitchen"
     end_dir = "kitchen"
     command = "cat mum"
-    hints = "{{rTo talk to your mum, type}} {{ycat mum}} {{rand press Enter}}"
+    hints = "{{rTo talk to your mum, type}} {{ycat mum}} {{rand press Enter}}."
 
     def next(self):
         Step2()
@@ -42,9 +42,9 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCd):
     story = [
         "Mum: \"You couldn't find him either? Oh dear - this isn't good. "
-        "He never leaves home without telling me first\"",
+        "He never leaves home without telling me first.\"",
         "\"Maybe he went to the town meeting with the Mayor. "
-        "Why don't you go and check? I'll stay here in case he comes back\"\n",
+        "Why don't you go and check? I'll stay here in case he comes back.\"\n",
         "Let's go to town. Type {{ycd garden}} to start the journey."
     ]
     start_dir = "kitchen"
@@ -56,7 +56,7 @@ class Step2(StepTemplateCd):
         allowed_commands = ["cd garden", "cd garden/"]
         line = line.strip()
         if "cd" in line and line not in allowed_commands:
-            self.save_hint("Careful! You want to go to the {{bgarden}}")
+            self.save_hint("Careful! You want to go to the {{bgarden}}.")
             return True
 
     def next(self):
@@ -65,12 +65,12 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "Look around again to see where to go next"
+        "Look around again to see where to go next."
     ]
     start_dir = "garden"
     end_dir = "garden"
     command = ""
-    hints = "{{rStuck?  Type}} {{yls}} {{rto look around}}"
+    hints = "{{rStuck?  Type}} {{yls}} {{rto look around.}}"
 
     def next(self):
         Step4()
@@ -78,8 +78,8 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "There's a road! Let's have a look down the road, but {{rwithout going on the road}}",
-        "Type {{yls road}} to look down the road"
+        "There's a road! Let's have a look down the road, but {{rwithout going on the road.}}",
+        "Type {{yls road}} to look down the road."
     ]
     start_dir = "garden"
     end_dir = "garden"
@@ -92,18 +92,18 @@ class Step4(StepTemplateCd):
 
 class Step5(StepTemplateCd):
     story = [
-        "There's the town!  Let's walk into town using {{ycd}}"
+        "There's the town! Let's walk into town using {{ycd}}"
     ]
     start_dir = "garden"
     end_dir = "town"
     command = ""
-    hints = "Type {{ycd road/town}} to walk into town."
+    hints = "{{rType}} {{ycd road/town}} {{rto walk into town.}}"
 
     def block_command(self, line):
         allowed_commands = ["cd road/town", "cd road/town/"]
         line = line.strip()
         if "cd" in line and line not in allowed_commands:
-            self.save_hint("Careful! You want to go to the {{ytown}}, which is down the {{yroad}}")
+            self.save_hint("Careful! You want to go to the {{ytown}}, which is down the {{yroad}}.")
             return True
 
     def next(self):
