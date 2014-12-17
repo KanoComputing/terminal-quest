@@ -66,11 +66,11 @@ class Step3(StepTemplateCd):
     # Use functions here
     command = ""
     all_commands = {
-        "cat grumpy-man": "man: \"I don't know what's happening to me"
+        "cat grumpy-man": "Man: \"I don't know what's happening to me"
         " - my legs have gone all bendy!\"",
-        "cat young-girl": "girl: \"I can't find my friend Amy anywhere. If you see her, "
+        "cat young-girl": "Girl: \"I can't find my friend Amy anywhere. If you see her, "
         "will you let me know?\"",
-        "cat little-boy": "boy: \"Has anyone seen my dog Bernard? He's never run away before...\""
+        "cat little-boy": "Boy: \"Has anyone seen my dog Bernard? He's never run away before...\""
     }
 
     def check_command(self, line, current_dir):

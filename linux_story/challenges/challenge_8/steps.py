@@ -61,13 +61,41 @@ class Step3(StepTemplateCd):
     start_dir = "town"
     end_dir = "kitchen"
     command = ""
-    hints = "{{rGet back to the kitchen using}} {{ycd ..}}"
+    hints = "{{rUse}} {{ycd ..}} {{rto progress}}"
+    allowed_commands = ["cd ..", "cd ../"]
+
+    def __init__(self):
+        self.counter = 0
+        StepTemplateCd.__init__(self)
 
     def block_command(self, line):
-        allowed_commands = ["cd ..", "cd ../"]
         line = line.strip()
-        if "cd" in line and line not in allowed_commands:
+        if "cd" in line and line not in self.allowed_commands:
             return True
+
+    def check_command(self, line, current_dir):
+        # check through list of commands
+        command_validated = False
+
+        # strip any spaces off the beginning and end
+        line = line.strip()
+
+        # if the validation is included
+        if line in self.allowed_commands:
+            self.counter += 1
+
+            if self.counter > 2:
+                command_validated = True
+
+            else:
+                # Print hint from person
+                hint = "\n{{gWell done!  Keep going!}}"
+                self.save_hint(hint)
+
+        else:
+            self.save_hint("\n" + self.hints[0])
+
+        return command_validated
 
     def next(self):
         Step4()
@@ -75,7 +103,7 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "Check if everything is where it should be"
+        "Check if everything is where it should be.  Look around."
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"
