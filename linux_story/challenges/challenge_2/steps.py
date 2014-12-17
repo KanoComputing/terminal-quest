@@ -57,7 +57,7 @@ class Step2(StepTemplateCat):
 
 class Step3(StepTemplateCat):
     story = [
-        "Check out the hat."
+        "Check out the hat.",
         "Type {{ycat wardrobe/hat}} to see how it looks"
     ]
     start_dir = "~"
