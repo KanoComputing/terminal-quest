@@ -65,13 +65,19 @@ class Step3(StepTemplateCd):
 
     # Use functions here
     command = ""
-    all_commands = ["cat grumpy-man", "cat old-woman", "cat young-girl", "cat little-boy"]
+    all_commands = {
+        "cat grumpy-man": "I don't know what's happening to me"
+        " - my legs have gone all bendy!",
+        "cat young-girl": "I can't find my friend Amy anywhere. If you see her, "
+        "will you let me know?",
+        "cat little-boy": "Has anyone seen my dog Bernard? He's never run away before..."
+    }
 
     def check_command(self, line, current_dir):
         # check through list of commands
         command_validated = False
         end_dir_validated = False
-        self.hints = ["Use {{y" + self.all_commands[0] + "}} to progress"]
+        self.hints = ["Use {{y" + self.all_commands.keys()[0] + "}} to progress"]
 
         # strip any spaces off the beginning and end
         line = line.strip()
@@ -79,14 +85,22 @@ class Step3(StepTemplateCd):
         end_dir_validated = current_dir == self.end_dir
 
         # if the validation is included
-        if line in self.all_commands and end_dir_validated:
-            self.all_commands.remove(line)
+        if line in self.all_commands.keys() and end_dir_validated:
+            # Print hint from person
+            self.story = "\n" + self.all_commands[line]
+            self.save_story()
+            hint = "\n" + self.all_commands[line]
+
+            self.all_commands.pop(line, None)
 
             if len(self.all_commands) > 0:
                 # This needs to be green
-                self.save_hint("\nWell done!  Check on {} more people".format(len(self.all_commands)))
+                hint += "\nWell done!  Check on {} more people".format(len(self.all_commands))
+
             else:
                 command_validated = True
+
+            self.save_hint(hint)
 
         else:
             self.save_hint("\n" + self.hints[0])
