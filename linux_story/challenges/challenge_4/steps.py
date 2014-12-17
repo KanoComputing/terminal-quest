@@ -42,7 +42,6 @@ class Step1(StepTemplateCd):
         allowed_commands = ["cd kitchen", "cd kitchen/"]
         line = line.strip()
         if "cd" in line and line not in allowed_commands:
-            self.save_hint("Careful! You want to go to the {{ykitchen}}.")
             return True
 
     def next(self):

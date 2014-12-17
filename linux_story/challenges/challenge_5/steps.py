@@ -43,7 +43,6 @@ class Step1(StepTemplateCd):
         allowed_commands = ["cd garden", "cd garden/"]
         line = line.strip()
         if "cd" in line and line not in allowed_commands:
-            self.save_hint("Careful! You want to go to the {{bgarden}}")
             return True
 
     def next(self):
@@ -77,7 +76,6 @@ class Step3(StepTemplateCd):
         allowed_commands = ["cd greenhouse", "cd greenhouse/"]
         line = line.strip()
         if "cd" in line and line not in allowed_commands:
-            self.save_hint("Careful! You want to go to the {{bgreenhouse}}")
             return True
 
     def next(self):
@@ -124,7 +122,6 @@ class Step6(StepTemplateCd):
         allowed_commands = ["cd ..", "cd ../"]
         line = line.strip()
         if "cd" in line and line not in allowed_commands:
-            self.save_hint("{{rCareful! You want to go back using}} {{ycd ..}}")
             return True
 
     def next(self):
@@ -144,7 +141,6 @@ class Step7(StepTemplateCd):
         allowed_commands = ["cd ..", "cd ../"]
         line = line.strip()
         if "cd" in line and line not in allowed_commands:
-            self.save_hint("Careful! You want to go back using {{ycd ..}}")
             return True
 
     def next(self):

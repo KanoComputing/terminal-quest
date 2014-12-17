@@ -17,7 +17,6 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from linux_story.challenges.challenge_2.terminals import TerminalCat
 from linux_story.challenges.challenge_4.steps import Step1 as NextChallengeStep
-#from linux_story.file_data import copy_data
 from linux_story.file_functions import write_to_file
 
 
@@ -67,6 +66,5 @@ class Step3(StepTemplateCat):
     hints = "{{rType}} {{ycat shelves/note}} {{rto read the note.}}"
 
     def next(self):
-        #copy_data(4)
         write_to_file("challenge", "4")
         NextChallengeStep()
