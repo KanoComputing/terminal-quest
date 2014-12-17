@@ -12,6 +12,7 @@ import os
 import sys
 import threading
 import signal
+import time
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -36,6 +37,7 @@ class StoryBackend():
             self.next_step()
             if file_exists("hint"):
                 self.read_file("hint")
+            time.sleep(0.2)
 
     def next_step(self):
         if file_exists("started"):

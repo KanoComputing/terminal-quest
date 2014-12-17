@@ -150,6 +150,7 @@ class Spellbook(Gtk.EventBox):
             if file_exists("exit"):
                 Gtk.main_quit()
                 sys.exit(0)
+            time.sleep(0.2)
             #if file_exists("hide-spellbook"):
             #    GObject.idle_add(self.hide_ui)
             #else:
