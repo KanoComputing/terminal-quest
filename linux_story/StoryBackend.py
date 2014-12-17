@@ -26,7 +26,7 @@ from file_functions import (
 )
 
 
-class CheckFiles():
+class StoryBackend():
     def __init__(self):
         self.stop = False
         self.run()
@@ -40,6 +40,7 @@ class CheckFiles():
     def next_step(self):
         if file_exists("started"):
             delete_file("started")
+            delete_file("hint")
             os.system("clear")
             challenge_number = read_file("challenge")
             self.print_challenge_title(challenge_number)
@@ -81,4 +82,4 @@ if __name__ == "__main__":
         pass
 
     signal.signal(signal.SIGINT, sigint_handler)
-    CheckFiles()
+    StoryBackend()

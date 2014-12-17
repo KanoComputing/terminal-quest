@@ -25,16 +25,19 @@ class StepTemplateCat(Step):
     def __init__(self):
         Step.__init__(self, TerminalCat)
 
-
+####################
+# We expect people to trip up on this step.  More explanation needed?
 class Step1(StepTemplateCat):
     story = [
-        "Your mum is calling you! Better get dressed...",
-        "Type {{yls wardrobe}} to find something to wear"
+        "{{gCongratulations, you earned 10 XP!}}\n",
+        "Love it! Put it on quickly.",
+        "There's loads more interesting stuff in your room.",
+        "Let's look in your {{bshelves}}"
     ]
     start_dir = "~"
     end_dir = "~"
-    command = ["ls wardrobe", "ls wardrobe/"]
-    hints = "Type {{yls wardrobe}} to find something to wear"
+    command = ["ls shelves", "ls shelves/"]
+    hints = "Type {{yls shelves}} to look at your books"
 
     def next(self):
         Step2()
@@ -42,12 +45,12 @@ class Step1(StepTemplateCat):
 
 class Step2(StepTemplateCat):
     story = [
-        "Type {{ycat wardrobe/hat}} to look at your hat"
+        "That comic book looks fun. Take a look inside with {{ycat shelves/comic-book}}"
     ]
     start_dir = "~"
     end_dir = "~"
-    command = "cat wardrobe/hat"
-    hints = "Type {{ycat wardrobe/hat}} to find something to wear"
+    command = "cat shelves/comic-book"
+    hints = "Type {{ycat shelves/comic-book}} to read the comic."
 
     def next(self):
         Step3()
@@ -55,14 +58,14 @@ class Step2(StepTemplateCat):
 
 class Step3(StepTemplateCat):
     story = [
-        "Love it! Put it on quickly.",
-        "Hang on, there's a note on your desk...",
-        "Type {{ycat note}}"
+        "Why is it covered in pawprints?",
+        "Hang on, there's a note amongst your books",
+        "Read the note using {{ycat}}"
     ]
     start_dir = "~"
     end_dir = "~"
-    command = "cat note"
-    hints = "Type {{ycat note}} to read what's on your computer"
+    command = "cat shelves/note"
+    hints = "Type {{ycat shelves/note}} to read the note"
 
     def next(self):
         #copy_data(4)

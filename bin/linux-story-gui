@@ -22,7 +22,7 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.gtk3.terminal_ui import Terminal_Ui
 from linux_story.gtk3.Spellbook import Spellbook, SpellbookThread
-from linux_story.CheckFiles import StoryThread
+from linux_story.StoryBackend import StoryThread
 from linux_story.paths import css_dir
 from kano.gtk3.kano_progress import KanoProgressBar
 from kano.gtk3.apply_styles import apply_styling_to_screen

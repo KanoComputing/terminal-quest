@@ -108,8 +108,12 @@ class Step():
                 self.hints.pop(0)
         return command_validated and end_dir_validated
 
+    # By default, block cd
     def block_command(self, line):
-        pass
+        line = line.strip()
+        if "cd" in line:
+            self.save_hint("\nCareful! You don't need cd for this step")
+            return True
 
     def check_output(self, output):
         if not output:

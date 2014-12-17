@@ -17,7 +17,6 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from terminals import TerminalCat
 from linux_story.challenges.challenge_3.steps import Step1 as NextChallengeStep
-#from linux_story.file_data import copy_data
 from linux_story.file_functions import write_to_file
 
 
@@ -28,8 +27,10 @@ class StepTemplateCat(Step):
 
 class Step1(StepTemplateCat):
     story = [
+        "{{gCongratulations, you earned 5 XP!}}\n",
         "Better turn that alarm off.",
-        "\n{{wNew Spell}}: to look at objects, we type {{ycat}}."
+        "\n{{wNew Spell}}: to look at objects, we type {{ycat <object name>}}.",
+        "To look at the alarm, type {{ycat alarm}}"
     ]
     start_dir = "~"
     end_dir = "~"
@@ -42,13 +43,13 @@ class Step1(StepTemplateCat):
 
 class Step2(StepTemplateCat):
     story = [
-        "Ok - it's switched off. There's lots of other interesting things to look at - check them out!",
-        "Have a look at your {{bshelves}}"
+        "Ok - it's switched off. Better get dressed...",
+        "Type {{yls wardrobe}} to find something to wear"
     ]
     start_dir = "~"
     end_dir = "~"
-    command = ["ls shelves", "ls shelves/"]
-    hints = "Type {{yls shelves}} to look at your books"
+    command = ["ls wardrobe", "ls wardrobe/"]
+    hints = "Type {{yls wardrobe}} to find something to wear"
 
     def next(self):
         Step3()
@@ -56,14 +57,13 @@ class Step2(StepTemplateCat):
 
 class Step3(StepTemplateCat):
     story = [
-        "That comic book looks fun. Take a look inside."
+        "Type {{ycat wardrobe/hat}} to see how it looks"
     ]
     start_dir = "~"
     end_dir = "~"
-    command = "cat shelves/comic-book"
-    hints = "Type {{ycat shelves/comic-book}} to read the comic."
+    command = "cat wardrobe/hat"
+    hints = "Type {{ycat wardrobe/hat}} to find something to wear"
 
     def next(self):
-        #copy_data(3)
         write_to_file("challenge", "3")
         NextChallengeStep()

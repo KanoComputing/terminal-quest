@@ -28,6 +28,7 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
+        "{{gCongratulations, you earned 15 XP!}}\n",
         "That's weird. No time for that now though - lets find Mum.",
         "\n{{wNew Spell}}: {{ycd}} lets you move between places.",
         "\nType {{ycd kitchen}} to go and see Mum."
@@ -36,6 +37,13 @@ class Step1(StepTemplateCd):
     end_dir = "kitchen"
     command = ""
     hints = "Type {{ycd kitchen}} to go to the kitchen"
+
+    def block_command(self, line):
+        allowed_commands = ["cd kitchen", "cd kitchen/"]
+        line = line.strip()
+        if "cd" in line and line not in allowed_commands:
+            self.save_hint("Careful! You want to go to the {{bkitchen}}")
+            return True
 
     def next(self):
         Step2()
