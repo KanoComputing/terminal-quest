@@ -117,7 +117,7 @@ class Application(MainWindow):
         )
 
         def delay_showing_elements(win, terminal, spellbook):
-            time.sleep(31)
+            time.sleep(30)
 
             def done(win):
                 win.show_all()
@@ -156,7 +156,7 @@ class ProgressThread(threading.Thread):
         pb = KanoProgressBar(
             pulse=False,
             title="Loading the Legendary Tutorial Tales",
-            rate=0.008
+            rate=0.01
         )
         pb.run()
 
