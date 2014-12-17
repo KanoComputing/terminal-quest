@@ -51,6 +51,7 @@ class MainWindow(Gtk.Window):
         self.get_style_context().add_class("main_window")
         self.maximize()
         self.set_title("Legendary Terminal Tales")
+        self.set_icon_name("linux-story")
 
     def close_window(self, widget, event):
         spellbook.stop = True

@@ -41,5 +41,7 @@ setup(name='Linux Story',
       scripts=['bin/linux-story', 'bin/linux-story-gui'],
       package_data={'linux_story': file_system + data + animation + challenges + gtk3 +
                     terminals},
-      data_files=[('/usr/share/linux-story/media/', media)]
+      data_files=[('/usr/share/linux-story/media/', media),
+                  ('/usr/share/kano-applications/', "icon/linux-story.app"),
+                  ('/usr/share/icons/Kano/66x66/apps/', 'icon/linux-story.png')]
       )
