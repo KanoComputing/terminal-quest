@@ -58,12 +58,12 @@ class Step2(StepTemplateCat):
 class Step3(StepTemplateCat):
     story = [
         "Check out the hat.",
-        "Type {{ycat wardrobe/hat}} to see how it looks"
+        "Type {{ycat wardrobe/cap}} to see how it looks"
     ]
     start_dir = "~"
     end_dir = "~"
-    command = "cat wardrobe/hat"
-    hints = "{{rType}} {{ycat wardrobe/hat}} {{rto investigate how it looks}}"
+    command = "cat wardrobe/cap"
+    hints = "{{rType}} {{ycat wardrobe/cap}} {{rto investigate how it looks}}"
 
     def next(self):
         write_to_file("challenge", "3")
