@@ -10,6 +10,9 @@
 
 import os
 from helper_functions import parse_string, typing_animation
+from file_functions import write_to_file
+from kano_profile.badges import save_app_state_variable_with_dialog
+from kano_profile.apps import load_app_state_variable
 
 
 class Step():
@@ -19,6 +22,8 @@ class Step():
     command = ""
     hints = ""
     animation = None
+    last_step = False
+    challenge_number = 0
     output_condition = lambda x, y: False
 
     def __init__(self, Terminal_Class):
@@ -31,9 +36,18 @@ class Step():
         self.run()
 
     def run(self):
-        self.show_story()
+        self.save_story()
+
+        # This is to make sure that we clear the terminal properly
+        # before printing the story
+        write_to_file("started", "")
         self.show_animation()
         self.launch_terminal()
+
+        if self.last_step:
+            self.complete_challenge()
+
+        # Tell storyline the step is finished
         self.next()
 
     def show_story(self):
@@ -43,6 +57,13 @@ class Step():
                 typing_animation(line + "\n")
             except:
                 pass
+
+    def save_story(self):
+        story = "\n".join(self.story)
+        write_to_file("story", story)
+
+    def save_hint(self, text):
+        write_to_file("hint", text)
 
     def show_animation(self):
         # if there's animation, play it
@@ -55,6 +76,12 @@ class Step():
 
     def next(self):
         pass
+
+    def complete_challenge(self):
+        level = load_app_state_variable("linux-story", "level")
+        if self.challenge_number > level:
+            save_app_state_variable_with_dialog("linux-story", "level",
+                                                self.challenge_number)
 
     # default terminal
     def launch_terminal(self):
@@ -70,6 +97,9 @@ class Step():
         # check through list of commands
         command_validated = True
         end_dir_validated = True
+
+        # strip any spaces off the beginning and end
+        line = line.strip()
 
         # if the validation is included
         if self.command:
@@ -87,13 +117,16 @@ class Step():
         # Go through hints until we get to last hint
         # then just keep showing last hint
         if not (command_validated and end_dir_validated):
-            print parse_string(self.hints[0])
+            self.save_hint("\n" + self.hints[0])
             if len(self.hints) > 1:
                 self.hints.pop(0)
         return command_validated and end_dir_validated
 
+    # By default, block cd
     def block_command(self, line):
-        pass
+        line = line.strip()
+        if "cd" in line:
+            return True
 
     def check_output(self, output):
         if not output:

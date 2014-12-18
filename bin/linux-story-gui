@@ -10,7 +10,10 @@
 
 import os
 import sys
-from gi.repository import Gtk
+import threading
+import time
+from gi.repository import Gtk, Gdk, GObject
+# GObject.threads_init() is called when importing KanoProgressBar
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -18,26 +21,162 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.gtk3.terminal_ui import Terminal_Ui
+from linux_story.gtk3.Spellbook import Spellbook, SpellbookThread
+from linux_story.StoryBackend import StoryThread
+from linux_story.paths import css_dir
+from kano.gtk3.kano_progress import KanoProgressBar
+from kano.gtk3.apply_styles import apply_styling_to_screen
+
+from kano_profile.tracker import Tracker
+kanotracker = Tracker()
+
+visible = Terminal_Ui()
+spellbook = Spellbook()
 
 
 class MainWindow(Gtk.Window):
+    CSS_FILE = os.path.join(
+        css_dir,
+        "style.css"
+    )
+    COLOUR_CSS_FILE = os.path.join(
+        css_dir,
+        "colours.css"
+    )
+
     def __init__(self):
+        apply_styling_to_screen(self.CSS_FILE)
+        apply_styling_to_screen(self.COLOUR_CSS_FILE)
+
         Gtk.Window.__init__(self)
-        self.connect('delete-event', Gtk.main_quit)
+        self.connect('delete-event', self.close_window)
+        self.get_style_context().add_class("main_window")
+        self.maximize()
+        self.set_title("Legendary Terminal Quest")
+        self.set_icon_name("linux-story")
+
+    def close_window(self, widget, event):
+        spellbook.stop = True
+        self.close()
+        Gtk.main_quit()
 
 
-def create_terminal():
-    terminal = Terminal_Ui()
-    win = MainWindow()
-    win.add(terminal)
-    filepath = os.path.abspath(os.path.join(os.path.dirname(__file__), "linux-story"))
-    command = "temp=$(tty) ; python " + filepath + " > $temp | clear\n"
-    length = len(command)
-    terminal.feed_child(command, length)
-    win.show_all()
+class Application(MainWindow):
+    def __init__(self):
+        MainWindow.__init__(self)
+        self.terminal = Terminal_Ui()
+        fg_color = Gdk.Color.parse("#ffffff")[1]
+        bg_color = Gdk.Color.parse("#262626")[1]
+        self.terminal.set_colors(fg_color, bg_color, [])
+        self.terminal.set_margin_top(10)
+        self.terminal.set_margin_left(10)
+        self.terminal.set_margin_right(10)
 
-    Gtk.main()
+        self.visible = visible
+        fg_color = Gdk.Color.parse("#ffffff")[1]
+        bg_color = Gdk.Color.parse("#313131")[1]
+        self.visible.set_colors(fg_color, bg_color, [])
+        self.visible.set_margin_top(10)
+        self.visible.set_margin_left(10)
+        self.visible.set_margin_right(10)
+        self.spellbook = spellbook
+
+    def create_terminal(self, challenge_number="", step_number=""):
+
+        left_background = Gtk.EventBox()
+        left_background.get_style_context().add_class("story_background")
+        right_background = Gtk.EventBox()
+        right_background.get_style_context().add_class("terminal_background")
+
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.add(vbox)
+
+        hbox = Gtk.Box()
+
+        vbox.pack_start(hbox, False, False, 0)
+        vbox.pack_start(spellbook, False, False, 0)
+        hbox.pack_start(left_background, False, False, 0)
+        hbox.pack_start(right_background, False, False, 0)
+
+        left_background.add(self.visible)
+        right_background.add(self.terminal)
+
+        screen = Gdk.Screen.get_default()
+        width = screen.get_width()
+        height = screen.get_height()
+
+        # Allow for margin on bottom
+        # TODO: this is hacky. Tidy up.
+        self.terminal.set_size_request(width / 2 - 20, height - spellbook.HEIGHT - 2 * 44 - 20)
+        self.visible.set_size_request(width / 2 - 20, height - spellbook.HEIGHT - 2 * 44 - 10)
+
+        self.visible.set_can_focus(False)
+
+        filepath = os.path.abspath(
+            os.path.join(
+                os.path.dirname(__file__),
+                "linux-story"
+            )
+        )
+
+        def delay_showing_elements(win, terminal, spellbook):
+            time.sleep(30)
+
+            def done(win):
+                win.show_all()
+
+                # Terminal should be focused on
+                terminal.grab_focus()
+
+            GObject.idle_add(done, win)
+
+        thread = threading.Thread(
+            target=delay_showing_elements,
+            args=(self, self.terminal, self.spellbook)
+        )
+        thread.start()
+
+        command = "python " + filepath + " " + challenge_number + " " + step_number
+        self.terminal.launch_command(command)
+
+        # this to hide the spellbook and terminal from view until the story has finished
+        # displaying
+        self.show_all()
+        self.terminal.hide()
+        self.spellbook.hide()
+
+        Gtk.main()
+
+
+class ProgressThread(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+
+    def run(self):
+        GObject.idle_add(self.load_progress_bar)
+
+    def load_progress_bar(self):
+        pb = KanoProgressBar(
+            pulse=False,
+            title="Loading the Legendary Terminal Quest",
+            rate=0.01
+        )
+        pb.run()
 
 
 if __name__ == "__main__":
-    create_terminal()
+    story = StoryThread(visible)
+    story.start()
+
+    spellbook_thread = SpellbookThread(spellbook)
+    spellbook_thread.start()
+
+    progress_thread = ProgressThread()
+    progress_thread.start()
+
+    app = Application()
+
+    if len(sys.argv) == 3:
+        app.create_terminal(sys.argv[1], sys.argv[2])
+    else:
+        app.create_terminal()

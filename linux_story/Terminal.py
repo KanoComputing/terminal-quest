@@ -13,6 +13,7 @@ from cmd import Cmd
 from helper_functions import (get_completion_desc, get_script_cmd,
                               debugger)
 from Tree import generate_file_tree
+from linux_story.file_functions import write_to_file
 
 # If this is not imported, the escape characters used for the colour prompts
 # show up as special characters. We don't use any functions from this module,
@@ -21,6 +22,7 @@ import readline
 
 
 class Terminal(Cmd):
+    commands = []
 
     def __init__(
         self,
@@ -33,6 +35,7 @@ class Terminal(Cmd):
 
         Cmd.__init__(self)
 
+        self.write_commands_to_file()
         self.update_tree()
 
         self.current_dir = start_dir
@@ -50,14 +53,17 @@ class Terminal(Cmd):
         self.set_prompt()
         self.cmdloop()
 
+    #################################################
+    # this is for communication between the spellbook and the terminal
+    def write_commands_to_file(self):
+        commands = " ".join(self.commands)
+        write_to_file("commands", commands)
+
     def set_prompt(self):
         self.prompt = self.filetree.generate_prompt(self.current_dir)
 
     def do_help(self, line):
         pass
-
-    def validate(self, line):
-        return self.validation(line, self.current_dir)
 
     # do nothing if the user enters an empty line
     def emptyline(self):

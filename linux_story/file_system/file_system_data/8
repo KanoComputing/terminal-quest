@@ -1,0 +1,6 @@
+drwxr-xr-x 1 user user 170 Dec 17 14:26 /home/user/kano/linux-tutorial/linux_story/file_system/8/kitchen
+-rw-r--r-- 1 user user 412 Dec 17 14:26 /home/user/kano/linux-tutorial/linux_story/file_system/8/kitchen/note
+drwxr-xr-x 1 user user 136 Dec 17 09:17 /home/user/kano/linux-tutorial/linux_story/file_system/8/kitchen/garden
+drwxr-xr-x 1 user user 136 Dec 17 09:17 /home/user/kano/linux-tutorial/linux_story/file_system/8/kitchen/garden/road
+drwxr-xr-x 1 user user 136 Dec 17 14:26 /home/user/kano/linux-tutorial/linux_story/file_system/8/kitchen/garden/road/town
+-rw-r--r-- 1 user user 449 Dec 17 14:26 /home/user/kano/linux-tutorial/linux_story/file_system/8/kitchen/garden/road/town/note

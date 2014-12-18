@@ -83,11 +83,17 @@ def record_data():
                 for fi in files:
                     cmd = "ls -l " + os.path.join(dir_path, fi)
                     p = subprocess.check_output(cmd, shell=True)
-                    f.write(p)
+
+                    # So this works in a virtual box on a Mac
+                    if not ".DS_Store" in p:
+                        f.write(p)
                 for d in dirs:
                     cmd = "ls -ld " + os.path.join(dir_path, d)
                     p = subprocess.check_output(cmd, shell=True)
-                    f.write(p)
+
+                    # So this works in a virtual box on a Mac
+                    if not ".DS_Store" in p:
+                        f.write(p)
 
 
 # TODO: this needs to be changed so if the data is already in the tree

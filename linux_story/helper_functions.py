@@ -8,11 +8,11 @@
 # Author: Caroline Clark <caroline@kano.me>
 # Helper functions.
 
-
 import os
 import sys
 import time
 import readline
+import re
 
 from kano.colours import colourize256, decorate_string
 
@@ -82,8 +82,8 @@ def get_completion_desc(current_dir, tree, line, list_type="both"):
     # "command_name" -params directory/directory/(dir OR file)
     elements = line.split(" ")
 
-    # if the last element is a load of directories (no guarentee) then we need to pick the
-    # last element to compare against
+    # if the last element is a load of directories (no guarentee) then we need
+    # to pick the last element to compare against
     dirs = elements[-1].split("/")
     direct_descs = tree.show_type(current_dir, list_type)
     final_list = []
@@ -115,6 +115,10 @@ def get_preset_from_id(id):
         return 197
     elif id == "c":
         return 123
+    elif id == "w":
+        return 231
+    elif id == "l":
+        return 147
     elif id == "R":
         return 9
     elif id == "G":
@@ -128,18 +132,19 @@ def get_preset_from_id(id):
     elif id == "P":
         return 205
     else:
-        return 147
+        # white
+        return 231
 
 
-def parse_string(string, input=False):
-    default_preset = get_preset_from_id(None)
+def parse_string(string, message_type="story", input=False):
+    default_preset = get_preset_from_id(message_type)
     if input:
         colour_function = colourizeInput256
     else:
         colour_function = colourize256
 
     if string.find("{{") == -1:
-        string = colour_function(string, default_preset, bold=True)
+        string = colour_function(string, default_preset, bold=False)
         return string
 
     # First part of the string
@@ -156,10 +161,10 @@ def parse_string(string, input=False):
         colour_part = string[pos1 + 3:pos2]
 
         colour_part = colour_function(colour_part, preset, bold=True)
-        first_part = colour_function(first_part, default_preset, bold=True)
+        first_part = colour_function(first_part, default_preset, bold=False)
 
         if string.find("{{") != -1:
-            last_part = colour_function(last_part, default_preset, bold=True)
+            last_part = colour_function(last_part, default_preset, bold=False)
 
         string = first_part + colour_part + last_part
 
@@ -183,16 +188,23 @@ def colourizeInput256(string, fg_num=None, bg_num=None, bold=False):
 
 
 def typing_animation(string):
+    # Get number of characters from terminal
+    rows, columns = os.popen('stty size', 'r').read().split()
+    columns = int(columns)
+    line_width = 0
+
     while string:
 
         char = string[:1]
         e = string[:3]
 
         if e == "[1m":
+            line_width -= 1
             new_char = string[:7]
             sys.stdout.write(new_char)
             string = string[7:]
         elif e == ";5;":
+            line_width -= 1
             new_char = string[:7]
             sys.stdout.write(new_char)
             string = string[7:]
@@ -201,14 +213,32 @@ def typing_animation(string):
             sys.stdout.write(new_char)
             string = string[3:]
         else:
-            sys.stdout.write(char)
-            string = string[1:]
             if char == " ":
+                # calculate distance to next line
+                next_word = string.split(" ")[1]
+
+                # remove all ansi escape sequences to find the real word length
+                ansi_escape = re.compile(r'\x1b[^m]*m')
+                clean_word = ansi_escape.sub('', next_word)
+                next_word_len = len(clean_word)
+
+                if line_width + next_word_len >= columns:
+                    sys.stdout.write("\n")
+                    line_width = 0
+                else:
+                    sys.stdout.write(" ")
+                    line_width += 1
                 time.sleep(0.04)
+
             elif char == "\n":
+                sys.stdout.write(char)
                 time.sleep(0.8)
+                line_width = 0
             else:
+                sys.stdout.write(char)
                 time.sleep(0.03)
+                line_width += 1
+            string = string[1:]
 
         sys.stdout.flush()
 
@@ -216,7 +246,7 @@ def typing_animation(string):
 def print_challenge_title(challenge_number):
     fpath = os.path.join(
         os.path.dirname(os.path.realpath(__file__)),
-        "animation/challenge_" + challenge_number
+        "animation/" + challenge_number
     )
     with open(fpath) as f:
         for line in f.readlines():
