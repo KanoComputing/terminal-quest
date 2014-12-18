@@ -158,7 +158,7 @@ class ProgressThread(threading.Thread):
     def load_progress_bar(self):
         pb = KanoProgressBar(
             pulse=False,
-            title="Loading the Legendary Tutorial Quest",
+            title="Loading the Legendary Terminal Quest",
             rate=0.01
         )
         pb.run()
