@@ -52,6 +52,6 @@ setup(name='Linux Story',
       },
       data_files=[
           ('/usr/share/linux-story/media/', media),
-          ('/usr/share/icons/Kano/88x88/apps', icons)
+          ('/usr/share/icons/Kano/66x66/apps', icons)
         ]
       )
