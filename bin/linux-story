@@ -29,7 +29,11 @@ if __name__ == "__main__":
     if len(sys.argv) == 3:
         launch_project(sys.argv[1], sys.argv[2])
     else:
-        challenge = load_app_state_variable("linux-story", "level") + 1
+        profile_level = load_app_state_variable("linux-story", "level")
+        if profile_level:
+            challenge = profile_level + 1
+        else:
+            challenge = 1
 
         # If the project was completed previously, just start over
         if challenge > 8:
