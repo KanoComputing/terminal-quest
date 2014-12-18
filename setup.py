@@ -21,6 +21,12 @@ def recursively_get_dirs(package_name, start_dir):
 
     return paths
 
+def is_image(filepath):
+    img_extensions = ['.png']
+    ext = os.path.splitext(filepath)[1]
+
+    return ext in img_extensions
+
 
 file_system = recursively_get_dirs("linux_story", "file_system")
 data = recursively_get_dirs("linux_story", "data")
@@ -29,6 +35,7 @@ challenges = recursively_get_dirs("linux_story", "challenges")
 gtk3 = recursively_get_dirs("linux_story", "gtk3")
 terminals = recursively_get_dirs("linux_story", "terminals")
 media = recursively_get_dirs("", "media")
+icons = filter(is_image, recursively_get_dirs("", "icon"))
 
 setup(name='Linux Story',
       version='1.2',
@@ -39,7 +46,12 @@ setup(name='Linux Story',
       packages=['linux_story'],
       package_dir={'linux_story': 'linux_story'},
       scripts=['bin/linux-story', 'bin/linux-story-gui'],
-      package_data={'linux_story': file_system + data + animation + challenges + gtk3 +
-                    terminals},
-      data_files=[('/usr/share/linux-story/media/', media)]
+      package_data={
+          'linux_story': file_system + data + animation +
+                         challenges + gtk3 + terminals
+      },
+      data_files=[
+          ('/usr/share/linux-story/media/', media),
+          ('/usr/share/icons/Kano/88x88/apps', icons)
+        ]
       )
