@@ -77,7 +77,7 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "There's a road! Let's have a look down the road, but {{rwithout going on the road.}}",
+        "There's a road! Let's have a look down the road.",
         "Type {{yls road}} to look down the road."
     ]
     start_dir = "garden"
