@@ -29,7 +29,7 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
-        "{{gCongratulations, you earned 30 XP!}}\n",
+        "{{gCongratulations, you earned 10 XP!}}\n",
         "Have a look around to see what's going on in town."
     ]
     start_dir = "town"
@@ -73,6 +73,9 @@ class Step3(StepTemplateCd):
         "will you let me know?\"",
         "cat little-boy": "Boy: \"Has anyone seen my dog Bernard? He's never run away before...\""
     }
+
+    last_step = True
+    challenge_number = 7
 
     def check_command(self, line, current_dir):
         # check through list of commands

@@ -27,7 +27,7 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
-        "{{gCongratulations, you earned 25 XP!}}\n",
+        "{{gCongratulations, you earned 10 XP!}}\n",
         "Let mum know about Dad. Type {{ycat mum}}"
     ]
     start_dir = "kitchen"
@@ -97,6 +97,9 @@ class Step5(StepTemplateCd):
     end_dir = "town"
     command = ""
     hints = "{{rType}} {{ycd road/town}} {{rto walk into town.}}"
+
+    last_step = True
+    challenge_number = 6
 
     def block_command(self, line):
         allowed_commands = ["cd road/town", "cd road/town/"]

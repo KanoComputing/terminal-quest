@@ -27,6 +27,8 @@ from linux_story.paths import css_dir
 from kano.gtk3.kano_progress import KanoProgressBar
 from kano.gtk3.apply_styles import apply_styling_to_screen
 
+from kano_profile.tracker import Tracker
+kanotracker = Tracker()
 
 visible = Terminal_Ui()
 spellbook = Spellbook()
@@ -50,7 +52,7 @@ class MainWindow(Gtk.Window):
         self.connect('delete-event', self.close_window)
         self.get_style_context().add_class("main_window")
         self.maximize()
-        self.set_title("Legendary Terminal Tales")
+        self.set_title("Legendary Terminal Quest")
         self.set_icon_name("linux-story")
 
     def close_window(self, widget, event):
@@ -79,7 +81,7 @@ class Application(MainWindow):
         self.visible.set_margin_right(10)
         self.spellbook = spellbook
 
-    def create_terminal(self, challenge_number="1", step_number="1"):
+    def create_terminal(self, challenge_number="", step_number=""):
 
         left_background = Gtk.EventBox()
         left_background.get_style_context().add_class("story_background")
@@ -156,7 +158,7 @@ class ProgressThread(threading.Thread):
     def load_progress_bar(self):
         pb = KanoProgressBar(
             pulse=False,
-            title="Loading the Legendary Tutorial Tales",
+            title="Loading the Legendary Terminal Quest",
             rate=0.01
         )
         pb.run()

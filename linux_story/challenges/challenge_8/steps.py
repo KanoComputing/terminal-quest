@@ -26,7 +26,7 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
-        "{{gCongratulations, you earned 35 XP!}}\n",
+        "{{gCongratulations, you earned 20 XP!}}\n",
         "What was that? A rumble?",
         "Use {{yls}} to see what happened."
     ]
@@ -132,12 +132,16 @@ class Step5(StepTemplateCd):
 
 class Step6(StepTemplateCd):
     story = [
+        "{{gCongratulations, you earned 20 XP!}}\n",
         "{{rTo be continued...}}\n",
         "Press the Enter key to exit."
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"
     command = ""
+
+    last_step = True
+    challenge_number = 8
 
     def next(self):
         write_to_file("exit")

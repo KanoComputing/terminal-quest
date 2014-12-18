@@ -42,6 +42,9 @@ class Step1(StepTemplateLs):
     command = "ls"
     hints = ["{{rType}} {{yls}} {{rand press Enter to take a look around your bedroom}}"]
 
+    challenge_number = 1
+    last_step = True
+
     def next(self):
         write_to_file("challenge", "2")
         NextChallengeStep()
