@@ -68,7 +68,7 @@ class Step3(StepTemplateCd):
     ]
     start_dir = "garden"
     end_dir = "garden"
-    command = ""
+    command = "ls"
     hints = "{{rStuck?  Type}} {{yls}} {{rto look around.}}"
 
     def next(self):
