@@ -30,4 +30,9 @@ if __name__ == "__main__":
         launch_project(sys.argv[1], sys.argv[2])
     else:
         challenge = load_app_state_variable("linux-story", "level") + 1
-        launch_project(challenge, 1)
+
+        # If the project was completed previously, just start over
+        if challenge > 8:
+            challenge = 1
+
+        launch_project(str(challenge), "1")
