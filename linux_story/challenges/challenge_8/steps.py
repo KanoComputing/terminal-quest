@@ -139,5 +139,8 @@ class Step6(StepTemplateCd):
     end_dir = "kitchen"
     command = ""
 
+    last_step = True
+    challenge_number = 8
+
     def next(self):
         write_to_file("exit")

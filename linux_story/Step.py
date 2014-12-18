@@ -11,6 +11,8 @@
 import os
 from helper_functions import parse_string, typing_animation
 from file_functions import write_to_file
+from kano_profile.badges import save_app_state_variable_with_dialog
+from kano_profile.apps import load_app_state_variable
 
 
 class Step():
@@ -20,6 +22,8 @@ class Step():
     command = ""
     hints = ""
     animation = None
+    last_step = False
+    challenge_number = 0
     output_condition = lambda x, y: False
 
     def __init__(self, Terminal_Class):
@@ -39,6 +43,9 @@ class Step():
         write_to_file("started", "")
         self.show_animation()
         self.launch_terminal()
+
+        if self.last_step:
+            self.complete_challenge()
 
         # Tell storyline the step is finished
         self.next()
@@ -69,6 +76,12 @@ class Step():
 
     def next(self):
         pass
+
+    def complete_challenge(self):
+        level = load_app_state_variable("linux-story", "level")
+        if self.challenge_number > level:
+            save_app_state_variable_with_dialog("linux-story", "level",
+                                                self.challenge_number)
 
     # default terminal
     def launch_terminal(self):

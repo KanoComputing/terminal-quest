@@ -70,6 +70,9 @@ class Step3(StepTemplateCd):
     command = "cat mum"
     hints = "{{rStuck? Type:}} {{ycat mum}}"
 
+    last_step = True
+    challenge_number = 4
+
     def next(self):
         write_to_file("challenge", "5")
         NextChallengeStep()

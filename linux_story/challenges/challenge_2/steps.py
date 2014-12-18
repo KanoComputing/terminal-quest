@@ -65,6 +65,9 @@ class Step3(StepTemplateCat):
     command = "cat wardrobe/cap"
     hints = "{{rType}} {{ycat wardrobe/cap}} {{rto investigate how it looks}}"
 
+    last_step = True
+    challenge_number = 2
+
     def next(self):
         write_to_file("challenge", "3")
         NextChallengeStep()

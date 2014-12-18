@@ -65,6 +65,9 @@ class Step3(StepTemplateCat):
     command = "cat shelves/note"
     hints = "{{rType}} {{ycat shelves/note}} {{rto read the note.}}"
 
+    last_step = True
+    challenge_number = 3
+
     def next(self):
         write_to_file("challenge", "4")
         NextChallengeStep()

@@ -98,6 +98,9 @@ class Step5(StepTemplateCd):
     command = ""
     hints = "{{rType}} {{ycd road/town}} {{rto walk into town.}}"
 
+    last_step = True
+    challenge_number = 6
+
     def block_command(self, line):
         allowed_commands = ["cd road/town", "cd road/town/"]
         line = line.strip()
