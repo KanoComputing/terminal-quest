@@ -29,7 +29,7 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
-        "{{gCongratulations, you earned 30 XP!}}\n",
+        "{{gCongratulations, you earned 10 XP!}}\n",
         "Have a look around to see what's going on in town."
     ]
     start_dir = "town"

@@ -28,7 +28,7 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
-        "{{gCongratulations, you earned 20 XP!}}\n",
+        "{{gCongratulations, you earned 7 XP!}}\n",
         "Mum: \"Have you seen your Dad? I can't find him anywhere, "
         "and the newspaper says that people have been going missing all over Folderton!\"\n",
         "Let's look for your Dad in the garden",

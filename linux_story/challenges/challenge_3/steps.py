@@ -27,7 +27,7 @@ class StepTemplateCat(Step):
 
 class Step1(StepTemplateCat):
     story = [
-        "{{gCongratulations, you earned 10 XP!}}\n",
+        "{{gCongratulations, you earned 5 XP!}}\n",
         "Love it! Put it on quickly.",
         "There's loads more interesting stuff in your room.",
         "Let's look in your {{yshelves}} using {{yls}}"
