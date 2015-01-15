@@ -187,63 +187,54 @@ def colourizeInput256(string, fg_num=None, bg_num=None, bold=False):
     return string
 
 
+# Try spliting the words up into an array of groups of characters,
+# that all need to get printed out one at a time
 def typing_animation(string):
-    # Get number of characters from terminal
     rows, columns = os.popen('stty size', 'r').read().split()
-    columns = int(columns)
-    line_width = 0
+    letters = []
+    total_width = 0
 
-    while string:
+    # First, process string.  Strip each character off unless it starts with \033
+    # Then, strip it off in a chunk
+    while len(string) != 0:
 
-        char = string[:1]
-        e = string[:3]
+        if string.startswith('\033'):
+            index2 = string.find('m')  # First time m comes up is directly after the selected number
+            substring = string[0: index2 + 1]
+            string = string[index2 + 1:]
+            letters.append(substring)
+            total_width += 1
 
-        if e == "[1m":
-            line_width -= 1
-            new_char = string[:7]
-            sys.stdout.write(new_char)
-            string = string[7:]
-        elif e == ";5;":
-            line_width -= 1
-            new_char = string[:7]
-            sys.stdout.write(new_char)
-            string = string[7:]
-        elif e == "[0m":
-            new_char = string[:3]
-            sys.stdout.write(new_char)
-            string = string[3:]
-        else:
-            if char == " ":
-                # calculate distance to next line
-                next_word = string.split(" ")[1]
+        # If character is " ", see if we should replace it with a newline
+        elif string.startswith(' '):
+            # calculate distance to next line
+            next_word = string.split(" ")[1]
 
-                # remove all ansi escape sequences to find the real word length
-                ansi_escape = re.compile(r'\x1b[^m]*m')
-                clean_word = ansi_escape.sub('', next_word)
-                next_word_len = len(clean_word)
+            # remove all ansi escape sequences to find the real word length
+            ansi_escape = re.compile(r'\x1b[^m]*m')
+            clean_word = ansi_escape.sub('', next_word)
+            next_word_len = len(clean_word)
 
-                if line_width + next_word_len >= columns:
-                    sys.stdout.write("\n")
-                    line_width = 0
-                else:
-                    sys.stdout.write(" ")
-                    line_width += 1
-                time.sleep(0.04)
-
-            elif char == "\n":
-                sys.stdout.write(char)
-                time.sleep(0.8)
-                line_width = 0
+            if total_width + next_word_len >= int(columns):
+                total_width = 0
+                letters.append('\n')
             else:
-                sys.stdout.write(char)
-                time.sleep(0.03)
-                line_width += 1
+                total_width += 1
+                letters.append(" ")
             string = string[1:]
 
+        else:
+            letters.append(string[0])
+            string = string[1:]
+            total_width += 1
+
+    for l in letters:
+        sys.stdout.write(l)
         sys.stdout.flush()
+        time.sleep(0.1)
 
 
-def print_challenge_title(challenge_number):
+def print_challenge_title(challenge_number="1"):
     fpath = os.path.join(
         os.path.dirname(os.path.realpath(__file__)),
         "animation/" + challenge_number
