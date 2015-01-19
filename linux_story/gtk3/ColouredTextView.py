@@ -43,7 +43,6 @@ class ColouredTextView(Gtk.TextView):
         lines = self.__split_into_printable_chars(string)
 
         for line in lines:
-            #print line
             GObject.idle_add(
                 self.__style_char,
                 line['letter'],
@@ -68,6 +67,19 @@ class ColouredTextView(Gtk.TextView):
             if string[0] == ' ':
                 # calculate distance to next line
                 next_word = string.split(' ')[1]
+
+                # if coloured
+                index = next_word.find('{{')
+                while index != -1:
+                    next_word = next_word.replace(next_word[index: index + 3], '')
+                    index = next_word.find('{{')
+
+                index = next_word.find('}}')
+
+                while index != -1:
+                    next_word = next_word.replace(next_word[index: index + 2], '')
+                    index = next_word.find('}}')
+
                 next_word_len = len(next_word)
 
                 if total_width + next_word_len >= int(columns):
@@ -131,7 +143,7 @@ class ColouredTextView(Gtk.TextView):
             color_part = string[pos1 + 3:pos2]
 
             color_part = self.__turn_string_into_color_dict(color_part, color)
-            first_part = self.__turn_string_into_color_dict(first_part, color)
+            first_part = self.__turn_string_into_color_dict(first_part, default_color)
 
             if last_part.find("{{") == -1:
                 last_part = self.__turn_string_into_color_dict(last_part, default_color)
@@ -200,7 +212,14 @@ class Window(Gtk.Window):
             self.show_all()
 
     def on_button_clicked(self, button):
-        string = '{{rlotssssssss}} {{gandddddddddd}} {{ylot}}{{ossss}}{{rs}}ssssssssssss anddddddddddddd lotssssssssss and lots and lots and lots and lots of text'
+        string = (
+            '{{rlotssssssss}} '
+            'andddd{{gdddddd}} '
+            '{{ylot}}{{ossss}}{{rs}}ssssssssssss '
+            'anddddddddddddd '
+            'lotssssssssss '
+            'and lots and lots {{band}} lots and lots of text'
+        )
         thr = threading.Thread(target=self.textview.print_output, args=[string])
         thr.start()
 
