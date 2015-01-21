@@ -9,10 +9,11 @@
 # Step class to describe the flow
 
 import os
-from helper_functions import parse_string, typing_animation
-from file_functions import write_to_file
-from kano_profile.badges import save_app_state_variable_with_dialog
-from kano_profile.apps import load_app_state_variable
+#from helper_functions import parse_string, typing_animation
+#from file_functions import write_to_file
+from socket_functions import send_message
+#from kano_profile.badges import save_app_state_variable_with_dialog
+#from kano_profile.apps import load_app_state_variable
 
 
 class Step():
@@ -36,11 +37,14 @@ class Step():
         self.run()
 
     def run(self):
+        print 'run'
         self.save_story()
 
         # This is to make sure that we clear the terminal properly
         # before printing the story
-        write_to_file("started", "")
+        #write_to_file("started", "")
+        send_message("started", "")
+
         self.show_animation()
         self.launch_terminal()
 
@@ -50,22 +54,29 @@ class Step():
         # Tell storyline the step is finished
         self.next()
 
-    def show_story(self):
-        for line in self.story:
-            line = parse_string(line, False)
-            try:
-                typing_animation(line + "\n")
-            except:
-                pass
+    # Unused
+    #def show_story(self):
+    #    print 'show_story'
+    #    for line in self.story:
+    #        line = parse_string(line, False)
+    #        try:
+    #            typing_animation(line + "\n")
+    #        except:
+    #            pass
 
     def save_story(self):
+        print 'save_story'
         story = "\n".join(self.story)
-        write_to_file("story", story)
+        #write_to_file("story", story)
+        send_message("story", story)
 
     def save_hint(self, text):
-        write_to_file("hint", text)
+        print 'save_hint'
+        #write_to_file("hint", text)
+        send_message("hint", text)
 
     def show_animation(self):
+        print 'show_animation'
         # if there's animation, play it
         if self.animation:
             try:
@@ -78,13 +89,15 @@ class Step():
         pass
 
     def complete_challenge(self):
-        level = load_app_state_variable("linux-story", "level")
-        if self.challenge_number > level:
-            save_app_state_variable_with_dialog("linux-story", "level",
-                                                self.challenge_number)
+        pass
+        #level = load_app_state_variable("linux-story", "level")
+        #if self.challenge_number > level:
+        #    save_app_state_variable_with_dialog("linux-story", "level",
+        #                                        self.challenge_number)
 
     # default terminal
     def launch_terminal(self):
+        print 'launch_terminal'
         self.Terminal(
             self.start_dir,
             self.end_dir,
@@ -94,6 +107,7 @@ class Step():
         )
 
     def check_command(self, line, current_dir):
+        print 'check_command'
         # check through list of commands
         command_validated = True
         end_dir_validated = True
@@ -124,11 +138,13 @@ class Step():
 
     # By default, block cd
     def block_command(self, line):
+        print 'block_command'
         line = line.strip()
         if "cd" in line:
             return True
 
     def check_output(self, output):
+        print 'check_output'
         if not output:
             return False
 

@@ -10,6 +10,7 @@
 
 import os
 import sys
+import time
 
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if __name__ == '__main__' and __package__ is None:
@@ -18,13 +19,15 @@ if __name__ == '__main__' and __package__ is None:
 
 
 from linux_story.file_data import copy_data
-from linux_story.file_functions import write_to_file
+#from linux_story.file_functions import write_to_file
+from linux_story.socket_functions import send_message
 
 
 def launch_project(challenge_number="1", step="1"):
     os.system("clear")
     copy_data(int(challenge_number))
-    write_to_file("challenge", challenge_number)
+    #write_to_file("challenge", challenge_number)
+    send_message("challenge", challenge_number)
     Step = get_step_class(challenge_number, step)
     Step()
 

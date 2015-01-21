@@ -11,7 +11,7 @@
 import os
 import sys
 import threading
-import time
+#import time
 from gi.repository import Gtk, Gdk, GObject
 # GObject.threads_init() is called when importing KanoProgressBar
 
@@ -20,17 +20,18 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.gtk3.terminal_ui import Terminal_Ui
+from linux_story.gtk3.TerminalUi import TerminalUi
 from linux_story.gtk3.Spellbook import Spellbook, SpellbookThread
 from linux_story.StoryBackend import StoryThread
 from linux_story.paths import css_dir
 from kano.gtk3.kano_progress import KanoProgressBar
 from kano.gtk3.apply_styles import apply_styling_to_screen
+#from linux_story.message_server import MessageServer
 
-from kano_profile.tracker import Tracker
-kanotracker = Tracker()
+#from kano_profile.tracker import Tracker
+#kanotracker = Tracker()
 
-visible = Terminal_Ui()
+visible = TerminalUi()
 spellbook = Spellbook()
 
 
@@ -64,7 +65,7 @@ class MainWindow(Gtk.Window):
 class Application(MainWindow):
     def __init__(self):
         MainWindow.__init__(self)
-        self.terminal = Terminal_Ui()
+        self.terminal = TerminalUi()
         fg_color = Gdk.Color.parse("#ffffff")[1]
         bg_color = Gdk.Color.parse("#262626")[1]
         self.terminal.set_colors(fg_color, bg_color, [])
@@ -120,7 +121,7 @@ class Application(MainWindow):
         )
 
         def delay_showing_elements(win, terminal, spellbook):
-            time.sleep(30)
+            #time.sleep(30)
 
             def done(win):
                 win.show_all()
@@ -164,7 +165,7 @@ class ProgressThread(threading.Thread):
         pb.run()
 
 
-if __name__ == "__main__":
+def main():
     story = StoryThread(visible)
     story.start()
 
@@ -174,9 +175,24 @@ if __name__ == "__main__":
     progress_thread = ProgressThread()
     progress_thread.start()
 
+    #server_thread = threading.Thread(target=Server)
+    #server_thread.start()
+
     app = Application()
 
     if len(sys.argv) == 3:
         app.create_terminal(sys.argv[1], sys.argv[2])
     else:
         app.create_terminal()
+
+
+# close the server through here
+def handle_cleanup():
+    pass
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    finally:
+        handle_cleanup()

@@ -15,6 +15,7 @@ import readline
 import re
 
 from kano.colours import colourize256, decorate_string
+from kano_profile.apps import load_app_state_variable
 
 
 home = os.path.expanduser("~")
@@ -231,7 +232,7 @@ def typing_animation(string):
     for l in letters:
         sys.stdout.write(l)
         sys.stdout.flush()
-        time.sleep(0.1)
+        time.sleep(0.01)
 
 
 def print_challenge_title(challenge_number="1"):
@@ -243,3 +244,15 @@ def print_challenge_title(challenge_number="1"):
         for line in f.readlines():
             print line.rstrip()
     print ""
+
+
+def print_gained_exp():
+    old_xp = load_app_state_variable()
+    # Look up XP
+    # here
+    new_xp = 0
+    new_xp - old_xp
+    if new_xp - old_xp > 0:
+        typing_animation("Fantastic! You gained {y} experience points!".format())
+
+

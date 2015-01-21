@@ -51,6 +51,11 @@ EXIT_FILENAME = os.path.join(
     "exit"
 )
 
+DEBUG_FILENAME = os.path.join(
+    DIRECTORY,
+    "debug"
+)
+
 FILENAMES = {
     "story": STORY_FILENAME,
     "hint": HINT_FILENAME,
@@ -58,7 +63,8 @@ FILENAMES = {
     "output": OUTPUT_FILENAME,
     "started": STARTED_STEP,
     "challenge": CHALLENGE_FILENAME,
-    "exit": EXIT_FILENAME
+    "exit": EXIT_FILENAME,
+    "debug": DEBUG_FILENAME
 }
 
 PRINTABLES = {
@@ -85,6 +91,24 @@ def write_to_file(file_name, file_contents=""):
     filename = FILENAMES[file_name]
     f = open(filename, 'w+')
     f.write(file_contents)
+    f.close()
+
+
+def append_to_file(file_name, file_contents=""):
+    print 'creating debug file'
+    f = None
+
+    if not os.path.exists(DIRECTORY):
+        create_dir()
+
+    filename = FILENAMES[file_name]
+
+    if not os.path.exists(filename):
+        f = open(filename, 'w+')
+    else:
+        f = open(filename, 'a')
+
+    f.write(file_contents + '\n')
     f.close()
 
 

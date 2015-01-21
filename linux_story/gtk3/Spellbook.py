@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-# linux-story-gui
+# Spellbook.py
 #
 # Copyright (C) 2014 Kano Computing Ltd
 # License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
 #
 # Author: Caroline Clark <caroline@kano.me>
-# Launches linux tutorial in a Gtk application
+
 
 import os
 import sys
