@@ -22,6 +22,8 @@ from linux_story.file_data import copy_data
 
 
 class StepTemplateCd(Step):
+    challenge_number = 5
+
     def __init__(self):
         Step.__init__(self, TerminalCd)
 

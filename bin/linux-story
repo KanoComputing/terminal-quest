@@ -26,8 +26,10 @@ if __name__ == "__main__":
 
     signal.signal(signal.SIGINT, sigint_handler)
 
-    if len(sys.argv) == 3:
-        launch_project(sys.argv[1], sys.argv[2])
+    # Arguments are pipe filename, and then optionally
+    # the Challenge and Step numbers
+    if len(sys.argv) == 4:
+        launch_project(sys.argv[1], sys.argv[2], sys.argv[3])
     else:
         challenge = 1
         #profile_level = load_app_state_variable("linux-story", "level")
@@ -40,4 +42,4 @@ if __name__ == "__main__":
         if challenge > 8:
             challenge = 1
 
-        launch_project(str(challenge), "1")
+        launch_project(sys.argv[1], str(challenge), "1")

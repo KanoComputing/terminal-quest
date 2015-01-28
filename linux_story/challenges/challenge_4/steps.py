@@ -21,6 +21,8 @@ from linux_story.file_functions import write_to_file
 
 
 class StepTemplateCd(Step):
+    challenge_number = 4
+
     def __init__(self):
         Step.__init__(self, TerminalCd)
 

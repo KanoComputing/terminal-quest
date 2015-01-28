@@ -21,6 +21,8 @@ from linux_story.file_functions import write_to_file
 
 
 class StepTemplateCat(Step):
+    challenge_number = 2
+
     def __init__(self):
         Step.__init__(self, TerminalCat)
 

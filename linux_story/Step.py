@@ -9,9 +9,8 @@
 # Step class to describe the flow
 
 import os
-#from helper_functions import parse_string, typing_animation
-#from file_functions import write_to_file
-from socket_functions import send_message
+import json
+from launch_functions import get_open_pipe
 #from kano_profile.badges import save_app_state_variable_with_dialog
 #from kano_profile.apps import load_app_state_variable
 
@@ -24,11 +23,14 @@ class Step():
     hints = ""
     animation = None
     last_step = False
-    challenge_number = 0
+    challenge_number = 1
     output_condition = lambda x, y: False
 
     def __init__(self, Terminal_Class):
         self.Terminal = Terminal_Class
+
+        # Available commands that can be used in the Terminal
+        self.commands = self.Terminal.commands
 
         # if hints are a string
         if isinstance(self.hints, basestring):
@@ -36,47 +38,42 @@ class Step():
 
         self.run()
 
+    def write_to_pipe(self, information):
+        f = get_open_pipe()
+        print >> f, information
+        f.flush()
+
     def run(self):
-        print 'run'
-        self.save_story()
+        # Send all story data together
+        self.send_start_challenge_data()
 
-        # This is to make sure that we clear the terminal properly
-        # before printing the story
-        #write_to_file("started", "")
-        send_message("started", "")
+        # TODO: Disable terminal while story is running?
 
+        # Show animation if present here
         self.show_animation()
         self.launch_terminal()
 
+        # Structure copied from snake
         if self.last_step:
             self.complete_challenge()
 
         # Tell storyline the step is finished
         self.next()
 
-    # Unused
-    #def show_story(self):
-    #    print 'show_story'
-    #    for line in self.story:
-    #        line = parse_string(line, False)
-    #        try:
-    #            typing_animation(line + "\n")
-    #        except:
-    #            pass
+    def send_hint(self):
+        hint = '\n' + self.hints[0]
+        data = json.dumps({'hint': hint})
+        self.write_to_pipe(data)
 
-    def save_story(self):
-        print 'save_story'
-        story = "\n".join(self.story)
-        #write_to_file("story", story)
-        send_message("story", story)
-
-    def save_hint(self, text):
-        print 'save_hint'
-        #write_to_file("hint", text)
-        send_message("hint", text)
+    def send_start_challenge_data(self):
+        data = {}
+        data['story'] = "\n".join(self.story)
+        data['challenge'] = str(self.challenge_number)
+        data['spells'] = self.commands
+        str_data = json.dumps(data)
+        self.write_to_pipe(str_data)
 
     def show_animation(self):
-        print 'show_animation'
         # if there's animation, play it
         if self.animation:
             try:
@@ -85,9 +82,11 @@ class Step():
                 # fail silently
                 pass
 
+    # Changed on inheritance
     def next(self):
         pass
 
+    # Integration with Kano World
     def complete_challenge(self):
         pass
         #level = load_app_state_variable("linux-story", "level")
@@ -97,7 +96,6 @@ class Step():
 
     # default terminal
     def launch_terminal(self):
-        print 'launch_terminal'
         self.Terminal(
             self.start_dir,
             self.end_dir,
@@ -107,7 +105,6 @@ class Step():
         )
 
     def check_command(self, line, current_dir):
-        print 'check_command'
         # check through list of commands
         command_validated = True
         end_dir_validated = True
@@ -131,20 +128,22 @@ class Step():
         # Go through hints until we get to last hint
         # then just keep showing last hint
         if not (command_validated and end_dir_validated):
-            self.save_hint("\n" + self.hints[0])
+            #self.save_hint("\n" + self.hints[0])
+            self.send_hint()
+
             if len(self.hints) > 1:
                 self.hints.pop(0)
+
         return command_validated and end_dir_validated
 
     # By default, block cd
     def block_command(self, line):
-        print 'block_command'
         line = line.strip()
         if "cd" in line:
             return True
 
+    # Use output of command to level up
     def check_output(self, output):
-        print 'check_output'
         if not output:
             return False
 
@@ -160,7 +159,12 @@ def launch_animation(command):
     filename = elements[0]
 
     # find complete path
-    path = os.path.join(os.path.join(os.path.dirname(__file__), "animation", filename))
+    path = os.path.join(
+        os.path.join(
+            os.path.dirname(__file__),
+            "animation", filename
+        )
+    )
 
     # join command back up
     command = " ".join([path] + elements[1:])

@@ -8,13 +8,9 @@
 # Author: Caroline Clark <caroline@kano.me>
 # The template of the terminal classes.
 
-
 from cmd import Cmd
-from helper_functions import (get_completion_desc, get_script_cmd,
-                              debugger)
+from helper_functions import (get_completion_desc, get_script_cmd)
 from Tree import generate_file_tree
-#from linux_story.file_functions import write_to_file
-from linux_story.socket_functions import send_message
 
 # If this is not imported, the escape characters used for the colour prompts
 # show up as special characters. We don't use any functions from this module,
@@ -36,8 +32,6 @@ class Terminal(Cmd):
 
         Cmd.__init__(self)
 
-        #self.write_commands_to_file()
-        self.send_command()
         self.update_tree()
 
         self.current_dir = start_dir
@@ -53,18 +47,8 @@ class Terminal(Cmd):
         self.check_output = check_output
 
         self.set_prompt()
+
         self.cmdloop()
-
-    #################################################
-    # Communication via files
-    # this is for communication between the spellbook and the terminal
-    #def write_commands_to_file(self):
-    #    commands = " ".join(self.commands)
-    #    write_to_file("commands", commands)
-
-    def send_command(self):
-        commands = " ".join(self.commands)
-        send_message("commands", commands)
 
     def set_prompt(self):
         self.prompt = self.filetree.generate_prompt(self.current_dir)

@@ -15,7 +15,7 @@ import readline
 import re
 
 from kano.colours import colourize256, decorate_string
-from kano_profile.apps import load_app_state_variable
+#from kano_profile.apps import load_app_state_variable
 
 
 home = os.path.expanduser("~")
@@ -235,24 +235,13 @@ def typing_animation(string):
         time.sleep(0.01)
 
 
-def print_challenge_title(challenge_number="1"):
-    fpath = os.path.join(
-        os.path.dirname(os.path.realpath(__file__)),
-        "animation/" + challenge_number
-    )
-    with open(fpath) as f:
-        for line in f.readlines():
-            print line.rstrip()
-    print ""
-
-
+# Nicked from snake
 def print_gained_exp():
-    old_xp = load_app_state_variable()
+    pass
+    #old_xp = load_app_state_variable()
     # Look up XP
     # here
-    new_xp = 0
-    new_xp - old_xp
-    if new_xp - old_xp > 0:
-        typing_animation("Fantastic! You gained {y} experience points!".format())
-
-
+    #new_xp = 0
+    #new_xp - old_xp
+    #if new_xp - old_xp > 0:
+    #    typing_animation("Fantastic! You gained {y} experience points!".format())
