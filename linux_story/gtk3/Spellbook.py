@@ -27,6 +27,7 @@ class Spellbook(Gtk.EventBox):
     CMD_HEIGHT = 80
     CMD_WIDTH = 80
     HEIGHT = 100
+    number_of_spells = 3
 
     def __init__(self):
         self.stop = False
@@ -125,7 +126,7 @@ class Spellbook(Gtk.EventBox):
 
         left = 0
 
-        while left < 3:
+        while left < self.number_of_spells:
             locked_box = self.__create_spell("...", locked=True)
             self.grid.attach(locked_box, left, 0, 1, 1)
             left += 1

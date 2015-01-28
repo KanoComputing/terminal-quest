@@ -18,19 +18,28 @@ GObject.threads_init()
 
 class Storybook(Gtk.TextView):
 
-    def __init__(self):
+    def __init__(self, width=None, height=None):
         Gtk.TextView.__init__(self)
         self.__generate_tags()
 
         screen = Gdk.Screen.get_default()
-        height = screen.get_height() - 300
-        self.width = screen.get_width() / 2
+
+        self.width = width
+        self.height = height
+
+        if not width:
+            self.width = screen.get_width() / 2
+
+        if not height:
+            height = screen.get_height() - 300
+
         self.set_size_request(self.width, height)
         font_desc = Pango.FontDescription()
         font_desc.set_family("monospace")
         self.override_font(font_desc)
-        black = Gdk.RGBA(0, 0, 0)
-        self.override_background_color(Gtk.StateFlags.NORMAL, black)
+        bg_color = Gdk.RGBA()
+        bg_color.parse("#313131")
+        self.override_background_color(Gtk.StateFlags.NORMAL, bg_color)
         self.char_width = self.__get_char_width()
         self.set_can_focus(False)
 

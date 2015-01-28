@@ -69,6 +69,10 @@ class Application(MainWindow):
     def __init__(self):
         MainWindow.__init__(self)
 
+        screen = Gdk.Screen.get_default()
+        width = screen.get_width()
+        height = screen.get_height()
+
         self.terminal = TerminalUi()
         fg_color = Gdk.Color.parse("#ffffff")[1]
         bg_color = Gdk.Color.parse("#262626")[1]
@@ -77,12 +81,19 @@ class Application(MainWindow):
         self.terminal.set_margin_left(10)
         self.terminal.set_margin_right(10)
 
-        self.story = Storybook()
+        self.spellbook = Spellbook()
+
+        self.story = Storybook(
+            width / 2 - 40,
+            height - self.spellbook.HEIGHT - 2 * 44 - 10
+        )
+        self.story.set_margin_top(10)
+        self.story.set_margin_left(10)
+        self.story.set_margin_right(10)
+
         story_sw = Gtk.ScrolledWindow()
         story_sw.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         story_sw.add(self.story)
-
-        self.spellbook = Spellbook()
 
         left_background = Gtk.EventBox()
         left_background.get_style_context().add_class("story_background")
@@ -102,17 +113,10 @@ class Application(MainWindow):
         left_background.add(story_sw)
         right_background.add(self.terminal)
 
-        screen = Gdk.Screen.get_default()
-        width = screen.get_width()
-        height = screen.get_height()
-
         # Allow for margin on bottom
         # TODO: this is hacky. Tidy up.
         self.terminal.set_size_request(
             width / 2 - 20, height - self.spellbook.HEIGHT - 2 * 44 - 20
-        )
-        self.story.set_size_request(
-            width / 2 - 20, height - self.spellbook.HEIGHT - 2 * 44 - 10
         )
         story_sw.set_size_request(
             width / 2 - 20, height - self.spellbook.HEIGHT - 2 * 44 - 10
@@ -178,17 +182,11 @@ class Application(MainWindow):
     # Sleep between sending requests.  Will make it less bad.
     # Pickle a Queue and send it to the other process.
     def get_pipe_output(self):
-        #try:
         os.mkfifo(self.PIPE_FILENAME)
 
         with open(self.PIPE_FILENAME) as f:
             for line in iter(f.readline, ''):
-                #line = pickle.loads(line)
                 data_dict = json.loads(line)
-                # TODO: need to make sure this is implemented in the
-                # right order.  If story is being implemented, we won't
-                # want a hint to wipe the story board or to be displayed
-                # straight afterwards
 
                 if 'hint' in data_dict.keys():
                     # Type hint in story side
@@ -212,11 +210,6 @@ class Application(MainWindow):
                         # Type story in story side
                         self.__type_text(data_dict['story'])
 
-        #except Exception as e:
-        #    print 'could not create pipe, or pipe broke'
-        #    print 'Exception = {}'.format(e)
-
-        #finally:
         # Remove pipe
         os.unlink(self.PIPE_FILENAME)
         os.rmdir(self.dirname)
