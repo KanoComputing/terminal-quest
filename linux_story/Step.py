@@ -9,10 +9,7 @@
 # Step class to describe the flow
 
 import os
-import json
-import time
 import threading
-from launch_functions import get_open_pipe, write_to_pipe
 from socket_functions import launch_client, is_server_busy
 #from kano_profile.badges import save_app_state_variable_with_dialog
 #from kano_profile.apps import load_app_state_variable
