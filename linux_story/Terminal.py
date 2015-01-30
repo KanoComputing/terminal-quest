@@ -51,41 +51,69 @@ class Terminal(Cmd):
         self.cmdloop()
 
     def set_prompt(self):
+        '''Sets prompt according to the current directory
+        '''
+
         self.prompt = self.filetree.generate_prompt(self.current_dir)
 
     def do_help(self, line):
+        '''This is to overwrite the in built function in cmd
+        '''
+
         pass
 
-    # do nothing if the user enters an empty line
     def emptyline(self):
+        '''To overwrite default behaviour in the cmd module.
+        Do nothing if the user enters an empty line.
+        '''
+
         pass
 
-    # only done after commands that change the file structure
     def update_tree(self):
+        '''This updates the model file tree
+        Only done after commands that change the file structure
+        '''
+
         self.filetree = generate_file_tree()
 
     def precmd(self, line):
+        '''Hook before the command is run
+        If the self.block_command returns True, the command is not run
+        Otherwise, it is run
+        '''
+
         if self.block_command(line):
             return Cmd.precmd(self, "")
         else:
             return Cmd.precmd(self, line)
 
     def onecmd(self, line):
-        # check if value entered is a shell script
-        is_script, script = get_script_cmd(line, self.current_dir, self.filetree)
+
+        # Check if value entered is a shell script
+        is_script, script = get_script_cmd(
+            line,
+            self.current_dir,
+            self.filetree
+        )
         if is_script:
             self.do_shell(script)
         else:
             self.last_cmd_output = Cmd.onecmd(self, line)
             return self.last_cmd_output
 
-    # This is the cmd valid command
     def postcmd(self, stop, line):
-        is_cmd_output_correct = False
-        is_cmd_output_correct = self.check_output(self.last_cmd_output)
-        return is_cmd_output_correct or self.check_command(line, self.current_dir)
+        '''If the command output is correct, or if the command typed is
+        correct, then return True
+        Returning True exits the cmdloop() function
+        '''
+
+        cmd_output_correct = self.check_output(self.last_cmd_output)
+        return cmd_output_correct or self.check_command(line, self.current_dir)
 
     def complete_list(self):
+        '''Show the list of files in the current directory
+        '''
+
         return list(self.filetree.show_direct_descendents(self.current_dir))
 
     #######################################################
@@ -94,7 +122,8 @@ class Terminal(Cmd):
     def autocomplete_desc(self, text, line, completion_type="both"):
         temp_dir = get_completion_desc(self.current_dir, self.filetree,
                                        line, completion_type)
-        autocomplete_list = list(self.filetree.show_type(temp_dir, completion_type))
+        autocomplete_list = list(self.filetree.show_type(temp_dir,
+                                                         completion_type))
         completions = []
         if not text:
             completions = autocomplete_list[:]

@@ -21,6 +21,8 @@ from linux_story.paths import common_media_dir
 
 
 class Spellbook(Gtk.EventBox):
+    '''This is the GUI showing all the spells along the bottom
+    '''
 
     SPELLBOOK_BORDER = 1
     SPELL_BORDER = 1
@@ -55,12 +57,12 @@ class Spellbook(Gtk.EventBox):
 
         self.__pack_locked_spells()
 
-    def repack_spells(self, commands):
+    def repack_spells(self, spells):
         '''Unpack the spellbook and recreates array of commands into
         spells, and packs them up in the spellbook
         '''
 
-        self.__pack_spells(commands)
+        self.__pack_spells(spells)
         if self.first:
             self.first = False
         else:

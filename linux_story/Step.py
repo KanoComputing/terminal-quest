@@ -10,7 +10,10 @@
 
 import os
 import json
-from launch_functions import get_open_pipe
+import time
+import threading
+from launch_functions import get_open_pipe, write_to_pipe
+from socket_functions import launch_client, is_server_busy
 #from kano_profile.badges import save_app_state_variable_with_dialog
 #from kano_profile.apps import load_app_state_variable
 
@@ -28,6 +31,7 @@ class Step():
 
     def __init__(self, Terminal_Class):
         self.Terminal = Terminal_Class
+        self.pipe_busy = False
 
         # Available commands that can be used in the Terminal
         self.commands = self.Terminal.commands
@@ -38,12 +42,14 @@ class Step():
 
         self.run()
 
-    def write_to_pipe(self, information):
-        f = get_open_pipe()
-        print >> f, information
-        f.flush()
-
     def run(self):
+        '''Runs through the Step, which does the following:
+        - Displays the challenge number at the top
+        - Types out the story
+        - Creates the new personalised Terminal with the available commands
+        - Once the terminal exits, takes you to the next Step
+        '''
+
         # Send all story data together
         self.send_start_challenge_data()
 
@@ -61,17 +67,27 @@ class Step():
         self.next()
 
     def send_hint(self):
-        hint = '\n' + self.hints[0]
-        data = json.dumps({'hint': hint})
-        self.write_to_pipe(data)
+        '''Sends a hint string through the pipe to the GUI
+        '''
+
+        if not is_server_busy():
+            hint = '\n' + self.hints[0]
+            data = {'hint': hint}
+            t = threading.Thread(target=launch_client, args=(data,))
+            t.daemon = True
+            t.start()
 
     def send_start_challenge_data(self):
+        '''Sends all the relevent information at the start of a new step
+        '''
+
         data = {}
         data['story'] = "\n".join(self.story)
         data['challenge'] = str(self.challenge_number)
         data['spells'] = self.commands
-        str_data = json.dumps(data)
-        self.write_to_pipe(str_data)
+        t = threading.Thread(target=launch_client, args=(data,))
+        t.daemon = True
+        t.start()
 
     def show_animation(self):
         # if there's animation, play it
@@ -82,20 +98,28 @@ class Step():
                 # fail silently
                 pass
 
-    # Changed on inheritance
     def next(self):
+        '''Defines what should happen next at the end of this step
+        Should be modified on inheritance
+        '''
+
         pass
 
-    # Integration with Kano World
     def complete_challenge(self):
+        '''Integration with kano world
+        '''
+
         pass
         #level = load_app_state_variable("linux-story", "level")
         #if self.challenge_number > level:
         #    save_app_state_variable_with_dialog("linux-story", "level",
         #                                        self.challenge_number)
 
-    # default terminal
     def launch_terminal(self):
+        '''Launches the terminal.
+        self.cmdloop is start in the __init__ of the Terminal class
+        '''
+
         self.Terminal(
             self.start_dir,
             self.end_dir,
@@ -105,6 +129,10 @@ class Step():
         )
 
     def check_command(self, line, current_dir):
+        '''If self.command is provided, checks the command entered
+        by the user matches self.command.
+        '''
+
         # check through list of commands
         command_validated = True
         end_dir_validated = True
@@ -136,14 +164,25 @@ class Step():
 
         return command_validated and end_dir_validated
 
-    # By default, block cd
     def block_command(self, line):
+        '''line is the user entered input from the terminal.
+        If this function returns True, input entered will be blocked
+        Otherwise, command will be run as normal.
+        Default behaviour is to block cd
+        '''
+
         line = line.strip()
         if "cd" in line:
             return True
 
-    # Use output of command to level up
     def check_output(self, output):
+        '''Use output of the command to level up.
+        The argument is the output from the command printed in the terminal.
+        If the function return True, will break out of cmdloop and go to next
+        Step.
+        if the function returns False, will stay in this Step.
+        '''
+
         if not output:
             return False
 

@@ -10,7 +10,6 @@
 
 import os
 import sys
-import subprocess
 
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if __name__ == '__main__' and __package__ is None:
@@ -20,31 +19,8 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.file_data import copy_data
 
-OPEN_PIPE = None
 
-
-def open_pipe(pipe_filename):
-    global OPEN_PIPE
-
-    # Open pipe
-    OPEN_PIPE = open(pipe_filename, 'w')
-
-    # Force it to stay open
-    subprocess.Popen(
-        ['cat'],
-        stdout=OPEN_PIPE,
-        stdin=subprocess.PIPE
-    )
-
-
-def get_open_pipe():
-    global OPEN_PIPE
-
-    return OPEN_PIPE
-
-
-def launch_project(pipe_filename, challenge_number="1", step="1"):
-    open_pipe(pipe_filename)
+def launch_project(challenge_number="1", step="1"):
     copy_data(int(challenge_number))
     Step = get_step_class(challenge_number, step)
     Step()
