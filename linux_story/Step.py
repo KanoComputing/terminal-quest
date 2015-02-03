@@ -63,6 +63,16 @@ class Step():
         # Tell storyline the step is finished
         self.next()
 
+    def send_text(self, string):
+        '''Sends a string through the pipe to the GUI
+        '''
+
+        if not is_server_busy():
+            data = {'hint': string}
+            t = threading.Thread(target=launch_client, args=(data,))
+            t.daemon = True
+            t.start()
+
     def send_hint(self):
         '''Sends a hint string through the pipe to the GUI
         '''

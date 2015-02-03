@@ -16,7 +16,6 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.Step import Step
 from linux_story.challenges.challenge_4.terminals import TerminalCd
-from linux_story.file_functions import write_to_file
 
 
 class StepTemplateCd(Step):
@@ -93,10 +92,10 @@ class Step3(StepTemplateCd):
             else:
                 # Print hint from person
                 hint = "\n{{gWell done!  Keep going!}}"
-                self.save_hint(hint)
+                self.send_text(hint)
 
         else:
-            self.save_hint("\n" + self.hints[0])
+            self.send_text("\n" + self.hints[0])
 
         return command_validated
 
@@ -146,4 +145,4 @@ class Step6(StepTemplateCd):
     challenge_number = 8
 
     def next(self):
-        write_to_file("exit")
+        pass

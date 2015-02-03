@@ -314,11 +314,8 @@ class Window(Gtk.Window):
             "\n{{wNew Spell:}} {{yls}} - lets you see what's around you."
         ]
         string = '\n'.join(array)
-        thr = threading.Thread(
-            target=self.textview.print_output,
-            args=[string]
-        )
-        thr.start()
+        t = threading.Thread(target=self.textview.print_output, args=(string,))
+        t.start()
 
 
 if __name__ == "__main__":

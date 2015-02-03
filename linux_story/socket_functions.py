@@ -3,6 +3,7 @@ import socket
 import json
 import threading
 import time
+from gi.repository import GObject
 
 
 server_busy = None
@@ -21,6 +22,10 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
     client.
     """
 
+    def __init__(self, arg1, arg2, arg3):
+        self.continue_server = True
+        SocketServer.BaseRequestHandler.__init__(self, arg1, arg2, arg3)
+
     def handle(self):
 
         # self.request is the TCP socket connected to the client
@@ -31,9 +36,10 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
         spell_cb = self.server.win.repack_spells
         challenge_cb = self.server.win.print_challenge_title
 
+        self.request.sendall('busy')
+
         # Type out the hint
         if 'hint' in data_dict.keys():
-            self.request.sendall('busy')
             text_cb(data_dict['hint'])
             self.request.sendall('ready')
         else:
@@ -44,24 +50,22 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
                'story' in data_dict.keys() and \
                'spells' in data_dict.keys():
 
-                self.request.sendall('busy')
-
                 # Print the challenge title at the top of the screen
                 challenge = data_dict['challenge']
-                challenge_cb(challenge)
+                GObject.idle_add(challenge_cb, challenge)
 
                 # Type the story out
                 text_cb(data_dict['story'])
 
                 # Repack the spells into the spellbook
                 spells = data_dict['spells']
-                spell_cb(spells)
+                GObject.idle_add(spell_cb, spells)
 
                 self.request.sendall('ready')
 
 
 def create_server(window):  # text_cb, spell_cb, challenge_cb):
-    HOST, PORT = "localhost", 9981
+    HOST, PORT = "localhost", 9959
 
     # Create the server, binding to localhost on port 9999
     server = SocketServer.TCPServer((HOST, PORT), MyTCPHandler)
@@ -73,13 +77,14 @@ def launch_server(story_cb, hint_cb, arg):
     server = create_server(story_cb, hint_cb, arg)
     # Activate the server; this will keep running until you
     # interrupt the program with Ctrl-C
-    server.serve_forever()
+    #server.serve_forever()
+    server.handle_request()
 
 
 def launch_client(data):
     global server_busy
 
-    HOST, PORT = "localhost", 9981
+    HOST, PORT = "localhost", 9959
     json_data = json.dumps(data)
 
     # Create a socket (SOCK_STREAM means a TCP socket)

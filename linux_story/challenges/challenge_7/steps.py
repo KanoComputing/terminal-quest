@@ -18,7 +18,6 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from linux_story.challenges.challenge_4.terminals import TerminalCd
 from linux_story.challenges.challenge_8.steps import Step1 as NextChallengeStep
-from linux_story.file_functions import write_to_file
 from linux_story.file_data import copy_data
 
 
@@ -106,15 +105,14 @@ class Step3(StepTemplateCd):
             else:
                 command_validated = True
 
-            self.save_hint(hint)
+            self.send_text(hint)
 
         else:
-            self.save_hint("\n" + self.hints[0])
+            self.send_text("\n" + self.hints[0])
 
         return command_validated and end_dir_validated
 
     def next(self):
         time.sleep(6)
-        write_to_file("challenge", "8")
         copy_data(8)
         NextChallengeStep()
