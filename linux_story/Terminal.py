@@ -32,6 +32,11 @@ class Terminal(Cmd):
 
         Cmd.__init__(self)
 
+        # This changes the special characters, so we can autocomplete on
+        # the - character
+        old_delims = readline.get_completer_delims()
+        readline.set_completer_delims(old_delims.replace('-', ''))
+
         self.update_tree()
 
         self.current_dir = start_dir
