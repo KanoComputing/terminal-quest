@@ -68,6 +68,11 @@ def create_server(window):  # text_cb, spell_cb, challenge_cb):
     HOST, PORT = "localhost", 9959
 
     # Create the server, binding to localhost on port 9999
+
+    # Magic line that allows you to reuse the address, even if a
+    # different server is using it.  This means if we launch this and then
+    # quit it, we can relaunch is straight afterwards
+    SocketServer.TCPServer.allow_reuse_address = True
     server = SocketServer.TCPServer((HOST, PORT), MyTCPHandler)
     server.win = window
     return server
@@ -75,10 +80,7 @@ def create_server(window):  # text_cb, spell_cb, challenge_cb):
 
 def launch_server(story_cb, hint_cb, arg):
     server = create_server(story_cb, hint_cb, arg)
-    # Activate the server; this will keep running until you
-    # interrupt the program with Ctrl-C
-    #server.serve_forever()
-    server.handle_request()
+    server.serve_forever()
 
 
 def launch_client(data):
