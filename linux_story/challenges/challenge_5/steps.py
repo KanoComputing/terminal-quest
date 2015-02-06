@@ -17,7 +17,6 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from linux_story.challenges.challenge_4.terminals import TerminalCd
 from linux_story.challenges.challenge_6.steps import Step1 as NextChallengeStep
-from linux_story.file_functions import write_to_file
 from linux_story.file_data import copy_data
 
 
@@ -30,19 +29,20 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
-        "{{gCongratulations, you earned 7 XP!}}\n",
-        "Mum: \"Have you seen your Dad? I can't find him anywhere, "
-        "and the newspaper says that people have been going missing all over Folderton!\"\n",
-        "Let's look for your Dad in the garden",
-        "To go to the garden, type {{ycd garden}}"
+        "{{gb:Congratulations, you earned 7 XP!}}\n",
+        "{{wb:Mum:}} \"Have you seen your Dad? I can't find him anywhere, "
+        "and the newspaper says that people have been going missing all over "
+        "Folderton!\"\n",
+        "Let's look for your Dad in the garden.",
+        "First we need to leave the kitchen using {{yb:cd ..}}"
     ]
     start_dir = "kitchen"
-    end_dir = "garden"
+    end_dir = "my-house"
     command = ""
-    hints = "{{rTo go to the garden, type}} {{ycd garden}}"
+    hints = "{{rb:To go to the garden, type}} {{yb:cd ..}}"
 
     def block_command(self, line):
-        allowed_commands = ["cd garden", "cd garden/"]
+        allowed_commands = ["cd ..", "cd ../"]
         line = line.strip()
         if "cd" in line and line not in allowed_commands:
             return True
@@ -53,12 +53,13 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "Use {{yls}} to look in the garden for your Dad."
+        "You are back in the main hall of your house",
+        "Can you see your garden?"
     ]
-    start_dir = "garden"
-    end_dir = "garden"
+    start_dir = "my-house"
+    end_dir = "my-house"
     command = "ls"
-    hints = "{{rTo look for your Dad, type}} {{yls}} {{rand press Enter}}"
+    hints = "{{r:Type}} {{yb:ls}} {{r:to look around you}}"
 
     def next(self):
         Step3()
@@ -66,16 +67,15 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "Hmmm... you can't see him anywhere.",
-        "Maybe he's in the {{ygreenhouse}}. Go into the greenhouse."
+        "You see doors to the garden, your room and your parent's room."
     ]
-    start_dir = "garden"
-    end_dir = "greenhouse"
+    start_dir = "my-house"
+    end_dir = "garden"
     command = ""
-    hints = "{{rTo go to the greenhouse, type}} {{ycd greenhouse}}"
+    hints = "{{r:Type}} {{yb:cd garden}} {{r:to go into the garden}}"
 
     def block_command(self, line):
-        allowed_commands = ["cd greenhouse", "cd greenhouse/"]
+        allowed_commands = ["cd garden", "cd garden/"]
         line = line.strip()
         if "cd" in line and line not in allowed_commands:
             return True
@@ -86,12 +86,15 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "Is he here? Type {{yls}} to find out."
+        "Use {{yb:ls}} to look in the garden for your Dad."
     ]
-    start_dir = "greenhouse"
-    end_dir = "greenhouse"
+    start_dir = "garden"
+    end_dir = "garden"
     command = "ls"
-    hints = "{{rType}} {{yls}} {{rto look for your Dad.}}"
+    hints = (
+        "{{rb:To look for your Dad, type}} {{yb:ls}} {{rb:and press "
+        "Enter}}"
+    )
 
     def next(self):
         Step5()
@@ -99,13 +102,20 @@ class Step4(StepTemplateCd):
 
 class Step5(StepTemplateCd):
     story = [
-        "Hmmmm. He's not here. But there is something odd.",
-        "You see a note on the ground.  Use {{ycat note}} to read what it says"
+        "The garden is well tended and the flowers are in bloom.",
+        "Hmmm... you can't see him anywhere.",
+        "Maybe he's in the {{yb:greenhouse}}. Go into the greenhouse."
     ]
-    start_dir = "greenhouse"
+    start_dir = "garden"
     end_dir = "greenhouse"
-    command = "cat note"
-    hints = "{{rType}} {{ycat note}} {{rto see what the note says!}}"
+    command = ""
+    hints = "{{rb:To go to the greenhouse, type}} {{yb:cd greenhouse}}"
+
+    def block_command(self, line):
+        allowed_commands = ["cd greenhouse", "cd greenhouse/"]
+        line = line.strip()
+        if "cd" in line and line not in allowed_commands:
+            return True
 
     def next(self):
         Step6()
@@ -113,12 +123,42 @@ class Step5(StepTemplateCd):
 
 class Step6(StepTemplateCd):
     story = [
-        "Going back is super easy. Just type {{ycd ..}} to go back the way you came."
+        "Is he here? Type {{yb:ls}} to find out."
+    ]
+    start_dir = "greenhouse"
+    end_dir = "greenhouse"
+    command = "ls"
+    hints = "{{rb:Type}} {{yb:ls}} {{rb:to look for your Dad.}}"
+
+    def next(self):
+        Step7()
+
+
+class Step7(StepTemplateCd):
+    story = [
+        "Your dad has been busy, there are loads of vegetables here.",
+        "Hmmmm. He's not here. But there is something odd.",
+        "You see a note on the ground.  Use {{yb:cat note}} to read what "
+        "it says"
+    ]
+    start_dir = "greenhouse"
+    end_dir = "greenhouse"
+    command = "cat note"
+    hints = "{{rb:Type}} {{yb:cat note}} {{rb:to see what the note says!}}"
+
+    def next(self):
+        Step8()
+
+
+class Step8(StepTemplateCd):
+    story = [
+        "Going back is super easy. Just type {{yb:cd ..}} to go back the way "
+        "you came."
     ]
     start_dir = "greenhouse"
     end_dir = "garden"
     command = ""
-    hints = "{{rType}} {{ycd ..}} {{rto go back to the garden}}"
+    hints = "{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the garden}}"
 
     def block_command(self, line):
         allowed_commands = ["cd ..", "cd ../"]
@@ -127,17 +167,18 @@ class Step6(StepTemplateCd):
             return True
 
     def next(self):
-        Step7()
+        Step9()
 
 
-class Step7(StepTemplateCd):
+class Step9(StepTemplateCd):
     story = [
-        "You're back in the garden.  Use {{ycd ..}} again to go back to the kitchen."
+        "You're back in the garden.  Use {{yb:cd ..}} again to go back to "
+        "the house."
     ]
     start_dir = "garden"
-    end_dir = "kitchen"
+    end_dir = "my-house"
     command = ""
-    hints = "{{rType}} {{ycd ..}} {{rto go back to the kitchen}}"
+    hints = "{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the kitchen}}"
 
     last_step = True
     challenge_number = 5
@@ -149,6 +190,27 @@ class Step7(StepTemplateCd):
             return True
 
     def next(self):
-        write_to_file("challenge", "6")
-        copy_data("6")
+        Step10()
+
+
+class Step10(StepTemplateCd):
+    story = [
+        "Head back into the kitchen"
+    ]
+    start_dir = "my-house"
+    end_dir = "kitchen"
+    command = ""
+    hints = "{{r:Type}} {{yb:cd kitchen}} {{r:to go back to the kitchen}}"
+
+    last_step = True
+    challenge_number = 5
+
+    def block_command(self, line):
+        allowed_commands = ["cd kitchen", "cd kitchen/"]
+        line = line.strip()
+        if "cd" in line and line not in allowed_commands:
+            return True
+
+    def next(self):
+        # copy_data("6")
         NextChallengeStep()

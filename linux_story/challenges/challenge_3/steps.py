@@ -17,7 +17,6 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from linux_story.challenges.challenge_2.terminals import TerminalCat
 from linux_story.challenges.challenge_4.steps import Step1 as NextChallengeStep
-from linux_story.file_functions import write_to_file
 
 
 class StepTemplateCat(Step):
@@ -29,15 +28,15 @@ class StepTemplateCat(Step):
 
 class Step1(StepTemplateCat):
     story = [
-        "{{gCongratulations, you earned 5 XP!}}\n",
+        "{{gb:Congratulations, you earned 5 XP!}}\n",
         "Love it! Put it on quickly.",
         "There's loads more interesting stuff in your room.",
-        "Let's look in your {{yshelves}} using {{yls}}"
+        "Let's look in your {{yb:shelves}} using {{yb:ls}}"
     ]
-    start_dir = "~"
-    end_dir = "~"
+    start_dir = "my-room"
+    end_dir = "my-room"
     command = ["ls shelves", "ls shelves/"]
-    hints = "{{rType}} {{yls shelves}} {{rto look at your books.}}"
+    hints = "{{rb:Type}} {{yb:ls shelves}} {{rb:to look at your books.}}"
 
     def next(self):
         Step2()
@@ -45,12 +44,13 @@ class Step1(StepTemplateCat):
 
 class Step2(StepTemplateCat):
     story = [
-        "That comic book looks fun. Take a look inside with {{ycat shelves/comic-book}}"
+        "That comic book looks fun. Take a look inside with "
+        "{{yb:cat shelves/comic-book}}"
     ]
-    start_dir = "~"
-    end_dir = "~"
+    start_dir = "my-room"
+    end_dir = "my-room"
     command = "cat shelves/comic-book"
-    hints = "{{rType}} {{ycat shelves/comic-book}} {{rto read the comic.}}"
+    hints = "{{rb:Type}} {{yb:cat shelves/comic-book}} {{rb:to read the comic.}}"
 
     def next(self):
         Step3()
@@ -60,16 +60,15 @@ class Step3(StepTemplateCat):
     story = [
         "Why is it covered in pawprints?",
         "Hang on, there's a note amongst your books.",
-        "Read the note using {{ycat}}"
+        "Read the note using {{yb:cat}}"
     ]
-    start_dir = "~"
-    end_dir = "~"
+    start_dir = "my-room"
+    end_dir = "my-room"
     command = "cat shelves/note"
-    hints = "{{rType}} {{ycat shelves/note}} {{rto read the note.}}"
+    hints = "{{rb:Type}} {{yb:cat shelves/note}} {{rb:to read the note.}}"
 
     last_step = True
     challenge_number = 3
 
     def next(self):
-        write_to_file("challenge", "4")
         NextChallengeStep()

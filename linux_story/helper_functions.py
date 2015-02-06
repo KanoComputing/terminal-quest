@@ -13,9 +13,10 @@ import sys
 import time
 import readline
 import re
+import subprocess
 
 from kano.colours import colourize256, decorate_string
-#from kano_profile.apps import load_app_state_variable
+# from kano_profile.apps import load_app_state_variable
 
 
 home = os.path.expanduser("~")
@@ -71,6 +72,25 @@ def relative_loc_is_home(current_dir, tree):
     if real_loc == hidden_dir:
         return True
     return False
+
+
+def play_sound(object):
+    '''object is the string representing the object
+    the options are 'alarm' and 'bell'
+    '''
+
+    current_dir = os.path.dirname(os.path.realpath(__file__))
+
+    sound_path = os.path.join(
+        current_dir,
+        "animation/sounds/",
+        object + '.wav'
+    )
+
+    subprocess.Popen(
+        ["/usr/bin/aplay", sound_path],
+        stderr=subprocess.STDOUT, stdout=subprocess.PIPE
+    )
 
 
 # This is to help the completion function in the classes

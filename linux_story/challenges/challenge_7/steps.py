@@ -19,6 +19,7 @@ from linux_story.Step import Step
 from linux_story.challenges.challenge_4.terminals import TerminalCd
 from linux_story.challenges.challenge_8.steps import Step1 as NextChallengeStep
 from linux_story.file_data import copy_data
+from linux_story.helper_functions import play_sound
 
 
 class StepTemplateCd(Step):
@@ -30,13 +31,13 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
-        "{{gCongratulations, you earned 10 XP!}}\n",
+        "{{gb:Congratulations, you earned 10 XP!}}\n",
         "Have a look around to see what's going on in town."
     ]
     start_dir = "town"
     end_dir = "town"
     command = "ls"
-    hints = "{{rTo look around, use}} {{yls}}"
+    hints = "{{r:To look around, use}} {{yb:ls}}"
 
     def next(self):
         Step2()
@@ -44,12 +45,13 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "Wow, there's so many people here. Find the mayor and see what's going on!"
+        "Wow, there's so many people here. Find the mayor and see what's "
+        "going on!"
     ]
     start_dir = "town"
     end_dir = "town"
     command = "cat mayor"
-    hints = "{{rStuck? Type:}} {{ycat mayor}}"
+    hints = "{{r:Stuck? Type:}} {{yb:cat mayor}}"
 
     def next(self):
         Step3()
@@ -60,7 +62,7 @@ class Step3(StepTemplateCd):
         "Mayor: \"Calm down please! We have our best people looking into the "
         "disappearances, and we're hoping to have an explanation soon.\"\n",
         "Something strange is happening. Better check everyone is ok.",
-        "Type {{ycat}} to check on everyone."
+        "Type {{yb:cat}} to check on everyone."
     ]
     start_dir = "town"
     end_dir = "town"
@@ -70,19 +72,23 @@ class Step3(StepTemplateCd):
     all_commands = {
         "cat grumpy-man": "Man: \"I don't know what's happening to me"
         " - my legs have gone all bendy!\"",
-        "cat young-girl": "Girl: \"I can't find my friend Amy anywhere. If you see her, "
-        "will you let me know?\"",
-        "cat little-boy": "Boy: \"Has anyone seen my dog Bernard? He's never run away before...\""
+        "cat young-girl": "Girl: \"I can't find my friend Amy anywhere. "
+        "If you see her, will you let me know?\"",
+        "cat little-boy": "Boy: \"Has anyone seen my dog Bernard? "
+        "He's never run away before...\""
     }
 
     last_step = True
     challenge_number = 7
 
     def check_command(self, line, current_dir):
+
         # check through list of commands
         command_validated = False
         end_dir_validated = False
-        self.hints = ["{{rUse}} {{y" + self.all_commands.keys()[0] + "}} {{rto progress}}"]
+        self.hints = [
+            "{{r:Use}} {{yb:" + self.all_commands.keys()[0] + "}} {{r:to progress}}"
+        ]
 
         # strip any spaces off the beginning and end
         line = line.strip()
@@ -97,9 +103,9 @@ class Step3(StepTemplateCd):
             self.all_commands.pop(line, None)
 
             if self.all_commands == 1:
-                hint += "\n{{gWell done! Check on 1 more person.}}"
+                hint += "\n{{g:Well done! Check on 1 more person.}}"
             elif len(self.all_commands) > 0:
-                hint += "\n{{gWell done! Check on " + \
+                hint += "\n{{g:Well done! Check on " + \
                     str(len(self.all_commands)) + \
                     " more people.}}"
             else:
@@ -114,5 +120,6 @@ class Step3(StepTemplateCd):
 
     def next(self):
         time.sleep(6)
-        copy_data(8)
+        copy_data(8, 1)
+        play_sound('bell')
         NextChallengeStep()

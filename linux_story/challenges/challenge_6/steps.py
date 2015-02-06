@@ -17,7 +17,6 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from linux_story.challenges.challenge_4.terminals import TerminalCd
 from linux_story.challenges.challenge_7.steps import Step1 as NextChallengeStep
-from linux_story.file_functions import write_to_file
 
 
 class StepTemplateCd(Step):
@@ -29,13 +28,13 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
-        "{{gCongratulations, you earned 10 XP!}}\n",
-        "Let mum know about Dad. Type {{ycat mum}}"
+        "{{gb:Congratulations, you earned 10 XP!}}\n",
+        "Let mum know about Dad. Type {{yb:cat mum}}"
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"
     command = "cat mum"
-    hints = "{{rTo talk to your mum, type}} {{ycat mum}} {{rand press Enter}}."
+    hints = "{{r:To talk to your mum, type}} {{yb:cat mum}} {{r:and press Enter}}."
 
     def next(self):
         Step2()
@@ -46,16 +45,17 @@ class Step2(StepTemplateCd):
         "Mum: \"You couldn't find him either? Oh dear - this isn't good. "
         "He never leaves home without telling me first.\"",
         "\"Maybe he went to the town meeting with the Mayor. "
-        "Why don't you go and check? I'll stay here in case he comes back.\"\n",
-        "Let's go to town. Type {{ycd garden}} to start the journey."
+        "Why don't you go and check? I'll stay here in case he comes "
+        "back.\"\n",
+        "Let's go to town. To leave the house, use {{yb:cd}} by itself"
     ]
     start_dir = "kitchen"
-    end_dir = "garden"
+    end_dir = "~"
     command = ""
-    hints = "{{rType}} {{ycd garden}} {{rto start the journey.}}"
+    hints = "{{r:Type}} {{yb:cd}} {{r:to start the journey.}}"
 
     def block_command(self, line):
-        allowed_commands = ["cd garden", "cd garden/"]
+        allowed_commands = ["cd"]
         line = line.strip()
         if "cd" in line and line not in allowed_commands:
             return True
@@ -66,12 +66,13 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
+        "You have left your house and are on a long road.",
         "Look around again to see where to go next."
     ]
-    start_dir = "garden"
-    end_dir = "garden"
+    start_dir = "~"
+    end_dir = "~"
     command = "ls"
-    hints = "{{rStuck?  Type}} {{yls}} {{rto look around.}}"
+    hints = "{{r:Stuck?  Type}} {{yb:ls}} {{r:to look around.}}"
 
     def next(self):
         Step4()
@@ -79,36 +80,22 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "There's a road! Let's have a look down the road.",
-        "Type {{yls road}} to look down the road."
+        "There's the town in the distance! Let's walk into town using "
+        "{{yb:cd}}."
     ]
-    start_dir = "garden"
-    end_dir = "garden"
-    command = ["ls road", "ls road/"]
-    hints = "{{rType}} {{yls road}} {{rto look down the road.}}"
-
-    def next(self):
-        Step5()
-
-
-class Step5(StepTemplateCd):
-    story = [
-        "There's the town! Let's walk into town using {{ycd}}"
-    ]
-    start_dir = "garden"
+    start_dir = "~"
     end_dir = "town"
     command = ""
-    hints = "{{rType}} {{ycd road/town}} {{rto walk into town.}}"
+    hints = "{{r:Type}} {{yb:cd town}} {{r:to walk into town.}}"
 
     last_step = True
     challenge_number = 6
 
     def block_command(self, line):
-        allowed_commands = ["cd road/town", "cd road/town/"]
+        allowed_commands = ["cd town", "cd town/"]
         line = line.strip()
         if "cd" in line and line not in allowed_commands:
             return True
 
     def next(self):
-        write_to_file("challenge", "7")
         NextChallengeStep()

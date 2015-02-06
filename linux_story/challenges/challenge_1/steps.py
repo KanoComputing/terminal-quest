@@ -17,7 +17,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from terminals import TerminalLs
 from linux_story.challenges.challenge_2.steps import Step1 as NextChallengeStep
-#from linux_story.file_functions import write_to_file
+from linux_story.helper_functions import play_sound
 
 
 class StepTemplateLs(Step):
@@ -35,15 +35,15 @@ class Step1(StepTemplateLs):
         "\"...nobody can explain what is causing the phenomenon, and Mayor "
         "Hubert has called an emergency town meeting...\"\n",
         "It's time to get up sleepy head!",
-        "\n{{wNew Spell:}} {{yls}} - lets you see what's around you."
-        #'hello'
+        "\n{{wb:New Spell:}} {{yb:ls}} - lets you see what's around you."
     ]
-    start_dir = "~"
-    end_dir = "~"
+    play_sound("alarm")
+    start_dir = "my-room"
+    end_dir = "my-room"
     command = "ls"
     hints = [
-        "{{rType}} {{yls}} {{rand press Enter to take a look around your "
-        "bedroom}}"
+        "{{rbl:Type}} {{ybl:ls}} {{rbl:and press Enter to take a look around "
+        "your bedroom}}"
     ]
 
     challenge_number = 1

@@ -13,8 +13,7 @@ from helper_functions import (get_completion_desc, get_script_cmd)
 from Tree import generate_file_tree
 
 # If this is not imported, the escape characters used for the colour prompts
-# show up as special characters. We don't use any functions from this module,
-# simply importing this module fixes the bug
+# show up as special characters.
 import readline
 
 
@@ -93,6 +92,12 @@ class Terminal(Cmd):
             return Cmd.precmd(self, line)
 
     def onecmd(self, line):
+        '''Modified Cmd.cmd.onecmd so that it can detect if a file is a script,
+        and can run it appropriately
+
+        Keyword arguments:
+        line - string.  Is what the user enters at the terminal
+        '''
 
         # Check if value entered is a shell script
         is_script, script = get_script_cmd(
@@ -125,6 +130,14 @@ class Terminal(Cmd):
     # Helper commands
 
     def autocomplete_desc(self, text, line, completion_type="both"):
+        '''This is used to autcomplete the next file/folder
+
+        Keyword arguments:
+        text, string, is the last part you are trying to autocomplete
+        line, string, is the line so far entered by the user in the terminal
+        completion_type, string. Can be 'file', 'dir' or 'both'
+        '''
+
         temp_dir = get_completion_desc(self.current_dir, self.filetree,
                                        line, completion_type)
         autocomplete_list = list(self.filetree.show_type(temp_dir,

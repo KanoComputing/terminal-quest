@@ -8,6 +8,8 @@
 
 import os
 import sys
+import time
+import threading
 
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
 if __name__ == '__main__' and __package__ is None:
@@ -16,6 +18,9 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.Step import Step
 from linux_story.challenges.challenge_4.terminals import TerminalCd
+from linux_story.challenges.challenge_9.steps import Step1 as NextChallengeStep
+from linux_story.helper_functions import play_sound
+from linux_story.file_data import copy_data
 
 
 class StepTemplateCd(Step):
@@ -25,124 +30,108 @@ class StepTemplateCd(Step):
         Step.__init__(self, TerminalCd)
 
 
+class StepTemplateCdBell(StepTemplateCd):
+
+    def play_bell_delay(self):
+        time.sleep(3)
+        play_sound('bell')
+
+    def run(self):
+        t = threading.Thread(target=self.play_bell_delay)
+        t.start()
+        StepTemplateCd.run(self)
+
+
 class Step1(StepTemplateCd):
+
     story = [
-        "{{gCongratulations, you earned 20 XP!}}\n",
-        "What was that? A rumble?",
-        "Use {{yls}} to see what happened."
+        "{{gb:Congratulations, you earned 20 XP!}}\n",
+        "{{wb:Ding. Dong.}}",
+        "That sounds like the bell you heard before",
+        "Use {{yb:ls}} to see if anything has changed"
     ]
     start_dir = "town"
     end_dir = "town"
     command = "ls"
-    hints = "{{rTo look around, use}} {{yls}}"
+    hints = "{{r:To look around, use}} {{yb:ls}}"
 
     def next(self):
         Step2()
 
 
-class Step2(StepTemplateCd):
+class Step2(StepTemplateCdBell):
+
     story = [
-        "Everyone has gone.",
-        "Wait - there's just a note on the floor.",
-        "Use {{ycat}} to read the note."
+        "{{wb:Little-boy:}} Oh no!  The man with the funny legs disappeared.",
+        "{{wb:Little-boy:}} Is that bell making people disappear?",
+        "{{wb:Little-girl:}} I'm scared...Oh!  I heard it go again!"
     ]
     start_dir = "town"
     end_dir = "town"
-    command = "cat note"
-    hints = "{{rTo look around, use}} {{ycat note}}"
+    command = "ls"
+    hints = "{{r:To look around, use}} {{yb:ls}}"
 
     def next(self):
-        Step3()
-
-
-class Step3(StepTemplateCd):
-    story = [
-        "Oh no! Check your mum is alright.",
-        "Type {{ycd ..}} until you get back to your {{bkitchen}}."
-    ]
-    start_dir = "town"
-    end_dir = "kitchen"
-    command = ""
-    hints = "{{rUse}} {{ycd ..}} {{rto progress.}}"
-    allowed_commands = ["cd ..", "cd ../"]
-
-    def __init__(self):
-        self.counter = 0
-        StepTemplateCd.__init__(self)
-
-    def block_command(self, line):
-        line = line.strip()
-        if "cd" in line and line not in self.allowed_commands:
-            return True
-
-    def check_command(self, line, current_dir):
-        # check through list of commands
-        command_validated = False
-
-        # strip any spaces off the beginning and end
-        line = line.strip()
-
-        # if the validation is included
-        if line in self.allowed_commands:
-            self.counter += 1
-
-            if self.counter > 2:
-                command_validated = True
-
-            else:
-                # Print hint from person
-                hint = "\n{{gWell done!  Keep going!}}"
-                self.send_text(hint)
-
-        else:
-            self.send_text("\n" + self.hints[0])
-
-        return command_validated
-
-    def next(self):
+        copy_data(8, 4)
         Step4()
 
 
-class Step4(StepTemplateCd):
+class Step4(StepTemplateCdBell):
+
     story = [
-        "Check if everything is where it should be. Look around."
+        "{{wb:Little-girl:}} Now the little boy has gone",
+        "{{wb:Mayor:}} Maybe they just decided to go home"
     ]
-    start_dir = "kitchen"
-    end_dir = "kitchen"
+    start_dir = "town"
+    end_dir = "town"
     command = "ls"
-    hints = "{{rUse}} {{yls}} {{rto see that everything is where it should be.}}"
+    hints = "{{r:To look around, use}} {{yb:ls}}"
 
     def next(self):
+        copy_data(8, 5)
         Step5()
 
 
 class Step5(StepTemplateCd):
+
     story = [
-        "Oh no - Mum's vanished too.",
-        "Wait - there's another note.",
-        "Use {{ycat}} to read the note."
+        "You are alone with the Mayor.",
+        "Talk to the Mayor"
     ]
-    start_dir = "kitchen"
-    end_dir = "kitchen"
-    command = "cat note"
-    hints = "{{rUse}} {{ycat note}} {{rto read the note.}}"
+    start_dir = "town"
+    end_dir = "town"
+    command = "cat mayor"
+    hints = "{{r:Use}} {{yb:cat mayor}} {{r:to talk to the mayor}}"
 
     def next(self):
+        copy_data(8, 6)
         Step6()
 
 
-class Step6(StepTemplateCd):
+class Step6(StepTemplateCdBell):
     story = [
-        "{{gCongratulations, you earned 20 XP!}}\n",
-        "{{rTo be continued...}}\n",
-        "Press the Enter key to exit."
+        "{{wb:Mayor:}} \"Everyone has disappeared??\"",
+        "....I should head home now"
     ]
-    start_dir = "kitchen"
-    end_dir = "kitchen"
-    command = ""
-
-    last_step = True
-    challenge_number = 8
+    start_dir = "town"
+    end_dir = "town"
+    command = "ls"
+    hints = "{{r:To look around, use}} {{yb:ls}}"
 
     def next(self):
-        pass
+        Step7()
+
+
+class Step7(StepTemplateCd):
+    story = [
+        "Everyone has gone.",
+        "Wait - there's just a note on the floor.",
+        "Use {{yb:cat}} to read the note."
+    ]
+    start_dir = "town"
+    end_dir = "town"
+    command = "cat note"
+    hints = "{{rb:To read the note, use}} {{yb:cat note}}"
+
+    def next(self):
+        NextChallengeStep()
