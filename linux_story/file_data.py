@@ -13,6 +13,7 @@ import os
 import subprocess
 import sys
 import shutil
+from filecmp import dircmp
 
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if __name__ == '__main__' and __package__ is None:
@@ -113,7 +114,7 @@ def copy_data(challenge_number=1, step_number=1):
             challenge_number, step_number
         )
     )
-    copy_file_tree(challenge_number, step_number)
+    copy_differences(challenge_number, step_number)
 
     """pfile = get_permission_file(challenge_number)
     debugger("Entering pfile = {}".format(pfile))
@@ -142,7 +143,7 @@ def copy_selected_data(challenge=1, step=1):
     e.g. "file_system/1_3"
     '''
 
-    dir_name = str(challenge) + '_' + str(step)
+    dir_name = os.path.join(str(challenge), str(step))
     challenge_dir = os.path.join(FILE_SYSTEM_PATH, dir_name)
 
     for src_path, src_dirs, src_files in os.walk(challenge_dir):
@@ -175,6 +176,39 @@ def copy_selected_data(challenge=1, step=1):
                 )
 
                 shutil.copyfile(src_file, dest_file)
+
+
+def copy_differences(challenge, step):
+    '''This changes the file tree in .linux-story by looking at the
+    differences between it amd the stored file tree for that challenge
+    '''
+
+    challenge_dir = find_last_challenge_path(FILE_SYSTEM_PATH, challenge, step)
+    dcmp = dircmp(HIDDEN_DIR, challenge_dir)
+
+    def recursive_bit(dcmp):
+
+        # for each file only in .linux_story, remove it
+        for name in dcmp.left_only:
+            path = os.path.join(dcmp.left, name)
+            os.remove(path)
+
+        # for each file only in stored challenge file tree,
+        # copy it across
+        for name in dcmp.right_only:
+            copy_from = os.path.join(dcmp.right, name)
+            if os.path.isfile(copy_from):
+                copy_to = dcmp.left
+                shutil.copy(copy_from, copy_to)
+            elif os.path.isdri(copy_from):
+                copy_to = os.path.join(dcmp.left, name)
+                shutil.copytree(copy_from, copy_to)
+
+        # Repeat for the subdirectories
+        for sub_dcmp in dcmp.subdirs.values():
+            recursive_bit(sub_dcmp)
+
+    recursive_bit(dcmp)
 
 
 def copy_file_tree(challenge=1, step=1):
