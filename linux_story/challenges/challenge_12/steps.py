@@ -15,50 +15,68 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.Step import Step
+
+# Change this import statement, need to decide how to group the terminals
+# together
 from linux_story.challenges.challenge_11.terminals import TerminalMv
+from linux_story.challenges.challenge_15.steps import Step1 as NextStep
+from linux_story.challenges.challenge_13.steps import Step3 as LoseDogStep
+from linux_story.file_data import HIDDEN_DIR
 
 
 class StepTemplateMv(Step):
-    challenge_number = 11
+    challenge_number = 12
 
     def __init__(self):
         Step.__init__(self, TerminalMv)
 
 
-# When you talk to Graham
+# Thanks you for saving the little girl
 class Step1(StepTemplateMv):
     story = [
-        "Graham:  Hey, since you don't seem to be affected by going outside, "
-        "can you gather some food for us? ",
-        "We didn't have time to grab any before we went into hiding.\n",
-        "Have a look outside for additonal food. Start by leaving the "
-        ".hidyhole."
+        "{{wb:Edith:}} Thank you for saving her!",
+        "{{wb:Eleanor:}} Doggy!",
+        "{{wb:Edith:}} Can you save her dog too?  I'm worried something will "
+        "happen to it if it stays outside"
     ]
-    start_dir = ".hidyhole"
-    end_dir = "town"
-    command = ""
+    start_dir = ".hidden-shelter"
+    end_dir = ".hidden-shelter"
+    command = "mv ../dog ."
     hints = [
-        "{{r:Use the command}} {{y:cd ..}}"
+        "{{rn:Use the command}} {{yb:mv ../dog .}}"
     ]
+    dog_file = os.path.join(HIDDEN_DIR, 'town/.hidden-shelter/dog')
+
+    def block_command(self, line):
+        line = line.strip()
+        if ("mv" in line or "cd" in line) and line not in self.command:
+            return True
 
     def next(self):
-        Step2()
+        if os.path.exists(self.dog_file):
+            Step2()
+        else:
+            LoseDogStep()
 
 
-# In town, look for possible places
+# Save both the dog and the little girl
 class Step2(StepTemplateMv):
     story = [
-        "You are back in town.",
-        "There are a lot of houses that seem to be deserted."
+        "{{wb:Little girl:}} Yay, Doggie!",
+        "{{wb:Dog:}} Ruff.",
+        "{{wb:Edith:}} Oh thank goodness you got them both back.",
+        "I was wrong about you. You're clearly a good person.\n",
+        "{{gb:Awesome!  You're a hero!}}",
+        "Talk to everyone and see if there's anything else you can do to "
+        "help further"
     ]
-    start_dir = "town"
-    end_dir = "town"
-    command = ""
+    start_dir = ".hidden-shelter"
+    end_dir = ".hidden-shelter"
+    command = "cat Edward"
     hints = [
-        "{{r:Use the command}} {{y:ls -a}} {{r:to see the hidden folders}}"
+        "{{r:Edward looks like he has something he wants to say. "
+        "Talk to Edward with}} {{yb:cat}}"
     ]
 
     def next(self):
-        pass
-
-# Find a directory that looks like it co
+        NextStep()

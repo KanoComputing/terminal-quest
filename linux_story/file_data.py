@@ -183,7 +183,9 @@ def copy_differences(challenge, step):
     differences between it amd the stored file tree for that challenge
     '''
 
-    challenge_dir = find_last_challenge_path(FILE_SYSTEM_PATH, challenge, step)
+    debugger('copy_differences, challenge = {}, step = {}'.format(str(challenge), str(step)))
+
+    challenge_dir = find_last_challenge_path(FILE_SYSTEM_PATH, str(challenge), str(step))
     dcmp = dircmp(HIDDEN_DIR, challenge_dir)
 
     def recursive_bit(dcmp):
@@ -191,7 +193,10 @@ def copy_differences(challenge, step):
         # for each file only in .linux_story, remove it
         for name in dcmp.left_only:
             path = os.path.join(dcmp.left, name)
-            os.remove(path)
+            if os.path.isfile(path):
+                os.remove(path)
+            else:
+                shutil.rmtree(path)
 
         # for each file only in stored challenge file tree,
         # copy it across
@@ -200,7 +205,7 @@ def copy_differences(challenge, step):
             if os.path.isfile(copy_from):
                 copy_to = dcmp.left
                 shutil.copy(copy_from, copy_to)
-            elif os.path.isdri(copy_from):
+            elif os.path.isdir(copy_from):
                 copy_to = os.path.join(dcmp.left, name)
                 shutil.copytree(copy_from, copy_to)
 

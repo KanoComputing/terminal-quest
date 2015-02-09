@@ -18,10 +18,11 @@ if __name__ == '__main__' and __package__ is None:
 
 
 from linux_story.file_data import copy_data
+from linux_story.helper_functions import debugger
 
 
 def launch_project(challenge_number="1", step="1"):
-    copy_data(int(challenge_number))
+    copy_data(int(challenge_number), int(step))
     Step = get_step_class(challenge_number, step)
     Step()
 
@@ -29,6 +30,7 @@ def launch_project(challenge_number="1", step="1"):
 def get_step_class(challenge_number, step_number):
     module_name = "challenges.challenge_" + challenge_number + ".steps"
     step_class_name = "Step" + step_number
+
     try:
         module = __import__(
             module_name,
@@ -38,7 +40,7 @@ def get_step_class(challenge_number, step_number):
             -1
         )
     except ImportError as detail:
-        print 'Import error = {}'.format(detail)
-        return None
+        print 'Import error = {}, module_name = {}'.format(detail, module_name)
+        sys.exit(0)
     else:
         return getattr(module, step_class_name)

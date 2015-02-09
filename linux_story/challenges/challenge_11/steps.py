@@ -20,18 +20,21 @@ from linux_story.challenges.challenge_4.terminals import TerminalCd
 # Change this import statement, need to decide how to group the terminals
 # together
 from linux_story.challenges.challenge_11.terminals import TerminalMv
-from linux_story.challenges.challenge_12.steps import Step1 as NextStep
+from linux_story.challenges.challenge_12.steps import Step1 as SaveGirlStep
+from linux_story.challenges.challenge_13.steps import Step1 as LoseDogStep
+from linux_story.file_data import copy_data, HIDDEN_DIR
+from linux_story.helper_functions import play_sound
 
 
 class StepTemplateCd(Step):
-    challenge_number = 10
+    challenge_number = 11
 
     def __init__(self):
         Step.__init__(self, TerminalCd)
 
 
 class StepTemplateMv(Step):
-    challenge_number = 10
+    challenge_number = 11
 
     def __init__(self):
         Step.__init__(self, TerminalMv)
@@ -41,15 +44,37 @@ class StepTemplateMv(Step):
 class Step1(StepTemplateCd):
     story = [
         "You see a group of people.",
-        "They look a quite thin and unkempt.",
+        "They look quite thin and unkempt.",
         "Try talking to them."
     ]
-    start_dir = "town"
-    end_dir = ".hidyhole"
-    command = ""
-    hints = [
-        "{{r:Use}} {{yb:cat}} {{r:to talk to one of people}}"
-    ]
+    start_dir = ".hidden-shelter"
+    end_dir = ".hidden-shelter"
+    command = "cat Edward"
+
+    # Use functions here
+    command = "cat Edward"
+    all_commands = {
+        "cat Edith": "\n{{wb:Edith:}} \"You found us!  Edward, I told you "
+        "to keep your voice down.\"",
+        "cat Eleanor": "\n{{wb:Eleanor:}} \"My mummy is scared the bell will "
+        "find us if we go outside.\"",
+        "cat Edward": "\n{{wb:Edward:}} \"Oh hullo.  Can you help me?\"",
+        "cat dog": "\n{{wb:dog:}} \"Woof woof!\""
+    }
+
+    def show_hint(self, line, current_dir):
+        if line in self.all_commands.keys():
+            hint = self.all_commands[line]
+            del self.all_commands[line]
+            hint += "\n{{gb:Well done!  Talk to someone else.}}"
+        else:
+            hint = (
+                "\n{{rn:Use}} {{yb:" +
+                self.all_commands.keys()[0] +
+                "}} {{rn:to progress}}"
+            )
+
+        self.send_hint(hint)
 
     def next(self):
         Step2()
@@ -58,174 +83,224 @@ class Step1(StepTemplateCd):
 # After we've heard some of the story from all the people
 class Step2(StepTemplateMv):
     story = [
-        "I learnt this spell for moving items from one place to another.",
-        "I've been trying to move this {{yapple}} into the {{bbasket}}",
-        "I was told the command was {{ymv apple basket}}",
-        "But I don't understand what that means.  Do I say it?"
+        "{{wb:Edward:}} {{wn:\"Oh hullo.  Can you help me?\"",
+        "\"I learnt this spell for moving items from"
+        " one place to another.\"",
+        "\"I've been trying to move this}} {{yb:apple}} {{wn:into the}} "
+        "{{yb:basket}}\"",
+        "{{wn:\"I was told the command was}} {{yb:mv apple basket/}}\"",
+        "{{wn:\"But I don't understand what that means.  Do I say it?\"}}"
     ]
-    start_dir = ".hidyhole"
-    end_dir = ".hidyhole"
+    start_dir = ".hidden-shelter"
+    end_dir = ".hidden-shelter"
     command = [
         "mv apple basket",
         "mv apple basket/"
     ]
     hints = [
-        "{{r:Use the command}} {{yb:mv apple basket}} to {{yb:m}}o{{yb:v}}e "
-        "the apple into the basket"
+        "{{gb:See if you can succeed where Edward failed. "
+        "Try and}} {{yb:move}} {{gb:the}} {{yb:apple}} {{gb:into the}} "
+        "{{yb:basket}}",
+        "{{r:Use the command}} {{yb:mv apple basket/}} {{rn:to}} "
+        "{{yb:m}}{{rn:o}}{{yb:v}}{{rn:e the apple into the basket}}"
     ]
+
+    def block_command(self, line):
+        line = line.strip()
+        if ("mv" in line or "cd" in line) and line not in self.command:
+            return True
 
     def next(self):
         Step3()
 
 
-# After cat-ing the person again?
 class Step3(StepTemplateMv):
     story = [
-        "{{wb:Edward:}} Hey, you did it!",
-        "{{w:What was I doing wrong?}}",
-        "Hey, can you move the apple back from the basket to here?",
-        "You want to move the apple from the basket to your current position, "
-        "represented by ."
+        "{{w:Check you have indeed moved the apple.  Look around in this "
+        "directory}}"
     ]
-    start_dir = ".hidyhole"
-    end_dir = ".hidyhole"
-    command = "mv basket/apple ."
+    start_dir = ".hidden-shelter"
+    end_dir = ".hidden-shelter"
+    command = [
+        "ls",
+        "ls -a"
+    ]
     hints = [
-        "{{r:Use the command}} {{yb:mv basket/apple .}} to "
-        "{{yb:m}}o{{yb:v}}e the apple from the basket to your current position"
+        "{{r:Look in this directory to check you've moved the apple}}",
+        "{{r:Use}} {{yb:ls}} {{r:to check the apple is not here}}"
     ]
 
     def next(self):
         Step4()
 
 
-# Get three attempts to save the girl
 class Step4(StepTemplateMv):
     story = [
-        "Graham:  You should stop playing with that, that's the last of "
-        "our food..."
-        "Edith: {{w:Ah!  My cat ran outside!}}",
-        "Little girl: {{w:Kitty!}}",
-        "Edith: {{w:No, honey!  Don't go outside}}",
-        "The little girl follows her cat and leaves the {{yb:.hidyhole}}",
-        "Edith: {{w:No!!  Honey, come back!!}}",
-        "{{w:You there, save my little girl!}}\n",
-        "You need to move the little girl back to this directory."
+        "{{gb:Looking good, the apple isn't in this directory anymore}}",
+        "{{wn:Now check the apple is in the basket}}"
     ]
-    start_dir = ".hidyhole"
-    end_dir = ".hidyhole"
-    command = "mv ../little-girl ."
+    start_dir = ".hidden-shelter"
+    end_dir = ".hidden-shelter"
+    command = [
+        "ls basket",
+        "ls basket/",
+        "ls -a basket",
+        "ls -a basket/"
+    ]
     hints = [
-        "{{r:Use the command}} {{y:mv ../little-girl .}}"
+        "{{r:Now look in the}} {{yb:basket}} {{rn:to check you've moved the "
+        "apple in the basket}}",
+        "{{r:Use the}} {{yb:ls}} {{rn:command to look in the}} {{yb:basket}}",
+        "{{r:Use the command}} {{yb:ls basket}} {{rn:to progress}}"
     ]
+
+    def next(self):
+        Step5()
+
+
+# After cat-ing the person again?
+class Step5(StepTemplateMv):
+    story = [
+        "{{gb:Cool, the apple is now in the basket!}}",
+        "\n{{wb:Edward:}} {{wn:\"Hey, you did it!  What was I doing "
+        "wrong?\"}}",
+        "\"Can you move the apple back from the basket to here?\"\n",
+        "You want to {{yb:move}} the {{yb:apple}} from the {{yb:basket}} to "
+        "{{yb:.}} which represents your current position"
+    ]
+    start_dir = ".hidden-shelter"
+    end_dir = ".hidden-shelter"
+    command = "mv basket/apple ."
+    hints = [
+        "{{r:Use the command}} {{yb:mv basket/apple .}} {{rn:to}} "
+        "{{yb:m}}{{rn:o}}{{yb:v}}{{rn:e the apple from the basket to your "
+        "current position.}}"
+    ]
+
+    def block_command(self, line):
+        line = line.strip()
+        if ("mv" in line or "cd" in line) and line not in self.command:
+            return True
+
+    def check_command(self, line, current_dir):
+        if line.strip() == "mv basket/apple":
+            hint = (
+                "{{gb:Nearly!  However the full command is}} "
+                "{{yb:mv basket/apple .}} {{gb:- don't forget the dot!}}"
+            )
+            self.send_hint(hint)
+        else:
+            return StepTemplateMv.check_command(self, line, current_dir)
+
+    def next(self):
+        copy_data(11, 6)
+        Step6()
+
+
+# Get three attempts to save the girl
+class Step6(StepTemplateMv):
+    story = [
+        "{{wb:Edith:}} {{wn:\"You should stop playing with that, that's the "
+        "last of our food.\"}}",
+        "{{wn:\"Ah!  The dog ran outside!\"}}",
+        "{{wb:Eleanor:}} {{wn:\"Doggy!\"}}",
+        "{{wb:Edith:}} {{wn:\"No, honey!  Don't go outside\"}}",
+        "\nThe little girl follows her dog and leaves the "
+        "{{yb:.hidden-shelter}}",
+        "Look around to confirm this."
+    ]
+
+    start_dir = ".hidden-shelter"
+    end_dir = ".hidden-shelter"
+    command = [
+        "ls", "ls -a"
+    ]
+    hints = [
+        "{{r:Look around using}} {{yb:ls}} {{rn:to confirm Eleanor ran "
+        "outside}}"
+    ]
+
+    def next(self):
+        Step7()
+
+
+class Step7(StepTemplateMv):
+    story = [
+        "{{wb:Edith:}} {{wn:\"No!!  Honey, come back!!\"}}",
+        "{{wn:\"You there, save my little girl!\"}}\n",
+        "First, check to see that Eleanor is in the {{yb:town}} directory"
+    ]
+    start_dir = ".hidden-shelter"
+    end_dir = ""
+    command = [
+        "ls ..",
+        "ls ../",
+        "ls ~/town",
+        "ls ~/town/"
+    ]
+    hints = [
+        "{{rn:Look in the town directory by using either}} {{yb:ls ../}} "
+        "{{rn:or}} {{yb:ls ~/town/}}"
+    ]
+
+    def next(self):
+        # for now
+        Step8()
+
+
+class Step8(StepTemplateMv):
+    story = [
+        "Now {{yb:move}} {{wn:the girl from the}} {{yb:town}} {{wn:into}} "
+        "{{yb:this directory}}"
+    ]
+    start_dir = ".hidden-shelter"
+    end_dir = ".hidden_shelter"
+    command = [
+        "mv ../Eleanor .",
+        "mv Eleanor .hidden-shelter",
+        "mv Eleanor .hidden-shelter/"
+    ]
+    hints = [
+        '{{rn:Move}} {{yb:Eleanor}} {{rn:back to}} {{yb:.}} '
+        '{{rn:which represents this directory, using}} {{yb:mv}}',
+        "{{rn:You need to move}} {{yb:Eleanor}} {{rn:from}} {{yb:../}} "
+        "{{rn:to}} {{yb:.}}",
+        "{{rn:Quick!  Use}} {{yb:mv ../Eleanor .}} "
+        "{{rn:to move the little girl back to safety}}"
+    ]
+    counter = 0
+
+    def block_command(self, line):
+        line = line.strip()
+        if ("mv" in line or "cd" in line) and line not in self.command:
+            if 'cd' in line:
+                print 'Ability to Change Directory has been blocked'
+            return True
+
+    def check_command(self, line, current_dir):
+        # Need to check if the girl is in the correct directory
+
+        # strip any spaces off the beginning and end
+        line = line.strip()
+        girl_file = os.path.join(HIDDEN_DIR, 'town/.hidden-shelter/Eleanor')
+
+        if os.path.exists(girl_file) or self.counter == 3:
+            return True
+        else:
+            self.show_hint(line, current_dir)
+            return False
+
+    def show_hint(self, line, current_dir):
+        self.counter += 1
+        StepTemplateMv.show_hint(self, line, current_dir)
 
     def next(self):
         # if girl is saved
-        Step5a()
+        if self.counter < 3:
+            SaveGirlStep()
+
         # Else go to Step5b
-
-
-# Thanks you for saving the little girl
-class Step5a(StepTemplateMv):
-    story = [
-        "Edith: Thank you for saving her!",
-        "Little girl: Kitty!",
-        "Edith: Can you save her kitty too?  I'm worried something will "
-        "happen to it if it stays outside"
-    ]
-    start_dir = ".hidyhole"
-    end_dir = ".hidyhole"
-    command = ""
-    hints = [
-        "{{r:Use the command}} {{y:mv ../cat .}}"
-    ]
-
-    def next(self):
-        Step6a
-
-
-# Save both the cat and the little girl
-class Step6a(StepTemplateMv):
-    story = [
-        "Little girl: Yay, kitty!",
-        "Cat: Meow.",
-        "Edith: Oh thank goodness you got them both back.",
-        "I was wrong about you. You're clearly a good person.",
-        "Talk to the others and see if there's anything else you can do to"
-        "help"
-    ]
-    start_dir = ".hidyhole"
-    end_dir = ".hidyhole"
-    command = ""
-    hints = [
-        "{{r:Use the command}} {{y:cat}} {{r:to see if you can help "
-        "the others}}"
-    ]
-
-    def next(self):
-        NextStep()
-        # If you do the command correctly, save the cat
-
-
-# You lose the cat
-class Step5b(StepTemplateMv):
-    story = [
-        # Make this text smaller
-        "Girl:  Oh no!  my cat has disappeared!",
-        "Girl:  ....am I next?",
-        # Normal sized
-        "Edith: Get her back!"
-    ]
-    start_dir = ".hidyhole"
-    end_dir = ".hidyhole"
-    command = ""
-    hints = [
-        "{{r:Use the command}} {{y:mv ../little-girl .}}"
-    ]
-
-    def next(self):
-        # If
-        Step6b()
-
-
-# You save the little girl, but lose the cat.
-class Step6b(StepTemplateMv):
-    story = [
-        "Edith: Oh thank goodness I have you back safely.",
-        "Girl:  I lost my kitty!!!",
-        "Edith:  I know I know, there's nothing we could do about that."
-        "Alice:  I'm glad you could save the little girl, even if we lost the "
-        "cat.\n",
-        "Ask the people if there's anything else you can do"
-    ]
-    start_dir = ".hidyhole"
-    end_dir = ".hidyhole"
-    command = ""
-    hints = [
-        "{{r:Use the command}} {{y:mv ../cat .}}"
-    ]
-
-    def next(self):
-        NextStep()
-
-
-# You lose both the cat and the little girl.
-class Step6c(StepTemplateMv):
-    story = [
-        "Edith: My little girl! How could you let her get taken away like "
-        "that??",
-        "Alice: Oh no, that poor girl!  Who knows what's happened to her.",
-        "Edward:  Oh, this is awful\n",
-        "Talk to people to see if there's anything you can do anything else "
-        "to help"
-    ]
-    start_dir = ".hidyhole"
-    end_dir = ".hidyhole"
-    command = ""
-    hints = [
-        "{{r:Use the command}} {{y:mv ../cat .}}"
-    ]
-
-    def next(self):
-        # When you talk to the correct person
-        NextStep()
+        else:
+            play_sound('bell')
+            copy_data(13, 1)
+            LoseDogStep()

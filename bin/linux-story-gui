@@ -120,7 +120,6 @@ class Application(MainWindow):
         self.run_server()
 
     def close_window(self, widget, event):
-        #spellbook.stop = True
 
         # This DOES NOT launch the finish function
         self.server.socket.shutdown(socket.SHUT_RDWR)

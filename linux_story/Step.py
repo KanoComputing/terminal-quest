@@ -73,12 +73,15 @@ class Step():
             t.daemon = True
             t.start()
 
-    def send_hint(self):
+    def send_hint(self, hint=None):
         '''Sends a hint string through the pipe to the GUI
         '''
 
         if not is_server_busy():
-            hint = '\n' + self.hints[0]
+            if not hint:
+                hint = '\n' + self.hints[0]
+            else:
+                hint = '\n' + hint
             data = {'hint': hint}
             t = threading.Thread(target=launch_client, args=(data,))
             t.daemon = True
@@ -159,27 +162,33 @@ class Step():
         if self.end_dir:
             end_dir_validated = current_dir == self.end_dir
 
+        if not (command_validated and end_dir_validated):
+            self.show_hint(line, current_dir)
+
+        return command_validated and end_dir_validated
+
+    def show_hint(self, line, current_dir):
+        '''Customize the hint that is shown to the user
+        depending on their input
+        '''
+        # Default behaviour
         # if user does not pass challenge, show hints.
         # Go through hints until we get to last hint
         # then just keep showing last hint
-        if not (command_validated and end_dir_validated):
-            #self.save_hint("\n" + self.hints[0])
-            self.send_hint()
+        self.send_hint()
 
-            if len(self.hints) > 1:
-                self.hints.pop(0)
-
-        return command_validated and end_dir_validated
+        if len(self.hints) > 1:
+            self.hints.pop(0)
 
     def block_command(self, line):
         '''line is the user entered input from the terminal.
         If this function returns True, input entered will be blocked
         Otherwise, command will be run as normal.
-        Default behaviour is to block cd
+        Default behaviour is to block cd and mv
         '''
 
         line = line.strip()
-        if "cd" in line:
+        if "cd" in line or "mv" in line:
             return True
 
     def check_output(self, output):

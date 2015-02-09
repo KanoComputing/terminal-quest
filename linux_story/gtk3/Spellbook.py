@@ -29,7 +29,7 @@ class Spellbook(Gtk.EventBox):
     CMD_HEIGHT = 80
     CMD_WIDTH = 80
     HEIGHT = 100
-    number_of_spells = 3
+    number_of_spells = 4
 
     def __init__(self):
         self.stop = False

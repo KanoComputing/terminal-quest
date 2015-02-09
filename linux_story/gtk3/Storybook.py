@@ -37,9 +37,9 @@ class Storybook(Gtk.TextView):
         font_desc = Pango.FontDescription()
         font_desc.set_family("monospace")
         self.override_font(font_desc)
-        bg_color = Gdk.RGBA()
-        bg_color.parse("#313131")
-        self.override_background_color(Gtk.StateFlags.NORMAL, bg_color)
+        bg_colour = Gdk.RGBA()
+        bg_colour.parse("#313131")
+        self.override_background_color(Gtk.StateFlags.NORMAL, bg_colour)
         self.char_width = self.__get_char_width()
         self.set_can_focus(False)
 
@@ -58,12 +58,35 @@ class Storybook(Gtk.TextView):
             GObject.idle_add(
                 self.__style_char,
                 line['letter'],
-                [line['color'], line['bold']]
+
+                # TODO: get size tag working
+                [line['colour'], line['bold']]
             )
             if line['letter'] == '\n':
                 time.sleep(0.07)
             else:
                 time.sleep(0.04)
+
+    def __style_char(self, line, tag_names):
+        '''Add styling (e.g. colours) to each character as it appears on the
+        screen
+        '''
+
+        textbuffer = self.get_buffer()
+        insert_iter = textbuffer.get_end_iter()
+        textbuffer.place_cursor(insert_iter)
+        textbuffer.insert(insert_iter, line)
+
+        self.scroll_to_mark(textbuffer.get_insert(), 0.1, False, 0, 0)
+
+        textbuffer = self.get_buffer()
+        end_but_one_iter = textbuffer.get_end_iter()
+        end_but_one_iter.backward_char()
+        end_iter = textbuffer.get_end_iter()
+
+        for tag_name in tag_names:
+            tag = self.__get_tag(tag_name)
+            textbuffer.apply_tag(tag, end_but_one_iter, end_iter)
 
     def print_challenge_title(self, challenge_number="1"):
         '''Print Challenge title from file at the top of the Story widget
@@ -104,6 +127,9 @@ class Storybook(Gtk.TextView):
         textbuffer.create_tag('green', foreground='green')
         textbuffer.create_tag('bold', weight=Pango.Weight.BOLD)
         textbuffer.create_tag('not-bold', weight=Pango.Weight.NORMAL)
+        textbuffer.create_tag('small', size=0)
+        textbuffer.create_tag('medium', size=5)
+        textbuffer.create_tag('large', size=10)
 
     def __get_tag(self, tag_name):
         '''Gets tag from tag table
@@ -183,7 +209,7 @@ class Storybook(Gtk.TextView):
 
         return new_string
 
-    def __get_color_from_id(self, color_id='w'):
+    def __get_colour_from_id(self, colour_id='w'):
         '''Look up letter of colour
         '''
 
@@ -195,55 +221,138 @@ class Storybook(Gtk.TextView):
             'o': 'orange',
             'w': 'white'
         }
-        return pairs[color_id]
+        return pairs[colour_id]
 
-    def __string_to_color_list(self, string, color, bold='not-bold'):
-        '''Turns string into array of the form
-        [{'letter': 'h', 'color': 'white'}, {'letter': 'e', 'color': 'white'}]
+    def __get_bold_from_id(self, bold_id='n'):
+        '''Look up bold status from ID
+        '''
+
+        pairs = {
+            'b': 'bold',
+            'n': 'not-bold'
+        }
+        return pairs[bold_id]
+
+    def __get_size_from_id(self, size_id='m'):
+        '''Look up bold status from ID
+        '''
+
+        pairs = {
+            's': 'small',
+            'm': 'medium',
+            'l': 'large'
+        }
+        return pairs[size_id]
+
+    def __string_to_tag_list(self, string, colour, bold, size):
+        '''Turns string into an array of the form
+        [{'letter': 'h', 'colour': 'white', 'bold': 'bold'},
+         {'letter': 'e', 'colour': 'white', 'bold': 'bold'}]
+        with the specified colours
         '''
 
         array = []
         for char in string:
-            pair = {'letter': char, 'color': color, 'bold': bold}
+            pair = {
+                'letter': char,
+                'colour': colour,
+                'bold': bold,
+                'size': size
+            }
             array.append(pair)
         return array
 
     def __parse_string(self, string):
         '''Change string of the form
-        "{{whello this is a}} {{rstring}}"
+        "{{wbs:hello this is a}} {{r:string}}"
         into an array of the form
-        [{'letter': 'h', 'color': 'white'}, {'letter': 'e', 'color': 'white'}]
+        [{'letter': 'h', 'colour': 'white', 'bold': 'bold'},
+        {'letter': 'e', 'colour': 'white', 'bold': 'bold'},
+        ...]
         '''
 
-        default_color = self.__get_color_from_id()
+        # Get defaults
+        default_colour = self.__get_colour_from_id()
+        default_bold = self.__get_bold_from_id()
+        default_size = self.__get_size_from_id()
+
+        # Initialise changed variables
+        colour = default_colour
+        bold = default_bold
+        size = default_size
+
         string_array = []
         string = self.__split_into_lines(string)
+
         if string.find("{{") == -1:
-            string_array = self.__string_to_color_list(string, default_color)
+            string_array = self.__string_to_tag_list(
+                string,
+                default_colour,
+                default_bold,
+                default_size
+            )
             return string_array
 
         # First part of the string
         while string.find("{{") != -1:
             pos1 = string.index("{{")
-            first_part = string[:pos1]
-            # Last part of the string
-            pos2 = string.index("}}")
-            last_part = string[pos2 + 2:]
-            # Preset id
-            color_id = string[pos1 + 2]
-            color = self.__get_color_from_id(color_id)
-            # Color part of the string
-            color_part = string[pos1 + 3:pos2]
+            # Find the colon directly after the {{
+            pos2 = string.find(":", pos1)
 
-            color_part = self.__string_to_color_list(color_part, color, 'bold')
-            first_part = self.__string_to_color_list(first_part, default_color)
+            # This gives the characters between the '{{' and '('.
+            # These decide the tags we apply to the subsequent string
+            attr = string[pos1 + 2:pos2]
+
+            if len(attr) > 0:
+                colour_id = attr[0]
+                colour = self.__get_colour_from_id(colour_id)
+
+            if len(attr) > 1:
+                bold_id = attr[1]
+                bold = self.__get_bold_from_id(bold_id)
+
+            if len(attr) > 2:
+                size_id = attr[2]
+                size = self.__get_size_from_id(size_id)
+
+            # {{ ?
+            first_part = string[:pos1]
+
+            # Last part of the string
+            pos3 = string.index("}}")
+
+            last_part = string[pos3 + 2:]
+
+            # Colour part of the string
+            colour_part = string[pos2 + 1:pos3]
+
+            colour_part = self.__string_to_tag_list(
+                colour_part,
+                colour,
+                bold,
+                size
+            )
+
+            first_part = self.__string_to_tag_list(
+                first_part,
+                default_colour,
+                default_bold,
+                default_size
+            )
 
             if last_part.find("{{") == -1:
-                last_part = self.__string_to_color_list(last_part, default_color)
-                string_array = string_array + first_part + color_part + last_part
+                last_part = self.__string_to_tag_list(
+                    last_part,
+                    default_colour,
+                    default_bold,
+                    default_size
+                )
+                string_array = (
+                    string_array + first_part + colour_part + last_part
+                )
                 string = ''
             else:
-                string_array = string_array + first_part + color_part
+                string_array = string_array + first_part + colour_part
                 string = last_part
 
         return string_array
@@ -262,27 +371,6 @@ class Storybook(Gtk.TextView):
         layout.set_text(stringtomeasure, -1)
         width, height = layout.get_pixel_size()
         return width
-
-    def __style_char(self, line, tag_names):
-        '''Add styling (e.g. colours) to each character as it appears on the
-        screen
-        '''
-
-        textbuffer = self.get_buffer()
-        insert_iter = textbuffer.get_end_iter()
-        textbuffer.place_cursor(insert_iter)
-        textbuffer.insert(insert_iter, line)
-
-        self.scroll_to_mark(textbuffer.get_insert(), 0.1, False, 0, 0)
-
-        textbuffer = self.get_buffer()
-        end_but_one_iter = textbuffer.get_end_iter()
-        end_but_one_iter.backward_char()
-        end_iter = textbuffer.get_end_iter()
-
-        for tag_name in tag_names:
-            tag = self.__get_tag(tag_name)
-            textbuffer.apply_tag(tag, end_but_one_iter, end_iter)
 
 
 # Test container for the Storybook widget

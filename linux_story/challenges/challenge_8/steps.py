@@ -71,8 +71,11 @@ class Step2(StepTemplateCdBell):
     command = "ls"
     hints = "{{r:To look around, use}} {{yb:ls}}"
 
-    def next(self):
+    def run(self):
         copy_data(8, 4)
+        StepTemplateCdBell.run(self)
+
+    def next(self):
         Step4()
 
 
@@ -87,8 +90,11 @@ class Step4(StepTemplateCdBell):
     command = "ls"
     hints = "{{r:To look around, use}} {{yb:ls}}"
 
-    def next(self):
+    def run(self):
         copy_data(8, 5)
+        StepTemplateCdBell.run(self)
+
+    def next(self):
         Step5()
 
 
@@ -109,6 +115,7 @@ class Step5(StepTemplateCd):
 
 
 class Step6(StepTemplateCdBell):
+
     story = [
         "{{wb:Mayor:}} \"Everyone has disappeared??\"",
         "....I should head home now"
