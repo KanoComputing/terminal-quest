@@ -35,6 +35,7 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
         text_cb = self.server.win.type_text
         spell_cb = self.server.win.repack_spells
         challenge_cb = self.server.win.print_challenge_title
+        terminal_cb = self.server.win.show_terminal
 
         self.request.sendall('busy')
 
@@ -60,6 +61,9 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
                 # Repack the spells into the spellbook
                 spells = data_dict['spells']
                 GObject.idle_add(spell_cb, spells)
+
+                # Refresh terminal - useful for the first challenge
+                GObject.idle_add(terminal_cb)
 
                 self.request.sendall('ready')
 

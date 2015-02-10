@@ -34,10 +34,6 @@ class Spellbook(Gtk.EventBox):
     def __init__(self):
         self.stop = False
 
-        # TODO: fix this, is hacky.
-        # First time we launch the spellbook, we want to hide it
-        self.first = True
-
         Gtk.EventBox.__init__(self)
 
         background = Gtk.EventBox()
@@ -63,10 +59,7 @@ class Spellbook(Gtk.EventBox):
         '''
 
         self.__pack_spells(spells)
-        if self.first:
-            self.first = False
-        else:
-            self.show_all()
+        self.show_all()
 
     def __create_spell(self, name, locked=False):
         '''Create the individual GUI for a spell

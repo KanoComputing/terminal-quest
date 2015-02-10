@@ -12,11 +12,9 @@ import os
 import sys
 import threading
 import socket
-#import time
 from gi.repository import Gtk, Gdk, GObject
 GObject.threads_init()
 Gdk.threads_init()
-# GObject.threads_init() is called when importing KanoProgressBar
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -28,11 +26,10 @@ from linux_story.gtk3.TerminalUi import TerminalUi
 from linux_story.gtk3.Spellbook import Spellbook
 from linux_story.gtk3.Storybook import Storybook
 from linux_story.paths import css_dir
-#from kano.gtk3.kano_progress import KanoProgressBar
 from kano.gtk3.apply_styles import apply_styling_to_screen
 
-#from kano_profile.tracker import Tracker
-#kanotracker = Tracker()
+# from kano_profile.tracker import Tracker
+# kanotracker = Tracker()
 
 
 class MainWindow(Gtk.Window):
@@ -127,7 +124,12 @@ class Application(MainWindow):
         self.server.shutdown()
         Gtk.main_quit()
 
+    # TODO: this should be a private member function, and probably
+    # should have a different name
     def create_terminal(self, challenge_number="", step_number=""):
+        '''This function currently creates the thread which delays showing the
+        spellbook and launches the script in the terminal
+        '''
 
         filepath = os.path.abspath(
             os.path.join(
@@ -135,24 +137,6 @@ class Application(MainWindow):
                 "linux-story"
             )
         )
-
-        def delay_showing_elements(win, terminal, spellbook):
-            #time.sleep(30)
-
-            def done(win):
-                win.show_all()
-
-                # Terminal should be focused on
-                terminal.grab_focus()
-
-            GObject.idle_add(done, win)
-
-        thread = threading.Thread(
-            target=delay_showing_elements,
-            args=(self, self.terminal, self.spellbook)
-        )
-        thread.daemon = True
-        thread.start()
 
         command = (
             "python " +
@@ -165,8 +149,8 @@ class Application(MainWindow):
         # this to hide the spellbook and terminal from view until the story has
         # finished displaying
         self.show_all()
-        #self.terminal.hide()
-        #self.spellbook.hide()
+        self.terminal.hide()
+        self.spellbook.hide()
 
         Gtk.main()
 
@@ -188,6 +172,14 @@ class Application(MainWindow):
 
         self.spellbook.repack_spells(spells)
 
+    def show_terminal(self):
+        '''Wrapper function for showing terminal
+        Only used at the beginning after story has loaded
+        '''
+
+        self.terminal.show_all()
+        self.terminal.grab_focus()
+
     def run_server(self):
         self.server = create_server(self)
         t = threading.Thread(target=self.server.serve_forever)
@@ -195,27 +187,7 @@ class Application(MainWindow):
         t.start()
 
 
-class ProgressThread(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.daemon = True
-
-    def run(self):
-        GObject.idle_add(self.load_progress_bar)
-
-    def load_progress_bar(self):
-        pb = KanoProgressBar(
-            pulse=False,
-            title="Loading the Legendary Terminal Quest",
-            rate=0.01
-        )
-        pb.run()
-
-
 def main():
-    #progress_thread = ProgressThread()
-    #progress_thread.start()
-
     app = Application()
 
     if len(sys.argv) == 3:
