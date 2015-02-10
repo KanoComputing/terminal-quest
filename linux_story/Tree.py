@@ -151,6 +151,8 @@ def generate_file_tree():
         folders.remove(".linux-story")
 
         for d in dirnames:
+            # Find the folders that come directly after the username
+            # i.e. /home/username/d
             if folders[-1] == username:
                 tree.add_node(d, "~")
             else:

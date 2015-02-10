@@ -261,7 +261,8 @@ class Step8(StepTemplateMv):
         "mv Eleanor .hidden-shelter/"
     ]
     hints = [
-        '{{rn:Move}} {{yb:Eleanor}} {{rn:back to}} {{yb:.}} '
+        '{{rn:Move}} {{yb:Eleanor}} {{rn:from}} the previous directory '
+        '{{yb:..}} {{rn:to}} {{yb:.}} '
         '{{rn:which represents this directory, using}} {{yb:mv}}',
         "{{rn:You need to move}} {{yb:Eleanor}} {{rn:from}} {{yb:../}} "
         "{{rn:to}} {{yb:.}}",

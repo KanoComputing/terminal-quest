@@ -102,7 +102,7 @@ class Step3(StepTemplateCd):
 
             self.all_commands.pop(line, None)
 
-            if self.all_commands == 1:
+            if len(self.all_commands) == 1:
                 hint += "\n{{g:Well done! Check on 1 more person.}}"
             elif len(self.all_commands) > 0:
                 hint += "\n{{g:Well done! Check on " + \

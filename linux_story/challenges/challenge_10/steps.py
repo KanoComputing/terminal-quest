@@ -41,6 +41,7 @@ class Step1(StepTemplateCd):
     allowed_commands = [
         "cat banana",
         "cat cake",
+        "cat crossaint",
         "cat grapes",
         "cat milk",
         "cat newspaper",
@@ -108,7 +109,8 @@ class Step2(StepTemplateCd):
             "cd ../",
             "cd town",
             "cd town/",
-            "cd"
+            "cd ../..",
+            "cd ../../"
         ]
 
         line = line.strip()
@@ -160,7 +162,7 @@ class Step3(StepTemplateCd):
     start_dir = "town"
     end_dir = "town"
     command = "ls"
-    hints = "{{r:Use}} {{yb:ls}} {{r:to have a look around the town}}"
+    hints = "{{r:Use}} {{yb:ls}} {{rn:to have a look around the town}}"
 
     def next(self):
         Step4()
