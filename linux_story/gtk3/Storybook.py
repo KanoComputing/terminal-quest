@@ -40,7 +40,6 @@ class Storybook(Gtk.TextView):
         self.override_background_color(Gtk.StateFlags.NORMAL, bg_colour)
         self.char_width = self.__get_char_width()
         self.set_can_focus(False)
-        self.connect('insert-at-cursor', self.print_show)
         textbuffer = self.get_buffer()
         textbuffer.connect('changed', self.print_changed)
 
