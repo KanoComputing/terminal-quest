@@ -1,9 +1,18 @@
+#!/usr/bin/env python
+
+# socket_functions.py
+#
+# Copyright (C) 2014 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+# Author: Caroline Clark <caroline@kano.me>
+# Create server so terminal and GUI can communicate with each other
+
 import SocketServer
 import socket
 import json
 import threading
 import time
-from gi.repository import GObject
 
 
 server_busy = None
@@ -31,44 +40,10 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
         # self.request is the TCP socket connected to the client
         self.data = self.request.recv(1024).strip()
         data_dict = json.loads(self.data)
-
-        text_cb = self.server.win.type_text
-        spell_cb = self.server.win.repack_spells
-        challenge_cb = self.server.win.print_challenge_title
-        terminal_cb = self.server.win.show_terminal
-
-        self.request.sendall('busy')
-
-        # Type out the hint
-        if 'hint' in data_dict.keys():
-            text_cb(data_dict['hint'])
-            self.request.sendall('ready')
-        else:
-
-            self.server.win.story.clear()
-
-            if 'challenge' in data_dict.keys() and \
-               'story' in data_dict.keys() and \
-               'spells' in data_dict.keys():
-
-                # Print the challenge title at the top of the screen
-                challenge = data_dict['challenge']
-                GObject.idle_add(challenge_cb, challenge)
-
-                # Type the story out
-                text_cb(data_dict['story'])
-
-                # Repack the spells into the spellbook
-                spells = data_dict['spells']
-                GObject.idle_add(spell_cb, spells)
-
-                # Refresh terminal - useful for the first challenge
-                GObject.idle_add(terminal_cb)
-
-                self.request.sendall('ready')
+        self.server.queue.put(data_dict)
 
 
-def create_server(window):  # text_cb, spell_cb, challenge_cb):
+def create_server(queue):  # text_cb, spell_cb, challenge_cb):
     HOST, PORT = "localhost", 9959
 
     # Create the server, binding to localhost on port 9999
@@ -78,7 +53,9 @@ def create_server(window):  # text_cb, spell_cb, challenge_cb):
     # quit it, we can relaunch is straight afterwards
     SocketServer.TCPServer.allow_reuse_address = True
     server = SocketServer.TCPServer((HOST, PORT), MyTCPHandler)
-    server.win = window
+
+    server.queue = queue
+
     return server
 
 

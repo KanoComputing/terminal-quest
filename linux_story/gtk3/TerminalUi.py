@@ -10,7 +10,7 @@
 
 
 from gi.repository import Vte
-from gi.repository import GLib
+from gi.repository import GLib, GObject
 import os
 
 
@@ -27,7 +27,7 @@ class TerminalUi(Vte.Terminal):
             None)
 
         # This prevents the user scrolling back through the history
-        self.set_scrollback_lines(0)
+        # self.set_scrollback_lines(0)
 
     def launch_command(self, command):
         command = "temp=$(tty) ; " + command + " > $temp | clear\n"
