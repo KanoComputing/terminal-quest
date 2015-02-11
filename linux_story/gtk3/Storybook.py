@@ -10,7 +10,7 @@
 
 import threading
 import os
-from gi.repository import Gtk, GObject, Pango, Gdk
+from gi.repository import Gtk, Pango, Gdk
 import time
 
 
@@ -40,16 +40,6 @@ class Storybook(Gtk.TextView):
         self.override_background_color(Gtk.StateFlags.NORMAL, bg_colour)
         self.char_width = self.__get_char_width()
         self.set_can_focus(False)
-        textbuffer = self.get_buffer()
-        textbuffer.connect('changed', self.print_changed)
-
-    def print_changed(self, widget=None, string=None):
-        '''This demonstrates that the textbuffer is emitting events
-        '''
-        print 'changed event has indeed been invoked'
-        self.show()
-        Gtk.main_iteration_do(False)
-        return False
 
     def clear(self):
         '''Clear all text in spellbook
@@ -73,10 +63,9 @@ class Storybook(Gtk.TextView):
             if line['letter'] == '\n':
                 time.sleep(0.07)
             else:
-                time.sleep(0.04)
+                time.sleep(0.01)
 
             while Gtk.events_pending():
-                print 'gtk events are indeed pending'
                 Gtk.main_iteration_do(False)
 
     def __style_char(self, line, tag_names):
@@ -102,9 +91,6 @@ class Storybook(Gtk.TextView):
         for tag_name in tag_names:
             tag = self.__get_tag(tag_name)
             textbuffer.apply_tag(tag, end_but_one_iter, end_iter)
-
-        # This doesn't do anything
-        self.show_all()
 
     def print_challenge_title(self, challenge_number="1"):
         '''Print Challenge title from file at the top of the Story widget

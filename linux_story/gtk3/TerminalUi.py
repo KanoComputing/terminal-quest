@@ -33,12 +33,3 @@ class TerminalUi(Vte.Terminal):
         command = "temp=$(tty) ; " + command + " > $temp | clear\n"
         length = len(command)
         self.feed_child(command, length)
-
-
-class MyObject(GObject.GObject):
-    __gsignals__ = {
-        'my_signal': (GObject.SIGNAL_RUN_FIRST, None, ())
-    }
-
-    def do_my_signal(self):
-        print "class method for `my_signal' called with argument"
