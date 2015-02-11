@@ -9,8 +9,11 @@
 # The template of the terminal classes.
 
 from cmd import Cmd
-from helper_functions import (get_completion_desc, get_script_cmd)
+from helper_functions import (
+    get_completion_desc, get_script_cmd, debugger
+)
 from Tree import generate_file_tree
+from socket_functions import is_server_busy
 
 # If this is not imported, the escape characters used for the colour prompts
 # show up as special characters.
@@ -118,13 +121,23 @@ class Terminal(Cmd):
         '''
 
         cmd_output_correct = self.check_output(self.last_cmd_output)
-        return cmd_output_correct or self.check_command(line, self.current_dir)
+        condition = cmd_output_correct or self.check_command(line, self.current_dir)
+        return self.finish_if_server_ready(condition)
 
     def complete_list(self):
         '''Show the list of files in the current directory
         '''
 
         return list(self.filetree.show_direct_descendents(self.current_dir))
+
+    @staticmethod
+    def finish_if_server_ready(other_condition):
+        server_busy = is_server_busy()
+        debugger("server_busy = {}".format(server_busy))
+        debugger('other_condition = {}'.format(other_condition))
+        will_finish = (not server_busy and other_condition)
+        debugger('will finish = {}'.format(will_finish))
+        return will_finish
 
     #######################################################
     # Helper commands
@@ -138,22 +151,33 @@ class Terminal(Cmd):
         completion_type, string. Can be 'file', 'dir' or 'both'
         '''
 
-        temp_dir = get_completion_desc(self.current_dir, self.filetree,
-                                       line, completion_type)
-        autocomplete_list = list(self.filetree.show_type(temp_dir,
-                                                         completion_type))
-        completions = []
-        if not text:
-            completions = autocomplete_list[:]
-        else:
-            for f in autocomplete_list:
-                if f.startswith(text):
-                    completions.append(f)
-            if len(completions) == 1:
-                if self.filetree[completions[0]].is_dir:
-                    completions[0] += "/"
+        try:
+            temp_dir = get_completion_desc(
+                self.current_dir, self.filetree, line, completion_type
+            )
 
-        return completions
+            autocomplete_list = list(
+                self.filetree.show_files_or_dirs(
+                    temp_dir,
+                    completion_type
+                )
+            )
+
+            completions = []
+            if not text:
+                completions = autocomplete_list[:]
+            else:
+                for f in autocomplete_list:
+                    if f.startswith(text):
+                        completions.append(f)
+                if len(completions) == 1:
+                    if self.filetree[completions[0]].is_dir:
+                        completions[0] += "/"
+
+            return completions
+
+        except Exception as e:
+            return ["Exception caught = {}".format(e)]
 
     def autocomplete(self, text, line, complete_list):
         if not text:

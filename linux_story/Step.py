@@ -11,8 +11,8 @@
 import os
 import threading
 from socket_functions import launch_client, is_server_busy
-#from kano_profile.badges import save_app_state_variable_with_dialog
-#from kano_profile.apps import load_app_state_variable
+# from kano_profile.badges import save_app_state_variable_with_dialog
+# from kano_profile.apps import load_app_state_variable
 
 
 class Step():
@@ -165,7 +165,11 @@ class Step():
         if not (command_validated and end_dir_validated):
             self.show_hint(line, current_dir)
 
-        return command_validated and end_dir_validated
+        condition = (command_validated and end_dir_validated)
+        return self.finish_if_server_ready(condition)
+
+    def finish_if_server_ready(self, other_condition):
+        return self.Terminal.finish_if_server_ready(other_condition)
 
     def show_hint(self, line, current_dir):
         '''Customize the hint that is shown to the user

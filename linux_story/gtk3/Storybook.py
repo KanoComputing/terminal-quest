@@ -13,8 +13,6 @@ import os
 from gi.repository import Gtk, GObject, Pango, Gdk
 import time
 
-GObject.threads_init()
-
 
 class Storybook(Gtk.TextView):
 

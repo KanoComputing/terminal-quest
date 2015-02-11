@@ -74,7 +74,7 @@ def relative_loc_is_home(current_dir, tree):
     return False
 
 
-def play_sound(object):
+def play_sound(object_name):
     '''object is the string representing the object
     the options are 'alarm' and 'bell'
     '''
@@ -84,7 +84,7 @@ def play_sound(object):
     sound_path = os.path.join(
         current_dir,
         "animation/sounds/",
-        object + '.wav'
+        object_name + '.wav'
     )
 
     subprocess.Popen(
@@ -93,10 +93,12 @@ def play_sound(object):
     )
 
 
-# This is to help the completion function in the classes
-# we give this function a possible list of files and directories
-# list_type = "dirs", "files", or "both"
+# TODO: NEEDS A BETTER NAME
 def get_completion_desc(current_dir, tree, line, list_type="both"):
+    '''This is to help the completion function in the classes
+    we give this function a possible list of files and directories
+    list_type = "dirs", "files", or "both"
+    '''
 
     # list of directories
     # command will be of the form:
@@ -105,14 +107,15 @@ def get_completion_desc(current_dir, tree, line, list_type="both"):
 
     # if the last element is a load of directories (no guarentee) then we need
     # to pick the last element to compare against
-    dirs = elements[-1].split("/")
-    direct_descs = tree.show_type(current_dir, list_type)
+    direct_descs = tree.show_files_or_dirs(current_dir, list_type)
+
     final_list = []
+    dirs = elements[-1].split("/")
 
     for d in dirs:
         if d in direct_descs:
             final_list.append(d)
-            direct_descs = tree.show_type(d, list_type)
+            direct_descs = tree.show_files_or_dirs(d, list_type)
 
     # return the final element
     if final_list:

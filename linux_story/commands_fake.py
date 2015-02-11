@@ -17,6 +17,8 @@ def cd(current_dir, tree, line=None):
 
     # Decide where to move the user
     else:
+        new_current_dir = current_dir
+
         folders = line.split('/')
 
         # if user starts line with ~, take their path as an absolute path
@@ -36,10 +38,10 @@ def cd(current_dir, tree, line=None):
         # from
         else:
             for f in folders:
-                if f in tree.show_dirs(current_dir):
+                if f in tree.show_dirs(new_current_dir):
                     new_current_dir = f
                 elif f == "..":
-                    new_current_dir = tree.show_ancestor(current_dir)
+                    new_current_dir = tree.show_ancestor(new_current_dir)
 
                 # if the directory ends in a /
                 elif f == "":
