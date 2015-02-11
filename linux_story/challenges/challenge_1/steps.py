@@ -27,8 +27,8 @@ class StepTemplateLs(Step):
 
 class Step1(StepTemplateLs):
     story = [
-        "Alarm : Beep beep beep! Beep beep beep!",
-        "Radio : \"Good Morning, this is the 7am news.\"",
+        "{{wb:Alarm}} : \"Beep beep beep! Beep beep beep!\"",
+        "{{wb:Radio}} : \"Good Morning, this is the 7am news.\"",
         "\"There have been reports of strange activity occurring in the town "
         "of Folderton today, as the number of reports of missing people and "
         "damaged buildings continues to increase...\"",

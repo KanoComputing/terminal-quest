@@ -19,9 +19,10 @@ from linux_story.Step import Step
 # Change this import statement, need to decide how to group the terminals
 # together
 from linux_story.challenges.challenge_11.terminals import TerminalMv
-from linux_story.challenges.challenge_15.steps import Step1 as NextStep
-from linux_story.challenges.challenge_13.steps import Step3 as LoseDogStep
-from linux_story.file_data import HIDDEN_DIR
+from linux_story.challenges.challenge_13.steps import Step1 as NextStep
+from linux_story.challenges.challenge_12.a.steps import Step3 as LoseDogStep
+from linux_story.file_data import HIDDEN_DIR, copy_data
+from linux_story.helper_functions import play_sound
 
 
 class StepTemplateMv(Step):
@@ -56,6 +57,8 @@ class Step1(StepTemplateMv):
         if os.path.exists(self.dog_file):
             Step2()
         else:
+            play_sound('bell')
+            copy_data(12, 1, 'a')
             LoseDogStep()
 
 

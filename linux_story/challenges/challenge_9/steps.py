@@ -18,6 +18,7 @@ from linux_story.Step import Step
 from linux_story.challenges.challenge_4.terminals import TerminalCd
 from linux_story.challenges.challenge_10.steps import Step1 as NextStep
 from linux_story.helper_functions import play_sound
+from linux_story.file_data import copy_data
 
 
 class StepTemplateCd(Step):
@@ -57,7 +58,6 @@ class Step2(StepTemplateCd):
     end_dir = "kitchen"
     command = ""
     hints = "{{r:Use}} {{yb:cd my-house/kitchen}} {{r:to go to the kitchen.}}"
-    allowed_commands = ["cd my-house/kitchen", "cd house/kitchen/"]
 
     def block_command(self, line):
         allowed_commands = ["cd my-house/kitchen", "cd my-house/kitchen/"]
@@ -76,8 +76,10 @@ class Step3(StepTemplateCd):
     start_dir = "kitchen"
     end_dir = "kitchen"
     command = "ls"
-    hints = "{{r:Use}} {{yb:ls}} {{r:to see that everything is where it "
-    "should be.}}"
+    hints = [
+        "{{r:Use}} {{yb:ls}} {{rn:to see that everything is where it "
+        "should be.}}"
+    ]
 
     def next(self):
         Step4()
@@ -92,7 +94,8 @@ class Step4(StepTemplateCd):
     start_dir = "kitchen"
     end_dir = "kitchen"
     command = "cat note"
-    hints = "{{r:Use}} {{yb:cat note}} {{r:to read the note.}}"
+    hints = "{{r:Use}} {{yb:cat note}} {{rn:to read the note.}}"
 
     def next(self):
+        copy_data(10, 1)
         NextStep()
