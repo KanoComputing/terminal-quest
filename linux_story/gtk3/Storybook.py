@@ -40,6 +40,17 @@ class Storybook(Gtk.TextView):
         self.override_background_color(Gtk.StateFlags.NORMAL, bg_colour)
         self.char_width = self.__get_char_width()
         self.set_can_focus(False)
+        self.connect('insert-at-cursor', self.print_show)
+        textbuffer = self.get_buffer()
+        textbuffer.connect('changed', self.print_changed)
+
+    def print_changed(self, widget=None, string=None):
+        '''This demonstrates that the textbuffer is emitting events
+        '''
+        print 'changed event has indeed been invoked'
+        self.show()
+        Gtk.main_iteration_do(False)
+        return False
 
     def clear(self):
         '''Clear all text in spellbook
@@ -53,27 +64,34 @@ class Storybook(Gtk.TextView):
         lines = self.__split_into_printable_chars(string)
 
         for line in lines:
-            GObject.idle_add(
-                self.__style_char,
+            self.__style_char(
                 line['letter'],
 
                 # TODO: get size tag working
                 [line['colour'], line['bold']]
             )
+
             if line['letter'] == '\n':
                 time.sleep(0.07)
             else:
                 time.sleep(0.04)
 
+            while Gtk.events_pending():
+                print 'gtk events are indeed pending'
+                Gtk.main_iteration_do(False)
+
     def __style_char(self, line, tag_names):
-        '''Add styling (e.g. colours) to each character as it appears on the
-        screen
+        '''Add styling (e.g. colours) to each character and puts it into the
+        text buffer
         '''
 
         textbuffer = self.get_buffer()
         insert_iter = textbuffer.get_end_iter()
         textbuffer.place_cursor(insert_iter)
-        textbuffer.insert(insert_iter, line)
+
+        # Inserts character into text buffer here
+        # textbuffer.insert(line) also works
+        textbuffer.insert_at_cursor(line)
 
         self.scroll_to_mark(textbuffer.get_insert(), 0.1, False, 0, 0)
 
@@ -85,6 +103,9 @@ class Storybook(Gtk.TextView):
         for tag_name in tag_names:
             tag = self.__get_tag(tag_name)
             textbuffer.apply_tag(tag, end_but_one_iter, end_iter)
+
+        # This doesn't do anything
+        self.show_all()
 
     def print_challenge_title(self, challenge_number="1"):
         '''Print Challenge title from file at the top of the Story widget

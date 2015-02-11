@@ -12,9 +12,11 @@ import os
 import sys
 import threading
 import socket
+import Queue
 from gi.repository import Gtk, Gdk, GObject
-GObject.threads_init()
-Gdk.threads_init()
+import time
+#GObject.threads_init()
+#Gdk.threads_init()
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -22,7 +24,7 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.socket_functions import create_server
-from linux_story.gtk3.TerminalUi import TerminalUi
+from linux_story.gtk3.TerminalUi import TerminalUi, MyObject
 from linux_story.gtk3.Spellbook import Spellbook
 from linux_story.gtk3.Storybook import Storybook
 from linux_story.paths import css_dir
@@ -144,21 +146,24 @@ class Application(MainWindow):
             challenge_number + " " +
             step_number
         )
+
+        my_obj = MyObject()
+
+        my_obj.connect('my_signal', self.check_queue)
+        self.terminal.connect('commit', self.check_queue)
+
         self.terminal.launch_command(command)
-
-        # this to hide the spellbook and terminal from view until the story has
-        # finished displaying
+        time.sleep(1)
+        my_obj.emit('my_signal')
         self.show_all()
-        self.terminal.hide()
-        self.spellbook.hide()
-
         Gtk.main()
 
     def type_text(self, text):
         '''Wrapper function for the story member variable
         '''
-
-        self.story.print_output(text)
+        t = threading.Thread(target=self.story.print_output, args=(text,))
+        t.start()
+        t.join()
 
     def print_challenge_title(self, number):
         '''Prints the ascii art challenge title at the start
@@ -178,13 +183,67 @@ class Application(MainWindow):
         '''
 
         self.terminal.show_all()
+        self.terminal.set_sensitive(True)
         self.terminal.grab_focus()
 
+    def stop_typing_in_terminal(self):
+        '''Wrapper function to stop people typing in terminal
+        while story or hint is being shown
+        '''
+
+        self.terminal.set_sensitive(False)
+
     def run_server(self):
-        self.server = create_server(self)
+        self.queue = Queue.Queue()
+        self.server = create_server(self.queue)
         t = threading.Thread(target=self.server.serve_forever)
         t.daemon = True
         t.start()
+
+    def check_queue(self, widget=None, arg1=None, arg2=None, arg3=None):
+        print 'checking queue'
+        try:
+            data_dict = self.queue.get(False)
+            print 'got data'
+            print 'data = {}'.format(data_dict)
+
+            # Type out the hint
+            if 'hint' in data_dict.keys():
+                print 'typing hint'
+                self.type_text(data_dict['hint'])
+                self.show_terminal()
+
+            else:
+                print 'otherwise'
+                self.story.clear()
+                print 'cleared story'
+
+                if 'challenge' in data_dict.keys() and \
+                   'story' in data_dict.keys() and \
+                   'spells' in data_dict.keys():
+
+                    print 'starting new challenge'
+
+                    # Print the challenge title at the top of the screen
+                    challenge = data_dict['challenge']
+                    self.print_challenge_title(challenge)
+                    print 'printed challenge title'
+
+                    # Type the story out
+                    self.type_text(data_dict['story'])
+
+                    # Repack the spells into the spellbook
+                    spells = data_dict['spells']
+                    self.repack_spells(spells)
+
+                    # Refresh terminal - useful for the first challenge
+                    self.show_terminal()
+                    self.show_all()
+
+                    print 'showing terminal'
+            print 'waiting for next data'
+        except Queue.Empty:
+            print 'hit exception'
 
 
 def main():

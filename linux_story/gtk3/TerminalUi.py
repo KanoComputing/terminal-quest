@@ -10,7 +10,7 @@
 
 
 from gi.repository import Vte
-from gi.repository import GLib
+from gi.repository import GLib, GObject
 import os
 
 
@@ -27,9 +27,18 @@ class TerminalUi(Vte.Terminal):
             None)
 
         # This prevents the user scrolling back through the history
-        self.set_scrollback_lines(0)
+        # self.set_scrollback_lines(0)
 
     def launch_command(self, command):
         command = "temp=$(tty) ; " + command + " > $temp | clear\n"
         length = len(command)
         self.feed_child(command, length)
+
+
+class MyObject(GObject.GObject):
+    __gsignals__ = {
+        'my_signal': (GObject.SIGNAL_RUN_FIRST, None, ())
+    }
+
+    def do_my_signal(self):
+        print "class method for `my_signal' called with argument"
