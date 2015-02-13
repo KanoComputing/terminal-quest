@@ -1,0 +1,12 @@
+table Icon
+  Caption:
+  AppID: terminal-[q]uest
+  Command: /usr/bin/kano-launcher /usr/bin/terminal-quest
+  Singleton: true
+  Icon: /usr/share/icons/Kano/88x88/apps/linux-story.png
+  IconHover: /usr/share/icons/Kano/88x88/apps/linux-story-hover.png
+  HoverXOffset: 0
+  Relative-To: grid
+  X: 1
+  Y: 1
+end
