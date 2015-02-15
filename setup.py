@@ -60,7 +60,7 @@ setup(name='Linux Story',
       },
       data_files=[
           ('/usr/share/linux-story/media/', media),
-          ('usr/share/kano-desktop/kdesk/kdesktop/', kdesktop),
+          ('/usr/share/kano-desktop/kdesk/kdesktop/', kdesktop),
           ('/usr/share/icons/Kano/88x88/apps', icons)
       ]
       )
