@@ -21,21 +21,27 @@ class Step():
     end_dir = "~"
     command = ""
     hints = ""
-    animation = None
     last_step = False
     challenge_number = 1
     output_condition = lambda x, y: False
 
     def __init__(self, Terminal_Class):
-        self.Terminal = Terminal_Class
         self.pipe_busy = False
 
         # Available commands that can be used in the Terminal
-        self.commands = self.Terminal.commands
+        self.commands = Terminal_Class.commands
 
         # if hints are a string
         if isinstance(self.hints, basestring):
             self.hints = [self.hints]
+
+        self.terminal = Terminal_Class(
+            self.start_dir,
+            self.end_dir,
+            self.check_command,
+            self.block_command,
+            self.check_output
+        )
 
         self.run()
 
@@ -49,11 +55,6 @@ class Step():
 
         # Send all story data together
         self.send_start_challenge_data()
-
-        # TODO: Disable terminal while story is running?
-
-        # Show animation if present here
-        self.show_animation()
         self.launch_terminal()
 
         # Structure copied from snake
@@ -99,15 +100,6 @@ class Step():
         t.daemon = True
         t.start()
 
-    def show_animation(self):
-        # if there's animation, play it
-        if self.animation:
-            try:
-                launch_animation(self.animation)
-            except:
-                # fail silently
-                pass
-
     def next(self):
         '''Defines what should happen next at the end of this step
         Should be modified on inheritance
@@ -126,17 +118,10 @@ class Step():
         #                                        self.challenge_number)
 
     def launch_terminal(self):
-        '''Launches the terminal.
-        self.cmdloop is start in the __init__ of the Terminal class
+        '''Starts off the terminal's game loop.
+        This function does not stop until the user has passed the level
         '''
-
-        self.Terminal(
-            self.start_dir,
-            self.end_dir,
-            self.check_command,
-            self.block_command,
-            self.check_output
-        )
+        self.terminal.cmdloop()
 
     def check_command(self, line, current_dir):
         '''If self.command is provided, checks the command entered
@@ -169,7 +154,7 @@ class Step():
         return self.finish_if_server_ready(condition)
 
     def finish_if_server_ready(self, other_condition):
-        return self.Terminal.finish_if_server_ready(other_condition)
+        return self.terminal.finish_if_server_ready(other_condition)
 
     def show_hint(self, line, current_dir):
         '''Customize the hint that is shown to the user
@@ -208,25 +193,3 @@ class Step():
 
         output = output.strip()
         return self.output_condition(output)
-
-
-def launch_animation(command):
-    # split the command into it's components
-    elements = command.split(" ")
-
-    # the filename is the first element
-    filename = elements[0]
-
-    # find complete path
-    path = os.path.join(
-        os.path.join(
-            os.path.dirname(__file__),
-            "animation", filename
-        )
-    )
-
-    # join command back up
-    command = " ".join([path] + elements[1:])
-
-    # run command
-    os.system(command)
