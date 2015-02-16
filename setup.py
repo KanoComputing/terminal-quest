@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+# setup.py
+#
+# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+
 from distutils.core import setup
 import os
 
@@ -21,6 +27,7 @@ def recursively_get_dirs(package_name, start_dir):
 
     return paths
 
+
 def is_image(filepath):
     img_extensions = ['.png']
     ext = os.path.splitext(filepath)[1]
@@ -36,6 +43,7 @@ gtk3 = recursively_get_dirs("linux_story", "gtk3")
 terminals = recursively_get_dirs("linux_story", "terminals")
 media = recursively_get_dirs("", "media")
 icons = filter(is_image, recursively_get_dirs("", "icon"))
+kdesktop = recursively_get_dirs("", "kdesktop")
 
 setup(name='Linux Story',
       version='1.2',
@@ -48,10 +56,11 @@ setup(name='Linux Story',
       scripts=['bin/linux-story'],
       package_data={
           'linux_story': file_system + data + animation +
-                         challenges + gtk3 + terminals
+          challenges + gtk3 + terminals
       },
       data_files=[
           ('/usr/share/linux-story/media/', media),
-          ('/usr/share/icons/Kano/66x66/apps', icons),
-        ]
+          ('/usr/share/kano-desktop/kdesk/kdesktop/', kdesktop),
+          ('/usr/share/icons/Kano/88x88/apps', icons)
+      ]
       )
