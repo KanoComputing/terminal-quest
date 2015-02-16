@@ -55,8 +55,6 @@ class Terminal(Cmd):
 
         self.set_prompt()
 
-        self.cmdloop()
-
     def set_prompt(self):
         '''Sets prompt according to the current directory
         '''
