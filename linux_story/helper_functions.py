@@ -23,7 +23,7 @@ hidden_dir = os.path.join(home, ".linux-story")
 
 
 def debugger(text):
-    if True:
+    if False:
         print text
 
 
