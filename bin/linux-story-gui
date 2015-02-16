@@ -13,7 +13,7 @@ import sys
 import threading
 import socket
 import Queue
-from gi.repository import Gtk, Gdk, GObject
+from gi.repository import Gtk, Gdk
 import time
 
 if __name__ == '__main__' and __package__ is None:
@@ -205,8 +205,11 @@ class Application(MainWindow):
         try:
             data_dict = self.queue.get(False)
 
+            if 'exit' in data_dict.keys():
+                self.close_window()
+
             # Type out the hint
-            if 'hint' in data_dict.keys():
+            elif 'hint' in data_dict.keys():
                 self.stop_typing_in_terminal()
                 self.type_text(data_dict['hint'])
                 self.show_terminal()

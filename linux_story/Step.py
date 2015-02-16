@@ -64,6 +64,13 @@ class Step():
         # Tell storyline the step is finished
         self.next()
 
+    def exit(self):
+        print 'self.exit hit'
+        data = {'exit': ''}
+        t = threading.Thread(target=launch_client, args=(data,))
+        t.daemon = True
+        t.start()
+
     def send_text(self, string):
         '''Sends a string through the pipe to the GUI
         '''
@@ -178,6 +185,7 @@ class Step():
 
         line = line.strip()
         if "cd" in line or "mv" in line:
+            # Should we print a message here?
             return True
 
     def check_output(self, output):
