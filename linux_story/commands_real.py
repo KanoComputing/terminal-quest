@@ -155,15 +155,7 @@ def shell_command(current_dir, tree, line, command_word=""):
     if not real_loc:
         return False
 
-    possible_path = line.split(' ')[-1]
-
-    # TODO: very lazy.  Change.
-    # If path starts with ~, replace ~ with the hidden dir
-    if possible_path.startswith('~'):
-        possible_path = turn_abs_path_to_real_loc(possible_path)
-        array = line.split(' ')[:-1]
-        array.append(possible_path)
-        line = ' '.join(array)
+    line = line.replace('~', hidden_dir)
 
     args = line.split(" ")
     p = subprocess.Popen(args, cwd=real_loc,
@@ -172,7 +164,7 @@ def shell_command(current_dir, tree, line, command_word=""):
     stdout, stderr = p.communicate()
 
     if stderr:
-        print stderr.strip()
+        print stderr.strip().replace(hidden_dir, '~')
         return False
 
     if stdout:
