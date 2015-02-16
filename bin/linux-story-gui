@@ -159,6 +159,8 @@ class Application(MainWindow):
         self.terminal.hide()
         self.spellbook.hide()
 
+        os.system("kano-stop-splash")
+
         Gtk.main()
 
     def type_text(self, text):
