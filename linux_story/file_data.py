@@ -2,10 +2,9 @@
 
 # file_datas.py
 #
-# Copyright (C) 2014 Kano Computing Ltd.
+# Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
-# Author: Caroline Clark <caroline@kano.me>
 # Stores permissions of files in a file
 
 
@@ -149,6 +148,10 @@ def copy_differences(challenge, step, fork):
     )
     fork_path = get_fork_path(challenge_path, fork)
     debugger('fork_path = {}'.format(fork_path))
+
+    # If the hidden directory hasn't been created yet
+    if not os.path.exists(HIDDEN_DIR):
+        os.mkdir(HIDDEN_DIR)
 
     dcmp = dircmp(HIDDEN_DIR, fork_path)
     # dcmp = dircmp(HIDDEN_DIR, challenge_path)

@@ -2,11 +2,10 @@
 
 # helper_functions.py
 #
-# Copyright (C) 2014 Kano Computing Ltd.
+# Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
-# Author: Caroline Clark <caroline@kano.me>
-# Helper functions.
+# Helper functions used across the system.
 
 import os
 import sys
@@ -24,7 +23,7 @@ hidden_dir = os.path.join(home, ".linux-story")
 
 
 def debugger(text):
-    if False:
+    if True:
         print text
 
 
