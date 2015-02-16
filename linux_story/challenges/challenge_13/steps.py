@@ -159,53 +159,64 @@ class Step3(StepTemplateMv):
 # Move three pices of food into the basket
 class Step4(StepTemplateMv):
     story = [
-        "Move three pieces of food into your basket"
+        "Move three pieces of food into your basket",
+        "You can move multiple items using {{yb:mv <item1> <item2> basket/}}"
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"
-    other_commands = [
-        "mv banana basket",
-        "mv banana basket/",
-        "mv crossaint basket",
-        "mv crossaint basket/",
-        "mv cake basket",
-        "mv cake basket/",
-        "mv pie basket",
-        "mv pie basket/",
-        "mv sandwich basket",
-        "mv sandwich basket/",
-        "mv grapes basket",
-        "mv grapes basket/",
-        "mv milk basket",
-        "mv milk basket/"
+    passable_items = [
+        'banana',
+        'cake',
+        'crossaint',
+        'pie',
+        'grapes',
+        'milk',
+        'sandwich'
     ]
-    command = "blah"
 
     def block_command(self, line):
         line = line.strip()
-        if ("mv" in line or "cd" in line) and line not in self.other_commands:
+        separate_words = line.split(' ')
+
+        if "cd" in line:
             return True
 
+        if separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
+                                          separate_words[-1] == 'basket/'):
+            for item in separate_words[1:-1]:
+                if item not in self.passable_items:
+                    return True
+
+            return False
+
     def check_command(self, line, current_dir):
-        if line.strip() not in self.other_commands:
-            hint = (
-                '{{r:Use the command}} {{yb:' +
-                self.other_commands[1] +
-                '}} {{rn:to progress}}'
-            )
+        line = line.strip()
+        separate_words = line.split(' ')
+        all_items = []
+
+        if separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
+                                          separate_words[-1] == 'basket/'):
+            for item in separate_words[1:-1]:
+                if item not in self.passable_items:
+                    hint = (
+                        '{{rb:You\'re trying to move something that isn\'t in'
+                        ' the folder.\n Try using}} {{yb:mv %s basket/}}'
+                        % self.passable_items[0]
+                    )
+                    self.send_hint(hint)
+                    return
+
+                else:
+                    all_items.append(item)
+
+            for item in all_items:
+                self.passable_items.remove(item)
+
+            hint = '{{gb:Well done!  Keep going.}}'
 
         else:
-            index = self.other_commands.index(line)
-            if index % 2 == 0:
-                # Remove the two elements
-                # e.g. mv banana basket and mv banana basket/
-                self.other_commands.pop(index)
-                self.other_commands.pop(index)
-            else:
-                self.other_commands.pop(index - 1)
-                self.other_commands.pop(index - 1)
-
-            hint = '{{gb:Well done! Keep going}}'
+            hint = '{{rb:Try using}} {{yb:mv %s basket/}}' \
+                % self.passable_items[0]
 
         self.send_hint(hint)
 
@@ -217,7 +228,7 @@ class Step4(StepTemplateMv):
             if os.path.isfile(os.path.join(basket_dir, f))
         ]
 
-        if len(food_files) > 3:
+        if len(food_files) > 4:
             return True
         else:
             return False
