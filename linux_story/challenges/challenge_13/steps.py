@@ -333,24 +333,29 @@ class Step7(StepTemplateMv):
     }
     last_step = True
 
-    def check_command(self, line, current_dir):
+    def __init__(self):
         # Decide which index to take for each option
         girl = os.path.join(HIDDEN_DIR, 'town/.hidden-shelter/Eleanor')
         dog = os.path.join(HIDDEN_DIR, 'town/.hidden-shelter/dog')
+        self.index = 0
 
-        if os.path.exists(girl):
-            if os.path.exists(dog):
-                index = 0
+        if not os.path.exists(dog):
+            del self.allowed_commands['cat dog']
+
+            if not os.path.exists(girl):
+                del self.allowed_commands['cat Eleanor']
+                self.index = 2
             else:
-                index = 1
-        else:
-            index = 2
+                self.index = 1
 
+        StepTemplateMv.__init__(self)
+
+    def check_command(self, line, current_dir):
         if line.strip() in self.allowed_commands.keys():
 
-            hint = self.allowed_commands[line][index]
+            hint = self.allowed_commands[line][self.index]
             del self.allowed_commands[line]
-            num_people = len(self.allowed_commands.keys()) - index
+            num_people = len(self.allowed_commands.keys())
 
             if num_people == 0:
                 self.send_hint(hint)
