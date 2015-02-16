@@ -37,7 +37,9 @@ class Step1(StepTemplateLs):
         "It's time to get up sleepy head!",
         "\n{{wb:New Spell:}} {{yb:ls}} - lets you see what's around you."
     ]
+    # This is for the first level, which has the sound of an alarm clock
     play_sound("alarm")
+
     start_dir = "my-room"
     end_dir = "my-room"
     command = "ls"

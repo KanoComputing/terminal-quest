@@ -29,12 +29,15 @@ class StepTemplateCd(Step):
 class Step1(StepTemplateCd):
     story = [
         "{{gb:Congratulations, you earned 10 XP!}}\n",
-        "Let mum know about Dad. Type {{yb:cat mum}}"
+        "Let mum know about Dad. Type {{yb:cat Mum}}"
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"
-    command = "cat mum"
-    hints = "{{r:To talk to your mum, type}} {{yb:cat mum}} {{r:and press Enter}}."
+    command = "cat Mum"
+    hints = (
+        "{{rb:To talk to your Mum, type}} {{yb:cat Mum}} {{rb:and press"
+        "Enter}}."
+    )
 
     def next(self):
         Step2()
@@ -80,13 +83,13 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "There's the town in the distance! Let's walk into town using "
+        "There's the {{yb:town}} in the distance! Let's walk into town using "
         "{{yb:cd}}."
     ]
     start_dir = "~"
     end_dir = "town"
     command = ""
-    hints = "{{r:Type}} {{yb:cd town}} {{r:to walk into town.}}"
+    hints = "{{rb:Type}} {{yb:cd town}} {{rb:to walk into town.}}"
 
     last_step = True
 

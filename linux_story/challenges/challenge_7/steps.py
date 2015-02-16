@@ -37,7 +37,7 @@ class Step1(StepTemplateCd):
     start_dir = "town"
     end_dir = "town"
     command = "ls"
-    hints = "{{r:To look around, use}} {{yb:ls}}"
+    hints = "{{rb:To look around, use}} {{yb:ls}}"
 
     def next(self):
         Step2()
@@ -45,13 +45,13 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "Wow, there's so many people here. Find the mayor and see what's "
-        "going on!"
+        "Wow, there's so many people here. Find the {{yb:Mayor}} and see "
+        "what's going on!"
     ]
     start_dir = "town"
     end_dir = "town"
-    command = "cat mayor"
-    hints = "{{r:Stuck? Type:}} {{yb:cat mayor}}"
+    command = "cat Mayor"
+    hints = "{{rb:Stuck? Type:}} {{yb:cat Mayor}}"
 
     def next(self):
         Step3()
@@ -86,7 +86,8 @@ class Step3(StepTemplateCd):
         command_validated = False
         end_dir_validated = False
         self.hints = [
-            "{{r:Use}} {{yb:" + self.all_commands.keys()[0] + "}} {{r:to progress}}"
+            "{{rb:Use}} {{yb:" + self.all_commands.keys()[0] + "}} "
+            "{{rb:to progress}}"
         ]
 
         # strip any spaces off the beginning and end
@@ -118,6 +119,7 @@ class Step3(StepTemplateCd):
         return command_validated and end_dir_validated
 
     def next(self):
+        # Better way of doing this?
         time.sleep(6)
         copy_data(8, 1)
         play_sound('bell')

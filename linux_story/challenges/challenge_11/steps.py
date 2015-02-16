@@ -44,7 +44,7 @@ class StepTemplateMv(Step):
 class Step1(StepTemplateCd):
     story = [
         "You see a group of people.",
-        "They look quite thin and unkempt.",
+        "They look quite thin and scared.",
         "Try talking to them."
     ]
     start_dir = ".hidden-shelter"
@@ -206,7 +206,7 @@ class Step6(StepTemplateMv):
         "{{wb:Eleanor:}} {{wn:\"Doggy!\"}}",
         "{{wb:Edith:}} {{wn:\"No, honey!  Don't go outside\"}}",
         "\nThe little girl follows her dog and leaves the "
-        "{{yb:.hidden-shelter}}",
+        ".hidden-shelter",
         "Look around to confirm this."
     ]
 
@@ -257,8 +257,13 @@ class Step8(StepTemplateMv):
     end_dir = ".hidden_shelter"
     command = [
         "mv ../Eleanor .",
-        "mv Eleanor .hidden-shelter",
-        "mv Eleanor .hidden-shelter/"
+        "mv ../Eleanor ./",
+        "mv ~/town/Eleanor ~/town/.hidden-shelter",
+        "mv ~/town/Eleanor ~/town/.hidden-shelter/",
+        "mv ~/town/Eleanor .",
+        "mv ~/town/Eleanor ./",
+        "mv ../Eleanor ~/town/.hidden-shelter",
+        "mv ../Eleanor ~/town/.hidden-shelter/",
     ]
     hints = [
         '{{rn:Move}} {{yb:Eleanor}} {{rn:from the previous directory}} '
@@ -271,6 +276,7 @@ class Step8(StepTemplateMv):
     ]
     counter = 0
     last_step = True
+    girl_file = os.path.join(HIDDEN_DIR, 'town/.hidden-shelter/Eleanor')
 
     def block_command(self, line):
         line = line.strip()
@@ -280,17 +286,18 @@ class Step8(StepTemplateMv):
             return True
 
     def check_command(self, line, current_dir):
-        # Need to check if the girl is in the correct directory
 
         # strip any spaces off the beginning and end
         line = line.strip()
-        girl_file = os.path.join(HIDDEN_DIR, 'town/.hidden-shelter/Eleanor')
 
-        if os.path.exists(girl_file) and self.counter < 3:
+        if os.path.exists(self.girl_file) and self.counter < 3:
             return True
 
         # We can't verify the girl has been moved correctly at this step
         elif line.strip() in self.command and self.counter == 3:
+            return True
+
+        elif self.counter == 3:
             return True
 
         else:
@@ -303,7 +310,7 @@ class Step8(StepTemplateMv):
 
     def next(self):
         # if girl is saved
-        if self.counter < 3:
+        if os.path.exists(self.girl_file):
             SaveGirlStep()
 
         # Else go to Step5b

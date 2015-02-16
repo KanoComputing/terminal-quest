@@ -44,7 +44,11 @@ class Step1(StepTemplateMv):
         "ls ..",
         "ls ../",
         "ls -a ..",
-        "ls -a ../"
+        "ls -a ../",
+        "ls ~/town",
+        "ls ~/town/",
+        "ls -a ~/town",
+        "ls -a ~/town/"
     ]
 
     hints = [
@@ -71,9 +75,14 @@ class Step2(StepTemplateMv):
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
     command = [
-        "mv ../Eleanor ."
-        "mv Eleanor .hidden-shelter",
-        "mv Eleanor .hidden-shelter/"
+        "mv ../Eleanor .",
+        "mv ../Eleanor ./",
+        "mv ~/town/Eleanor ~/town/.hidden-shelter",
+        "mv ~/town/Eleanor ~/town/.hidden-shelter/",
+        "mv ~/town/Eleanor .",
+        "mv ~/town/Eleanor ./",
+        "mv ../Eleanor ~/town/.hidden-shelter",
+        "mv ../Eleanor ~/town/.hidden-shelter/",
     ]
     hints = [
         "{{r:Use the command}} {{y:mv ../Eleanor .}}",
@@ -98,6 +107,8 @@ class Step2(StepTemplateMv):
             return True
         # We can't verify the girl has been moved correctly at this step
         elif line.strip() in self.command and self.counter == 1:
+            return True
+        elif self.counter == 1:
             return True
         else:
             self.show_hint(line, current_dir)
@@ -129,19 +140,32 @@ class Step3(StepTemplateMv):
         "{{wb:Edith:}} {{wn:Oh thank goodness I have you back safely.}}",
         "{{wb:Eleanor:}} {{wn:I lost my Doggie!!!}}",
         "{{wb:Edith:}} {{wn:I know I know, there's nothing we could do "
-        "about that.}}"
+        "about that.}}",
         "{{wb:Edward:}} {{wn:Thank you so much for saving our little "
         "girl.}}\n",
-        "{{gb:Well done for saving the little girl."
-        "Ask the people if there's anything else you can do to help.}}"
+        "{{gb:Well done for saving the little girl.}}",
+        "Ask the people if there's anything else you can do to help."
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
-    command = ""
+    command = "cat Edward"
+    all_commands = {
+        "cat Edith": "\n{{wb:Edith:}} \"Thank you so much!  Eleanor, don't "
+        "run outside again.\"",
+        "cat Eleanor": "\n{{wb:Eleanor:}} \"Where has my dog gone?  Can you "
+        "find him and bring him back?\""
+    }
     hints = [
         "{{r:Edward looks like he has something to say.  Talk to him using "
         "{{yb:cat}}}}"
     ]
+
+    def show_hint(self, line, current_dir):
+        if line in self.all_commands.keys():
+            hint = self.all_commands[line]
+            self.send_hint(hint)
+        else:
+            StepTemplateMv.show_hint(self, line, current_dir)
 
     # Change this so we can cat everyone and see how they respond
     def next(self):
@@ -193,7 +217,7 @@ class Step5(StepTemplateMv):
     last_step = True
 
     def show_hint(self, line, current_dir):
-        if line == 'cat Edith':
+        if line in self.all_commands.keys():
             hint = self.all_commands[line]
             self.send_hint(hint)
         else:

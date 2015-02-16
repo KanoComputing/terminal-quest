@@ -39,7 +39,7 @@ class Step1(StepTemplateCd):
     start_dir = "kitchen"
     end_dir = "my-house"
     command = ""
-    hints = "{{rb:To go to the garden, type}} {{yb:cd ..}}"
+    hints = "{{rb:To leave the kitchen, type}} {{yb:cd ..}}"
 
     def block_command(self, line):
         allowed_commands = ["cd ..", "cd ../"]
@@ -54,12 +54,12 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCd):
     story = [
         "You are back in the main hall of your house",
-        "Can you see your garden?"
+        "Can you see your garden?  Have a look around you."
     ]
     start_dir = "my-house"
     end_dir = "my-house"
     command = "ls"
-    hints = "{{r:Type}} {{yb:ls}} {{r:to look around you}}"
+    hints = "{{rb:Type}} {{yb:ls}} {{rb:to look around you}}"
 
     def next(self):
         Step3()
@@ -67,12 +67,13 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "You see doors to the garden, your room and your parent's room."
+        "You see doors to the garden, your room and your parent's room.",
+        "You want to go into your {{yb:garden}}"
     ]
     start_dir = "my-house"
     end_dir = "garden"
     command = ""
-    hints = "{{r:Type}} {{yb:cd garden}} {{r:to go into the garden}}"
+    hints = "{{rb:Type}} {{yb:cd garden}} {{rb:to go into the garden}}"
 
     def block_command(self, line):
         allowed_commands = ["cd garden", "cd garden/"]
@@ -178,7 +179,7 @@ class Step9(StepTemplateCd):
     start_dir = "garden"
     end_dir = "my-house"
     command = ""
-    hints = "{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the kitchen}}"
+    hints = "{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the house}}"
 
     last_step = True
     challenge_number = 5
@@ -200,7 +201,7 @@ class Step10(StepTemplateCd):
     start_dir = "my-house"
     end_dir = "kitchen"
     command = ""
-    hints = "{{r:Type}} {{yb:cd kitchen}} {{r:to go back to the kitchen}}"
+    hints = "{{r:Type}} {{yb:cd kitchen}} {{rb:to go back to the kitchen}}"
 
     last_step = True
 
@@ -211,5 +212,4 @@ class Step10(StepTemplateCd):
             return True
 
     def next(self):
-        # copy_data("6")
         NextChallengeStep()

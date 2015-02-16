@@ -96,7 +96,7 @@ class Step4(StepTemplateCat):
 class Step5(StepTemplateCat):
     story = [
         "Awesome, you're nearly done.",
-        "Finally, put on the {{wb:cap}} to finish off your outfit"
+        "Finally, put on the {{yb:cap}} to finish off your outfit"
     ]
     start_dir = "my-room"
     end_dir = "my-room"

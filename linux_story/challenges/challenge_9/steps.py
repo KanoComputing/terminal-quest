@@ -30,7 +30,7 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
-        "Oh no! Check your mum is alright.",
+        "Oh no! Check your Mum is alright.",
         "Type {{yb:cd ..}} to leave town."
     ]
     start_dir = "town"
@@ -46,6 +46,7 @@ class Step1(StepTemplateCd):
 
     def next(self):
         play_sound('bell')
+        copy_data(9, 2)
         Step2()
 
 

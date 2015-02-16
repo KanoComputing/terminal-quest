@@ -61,7 +61,10 @@ class Step1(StepTemplateCd):
         if line in self.allowed_commands:
             self.counter += 1
             self.allowed_commands.remove(line)
-            hint = "\n{{gb:Congratulations!  Just look at one more item}}"
+            hint = (
+                "\n{{gb:Congratulations!  Just look at}} {{yb:one}} "
+                "{{gb:more item}}"
+            )
 
         else:
             if self.first_time:
@@ -71,8 +74,8 @@ class Step1(StepTemplateCd):
                 )
             else:
                 hint = (
-                    '{{r:Try the command}} {{yb:' + self.allowed_commands[0] + '}} '
-                    '{{rn:to progress}}'
+                    '{{r:Try the command}} {{yb:' + self.allowed_commands[0] +
+                    '}} {{rn:to progress}}'
                 )
 
         level_up = (self.counter >= 2)
@@ -90,7 +93,7 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCd):
     story = [
         "There seems to be nothing here but loads of food.",
-        "See if you can find something outside the house"
+        "See if you can find something back in {{yb:town}}."
     ]
     start_dir = "kitchen"
     end_dir = "town"
@@ -110,7 +113,8 @@ class Step2(StepTemplateCd):
             "cd town",
             "cd town/",
             "cd ../..",
-            "cd ../../"
+            "cd ../../",
+            "cd"
         ]
 
         line = line.strip()
@@ -173,15 +177,15 @@ class Step4(StepTemplateCd):
         "You can't see much here.  The place appears to be deserted.",
         "However, you think you hear whispers.",
         # Make this writing small
-        "{{wn:\".....if they use}} {{yb:ls -a}}{{wn:, they'll see us...\"}}",
+        "\n{{wn:\".....if they use}} {{yb:ls -a}}{{wn:, they'll see us...\"}}",
         "{{wn:\"..Shhh!  ...might hear....\"}}"
     ]
     start_dir = "town"
     end_dir = "town"
     command = "ls -a"
     hints = [
-        "{{r:You heard whispers referring to}} {{yb:ls -a}}"
-        "{{r:, try using it!}}",
+        "{{rb:You heard whispers referring to}} {{yb:ls -a}}"
+        "{{rb:, try using it!}}",
     ]
 
     def next(self):
@@ -197,10 +201,10 @@ class Step5(StepTemplateCd):
     end_dir = ".hidden-shelter"
     command = ""
     hints = [
-        "{{r:Try going inside the}} {{yb:.hidden-shelter}} {{rn:using }}"
+        "{{rb:Try going inside the}} {{yb:.hidden-shelter}} {{rb:using }}"
         "{{yb:cd}}",
-        "{{r:Use the command}} {{yb:cd .hidden-shelter }}"
-        "{{rn:to go inside}}"
+        "{{rb:Use the command}} {{yb:cd .hidden-shelter }}"
+        "{{rb:to go inside}}"
     ]
 
     def block_command(self, line):
@@ -228,7 +232,7 @@ class Step6(StepTemplateCd):
         "ls -a"
     ]
     hints = [
-        "{{r:Use}} {{yb:ls}} {{r:to have a look around you}}"
+        "{{rb:Use}} {{yb:ls}} {{rb:to have a look around you}}"
     ]
     last_step = True
 

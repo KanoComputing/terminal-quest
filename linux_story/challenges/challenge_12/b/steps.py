@@ -42,24 +42,58 @@ class Step1(StepTemplateMv):
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
-    command = "mv ../dog ."
+    command = [
+        "mv ../dog .",
+        "mv ../dog ./",
+        "mv ~/town/dog ~/town/.hidden-shelter",
+        "mv ~/town/dog ~/town/.hidden-shelter/",
+        "mv ~/town/dog .",
+        "mv ~/town/dog ./",
+        "mv ../dog ~/town/.hidden-shelter",
+        "mv ../dog ~/town/.hidden-shelter/",
+    ]
     hints = [
         "{{rn:Use the command}} {{yb:mv ../dog .}}"
     ]
     dog_file = os.path.join(HIDDEN_DIR, 'town/.hidden-shelter/dog')
+    counter = 0
 
     def block_command(self, line):
         line = line.strip()
         if ("mv" in line or "cd" in line) and line not in self.command:
             return True
 
+    '''def check_command(self, line, current_dir):
+
+                    # strip any spaces off the beginning and end
+                    line = line.strip()
+
+                    if os.path.exists(self.dog_file) and self.counter < 3:
+                        return True
+
+                    # We can't verify the girl has been moved correctly at this step
+                    elif line.strip() in self.command and self.counter == 3:
+                        return True
+
+                    elif self.counter == 3:
+                        return True
+
+                    else:
+                        self.show_hint(line, current_dir)
+                        return False'''
+
+    def show_hint(self, line, current_dir):
+        self.counter += 1
+        StepTemplateMv.show_hint(self, line, current_dir)
+
     def next(self):
         if os.path.exists(self.dog_file):
             Step2()
+        '''
         else:
             play_sound('bell')
             copy_data(12, 1, 'a')
-            LoseDogStep()
+            LoseDogStep()'''
 
 
 # Save both the dog and the little girl
@@ -76,11 +110,25 @@ class Step2(StepTemplateMv):
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
     command = "cat Edward"
+    all_commands = {
+        "cat Edith": "\n{{wb:Edith:}} \"Thank you so much!  Eleanor, don't "
+        "wander outside again.\"",
+        "cat Eleanor": "\n{{wb:Eleanor}} \"Where do you think the bell would "
+        "have taken us?\"",
+        "cat dog": "\n{{wb:dog}} \"Woof! Woof woof!\""
+    }
     hints = [
         "{{r:Edward looks like he has something he wants to say. "
         "Talk to Edward with}} {{yb:cat}}"
     ]
     last_step = True
+
+    def show_hint(self, line, current_dir):
+        if line in self.all_commands.keys():
+            hint = self.all_commands[line]
+            self.send_hint(hint)
+        else:
+            StepTemplateMv.show_hint(self, line, current_dir)
 
     def next(self):
         NextStep()

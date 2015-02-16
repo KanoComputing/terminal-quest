@@ -67,7 +67,6 @@ class Step2(StepTemplateCd):
     hints = "{{r:Type}} {{yb:ls}} {{r:and press Enter.}}"
 
     def next(self):
-        play_sound('bell')
         Step3()
 
 
@@ -79,6 +78,7 @@ class Step3(StepTemplateCd):
         "Sounds like someone is preparing dinner!",
         "To go inside the kitchen, use {{yb:cd kitchen}}."
     ]
+    play_sound('bell')
     start_dir = "my-house"
     end_dir = "kitchen"
     command = ""
@@ -111,12 +111,15 @@ class Step4(StepTemplateCd):
 class Step5(StepTemplateCd):
     story = [
         "You see your mum busily working in a cloud of steam",
-        "Let's see what {{yb:mum}} wants by using {{yb:cat}}"
+        "Let's see what {{yb:Mum}} wants by using {{yb:cat}}"
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"
-    command = "cat mum"
-    hints = "{{rb:Stuck? Type:}} {{yb:cat mum}}"
+    command = "cat Mum"
+    hints = (
+        "{{rb:Stuck? Type:}} {{yb:cat Mum}}. "
+        "Don\'t forget the capital letter!"
+    )
 
     last_step = True
 

@@ -17,6 +17,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from linux_story.challenges.challenge_11.terminals import TerminalMv
 from linux_story.file_data import HIDDEN_DIR
+from linux_story.challenges.challenge_14.steps import Step1 as NextStep
 
 
 class StepTemplateMv(Step):
@@ -307,26 +308,29 @@ class Step7(StepTemplateMv):
     ]
     allowed_commands = {
         "cat Edith": [
-            "{{wb:Edith:}} You saved my little girl and my dog, and now "
-            "you've saved us from starvation...how can I thank you?",
-            "{{wb:Edith:}} You saved my little girl, and now you've saved "
-            "us from starvation...how can I thank you?",
-            "{{wb:Edith:}} Sniff...thank you.  I appreciate your kindness. "
-            "I can't eat though, I miss my daughter too much...",
+            "\n{{wb:Edith:}} You saved my little girl and my dog, and now "
+            "you've saved us from starvation...how can I thank you?\n",
+            "\n{{wb:Edith:}} You saved my little girl, and now you've saved "
+            "us from starvation...how can I thank you?\n",
+            "\n{{wb:Edith:}} Sniff...thank you.  I appreciate your kindness. "
+            "I can't eat though, I miss my daughter too much...\n",
         ],
         "cat Eleanor": [
-            "{{wb:Eleanor:}} Yummy! See, I told you doggy, someone would "
-            "help us.",
-            "{{wb:Eleanor:}} Oooh, food!  If only doggy was here...",
+            "\n{{wb:Eleanor:}} Yummy! See, I told you doggy, someone would "
+            "help us.\n",
+            "\n{{wb:Eleanor:}} Oooh, food!  If only doggy was here...\n",
             ""
         ],
         "cat Edward": [
-            "{{wb:Edward:}} Thank you!  I knew you would come through for us.",
-            "{{wb:Edward:}} Thank you!  I knew you would come through for us.",
-            "{{wb:Edward:}} Thank you!  I knew you would come through for us."
+            "\n{{wb:Edward:}} Thank you!  I knew you would come through for "
+            "us.\n",
+            "\n{{wb:Edward:}} Thank you!  I knew you would come through for "
+            "us.\n",
+            "\n{{wb:Edward:}} Thank you!  I knew you would come through for "
+            "us.\n"
         ],
         "cat dog": [
-            "{{wb:dog:}} \"Woof!\". \nThe dog seems very excited.",
+            "\n{{wb:dog:}} \"Woof!\". \nThe dog seems very excited.\n",
             "",
             ""
         ]
@@ -378,4 +382,4 @@ class Step7(StepTemplateMv):
         self.send_hint(hint)
 
     def next(self):
-        pass
+        NextStep()

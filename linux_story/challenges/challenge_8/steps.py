@@ -64,7 +64,10 @@ class Step2(StepTemplateCdBell):
     story = [
         "{{wb:Little-boy:}} Oh no!  The man with the funny legs disappeared.",
         "{{wb:Little-boy:}} Is that bell making people disappear?",
-        "{{wb:Little-girl:}} I'm scared...Oh!  I heard it go again!"
+        "{{wb:Young-girl:}} I'm scared...",
+        "{{wb:Ding. Dong.}}",
+        "{{wb:Young-girl:}} Oh!  I heard it go again!",
+        "\nLook around to see if anything has changed"
     ]
     start_dir = "town"
     end_dir = "town"
@@ -82,8 +85,11 @@ class Step2(StepTemplateCdBell):
 class Step4(StepTemplateCdBell):
 
     story = [
-        "{{wb:Little-girl:}} Now the little boy has gone",
-        "{{wb:Mayor:}} Maybe they just decided to go home"
+        "{{wb:Young-girl:}} Now the little boy has gone",
+        "Everytime that bell goes, someone disappears!",
+        "{{wb:Mayor:}} Maybe they just decided to go home...?",
+        "{{wb:Ding. Dong}}",
+        "\nLook around."
     ]
     start_dir = "town"
     end_dir = "town"
@@ -106,8 +112,8 @@ class Step5(StepTemplateCd):
     ]
     start_dir = "town"
     end_dir = "town"
-    command = "cat mayor"
-    hints = "{{r:Use}} {{yb:cat mayor}} {{r:to talk to the mayor}}"
+    command = "cat Mayor"
+    hints = "{{r:Use}} {{yb:cat Mayor}} {{r:to talk to the Mayor}}"
 
     def next(self):
         copy_data(8, 6)
@@ -118,7 +124,8 @@ class Step6(StepTemplateCdBell):
 
     story = [
         "{{wb:Mayor:}} \"Everyone has disappeared??\"",
-        "....I should head home now"
+        "....I should head home now",
+        "{{wb:Ding. Dong.}}"
     ]
     start_dir = "town"
     end_dir = "town"

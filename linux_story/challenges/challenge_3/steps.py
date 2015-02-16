@@ -59,7 +59,7 @@ class Step2(StepTemplateCat):
 class Step3(StepTemplateCat):
     story = [
         "Why is it covered in pawprints?",
-        "Hang on, there's a note amongst your books.",
+        "Hang on, there's a {{yb:note}} amongst your books.",
         "Read the note using {{yb:cat}}"
     ]
     start_dir = "my-room"
