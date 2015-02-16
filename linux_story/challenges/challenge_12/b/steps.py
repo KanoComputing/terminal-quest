@@ -80,6 +80,7 @@ class Step2(StepTemplateMv):
         "{{r:Edward looks like he has something he wants to say. "
         "Talk to Edward with}} {{yb:cat}}"
     ]
+    last_step = True
 
     def next(self):
         NextStep()

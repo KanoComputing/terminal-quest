@@ -119,7 +119,6 @@ class Step5(StepTemplateCd):
     hints = "{{rb:Stuck? Type:}} {{yb:cat mum}}"
 
     last_step = True
-    challenge_number = 4
 
     def next(self):
         NextChallengeStep()

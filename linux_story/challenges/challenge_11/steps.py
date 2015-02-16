@@ -261,7 +261,7 @@ class Step8(StepTemplateMv):
         "mv Eleanor .hidden-shelter/"
     ]
     hints = [
-        '{{rn:Move}} {{yb:Eleanor}} {{rn:from}} the previous directory '
+        '{{rn:Move}} {{yb:Eleanor}} {{rn:from the previous directory}} '
         '{{yb:..}} {{rn:to}} {{yb:.}} '
         '{{rn:which represents this directory, using}} {{yb:mv}}',
         "{{rn:You need to move}} {{yb:Eleanor}} {{rn:from}} {{yb:../}} "
@@ -270,6 +270,7 @@ class Step8(StepTemplateMv):
         "{{rn:to move the little girl back to safety}}"
     ]
     counter = 0
+    last_step = True
 
     def block_command(self, line):
         line = line.strip()
@@ -285,8 +286,13 @@ class Step8(StepTemplateMv):
         line = line.strip()
         girl_file = os.path.join(HIDDEN_DIR, 'town/.hidden-shelter/Eleanor')
 
-        if os.path.exists(girl_file) or self.counter == 3:
+        if os.path.exists(girl_file) and self.counter < 3:
             return True
+
+        # We can't verify the girl has been moved correctly at this step
+        elif line.strip() in self.command and self.counter == 3:
+            return True
+
         else:
             self.show_hint(line, current_dir)
             return False

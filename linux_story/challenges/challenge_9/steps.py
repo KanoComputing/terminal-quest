@@ -95,6 +95,7 @@ class Step4(StepTemplateCd):
     end_dir = "kitchen"
     command = "cat note"
     hints = "{{r:Use}} {{yb:cat note}} {{rn:to read the note.}}"
+    last_step = True
 
     def next(self):
         copy_data(10, 1)

@@ -139,6 +139,7 @@ class Step7(StepTemplateCd):
     end_dir = "town"
     command = "cat note"
     hints = "{{rb:To read the note, use}} {{yb:cat note}}"
+    last_step = True
 
     def next(self):
         NextChallengeStep()

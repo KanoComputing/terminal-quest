@@ -203,7 +203,6 @@ class Step10(StepTemplateCd):
     hints = "{{r:Type}} {{yb:cd kitchen}} {{r:to go back to the kitchen}}"
 
     last_step = True
-    challenge_number = 5
 
     def block_command(self, line):
         allowed_commands = ["cd kitchen", "cd kitchen/"]

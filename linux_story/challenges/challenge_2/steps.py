@@ -58,7 +58,7 @@ class Step2(StepTemplateCat):
 
 class Step3(StepTemplateCat):
     story = [
-        "Check out the {{wb:t-shirt}}",
+        "Check out the {{yb:t-shirt}}",
         "Type {{yb:cat wardrobe/t-shirt}} to see how it looks"
     ]
     start_dir = "my-room"
@@ -76,7 +76,7 @@ class Step3(StepTemplateCat):
 class Step4(StepTemplateCat):
     story = [
         "Looking good!  Put that on and look for something else",
-        "Try on the {{wb:skirt}} or the {{wb:trousers}}"
+        "Try on the {{yb:skirt}} or the {{yb:trousers}}"
     ]
     start_dir = "my-room"
     end_dir = "my-room"
@@ -109,7 +109,6 @@ class Step5(StepTemplateCat):
     )
 
     last_step = True
-    challenge_number = 2
 
     def next(self):
         NextChallengeStep()

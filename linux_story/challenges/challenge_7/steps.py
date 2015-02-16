@@ -79,7 +79,6 @@ class Step3(StepTemplateCd):
     }
 
     last_step = True
-    challenge_number = 7
 
     def check_command(self, line, current_dir):
 

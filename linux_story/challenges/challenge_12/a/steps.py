@@ -76,7 +76,7 @@ class Step2(StepTemplateMv):
         "mv Eleanor .hidden-shelter/"
     ]
     hints = [
-        "{{r:Use the command}} {{y:mv ../little-girl .}}",
+        "{{r:Use the command}} {{y:mv ../Eleanor .}}",
     ]
     counter = 0
     girl_file = os.path.join(HIDDEN_DIR, 'town/.hidden-shelter/Eleanor')
@@ -94,7 +94,10 @@ class Step2(StepTemplateMv):
         # strip any spaces off the beginning and end
         line = line.strip()
 
-        if os.path.exists(self.girl_file) or self.counter == 1:
+        if os.path.exists(self.girl_file) and self.counter < 1:
+            return True
+        # We can't verify the girl has been moved correctly at this step
+        elif line.strip() in self.command and self.counter == 1:
             return True
         else:
             self.show_hint(line, current_dir)
@@ -187,6 +190,7 @@ class Step5(StepTemplateMv):
     all_commands = {
         "cat Edith": "\n{{wb:Edith:}} \"Don't talk to me.\""
     }
+    last_step = True
 
     def show_hint(self, line, current_dir):
         if line == 'cat Edith':

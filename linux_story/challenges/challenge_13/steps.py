@@ -320,6 +320,7 @@ class Step7(StepTemplateMv):
             ""
         ]
     }
+    last_step = True
 
     def check_command(self, line, current_dir):
         # Decide which index to take for each option

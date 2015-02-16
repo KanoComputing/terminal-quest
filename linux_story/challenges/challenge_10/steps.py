@@ -230,6 +230,7 @@ class Step6(StepTemplateCd):
     hints = [
         "{{r:Use}} {{yb:ls}} {{r:to have a look around you}}"
     ]
+    last_step = True
 
     def next(self):
         NextStep()

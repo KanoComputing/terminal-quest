@@ -68,7 +68,7 @@ def ls(current_dir, tree, line=""):
         print err
         return
 
-    # need to folter output
+    # Need to filter output
     files = orig_output.split('\n')
     coloured_files = []
     coloured_output = ""
@@ -157,7 +157,7 @@ def shell_command(current_dir, tree, line, command_word=""):
 
     possible_path = line.split(' ')[-1]
 
-    # TODO: very lazy.  Change
+    # TODO: very lazy.  Change.
     # If path starts with ~, replace ~ with the hidden dir
     if possible_path.startswith('~'):
         possible_path = turn_abs_path_to_real_loc(possible_path)
@@ -166,7 +166,6 @@ def shell_command(current_dir, tree, line, command_word=""):
         line = ' '.join(array)
 
     args = line.split(" ")
-    print 'real_loc = {}'.format(real_loc)
     p = subprocess.Popen(args, cwd=real_loc,
                          stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE)
