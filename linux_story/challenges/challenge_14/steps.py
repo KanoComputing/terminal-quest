@@ -227,7 +227,7 @@ class Step4(StepTemplateMv):
             if os.path.isfile(os.path.join(basket_dir, f))
         ]
 
-        if len(food_files) > 4:
+        if len(food_files) > 3:
             return True
         else:
             return False
