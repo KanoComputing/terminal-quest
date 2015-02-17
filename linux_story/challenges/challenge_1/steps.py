@@ -16,7 +16,6 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from terminals import TerminalLs
 from linux_story.challenges.challenge_2.steps import Step1 as NextChallengeStep
-from linux_story.helper_functions import play_sound
 
 
 class StepTemplateLs(Step):
@@ -36,9 +35,6 @@ class Step1(StepTemplateLs):
         "It's time to get up sleepy head!",
         "\n{{wb:New Spell:}} {{yb:ls}} - lets you see what's around you."
     ]
-    # This is for the first level, which has the sound of an alarm clock
-    play_sound("alarm")
-
     start_dir = "my-room"
     end_dir = "my-room"
     command = "ls"
