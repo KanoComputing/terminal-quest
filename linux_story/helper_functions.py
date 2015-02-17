@@ -8,14 +8,10 @@
 # Helper functions used across the system.
 
 import os
-import sys
-import time
-import readline
-import re
 import subprocess
 
 from kano.colours import colourize256, decorate_string
-# from kano_profile.apps import load_app_state_variable
+from kano_profile.apps import load_app_state_variable
 
 
 home = os.path.expanduser("~")
@@ -23,11 +19,20 @@ hidden_dir = os.path.join(home, ".linux-story")
 
 
 def debugger(text):
+    '''Change first line to "if True:" to show all the debugging lines
+    '''
+
     if False:
         print text
 
 
 def get_script_cmd(string, current_dir, tree):
+    '''Checks whether the string (from the user's point of view)
+    is an executible.
+    So we convert the path entered into the real path (i.e. including the
+    .linux-story) and check it's a file and and executable
+    '''
+
     is_script = False
 
     if string.startswith("./"):
@@ -55,6 +60,9 @@ def is_exe(fpath):
 
 # TODO: tidy up
 def colour_file_dir(path, f):
+    '''Colourize the files and directories shown by ls
+    '''
+
     if os.path.isfile(path) and is_exe(path):
         f = colourize256(f, 118, None, True)
     elif os.path.isdir(path):
@@ -64,13 +72,6 @@ def colour_file_dir(path, f):
         f = decorate_string(f, "cyan", None)
 
     return f
-
-
-def relative_loc_is_home(current_dir, tree):
-    real_loc = tree[current_dir].path
-    if real_loc == hidden_dir:
-        return True
-    return False
 
 
 def play_sound(object_name):
@@ -122,8 +123,12 @@ def get_completion_desc(current_dir, tree, line, list_type="both"):
     return current_dir
 
 
-# Colourise text
 def get_preset_from_id(id):
+    '''Translate the letter IDs into the colour codes
+    r=red, g=green, y=yellow, b=blue, p=pink, c=cyan, w=white, l=lilac
+    The capital letters are different shades of the same colour
+    '''
+
     if id == "r":
         return 160
     elif id == "g":
@@ -160,6 +165,10 @@ def get_preset_from_id(id):
 
 
 def parse_string(string, message_type="story", input=False):
+    '''Change a string of the form "{{bhello}}" to a the string "hello"
+    that appears blue in a terminal
+    '''
+
     default_preset = get_preset_from_id(message_type)
     if input:
         colour_function = colourizeInput256
@@ -210,60 +219,12 @@ def colourizeInput256(string, fg_num=None, bg_num=None, bold=False):
     return string
 
 
-# Try spliting the words up into an array of groups of characters,
-# that all need to get printed out one at a time
-def typing_animation(string):
-    rows, columns = os.popen('stty size', 'r').read().split()
-    letters = []
-    total_width = 0
-
-    # First, process string.  Strip each character off unless it starts with \033
-    # Then, strip it off in a chunk
-    while len(string) != 0:
-
-        if string.startswith('\033'):
-            index2 = string.find('m')  # First time m comes up is directly after the selected number
-            substring = string[0: index2 + 1]
-            string = string[index2 + 1:]
-            letters.append(substring)
-            total_width += 1
-
-        # If character is " ", see if we should replace it with a newline
-        elif string.startswith(' '):
-            # calculate distance to next line
-            next_word = string.split(" ")[1]
-
-            # remove all ansi escape sequences to find the real word length
-            ansi_escape = re.compile(r'\x1b[^m]*m')
-            clean_word = ansi_escape.sub('', next_word)
-            next_word_len = len(clean_word)
-
-            if total_width + next_word_len >= int(columns):
-                total_width = 0
-                letters.append('\n')
-            else:
-                total_width += 1
-                letters.append(" ")
-            string = string[1:]
-
-        else:
-            letters.append(string[0])
-            string = string[1:]
-            total_width += 1
-
-    for l in letters:
-        sys.stdout.write(l)
-        sys.stdout.flush()
-        time.sleep(0.01)
-
-
-# Nicked from snake
-def print_gained_exp():
-    pass
-    #old_xp = load_app_state_variable()
-    # Look up XP
-    # here
-    #new_xp = 0
-    #new_xp - old_xp
-    #if new_xp - old_xp > 0:
-    #    typing_animation("Fantastic! You gained {y} experience points!".format())
+def print_gained_exp(challenge, fork):
+    old_xp = load_app_state_variable('linux_story', challenge + '_' + fork)
+    # Look up XP here
+    new_xp = 0
+    xp_gained = new_xp - old_xp
+    if xp_gained > 0:
+        return "Fantastic! You gained {} experience points!".format(xp_gained)
+    else:
+        return None
