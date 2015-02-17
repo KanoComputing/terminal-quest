@@ -109,7 +109,7 @@ class Step4(StepTemplateCd):
 
 class Step5(StepTemplateCd):
     story = [
-        "You see your mum busily working in a cloud of steam",
+        "You see your Mum busily working in a cloud of steam",
         "Let's see what {{yb:Mum}} wants by using {{yb:cat}}"
     ]
     start_dir = "kitchen"
