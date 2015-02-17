@@ -124,7 +124,7 @@ def find_last_challenge_path(directory, challenge, step, fork=None):
         debugger('current_challenge = {}'.format(current_challenge))
 
         if int(current_step) > 1:
-            current_path, current_challenge, current_step = iterate_path(
+            path, current_challenge, current_step = iterate_path(
                 directory, current_challenge, current_step, fork
             )
 
