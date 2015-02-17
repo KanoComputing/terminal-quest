@@ -1,0 +1,15 @@
+  __  ____      __
+ |  \/  \ \    / /
+ | \  / |\ \  / / 
+ | |\/| | \ \/ /  
+ | |  | |  \  /   
+ |_|  |_|   \/ 
+
+
+ This spell gives you the power to move items around
+
+Examples
+
+ mv item chest/        - If chest exists and is a directory, this moves the item inside the chest
+
+ mv item better-item   - If better-item does not exist, then this will rename the item to better-item

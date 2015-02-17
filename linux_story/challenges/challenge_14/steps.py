@@ -15,8 +15,7 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.Step import Step
 from linux_story.challenges.challenge_11.terminals import TerminalMv
-from linux_story.file_data import HIDDEN_DIR
-print 'changed import'
+from linux_story.file_data import HIDDEN_DIR, copy_data
 from linux_story.challenges.challenge_15.steps import Step1 as NextStep
 
 
@@ -381,4 +380,5 @@ class Step7(StepTemplateMv):
         self.send_hint(hint)
 
     def next(self):
+        copy_data(15, 1)
         NextStep()
