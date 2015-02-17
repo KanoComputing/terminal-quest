@@ -40,6 +40,7 @@ class StepTemplateMv(Step):
 # The next few steps should be like the disappearing of people in the town
 class Step1(StepTemplateCd):
     story = [
+        "{{gb:Congratulations, you earned 30 XP!}}\n",
         "You see a group of people.",
         "They look quite thin and scared.",
         "Try talking to them."

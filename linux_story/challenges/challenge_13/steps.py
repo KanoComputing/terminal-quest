@@ -28,6 +28,7 @@ class StepTemplateMv(Step):
 
 class Step1(StepTemplateMv):
     story = [
+        "{{gb:Congratulations, you earned 35 XP!}}\n",
         "{{wb:Edward:}} \"Hey, since you don't seem to be affected by going"
         " outside, can you gather some food for us?\"",
         "\"We didn't have time to grab any before we went into hiding. "

@@ -32,6 +32,7 @@ class StepTemplateMv(Step):
 # Thanks you for saving the little girl
 class Step1(StepTemplateMv):
     story = [
+        "{{gb:Congratulations, you earned 30 XP!}}\n",
         "{{wb:Edith:}} Thank you for saving her!",
         "{{wb:Eleanor:}} Doggy!",
         "{{wb:Edith:}} Can you save her dog too?  I'm worried something will "
