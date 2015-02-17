@@ -66,6 +66,7 @@ class Step2(StepTemplateCd):
     hints = "{{r:Type}} {{yb:ls}} {{r:and press Enter.}}"
 
     def next(self):
+        play_sound('bell')
         Step3()
 
 
@@ -77,7 +78,6 @@ class Step3(StepTemplateCd):
         "Sounds like someone is preparing dinner!",
         "To go inside the kitchen, use {{yb:cd kitchen}}."
     ]
-    play_sound('bell')
     start_dir = "my-house"
     end_dir = "kitchen"
     command = ""
