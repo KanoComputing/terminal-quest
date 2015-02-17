@@ -11,7 +11,7 @@ import os
 import threading
 from socket_functions import launch_client, is_server_busy
 # from kano_profile.badges import save_app_state_variable_with_dialog
-# from kano_profile.apps import load_app_state_variable
+from kano_profile.apps import load_app_state_variable, save_app_state_variable
 
 
 class Step():
@@ -199,3 +199,13 @@ class Step():
 
         output = output.strip()
         return self.output_condition(output)
+
+    def save_fork(self, fork):
+        '''Save fork using kano profile
+        '''
+
+        save_app_state_variable(
+            'linux-story',
+            'fork_' + str(self.challenge_number),
+            fork
+        )
