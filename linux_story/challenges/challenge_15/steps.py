@@ -77,8 +77,7 @@ class Step2(StepTemplateMv):
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:cat}} {{rb:to look at a scroll}}",
-        "{{rb:Use}} {{yb:cat .chest/LS}} {{rb:to read the LS scroll}}",
+        "{{rb:Use}} {{yb:cat .chest/LS}} {{rb:to read the LS scroll}}"
     ]
 
     def next(self):
