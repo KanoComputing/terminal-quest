@@ -248,6 +248,10 @@ class Step5(StepTemplateMv):
         "mv basket ../../town/.hidden-shelter/",
         "mv basket ~/town/.hidden-shelter",
         "mv basket ~/town/.hidden-shelter/",
+        "mv ./basket ~/town/.hidden-shelter",
+        "mv ./basket ~/town/.hidden-shelter/",
+        "mv ./basket ../../town/.hidden-shelter",
+        "mv ./basket ../../town/.hidden-shelter/"
     ]
     hints = [
         "{{rb:Use the command}} {{yb:mv basket ~/town/.hidden-shelter}} "
