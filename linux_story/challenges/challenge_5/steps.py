@@ -200,7 +200,7 @@ class Step10(StepTemplateCd):
     start_dir = "my-house"
     end_dir = "kitchen"
     command = ""
-    hints = "{{r:Type}} {{yb:cd kitchen}} {{rb:to go back to the kitchen}}"
+    hints = "{{rb:Type}} {{yb:cd kitchen}} {{rb:to go back to the kitchen}}"
 
     last_step = True
 

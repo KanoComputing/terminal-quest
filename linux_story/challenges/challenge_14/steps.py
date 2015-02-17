@@ -250,8 +250,8 @@ class Step5(StepTemplateMv):
         "mv basket ~/town/.hidden-shelter/",
     ]
     hints = [
-        "{{r:Use the command}} {{yb:mv basket ~/town/.hidden-shelter}} "
-        "to move the basket to the hidden-shelter"
+        "{{rb:Use the command}} {{yb:mv basket ~/town/.hidden-shelter}} "
+        "{{rb:to move the basket to the hidden-shelter}}"
     ]
     basket_file = os.path.join(HIDDEN_DIR, 'town', '.hidden-shelter', 'basket')
 
@@ -281,8 +281,8 @@ class Step6(StepTemplateMv):
         "cd ~/town/.hidden-shelter"
     ]
     hints = [
-        "{{r:Use the command}} {{yb:cd ~/town/.hidden-shelter}} "
-        "{{r:to get back to the hidden-shelter}}"
+        "{{rb:Use the command}} {{yb:cd ~/town/.hidden-shelter}} "
+        "{{rb:to get back to the hidden-shelter}}"
     ]
 
     def block_command(self, line):

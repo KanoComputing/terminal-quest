@@ -54,7 +54,7 @@ class Step2(StepTemplateCd):
     start_dir = "kitchen"
     end_dir = "~"
     command = ""
-    hints = "{{r:Type}} {{yb:cd}} {{r:to start the journey.}}"
+    hints = "{{rb:Type}} {{yb:cd}} {{rb:to start the journey.}}"
 
     def block_command(self, line):
         allowed_commands = ["cd"]
@@ -74,7 +74,7 @@ class Step3(StepTemplateCd):
     start_dir = "~"
     end_dir = "~"
     command = "ls"
-    hints = "{{r:Stuck?  Type}} {{yb:ls}} {{r:to look around.}}"
+    hints = "{{rb:Stuck?  Type}} {{yb:ls}} {{rb:to look around.}}"
 
     def next(self):
         Step4()

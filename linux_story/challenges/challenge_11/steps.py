@@ -125,8 +125,8 @@ class Step3(StepTemplateMv):
         "ls -a"
     ]
     hints = [
-        "{{r:Look in this directory to check you've moved the apple}}",
-        "{{r:Use}} {{yb:ls}} {{r:to check the apple is not here}}"
+        "{{rb:Look in this directory to check you've moved the apple}}",
+        "{{rb:Use}} {{yb:ls}} {{rb:to check the apple is not here}}"
     ]
 
     def next(self):
@@ -147,10 +147,10 @@ class Step4(StepTemplateMv):
         "ls -a basket/"
     ]
     hints = [
-        "{{r:Now look in the}} {{yb:basket}} {{rn:to check you've moved the "
+        "{{rb:Now look in the}} {{yb:basket}} {{rb:to check you've moved the "
         "apple in the basket}}",
-        "{{r:Use the}} {{yb:ls}} {{rn:command to look in the}} {{yb:basket}}",
-        "{{r:Use the command}} {{yb:ls basket}} {{rn:to progress}}"
+        "{{rb:Use the}} {{yb:ls}} {{rb:command to look in the}} {{yb:basket}}",
+        "{{rb:Use the command}} {{yb:ls basket}} {{rb:to progress}}"
     ]
 
     def next(self):
@@ -171,8 +171,8 @@ class Step5(StepTemplateMv):
     end_dir = ".hidden-shelter"
     command = "mv basket/apple ."
     hints = [
-        "{{r:Use the command}} {{yb:mv basket/apple .}} {{rn:to}} "
-        "{{yb:m}}{{rn:o}}{{yb:v}}{{rn:e the apple from the basket to your "
+        "{{rb:Use the command}} {{yb:mv basket/apple .}} {{rb:to}} "
+        "{{yb:m}}{{rb:o}}{{yb:v}}{{rb:e the apple from the basket to your "
         "current position.}}"
     ]
 
@@ -215,7 +215,7 @@ class Step6(StepTemplateMv):
         "ls", "ls -a"
     ]
     hints = [
-        "{{r:Look around using}} {{yb:ls}} {{rn:to confirm Eleanor ran "
+        "{{rb:Look around using}} {{yb:ls}} {{rb:to confirm Eleanor ran "
         "outside}}"
     ]
 
@@ -238,8 +238,8 @@ class Step7(StepTemplateMv):
         "ls ~/town/"
     ]
     hints = [
-        "{{rn:Look in the town directory by using either}} {{yb:ls ../}} "
-        "{{rn:or}} {{yb:ls ~/town/}}"
+        "{{rb:Look in the town directory by using either}} {{yb:ls ../}} "
+        "{{rb:or}} {{yb:ls ~/town/}}"
     ]
 
     def next(self):
@@ -265,13 +265,13 @@ class Step8(StepTemplateMv):
         "mv ../Eleanor ~/town/.hidden-shelter/",
     ]
     hints = [
-        '{{rn:Move}} {{yb:Eleanor}} {{rn:from the previous directory}} '
-        '{{yb:..}} {{rn:to}} {{yb:.}} '
-        '{{rn:which represents this directory, using}} {{yb:mv}}',
-        "{{rn:You need to move}} {{yb:Eleanor}} {{rn:from}} {{yb:../}} "
-        "{{rn:to}} {{yb:.}}",
-        "{{rn:Quick!  Use}} {{yb:mv ../Eleanor .}} "
-        "{{rn:to move the little girl back to safety}}"
+        '{{rb:Move}} {{yb:Eleanor}} {{rb:from the previous directory}} '
+        '{{yb:..}} {{rb:to}} {{yb:.}} '
+        '{{rb:which represents this directory, using}} {{yb:mv}}',
+        "{{rb:You need to move}} {{yb:Eleanor}} {{rb:from}} {{yb:../}} "
+        "{{rb:to}} {{yb:.}}",
+        "{{rb:Quick!  Use}} {{yb:mv ../Eleanor .}} "
+        "{{rb:to move the little girl back to safety}}"
     ]
     counter = 0
     last_step = True

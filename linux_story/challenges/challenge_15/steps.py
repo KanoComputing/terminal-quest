@@ -130,6 +130,9 @@ class Step5(StepTemplateMv):
 
     def check_output(self, output):
         # Need to check that .chest is shown in the output of the command
+        if not output:
+            return False
+
         if '.chest' in output:
             return True
 
@@ -141,7 +144,7 @@ class Step5(StepTemplateMv):
 
 class Step6(StepTemplateMv):
     story = [
-        "You found an old antique chest hidden under your bed",
+        "You find an old antique chest hidden under your bed",
         "You don't remember seeing it before",
         "Have a look inside the {{yb:.chest}} and see what it contains"
     ]
@@ -161,6 +164,9 @@ class Step6(StepTemplateMv):
     ]
 
     def check_output(self, output):
+        if not output:
+            return False
+
         if 'ls' in output and 'cd' in output:
             return True
 
@@ -187,7 +193,8 @@ class Step7(StepTemplateMv):
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:cat}} {{rb:to look at a scroll}}"
+        "{{rb:Use}} {{yb:cat}} {{rb:to look at a scroll}}",
+        "{{rb:Use}} {{yb:cat .chest/LS}} {{rb:to read the LS scroll}}",
     ]
 
     def next(self):
