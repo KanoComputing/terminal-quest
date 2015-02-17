@@ -144,8 +144,7 @@ class Application(MainWindow):
             step_number
         )
 
-        self.terminal.connect("text-inserted", self.check_queue)
-        self.connect("map-event", self.check_queue)
+        self.map_event_handler = self.connect("map-event", self.check_queue, False)
 
         self.terminal.launch_command(command)
 
@@ -202,9 +201,16 @@ class Application(MainWindow):
         t.daemon = True
         t.start()
 
-    def check_queue(self, widget=None, arg1=None, arg2=None, arg3=None):
+    def check_queue_key_release_wrapper(self, widget, event):
+        if event.keyval == Gdk.KEY_Return:
+            self.terminal.set_sensitive(True)
+            self.check_queue(user_data=True)
+
+    def check_queue(self, widget=None, arg1=None, user_data=False):
+
         try:
-            data_dict = self.queue.get(False)
+            # Give it a timeout so it doesn't hang indefinitely
+            data_dict = self.queue.get(user_data, timeout=0.5)
 
             if 'exit' in data_dict.keys():
                 self.close_window()
@@ -239,11 +245,15 @@ class Application(MainWindow):
                     self.show_terminal()
                     self.show_all()
 
-            # chuck out whatever was waiting for us
-            self.queue.get(False)
-
         except Queue.Empty:
             pass
+
+        if arg1 and Gdk.EventType.MAP == arg1.get_event_type():
+
+            self.terminal.connect(
+                "key-release-event", self.check_queue_key_release_wrapper
+            )
+            self.disconnect(self.map_event_handler)
 
 
 def main():
