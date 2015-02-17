@@ -20,6 +20,7 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from helper_functions import debugger
+from kano_profile.apps import load_app_state_variable
 
 HOME = os.path.expanduser("~")
 
@@ -45,7 +46,7 @@ def remove_username(abs_path):
     return "/".join(abs_path.split("/")[3:])
 
 
-def find_last_challenge_path(directory, challenge, step):
+"""def find_last_challenge_path(directory, challenge, step):
     '''Given a challenge number, find the latest file system to copy across
     '''
 
@@ -95,7 +96,101 @@ def find_last_challenge_path(directory, challenge, step):
             if int(challenge) < 1:
                 raise Exception("No challenges have been provided!")
 
+    return path"""
+
+
+def find_last_challenge_path(directory, challenge, step):
+    '''Given a challenge number, find the latest file system to copy across
+    '''
+
+    debugger('\nEntered find_last_challenge_path')
+
+    # Look up fork
+    fork = load_app_state_variable('linux-story', 'fork_' + str(challenge))
+    if not fork:
+        fork = 'a'
+
+    debugger('fork = {}'.format(fork))
+    path, current_challenge, current_step = iterate_path(
+        directory, challenge, step, fork
+    )
+
+    # If path does not exist, look in lower levels
+    while not os.path.exists(path):
+        debugger('path that doesn\'t exist = {}'.format(path))
+        debugger('current_step = {}'.format(current_step))
+        debugger('current_challenge = {}'.format(current_challenge))
+
+        if int(current_step) > 1:
+            current_path, current_challenge, current_step = iterate_path(
+                directory, current_challenge, current_step, fork
+            )
+
+        else:
+            current_challenge = int(current_challenge) - 1
+
+            if int(current_challenge) < 1:
+                raise Exception("No challenges have been provided!")
+
+            # Hacky - pick a large number that it can't be
+            # TODO: have None as an option which means max.
+            current_step = 100
+            path = os.path.join(
+                directory, str(current_challenge), str(current_step)
+            )
+
     return path
+
+
+def iterate_path(directory, current_challenge, current_step, fork):
+    '''Iterative part of the find_last_challenge_path function
+    '''
+
+    # Check for forks
+    current_path = os.path.join(directory, str(current_challenge))
+    (contains_forks, forks) = list_if_immediate_directories_are_forks(
+        current_path
+    )
+
+    # Find the step numbers in the correct directory
+    if contains_forks:
+        current_path = os.path.join(
+            directory, str(current_challenge), fork
+        )
+
+    debugger('current_path = {}'.format(current_path))
+    step_numbers = list_immediate_directories(current_path)
+    debugger('step_numbers = {}'.format(step_numbers))
+
+    # If the directory doesn't exist
+    if step_numbers == []:
+        current_step = 1
+        path = os.path.join(current_path, str(current_step))
+
+    else:
+        # Case where new_challenge == challenge and when they don't
+        # equal are the same - just dictated by the size of new_step
+        # Change all the strings into ints
+        difference_step_numbers = [int(i) for i in step_numbers]
+        debugger('difference_step_numbers = {}'.format(difference_step_numbers))
+        debugger('current_step = {}'.format(current_step))
+        maximum = max(difference_step_numbers)
+        next_step = min(
+            difference_step_numbers,
+            key=lambda x:
+                (int(current_step) - x) if (int(current_step) - x) >= 0 else maximum
+        )
+
+        if int(current_step) - next_step < 0:
+            # Path won't exist in next turn,
+            current_step = 1
+        else:
+            current_step = int(next_step)
+
+        path = os.path.join(current_path, str(current_step))
+        debugger('decided path = {}'.format(path))
+
+    return path, current_challenge, current_step
 
 
 def copy_data(challenge_number=1, step_number=1, fork=None):
@@ -111,15 +206,12 @@ def copy_data(challenge_number=1, step_number=1, fork=None):
     )
     copy_differences(challenge_number, step_number, fork)
 
-    # Needs to be updated for inclusion of step and forks
-    # apply_permissions_to_file_system(challenge_number)
-
-
+'''
 def get_fork_path(path, fork):
     if os.path.exists(path):
         immediate_dirs = [name for name in os.listdir(path)
                           if os.path.isdir(os.path.join(path, name))]
-        debugger('immediate_dirs = {}'.format(immediate_dirs))
+        debugger('immediate_dirs in get_fork_path = {}'.format(immediate_dirs))
         for d in immediate_dirs:
             if len(d) == 1:
 
@@ -130,7 +222,36 @@ def get_fork_path(path, fork):
 
                 return os.path.join(path, fork)
 
-        return path
+        return path'''
+
+
+def list_if_immediate_directories_are_forks(path):
+    '''Find if a fork exists inside the challenge directory
+    We return a tuple of whether there is a fork, and the fork letters
+    '''
+
+    if os.path.exists(path):
+
+        dirs = list_immediate_directories(path)
+        debugger('dirs in find_if_fork_exists = {}'.format(dirs))
+        for d in dirs:
+            if len(d) == 1 and not is_number(d):
+                return (True, dirs)
+
+        # If not a fork, then these are step directoriesm which will also be
+        # helpful
+        return (False, dirs)
+
+    return (False, [])
+
+
+def list_immediate_directories(path):
+    if os.path.exists(path):
+        dirs = [name for name in os.listdir(path)
+                if os.path.isdir(os.path.join(path, name))]
+        return dirs
+
+    return []
 
 
 def copy_differences(challenge, step, fork):
@@ -143,18 +264,18 @@ def copy_differences(challenge, step, fork):
             str(challenge), str(step)
         )
     )
-    challenge_path = find_last_challenge_path(
+
+    path = find_last_challenge_path(
         FILE_SYSTEM_PATH, str(challenge), str(step)
     )
-    fork_path = get_fork_path(challenge_path, fork)
-    debugger('fork_path = {}'.format(fork_path))
+
+    debugger('path from find_last_challenge_path = {}'.format(path))
 
     # If the hidden directory hasn't been created yet
     if not os.path.exists(HIDDEN_DIR):
         os.mkdir(HIDDEN_DIR)
 
-    dcmp = dircmp(HIDDEN_DIR, fork_path)
-    # dcmp = dircmp(HIDDEN_DIR, challenge_path)
+    dcmp = dircmp(HIDDEN_DIR, path)
 
     def recursive_bit(dcmp):
 
