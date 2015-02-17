@@ -16,7 +16,7 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 from linux_story.launch_functions import launch_project
-#from kano_profile.apps import load_app_state_variable
+from kano_profile.apps import load_app_state_variable
 
 
 if __name__ == "__main__":
@@ -31,17 +31,16 @@ if __name__ == "__main__":
         launch_project(sys.argv[1], sys.argv[2])  # , sys.argv[3], sys.argv[4])
     elif len(sys.argv) == 1:
         challenge = 1
-        #profile_level = load_app_state_variable("linux-story", "level")
-        #if profile_level:
-        #    challenge = profile_level + 1
-        #else:
-        #    challenge = 1
+        profile_level = load_app_state_variable("linux-story", "level")
+        if profile_level:
+            challenge = profile_level + 1
+        else:
+            challenge = 1
 
         # If the project was completed previously, just start over
         if challenge > 8:
             challenge = 1
 
-        # launch_project(sys.argv[1], sys.argv[2], str(challenge), "1")
         launch_project(str(challenge), "1")
     else:
         sys.exit("Wrong number of arguments!")
