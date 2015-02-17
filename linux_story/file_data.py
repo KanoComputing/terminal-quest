@@ -99,16 +99,18 @@ def remove_username(abs_path):
     return path"""
 
 
-def find_last_challenge_path(directory, challenge, step):
+def find_last_challenge_path(directory, challenge, step, fork=None):
     '''Given a challenge number, find the latest file system to copy across
     '''
 
     debugger('\nEntered find_last_challenge_path')
 
     # Look up fork
-    fork = load_app_state_variable('linux-story', 'fork_' + str(challenge))
     if not fork:
-        fork = 'a'
+        fork = load_app_state_variable('linux-story', 'fork_' + str(challenge))
+
+        if not fork:
+            fork = 'a'
 
     debugger('fork = {}'.format(fork))
     path, current_challenge, current_step = iterate_path(
@@ -198,12 +200,6 @@ def copy_data(challenge_number=1, step_number=1, fork=None):
     .linux_story directory
     '''
 
-    debugger("copy_data entered")
-    debugger(
-        "challenge_number = {}, step_number = {}".format(
-            challenge_number, step_number
-        )
-    )
     copy_differences(challenge_number, step_number, fork)
 
 '''
@@ -254,7 +250,7 @@ def list_immediate_directories(path):
     return []
 
 
-def copy_differences(challenge, step, fork):
+def copy_differences(challenge, step, fork=None):
     '''This changes the file tree in .linux-story by looking at the
     differences between it amd the stored file tree for that challenge
     '''
@@ -266,7 +262,7 @@ def copy_differences(challenge, step, fork):
     )
 
     path = find_last_challenge_path(
-        FILE_SYSTEM_PATH, str(challenge), str(step)
+        FILE_SYSTEM_PATH, str(challenge), str(step), fork
     )
 
     debugger('path from find_last_challenge_path = {}'.format(path))

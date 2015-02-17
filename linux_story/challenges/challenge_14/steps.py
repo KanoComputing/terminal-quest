@@ -20,7 +20,7 @@ from linux_story.challenges.challenge_15.steps import Step1 as NextStep
 
 
 class StepTemplateMv(Step):
-    challenge_number = 13
+    challenge_number = 14
 
     def __init__(self):
         Step.__init__(self, TerminalMv)

@@ -31,7 +31,7 @@ class StepTemplateMv(Step):
 # Save both the dog and the little girl
 class Step1(StepTemplateMv):
     story = [
-        "{{wb:Little girl:}} Yay, Doggie!",
+        "{{wb:Eleanor:}} Yay, Doggie!",
         "{{wb:Dog:}} Ruff.",
         "{{wb:Edith:}} Oh thank goodness you got them both back.",
         "I was wrong about you. You're clearly a good person.\n",

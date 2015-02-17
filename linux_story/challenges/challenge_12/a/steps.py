@@ -132,6 +132,6 @@ class Step2(StepTemplateMv):
             SaveGirl()
 
         else:
-            copy_data(12, 3, 'a')
+            copy_data(13, 1, 'a')
             play_sound('bell')
             LoseGirl()
