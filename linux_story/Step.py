@@ -7,10 +7,9 @@
 #
 # Step class to describe the flow
 
-import os
 import threading
 from socket_functions import launch_client, is_server_busy
-# from kano_profile.badges import save_app_state_variable_with_dialog
+from kano_profile.badges import save_app_state_variable_with_dialog
 from kano_profile.apps import load_app_state_variable, save_app_state_variable
 
 
@@ -116,11 +115,10 @@ class Step():
         '''Integration with kano world
         '''
 
-        pass
-        #level = load_app_state_variable("linux-story", "level")
-        #if self.challenge_number > level:
-        #    save_app_state_variable_with_dialog("linux-story", "level",
-        #                                        self.challenge_number)
+        level = load_app_state_variable("linux-story", "level")
+        if self.challenge_number > level:
+            save_app_state_variable_with_dialog("linux-story", "level",
+                                                self.challenge_number)
 
     def launch_terminal(self):
         '''Starts off the terminal's game loop.
