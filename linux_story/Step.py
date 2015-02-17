@@ -64,7 +64,7 @@ class Step():
         self.next()
 
     def exit(self):
-        data = {'exit': ''}
+        data = {'exit': '1'}
         t = threading.Thread(target=launch_client, args=(data,))
         t.daemon = True
         t.start()

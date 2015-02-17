@@ -115,7 +115,7 @@ class Application(MainWindow):
 
         self.run_server()
 
-    def close_window(self, widget, event):
+    def close_window(self, widget=None, event=None):
 
         # This DOES NOT launch the finish function
         self.server.socket.shutdown(socket.SHUT_RDWR)

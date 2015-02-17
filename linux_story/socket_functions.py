@@ -75,7 +75,7 @@ def launch_client(data):
     try:
         # Connect to server and send data
         sock.connect((HOST, PORT))
-        sock.sendall(json_data + "\n")
+        sock.sendall(json_data)
 
         # Receive data from the server and shut down
         received1 = sock.recv(1024)
