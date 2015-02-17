@@ -34,7 +34,7 @@ class Step1(StepTemplateMv):
         "Do you remember seeing any food in your travels?\"\n",
         "...ah!  You have all that food in your {{yb:kitchen}}!",
         "We could give that to this family.",
-        "Start by moving the basket to your house."
+        "Start by moving the {{yb:basket}} to your house."
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"

@@ -7,7 +7,6 @@
 
 import os
 import sys
-import time
 
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
 if __name__ == '__main__' and __package__ is None:
@@ -81,6 +80,10 @@ class Step3(StepTemplateCd):
 
     def check_command(self, line, current_dir):
 
+        if not self.all_commands:
+            hint = "\n{{g:Press Enter to continue}}"
+            return True
+
         # check through list of commands
         command_validated = False
         end_dir_validated = False
@@ -109,6 +112,7 @@ class Step3(StepTemplateCd):
                     " more people.}}"
             else:
                 command_validated = True
+                hint += "\n{{g:Press Enter to continue}}"
 
             self.send_text(hint)
 
@@ -119,7 +123,6 @@ class Step3(StepTemplateCd):
 
     def next(self):
         # Better way of doing this?
-        time.sleep(6)
         copy_data(8, 1)
         play_sound('bell')
         NextChallengeStep()
