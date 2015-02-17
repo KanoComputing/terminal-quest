@@ -18,7 +18,7 @@ def cd(current_dir, tree, line=None):
     else:
         new_current_dir = current_dir
 
-        folders = line.split('/')
+        folders = filter(None, line.split('/'))
 
         # if user starts line with ~, take their path as an absolute path
         if folders[0] == '~':
