@@ -15,6 +15,7 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.Step import Step
 from linux_story.challenges.challenge_11.terminals import TerminalMv
+import time
 
 
 class StepTemplateMv(Step):
@@ -175,3 +176,6 @@ class Step6(StepTemplateMv):
 
     def next(self):
         self.exit()
+
+        # So that server has time to send message before it closes
+        time.sleep(3)
