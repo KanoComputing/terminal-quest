@@ -17,8 +17,6 @@ if __name__ == '__main__' and __package__ is None:
 
 
 from linux_story.file_data import copy_data
-from linux_story.helper_functions import debugger
-from kano_profile.apps import load_app_state_variable
 
 
 def launch_project(challenge_number="1", step="1"):
@@ -28,21 +26,10 @@ def launch_project(challenge_number="1", step="1"):
 
 
 def get_step_class(challenge_number, step_number):
-    # Look up fork
-    fork = load_app_state_variable(
-        'linux-story', 'fork_' + str(challenge_number)
-    )
 
-    # If there is a fork, change the module name to add this fork
-    if fork:
-        module_name = (
-            "challenges.challenge_" + challenge_number + '.' + fork + ".steps"
-        )
-        step_class_name = "Step" + step_number
-    else:
-        # If no fork, use this module name
-        module_name = "challenges.challenge_" + challenge_number + ".steps"
-        step_class_name = "Step" + step_number
+    # If no fork, use this module name
+    module_name = "challenges.challenge_" + challenge_number + ".steps"
+    step_class_name = "Step" + step_number
 
     try:
         module = __import__(

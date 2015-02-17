@@ -20,7 +20,6 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from helper_functions import debugger
-from kano_profile.apps import load_app_state_variable
 
 HOME = os.path.expanduser("~")
 
@@ -99,22 +98,14 @@ def remove_username(abs_path):
     return path"""
 
 
-def find_last_challenge_path(directory, challenge, step, fork=None):
+def find_last_challenge_path(directory, challenge, step):
     '''Given a challenge number, find the latest file system to copy across
     '''
 
     debugger('\nEntered find_last_challenge_path')
 
-    # Look up fork
-    if not fork:
-        fork = load_app_state_variable('linux-story', 'fork_' + str(challenge))
-
-        if not fork:
-            fork = 'a'
-
-    debugger('fork = {}'.format(fork))
     path, current_challenge, current_step = iterate_path(
-        directory, challenge, step, fork
+        directory, challenge, step
     )
 
     # If path does not exist, look in lower levels
@@ -125,7 +116,7 @@ def find_last_challenge_path(directory, challenge, step, fork=None):
 
         if int(current_step) > 1:
             path, current_challenge, current_step = iterate_path(
-                directory, current_challenge, current_step, fork
+                directory, current_challenge, current_step
             )
 
         else:
@@ -144,21 +135,11 @@ def find_last_challenge_path(directory, challenge, step, fork=None):
     return path
 
 
-def iterate_path(directory, current_challenge, current_step, fork):
+def iterate_path(directory, current_challenge, current_step):
     '''Iterative part of the find_last_challenge_path function
     '''
 
-    # Check for forks
     current_path = os.path.join(directory, str(current_challenge))
-    (contains_forks, forks) = list_if_immediate_directories_are_forks(
-        current_path
-    )
-
-    # Find the step numbers in the correct directory
-    if contains_forks:
-        current_path = os.path.join(
-            directory, str(current_challenge), fork
-        )
 
     debugger('current_path = {}'.format(current_path))
     step_numbers = list_immediate_directories(current_path)
@@ -195,50 +176,12 @@ def iterate_path(directory, current_challenge, current_step, fork):
     return path, current_challenge, current_step
 
 
-def copy_data(challenge_number=1, step_number=1, fork=None):
+def copy_data(challenge_number=1, step_number=1):
     '''Copy the relevent file system from the python package into the
     .linux_story directory
     '''
 
-    copy_differences(challenge_number, step_number, fork)
-
-'''
-def get_fork_path(path, fork):
-    if os.path.exists(path):
-        immediate_dirs = [name for name in os.listdir(path)
-                          if os.path.isdir(os.path.join(path, name))]
-        debugger('immediate_dirs in get_fork_path = {}'.format(immediate_dirs))
-        for d in immediate_dirs:
-            if len(d) == 1:
-
-                # fork options
-                # get fork, otherwise default is 'a'
-                if not fork:
-                    fork = 'a'
-
-                return os.path.join(path, fork)
-
-        return path'''
-
-
-def list_if_immediate_directories_are_forks(path):
-    '''Find if a fork exists inside the challenge directory
-    We return a tuple of whether there is a fork, and the fork letters
-    '''
-
-    if os.path.exists(path):
-
-        dirs = list_immediate_directories(path)
-        debugger('dirs in find_if_fork_exists = {}'.format(dirs))
-        for d in dirs:
-            if len(d) == 1 and not is_number(d):
-                return (True, dirs)
-
-        # If not a fork, then these are step directoriesm which will also be
-        # helpful
-        return (False, dirs)
-
-    return (False, [])
+    copy_differences(challenge_number, step_number)
 
 
 def list_immediate_directories(path):
@@ -250,7 +193,7 @@ def list_immediate_directories(path):
     return []
 
 
-def copy_differences(challenge, step, fork=None):
+def copy_differences(challenge, step):
     '''This changes the file tree in .linux-story by looking at the
     differences between it amd the stored file tree for that challenge
     '''
@@ -262,7 +205,7 @@ def copy_differences(challenge, step, fork=None):
     )
 
     path = find_last_challenge_path(
-        FILE_SYSTEM_PATH, str(challenge), str(step), fork
+        FILE_SYSTEM_PATH, str(challenge), str(step)
     )
 
     debugger('path from find_last_challenge_path = {}'.format(path))
