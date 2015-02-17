@@ -2,19 +2,16 @@
 
 # helper_functions.py
 #
-# Copyright (C) 2014 Kano Computing Ltd.
+# Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
-# Author: Caroline Clark <caroline@kano.me>
-# Helper functions.
+# Helper functions used across the system.
 
 import os
-import sys
-import time
-import readline
-import re
+import subprocess
 
 from kano.colours import colourize256, decorate_string
+from kano_profile.apps import load_app_state_variable
 
 
 home = os.path.expanduser("~")
@@ -22,11 +19,20 @@ hidden_dir = os.path.join(home, ".linux-story")
 
 
 def debugger(text):
+    '''Change first line to "if True:" to show all the debugging lines
+    '''
+
     if False:
         print text
 
 
 def get_script_cmd(string, current_dir, tree):
+    '''Checks whether the string (from the user's point of view)
+    is an executible.
+    So we convert the path entered into the real path (i.e. including the
+    .linux-story) and check it's a file and and executable
+    '''
+
     is_script = False
 
     if string.startswith("./"):
@@ -54,6 +60,9 @@ def is_exe(fpath):
 
 # TODO: tidy up
 def colour_file_dir(path, f):
+    '''Colourize the files and directories shown by ls
+    '''
+
     if os.path.isfile(path) and is_exe(path):
         f = colourize256(f, 118, None, True)
     elif os.path.isdir(path):
@@ -65,17 +74,31 @@ def colour_file_dir(path, f):
     return f
 
 
-def relative_loc_is_home(current_dir, tree):
-    real_loc = tree[current_dir].path
-    if real_loc == hidden_dir:
-        return True
-    return False
+def play_sound(object_name):
+    '''object is the string representing the object
+    the options are 'alarm' and 'bell'
+    '''
+
+    current_dir = os.path.dirname(os.path.realpath(__file__))
+
+    sound_path = os.path.join(
+        current_dir,
+        "animation/sounds/",
+        object_name + '.wav'
+    )
+
+    subprocess.Popen(
+        ["/usr/bin/aplay", sound_path],
+        stderr=subprocess.STDOUT, stdout=subprocess.PIPE
+    )
 
 
-# This is to help the completion function in the classes
-# we give this function a possible list of files and directories
-# list_type = "dirs", "files", or "both"
+# TODO: NEEDS A BETTER NAME
 def get_completion_desc(current_dir, tree, line, list_type="both"):
+    '''This is to help the completion function in the classes
+    we give this function a possible list of files and directories
+    list_type = "dirs", "files", or "both"
+    '''
 
     # list of directories
     # command will be of the form:
@@ -84,14 +107,15 @@ def get_completion_desc(current_dir, tree, line, list_type="both"):
 
     # if the last element is a load of directories (no guarentee) then we need
     # to pick the last element to compare against
-    dirs = elements[-1].split("/")
-    direct_descs = tree.show_type(current_dir, list_type)
+    direct_descs = tree.show_files_or_dirs(current_dir, list_type)
+
     final_list = []
+    dirs = elements[-1].split("/")
 
     for d in dirs:
         if d in direct_descs:
             final_list.append(d)
-            direct_descs = tree.show_type(d, list_type)
+            direct_descs = tree.show_files_or_dirs(d, list_type)
 
     # return the final element
     if final_list:
@@ -99,8 +123,12 @@ def get_completion_desc(current_dir, tree, line, list_type="both"):
     return current_dir
 
 
-# Colourise text
 def get_preset_from_id(id):
+    '''Translate the letter IDs into the colour codes
+    r=red, g=green, y=yellow, b=blue, p=pink, c=cyan, w=white, l=lilac
+    The capital letters are different shades of the same colour
+    '''
+
     if id == "r":
         return 160
     elif id == "g":
@@ -137,6 +165,10 @@ def get_preset_from_id(id):
 
 
 def parse_string(string, message_type="story", input=False):
+    '''Change a string of the form "{{bhello}}" to a the string "hello"
+    that appears blue in a terminal
+    '''
+
     default_preset = get_preset_from_id(message_type)
     if input:
         colour_function = colourizeInput256
@@ -187,68 +219,12 @@ def colourizeInput256(string, fg_num=None, bg_num=None, bold=False):
     return string
 
 
-def typing_animation(string):
-    # Get number of characters from terminal
-    rows, columns = os.popen('stty size', 'r').read().split()
-    columns = int(columns)
-    line_width = 0
-
-    while string:
-
-        char = string[:1]
-        e = string[:3]
-
-        if e == "[1m":
-            line_width -= 1
-            new_char = string[:7]
-            sys.stdout.write(new_char)
-            string = string[7:]
-        elif e == ";5;":
-            line_width -= 1
-            new_char = string[:7]
-            sys.stdout.write(new_char)
-            string = string[7:]
-        elif e == "[0m":
-            new_char = string[:3]
-            sys.stdout.write(new_char)
-            string = string[3:]
-        else:
-            if char == " ":
-                # calculate distance to next line
-                next_word = string.split(" ")[1]
-
-                # remove all ansi escape sequences to find the real word length
-                ansi_escape = re.compile(r'\x1b[^m]*m')
-                clean_word = ansi_escape.sub('', next_word)
-                next_word_len = len(clean_word)
-
-                if line_width + next_word_len >= columns:
-                    sys.stdout.write("\n")
-                    line_width = 0
-                else:
-                    sys.stdout.write(" ")
-                    line_width += 1
-                time.sleep(0.04)
-
-            elif char == "\n":
-                sys.stdout.write(char)
-                time.sleep(0.8)
-                line_width = 0
-            else:
-                sys.stdout.write(char)
-                time.sleep(0.03)
-                line_width += 1
-            string = string[1:]
-
-        sys.stdout.flush()
-
-
-def print_challenge_title(challenge_number):
-    fpath = os.path.join(
-        os.path.dirname(os.path.realpath(__file__)),
-        "animation/" + challenge_number
-    )
-    with open(fpath) as f:
-        for line in f.readlines():
-            print line.rstrip()
-    print ""
+def print_gained_exp(challenge, fork):
+    old_xp = load_app_state_variable('linux_story', challenge + '_' + fork)
+    # Look up XP here
+    new_xp = 0
+    xp_gained = new_xp - old_xp
+    if xp_gained > 0:
+        return "Fantastic! You gained {} experience points!".format(xp_gained)
+    else:
+        return None

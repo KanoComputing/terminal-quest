@@ -1,3 +1,7 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Contact: Kano developers <dev@kano.me>
+Source: https://github.com/KanoComputing/linux-tutorial
+
 Files: *
 Copyright: 2014 Kano Computing Ltd.
 License: GPL-2+

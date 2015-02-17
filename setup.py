@@ -53,7 +53,7 @@ setup(name='Linux Story',
       url='https://github.com/KanoComputing/linux-tutorial',
       packages=['linux_story'],
       package_dir={'linux_story': 'linux_story'},
-      scripts=['bin/linux-story', 'bin/linux-story-gui'],
+      scripts=['bin/linux-story'],
       package_data={
           'linux_story': file_system + data + animation +
           challenges + gtk3 + terminals

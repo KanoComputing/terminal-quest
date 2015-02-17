@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 #
-# Copyright (C) 2014 Kano Computing Ltd.
+# Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
-# Author: Caroline Clark <caroline@kano.me>
 # A chapter of the story
 
 import os
@@ -17,25 +16,26 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from terminals import TerminalCat
 from linux_story.challenges.challenge_3.steps import Step1 as NextChallengeStep
-from linux_story.file_functions import write_to_file
 
 
 class StepTemplateCat(Step):
+    challenge_number = 2
+
     def __init__(self):
         Step.__init__(self, TerminalCat)
 
 
 class Step1(StepTemplateCat):
     story = [
-        "{{gCongratulations, you earned 5 XP!}}\n",
+        "{{gb:Congratulations, you earned 5 XP!}}\n",
         "Better turn that alarm off.",
-        "\n{{wNew Spell}}: to look at objects, we type {{ycat <object name>}}.",
-        "To look at the alarm, type {{ycat alarm}}"
+        "\n{{wb:New Spell}}: to look at objects, we type {{yb:cat <object name>}}",
+        "To look at the alarm, type {{yb:cat alarm}}"
     ]
-    start_dir = "~"
-    end_dir = "~"
+    start_dir = "my-room"
+    end_dir = "my-room"
     command = "cat alarm"
-    hints = "{{rType}} {{ycat alarm}} {{rto investigate the alarm.}}"
+    hints = "{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}"
 
     def next(self):
         Step2()
@@ -44,12 +44,12 @@ class Step1(StepTemplateCat):
 class Step2(StepTemplateCat):
     story = [
         "Ok - it's switched off. Better get dressed...",
-        "Type {{yls wardrobe}} to find something to wear"
+        "Type {{yb:ls wardrobe}} to find something to wear"
     ]
-    start_dir = "~"
-    end_dir = "~"
+    start_dir = "my-room"
+    end_dir = "my-room"
     command = ["ls wardrobe", "ls wardrobe/"]
-    hints = "{{rType}} {{yls wardrobe}} {{rto find something to wear}}"
+    hints = "{{rb:Type}} {{yb:ls wardrobe}} {{rb:to find something to wear}}"
 
     def next(self):
         Step3()
@@ -57,17 +57,57 @@ class Step2(StepTemplateCat):
 
 class Step3(StepTemplateCat):
     story = [
-        "Check out the cap.",
-        "Type {{ycat wardrobe/cap}} to see how it looks"
+        "Check out the {{yb:t-shirt}}",
+        "Type {{yb:cat wardrobe/t-shirt}} to see how it looks"
     ]
-    start_dir = "~"
-    end_dir = "~"
-    command = "cat wardrobe/cap"
-    hints = "{{rType}} {{ycat wardrobe/cap}} {{rto investigate how it looks}}"
-
-    last_step = True
-    challenge_number = 2
+    start_dir = "my-room"
+    end_dir = "my-room"
+    command = "cat wardrobe/t-shirt"
+    hints = (
+        "{{rb:Type}} {{yb:cat wardrobe/t-shirt}} "
+        "{{rb:to investigate how it looks}}"
+    )
 
     def next(self):
-        write_to_file("challenge", "3")
+        Step4()
+
+
+class Step4(StepTemplateCat):
+    story = [
+        "Looking good!  Put that on and look for something else",
+        "Try on the {{yb:skirt}} or the {{yb:trousers}}"
+    ]
+    start_dir = "my-room"
+    end_dir = "my-room"
+    command = [
+        "cat wardrobe/skirt",
+        "cat wardrobe/trousers"
+    ]
+    hints = (
+        "{{rb:Type}} {{yb:cat wardrobe/trousers}} {{rb:or}} "
+        "{{yb:cat wardrobe/skirt}} {{rb:to dress yourself}}"
+    )
+
+    def next(self):
+        Step5()
+
+
+class Step5(StepTemplateCat):
+    story = [
+        "Awesome, you're nearly done.",
+        "Finally, put on the {{yb:cap}} to finish off your outfit"
+    ]
+    start_dir = "my-room"
+    end_dir = "my-room"
+    command = [
+        "cat wardrobe/cap"
+    ]
+    hints = (
+        "{{rb:Type}} {{yb:cat wardrobe/cap}} {{rb:to finish "
+        "off your outfit}}"
+    )
+
+    last_step = True
+
+    def next(self):
         NextChallengeStep()

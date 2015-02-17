@@ -1,37 +1,34 @@
-#!/usr/bin/env python
+#!/usr/bin/kano-splash /usr/share/linux-story/media/splash.png /usr/bin/env python
 
 # linux-story-gui
 #
-# Copyright (C) 2014 Kano Computing Ltd
+# Copyright (C) 2014, 2015 Kano Computing Ltd
 # License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
 #
-# Author: Caroline Clark <caroline@kano.me>
 # Launches linux tutorial in a Gtk application
 
 import os
 import sys
 import threading
+import socket
+import Queue
+from gi.repository import Gtk, Gdk
 import time
-from gi.repository import Gtk, Gdk, GObject
-# GObject.threads_init() is called when importing KanoProgressBar
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.gtk3.terminal_ui import Terminal_Ui
-from linux_story.gtk3.Spellbook import Spellbook, SpellbookThread
-from linux_story.StoryBackend import StoryThread
+from linux_story.socket_functions import create_server
+from linux_story.gtk3.TerminalUi import TerminalUi
+from linux_story.gtk3.Spellbook import Spellbook
+from linux_story.gtk3.Storybook import Storybook
 from linux_story.paths import css_dir
-from kano.gtk3.kano_progress import KanoProgressBar
 from kano.gtk3.apply_styles import apply_styling_to_screen
 
 from kano_profile.tracker import Tracker
 kanotracker = Tracker()
-
-visible = Terminal_Ui()
-spellbook = Spellbook()
 
 
 class MainWindow(Gtk.Window):
@@ -55,16 +52,19 @@ class MainWindow(Gtk.Window):
         self.set_title("Legendary Terminal Quest")
         self.set_icon_name("linux-story")
 
-    def close_window(self, widget, event):
-        spellbook.stop = True
-        self.close()
-        Gtk.main_quit()
-
 
 class Application(MainWindow):
+    '''Create application window
+    '''
+
     def __init__(self):
         MainWindow.__init__(self)
-        self.terminal = Terminal_Ui()
+
+        screen = Gdk.Screen.get_default()
+        width = screen.get_width()
+        height = screen.get_height()
+
+        self.terminal = TerminalUi()
         fg_color = Gdk.Color.parse("#ffffff")[1]
         bg_color = Gdk.Color.parse("#262626")[1]
         self.terminal.set_colors(fg_color, bg_color, [])
@@ -72,16 +72,19 @@ class Application(MainWindow):
         self.terminal.set_margin_left(10)
         self.terminal.set_margin_right(10)
 
-        self.visible = visible
-        fg_color = Gdk.Color.parse("#ffffff")[1]
-        bg_color = Gdk.Color.parse("#313131")[1]
-        self.visible.set_colors(fg_color, bg_color, [])
-        self.visible.set_margin_top(10)
-        self.visible.set_margin_left(10)
-        self.visible.set_margin_right(10)
-        self.spellbook = spellbook
+        self.spellbook = Spellbook()
 
-    def create_terminal(self, challenge_number="", step_number=""):
+        self.story = Storybook(
+            width / 2 - 40,
+            height - self.spellbook.HEIGHT - 2 * 44 - 10
+        )
+        self.story.set_margin_top(10)
+        self.story.set_margin_left(10)
+        self.story.set_margin_right(10)
+
+        story_sw = Gtk.ScrolledWindow()
+        story_sw.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        story_sw.add(self.story)
 
         left_background = Gtk.EventBox()
         left_background.get_style_context().add_class("story_background")
@@ -94,23 +97,38 @@ class Application(MainWindow):
         hbox = Gtk.Box()
 
         vbox.pack_start(hbox, False, False, 0)
-        vbox.pack_start(spellbook, False, False, 0)
+        vbox.pack_start(self.spellbook, False, False, 0)
         hbox.pack_start(left_background, False, False, 0)
         hbox.pack_start(right_background, False, False, 0)
 
-        left_background.add(self.visible)
+        left_background.add(story_sw)
         right_background.add(self.terminal)
-
-        screen = Gdk.Screen.get_default()
-        width = screen.get_width()
-        height = screen.get_height()
 
         # Allow for margin on bottom
         # TODO: this is hacky. Tidy up.
-        self.terminal.set_size_request(width / 2 - 20, height - spellbook.HEIGHT - 2 * 44 - 20)
-        self.visible.set_size_request(width / 2 - 20, height - spellbook.HEIGHT - 2 * 44 - 10)
+        self.terminal.set_size_request(
+            width / 2 - 20, height - self.spellbook.HEIGHT - 2 * 44 - 20
+        )
+        story_sw.set_size_request(
+            width / 2 - 20, height - self.spellbook.HEIGHT - 2 * 44 - 10
+        )
 
-        self.visible.set_can_focus(False)
+        self.run_server()
+
+    def close_window(self, widget=None, event=None):
+
+        # This DOES NOT launch the finish function
+        self.server.socket.shutdown(socket.SHUT_RDWR)
+        self.server.socket.close()
+        self.server.shutdown()
+        Gtk.main_quit()
+
+    # TODO: this should be a private member function, and probably
+    # should have a different name
+    def create_terminal(self, challenge_number="", step_number=""):
+        '''This function currently creates the thread which delays showing the
+        spellbook and launches the script in the terminal
+        '''
 
         filepath = os.path.abspath(
             os.path.join(
@@ -119,64 +137,131 @@ class Application(MainWindow):
             )
         )
 
-        def delay_showing_elements(win, terminal, spellbook):
-            time.sleep(30)
-
-            def done(win):
-                win.show_all()
-
-                # Terminal should be focused on
-                terminal.grab_focus()
-
-            GObject.idle_add(done, win)
-
-        thread = threading.Thread(
-            target=delay_showing_elements,
-            args=(self, self.terminal, self.spellbook)
+        command = (
+            "python " +
+            filepath + " " +
+            challenge_number + " " +
+            step_number
         )
-        thread.start()
 
-        command = "python " + filepath + " " + challenge_number + " " + step_number
+        self.terminal.connect("text-inserted", self.check_queue)
+        self.connect("map-event", self.check_queue)
+
         self.terminal.launch_command(command)
 
-        # this to hide the spellbook and terminal from view until the story has finished
-        # displaying
+        # To give the terminal time to launch the step class
+        time.sleep(2)
         self.show_all()
+
+        # this to hide the spellbook and terminal from view until the story has
+        # finished displaying
         self.terminal.hide()
         self.spellbook.hide()
 
+        os.system("kano-stop-splash")
+
         Gtk.main()
 
+    def type_text(self, text):
+        '''Wrapper function for the story member variable
+        '''
+        self.story.print_output(text)
 
-class ProgressThread(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
+    def print_challenge_title(self, number):
+        '''Prints the ascii art challenge title at the start
+        '''
 
-    def run(self):
-        GObject.idle_add(self.load_progress_bar)
+        self.story.print_challenge_title(number)
 
-    def load_progress_bar(self):
-        pb = KanoProgressBar(
-            pulse=False,
-            title="Loading the Legendary Terminal Quest",
-            rate=0.01
-        )
-        pb.run()
+    def repack_spells(self, spells):
+        '''Wrapper function for repacking the spells
+        '''
+
+        self.spellbook.repack_spells(spells)
+
+    def show_terminal(self):
+        '''Wrapper function for showing terminal
+        Only used at the beginning after story has loaded
+        '''
+
+        self.terminal.show_all()
+        self.terminal.set_sensitive(True)
+        self.terminal.grab_focus()
+
+    def stop_typing_in_terminal(self):
+        '''Wrapper function to stop people typing in terminal
+        while story or hint is being shown
+        '''
+
+        self.terminal.set_sensitive(False)
+
+    def run_server(self):
+        self.queue = Queue.Queue(1)
+        self.server = create_server(self.queue)
+        t = threading.Thread(target=self.server.serve_forever)
+        t.daemon = True
+        t.start()
+
+    def check_queue(self, widget=None, arg1=None, arg2=None, arg3=None):
+        try:
+            data_dict = self.queue.get(False)
+
+            if 'exit' in data_dict.keys():
+                self.close_window()
+
+            # Type out the hint
+            elif 'hint' in data_dict.keys():
+                self.stop_typing_in_terminal()
+                self.type_text(data_dict['hint'])
+                self.show_terminal()
+
+            else:
+                self.story.clear()
+
+                if 'challenge' in data_dict.keys() and \
+                   'story' in data_dict.keys() and \
+                   'spells' in data_dict.keys():
+
+                    self.stop_typing_in_terminal()
+
+                    # Print the challenge title at the top of the screen
+                    challenge = data_dict['challenge']
+                    self.print_challenge_title(challenge)
+
+                    # Type the story out
+                    self.type_text(data_dict['story'])
+
+                    # Repack the spells into the spellbook
+                    spells = data_dict['spells']
+                    self.repack_spells(spells)
+
+                    # Refresh terminal - useful for the first challenge
+                    self.show_terminal()
+                    self.show_all()
+
+            # chuck out whatever was waiting for us
+            self.queue.get(False)
+
+        except Queue.Empty:
+            pass
 
 
-if __name__ == "__main__":
-    story = StoryThread(visible)
-    story.start()
-
-    spellbook_thread = SpellbookThread(spellbook)
-    spellbook_thread.start()
-
-    progress_thread = ProgressThread()
-    progress_thread.start()
-
+def main():
     app = Application()
 
     if len(sys.argv) == 3:
         app.create_terminal(sys.argv[1], sys.argv[2])
     else:
         app.create_terminal()
+
+
+# close the server through here
+def handle_cleanup():
+    pass
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    finally:
+        handle_cleanup()

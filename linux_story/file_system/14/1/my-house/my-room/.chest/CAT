@@ -1,0 +1,12 @@
+   _____       _______ 
+  / ____|   /\|__   __|
+ | |       /  \  | |   
+ | |      / /\ \ | |   
+ | |____ / ____ \| |   
+  \_____/_/    \_\_|
+
+  This spell gives you the power to read the contents of files
+
+Examples
+  cat wardrobe/cap                      - this will print out the contents of cap if you are in ~/my-house/my-room
+  cat ~/my-house/my-room/wardrobe/cap   - this will print out the contents of cap regardless of where you are.

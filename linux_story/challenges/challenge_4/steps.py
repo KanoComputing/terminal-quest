@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 #
-# Copyright (C) 2014 Kano Computing Ltd.
+# Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
-# Author: Caroline Clark <caroline@kano.me>
 # A chapter of the story
 
 import os
@@ -17,28 +16,37 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from terminals import TerminalCd
 from linux_story.challenges.challenge_5.steps import Step1 as NextChallengeStep
-from linux_story.file_functions import write_to_file
+from linux_story.helper_functions import play_sound
 
 
 class StepTemplateCd(Step):
+    challenge_number = 4
+
     def __init__(self):
         Step.__init__(self, TerminalCd)
 
 
 class Step1(StepTemplateCd):
     story = [
-        "{{gCongratulations, you earned 7 XP!}}\n",
+        "{{gb:Congratulations, you earned 7 XP!}}\n",
         "That's weird. No time for that now though - lets find Mum.",
-        "\n{{wNew Spell}}: {{ycd}} lets you move between places.",
-        "\nType {{ycd kitchen}} to go and see Mum."
+        "\n{{wb:New Spell}}: {{yb:cd}} lets you move between places.",
+        "\nTo leave your room, use the command {{yb:cd ..}}"
     ]
-    start_dir = "~"
-    end_dir = "kitchen"
+    start_dir = "my-room"
+    end_dir = "my-house"
     command = ""
-    hints = "{{rType}} {{ycd kitchen}} {{rto go to the kitchen}}"
+    hints = (
+        "{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room}}"
+    )
 
     def block_command(self, line):
-        allowed_commands = ["cd kitchen", "cd kitchen/"]
+        allowed_commands = [
+            "cd ..",
+            "cd ../",
+            "cd ~/my-house",
+            "cd ~/my-house/"
+        ]
         line = line.strip()
         if "cd" in line and line not in allowed_commands:
             return True
@@ -49,30 +57,70 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "You are in the kitchen.",
-        "Try and find Mum using {{yls}}"
+        "You are now in the main hall of your house",
+        "Have a look at the different rooms of your house using {{yb:ls}}"
     ]
-    start_dir = "kitchen"
-    end_dir = "kitchen"
+    start_dir = "my-house"
+    end_dir = "my-house"
     command = "ls"
-    hints = "{{rCan't find her?  Type}} {{yls}} {{rand press Enter.}}"
+    hints = "{{r:Type}} {{yb:ls}} {{r:and press Enter.}}"
 
     def next(self):
+        play_sound('bell')
         Step3()
 
 
 class Step3(StepTemplateCd):
     story = [
-        "Let's see what {{ymum}} wants by using {{ycat}}"
+        "{{wb:Ding. Dong.}}",
+        "What was that?  A bell?  That's a bit odd.",
+        "You see the door to your kitchen, and hear the sound of cooking.",
+        "Sounds like someone is preparing dinner!",
+        "To go inside the kitchen, use {{yb:cd kitchen}}."
+    ]
+    start_dir = "my-house"
+    end_dir = "kitchen"
+    command = ""
+    hints = ["{{rb:Type}} {{yb:cd kitchen}} {{rb:and press Enter.}}"]
+
+    def block_command(self, line):
+        allowed_commands = ["cd kitchen", "cd kitchen/"]
+        line = line.strip()
+        if "cd" in line and line not in allowed_commands:
+            return True
+
+    def next(self):
+        Step4()
+
+
+class Step4(StepTemplateCd):
+    story = [
+        "You are in the kitchen.",
+        "Try and find Mum using {{yb:ls}}"
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"
-    command = "cat mum"
-    hints = "{{rStuck? Type:}} {{ycat mum}}"
-
-    last_step = True
-    challenge_number = 4
+    command = "ls"
+    hints = "{{rb:Can't find her?  Type}} {{yb:ls}} {{rb:and press Enter.}}"
 
     def next(self):
-        write_to_file("challenge", "5")
+        Step5()
+
+
+class Step5(StepTemplateCd):
+    story = [
+        "You see your Mum busily working in a cloud of steam",
+        "Let's see what {{yb:Mum}} wants by using {{yb:cat}}"
+    ]
+    start_dir = "kitchen"
+    end_dir = "kitchen"
+    command = "cat Mum"
+    hints = (
+        "{{rb:Stuck? Type:}} {{yb:cat Mum}}. "
+        "Don\'t forget the capital letter!"
+    )
+
+    last_step = True
+
+    def next(self):
         NextChallengeStep()

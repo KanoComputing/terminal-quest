@@ -2,10 +2,9 @@
 
 # launch_functions.py
 #
-# Copyright (C) 2014 Kano Computing Ltd.
+# Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
-# Author: Caroline Clark <caroline@kano.me>
 # Launch the different processes which show in the terminal
 
 import os
@@ -18,20 +17,20 @@ if __name__ == '__main__' and __package__ is None:
 
 
 from linux_story.file_data import copy_data
-from linux_story.file_functions import write_to_file
 
 
 def launch_project(challenge_number="1", step="1"):
-    os.system("clear")
-    copy_data(int(challenge_number))
-    write_to_file("challenge", challenge_number)
+    copy_data(int(challenge_number), int(step))
     Step = get_step_class(challenge_number, step)
     Step()
 
 
 def get_step_class(challenge_number, step_number):
+
+    # If no fork, use this module name
     module_name = "challenges.challenge_" + challenge_number + ".steps"
     step_class_name = "Step" + step_number
+
     try:
         module = __import__(
             module_name,
@@ -41,6 +40,7 @@ def get_step_class(challenge_number, step_number):
             -1
         )
     except ImportError as detail:
-        return None
+        print 'Import error = {}, module_name = {}'.format(detail, module_name)
+        sys.exit(0)
     else:
         return getattr(module, step_class_name)

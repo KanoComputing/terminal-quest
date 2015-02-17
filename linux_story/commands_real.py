@@ -2,17 +2,16 @@
 
 # commands_real.py
 #
-# Copyright (C) 2014 Kano Computing Ltd.
+# Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
-# Author: Caroline Clark <caroline@kano.me>
 # Terminal commands which end up running in the terminal.
 
 
 import os
 import subprocess
 
-from helper_functions import colour_file_dir, debugger
+from helper_functions import colour_file_dir, debugger, hidden_dir
 from kano.colours import colourize256
 
 
@@ -31,6 +30,7 @@ def ls(current_dir, tree, line=""):
     get_all_info = False
     new_lines = False
     args = ["ls"]
+    line = line.replace('~', hidden_dir)
 
     if line:
         args = line.split(" ")
@@ -60,7 +60,14 @@ def ls(current_dir, tree, line=""):
     debugger("orig_output = {}".format(orig_output))
     debugger("err = {}".format(err))
 
-    # need to folter output
+    # The error will need to be edited if it contains info about the edited
+    # filename
+    if err:
+        err = err.replace(hidden_dir, '~')
+        print err
+        return
+
+    # Need to filter output
     files = orig_output.split('\n')
     coloured_files = []
     coloured_output = ""
@@ -147,6 +154,8 @@ def shell_command(current_dir, tree, line, command_word=""):
     if not real_loc:
         return False
 
+    line = line.replace('~', hidden_dir)
+
     args = line.split(" ")
     p = subprocess.Popen(args, cwd=real_loc,
                          stdout=subprocess.PIPE,
@@ -154,7 +163,7 @@ def shell_command(current_dir, tree, line, command_word=""):
     stdout, stderr = p.communicate()
 
     if stderr:
-        print stderr.strip()
+        print stderr.strip().replace(hidden_dir, '~')
         return False
 
     if stdout:
@@ -165,6 +174,33 @@ def shell_command(current_dir, tree, line, command_word=""):
 
     # should this return stdout?
     return True
+
+
+def turn_abs_path_to_real_loc(path):
+    return path.replace('~', hidden_dir)
+
+
+# This checks if the path is valid
+def check_real_loc(tree, path):
+    '''Takes a path with ~ and checks the path is consistent with the
+    saved file structure.
+    If so, replaces the ~ with the hidden_dir path (~/.linux-story) and
+    returns the path.
+    '''
+    folders = path.split('/')
+
+    # if user starts line with ~, take their path as an absolute path
+    if folders[0] == '~':
+
+        # Need to check that the path is valid
+        # Check the subsequent folder do indeed belong to the correct
+        # folders
+        for i in range(1, len(folders)):
+            if not folders[i] in tree.show_dirs(folders[i - 1]):
+                return None
+
+    path = path.replace('~', hidden_dir)
+    return path
 
 
 # Will be identical to touch

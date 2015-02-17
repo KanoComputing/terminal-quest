@@ -1,42 +1,38 @@
 #!/usr/bin/env python
 
-# linux-story-gui
+# Spellbook.py
 #
 # Copyright (C) 2014 Kano Computing Ltd
 # License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
 #
 # Author: Caroline Clark <caroline@kano.me>
-# Launches linux tutorial in a Gtk application
+
 
 import os
 import sys
-from gi.repository import Gtk, Gdk, GObject
-import threading
-import time
+from gi.repository import Gtk, Gdk
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.file_functions import read_file, file_exists, delete_file, delete_dir
 from linux_story.paths import common_media_dir
 
 
 class Spellbook(Gtk.EventBox):
+    '''This is the GUI showing all the spells along the bottom
+    '''
 
     SPELLBOOK_BORDER = 1
     SPELL_BORDER = 1
     CMD_HEIGHT = 80
     CMD_WIDTH = 80
     HEIGHT = 100
+    number_of_spells = 4
 
     def __init__(self):
         self.stop = False
-
-        # TODO: fix this, is hacky.
-        # First time we launch the spellbook, we want to hide it
-        self.first = True
 
         Gtk.EventBox.__init__(self)
 
@@ -55,9 +51,20 @@ class Spellbook(Gtk.EventBox):
 
         self.set_size_request(self.WIDTH, self.HEIGHT)
 
-        self.pack_locked_spells()
+        self.__pack_locked_spells()
 
-    def create_spell(self, name, locked=False):
+    def repack_spells(self, spells):
+        '''Unpack the spellbook and recreates array of commands into
+        spells, and packs them up in the spellbook
+        '''
+
+        self.__pack_spells(spells)
+        self.show_all()
+
+    def __create_spell(self, name, locked=False):
+        '''Create the individual GUI for a spell
+        '''
+
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.set_size_request(self.CMD_WIDTH, self.CMD_HEIGHT)
         box.set_margin_top(10)
@@ -92,80 +99,29 @@ class Spellbook(Gtk.EventBox):
 
         return box
 
-    def pack_spells(self, commands):
+    def __pack_spells(self, commands):
+        '''Takes in the array of commands, and creates the spells and
+        packs them into a grid.
+        '''
+
         left = 0
 
         if commands:
             for command in commands:
                 if (left + 1) * (self.CMD_WIDTH + 20) < self.win_width:
-                    box = self.create_spell(command)
+                    box = self.__create_spell(command)
                     child = self.grid.get_child_at(left, 0)
                     self.grid.remove(child)
                     self.grid.attach(box, left, 0, 1, 1)
                     left += 1
 
-    def pack_locked_spells(self):
+    def __pack_locked_spells(self):
+        '''Fill up the rest of the spells with locked boxes
+        '''
+
         left = 0
 
-        while left < 3:
-            locked_box = self.create_spell("...", locked=True)
+        while left < self.number_of_spells:
+            locked_box = self.__create_spell("...", locked=True)
             self.grid.attach(locked_box, left, 0, 1, 1)
             left += 1
-
-    def repack_spells(self, commands):
-        self.pack_spells(commands)
-        if self.first:
-            self.first = False
-        else:
-            self.show_all()
-
-    # TODO: use this to hide UI?
-    def hide_ui(self):
-
-        win = self.get_toplevel()
-        win.show_all()
-        win.terminal.hide()
-        win.spellbook.hide()
-
-        time.sleep(5)
-
-        win.show_all()
-        win.spellbook.show_all()
-        win.terminal.show_all()
-
-        #delete_file("hide-spellbook")
-
-    def get_command_list(self):
-        if file_exists("commands"):
-            command_string = read_file("commands")
-            command_list = command_string.split(" ")
-            return command_list
-
-    def check_files(self):
-        while not self.stop:
-            if file_exists("commands"):
-                commands = self.get_command_list()
-                GObject.idle_add(self.repack_spells, commands)
-                self.delete_file()
-            if file_exists("exit"):
-                Gtk.main_quit()
-                sys.exit(0)
-            time.sleep(0.2)
-            #if file_exists("hide-spellbook"):
-            #    GObject.idle_add(self.hide_ui)
-            #else:
-            #    GObject.idle_add(self.show_all)
-
-    def delete_file(self):
-        if file_exists("commands"):
-            delete_file("commands")
-
-
-class SpellbookThread(threading.Thread):
-    def __init__(self, spellbook):
-        threading.Thread.__init__(self)
-        self.spellbook = spellbook
-
-    def run(self):
-        self.spellbook.check_files()
-        delete_dir()

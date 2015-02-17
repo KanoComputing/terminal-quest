@@ -2,10 +2,9 @@
 
 # linux-story
 #
-# Copyright (C) 2014 Kano Computing Ltd
+# Copyright (C) 2014, 2015 Kano Computing Ltd
 # License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
 #
-# Author: Caroline Clark <caroline@kano.me>
 
 
 import sys
@@ -26,17 +25,24 @@ if __name__ == "__main__":
 
     signal.signal(signal.SIGINT, sigint_handler)
 
+    # Arguments are pipe filename, and then optionally
+    # the Challenge and Step numbers
     if len(sys.argv) == 3:
         launch_project(sys.argv[1], sys.argv[2])
-    else:
+
+    elif len(sys.argv) == 2:
+        launch_project(sys.argv[1], '1')
+
+    elif len(sys.argv) == 1:
+        challenge = 1
         profile_level = load_app_state_variable("linux-story", "level")
         if profile_level:
             challenge = profile_level + 1
-        else:
-            challenge = 1
 
         # If the project was completed previously, just start over
         if challenge > 8:
             challenge = 1
 
-        launch_project(str(challenge), "1")
+        launch_project(str(challenge), '1')
+    else:
+        sys.exit("Wrong number of arguments!")
