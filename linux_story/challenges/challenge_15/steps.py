@@ -146,6 +146,7 @@ class Step6(StepTemplateMv):
     story = [
         "You find an old antique chest hidden under your bed",
         "You don't remember seeing it before",
+        "You walk into my-room to have a closer look",
         "Have a look inside the {{yb:.chest}} and see what it contains"
     ]
 
