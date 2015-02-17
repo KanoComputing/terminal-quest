@@ -66,6 +66,8 @@ def launch_server(story_cb, hint_cb, arg):
 def launch_client(data):
     global server_busy
 
+    server_busy = True
+
     HOST, PORT = "localhost", 9959
     json_data = json.dumps(data)
 
