@@ -173,6 +173,7 @@ class Step6(StepTemplateMv):
 
     start_dir = "my-room"
     end_dir = "my-room"
+    last_step = True
 
     def next(self):
         self.exit()

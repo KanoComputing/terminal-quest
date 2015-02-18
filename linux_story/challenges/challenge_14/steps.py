@@ -130,6 +130,8 @@ class Step5(StepTemplateMv):
         "{{rb:Have a look in all the places of my-house using}} {{yb:ls -a}}"
     ]
 
+    last_step = True
+
     def check_output(self, output):
         # Need to check that .chest is shown in the output of the command
         if not output:
