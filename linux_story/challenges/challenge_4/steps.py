@@ -117,7 +117,7 @@ class Step5(StepTemplateCd):
     command = "cat Mum"
     hints = (
         "{{rb:Stuck? Type:}} {{yb:cat Mum}}. "
-        "Don\'t forget the capital letter!"
+        "{{rb:Don\'t forget the capital letter!}}"
     )
 
     last_step = True
