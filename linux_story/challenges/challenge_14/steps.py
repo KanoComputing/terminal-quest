@@ -30,7 +30,7 @@ class Step1(StepTemplateMv):
     story = [
         "{{gb:Congratulations, you earned 35 XP!}}\n",
         "Before you go, have a look to see if there is anything you've "
-        "overlooked",
+        "overlooked.",
         "Have a closer look at your surroundings"
     ]
     hints = [
@@ -95,7 +95,7 @@ class Step3(StepTemplateMv):
 class Step4(StepTemplateMv):
     story = [
         "{{wb:Edward:}} {{Bb:\"Hey, that contains the information about the mv "
-        "command you taught me",
+        "command you taught me.",
         "I wonder where it came from?\"}}",
         "\nMaybe it's worth looking back in your house for more hidden items.",
         "To quickly go back home, use {{yb:cd ~/my-house/}}"

@@ -45,6 +45,11 @@ class Step1(StepTemplateMv):
         "mv basket ../../my-house/kitchen/",
         "mv basket ~/my-house/kitchen",
         "mv basket ~/my-house/kitchen/",
+
+        "mv basket/ ../../my-house/kitchen",
+        "mv basket/ ../../my-house/kitchen/",
+        "mv basket/ ~/my-house/kitchen",
+        "mv basket/ ~/my-house/kitchen/"
     ]
     hints = [
         "{{r:Use the command}} {{yb:mv basket ~/my-house/kitchen}} "
@@ -249,7 +254,16 @@ class Step5(StepTemplateMv):
         "mv ./basket ~/town/.hidden-shelter",
         "mv ./basket ~/town/.hidden-shelter/",
         "mv ./basket ../../town/.hidden-shelter",
-        "mv ./basket ../../town/.hidden-shelter/"
+        "mv ./basket ../../town/.hidden-shelter/",
+
+        "mv basket/ ../../town/.hidden-shelter",
+        "mv basket/ ../../town/.hidden-shelter/",
+        "mv basket/ ~/town/.hidden-shelter",
+        "mv basket/ ~/town/.hidden-shelter/",
+        "mv ./basket/ ~/town/.hidden-shelter",
+        "mv ./basket/ ~/town/.hidden-shelter/",
+        "mv ./basket/ ../../town/.hidden-shelter",
+        "mv ./basket/ ../../town/.hidden-shelter/"
     ]
     hints = [
         "{{rb:Use the command}} {{yb:mv basket ~/town/.hidden-shelter}} "
