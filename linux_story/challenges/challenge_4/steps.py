@@ -71,7 +71,7 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "{{pb:Ding. Dong.}}",
+        "{{pb:Ding. Dong.}}\n",
         "What was that?  A bell?  That's a bit odd.",
         "You see the door to your kitchen, and hear the sound of cooking.",
         "Sounds like someone is preparing dinner!",
