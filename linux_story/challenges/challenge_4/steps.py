@@ -62,7 +62,7 @@ class Step2(StepTemplateCd):
     start_dir = "my-house"
     end_dir = "my-house"
     command = "ls"
-    hints = "{{r:Type}} {{yb:ls}} {{r:and press Enter.}}"
+    hints = "{{rb:Type}} {{yb:ls}} {{rb:and press Enter.}}"
 
     def next(self):
         play_sound('bell')
