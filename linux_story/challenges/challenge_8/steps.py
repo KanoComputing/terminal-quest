@@ -45,7 +45,7 @@ class Step1(StepTemplateCd):
 
     story = [
         "{{gb:Congratulations, you earned 20 XP!}}\n",
-        "{{wb:Ding. Dong.}}",
+        "{{pb:Ding. Dong.}}\n",
         "That sounds like the bell you heard before",
         "Use {{yb:ls}} to see if anything has changed"
     ]
@@ -61,17 +61,17 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCdBell):
 
     story = [
-        "{{wb:Little-boy:}} Oh no!  The man with the funny legs disappeared.",
-        "{{wb:Little-boy:}} Is that bell making people disappear?",
-        "{{wb:Young-girl:}} I'm scared...",
-        "{{wb:Ding. Dong.}}",
-        "{{wb:Young-girl:}} Oh!  I heard it go again!",
+        "{{wb:Little-boy:}} {{Bb:Oh no!  The man with the funny legs disappeared.}}",
+        "{{wb:Little-boy:}} {{Bb:Is that bell making people disappear?}}",
+        "{{wb:Young-girl:}} {{Bb:I'm scared...}}",
+        "\n{{pb:Ding. Dong.}}\n",
+        "{{wb:Young-girl:}} {{Bb:Oh!  I heard it go again!}}",
         "\nLook around to see if anything has changed"
     ]
     start_dir = "town"
     end_dir = "town"
     command = "ls"
-    hints = "{{r:To look around, use}} {{yb:ls}}"
+    hints = "{{rb:To look around, use}} {{yb:ls}}"
 
     def run(self):
         copy_data(8, 4)
@@ -84,11 +84,11 @@ class Step2(StepTemplateCdBell):
 class Step4(StepTemplateCdBell):
 
     story = [
-        "{{wb:Young-girl:}} Now the little boy has gone",
-        "Everytime that bell goes, someone disappears!",
-        "{{wb:Mayor:}} Maybe they just decided to go home...?",
-        "{{wb:Ding. Dong}}",
-        "\nLook around."
+        "{{wb:Young-girl:}} {{Bb:Now the little boy has gone",
+        "Everytime that bell goes, someone disappears!}}",
+        "{{wb:Mayor:}} {{Bb:Maybe they just decided to go home...?}}",
+        "\n{{pb:Ding. Dong}}\n",
+        "Look around."
     ]
     start_dir = "town"
     end_dir = "town"
@@ -122,9 +122,9 @@ class Step5(StepTemplateCd):
 class Step6(StepTemplateCdBell):
 
     story = [
-        "{{wb:Mayor:}} \"Everyone has disappeared??\"",
-        "....I should head home now",
-        "{{wb:Ding. Dong.}}"
+        "{{wb:Mayor:}} {{Bb:\"Everyone has disappeared??\"",
+        "....I should head home now}}",
+        "{{pb:Ding. Dong.}}\n"
     ]
     start_dir = "town"
     end_dir = "town"

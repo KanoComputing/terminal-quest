@@ -26,12 +26,12 @@ class StepTemplateLs(Step):
 class Step1(StepTemplateLs):
     story = [
         "{{wb:Alarm}} : \"Beep beep beep! Beep beep beep!\"",
-        "{{wb:Radio}} : \"Good Morning, this is the 7am news.\"",
+        "{{wb:Radio}} : {{Bb:\"Good Morning, this is the 7am news.\"",
         "\"There have been reports of strange activity occurring in the town "
         "of Folderton today, as the number of reports of missing people and "
         "damaged buildings continues to increase...\"",
         "\"...nobody can explain what is causing the phenomenon, and Mayor "
-        "Hubert has called an emergency town meeting...\"\n",
+        "Hubert has called an emergency town meeting...\"}}\n",
         "It's time to get up sleepy head!",
         "\n{{wb:New Spell:}} {{yb:ls}} - lets you see what's around you."
     ]
@@ -39,7 +39,7 @@ class Step1(StepTemplateLs):
     end_dir = "my-room"
     command = "ls"
     hints = [
-        "{{rbl:Type}} {{ybl:ls}} {{rbl:and press Enter to take a look around "
+        "{{rb:Type}} {{yb:ls}} {{rb:and press Enter to take a look around "
         "your bedroom}}"
     ]
 

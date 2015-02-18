@@ -25,7 +25,6 @@ class StepTemplateCd(Step):
         Step.__init__(self, TerminalCd)
 
 
-############################################################################
 # This is the difficult bit to get through
 # In this level, try and find lots of corrupted ascii art around the kicthen?
 # Or add pawprints?
@@ -68,13 +67,13 @@ class Step1(StepTemplateCd):
         else:
             if self.first_time:
                 hint = (
-                    "{{r:Look at two of the objects using}} {{yb:cat}} "
-                    "{{rn:to see if you can find any clues}}"
+                    "{{rb:Look at two of the objects using}} {{yb:cat}} "
+                    "{{rb:to see if you can find any clues}}"
                 )
             else:
                 hint = (
-                    '{{r:Try the command}} {{yb:' + self.allowed_commands[0] +
-                    '}} {{rn:to progress}}'
+                    '{{rb:Try the command}} {{yb:' + self.allowed_commands[0] +
+                    '}} {{rb:to progress}}'
                 )
 
         level_up = (self.counter >= 2)
@@ -98,8 +97,8 @@ class Step2(StepTemplateCd):
     end_dir = "town"
     command = ""
     hints = [
-        "{{r:See if there is anything back in the town}}",
-        "{{r:Use}} {{yb:cd}} {{rn:to get back into town}}"
+        "{{rb:See if there is anything back in the town}}",
+        "{{rb:Use}} {{yb:cd}} {{rb:to get back into town}}"
     ]
     num_turns_in_home_dir = 0
 
@@ -132,7 +131,7 @@ class Step2(StepTemplateCd):
 
             # Otherwise, give them a hint
             else:
-                hint = '{{r:Use}} {{yb:cd ..}} {{rn:to make your way to town}}'
+                hint = '{{rb:Use}} {{yb:cd ..}} {{rb:to make your way to town}}'
 
         elif current_dir == '~':
             # If they have only just got to the home directory,
@@ -142,7 +141,7 @@ class Step2(StepTemplateCd):
 
             # Otherwise give them a hint
             else:
-                hint = '{{r:Use}} {{yb:cd town}} {{rn:to go into town}}'
+                hint = '{{rb:Use}} {{yb:cd town}} {{rb:to go into town}}'
 
             # So we can keep track of the number of turns they've been in the
             # home directory
@@ -155,9 +154,6 @@ class Step2(StepTemplateCd):
         Step3()
 
 
-############################################################################
-
-
 class Step3(StepTemplateCd):
     story = [
         "Have a look around",
@@ -165,7 +161,7 @@ class Step3(StepTemplateCd):
     start_dir = "town"
     end_dir = "town"
     command = "ls"
-    hints = "{{r:Use}} {{yb:ls}} {{rn:to have a look around the town}}"
+    hints = "{{rb:Use}} {{yb:ls}} {{rb:to have a look around the town}}"
 
     def next(self):
         Step4()
@@ -176,8 +172,8 @@ class Step4(StepTemplateCd):
         "You can't see much here.  The place appears to be deserted.",
         "However, you think you hear whispers.",
         # Make this writing small
-        "\n{{wn:\".....if they use}} {{yb:ls -a}}{{wn:, they'll see us...\"}}",
-        "{{wn:\"..Shhh!  ...might hear....\"}}"
+        "\n{{Bn:\".....if they use}} {{yb:ls -a}}{{Bn:, they'll see us...\"}}",
+        "{{Bn:\"..Shhh!  ...might hear....\"}}"
     ]
     start_dir = "town"
     end_dir = "town"

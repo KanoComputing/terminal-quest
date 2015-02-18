@@ -49,9 +49,9 @@ class Step1(StepTemplateMv):
 class Step2(StepTemplateMv):
     story = [
         "You notice a {{yb:.tiny-chest}} in the corner of the shelter",
-        "\n{{wb:Edward}} \"Hey, what's that?",
-        "There's a {{yb:.tiny-chest}} is in our shelter?",
-        "Has it been there all along? What's in it?\""
+        "\n{{wb:Edward}} {{Bb:\"Hey, what's that?",
+        "There's a}} {{yb:.tiny-chest}} {{Bb:is in our shelter?",
+        "Has it been there all along? What's in it?\"}}"
     ]
 
     hints = [
@@ -93,9 +93,9 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "{{wb:Edward:}} \"Hey, that contains the information about the mv "
+        "{{wb:Edward:}} {{Bb:\"Hey, that contains the information about the mv "
         "command you taught me",
-        "I wonder where it came from?\"",
+        "I wonder where it came from?\"}}",
         "\nMaybe it's worth looking back in your house for more hidden items.",
         "To quickly go back home, use {{yb:cd ~/my-house/}}"
     ]

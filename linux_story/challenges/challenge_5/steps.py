@@ -29,9 +29,9 @@ class StepTemplateCd(Step):
 class Step1(StepTemplateCd):
     story = [
         "{{gb:Congratulations, you earned 7 XP!}}\n",
-        "{{wb:Mum:}} \"Have you seen your Dad? I can't find him anywhere, "
+        "{{wb:Mum:}} {{Bn:\"Have you seen your Dad? I can't find him anywhere, "
         "and the newspaper says that people have been going missing all over "
-        "Folderton!\"\n",
+        "Folderton!\"}}\n",
         "Let's look for your Dad in the garden.",
         "First we need to leave the kitchen using {{yb:cd ..}}"
     ]

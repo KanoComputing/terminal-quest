@@ -120,15 +120,39 @@ class Storybook(Gtk.TextView):
         '''Generate tags and adds them to the text buffer
         '''
 
+        green = Gdk.RGBA()
+        green.parse('#7DCF02')
+        lilac = Gdk.RGBA()
+        lilac.parse('#7DCF02')
+        cyan = Gdk.RGBA()
+        cyan.parse('#00FFEE')
+        light_blue = Gdk.RGBA()
+        # light_blue.parse('#78C0A8')
+        light_blue.parse('#a2eabf')
+        purple = Gdk.RGBA()
+        purple.parse('#c894f1')
+        red = Gdk.RGBA()
+        red.parse('#F52F11')
+        orange = Gdk.RGBA()
+        orange.parse('#EB6841')
+        yellow = Gdk.RGBA()
+        yellow.parse('#FFE229')
+
         textbuffer = self.get_buffer()
         textbuffer.create_tag('orange_bg', background='orange')
-        textbuffer.create_tag('orange', foreground='orange')
         textbuffer.create_tag('white', foreground='white')
         textbuffer.create_tag('yellow_bg', background='yellow')
-        textbuffer.create_tag('yellow', foreground='yellow')
-        textbuffer.create_tag('red', foreground='red')
         textbuffer.create_tag('blue', foreground='blue')
-        textbuffer.create_tag('green', foreground='green')
+
+        textbuffer.create_tag('lilac', foreground_rgba=lilac)
+        textbuffer.create_tag('green', foreground_rgba=green)
+        textbuffer.create_tag('cyan', foreground_rgba=cyan)
+        textbuffer.create_tag('light_blue', foreground_rgba=light_blue)
+        textbuffer.create_tag('purple', foreground_rgba=purple)
+        textbuffer.create_tag('red', foreground_rgba=red)
+        textbuffer.create_tag('orange', foreground_rgba=orange)
+        textbuffer.create_tag('yellow', foreground_rgba=yellow)
+
         textbuffer.create_tag('bold', weight=Pango.Weight.BOLD)
         textbuffer.create_tag('not-bold', weight=Pango.Weight.NORMAL)
         textbuffer.create_tag('small', size=0)
@@ -223,7 +247,11 @@ class Storybook(Gtk.TextView):
             'b': 'blue',
             'y': 'yellow',
             'o': 'orange',
-            'w': 'white'
+            'w': 'white',
+            'l': 'lilac',
+            'c': 'cyan',
+            'p': 'purple',
+            'B': 'light_blue'
         }
         return pairs[colour_id]
 

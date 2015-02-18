@@ -57,8 +57,8 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "Mayor: \"Calm down please! We have our best people looking into the "
-        "disappearances, and we're hoping to have an explanation soon.\"\n",
+        "{{wb:Mayor:}} {{Bn:\"Calm down please! We have our best people looking into the "
+        "disappearances, and we're hoping to have an explanation soon.\"}}\n",
         "Something strange is happening. Better check everyone is ok.",
         "Type {{yb:cat}} to check on everyone."
     ]
@@ -68,12 +68,12 @@ class Step3(StepTemplateCd):
     # Use functions here
     command = ""
     all_commands = {
-        "cat grumpy-man": "\nMan: \"I don't know what's happening to me"
-        " - my legs have gone all strange\"",
-        "cat young-girl": "\nGirl: \"I can't find my friend Amy anywhere. "
-        "If you see her, will you let me know?\"",
-        "cat little-boy": "\nBoy: \"Has anyone seen my dog Bernard? "
-        "He's never run away before...\""
+        "cat grumpy-man": "\n{{wb:Man:}} {{Bn:\"I don't know what's happening to me"
+        " - my legs have gone all strange\"}}",
+        "cat young-girl": "\n{{wb:Girl:}} {{Bn:\"I can't find my friend Amy anywhere. "
+        "If you see her, will you let me know?\"}}",
+        "cat little-boy": "\n{{wb:Boy:}} {{Bn:\"Has anyone seen my dog Bernard? "
+        "He's never run away before...\"}}"
     }
 
     last_step = True

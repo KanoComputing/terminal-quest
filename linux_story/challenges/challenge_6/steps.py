@@ -44,11 +44,11 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "Mum: \"You couldn't find him either? Oh dear - this isn't good. "
+        "{{wb:Mum:}} {{Bn:\"You couldn't find him either? Oh dear - this isn't good. "
         "He never leaves home without telling me first.\"",
         "\"Maybe he went to the town meeting with the Mayor. "
         "Why don't you go and check? I'll stay here in case he comes "
-        "back.\"\n",
+        "back.\"}}\n",
         "Let's go to town. To leave the house, use {{yb:cd}} by itself"
     ]
     start_dir = "kitchen"

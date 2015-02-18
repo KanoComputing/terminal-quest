@@ -52,7 +52,7 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "{{wb:Ding. Dong.}}",
+        "{{pb:Ding. Dong.}}",
         "Type {{yb:cd my-house/kitchen}} to go straight to the kitchen"
     ]
     start_dir = "~"

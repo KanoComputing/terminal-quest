@@ -33,10 +33,10 @@ class StepTemplateMv(Step):
 class Step1(StepTemplateMv):
     story = [
         "{{gb:Congratulations, you earned 30 XP!}}\n",
-        "{{wb:Edith:}} Thank you for saving her!",
-        "{{wb:Eleanor:}} Doggy!",
-        "{{wb:Edith:}} Can you save her dog too?  I'm worried something will "
-        "happen to it if it stays outside"
+        "{{wb:Edith:}} {{Bb:Thank you for saving her!}}",
+        "{{wb:Eleanor:}} {{Bb:Doggy!}}",
+        "{{wb:Edith:}} {{Bb:Can you save her dog too?  I'm worried something will "
+        "happen to it if it stays outside}}"
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
@@ -51,7 +51,7 @@ class Step1(StepTemplateMv):
         "mv ../dog ~/town/.hidden-shelter/",
     ]
     hints = [
-        "{{rn:Use the command}} {{yb:mv ../dog .}}"
+        "{{rb:Use the command}} {{yb:mv ../dog .}}"
     ]
     dog_file = os.path.join(HIDDEN_DIR, 'town/.hidden-shelter/dog')
 
@@ -67,10 +67,10 @@ class Step1(StepTemplateMv):
 # Save both the dog and the little girl
 class Step2(StepTemplateMv):
     story = [
-        "{{wb:Eleanor:}} Yay, Doggie!",
-        "{{wb:Dog:}} Ruff.",
-        "{{wb:Edith:}} Oh thank goodness you got them both back.",
-        "I was wrong about you. You're clearly a good person.\n",
+        "{{wb:Eleanor:}} {{Bb:Yay, Doggie!}}",
+        "{{wb:Dog:}} {{Bb:Ruff!}}",
+        "{{wb:Edith:}} {{Bb:Oh thank goodness you got them both back.",
+        "I was wrong about you. You're clearly a good person.}}\n",
         "{{gb:Awesome!  You're a hero!}}",
         "Talk to everyone and see if there's anything else you can do to "
         "help further"
@@ -79,14 +79,14 @@ class Step2(StepTemplateMv):
     end_dir = ".hidden-shelter"
     command = "cat Edward"
     all_commands = {
-        "cat Edith": "\n{{wb:Edith:}} \"Thank you so much!  Eleanor, don't "
-        "wander outside again.\"",
-        "cat Eleanor": "\n{{wb:Eleanor}} \"Where do you think the bell would "
-        "have taken us?\"",
-        "cat dog": "\n{{wb:dog}} \"Woof! Woof woof!\""
+        "cat Edith": "\n{{wb:Edith:}} {{Bb:\"Thank you so much!  Eleanor, don't "
+        "wander outside again.\"}}",
+        "cat Eleanor": "\n{{wb:Eleanor}} {{Bb:\"Where do you think the bell would "
+        "have taken us?\"}}",
+        "cat dog": "\n{{wb:dog}} {{Bb:\"Woof! Woof woof!\"}}"
     }
     hints = [
-        "{{r:Edward looks like he has something he wants to say. "
+        "{{rb:Edward looks like he has something he wants to say. "
         "Talk to Edward with}} {{yb:cat}}"
     ]
     last_step = True

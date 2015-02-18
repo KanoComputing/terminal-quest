@@ -52,12 +52,12 @@ class Step1(StepTemplateCd):
     # Use functions here
     command = "cat Edward"
     all_commands = {
-        "cat Edith": "\n{{wb:Edith:}} \"You found us!  Edward, I told you "
-        "to keep your voice down.\"",
-        "cat Eleanor": "\n{{wb:Eleanor:}} \"My mummy is scared the bell will "
-        "find us if we go outside.\"",
-        "cat Edward": "\n{{wb:Edward:}} \"Oh hullo.  Can you help me?\"",
-        "cat dog": "\n{{wb:dog:}} \"Woof woof!\""
+        "cat Edith": "\n{{wb:Edith:}} {{Bb:\"You found us!  Edward, I told you "
+        "to keep your voice down.\"}}",
+        "cat Eleanor": "\n{{wb:Eleanor:}} {{Bb:\"My mummy is scared the bell will "
+        "find us if we go outside.\"}}",
+        "cat Edward": "\n{{wb:Edward:}} {{Bn:\"Oh hullo.  Can you help me?\"}}",
+        "cat dog": "\n{{wb:dog:}} {{Bb:\"Woof woof!\"}}"
     }
 
     def show_hint(self, line, current_dir):
@@ -67,9 +67,9 @@ class Step1(StepTemplateCd):
             hint += "\n{{gb:Well done!  Talk to someone else.}}"
         else:
             hint = (
-                "\n{{rn:Use}} {{yb:" +
+                "\n{{rb:Use}} {{yb:" +
                 self.all_commands.keys()[0] +
-                "}} {{rn:to progress}}"
+                "}} {{rb:to progress}}"
             )
 
         self.send_hint(hint)
@@ -81,13 +81,13 @@ class Step1(StepTemplateCd):
 # After we've heard some of the story from all the people
 class Step2(StepTemplateMv):
     story = [
-        "{{wb:Edward:}} {{wn:\"Oh hullo.  Can you help me?\"",
+        "{{wb:Edward:}} {{Bb:\"Oh hullo.  Can you help me?\"",
         "\"I learnt this spell for moving items from"
         " one place to another.\"",
-        "\"I've been trying to move this}} {{yb:apple}} {{wn:into the}} "
+        "\"I've been trying to move this}} {{yb:apple}} {{Bb:into the}} "
         "{{yb:basket}}\"",
-        "{{wn:\"I was told the command was}} {{yb:mv apple basket/}}\"",
-        "{{wn:\"But I don't understand what that means.  Do I say it?\"}}"
+        "{{Bb:\"I was told the command was}} {{yb:mv apple basket/}}\"",
+        "{{Bb:\"But I don't understand what that means.  Do I say it?\"}}"
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
@@ -160,9 +160,9 @@ class Step4(StepTemplateMv):
 class Step5(StepTemplateMv):
     story = [
         "{{gb:Cool, the apple is now in the basket!}}",
-        "\n{{wb:Edward:}} {{wn:\"Hey, you did it!  What was I doing "
+        "\n{{wb:Edward:}} {{Bb:\"Hey, you did it!  What was I doing "
         "wrong?\"}}",
-        "\"Can you move the apple back from the basket to here?\"\n",
+        "{{Bb:\"Can you move the apple back from the basket to here?\"}}\n",
         "You want to {{yb:move}} the {{yb:apple}} from the {{yb:basket}} to "
         "{{yb:.}} which represents your current position"
     ]
@@ -198,13 +198,13 @@ class Step5(StepTemplateMv):
 # Get three attempts to save the girl
 class Step6(StepTemplateMv):
     story = [
-        "{{wb:Edith:}} {{wn:\"You should stop playing with that, that's the "
+        "{{wb:Edith:}} {{Bb:\"You should stop playing with that, that's the "
         "last of our food.\"}}",
-        "{{wn:\"Ah!  The dog ran outside!\"}}",
-        "{{wb:Eleanor:}} {{wn:\"Doggy!\"}}",
-        "{{wb:Edith:}} {{wn:\"No, honey!  Don't go outside\"}}",
-        "\nThe little girl follows her dog and leaves the "
-        ".hidden-shelter",
+        "{{Bb:\"Ah!  The dog ran outside!\"}}",
+        "{{wb:Eleanor:}} {{Bb:\"Doggy!\"}}",
+        "{{wb:Edith:}} {{Bb:\"No, honey!  Don't go outside\"}}",
+        "\n{{wn:The little girl follows her dog and leaves the "
+        ".hidden-shelter}}",
         "Look around to confirm this."
     ]
 
@@ -224,8 +224,8 @@ class Step6(StepTemplateMv):
 
 class Step7(StepTemplateMv):
     story = [
-        "{{wb:Edith:}} {{wn:\"No!!  Honey, come back!!\"}}",
-        "{{wn:\"You there, save my little girl!\"}}\n",
+        "{{wb:Edith:}} {{Bb:\"No!!  Honey, come back!!\"}}",
+        "{{Bb:\"You there, save my little girl!\"}}\n",
         "First, check to see that Eleanor is in the {{yb:town}} directory"
     ]
     start_dir = ".hidden-shelter"

@@ -29,9 +29,9 @@ class StepTemplateMv(Step):
 class Step1(StepTemplateMv):
     story = [
         "{{gb:Congratulations, you earned 35 XP!}}\n",
-        "{{wb:Edward:}} \"Hey, since you don't seem to be affected by going"
+        "{{wb:Edward:}} {{Bb:\"Hey, since you don't seem to be affected by going"
         " outside, can you gather some food for us?\"",
-        "\"We didn't have time to grab any before we went into hiding. "
+        "\"We didn't have time to grab any before we went into hiding.\"}}",
         "Do you remember seeing any food in your travels?\"\n",
         "...ah!  You have all that food in your {{yb:kitchen}}!",
         "We could give that to this family.",
@@ -311,19 +311,19 @@ class Step7(StepTemplateMv):
     ]
     allowed_commands = {
         "cat Edith": (
-            "\n{{wb:Edith:}} You saved my little girl and my dog, and now "
-            "you've saved us from starvation...how can I thank you?\n"
+            "\n{{wb:Edith:}} {{Bb:You saved my little girl and my dog, and now "
+            "you've saved us from starvation...how can I thank you?}}\n"
         ),
         "cat Eleanor": (
-            "\n{{wb:Eleanor:}} Yummy! See, I told you doggy, someone would "
-            "help us.\n"
+            "\n{{wb:Eleanor:}} {{Bb:Yummy! See, I told you doggy, someone would "
+            "help us.}}\n"
         ),
         "cat Edward": (
-            "\n{{wb:Edward:}} Thank you!  I knew you would come through for "
-            "us.\n"
+            "\n{{wb:Edward:}} {{Bb:Thank you!  I knew you would come through for "
+            "us.}}\n"
         ),
         "cat dog": (
-            "\n{{wb:dog:}} \"Woof!\". \nThe dog seems very excited.\n"
+            "\n{{wb:dog:}} {{Bb:\"Woof!\"}} {{wn:\nThe dog seems very excited.\n}}"
         )
     }
     last_step = True
