@@ -86,6 +86,15 @@ class Step3(StepTemplateCd):
             hint = "\n{{g:Press Enter to continue}}"
             return True
 
+        # strip any spaces off the beginning and end
+        line = line.strip()
+
+        # If they enter ls, say Well Done
+        if line == 'ls':
+            hint = "\n{{g:Well done for looking around.}}"
+            self.send_text(hint)
+            return False
+
         # check through list of commands
         command_validated = False
         end_dir_validated = False
@@ -93,9 +102,6 @@ class Step3(StepTemplateCd):
             "{{rb:Use}} {{yb:" + self.all_commands.keys()[0] + "}} "
             "{{rb:to progress}}"
         ]
-
-        # strip any spaces off the beginning and end
-        line = line.strip()
 
         end_dir_validated = current_dir == self.end_dir
 
