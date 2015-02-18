@@ -62,6 +62,8 @@ class Step1(StepTemplateCd):
     }
 
     def show_hint(self, line, current_dir):
+        line = line.strip()
+
         if line in self.all_commands.keys():
             hint = self.all_commands[line]
             del self.all_commands[line]
