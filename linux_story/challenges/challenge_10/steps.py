@@ -40,7 +40,7 @@ class Step1(StepTemplateCd):
     allowed_commands = [
         "cat banana",
         "cat cake",
-        "cat crossaint",
+        "cat croissant",
         "cat grapes",
         "cat milk",
         "cat newspaper",

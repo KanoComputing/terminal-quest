@@ -169,7 +169,7 @@ class Step4(StepTemplateMv):
     passable_items = [
         'banana',
         'cake',
-        'crossaint',
+        'croissant',
         'pie',
         'grapes',
         'milk',
