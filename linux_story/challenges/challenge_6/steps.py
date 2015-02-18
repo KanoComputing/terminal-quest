@@ -34,7 +34,7 @@ class Step1(StepTemplateCd):
     end_dir = "kitchen"
     command = "cat Mum"
     hints = (
-        "{{rb:To talk to your Mum, type}} {{yb:cat Mum}} {{rb:and press"
+        "{{rb:To talk to your Mum, type}} {{yb:cat Mum}} {{rb:and press "
         "Enter}}."
     )
 
