@@ -209,7 +209,7 @@ class Application(MainWindow):
 
         try:
             # Give it a timeout so it doesn't hang indefinitely
-            data_dict = self.queue.get(user_data, timeout=0.5)
+            data_dict = self.queue.get(user_data, timeout=3)
 
             if 'exit' in data_dict.keys():
                 self.close_window()
