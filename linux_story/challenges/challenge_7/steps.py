@@ -69,7 +69,7 @@ class Step3(StepTemplateCd):
     command = ""
     all_commands = {
         "cat grumpy-man": "\nMan: \"I don't know what's happening to me"
-        " - my legs have gone all bendy!\"",
+        " - my legs have gone all strange\"",
         "cat young-girl": "\nGirl: \"I can't find my friend Amy anywhere. "
         "If you see her, will you let me know?\"",
         "cat little-boy": "\nBoy: \"Has anyone seen my dog Bernard? "
