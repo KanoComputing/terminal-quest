@@ -167,8 +167,7 @@ class Step5(StepTemplateMv):
 class Step6(StepTemplateMv):
     story = [
         "So someone left these for you to find?",
-        "But who?",
-        "{{gb:TO BE CONTINUED}}"
+        "But who?"
     ]
 
     start_dir = "my-room"
