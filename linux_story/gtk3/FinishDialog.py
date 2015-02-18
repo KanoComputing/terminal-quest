@@ -14,7 +14,7 @@ class FinishDialog(KanoDialog):
 
     def __init__(self):
 
-        title_text = 'You\'ve completed Terminal Quest'
+        title_text = 'You\'ve completed Terminal Quest!'
         description_text = (
             'We are working on the next Chapter. '
             'In the meantime, would you like to send us any feedback?'
