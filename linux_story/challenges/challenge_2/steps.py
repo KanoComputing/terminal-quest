@@ -16,6 +16,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from terminals import TerminalCat
 from linux_story.challenges.challenge_3.steps import Step1 as NextChallengeStep
+from kano_profile.apps import save_app_state_variable
 
 
 class StepTemplateCat(Step):
@@ -87,6 +88,14 @@ class Step4(StepTemplateCat):
         "{{rb:Type}} {{yb:cat wardrobe/trousers}} {{rb:or}} "
         "{{yb:cat wardrobe/skirt}} {{rb:to dress yourself}}"
     )
+
+    def check_command(self, line, current_dir):
+        if line.strip() == self.command[0]:
+            save_app_state_variable('linux-story', 'outfit', 'skirt')
+        elif line.strip() == self.command[1]:
+            save_app_state_variable('linux-story', 'outfit', 'trousers')
+
+        return StepTemplateCat.check_command(self, line, current_dir)
 
     def next(self):
         Step5()
