@@ -339,7 +339,9 @@ class Step7(StepTemplateMv):
         if not self.allowed_commands:
             return True
 
-        if line.strip() in self.allowed_commands.keys():
+        line = line.strip()
+
+        if line in self.allowed_commands.keys():
 
             hint = self.allowed_commands[line]
             del self.allowed_commands[line]
