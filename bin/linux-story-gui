@@ -203,7 +203,6 @@ class Application(MainWindow):
 
     def check_queue_key_release_wrapper(self, widget, event):
         if event.keyval == Gdk.KEY_Return:
-            self.terminal.set_sensitive(True)
             self.check_queue(user_data=True)
 
     def check_queue(self, widget=None, arg1=None, user_data=False):

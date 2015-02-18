@@ -16,6 +16,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from linux_story.challenges.challenge_4.terminals import TerminalCd
 from linux_story.challenges.challenge_7.steps import Step1 as NextChallengeStep
+from linux_story.step_helper_functions import unblock_command_list
 
 
 class StepTemplateCd(Step):
@@ -44,8 +45,8 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "{{wb:Mum:}} {{Bn:\"You couldn't find him either? Oh dear - this isn't good. "
-        "He never leaves home without telling me first.\"",
+        "{{wb:Mum:}} {{Bn:\"You couldn't find him? That's very strange, "
+        "he never leaves home without telling me first.\"",
         "\"Maybe he went to the town meeting with the Mayor. "
         "Why don't you go and check? I'll stay here in case he comes "
         "back.\"}}\n",
@@ -58,9 +59,7 @@ class Step2(StepTemplateCd):
 
     def block_command(self, line):
         allowed_commands = ["cd"]
-        line = line.strip()
-        if "cd" in line and line not in allowed_commands:
-            return True
+        return unblock_command_list(line, allowed_commands)
 
     def next(self):
         Step3()
@@ -94,9 +93,7 @@ class Step4(StepTemplateCd):
 
     def block_command(self, line):
         allowed_commands = ["cd town", "cd town/"]
-        line = line.strip()
-        if "cd" in line and line not in allowed_commands:
-            return True
+        return unblock_command_list(line, allowed_commands)
 
     def next(self):
         NextChallengeStep()

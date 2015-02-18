@@ -20,6 +20,7 @@ from linux_story.Step import Step
 from linux_story.challenges.challenge_11.terminals import TerminalMv
 from linux_story.challenges.challenge_13.steps import Step1 as NextStep
 from linux_story.file_data import HIDDEN_DIR
+from linux_story.step_helper_functions import unblock_command_list
 
 
 class StepTemplateMv(Step):
@@ -35,8 +36,8 @@ class Step1(StepTemplateMv):
         "{{gb:Congratulations, you earned 30 XP!}}\n",
         "{{wb:Edith:}} {{Bb:Thank you for saving her!}}",
         "{{wb:Eleanor:}} {{Bb:Doggy!}}",
-        "{{wb:Edith:}} {{Bb:Can you save her dog too?  I'm worried something will "
-        "happen to it if it stays outside}}"
+        "{{wb:Edith:}} {{Bb:Can you save her dog too?  I'm worried something "
+        "will happen to it if it stays outside}}"
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
@@ -56,9 +57,7 @@ class Step1(StepTemplateMv):
     dog_file = os.path.join(HIDDEN_DIR, 'town/.hidden-shelter/dog')
 
     def block_command(self, line):
-        line = line.strip()
-        if ("mv" in line or "cd" in line) and line not in self.command:
-            return True
+        return unblock_command_list(line, self.command)
 
     def next(self):
         Step2()

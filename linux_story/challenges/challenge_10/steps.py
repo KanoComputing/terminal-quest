@@ -16,6 +16,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from linux_story.challenges.challenge_4.terminals import TerminalCd
 from linux_story.challenges.challenge_11.steps import Step1 as NextStep
+from linux_story.step_helper_functions import unblock_command_list
 
 
 class StepTemplateCd(Step):
@@ -115,9 +116,7 @@ class Step2(StepTemplateCd):
             "cd"
         ]
 
-        line = line.strip()
-        if "cd" in line and line not in allowed_commands:
-            return True
+        return unblock_command_list(line, allowed_commands)
 
     def show_hint(self, line, current_dir):
 
@@ -208,9 +207,7 @@ class Step5(StepTemplateCd):
             "cd .hidden-shelter/"
         ]
 
-        line = line.strip()
-        if "cd" in line and line not in allowed_commands:
-            return True
+        return unblock_command_list(line, allowed_commands)
 
     def next(self):
         Step6()

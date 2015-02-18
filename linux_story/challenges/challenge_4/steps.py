@@ -17,6 +17,7 @@ from linux_story.Step import Step
 from terminals import TerminalCd
 from linux_story.challenges.challenge_5.steps import Step1 as NextChallengeStep
 from linux_story.helper_functions import play_sound
+from linux_story.step_helper_functions import unblock_command_list
 
 
 class StepTemplateCd(Step):
@@ -47,9 +48,7 @@ class Step1(StepTemplateCd):
             "cd ~/my-house",
             "cd ~/my-house/"
         ]
-        line = line.strip()
-        if "cd" in line and line not in allowed_commands:
-            return True
+        return unblock_command_list(line, allowed_commands)
 
     def next(self):
         Step2()
@@ -85,9 +84,7 @@ class Step3(StepTemplateCd):
 
     def block_command(self, line):
         allowed_commands = ["cd kitchen", "cd kitchen/"]
-        line = line.strip()
-        if "cd" in line and line not in allowed_commands:
-            return True
+        return unblock_command_list(line, allowed_commands)
 
     def next(self):
         Step4()

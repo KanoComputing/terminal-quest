@@ -15,6 +15,7 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.Step import Step
 from linux_story.challenges.challenge_11.terminals import TerminalMv
+from linux_story.step_helper_functions import unblock_command_list
 import time
 
 
@@ -113,8 +114,7 @@ class Step3(StepTemplateMv):
     ]
 
     def block_command(self, line):
-        if 'mv' in line and line.strip() not in self.command:
-            return True
+        return unblock_command_list(line, self.command)
 
     def next(self):
         Step4()

@@ -17,6 +17,7 @@ from linux_story.Step import Step
 from linux_story.challenges.challenge_4.terminals import TerminalCd
 from linux_story.challenges.challenge_6.steps import Step1 as NextChallengeStep
 from linux_story.file_data import copy_data
+from linux_story.step_helper_functions import unblock_command_list
 
 
 class StepTemplateCd(Step):
@@ -29,9 +30,8 @@ class StepTemplateCd(Step):
 class Step1(StepTemplateCd):
     story = [
         "{{gb:Congratulations, you earned 7 XP!}}\n",
-        "{{wb:Mum:}} {{Bn:\"Have you seen your Dad? I can't find him anywhere, "
-        "and the newspaper says that people have been going missing all over "
-        "Folderton!\"}}\n",
+        "{{wb:Mum:}} {{Bn:\"Hi sleepyhead, can you go and grab your Dad? "
+        "Dinner is nearly ready.  I think he's in the garden.\"}}\n",
         "Let's look for your Dad in the garden.",
         "First we need to leave the kitchen using {{yb:cd ..}}"
     ]
@@ -42,9 +42,7 @@ class Step1(StepTemplateCd):
 
     def block_command(self, line):
         allowed_commands = ["cd ..", "cd ../"]
-        line = line.strip()
-        if "cd" in line and line not in allowed_commands:
-            return True
+        return unblock_command_list(line, allowed_commands)
 
     def next(self):
         Step2()
@@ -76,9 +74,7 @@ class Step3(StepTemplateCd):
 
     def block_command(self, line):
         allowed_commands = ["cd garden", "cd garden/"]
-        line = line.strip()
-        if "cd" in line and line not in allowed_commands:
-            return True
+        return unblock_command_list(line, allowed_commands)
 
     def next(self):
         Step4()
@@ -113,9 +109,7 @@ class Step5(StepTemplateCd):
 
     def block_command(self, line):
         allowed_commands = ["cd greenhouse", "cd greenhouse/"]
-        line = line.strip()
-        if "cd" in line and line not in allowed_commands:
-            return True
+        return unblock_command_list(line, allowed_commands)
 
     def next(self):
         Step6()
@@ -162,9 +156,7 @@ class Step8(StepTemplateCd):
 
     def block_command(self, line):
         allowed_commands = ["cd ..", "cd ../"]
-        line = line.strip()
-        if "cd" in line and line not in allowed_commands:
-            return True
+        return unblock_command_list(line, allowed_commands)
 
     def next(self):
         Step9()
@@ -185,9 +177,7 @@ class Step9(StepTemplateCd):
 
     def block_command(self, line):
         allowed_commands = ["cd ..", "cd ../"]
-        line = line.strip()
-        if "cd" in line and line not in allowed_commands:
-            return True
+        return unblock_command_list(line, allowed_commands)
 
     def next(self):
         Step10()
@@ -206,9 +196,7 @@ class Step10(StepTemplateCd):
 
     def block_command(self, line):
         allowed_commands = ["cd kitchen", "cd kitchen/"]
-        line = line.strip()
-        if "cd" in line and line not in allowed_commands:
-            return True
+        return unblock_command_list(line, allowed_commands)
 
     def next(self):
         NextChallengeStep()

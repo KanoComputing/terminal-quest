@@ -124,7 +124,7 @@ class Step6(StepTemplateCdBell):
     story = [
         "{{wb:Mayor:}} {{Bb:\"Everyone has disappeared??\"",
         "....I should head home now}}",
-        "{{pb:Ding. Dong.}}\n"
+        "\n{{pb:Ding. Dong.}}\n"
     ]
     start_dir = "town"
     end_dir = "town"

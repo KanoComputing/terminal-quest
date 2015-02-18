@@ -17,6 +17,7 @@ from linux_story.Step import Step
 from linux_story.challenges.challenge_11.terminals import TerminalMv
 from linux_story.file_data import HIDDEN_DIR, copy_data
 from linux_story.challenges.challenge_14.steps import Step1 as NextStep
+from linux_story.step_helper_functions import unblock_command_list
 
 
 class StepTemplateMv(Step):
@@ -52,9 +53,7 @@ class Step1(StepTemplateMv):
     basket_file = os.path.join(HIDDEN_DIR, 'my-house/kitchen/basket')
 
     def block_command(self, line):
-        line = line.strip()
-        if ("mv" in line or "cd" in line) and line not in self.command:
-            return True
+        return unblock_command_list(line, self.command)
 
     def check_output(self, line):
         return os.path.exists(self.basket_file)
@@ -93,9 +92,7 @@ class Step2(StepTemplateMv):
     num_turns_in_home_dir = 0
 
     def block_command(self, line):
-        line = line.strip()
-        if ("mv" in line or "cd" in line) and line not in self.command:
-            return True
+        return unblock_command_list(line, self.command)
 
     def show_hint(self, line, current_dir):
 
@@ -261,9 +258,7 @@ class Step5(StepTemplateMv):
     basket_file = os.path.join(HIDDEN_DIR, 'town', '.hidden-shelter', 'basket')
 
     def block_command(self, line):
-        line = line.strip()
-        if ("mv" in line or "cd" in line) and line not in self.command:
-            return True
+        return unblock_command_list(line, self.command)
 
     # This doesn't currently do anything
     def check_output(self, line):
@@ -291,9 +286,7 @@ class Step6(StepTemplateMv):
     ]
 
     def block_command(self, line):
-        line = line.strip()
-        if ("mv" in line or "cd" in line) and line not in self.command:
-            return True
+        return unblock_command_list(line, self.command)
 
     def next(self):
         Step7()

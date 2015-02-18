@@ -21,6 +21,7 @@ from linux_story.challenges.challenge_4.terminals import TerminalCd
 from linux_story.challenges.challenge_11.terminals import TerminalMv
 from linux_story.challenges.challenge_12.steps import Step1 as NextStep
 from linux_story.file_data import copy_data, HIDDEN_DIR
+from linux_story.step_helper_functions import unblock_command_list
 
 
 class StepTemplateCd(Step):
@@ -99,14 +100,12 @@ class Step2(StepTemplateMv):
         "{{gb:See if you can succeed where Edward failed. "
         "Try and}} {{yb:move}} {{gb:the}} {{yb:apple}} {{gb:into the}} "
         "{{yb:basket}}",
-        "{{r:Use the command}} {{yb:mv apple basket/}} {{rn:to}} "
-        "{{yb:m}}{{rn:o}}{{yb:v}}{{rn:e the apple into the basket}}"
+        "{{rb:Use the command}} {{yb:mv apple basket/}} {{rb:to}} "
+        "{{yb:m}}{{rb:o}}{{yb:v}}{{rb:e the apple into the basket}}"
     ]
 
     def block_command(self, line):
-        line = line.strip()
-        if ("mv" in line or "cd" in line) and line not in self.command:
-            return True
+        return unblock_command_list(line, self.command)
 
     def next(self):
         Step3()
@@ -176,9 +175,7 @@ class Step5(StepTemplateMv):
     ]
 
     def block_command(self, line):
-        line = line.strip()
-        if ("mv" in line or "cd" in line) and line not in self.command:
-            return True
+        return unblock_command_list(line, self.command)
 
     def check_command(self, line, current_dir):
         if line.strip() == "mv basket/apple":
@@ -276,11 +273,7 @@ class Step8(StepTemplateMv):
     girl_file = os.path.join(HIDDEN_DIR, 'town/.hidden-shelter/Eleanor')
 
     def block_command(self, line):
-        line = line.strip()
-        if ("mv" in line or "cd" in line) and line not in self.command:
-            if 'cd' in line:
-                print 'Ability to Change Directory has been blocked'
-            return True
+        return unblock_command_list(line, self.command)
 
     def check_command(self, line, current_dir):
 

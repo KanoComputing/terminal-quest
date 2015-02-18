@@ -180,8 +180,10 @@ class Step():
         '''
 
         line = line.strip()
-        if "cd" in line or "mv" in line:
-            # Should we print a message here?
+        if "cd" in line or "mv" in line and \
+                not line == 'mv --help':
+
+            print 'Nice try! But you do not need that command for this challenge'
             return True
 
     def check_output(self, output):
