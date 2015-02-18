@@ -14,6 +14,7 @@ import socket
 import Queue
 from gi.repository import Gtk, Gdk
 import time
+import subprocess
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -24,6 +25,7 @@ from linux_story.socket_functions import create_server
 from linux_story.gtk3.TerminalUi import TerminalUi
 from linux_story.gtk3.Spellbook import Spellbook
 from linux_story.gtk3.Storybook import Storybook
+from linux_story.gtk3.FinishDialog import FinishDialog
 from linux_story.paths import css_dir
 from kano.gtk3.apply_styles import apply_styling_to_screen
 
@@ -116,8 +118,14 @@ class Application(MainWindow):
         self.run_server()
 
     def close_window(self, widget=None, event=None):
+        '''Shut the server down and close the window
+        '''
+        kdialog = FinishDialog()
+        response = kdialog.run()
 
-        # This DOES NOT launch the finish function
+        if response == 'feedback':
+            subprocess.Popen('/usr/bin/kano-feedback')
+
         self.server.socket.shutdown(socket.SHUT_RDWR)
         self.server.socket.close()
         self.server.shutdown()
@@ -195,6 +203,10 @@ class Application(MainWindow):
         self.terminal.set_sensitive(False)
 
     def run_server(self):
+        '''Start the server
+        Create the queue which has length 1, and run it on a separate thread
+        '''
+
         self.queue = Queue.Queue(1)
         self.server = create_server(self.queue)
         t = threading.Thread(target=self.server.serve_forever)
@@ -202,10 +214,15 @@ class Application(MainWindow):
         t.start()
 
     def check_queue_key_release_wrapper(self, widget, event):
+        '''Wrapper for the key release event handler
+        '''
+
         if event.keyval == Gdk.KEY_Return:
             self.check_queue(user_data=True)
 
-    def check_queue(self, widget=None, arg1=None, user_data=False):
+    def check_queue(self, widget=None, event=None, user_data=False):
+        '''Check the queue for any updates on what the current challenge is
+        '''
 
         try:
             # Give it a timeout so it doesn't hang indefinitely
@@ -247,7 +264,7 @@ class Application(MainWindow):
         except Queue.Empty:
             pass
 
-        if arg1 and Gdk.EventType.MAP == arg1.get_event_type():
+        if event and event.get_event_type() == Gdk.EventType.MAP:
 
             self.terminal.connect(
                 "key-release-event", self.check_queue_key_release_wrapper
