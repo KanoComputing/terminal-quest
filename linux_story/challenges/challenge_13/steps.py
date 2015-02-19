@@ -35,7 +35,7 @@ class Step1(StepTemplateMv):
         "\"Do you remember seeing any food in your travels?\"}}",
         "\n...ah! You have all that food in your {{yb:kitchen}}! "
         "We could give that to this family.",
-        "\nStart by moving the {{yb:basket}} to {{yb:~}}"
+        "\nStart by moving the {{yb:basket}} to {{yb:~}}. "
         "Use the command {{yb:mv basket ~}}"
     ]
     start_dir = ".hidden-shelter"
@@ -44,7 +44,11 @@ class Step1(StepTemplateMv):
         "mv basket ~",
         "mv basket/ ~",
         "mv basket ~/",
-        "mv basket/ ~/"
+        "mv basket/ ~/",
+        "mv basket ../..",
+        "mv basket/ ../..",
+        "mv basket ../../",
+        "mv basket/ ../../"
     ]
     hints = [
         "{{rb:Use the command}} {{yb:mv basket ~}} "
