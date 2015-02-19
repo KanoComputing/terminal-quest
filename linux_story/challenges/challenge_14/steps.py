@@ -282,7 +282,7 @@ class Step7(StepTemplateMv):
             elif hint:
                 hint += (
                     "\n{{gb:Talk to}} {{yb:" + str(num_people) +
-                    "}} {{gb:other.}}"
+                    "}} {{gb:other}}"
                 )
                 if num_people > 1:
                     hint += "{{gb:s}}"
