@@ -16,7 +16,6 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from terminals import TerminalLs
 from linux_story.challenges.challenge_2.steps import Step1 as NextChallengeStep
-from kano_profile.apps import save_app_state_variable
 
 
 class StepTemplateLs(Step):
@@ -48,5 +47,4 @@ class Step1(StepTemplateLs):
     last_step = True
 
     def next(self):
-        save_app_state_variable('linux-story', 'stable-version', 1)
         NextChallengeStep()
