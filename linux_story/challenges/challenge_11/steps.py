@@ -42,40 +42,70 @@ class StepTemplateMv(Step):
 class Step1(StepTemplateCd):
     story = [
         "{{gb:Congratulations, you earned 30 XP!}}\n",
-        "You see a group of people.",
-        "They look quite thin and scared.",
+        "You see a group of people and a dog.",
+        "They all look quite thin and nervous.",
         "Try talking to them."
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
-    command = "cat Edward"
 
     # Use functions here
-    command = "cat Edward"
     all_commands = {
-        "cat Edith": "\n{{wb:Edith:}} {{Bb:\"You found us!  Edward, I told you "
-        "to keep your voice down.\"}}",
-        "cat Eleanor": "\n{{wb:Eleanor:}} {{Bb:\"My mummy is scared the bell will "
-        "find us if we go outside.\"}}",
-        "cat Edward": "\n{{wb:Edward:}} {{Bn:\"Oh hullo.  Can you help me?\"}}",
-        "cat dog": "\n{{wb:dog:}} {{Bb:\"Woof woof!\"}}"
+        "cat Edith": "\n{{wb:Edith:}} {{Bb:\"You found us!  Edward, I told "
+        "you to keep your voice down.\"}}",
+        "cat Eleanor": "\n{{wb:Eleanor:}} {{Bb:\"My mummy is scared the "
+        "bell will find us if we go outside.\"}}",
+        "cat Edward": "\n{{wb:Edward:}} {{Bb:\"I'm sorry Edith...but I "
+        "don't think they mean any harm.  Maybe they could help us?\"}}",
+        "cat dog": "\n{{wb:Dog:}} {{Bb:\"Woof woof!\"}}"
     }
 
-    def show_hint(self, line, current_dir):
+    def check_command(self, line, current_dir):
+
+        if not self.all_commands:
+            hint = "\n{{gb:Press Enter to continue}}"
+            return True
+
+        # strip any spaces off the beginning and end
         line = line.strip()
 
-        if line in self.all_commands.keys():
-            hint = self.all_commands[line]
-            del self.all_commands[line]
-            hint += "\n{{gb:Well done!  Talk to someone else.}}"
-        else:
-            hint = (
-                "\n{{rb:Use}} {{yb:" +
-                self.all_commands.keys()[0] +
-                "}} {{rb:to progress}}"
-            )
+        # If they enter ls, say Well Done
+        if line == 'ls':
+            hint = "\n{{gb:Well done for looking around.}}"
+            self.send_text(hint)
+            return False
 
-        self.send_hint(hint)
+        # check through list of commands
+        command_validated = False
+        end_dir_validated = False
+        self.hints = [
+            "{{rb:Use}} {{yb:" + self.all_commands.keys()[0] + "}} "
+            "{{rb:to progress}}"
+        ]
+
+        end_dir_validated = current_dir == self.end_dir
+
+        # if the validation is included
+        if line in self.all_commands.keys() and end_dir_validated:
+            # Print hint from person
+            hint = "\n" + self.all_commands[line]
+
+            self.all_commands.pop(line, None)
+
+            if len(self.all_commands) > 0:
+                hint += "\n{{gb:Well done! Check on " + \
+                    str(len(self.all_commands)) + \
+                    " more.}}"
+            else:
+                command_validated = True
+                hint += "\n{{gb:Press Enter to continue}}"
+
+            self.send_text(hint)
+
+        else:
+            self.send_text("\n" + self.hints[0])
+
+        return command_validated and end_dir_validated
 
     def next(self):
         Step2()
@@ -84,11 +114,12 @@ class Step1(StepTemplateCd):
 # After we've heard some of the story from all the people
 class Step2(StepTemplateMv):
     story = [
-        "{{wb:Edward:}} {{Bb:\"Oh hullo.  Can you help me?\"",
+        "Edward looks like he has something he wants to say to you.\n",
+        "{{wb:Edward:}} {{Bb:\"Hi there. Can you help me with something?\"",
         "\"I learnt this spell for moving items from"
         " one place to another.\"",
         "\"I've been trying to move this}} {{yb:apple}} {{Bb:into the}} "
-        "{{yb:basket}}\"",
+        "{{yb:basket}}{{Bb:\"}}",
         "{{Bb:\"I was told the command was}} {{yb:mv apple basket/}}\"",
         "{{Bb:\"But I don't understand what that means.  Do I say it?\"}}"
     ]
@@ -99,11 +130,9 @@ class Step2(StepTemplateMv):
         "mv apple basket/"
     ]
     hints = [
-        "{{gb:See if you can succeed where Edward failed. "
-        "Try and}} {{yb:move}} {{gb:the}} {{yb:apple}} {{gb:into the}} "
-        "{{yb:basket}}",
-        "{{rb:Use the command}} {{yb:mv apple basket/}} {{rb:to}} "
-        "{{yb:m}}{{rb:o}}{{yb:v}}{{rb:e the apple into the basket}}"
+        "{{ob:See if you can succeed where Edward failed.}} "
+        "{{ob:Use the command}} {{yb:mv apple basket/}} {{ob:to "
+        "move the apple into the basket}}"
     ]
 
     def block_command(self, line):
@@ -125,8 +154,7 @@ class Step3(StepTemplateMv):
         "ls -a"
     ]
     hints = [
-        "{{rb:Look in this directory to check you've moved the apple}}",
-        "{{rb:Use}} {{yb:ls}} {{rb:to check the apple is not here}}"
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around}}"
     ]
 
     def next(self):
@@ -135,8 +163,9 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "{{gb:Looking good, the apple isn't in this directory anymore}}",
-        "{{wn:Now check the apple is in the basket}}"
+        "{{gb:Looking good, the apple isn't in this directory anymore}}\n",
+        "{{wn:Now check the apple is in the}} {{yb:basket}} {{wn:using}} "
+        "{{yb:ls}}"
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
@@ -147,10 +176,7 @@ class Step4(StepTemplateMv):
         "ls -a basket/"
     ]
     hints = [
-        "{{rb:Now look in the}} {{yb:basket}} {{rb:to check you've moved the "
-        "apple in the basket}}",
-        "{{rb:Use the}} {{yb:ls}} {{rb:command to look in the}} {{yb:basket}}",
-        "{{rb:Use the command}} {{yb:ls basket}} {{rb:to progress}}"
+        "{{rb:Use the command}} {{yb:ls basket/}} {{rb:to look in the basket}}"
     ]
 
     def next(self):
@@ -164,8 +190,9 @@ class Step5(StepTemplateMv):
         "\n{{wb:Edward:}} {{Bb:\"Hey, you did it!  What was I doing "
         "wrong?\"}}",
         "{{Bb:\"Can you move the apple back from the basket to here?\"}}\n",
-        "You want to {{yb:move}} the {{yb:apple}} from the {{yb:basket}} to "
-        "{{yb:.}} which represents your current position"
+        "You want to move the apple from the {{yb:basket}} "
+        "to your current position {{yb:.}}, so use {{yb:mv basket/apple .}}",
+        "The {{yb:.}} is intentional!"
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
@@ -194,7 +221,6 @@ class Step5(StepTemplateMv):
         Step6()
 
 
-# Get three attempts to save the girl
 class Step6(StepTemplateMv):
     story = [
         "{{wb:Edith:}} {{Bb:\"You should stop playing with that, that's the "
@@ -225,7 +251,8 @@ class Step7(StepTemplateMv):
     story = [
         "{{wb:Edith:}} {{Bb:\"No!!  Honey, come back!!\"}}",
         "{{Bb:\"You there, save my little girl!\"}}\n",
-        "First, check to see that Eleanor is in the {{yb:town}} directory"
+        "First, look for Eleanor outside with {{yb:ls ..}}",
+
     ]
     start_dir = ".hidden-shelter"
     end_dir = ""
@@ -247,8 +274,8 @@ class Step7(StepTemplateMv):
 
 class Step8(StepTemplateMv):
     story = [
-        "Now {{yb:move}} {{wn:the girl from the}} {{yb:town}} {{wn:into}} "
-        "{{yb:this directory}}"
+        "Now move {{yb:Eleanor}} from the town outside {{yb:..}} to "
+        "your current position {{yb:.}} "
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden_shelter"
@@ -263,11 +290,6 @@ class Step8(StepTemplateMv):
         "mv ../Eleanor ~/town/.hidden-shelter/",
     ]
     hints = [
-        '{{rb:Move}} {{yb:Eleanor}} {{rb:from the previous directory}} '
-        '{{yb:..}} {{rb:to}} {{yb:.}} '
-        '{{rb:which represents this directory, using}} {{yb:mv}}',
-        "{{rb:You need to move}} {{yb:Eleanor}} {{rb:from}} {{yb:../}} "
-        "{{rb:to}} {{yb:.}}",
         "{{rb:Quick!  Use}} {{yb:mv ../Eleanor .}} "
         "{{rb:to move the little girl back to safety}}"
     ]
