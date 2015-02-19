@@ -15,8 +15,8 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.Step import Step
 from linux_story.challenges.challenge_11.terminals import TerminalMv
+from linux_story.challenges.challenge_16.steps import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_command_list
-import time
 
 
 class StepTemplateMv(Step):
@@ -28,35 +28,20 @@ class StepTemplateMv(Step):
 
 class Step1(StepTemplateMv):
     story = [
-        "{{gb:Congratulations, you earned 40 XP!}}\n",
-        "You find an old antique chest hidden under your bed",
-        "You don't remember seeing it before",
-        "You walk into my-room to have a closer look",
-        "Have a look inside the {{yb:.chest}} and see what it contains"
+        "{{gb:Congratulations, you earned 35 XP!}}\n",
+        "Before you go, have a look to see if there is anything you've "
+        "overlooked.",
+        "Have a closer look at your surroundings"
     ]
-
-    start_dir = "my-room"
-    end_dir = "my-room"
-
-    command = [
-        'ls .chest',
-        'ls .chest/',
-        'ls -a .chest',
-        'ls -a .chest/'
-    ]
-
     hints = [
-        "{{rb:Use}} {{yb:ls .chest}} {{rb:to look inside the .chest}}"
+        "{{rb:Use}} {{yb:ls -a}} {{rb:to look more closely around you}}"
     ]
 
-    def check_output(self, output):
-        if not output:
-            return False
-
-        if 'ls' in output and 'cd' in output:
-            return True
-
-        return False
+    start_dir = ".hidden-shelter"
+    end_dir = ".hidden-shelter"
+    command = [
+        "ls -a"
+    ]
 
     def next(self):
         Step2()
@@ -64,22 +49,23 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        "You've found some rolls of parchment, similar to what you found in "
-        "the .hidden-shelter",
-        "Use {{yb:cat}} to have a look at one of the scrolls"
-    ]
-
-    start_dir = "my-room"
-    end_dir = "my-room"
-
-    command = [
-        'cat .chest/LS',
-        'cat .chest/CAT',
-        'cat .chest/CD'
+        "You notice a {{yb:.tiny-chest}} in the corner of the shelter",
+        "\n{{wb:Edward:}} {{Bb:\"Hey, what's that doing there? "
+        "Has it been there all along? What's in it?\"}}",
+        "\nHave a look inside the {{yb:.tiny-chest}}"
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:cat .chest/LS}} {{rb:to read the LS scroll}}"
+        "{{rb:Use}} {{yb:ls .tiny-chest}} {{rb:to look inside}}"
+    ]
+
+    start_dir = ".hidden-shelter"
+    end_dir = ".hidden-shelter"
+    command = [
+        "ls .tiny-chest",
+        "ls .tiny-chest/",
+        "ls -a .tiny-chest",
+        "ls -a .tiny-chest/"
     ]
 
     def next(self):
@@ -88,33 +74,20 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        "You recognise these commands.",
-        "Maybe you should move the one you found in the "
-        "{{yb:.hidden-shelter/.tiny-chest}} to the {{yb:.chest}}"
+        "You see a scroll of parchment inside, with a stamp on it saying "
+        "{{yb:MV}}.",
+        "Read what it says."
     ]
 
-    start_dir = "my-room"
-    end_dir = "my-room"
-
-    command = [
-        "mv ~/town/.hidden-shelter/.tiny-chest/MV .chest/",
-        "mv ~/town/.hidden-shelter/.tiny-chest/MV .chest",
-        "mv ../../.hidden-shelter/.tiny-chest/MV .chest/",
-        "mv ../../.hidden-shelter/.tiny-chest/MV .chest",
-        "mv ~/town/.hidden-shelter/.tiny-chest/MV ~/my-house/my-room/.chest/",
-        "mv ~/town/.hidden-shelter/.tiny-chest/MV ~/my-house/my-room/.chest"
-    ]
     hints = [
-        "{{rb:Move the scrap of parchment (called}} {{yb:MV}}{{rb:) from}} "
-        "{{yb:~/town/.hidden-shelter/.tiny-chest}} {{rb:to the}} "
-        "{{yb:.chest}}",
-
-        "{{rb:You want to use the command}} "
-        "{{yb:mv ~/town/.hidden-shelter/.tiny-chest/MV .chest/}}"
+        "{{rb:Use}} {{yb:cat .tiny-chest/MV}} {{rb:to read the MV parchment}}"
     ]
 
-    def block_command(self, line):
-        return unblock_command_list(line, self.command)
+    start_dir = ".hidden-shelter"
+    end_dir = ".hidden-shelter"
+    command = [
+        "cat .tiny-chest/MV"
+    ]
 
     def next(self):
         Step4()
@@ -122,22 +95,26 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "Is there anything else in this chest?",
-        "Check there is nothing hidden in here."
+        "{{wb:Edward:}} {{Bb:\"Hey, that contains information about the "
+        "mv command you taught me.",
+        "I wonder where it came from?\"}}",
+        "\nMaybe you should go back to {{yb:my-house}} for more hidden items.",
+        "To quickly go back home, use {{yb:cd ~/my-house/}}"
     ]
 
-    start_dir = "my-room"
-    end_dir = "my-room"
-
-    hints = [
-        "Use {{yb:ls -a .chest}} to see if there are any hidden items in the "
-        "chest"
-    ]
-
+    start_dir = ".hidden-shelter"
+    end_dir = "my-house"
     command = [
-        "ls -a .chest",
-        "ls -a .chest/"
+        'cd ~/my-house/',
+        'cd ~/my-house'
     ]
+    hints = [
+        '{{rb:No shortcuts!  Use}} {{yb:cd ~/my-house}} '
+        '{{rb:to get back to your house in one step}}'
+    ]
+
+    def block_command(self, line):
+        return unblock_command_list(line, self.command)
 
     def next(self):
         Step5()
@@ -145,38 +122,27 @@ class Step4(StepTemplateMv):
 
 class Step5(StepTemplateMv):
     story = [
-        "There's another {{yb:.note}} inside?",
-        "What does it say?"
+        "Now, you need to look round your house for some hidden files.",
+        "Where do you think they could be?"
     ]
 
-    start_dir = "my-room"
-    end_dir = "my-room"
+    start_dir = 'my-house'
 
     hints = [
-        "{{rb:Use}} {{yb:cat .chest/.note}} {{rb:to read the}} {{yb:.note}}"
+        "{{gb:Have a look in all the places of my-house using}} {{yb:ls -a}}"
     ]
 
-    command = [
-        "cat .chest/.note"
-    ]
-
-    def next(self):
-        Step6()
-
-
-class Step6(StepTemplateMv):
-    story = [
-        "So someone left these for you to find?",
-        "But who?",
-        "\n{{gb:Press Enter to continue}}"
-    ]
-
-    start_dir = "my-room"
-    end_dir = "my-room"
     last_step = True
 
-    def next(self):
-        self.exit()
+    def check_output(self, output):
+        # Need to check that .chest is shown in the output of the command
+        if not output:
+            return False
 
-        # So that server has time to send message before it closes
-        time.sleep(3)
+        if '.chest' in output:
+            return True
+
+        return False
+
+    def next(self):
+        NextStep()
