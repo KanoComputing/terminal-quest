@@ -16,7 +16,7 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 from linux_story.launch_functions import launch_project
-from kano_profile.apps import load_app_state_variable
+from kano_profile.apps import load_app_state_variable, save_app_state_variable
 
 
 if __name__ == "__main__":
@@ -36,7 +36,18 @@ if __name__ == "__main__":
     elif len(sys.argv) == 1:
         challenge = 1
         profile_level = load_app_state_variable("linux-story", "level")
-        if profile_level:
+        on_stable_version = load_app_state_variable(
+            "linux-story", "stable-version"
+        )
+
+        # If the user has not launched the stable version of linux story before
+        if not on_stable_version:
+            # Reset progress
+            save_app_state_variable("linux-story", "level", 0)
+            # Tell profile the user is now on the stable version
+            save_app_state_variable('linux-story', 'stable-version', 1)
+
+        elif on_stable_version and profile_level:
             challenge = profile_level + 1
 
         # If the project was completed previously, just start over
