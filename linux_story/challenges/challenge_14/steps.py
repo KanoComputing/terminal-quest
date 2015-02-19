@@ -29,7 +29,7 @@ class StepTemplateMv(Step):
 
 class Step1(StepTemplateMv):
     story = [
-        "Have a look to remind yourself of the food we have"
+        "Look around at the food available in the kitchen."
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"
@@ -157,7 +157,7 @@ class Step4(StepTemplateMv):
     story = [
         "Follow the basket by using {{yb:cd}}"
     ]
-    start_dir = ".hidden-shelter"
+    start_dir = "kitchen"
     end_dir = "~"
     command = [
         "cd",
@@ -196,7 +196,7 @@ class Step5(StepTemplateMv):
     ]
     hints = [
         "{{rb:Use}} {{yb:mv basket town/.hidden-shelter/}} "
-        "{{rb:to move the basket to your kitchen}}"
+        "{{rb:to move the basket to the family in need}}"
     ]
 
     def block_command(self, line):
@@ -222,7 +222,7 @@ class Step6(StepTemplateMv):
     ]
     hints = [
         "{{rb:Use}} {{yb:cd town/.hidden-shelter/}} "
-        "{{rb:to go to the family}}",
+        "{{rb:to be reunited with the family.}}",
     ]
 
     def block_command(self, line):
@@ -235,7 +235,7 @@ class Step6(StepTemplateMv):
 class Step7(StepTemplateMv):
     story = [
         "{{wn:Talk to the people using}} {{yb:cat}} {{wn:and see how they "
-        "react to the food}}"
+        "react to the food.}}"
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
@@ -276,20 +276,20 @@ class Step7(StepTemplateMv):
             num_people = len(self.allowed_commands.keys())
 
             if num_people == 0:
-                hint += '\n{{gb:Press Enter to continue}}'
+                hint += '\n{{gb:Press Enter to continue.}}'
 
             # If the hint is not empty
             elif hint:
                 hint += (
                     "\n{{gb:Talk to}} {{yb:" + str(num_people) +
-                    "}} {{gb:other}}"
+                    "}} {{gb:other.}}"
                 )
                 if num_people > 1:
                     hint += "{{gb:s}}"
         else:
             hint = (
                 "{{rn:Use}} {{yb:" + self.allowed_commands.keys()[0] +
-                "}} {{rn:to progress}}"
+                "}} {{rn:to progress.}}"
             )
 
         self.send_hint(hint)

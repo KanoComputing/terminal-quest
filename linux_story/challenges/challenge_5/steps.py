@@ -16,7 +16,6 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from linux_story.challenges.challenge_4.terminals import TerminalCd
 from linux_story.challenges.challenge_6.steps import Step1 as NextChallengeStep
-from linux_story.file_data import copy_data
 from linux_story.step_helper_functions import unblock_command_list
 
 
@@ -31,7 +30,7 @@ class Step1(StepTemplateCd):
     story = [
         "{{gb:Congratulations, you earned 7 XP!}}\n",
         "{{wb:Mum:}} {{Bn:\"Hi sleepyhead, can you go and grab your Dad? "
-        "Dinner is nearly ready.  I think he's in the garden.\"}}\n",
+        "Dinner is nearly ready. I think he's in the garden.\"}}\n",
         "Let's look for your Dad in the garden.",
         "First we need to leave the kitchen using {{yb:cd ..}}"
     ]
@@ -171,9 +170,6 @@ class Step9(StepTemplateCd):
     end_dir = "my-house"
     command = ""
     hints = "{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the house}}"
-
-    last_step = True
-    challenge_number = 5
 
     def block_command(self, line):
         allowed_commands = ["cd ..", "cd ../"]

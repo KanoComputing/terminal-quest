@@ -46,8 +46,8 @@ class Step1(StepTemplateCd):
     story = [
         "{{gb:Congratulations, you earned 20 XP!}}\n",
         "{{pb:Ding. Dong.}}\n",
-        "That sounds like the bell you heard before",
-        "Use {{yb:ls}} to see if anything has changed"
+        "That sounds like the bell you heard before.",
+        "Use {{yb:ls}} to see if anything has changed."
     ]
     start_dir = "town"
     end_dir = "town"

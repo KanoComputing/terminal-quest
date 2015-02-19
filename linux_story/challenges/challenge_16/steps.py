@@ -29,8 +29,8 @@ class StepTemplateMv(Step):
 class Step1(StepTemplateMv):
     story = [
         "{{gb:Congratulations, you earned 40 XP!}}\n",
-        "You find an old antique chest hidden under your bed "
-        "which you don't remember seeing it before.",
+        "You find an old antique chest hidden under your bed, "
+        "which you don't remember seeing before.",
         "You walk into my-room to have a closer look",
         "Have a look inside the {{yb:.chest}} and see what it contains"
     ]
@@ -91,7 +91,7 @@ class Step3(StepTemplateMv):
         "You recognise these commands.",
         "Maybe you should {{yb:move}} the one you found in the "
         "{{yb:~/town/.hidden-shelter/.tiny-chest}} to this {{yb:.chest}}, "
-        "so they're all in the same place"
+        "so they're all in the same place."
     ]
 
     start_dir = "my-room"
@@ -106,10 +106,6 @@ class Step3(StepTemplateMv):
         "mv ~/town/.hidden-shelter/.tiny-chest/MV ~/my-house/my-room/.chest"
     ]
     hints = [
-        "{{rb:Move the scrap of parchment (called}} {{yb:MV}}{{rb:) from}} "
-        "{{yb:~/town/.hidden-shelter/.tiny-chest}} {{rb:to the}} "
-        "{{yb:.chest}}",
-
         "{{rb:You want to use the command}} "
         "{{yb:mv ~/town/.hidden-shelter/.tiny-chest/MV .chest/}}"
     ]
@@ -146,8 +142,8 @@ class Step4(StepTemplateMv):
 
 class Step5(StepTemplateMv):
     story = [
-        "You suddenly notice a tiny stained {{yb:.note}} in the corner "
-        "of the {{yb:.chest}}",
+        "You suddenly notice a tiny stained {{yb:.note}}, scrumpled in "
+        "the corner of the {{yb:.chest}}",
         "What does it say?"
     ]
 

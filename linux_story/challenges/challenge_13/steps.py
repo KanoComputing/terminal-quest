@@ -108,8 +108,8 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "You have your basket safely alongside you, and not far away "
-        "you see my-house.",
+        "You have your basket safely alongside you, and"
+        "you see my-house close by.",
         "Move the {{yb:basket}} to {{yb:my-house/kitchen}}",
     ]
 

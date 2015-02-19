@@ -67,7 +67,7 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "You have left your house and are on a long road.",
+        "You have left your house and are on a long windy road, called ~",
         "Look around again to see where to go next."
     ]
     start_dir = "~"

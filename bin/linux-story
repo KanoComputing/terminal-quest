@@ -40,7 +40,7 @@ if __name__ == "__main__":
             challenge = profile_level + 1
 
         # If the project was completed previously, just start over
-        if challenge > 15:
+        if challenge > 16:
             challenge = 1
 
         launch_project(str(challenge), '1')

@@ -196,7 +196,10 @@ class Step5(StepTemplateMv):
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
-    command = "mv basket/apple ."
+    command = [
+        "mv basket/apple .",
+        "mv basket/apple ./"
+    ]
     hints = [
         "{{rb:Use the command}} {{yb:mv basket/apple .}} {{rb:to}} "
         "{{yb:m}}{{rb:o}}{{yb:v}}{{rb:e the apple from the basket to your "
