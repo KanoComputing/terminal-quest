@@ -50,7 +50,6 @@ class Step1(StepTemplateMv):
         "{{rb:Use the command}} {{yb:mv basket ~}} "
         "{{rb:to move the basket to the road ~}}"
     ]
-    basket_file = os.path.join(HIDDEN_DIR, 'basket')
 
     def block_command(self, line):
         return unblock_command_list(line, self.command)
