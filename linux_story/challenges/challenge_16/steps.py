@@ -20,7 +20,7 @@ import time
 
 
 class StepTemplateMv(Step):
-    challenge_number = 15
+    challenge_number = 16
 
     def __init__(self):
         Step.__init__(self, TerminalMv)

@@ -35,8 +35,8 @@ class Step1(StepTemplateMv):
         "\"Do you remember seeing any food in your travels?\"}}",
         "\n...ah! You have all that food in your {{yb:kitchen}}! "
         "We could give that to this family.",
-        "\nStart by moving the {{yb:basket}} to {{yb:~}}, the road that "
-        "my-house and town lie along. Use the command {{yb:mv basket ~}}"
+        "\nStart by moving the {{yb:basket}} to {{yb:~}}"
+        "Use the command {{yb:mv basket ~}}"
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
@@ -48,7 +48,7 @@ class Step1(StepTemplateMv):
     ]
     hints = [
         "{{rb:Use the command}} {{yb:mv basket ~}} "
-        "{{rb:to move the basket to the road ~}}"
+        "{{rb:to move the basket to the road ~.}}"
     ]
 
     def block_command(self, line):
@@ -150,6 +150,7 @@ class Step5(StepTemplateMv):
         "{{rb:Use}} {{yb:cd my-house/kitchen/}} "
         "{{rb:to go to your kitchen}}",
     ]
+    last_step = True
 
     def block_command(self, line):
         return unblock_command_list(line, self.command)

@@ -295,5 +295,5 @@ class Step7(StepTemplateMv):
         self.send_hint(hint)
 
     def next(self):
-        copy_data(14, 1)
+        copy_data(15, 1)
         NextStep()

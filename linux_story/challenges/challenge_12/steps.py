@@ -52,7 +52,7 @@ class Step1(StepTemplateMv):
         "mv ../dog ~/town/.hidden-shelter/",
     ]
     hints = [
-        "{{rb:Use the command}} {{yb:mv ../dog .}}"
+        "{{rb:Use the command}} {{yb:mv ../dog .}} {{rb:to rescue the dog}}"
     ]
     dog_file = os.path.join(HIDDEN_DIR, 'town/.hidden-shelter/dog')
 

@@ -44,7 +44,7 @@ class Step1(StepTemplateCd):
         "{{gb:Congratulations, you earned 30 XP!}}\n",
         "You see a group of people and a dog.",
         "They all look quite thin and nervous.",
-        "Try talking to them."
+        "Try talking to them with {{yb:cat}}"
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
