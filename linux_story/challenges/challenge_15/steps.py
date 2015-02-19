@@ -129,7 +129,12 @@ class Step5(StepTemplateMv):
     start_dir = 'my-house'
 
     hints = [
-        "{{gb:Have a look in all the places of my-house using}} {{yb:ls -a}}"
+        "{{gb:Have a look in all the places of my-house using}} {{yb:ls -a}}",
+        "{{gb:Have a look in all the places of my-house using}} {{yb:ls -a}}",
+        "{{gb:Have a look in all the places of my-house using}} {{yb:ls -a}}",
+        "{{rb:Stuck?  Have a look in}} {{yb:my-room}}",
+        "{{rb:Use}} {{yb:ls -a my-room}} {{rb:to look for hidden files in "
+        "my-room}}"
     ]
 
     last_step = True
