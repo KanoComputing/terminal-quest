@@ -74,7 +74,7 @@ class Step3(StepTemplateCd):
         "{{pb:Ding. Dong.}}\n",
         "What was that?  A bell?  That's a bit odd.",
         "You see the door to your kitchen, and hear the sound of cooking.",
-        "Sounds like someone is preparing dinner!",
+        "Sounds like someone is preparing breakfast!",
         "To go inside the kitchen, use {{yb:cd kitchen}}."
     ]
     start_dir = "my-house"
