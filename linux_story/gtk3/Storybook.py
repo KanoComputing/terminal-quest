@@ -12,6 +12,14 @@ import threading
 import os
 from gi.repository import Gtk, Pango, Gdk
 import time
+from kano.utils import is_model_2_b
+
+if is_model_2_b():
+    NEWLINE_SLEEP = 0.15
+    OTHER_SLEEP = 0.025
+else:
+    NEWLINE_SLEEP = 0.07
+    OTHER_SLEEP = 0.01
 
 
 class Storybook(Gtk.TextView):
@@ -61,9 +69,9 @@ class Storybook(Gtk.TextView):
             )
 
             if line['letter'] == '\n':
-                time.sleep(0.07)
+                time.sleep(NEWLINE_SLEEP)
             else:
-                time.sleep(0.01)
+                time.sleep(OTHER_SLEEP)
 
             while Gtk.events_pending():
                 Gtk.main_iteration_do(False)
