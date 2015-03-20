@@ -7,6 +7,10 @@
 #
 # Launches linux tutorial in a Gtk application
 
+# Before loading anything else, declare a profiling timepoint
+from kano.profiling import declare_timepoint
+declare_timepoint("load_terminal_q", True)
+
 import os
 import sys
 import threading
@@ -174,6 +178,10 @@ class Application(MainWindow):
         self.spellbook.hide()
 
         os.system("kano-stop-splash")
+
+        declare_timepoint("load_terminal_q", False)
+        declare_timepoint("run_terminal_q", True)
+        declare_timepoint("run_terminal_q", False)
 
         Gtk.main()
 
