@@ -64,7 +64,6 @@ def default_global_tree(challenge, step):
     return story_filetree.modify_file_tree(story_dict)
 
 
-# With this class, files have to have unique names
 class Tree:
 
     def __init__(self):
@@ -90,6 +89,11 @@ class Tree:
         return node
 
     def add_parent_to_identifier(self, identifier, parent):
+        '''This adds the parent to the identifier, and also
+        makes the node the child of the parent.
+        This way we can easily traverse around the tree.
+        '''
+
         if identifier not in self[parent].children:
             self[parent].add_child(identifier)
             self[parent].set_as_dir(True)
@@ -204,7 +208,12 @@ class Tree:
 class StoryFileTree(Tree):
 
     def create_item(self, dest_path, item_type="file", src_path=""):
-        # print 'create_item, dest_path {}, src_path {}'.format(dest_path, src_path)
+        '''Create a file or directory
+        Parameters:
+        dest_path: a string of the destination path
+        item_type: "file" or "directory"
+        src_path: a string of the source path
+        '''
         if not os.path.exists(dest_path):
             if item_type == 'file':
                 shutil.copyfile(src_path, dest_path)
@@ -212,13 +221,21 @@ class StoryFileTree(Tree):
                 os.mkdir(dest_path)
 
     def delete_item(self, path):
+        '''Delete the file or directory specified by path.
+        '''
         if os.path.exists(path):
             if os.path.isdir():
                 shutil.rmtree(path)
             else:
                 os.remove(path)
 
+    # TODO: This could be done better.
     def split_path_and_add_dirs_to_tree(self, item_id):
+        '''This breaks up the path of the item_id and adds all
+        the containing directories to the tree, if they haven't been added
+        already
+        '''
+
         fake_path = self[item_id].fake_path
         dirs = fake_path.split('/')
 
@@ -244,6 +261,8 @@ class StoryFileTree(Tree):
             if i != 0 and not self[dirs[i]].parent:
                 self.add_parent_to_identifier(dirs[i], dirs[i - 1])
 
+    # TODO this is a MONSTER function.
+    # Break it up.
     def modify_file_tree(self, filesystem_dict):
         '''This modifies the tree in memory and the filesystem the user
         interacts with. It also stores the tree as a yaml, which is saved on
@@ -260,16 +279,6 @@ class StoryFileTree(Tree):
         for item_names, item_dict in filesystem_dict.iteritems():
             item_ids = item_names.split(', ')
             for item_id in item_ids:
-
-                if 'challenges' in item_dict.keys():
-                    # Then we want to find the right challenge and step before
-                    # filtering using the same filters below.
-                    # Find relevent dictionary by sorting through challenges
-                    item_dict = {}
-
-                else:
-                    # filter straight away below as before
-                    pass
 
                 # Check if the item is specified to exist
                 if 'exists' in item_dict.keys() and not item_dict['exists']:
@@ -289,8 +298,8 @@ class StoryFileTree(Tree):
                 elif not self.node_exists(item_id):
                     self.add_node(item_id)
 
-                # If 'path' is in the dictionary, then make sure the relevent
-                # directory or file exists in the right place
+                # If 'path' is in the item dictionary, then make sure the
+                # relevent directory or file exists in the right place
                 if 'path' in item_dict.keys():
 
                     # Check also if "name" is in the dictionary, as this will
@@ -314,6 +323,9 @@ class StoryFileTree(Tree):
                     containing_dir_of_files,
                     item_id
                 )
+
+                # Check if the item is a directory.
+                # By default, assume is a file
 
                 if 'directory' in item_dict.keys():
                     # When converting from python to yaml and back to python,
