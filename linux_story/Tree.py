@@ -23,7 +23,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.helper_functions import parse_string
 
 from linux_story.Node import Node
-from linux_story.construct_story_tree import get_default
+from linux_story.get_defaults import get_default_file_dict
 
 # This is the path to the filesystem on the system
 from linux_story.common import CONTENT_FOLDER, TREE_HOME, TREE_SNAPSHOT
@@ -59,21 +59,7 @@ def default_global_tree(challenge, step):
     global story_filetree
 
     story_filetree = StoryFileTree()
-    story_dict = get_default(challenge, step)
-
-    '''
-    # Take the file information from a yaml on the system
-    # This is taking the file system from the first challenge
-    containing_dir = os.path.dirname(os.path.abspath(__file__))
-    challenge_1_yaml_path = os.path.join(
-        containing_dir,
-        "challenges/challenge_1/file_system.yml"
-    )
-
-    f = open(challenge_1_yaml_path)
-    file_contents = f.read()
-    f.close()
-    '''
+    story_dict = get_default_file_dict(challenge, step)
 
     return story_filetree.modify_file_tree(story_dict)
 
@@ -265,6 +251,8 @@ class StoryFileTree(Tree):
         '''
 
         containing_dir = os.path.dirname(os.path.abspath(__file__))
+
+        # Move this to the common.py?
         containing_dir_of_files = os.path.join(
             containing_dir, "ascii_assets"
         )
@@ -414,20 +402,6 @@ class StoryFileTree(Tree):
 
 
 if __name__ == "__main__":
-
-    '''
-    containing_dir = os.path.dirname(os.path.abspath(__file__))
-    challenge_1_yaml_path = os.path.join(
-        containing_dir,
-        "challenges/challenge_1/file_system.yml"
-    )
-    f = open(challenge_1_yaml_path)
-    file_contents = f.read()
-    f.close()
-
-    filesystem_dict = yaml.load(file_contents)
-    print filesystem_dict
-    '''
 
     tree = StoryFileTree()
     tree.load_tree()
