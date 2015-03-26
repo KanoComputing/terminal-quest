@@ -63,6 +63,15 @@ class Step2(StepTemplateCd):
     end_dir = "my-house"
     command = "ls"
     hints = "{{rb:Type}} {{yb:ls}} {{rb:and press Enter.}}"
+    story_dict = {
+        "Dad": {
+            "exists": False
+        },
+        "note_greenhouse": {
+            "name": "note",
+            "path": "~/my-house/garden/greenhouse"
+        }
+    }
 
     def next(self):
         play_sound('bell')

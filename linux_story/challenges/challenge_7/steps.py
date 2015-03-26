@@ -16,7 +16,6 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from linux_story.challenges.challenge_4.terminals import TerminalCd
 from linux_story.challenges.challenge_8.steps import Step1 as NextChallengeStep
-from linux_story.file_data import copy_data
 from linux_story.helper_functions import play_sound
 
 
@@ -130,7 +129,5 @@ class Step3(StepTemplateCd):
         return command_validated and end_dir_validated
 
     def next(self):
-        # Better way of doing this?
-        copy_data(8, 1)
         play_sound('bell')
         NextChallengeStep()

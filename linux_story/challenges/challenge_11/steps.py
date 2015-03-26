@@ -20,8 +20,9 @@ from linux_story.challenges.challenge_4.terminals import TerminalCd
 # together
 from linux_story.challenges.challenge_11.terminals import TerminalMv
 from linux_story.challenges.challenge_12.steps import Step1 as NextStep
-from linux_story.file_data import copy_data, HIDDEN_DIR
+# from linux_story.file_data import copy_data, HIDDEN_DIR
 from linux_story.step_helper_functions import unblock_command_list
+from linux_story.common import TREE_HOME
 
 
 class StepTemplateCd(Step):
@@ -205,6 +206,14 @@ class Step5(StepTemplateMv):
         "{{yb:m}}{{rb:o}}{{yb:v}}{{rb:e the apple from the basket to your "
         "current position.}}"
     ]
+    story_dict = {
+        "Eleanor": {
+            "path": "~/town"
+        },
+        "dog": {
+            "path": "~/town"
+        }
+    }
 
     def block_command(self, line):
         return unblock_command_list(line, self.command)
@@ -220,7 +229,7 @@ class Step5(StepTemplateMv):
             return StepTemplateMv.check_command(self, line, current_dir)
 
     def next(self):
-        copy_data(11, 6)
+        self.move_girl_and_dog()
         Step6()
 
 
@@ -271,7 +280,6 @@ class Step7(StepTemplateMv):
     ]
 
     def next(self):
-        # for now
         Step8()
 
 
@@ -297,7 +305,7 @@ class Step8(StepTemplateMv):
         "{{rb:to move the little girl back to safety}}"
     ]
     last_step = True
-    girl_file = os.path.join(HIDDEN_DIR, 'town/.hidden-shelter/Eleanor')
+    girl_file = os.path.join(TREE_HOME, 'town/.hidden-shelter/Eleanor')
 
     def block_command(self, line):
         return unblock_command_list(line, self.command)

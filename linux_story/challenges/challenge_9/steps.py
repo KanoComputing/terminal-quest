@@ -45,7 +45,6 @@ class Step1(StepTemplateCd):
 
     def next(self):
         play_sound('bell')
-        copy_data(9, 2)
         Step2()
 
 
@@ -58,6 +57,11 @@ class Step2(StepTemplateCd):
     end_dir = "kitchen"
     command = ""
     hints = "{{rb:Use}} {{yb:cd my-house/kitchen}} {{rb:to go to the kitchen.}}"
+    story_dict = {
+        "Mum": {
+            "exists": False
+        }
+    }
 
     def block_command(self, line):
         allowed_commands = ["cd my-house/kitchen", "cd my-house/kitchen/"]
@@ -94,7 +98,18 @@ class Step4(StepTemplateCd):
     command = "cat note"
     hints = "{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}"
     last_step = True
+    story_dict = {
+        "Eleanor, Edward, Edith, apple": {
+            "path": "~/town/.hidden-shelter",
+        },
+        "basket": {
+            "directory": True,
+            "path": "~/town/.hidden-shelter",
+        },
+        "empty-bottle": {
+            "path": "~/town/.hidden-shelter"
+        }
+    }
 
     def next(self):
-        copy_data(10, 1)
         NextStep()

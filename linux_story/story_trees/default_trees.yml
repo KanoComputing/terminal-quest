@@ -64,19 +64,27 @@ bench, flowers, fence:
           step: 1
           path: "~/my-house/garden"
 
-# note needs to be renamed
-note_greenhouse:
-    name: "note"
-
+# Dad is there for consistancy, (as he should disappear when the bell goes)
+# However, he should be deleted before the bell goes
+carrots, pumpkin, Dad:
     challenges:
         - challenge: 1
           step: 1
           path: "~/my-house/garden/greenhouse"
-# Greenhouse
-carrots, pumpkin:
+
+Dad:
     challenges:
-        - challenge: 1
-          step: 1
+        - challenge: 4
+          step: 3
+          exists: False
+
+# The note should appear once the bell has gone
+note_greenhouse:
+    name: "note"
+
+    challenges:
+        - challenge: 4
+          step: 3
           path: "~/my-house/garden/greenhouse"
 
 # Kitchen
@@ -120,6 +128,8 @@ grapes, milk, pie, sandwich:
         - challenge: 14
           step: 6
           path: "~/my-house/kitchen"
+
+
 
 # Mum disappears after bell
 Mum:

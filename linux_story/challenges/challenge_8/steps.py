@@ -19,7 +19,7 @@ from linux_story.Step import Step
 from linux_story.challenges.challenge_4.terminals import TerminalCd
 from linux_story.challenges.challenge_9.steps import Step1 as NextChallengeStep
 from linux_story.helper_functions import play_sound
-from linux_story.file_data import copy_data
+# from linux_story.file_data import copy_data
 
 
 class StepTemplateCd(Step):
@@ -54,14 +54,22 @@ class Step1(StepTemplateCd):
     command = "ls"
     hints = "{{r:To look around, use}} {{yb:ls}}"
 
+    story_dict = {
+        "grumpy-man": {
+            "exists": False
+        }
+    }
+
     def next(self):
+        # This was the code we had originally.  Did the bell ring properly?
         Step2()
 
 
 class Step2(StepTemplateCdBell):
 
     story = [
-        "{{wb:Little-boy:}} {{Bb:Oh no!  The man with the funny legs disappeared.}}",
+        "{{wb:Little-boy:}} {{Bb:Oh no!  The man with the funny legs "
+        "disappeared.}}",
         "{{wb:Little-boy:}} {{Bb:Is that bell making people disappear?}}",
         "{{wb:Young-girl:}} {{Bb:I'm scared...}}",
         "\n{{pb:Ding. Dong.}}\n",
@@ -72,16 +80,20 @@ class Step2(StepTemplateCdBell):
     end_dir = "town"
     command = "ls"
     hints = "{{rb:To look around, use}} {{yb:ls}}"
+    story_dict = {
+        "little-boy": {
+            "exists": False
+        }
+    }
 
     def run(self):
-        copy_data(8, 4)
         StepTemplateCdBell.run(self)
 
     def next(self):
-        Step4()
+        Step3()
 
 
-class Step4(StepTemplateCdBell):
+class Step3(StepTemplateCdBell):
 
     story = [
         "{{wb:Young-girl:}} {{Bb:Now the little boy has gone",
@@ -94,16 +106,21 @@ class Step4(StepTemplateCdBell):
     end_dir = "town"
     command = "ls"
     hints = "{{r:To look around, use}} {{yb:ls}}"
+    story_dict = {
+        "young_girl": {
+            "exists": False
+        }
+    }
 
     def run(self):
-        copy_data(8, 5)
+        # copy_data(8, 5)
         StepTemplateCdBell.run(self)
 
     def next(self):
-        Step5()
+        Step4()
 
 
-class Step5(StepTemplateCd):
+class Step4(StepTemplateCd):
 
     story = [
         "You are alone with the Mayor.",
@@ -115,11 +132,10 @@ class Step5(StepTemplateCd):
     hints = "{{r:Use}} {{yb:cat Mayor}} {{r:to talk to the Mayor}}"
 
     def next(self):
-        copy_data(8, 6)
-        Step6()
+        Step5()
 
 
-class Step6(StepTemplateCdBell):
+class Step5(StepTemplateCdBell):
 
     story = [
         "{{wb:Mayor:}} {{Bb:\"Everyone has disappeared??\"",
@@ -130,12 +146,24 @@ class Step6(StepTemplateCdBell):
     end_dir = "town"
     command = "ls"
     hints = "{{r:To look around, use}} {{yb:ls}}"
+    story_dict = {
+        "Mayor": {
+            "exists": False
+        },
+        "note_town": {
+            "name": "note",
+            "path": "~/town"
+        }
+    }
+
+    def run(self):
+        StepTemplateCdBell.run(self)
 
     def next(self):
-        Step7()
+        Step6()
 
 
-class Step7(StepTemplateCd):
+class Step6(StepTemplateCd):
     story = [
         "Everyone has gone.",
         "Wait - there's just a note on the floor.",

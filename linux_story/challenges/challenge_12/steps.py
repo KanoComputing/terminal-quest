@@ -19,7 +19,8 @@ from linux_story.Step import Step
 # together
 from linux_story.challenges.challenge_11.terminals import TerminalMv
 from linux_story.challenges.challenge_13.steps import Step1 as NextStep
-from linux_story.file_data import HIDDEN_DIR
+# from linux_story.file_data import HIDDEN_DIR
+from linux_story.common import TREE_HOME
 from linux_story.step_helper_functions import unblock_command_list
 
 
@@ -54,7 +55,18 @@ class Step1(StepTemplateMv):
     hints = [
         "{{rb:Use the command}} {{yb:mv ../dog .}} {{rb:to rescue the dog}}"
     ]
-    dog_file = os.path.join(HIDDEN_DIR, 'town/.hidden-shelter/dog')
+    dog_file = os.path.join(TREE_HOME, 'town/.hidden-shelter/dog')
+
+    # At this point, bring in the .tiny-chest, since they have completed MV
+    # correctly
+    story_dict = {
+        "MV": {
+            "path": "~/town/.hidden-shelter/.tiny-chest"
+        },
+        "CAT, LS, CD": {
+            "path": "~/my-house/my-room/.chest"
+        }
+    }
 
     def block_command(self, line):
         return unblock_command_list(line, self.command)

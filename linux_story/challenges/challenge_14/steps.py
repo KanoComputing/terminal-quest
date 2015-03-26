@@ -15,7 +15,8 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.Step import Step
 from linux_story.challenges.challenge_11.terminals import TerminalMv
-from linux_story.file_data import HIDDEN_DIR, copy_data
+# from linux_story.file_data import HIDDEN_DIR, copy_data
+from linux_story.common import TREE_HOME
 from linux_story.challenges.challenge_15.steps import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_command_list
 
@@ -112,7 +113,7 @@ class Step2(StepTemplateMv):
 
     # Check that the basket folder contains the correct number of files?
     def check_output(self, line):
-        basket_dir = os.path.join(HIDDEN_DIR, 'my-house/kitchen/basket')
+        basket_dir = os.path.join(TREE_HOME, 'my-house/kitchen/basket')
         food_files = [
             f for f in os.listdir(basket_dir)
             if os.path.isfile(os.path.join(basket_dir, f))
@@ -261,6 +262,7 @@ class Step7(StepTemplateMv):
             "excited.\n}}"
         )
     }
+
     last_step = True
 
     def check_command(self, line, current_dir):
@@ -295,5 +297,5 @@ class Step7(StepTemplateMv):
         self.send_hint(hint)
 
     def next(self):
-        copy_data(15, 1)
+        self.create_secret_chest()
         NextStep()

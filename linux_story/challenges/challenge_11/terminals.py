@@ -23,7 +23,7 @@ class TerminalMv(TerminalCd):
 
     def do_mv(self, line):
         shell_command(self.current_dir, self.filetree, line, "mv")
-        self.update_tree()
+        # self.update_tree()
 
     def complete_mv(self, text, line, begidx, endidx):
         completions = self.autocomplete_desc(text, line, "both")
