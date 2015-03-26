@@ -7,11 +7,16 @@
 #
 # Node class, used to describe each element in the Tree class
 
+# This is the contents of the linux-story folder that contains the
+# file system needed for the challenges
+from linux_story.common import TREE_HOME
+
 
 class Node:
-    def __init__(self, identifier, path="", is_dir=True):
+    def __init__(self, identifier, path="", is_dir=False):
         self.__identifier = identifier
-        self.__path = path
+        self.__fake_path = path
+        self.calculate_real_path()
         self.__children = []
         self.__parent = None
         self.__is_dir = is_dir
@@ -29,8 +34,12 @@ class Node:
         return self.__parent
 
     @property
-    def path(self):
-        return self.__path
+    def fake_path(self):
+        return self.__fake_path
+
+    @property
+    def real_path(self):
+        return self.__real_path
 
     @property
     def is_dir(self):
@@ -42,8 +51,15 @@ class Node:
     def add_parent(self, identifier):
         self.__parent = identifier
 
-    def add_path(self, identifier):
-        self.__path = identifier
+    def add_fake_path(self, identifier):
+        self.__fake_path = identifier
+        self.calculate_real_path()
+
+    def calculate_real_path(self):
+        self.__real_path = self.__fake_path.replace(
+            '~',
+            TREE_HOME
+        )
 
     def set_as_dir(self, is_dir):
         self.__is_dir = is_dir

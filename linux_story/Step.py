@@ -8,6 +8,7 @@
 # Step class to describe the flow
 
 import threading
+from linux_story.Tree import story_filetree
 from socket_functions import launch_client, is_server_busy
 from kano_profile.badges import save_app_state_variable_with_dialog
 from kano_profile.apps import load_app_state_variable, save_app_state_variable
@@ -23,7 +24,12 @@ class Step():
     challenge_number = 1
     output_condition = lambda x, y: False
 
+    # We can either tree as a global variable in common, or pass it as a
+    # variable between the files.
+    # We have to be careful with tree, as it has to be accessed from the right
+    # thread otherwise the old data is erased.
     def __init__(self, Terminal_Class):
+        print 'Step init'
         self.pipe_busy = False
 
         # Available commands that can be used in the Terminal
@@ -71,6 +77,7 @@ class Step():
     def send_text(self, string):
         '''Sends a string through the pipe to the GUI
         '''
+        print 'sending text'
 
         if not is_server_busy():
             data = {'hint': string}
@@ -81,6 +88,7 @@ class Step():
     def send_hint(self, hint=None):
         '''Sends a hint string through the pipe to the GUI
         '''
+        print 'sending hint'
 
         if not is_server_busy():
             if not hint:
@@ -95,6 +103,7 @@ class Step():
     def send_start_challenge_data(self):
         '''Sends all the relevent information at the start of a new step
         '''
+        print 'sending start_challenge_data'
 
         data = {}
         data['story'] = "\n".join(self.story)
@@ -200,6 +209,19 @@ class Step():
         output = output.strip()
         return self.output_condition(output)
 
+    def modify_file_tree(self, file_dict):
+        '''This modififies the file system specified by the dictionary file_dict
+        For example, file_dict = {basket: {exists: False}} would remove the file
+        basket, should it exist.
+        It will also remove basket if it is an empty directory, but may not if it
+        is non empty.
+        '''
+        global story_filetree
+
+        story_filetree.modify_file_tree(file_dict)
+
+    # This is not currently used
+    # Maybe use the new tree implementation to save forks instead?
     def save_fork(self, fork):
         '''Save fork using kano profile
         '''

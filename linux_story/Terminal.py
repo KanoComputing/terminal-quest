@@ -11,7 +11,7 @@ from cmd import Cmd
 from helper_functions import (
     get_completion_desc, get_script_cmd, debugger
 )
-from Tree import generate_file_tree
+from Tree import story_filetree  # generate_file_tree, modify_file_tree
 from socket_functions import is_server_busy
 
 # If this is not imported, the escape characters used for the colour prompts
@@ -38,7 +38,10 @@ class Terminal(Cmd):
         old_delims = readline.get_completer_delims()
         readline.set_completer_delims(old_delims.replace('-', ''))
 
-        self.update_tree()
+        # This was originally here to generate the file tree in memory.
+        # Now the tree is passed to Terminal via Step, so we don't need this
+        # self.update_tree()
+        self.filetree = story_filetree
 
         self.current_dir = start_dir
         self.current_path = self.filetree[start_dir]
@@ -73,12 +76,13 @@ class Terminal(Cmd):
 
         pass
 
-    def update_tree(self):
-        '''This updates the model file tree
-        Only done after commands that change the file structure
-        '''
+    # For now, removing this and moving it into Step
+    # def update_tree(self):
+    #    '''This updates the model file tree
+    #    Only done after commands that change the file structure
+    #    '''
 
-        self.filetree = generate_file_tree()
+    #    self.filetree = modify_file_tree(self.filetree)
 
     def precmd(self, line):
         '''Hook before the command is run

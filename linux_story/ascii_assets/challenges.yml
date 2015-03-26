@@ -1,0 +1,252 @@
+# Assume items are files unless otherwsie directed
+
+# Non movable items in my-room
+# group them by directory (if possible?)
+
+# We have a choice, we can either have the array of item initialised,
+# or do them all separately.
+# Or, PYTHON
+alarm, bed, chair, computer, desk:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/my-room"
+
+# shelves
+note, redwall, watership-down, alice-and-wonderland, comic-book:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/my-room/shelves"
+
+# wardrobe
+cap, dress, jumper, shirt, skirt, t-shirt, trousers:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/my-room/wardrobe"
+
+# Parents-room
+bed, picture, tv, window:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/parents-room"
+
+# Garden
+bench, flowers, fence:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/garden"
+
+# note needs to be renamed
+note_greenhouse:
+    rename: "note"
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "/my-house/garden/greenhouse"
+# Greenhouse
+carrots, pumpkin:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "/my-house/garden/greenhouse"
+
+# Kitchen
+# Any of the food could go on a journey, but these items
+# we select by default
+banana, cake, crossaint:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/kitchen"
+
+        # Here it might be moved to the basket
+        - challenge: 14
+          step: 3
+          check_profile: True
+
+          # specify default behaviour otherwise
+          default_path: "~/my-house/kitchen/basket"
+
+        - challenge: 14
+          step: 4
+          check_profile: True
+
+          # specify default behaviour otherwise
+          default_path: "~/basket"
+
+        - challenge: 14
+          step: 6
+          check_profile: True
+
+          default_path: "~/town/.hidden-shelter"
+
+# These could be selected but are not by default
+grapes, milk, pie, sandwich:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/kitchen"
+
+        # Here it might be moved to the basket
+        - challenge: 14
+          step: 3
+          check_profile: True
+
+          # specify default behaviour otherwise
+          default_path: "~/my-house/kitchen"
+
+        - challenge: 14
+          step: 4
+          check_profile: True
+
+          # specify default behaviour otherwise
+          default_path: "~/my-house/kitchen"
+
+        - challenge: 14
+          step: 6
+          check_profile: True
+
+          default_path: "~/my-house/kitchen"
+
+# Mum disappears after bell
+Mum:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/kitchen"
+
+        - challenge: 8
+          step: 1
+          exists: False
+
+# Appears after Mum disappears
+note_kitchen:
+    rename: "note"
+    challenges:
+        - challenge: 8
+          step: 1
+          path: "~/my-house/kitchen"
+
+# All other items in the kitchen
+newspaper, oven, table:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/kitchen"
+
+# Town folk
+Mayor, grumpy-man, young-girl, little-boy:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/town"
+
+grumpy-man:
+    challenges:
+        - challenge: 8
+          step: 4
+          exists: False
+
+young-girl:
+    challenges:
+        - challenge: 8
+          step: 5
+          exists: False
+
+little-boy:
+    challenges:
+        - challenge: 8
+          step: 6
+          exists: False
+
+Mayor:
+    challenges:
+        - challenge: 8
+          step: 6
+          exists: False
+
+note_town:
+    rename: "note"
+    challenges:
+        - challenge: 8
+          step: 6
+          path: "~/town"
+
+# .hidden-shelter folk
+# start off all in the same place
+Edith, Edward, Eleanor, dog, apple:
+    challenges:
+        - challenge: 8
+          step: 1
+          path: "~/town/.hidden-shelter"
+
+# Eleanor and the dog run outside
+Eleanor, dog:
+    challenges:
+        - challenge: 10
+          step: 1
+          path: "~/town"
+
+# Then Eleanor is saved
+Eleanor:
+    challenges:
+        - challenge: 11
+          step: 1
+          path: "~/town/.hidden-shelter"
+
+# Finally the dog is saved
+dog:
+    challenges:
+        - challenge: 11
+          step: 2
+          path: "~/town/.hidden-shelter"
+
+# This is the contents of the basket. Moves around a lot in challenges 13-14
+# We could also specify the basket directory, but then we would have to specify the contents separately
+empty-bottle:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/town/.hidden-shelter/basket"
+
+        - challenge: 14
+          step: 1
+          path: "~/basket"
+
+        - challenge: 15
+          step: 1
+          path: "~/my-house/kitchen/basket"
+
+        - challenge: 16
+          step: 1
+          path: "~/basket"
+
+        - challenge: 17
+          step: 1
+          path: "~/town/.hidden-shelter/basket"
+
+# Find the .tiny-chest in the .hidden-shelter
+MV:
+    challenges:
+        - challenge: 8
+          step: 1
+          path: "~/town/.hidden-shelter/.tiny-chest"
+
+        # Move the MV command into .chest
+        - challenge: 10
+          step: 1
+          path: "~/my-house/my-room/.chest"
+
+# Find the .chest in your room
+CAT, CD, LS:
+    challenges:
+        - challenge: 8
+          step: 1
+          path: "~/my-house/my-room/.chest"
+
+# What other files are in this challenge?
+# We can choose to try and format this in terms of the challenges?  But then this isn't so different from the file system approach we used before

@@ -22,7 +22,7 @@ def debugger(text):
     '''Change first line to "if True:" to show all the debugging lines
     '''
 
-    if False:
+    if True:
         print text
 
 
@@ -37,14 +37,14 @@ def get_script_cmd(string, current_dir, tree):
 
     if string.startswith("./"):
         string = string[2:]
-        real_loc = tree[current_dir].path
+        real_loc = tree[current_dir].real_path
         script = os.path.join(real_loc, string)
 
     elif string.startswith("/"):
         script = string
 
     else:
-        real_loc = tree[current_dir].path
+        real_loc = tree[current_dir].real_path
         script = os.path.join(real_loc, string)
 
     # directories are executable, so exclude directories

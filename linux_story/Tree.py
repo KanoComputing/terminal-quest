@@ -3,20 +3,79 @@
 # Tree.py
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v
+
 #
 # Emulate file system in a tree class
 
 
 import os
-from linux_story.helper_functions import hidden_dir, parse_string
+import sys
+import yaml
+import shutil
+
+if __name__ == '__main__' and __package__ is None:
+    dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    if dir_path != '/usr':
+        sys.path.insert(1, dir_path)
+
+
+from linux_story.helper_functions import parse_string
+
 from linux_story.Node import Node
+from linux_story.construct_story_tree import get_default
+
+# This is the path to the filesystem on the system
+from linux_story.common import CONTENT_FOLDER, TREE_HOME, TREE_SNAPSHOT
 
 # TODO: this is repeated!!
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 
 
 (_ROOT, _DEPTH, _BREADTH) = range(3)
+
+# Global variable
+story_filetree = None
+
+
+def load_global_tree():
+    '''This loads the filetree from the save file in the system
+    '''
+
+    global story_filetree
+
+    story_filetree = StoryFileTree()
+    success = story_filetree.load_tree()
+
+    # if successful, exit
+    if success == 0:
+        return
+
+
+def default_global_tree(challenge, step):
+    '''This creates the filetree from the yaml of challenge 1
+    '''
+
+    global story_filetree
+
+    story_filetree = StoryFileTree()
+    story_dict = get_default(challenge, step)
+
+    '''
+    # Take the file information from a yaml on the system
+    # This is taking the file system from the first challenge
+    containing_dir = os.path.dirname(os.path.abspath(__file__))
+    challenge_1_yaml_path = os.path.join(
+        containing_dir,
+        "challenges/challenge_1/file_system.yml"
+    )
+
+    f = open(challenge_1_yaml_path)
+    file_contents = f.read()
+    f.close()
+    '''
+
+    return story_filetree.modify_file_tree(story_dict)
 
 
 # With this class, files have to have unique names
@@ -30,15 +89,25 @@ class Tree:
         return self.__nodes
 
     def add_node(self, identifier, parent=None):
+
+        # if the node already exists, just return it
+        if self.node_exists(identifier):
+            return self[identifier]
+
+        # Otherwise, just create it
         node = Node(identifier)
         self[identifier] = node
 
         if parent is not None:
-            self[parent].add_child(identifier)
-            self[parent].set_as_dir(True)
-            self[identifier].add_parent(parent)
+            self.add_parent_to_identifier(identifier, parent)
 
         return node
+
+    def add_parent_to_identifier(self, identifier, parent):
+        if identifier not in self[parent].children:
+            self[parent].add_child(identifier)
+            self[parent].set_as_dir(True)
+        self[identifier].add_parent(parent)
 
     def remove_node(self, identifier):
         if hasattr(self, identifier):
@@ -131,43 +200,234 @@ class Tree:
         self.__nodes[key] = item
 
     def generate_prompt(self, current_dir):
-        # in kano-toolset, but for now want to avoid dependencies
+        # In kano-toolset, but for now want to avoid dependencies
         username = os.environ['LOGNAME']
         prompt = current_dir + ' $ '
         for node in self.show_all_ancestors(current_dir):
             prompt = node + "/" + prompt
         prompt = "{{Y" + username + "@kano " + "}}" + "{{b" + prompt + "}}"
+        # return prompt
+
         coloured_prompt = parse_string(prompt, input=True)
         return coloured_prompt
 
 
-# Generate from file structure
-def generate_file_tree():
-    # in kano-toolset, but for now want to avoid dependencies
-    username = os.environ['LOGNAME']
-    tree = Tree()
-    tree.add_node("~")  # root node
-    tree["~"].add_path(os.path.join(os.path.expanduser("~"), ".linux-story"))
+###########################################################
+# These are functions to control and save the Tree class
 
-    for dirpath, dirnames, filenames in os.walk(hidden_dir):
-        folders = dirpath.split("/")
-        folders.remove(".linux-story")
+class StoryFileTree(Tree):
 
-        for d in dirnames:
-            # Find the folders that come directly after the username
-            # i.e. /home/username/d
-            if folders[-1] == username:
-                tree.add_node(d, "~")
+    def create_item(self, dest_path, item_type="file", src_path=""):
+        # print 'create_item, dest_path {}, src_path {}'.format(dest_path, src_path)
+        if not os.path.exists(dest_path):
+            if item_type == 'file':
+                shutil.copyfile(src_path, dest_path)
+            elif item_type == 'directory':
+                os.mkdir(dest_path)
+
+    def delete_item(self, path):
+        if os.path.exists(path):
+            if os.path.isdir():
+                shutil.rmtree(path)
             else:
-                tree.add_node(d, folders[-1])
-            tree[d].add_path(os.path.join(dirpath, d))
-        for f in filenames:
-            if folders[-1] == username:
-                tree.add_node(f, "~")
-            else:
-                tree.add_node(f, folders[-1])
+                os.remove(path)
 
-            tree[f].add_path(os.path.join(dirpath, f))
-            tree[f].set_as_dir(False)
+    def split_path_and_add_dirs_to_tree(self, item_id):
+        fake_path = self[item_id].fake_path
+        dirs = fake_path.split('/')
 
-    return tree
+        for i in range(len(dirs) - 1):
+            # directory name is the tree ID?
+            # This is slightly inconsistent with the tree ID system
+            # where the keys are decided from the yaml
+            if not self.node_exists(dirs[i]):
+
+                # Get the path of the directory from the path
+                dir_path = fake_path.split(dirs[i])[0] + dirs[i]
+                self.add_node(dirs[i])
+                self[dirs[i]].set_as_dir(True)
+                self[dirs[i]].add_fake_path(dir_path)
+
+                # Create the directory in the file system
+                real_path = self[dirs[i]].real_path
+                self.create_item(real_path, item_type="directory")
+
+            # If the index of the array is not 0, and the node of the
+            # tree does not have a parent, then add the parent as the
+            # previous directory
+            if i != 0 and not self[dirs[i]].parent:
+                self.add_parent_to_identifier(dirs[i], dirs[i - 1])
+
+    def modify_file_tree(self, filesystem_dict):
+        '''This modifies the tree in memory and the filesystem the user
+        interacts with. It also stores the tree as a yaml, which is saved on
+        Kano World
+        '''
+
+        containing_dir = os.path.dirname(os.path.abspath(__file__))
+        containing_dir_of_files = os.path.join(
+            containing_dir, "ascii_assets"
+        )
+
+        for item_names, item_dict in filesystem_dict.iteritems():
+            item_ids = item_names.split(', ')
+            for item_id in item_ids:
+
+                if 'challenges' in item_dict.keys():
+                    # Then we want to find the right challenge and step before
+                    # filtering using the same filters below.
+                    # Find relevent dictionary by sorting through challenges
+                    item_dict = {}
+
+                else:
+                    # filter straight away below as before
+                    pass
+
+                # Check if the item is specified to exist
+                if 'exists' in item_dict.keys() and not item_dict['exists']:
+                    # This only works when the node is in the tree.
+                    # However, if it isn't, then it shouldn't exist anyway
+                    if self.node_exists(item_id):
+                        self.delete_item(self[item_id].real_path)
+                        self.remove_node(item_id)
+
+                    # Go to the next item_id
+                    continue
+
+                # This is here to stop a node being overwriteen should it
+                # already exist.
+                # This may be an unnecessary condition as there is a condition
+                # in add_node which may be enough.
+                elif not self.node_exists(item_id):
+                    self.add_node(item_id)
+
+                # If 'path' is in the dictionary, then make sure the relevent
+                # directory or file exists in the right place
+                if 'path' in item_dict.keys():
+
+                    # Check also if "name" is in the dictionary, as this will
+                    # change the name of the filepath.
+                    if 'name' in item_dict.keys():
+
+                        fake_path = os.path.join(
+                            item_dict['path'], item_dict['name']
+                        )
+
+                    else:
+                        fake_path = os.path.join(item_dict['path'], item_id)
+
+                    self[item_id].add_fake_path(fake_path)
+
+                    # Changes tree
+                    self.split_path_and_add_dirs_to_tree(item_id)
+
+                # Copy the file contents in the file system
+                path_to_file_in_system = os.path.join(
+                    containing_dir_of_files,
+                    item_id
+                )
+
+                if 'directory' in item_dict.keys():
+                    # When converting from python to yaml and back to python,
+                    # booleans go from True to true
+                    # is_dir = item_dict['directory'].lower() == "true"
+                    self[item_id].set_as_dir(item_dict['directory'])
+
+                    # Create the directory in the file system
+                    if item_dict['directory']:
+                        self.create_item(self[item_id].real_path, "directory")
+                    else:
+                        self.create_item(
+                            self[item_id].real_path,
+                            item_type="file",
+                            src_path=path_to_file_in_system
+                        )
+
+                else:
+                    # print 'entering create_item'
+                    # print 'item_id = {}'.format(item_id)
+                    # print 'self[item_id] = {}'.format(self[item_id])
+                    self.create_item(
+                        self[item_id].real_path,
+                        item_type="file",
+                        src_path=path_to_file_in_system
+                    )
+
+                if 'parent' in item_dict.keys():
+                    self.add_parent_to_identifier(item_id, item_dict['parent'])
+
+        # Everytime the tree is modified, we save it and back it up on Kano
+        # World
+        self.save_tree()
+
+    def save_tree(self):
+        '''This saves the filesystem as a yaml, which is then stored in
+        Terminal-Quest-content.
+        '''
+
+        file_dict = {}
+
+        nodes = self.nodes
+
+        for item_id, node in nodes.iteritems():
+            nodename = node.fake_path.split('/')[-1]
+            nodepath = '/'.join(node.fake_path.split('/')[:-1])
+
+            file_dict[item_id] = {}
+
+            if nodepath:
+                file_dict[item_id]["path"] = nodepath
+
+            file_dict[item_id]["name"] = nodename
+            file_dict[item_id]["directory"] = node.is_dir
+
+        yaml_data = yaml.dump(file_dict)
+
+        if not os.path.exists(CONTENT_FOLDER):
+            os.mkdir(CONTENT_FOLDER)
+
+        f = open(TREE_SNAPSHOT, 'w+')
+        f.write(yaml_data)
+        f.close()
+
+    def load_tree(self):
+        '''This loads the tree from the yaml and creates it at linux-story
+        (Is this the best way?)
+        This returns 1 if unsuccessful, 0 otherwise
+        '''
+
+        if os.path.exists(TREE_SNAPSHOT):
+            f = open(TREE_SNAPSHOT)
+            yaml_data = f.read()
+            f.close()
+
+            file_data_dict = yaml.load(yaml_data)
+            if os.path.exists(TREE_HOME):
+                shutil.rmtree(TREE_HOME)
+
+            self.modify_file_tree(file_data_dict)
+            # If successful, return 1
+            return 0
+
+        # If it fails, return 1
+        return 1
+
+
+if __name__ == "__main__":
+
+    '''
+    containing_dir = os.path.dirname(os.path.abspath(__file__))
+    challenge_1_yaml_path = os.path.join(
+        containing_dir,
+        "challenges/challenge_1/file_system.yml"
+    )
+    f = open(challenge_1_yaml_path)
+    file_contents = f.read()
+    f.close()
+
+    filesystem_dict = yaml.load(file_contents)
+    print filesystem_dict
+    '''
+
+    tree = StoryFileTree()
+    tree.load_tree()

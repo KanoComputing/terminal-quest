@@ -20,7 +20,7 @@ from kano.colours import colourize256
 def ls(current_dir, tree, line=""):
 
     # find current_location
-    real_loc = tree[current_dir].path
+    real_loc = tree[current_dir].real_path
 
     # Don't print anything
     if not real_loc:
@@ -100,7 +100,7 @@ def ls(current_dir, tree, line=""):
 
 def grep(current_dir, tree, line):
     # find current_location
-    real_loc = tree[current_dir].path
+    real_loc = tree[current_dir].real_path
 
     # Don't print anything
     if not real_loc:
@@ -148,7 +148,7 @@ def shell_command(current_dir, tree, line, command_word=""):
 
     line = " ".join([command_word] + line.split(" "))
 
-    real_loc = tree[current_dir].path
+    real_loc = tree[current_dir].real_path
 
     # Don't do anything
     if not real_loc:
@@ -207,7 +207,7 @@ def check_real_loc(tree, path):
 def mkdir(current_dir, tree, line):
     # TODO: determine if this is successful
     if shell_command(current_dir, tree, line, "mkdir"):
-        real_loc = tree[current_dir].path
+        real_loc = tree[current_dir].real_path
         args = line.split(" ")
         filepath = args[-1]
 
@@ -228,7 +228,7 @@ def launch_application(current_dir, tree, line, command_word=""):
 
     line = " ".join([command_word] + line.split(" "))
 
-    real_loc = tree[current_dir].path
+    real_loc = tree[current_dir].real_path
 
     # Don't do anything
     if not real_loc:
