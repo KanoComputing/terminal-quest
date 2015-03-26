@@ -30,7 +30,7 @@ class Step1(StepTemplateCd):
     story = [
         "{{gb:Congratulations, you earned 7 XP!}}\n",
         "{{wb:Mum:}} {{Bn:\"Hi sleepyhead, can you go and grab your Dad? "
-        "Dinner is nearly ready. I think he's in the garden.\"}}\n",
+        "Breakfast is nearly ready. I think he's in the garden.\"}}\n",
         "Let's look for your Dad in the garden.",
         "First we need to leave the kitchen using {{yb:cd ..}}"
     ]
