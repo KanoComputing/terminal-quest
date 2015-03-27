@@ -14,8 +14,8 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.Step import Step
-from linux_story.challenges.challenge_4.terminals import TerminalCd
-from linux_story.challenges.challenge_6.steps import Step1 as NextChallengeStep
+from linux_story.story.terminals.terminal_cd import TerminalCd
+from linux_story.story.challenges.challenge_6 import Step1 as NextChallengeStep
 from linux_story.step_helper_functions import unblock_command_list
 
 

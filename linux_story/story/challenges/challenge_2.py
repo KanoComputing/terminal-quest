@@ -14,8 +14,8 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.Step import Step
-from terminals import TerminalCat
-from linux_story.challenges.challenge_3.steps import Step1 as NextChallengeStep
+from linux_story.story.terminals.terminal_cat import TerminalCat
+from linux_story.story.challenges.challenge_3 import Step1 as NextChallengeStep
 from kano_profile.apps import save_app_state_variable
 
 

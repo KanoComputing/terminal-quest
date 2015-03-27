@@ -14,8 +14,8 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.Step import Step
-from terminals import TerminalLs
-from linux_story.challenges.challenge_2.steps import Step1 as NextChallengeStep
+from linux_story.story.terminals.terminal_ls import TerminalLs
+from linux_story.story.challenges.challenge_2 import Step1 as NextChallengeStep
 
 
 class StepTemplateLs(Step):

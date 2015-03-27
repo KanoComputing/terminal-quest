@@ -7,7 +7,7 @@ import sys
 HOME_FOLDER = os.path.expanduser('~')
 
 current_dir = os.path.abspath(os.path.dirname(__file__))
-config_dir = os.path.join(current_dir, "story_trees")
+config_dir = os.path.join(current_dir, "story/trees")
 config_filepath = os.path.join(config_dir, "default_trees.yml")
 
 if __name__ == '__main__' and __package__ is None:

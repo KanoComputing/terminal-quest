@@ -14,13 +14,12 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.Step import Step
-from linux_story.challenges.challenge_4.terminals import TerminalCd
+from linux_story.story.terminals.terminal_cd import TerminalCd
 
 # Change this import statement, need to decide how to group the terminals
 # together
-from linux_story.challenges.challenge_11.terminals import TerminalMv
-from linux_story.challenges.challenge_12.steps import Step1 as NextStep
-# from linux_story.file_data import copy_data, HIDDEN_DIR
+from linux_story.story.terminals.terminal_mv import TerminalMv
+from linux_story.story.challenges.challenge_12 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_command_list
 from linux_story.common import TREE_HOME
 
