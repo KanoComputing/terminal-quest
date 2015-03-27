@@ -160,8 +160,6 @@ class Application(MainWindow):
             step_number
         )
 
-        self.map_event_handler = self.connect("map-event", self.check_queue, False)
-
         self.terminal.launch_command(command)
 
         # To give the terminal time to launch the step class
@@ -221,13 +219,6 @@ class Application(MainWindow):
         t.daemon = True
         t.start()
 
-    def check_queue_key_release_wrapper(self, widget, event):
-        '''Wrapper for the key release event handler
-        '''
-
-        if event.keyval == Gdk.KEY_Return:
-            self.check_queue(user_data=True)
-
     def check_queue(self, widget=None, event=None, user_data=False):
         '''Check the queue for any updates on what the current challenge is
         '''
@@ -272,14 +263,7 @@ class Application(MainWindow):
         except Queue.Empty:
             pass
         finally:
-
-            if event and event.get_event_type() == Gdk.EventType.MAP:
-
-                self.terminal.connect(
-                    "key-release-event", self.check_queue_key_release_wrapper
-                )
-                self.disconnect(self.map_event_handler)
-            time.sleep(0.2)
+            time.sleep(0.02)
             return True
 
 
