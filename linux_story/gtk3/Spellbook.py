@@ -17,7 +17,7 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.paths import common_media_dir
+from linux_story.common import common_media_dir
 
 
 class Spellbook(Gtk.EventBox):
