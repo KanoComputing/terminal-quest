@@ -15,12 +15,9 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-
-# from linux_story.file_data import copy_data
 from linux_story.Tree import load_global_tree, default_global_tree
-from linux_story.common import TREE_HOME
+from linux_story.common import tq_file_system
 from kano_profile.apps import load_app_state_variable
-# from kano.gtk3.kano_dialog import KanoDialog
 
 
 def launch_project(challenge_number="1", step_number="1"):
@@ -65,7 +62,7 @@ def launch_project(challenge_number="1", step_number="1"):
         if level != challenge_number:
             show_dialog = True
         # if level is defined but the file system has disappeared
-        elif not os.path.exists(TREE_HOME):
+        elif not os.path.exists(tq_file_system):
             show_dialog = True
 
     # We could send a signal to the the GTK side of the app to

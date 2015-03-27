@@ -9,7 +9,7 @@
 
 # This is the contents of the linux-story folder that contains the
 # file system needed for the challenges
-from linux_story.common import TREE_HOME
+from linux_story.common import tq_file_system
 
 
 class Node:
@@ -58,7 +58,7 @@ class Node:
     def calculate_real_path(self):
         self.__real_path = self.__fake_path.replace(
             '~',
-            TREE_HOME
+            tq_file_system
         )
 
     def set_as_dir(self, is_dir):

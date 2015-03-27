@@ -21,16 +21,11 @@ if __name__ == '__main__' and __package__ is None:
 
 
 from linux_story.helper_functions import parse_string
-
 from linux_story.Node import Node
 from linux_story.get_defaults import get_default_file_dict
 
 # This is the path to the filesystem on the system
-from linux_story.common import CONTENT_FOLDER, TREE_HOME, TREE_SNAPSHOT
-
-# TODO: this is repeated!!
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
-
+from linux_story.common import tq_backup_folder, tq_file_system, tq_backup_tree
 
 (_ROOT, _DEPTH, _BREADTH) = range(3)
 
@@ -273,7 +268,7 @@ class StoryFileTree(Tree):
 
         # Move this to the common.py?
         containing_dir_of_files = os.path.join(
-            containing_dir, "ascii_assets"
+            containing_dir, "ascii_assets/story_files"
         )
 
         for item_names, item_dict in filesystem_dict.iteritems():
@@ -379,10 +374,10 @@ class StoryFileTree(Tree):
 
         yaml_data = yaml.dump(file_dict)
 
-        if not os.path.exists(CONTENT_FOLDER):
-            os.mkdir(CONTENT_FOLDER)
+        if not os.path.exists(tq_backup_folder):
+            os.mkdir(tq_backup_folder)
 
-        f = open(TREE_SNAPSHOT, 'w+')
+        f = open(tq_backup_tree, 'w+')
         f.write(yaml_data)
         f.close()
 
@@ -392,14 +387,14 @@ class StoryFileTree(Tree):
         This returns 1 if unsuccessful, 0 otherwise
         '''
 
-        if os.path.exists(TREE_SNAPSHOT):
-            f = open(TREE_SNAPSHOT)
+        if os.path.exists(tq_backup_tree):
+            f = open(tq_backup_tree)
             yaml_data = f.read()
             f.close()
 
             file_data_dict = yaml.load(yaml_data)
-            if os.path.exists(TREE_HOME):
-                shutil.rmtree(TREE_HOME)
+            if os.path.exists(tq_file_system):
+                shutil.rmtree(tq_file_system)
 
             self.modify_file_tree(file_data_dict)
             # If successful, return 1

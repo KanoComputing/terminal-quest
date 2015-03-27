@@ -1,14 +1,18 @@
+#!/usr/bin/env python
+
+# get_defaults.py
+#
+# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+# Get the default file system for when the user corrupts the saved version on
+# their system
+
 
 import os
 import yaml
 import sys
 
-# from linux_story.common import HOME_FOLDER
-HOME_FOLDER = os.path.expanduser('~')
-
-current_dir = os.path.abspath(os.path.dirname(__file__))
-config_dir = os.path.join(current_dir, "story/trees")
-config_filepath = os.path.join(config_dir, "default_trees.yml")
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -37,15 +41,17 @@ if __name__ == '__main__' and __package__ is None:
 #         path: "~/my-house/garden/greenhouse"
 
 
-# In the class below, we take only the relevent challenge, which can
-# then be processed by the tree class
+# We take only the relevent challenge, which can
+# then be processed by the StoryFileTree class
 
 
 def get_default_file_dict(challenge_number, step_number):
     '''This takes the default settings from the yaml containing defaults,
     and changes into a dictionary which is suitable for the Tree class
     '''
-    stream = open(config_filepath)
+
+    default_tree_config = get_default_tree_filename()
+    stream = open(default_tree_config)
     data_dict = yaml.load(stream)
 
     draft_story_dict = filter_later_challenges(
@@ -54,6 +60,16 @@ def get_default_file_dict(challenge_number, step_number):
 
     story_dict = get_relevant_challenge(draft_story_dict)
     return story_dict
+
+
+def get_default_tree_filename():
+    '''Get the filepath to the default tree yaml
+    '''
+
+    current_dir = os.path.abspath(os.path.dirname(__file__))
+    default_tree_config = os.path.join(current_dir,
+                                       "story/trees/default_trees.yml")
+    return default_tree_config
 
 
 def filter_later_challenges(data_dict, current_challenge, current_step):

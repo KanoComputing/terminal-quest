@@ -79,13 +79,15 @@ class Spellbook(Gtk.EventBox):
         label_background = Gtk.EventBox()
         label_background.get_style_context().add_class("spell_label_background")
 
+        images_dir = os.path.join(common_media_dir, 'images')
+
         if locked:
-            filename = os.path.join(common_media_dir, "padlock.png")
+            filename = os.path.join(images_dir, "padlock.png")
             icon_background.get_style_context().add_class("locked")
             label_background.get_style_context().add_class("locked")
 
         else:
-            filename = os.path.join(common_media_dir, name + ".png")
+            filename = os.path.join(images_dir, name + ".png")
 
         icon = Gtk.Image.new_from_file(filename)
         icon_background.add(icon)

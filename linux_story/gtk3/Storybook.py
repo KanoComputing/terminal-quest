@@ -106,7 +106,7 @@ class Storybook(Gtk.TextView):
 
         fpath = os.path.join(
             os.path.dirname(os.path.realpath(__file__)),
-            "../animation/" + challenge_number
+            "../ascii_assets/titles/" + challenge_number
         )
         with open(fpath) as f:
             for line in f.readlines():

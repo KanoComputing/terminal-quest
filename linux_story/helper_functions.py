@@ -12,10 +12,7 @@ import subprocess
 
 from kano.colours import colourize256, decorate_string
 from kano_profile.apps import load_app_state_variable
-
-
-home = os.path.expanduser("~")
-hidden_dir = os.path.join(home, ".linux-story")
+from linux_story.common import common_media_dir
 
 
 def debugger(text):
@@ -79,11 +76,9 @@ def play_sound(object_name):
     the options are 'alarm' and 'bell'
     '''
 
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-
     sound_path = os.path.join(
-        current_dir,
-        "animation/sounds/",
+        common_media_dir,
+        "sounds",
         object_name + '.wav'
     )
 
