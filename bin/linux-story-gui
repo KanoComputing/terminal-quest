@@ -12,7 +12,7 @@ import sys
 import threading
 import socket
 import Queue
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, GLib
 import time
 import subprocess
 
@@ -165,7 +165,7 @@ class Application(MainWindow):
         self.terminal.launch_command(command)
 
         # To give the terminal time to launch the step class
-        time.sleep(4)
+        GLib.idle_add(self.check_queue)
         self.show_all()
 
         # this to hide the spellbook and terminal from view until the story has
@@ -271,13 +271,16 @@ class Application(MainWindow):
 
         except Queue.Empty:
             pass
+        finally:
 
-        if event and event.get_event_type() == Gdk.EventType.MAP:
+            if event and event.get_event_type() == Gdk.EventType.MAP:
 
-            self.terminal.connect(
-                "key-release-event", self.check_queue_key_release_wrapper
-            )
-            self.disconnect(self.map_event_handler)
+                self.terminal.connect(
+                    "key-release-event", self.check_queue_key_release_wrapper
+                )
+                self.disconnect(self.map_event_handler)
+            time.sleep(0.2)
+            return True
 
 
 def main():
