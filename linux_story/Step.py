@@ -23,14 +23,18 @@ class Step():
     last_step = False
     challenge_number = 1
     output_condition = lambda x, y: False
+    story_dict = {}
 
     # We can either tree as a global variable in common, or pass it as a
     # variable between the files.
     # We have to be careful with tree, as it has to be accessed from the right
     # thread otherwise the old data is erased.
     def __init__(self, Terminal_Class):
-        print 'Step init'
+
         self.pipe_busy = False
+
+        # if self.story_dict is non empty, you can modify the file_tree
+        self.modify_file_tree()
 
         # Available commands that can be used in the Terminal
         self.commands = Terminal_Class.commands
@@ -61,9 +65,11 @@ class Step():
         self.send_start_challenge_data()
         self.launch_terminal()
 
-        # Structure copied from snake
+        # Save the challenge information on run.
+        # We would save on every step, but it's a little too
+        # slow to do this since save_app_state_variable refreshes kdesk
         if self.last_step:
-            self.complete_challenge()
+            self.save_challenge()
 
         # Tell storyline the step is finished
         self.next()
@@ -120,7 +126,7 @@ class Step():
 
         pass
 
-    def complete_challenge(self):
+    def save_challenge(self):
         '''Integration with kano world
         '''
 
@@ -128,6 +134,8 @@ class Step():
         if self.challenge_number > level:
             save_app_state_variable_with_dialog("linux-story", "level",
                                                 self.challenge_number)
+            # save file contents as a yaml
+            self.story_filetree.save_tree()
 
     def launch_terminal(self):
         '''Starts off the terminal's game loop.
@@ -192,7 +200,9 @@ class Step():
         if "cd" in line or "mv" in line and \
                 not line == 'mv --help':
 
-            print 'Nice try! But you do not need that command for this challenge'
+            print ('Nice try! But you do not need that command for this '
+                   'challenge')
+
             return True
 
     def check_output(self, output):
@@ -209,16 +219,18 @@ class Step():
         output = output.strip()
         return self.output_condition(output)
 
-    def modify_file_tree(self, file_dict):
-        '''This modififies the file system specified by the dictionary file_dict
-        For example, file_dict = {basket: {exists: False}} would remove the file
-        basket, should it exist.
-        It will also remove basket if it is an empty directory, but may not if it
-        is non empty.
+    def modify_file_tree(self):
+        '''This modififies the file system specified by the dictionary
+        file_dict.
+        For example, file_dict = {basket: {exists: False}} would remove the
+        file basket, should it exist.
+        It will also remove basket if it is an empty directory, but may not if
+        it is non empty.
         '''
         global story_filetree
 
-        story_filetree.modify_file_tree(file_dict)
+        if self.story_dict:
+            story_filetree.modify_file_tree(self.story_dict)
 
     # This is not currently used
     # Maybe use the new tree implementation to save forks instead?

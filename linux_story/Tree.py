@@ -356,10 +356,6 @@ class StoryFileTree(Tree):
                 if 'parent' in item_dict.keys():
                     self.add_parent_to_identifier(item_id, item_dict['parent'])
 
-        # Everytime the tree is modified, we save it and back it up on Kano
-        # World
-        self.save_tree()
-
     def save_tree(self):
         '''This saves the filesystem as a yaml, which is then stored in
         Terminal-Quest-content.

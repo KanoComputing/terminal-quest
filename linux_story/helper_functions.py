@@ -22,7 +22,7 @@ def debugger(text):
     '''Change first line to "if True:" to show all the debugging lines
     '''
 
-    if True:
+    if False:
         print text
 
 
