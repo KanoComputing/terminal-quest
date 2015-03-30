@@ -20,7 +20,7 @@ from linux_story.common import tq_file_system
 from kano_profile.apps import load_app_state_variable
 
 
-def launch_project(challenge_number="1", step_number="1"):
+def launch_project(challenge_number=1, step_number=1):
 
     # TODO: Check the yaml exists in Terminal-Quest-content
     # Warn user otherwise
@@ -41,9 +41,6 @@ def launch_project(challenge_number="1", step_number="1"):
     # We don't save the step number.
     level = load_app_state_variable("linux-story", "level")
 
-    # HACKY: note that step is not saved in the last update, maybe can use
-    # this for version control
-
     if step_number != 1:
         # Only time step_number is not 1 is when someone is testing.
         # Warn tester that the file system will be changed
@@ -51,15 +48,11 @@ def launch_project(challenge_number="1", step_number="1"):
 
     if not level:
         # start at challenge 1
-        if challenge_number == 1:
-            # create tree at challenge 1
-            # get_default(1, 1)
-            pass
-        else:
+        if not challenge_number == 1:
             show_dialog = True
 
     else:
-        if level != challenge_number:
+        if challenge_number != level + 1:
             show_dialog = True
         # if level is defined but the file system has disappeared
         elif not os.path.exists(tq_file_system):
@@ -68,8 +61,11 @@ def launch_project(challenge_number="1", step_number="1"):
     # We could send a signal to the the GTK side of the app to
     # launch a dialog
     if show_dialog:
-        print ('launch warning for the file system not matching the '
-               'profile data')
+        print "showing dialog"
+
+        # TODO: show a dialog telling the user their file system has changed
+
+        # Copy across a default tree
         default_global_tree(challenge_number, step_number)
     else:
         # Initialise the tree from the yaml
@@ -82,8 +78,8 @@ def launch_project(challenge_number="1", step_number="1"):
 def get_step_class(challenge_number, step_number):
 
     # If no fork, use this module name
-    module_name = "story.challenges.challenge_" + challenge_number
-    step_class_name = "Step" + step_number
+    module_name = "story.challenges.challenge_{}".format(challenge_number)
+    step_class_name = "Step{}".format(step_number)
 
     try:
         module = __import__(

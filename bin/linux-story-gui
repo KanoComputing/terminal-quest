@@ -168,8 +168,8 @@ class Application(MainWindow):
 
         # this to hide the spellbook and terminal from view until the story has
         # finished displaying
-        # self.terminal.hide()
-        # self.spellbook.hide()
+        self.terminal.hide()
+        self.spellbook.hide()
 
         os.system("kano-stop-splash")
 

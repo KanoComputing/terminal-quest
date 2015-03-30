@@ -28,10 +28,12 @@ if __name__ == "__main__":
     # Arguments are pipe filename, and then optionally
     # the Challenge and Step numbers
     if len(sys.argv) == 3:
-        launch_project(sys.argv[1], sys.argv[2])
+        if sys.argv[1].isdigit() and sys.argv[2].isdigit():
+            launch_project(int(sys.argv[1]), int(sys.argv[2]))
 
     elif len(sys.argv) == 2:
-        launch_project(sys.argv[1], '1')
+        if sys.argv[1].isdigit():
+            launch_project(int(sys.argv[1]), 1)
 
     elif len(sys.argv) == 1:
         challenge = 1
@@ -54,6 +56,6 @@ if __name__ == "__main__":
         if challenge >= 16:
             challenge = 1
 
-        launch_project(str(challenge), '1')
+        launch_project(challenge, 1)
     else:
         sys.exit("Wrong number of arguments!")
