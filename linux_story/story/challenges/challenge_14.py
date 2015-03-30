@@ -15,7 +15,6 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.Step import Step
 from linux_story.story.terminals.terminal_mv import TerminalMv
-# from linux_story.file_data import HIDDEN_DIR, copy_data
 from linux_story.common import TREE_HOME
 from linux_story.story.challenges.challenge_15 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_command_list

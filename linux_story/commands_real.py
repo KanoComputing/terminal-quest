@@ -11,7 +11,8 @@
 import os
 import subprocess
 
-from helper_functions import colour_file_dir, debugger, hidden_dir
+from helper_functions import colour_file_dir, debugger
+from linux_story.common import tq_file_system
 from kano.colours import colourize256
 
 
@@ -30,7 +31,7 @@ def ls(current_dir, tree, line=""):
     get_all_info = False
     new_lines = False
     args = ["ls"]
-    line = line.replace('~', hidden_dir)
+    line = line.replace('~', tq_file_system)
 
     if line:
         args = line.split(" ")
@@ -63,7 +64,7 @@ def ls(current_dir, tree, line=""):
     # The error will need to be edited if it contains info about the edited
     # filename
     if err:
-        err = err.replace(hidden_dir, '~')
+        err = err.replace(tq_file_system, '~')
         print err
         return
 
@@ -154,7 +155,7 @@ def shell_command(current_dir, tree, line, command_word=""):
     if not real_loc:
         return False
 
-    line = line.replace('~', hidden_dir)
+    line = line.replace('~', tq_file_system)
 
     args = line.split(" ")
     p = subprocess.Popen(args, cwd=real_loc,
@@ -163,7 +164,7 @@ def shell_command(current_dir, tree, line, command_word=""):
     stdout, stderr = p.communicate()
 
     if stderr:
-        print stderr.strip().replace(hidden_dir, '~')
+        print stderr.strip().replace(tq_file_system, '~')
         return False
 
     if stdout:
@@ -177,14 +178,14 @@ def shell_command(current_dir, tree, line, command_word=""):
 
 
 def turn_abs_path_to_real_loc(path):
-    return path.replace('~', hidden_dir)
+    return path.replace('~', tq_file_system)
 
 
 # This checks if the path is valid
 def check_real_loc(tree, path):
     '''Takes a path with ~ and checks the path is consistent with the
     saved file structure.
-    If so, replaces the ~ with the hidden_dir path (~/.linux-story) and
+    If so, replaces the ~ with the tq_file_system path (~/.linux-story) and
     returns the path.
     '''
     folders = path.split('/')
@@ -199,7 +200,7 @@ def check_real_loc(tree, path):
             if not folders[i] in tree.show_dirs(folders[i - 1]):
                 return None
 
-    path = path.replace('~', hidden_dir)
+    path = path.replace('~', tq_file_system)
     return path
 
 
