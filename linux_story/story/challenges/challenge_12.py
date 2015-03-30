@@ -19,7 +19,7 @@ from linux_story.Step import Step
 # together
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.challenges.challenge_13 import Step1 as NextStep
-from linux_story.common import TREE_HOME
+from linux_story.common import tq_file_system
 from linux_story.step_helper_functions import unblock_command_list
 
 
@@ -54,7 +54,7 @@ class Step1(StepTemplateMv):
     hints = [
         "{{rb:Use the command}} {{yb:mv ../dog .}} {{rb:to rescue the dog}}"
     ]
-    dog_file = os.path.join(TREE_HOME, 'town/.hidden-shelter/dog')
+    dog_file = os.path.join(tq_file_system, 'town/.hidden-shelter/dog')
 
     # At this point, bring in the .tiny-chest, since they have completed MV
     # correctly

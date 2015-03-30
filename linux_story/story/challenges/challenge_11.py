@@ -21,7 +21,7 @@ from linux_story.story.terminals.terminal_cd import TerminalCd
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.challenges.challenge_12 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_command_list
-from linux_story.common import TREE_HOME
+from linux_story.common import tq_file_system
 
 
 class StepTemplateCd(Step):
@@ -304,7 +304,7 @@ class Step8(StepTemplateMv):
         "{{rb:to move the little girl back to safety}}"
     ]
     last_step = True
-    girl_file = os.path.join(TREE_HOME, 'town/.hidden-shelter/Eleanor')
+    girl_file = os.path.join(tq_file_system, 'town/.hidden-shelter/Eleanor')
 
     def block_command(self, line):
         return unblock_command_list(line, self.command)

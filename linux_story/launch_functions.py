@@ -82,7 +82,7 @@ def launch_project(challenge_number="1", step_number="1"):
 def get_step_class(challenge_number, step_number):
 
     # If no fork, use this module name
-    module_name = "challenges.challenge_" + challenge_number + ".steps"
+    module_name = "story.challenges.challenge_" + challenge_number
     step_class_name = "Step" + step_number
 
     try:

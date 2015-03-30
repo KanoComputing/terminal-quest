@@ -25,7 +25,7 @@ css_dir = os.path.join(current_dir, 'gtk3', 'css')
 # /home/user/
 home_folder = os.path.expanduser('~')
 
-# This is where the filetree that the user ineracts with.
+# This is where the filetree that the user interacts with.
 tq_file_system = os.path.join(home_folder, '.linux-story')
 
 # The contents of this folder are backed up online
