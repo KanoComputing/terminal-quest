@@ -10,8 +10,6 @@
 import SocketServer
 import socket
 import json
-import threading
-import time
 
 
 server_busy = None
@@ -58,11 +56,6 @@ def create_server(queue):  # text_cb, spell_cb, challenge_cb):
     return server
 
 
-def launch_server(story_cb, hint_cb, arg):
-    server = create_server(story_cb, hint_cb, arg)
-    server.serve_forever()
-
-
 def launch_client(data):
     global server_busy
 
@@ -86,17 +79,3 @@ def launch_client(data):
         server_busy = (received2 == 'busy')
     finally:
         sock.close()
-
-
-def sleep(arg=None, arg2=None):
-    time.sleep(5)
-
-
-if __name__ == '__main__':
-    t1 = threading.Thread(target=launch_server, args=(sleep, sleep, None))
-    t1.start()
-
-    time.sleep(0.5)
-
-    t2 = threading.Thread(target=launch_client, args=({'hint': "hunteaffadf"},))
-    t2.start()
