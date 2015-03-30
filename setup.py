@@ -38,7 +38,8 @@ def is_image(filepath):
 story = recursively_get_dirs("linux_story", "story")
 ascii_assets = recursively_get_dirs("linux_story", "ascii_assets")
 gtk3 = recursively_get_dirs("linux_story", "gtk3")
-media = recursively_get_dirs("", "media")
+media_images = recursively_get_dirs("", "media/images")
+media_sounds = recursively_get_dirs("", "media/sounds")
 icons = filter(is_image, recursively_get_dirs("", "icon"))
 kdesktop = recursively_get_dirs("", "kdesktop")
 
@@ -55,7 +56,8 @@ setup(name='Linux Story',
           'linux_story': story + ascii_assets + gtk3
       },
       data_files=[
-          ('/usr/share/linux-story/media/', media),
+          ('/usr/share/linux-story/media/images', media_images),
+          ('/usr/share/linux-story/media/sounds', media_sounds),
           ('/usr/share/kano-desktop/kdesk/kdesktop/', kdesktop),
           ('/usr/share/icons/Kano/88x88/apps', icons)
       ]
