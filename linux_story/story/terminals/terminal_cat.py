@@ -14,7 +14,7 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.challenges.challenge_1.terminals import TerminalLs
+from linux_story.story.terminals.terminal_ls import TerminalLs
 from linux_story.commands_real import shell_command
 
 
