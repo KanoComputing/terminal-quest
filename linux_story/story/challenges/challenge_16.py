@@ -22,13 +22,12 @@ import time
 class StepTemplateMv(Step):
     challenge_number = 16
 
-    def __init__(self):
-        Step.__init__(self, TerminalMv)
+    def __init__(self, xp=""):
+        Step.__init__(self, TerminalMv, xp)
 
 
 class Step1(StepTemplateMv):
     story = [
-        "{{gb:Congratulations, you earned 40 XP!}}\n",
         "You find an old antique chest hidden under your bed, "
         "which you don't remember seeing before.",
         "You walk into my-room to have a closer look",

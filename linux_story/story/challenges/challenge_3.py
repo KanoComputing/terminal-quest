@@ -21,13 +21,12 @@ from linux_story.story.challenges.challenge_4 import Step1 as NextChallengeStep
 class StepTemplateCat(Step):
     challenge_number = 3
 
-    def __init__(self):
-        Step.__init__(self, TerminalCat)
+    def __init__(self, xp=""):
+        Step.__init__(self, TerminalCat, xp)
 
 
 class Step1(StepTemplateCat):
     story = [
-        "{{gb:Congratulations, you earned 5 XP!}}\n",
         "Love it! Put it on quickly.",
         "There's loads more interesting stuff in your room.",
         "Let's look in your {{yb:shelves}} using {{yb:ls}}"
@@ -70,4 +69,4 @@ class Step3(StepTemplateCat):
     challenge_number = 3
 
     def next(self):
-        NextChallengeStep()
+        NextChallengeStep(self.xp)

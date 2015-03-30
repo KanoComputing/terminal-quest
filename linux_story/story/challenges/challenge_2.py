@@ -22,13 +22,12 @@ from kano_profile.apps import save_app_state_variable
 class StepTemplateCat(Step):
     challenge_number = 2
 
-    def __init__(self):
-        Step.__init__(self, TerminalCat)
+    def __init__(self, xp=""):
+        Step.__init__(self, TerminalCat, xp)
 
 
 class Step1(StepTemplateCat):
     story = [
-        "{{gb:Congratulations, you earned 5 XP!}}\n",
         "Better turn that alarm off.",
         "\n{{wb:New Spell}}: to look at objects, we type {{yb:cat <object name>}}",
         "To look at the alarm, type {{yb:cat alarm}}"
@@ -119,4 +118,4 @@ class Step5(StepTemplateCat):
     last_step = True
 
     def next(self):
-        NextChallengeStep()
+        NextChallengeStep(self.xp)

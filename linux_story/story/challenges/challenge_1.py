@@ -47,4 +47,5 @@ class Step1(StepTemplateLs):
     last_step = True
 
     def next(self):
-        NextChallengeStep()
+        print 'self.xp = {}'.format(self.xp)
+        NextChallengeStep(self.xp)

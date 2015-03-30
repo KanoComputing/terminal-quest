@@ -11,7 +11,9 @@ import threading
 from linux_story.Tree import story_filetree
 from socket_functions import launch_client, is_server_busy
 from kano_profile.badges import save_app_state_variable_with_dialog
-from kano_profile.apps import load_app_state_variable, save_app_state_variable
+from kano_profile.apps import (
+    load_app_state_variable, save_app_state_variable, get_app_xp_for_challenge
+)
 
 
 class Step():
@@ -24,13 +26,15 @@ class Step():
     challenge_number = 1
     output_condition = lambda x, y: False
     story_dict = {}
+    xp = ""
 
     # We can either tree as a global variable in common, or pass it as a
     # variable between the files.
     # We have to be careful with tree, as it has to be accessed from the right
     # thread otherwise the old data is erased.
-    def __init__(self, Terminal_Class):
+    def __init__(self, Terminal_Class, xp=""):
 
+        self.xp = xp
         self.pipe_busy = False
 
         # if self.story_dict is non empty, you can modify the file_tree
@@ -61,13 +65,14 @@ class Step():
         - Once the terminal exits, takes you to the next Step
         '''
 
+        # Save the challenge information on run.
+        # We would save on every step, but it's a little too
+        # slow to do this since save_app_state_variable refreshes kdesk
+
         # Send all story data together
         self.send_start_challenge_data()
         self.launch_terminal()
 
-        # Save the challenge information on run.
-        # We would save on every step, but it's a little too
-        # slow to do this since save_app_state_variable refreshes kdesk
         if self.last_step:
             self.save_challenge()
 
@@ -83,7 +88,6 @@ class Step():
     def send_text(self, string):
         '''Sends a string through the pipe to the GUI
         '''
-        print 'sending text'
 
         if not is_server_busy():
             data = {'hint': string}
@@ -94,7 +98,6 @@ class Step():
     def send_hint(self, hint=None):
         '''Sends a hint string through the pipe to the GUI
         '''
-        print 'sending hint'
 
         if not is_server_busy():
             if not hint:
@@ -109,9 +112,12 @@ class Step():
     def send_start_challenge_data(self):
         '''Sends all the relevent information at the start of a new step
         '''
-        print 'sending start_challenge_data'
 
         data = {}
+
+        # Get data about any XP.
+        data['xp'] = self.xp
+
         data['story'] = "\n".join(self.story)
         data['challenge'] = str(self.challenge_number)
         data['spells'] = self.commands
@@ -126,16 +132,30 @@ class Step():
 
         pass
 
+    def get_xp(self):
+        '''Look up XP earned after challenge
+        '''
+
+        # Look up XP earned
+        xp = get_app_xp_for_challenge("linux-story",
+                                      str(self.challenge_number)
+                                      )
+
+        if xp > 0:
+            self.xp = "{{gb:Congratulations, you earned " + str(xp) + " XP!}}\n"
+
     def save_challenge(self):
         '''Integration with kano world
         '''
+        global story_filetree
 
         level = load_app_state_variable("linux-story", "level")
         if self.challenge_number > level:
             save_app_state_variable_with_dialog("linux-story", "level",
                                                 self.challenge_number)
             # save file contents as a yaml
-            self.story_filetree.save_tree()
+            story_filetree.save_tree()
+            self.get_xp()
 
     def launch_terminal(self):
         '''Starts off the terminal's game loop.

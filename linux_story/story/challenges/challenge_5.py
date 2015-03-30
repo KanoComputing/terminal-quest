@@ -22,13 +22,12 @@ from linux_story.step_helper_functions import unblock_command_list
 class StepTemplateCd(Step):
     challenge_number = 5
 
-    def __init__(self):
-        Step.__init__(self, TerminalCd)
+    def __init__(self, xp=""):
+        Step.__init__(self, TerminalCd, xp)
 
 
 class Step1(StepTemplateCd):
     story = [
-        "{{gb:Congratulations, you earned 7 XP!}}\n",
         "{{wb:Mum:}} {{Bn:\"Hi sleepyhead, can you go and grab your Dad? "
         "Breakfast is nearly ready. I think he's in the garden.\"}}\n",
         "Let's look for your Dad in the garden.",
@@ -195,4 +194,4 @@ class Step10(StepTemplateCd):
         return unblock_command_list(line, allowed_commands)
 
     def next(self):
-        NextChallengeStep()
+        NextChallengeStep(self.xp)

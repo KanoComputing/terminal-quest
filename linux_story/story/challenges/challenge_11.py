@@ -27,8 +27,8 @@ from linux_story.common import tq_file_system
 class StepTemplateCd(Step):
     challenge_number = 11
 
-    def __init__(self):
-        Step.__init__(self, TerminalCd)
+    def __init__(self, xp=""):
+        Step.__init__(self, TerminalCd, xp)
 
 
 class StepTemplateMv(Step):
@@ -41,7 +41,6 @@ class StepTemplateMv(Step):
 # The next few steps should be like the disappearing of people in the town
 class Step1(StepTemplateCd):
     story = [
-        "{{gb:Congratulations, you earned 30 XP!}}\n",
         "You see a group of people and a dog.",
         "They all look quite thin and nervous.",
         "Try talking to them with {{yb:cat}}"
@@ -322,4 +321,4 @@ class Step8(StepTemplateMv):
             return False
 
     def next(self):
-        NextStep()
+        NextStep(self.xp)

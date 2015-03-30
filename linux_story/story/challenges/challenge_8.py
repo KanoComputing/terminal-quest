@@ -24,8 +24,8 @@ from linux_story.helper_functions import play_sound
 class StepTemplateCd(Step):
     challenge_number = 8
 
-    def __init__(self):
-        Step.__init__(self, TerminalCd)
+    def __init__(self, xp=""):
+        Step.__init__(self, TerminalCd, xp)
 
 
 class StepTemplateCdBell(StepTemplateCd):
@@ -43,7 +43,6 @@ class StepTemplateCdBell(StepTemplateCd):
 class Step1(StepTemplateCd):
 
     story = [
-        "{{gb:Congratulations, you earned 20 XP!}}\n",
         "{{pb:Ding. Dong.}}\n",
         "That sounds like the bell you heard before.",
         "Use {{yb:ls}} to see if anything has changed."
@@ -175,4 +174,4 @@ class Step6(StepTemplateCd):
     last_step = True
 
     def next(self):
-        NextChallengeStep()
+        NextChallengeStep(self.xp)

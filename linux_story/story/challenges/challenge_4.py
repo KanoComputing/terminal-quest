@@ -23,13 +23,12 @@ from linux_story.step_helper_functions import unblock_command_list
 class StepTemplateCd(Step):
     challenge_number = 4
 
-    def __init__(self):
-        Step.__init__(self, TerminalCd)
+    def __init__(self, xp=""):
+        Step.__init__(self, TerminalCd, xp)
 
 
 class Step1(StepTemplateCd):
     story = [
-        "{{gb:Congratulations, you earned 7 XP!}}\n",
         "That's weird. No time for that now though - lets find Mum.",
         "\n{{wb:New Spell}}: {{yb:cd}} lets you move between places.",
         "\nTo leave your room, use the command {{yb:cd ..}}"
@@ -129,4 +128,4 @@ class Step5(StepTemplateCd):
     last_step = True
 
     def next(self):
-        NextChallengeStep()
+        NextChallengeStep(self.xp)

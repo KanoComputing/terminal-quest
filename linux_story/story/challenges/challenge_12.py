@@ -26,14 +26,13 @@ from linux_story.step_helper_functions import unblock_command_list
 class StepTemplateMv(Step):
     challenge_number = 12
 
-    def __init__(self):
-        Step.__init__(self, TerminalMv)
+    def __init__(self, xp=""):
+        Step.__init__(self, TerminalMv, xp)
 
 
 # Thanks you for saving the little girl
 class Step1(StepTemplateMv):
     story = [
-        "{{gb:Congratulations, you earned 30 XP!}}\n",
         "{{wb:Edith:}} {{Bb:Thank you for saving her!}}",
         "{{wb:Eleanor:}} {{Bb:Doggy!}}",
         "{{wb:Edith:}} {{Bb:Can you save her dog too?  I'm worried something "
@@ -109,4 +108,4 @@ class Step2(StepTemplateMv):
             StepTemplateMv.show_hint(self, line, current_dir)
 
     def next(self):
-        NextStep()
+        NextStep(self.xp)

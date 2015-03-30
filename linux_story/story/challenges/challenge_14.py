@@ -23,8 +23,8 @@ from linux_story.step_helper_functions import unblock_command_list
 class StepTemplateMv(Step):
     challenge_number = 14
 
-    def __init__(self):
-        Step.__init__(self, TerminalMv)
+    def __init__(self, xp=""):
+        Step.__init__(self, TerminalMv, xp)
 
 
 class Step1(StepTemplateMv):
@@ -297,4 +297,4 @@ class Step7(StepTemplateMv):
 
     def next(self):
         self.create_secret_chest()
-        NextStep()
+        NextStep(self.xp)

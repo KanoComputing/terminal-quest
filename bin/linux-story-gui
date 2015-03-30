@@ -1,4 +1,4 @@
-#!/usr/bin/kano-splash /usr/share/linux-story/media/splash.png /usr/bin/env python
+#!/usr/bin/kano-splash /usr/share/linux-story/media/images/splash.png /usr/bin/env python
 
 # linux-story-gui
 #
@@ -168,8 +168,8 @@ class Application(MainWindow):
 
         # this to hide the spellbook and terminal from view until the story has
         # finished displaying
-        self.terminal.hide()
-        self.spellbook.hide()
+        # self.terminal.hide()
+        # self.spellbook.hide()
 
         os.system("kano-stop-splash")
 
@@ -248,6 +248,11 @@ class Application(MainWindow):
                     # Print the challenge title at the top of the screen
                     challenge = data_dict['challenge']
                     self.print_challenge_title(challenge)
+
+                    # So the xp is not hardcoded in the story
+                    if 'xp' in data_dict and data_dict['xp']:
+                        xp = data_dict['xp']
+                        self.type_text(xp)
 
                     # Type the story out
                     self.type_text(data_dict['story'])
