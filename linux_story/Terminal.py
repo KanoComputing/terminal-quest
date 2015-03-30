@@ -76,14 +76,6 @@ class Terminal(Cmd):
 
         pass
 
-    # For now, removing this and moving it into Step
-    # def update_tree(self):
-    #    '''This updates the model file tree
-    #    Only done after commands that change the file structure
-    #    '''
-
-    #    self.filetree = modify_file_tree(self.filetree)
-
     def precmd(self, line):
         '''Hook before the command is run
         If the self.block_command returns True, the command is not run

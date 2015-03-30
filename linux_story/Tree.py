@@ -256,6 +256,9 @@ class StoryFileTree(Tree):
             if i != 0 and not self[dirs[i]].parent:
                 self.add_parent_to_identifier(dirs[i], dirs[i - 1])
 
+        # Add directory as the parent to the current item
+        self.add_parent_to_identifier(item_id, dirs[-2])
+
     # TODO this is a MONSTER function.
     # Break it up.
     def modify_file_tree(self, filesystem_dict):
