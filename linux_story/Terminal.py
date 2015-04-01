@@ -145,10 +145,16 @@ class Terminal(Cmd):
         '''
 
         try:
+            # If we do 'ls my-room', then we want the autocompletion
+            # to be the same as though we were typing ls with the current directory
+            # being my-room,
+            # temp_dir returns the directory we want to do the autocompletions
+            # with respect to
             temp_dir = get_completion_desc(
                 self.current_dir, self.filetree, line, completion_type
             )
 
+            # This is the list of item_ids from self.filetree
             autocomplete_list = list(
                 self.filetree.show_files_or_dirs(
                     temp_dir,
@@ -157,20 +163,27 @@ class Terminal(Cmd):
             )
 
             completions = []
+
+            # text is the text entered by the user that has not
+            # been used up by calculating
+            # e.g. if we type 'ls my-room/b', then text = "b"
             if not text:
-                completions = autocomplete_list[:]
+                for i in autocomplete_list:
+                    completions.append(self.filetree[i].name)
             else:
                 for f in autocomplete_list:
-                    if f.startswith(text):
-                        completions.append(f)
+                    name = self.filetree[f].name
+                    if name.startswith(text):
+                        completions.append(name)
                 if len(completions) == 1:
-                    if self.filetree[completions[0]].is_dir:
-                        completions[0] += "/"
+                    if self.filetree.node_exists(completions[0]):
+                        if self.filetree[completions[0]].is_dir:
+                            completions[0] += "/"
 
             return completions
 
         except Exception as e:
-            return ["Exception caught = {}".format(e)]
+            return ["Exception caught = {}".format(str(e))]
 
     def autocomplete(self, text, line, complete_list):
         if not text:

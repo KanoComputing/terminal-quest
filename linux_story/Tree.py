@@ -69,6 +69,9 @@ class Tree:
         return self.__nodes
 
     def add_node(self, identifier, parent=None):
+        '''Identifier comes from the item_id and the path leading to that
+        item.
+        '''
 
         # if the node already exists, just return it
         if self.node_exists(identifier):
@@ -132,8 +135,8 @@ class Tree:
     def show_visible_descendents(self, identifier):
         queue = self[identifier].children
         while queue:
-            if not queue[0].startswith("."):
-                yield(queue[0])
+            if not self[queue[0]].name.startswith("."):
+                yield queue[0]
             queue = queue[1:]
 
     def show_files(self, identifier):
@@ -209,6 +212,7 @@ class StoryFileTree(Tree):
         item_type: "file" or "directory"
         src_path: a string of the source path
         '''
+
         if not os.path.exists(dest_path):
             if item_type == 'file':
                 shutil.copyfile(src_path, dest_path)
@@ -218,6 +222,7 @@ class StoryFileTree(Tree):
     def delete_item(self, path):
         '''Delete the file or directory specified by path.
         '''
+
         if os.path.exists(path):
             if os.path.isdir():
                 shutil.rmtree(path)
@@ -245,6 +250,7 @@ class StoryFileTree(Tree):
                 self.add_node(dirs[i])
                 self[dirs[i]].set_as_dir(True)
                 self[dirs[i]].add_fake_path(dir_path)
+                self[dirs[i]].name = dirs[i]
 
                 # Create the directory in the file system
                 real_path = self[dirs[i]].real_path
@@ -266,7 +272,6 @@ class StoryFileTree(Tree):
         interacts with. It also stores the tree as a yaml, which is saved on
         Kano World
         '''
-
         containing_dir = os.path.dirname(os.path.abspath(__file__))
 
         # Move this to the common.py?
@@ -289,7 +294,7 @@ class StoryFileTree(Tree):
                     # Go to the next item_id
                     continue
 
-                # This is here to stop a node being overwriteen should it
+                # This is here to stop a node being overwriten should it
                 # already exist.
                 # This may be an unnecessary condition as there is a condition
                 # in add_node which may be enough.
@@ -307,8 +312,13 @@ class StoryFileTree(Tree):
                         fake_path = os.path.join(
                             item_dict['path'], item_dict['name']
                         )
+                        self[item_id].name = item_dict['name']
+
+                        # Add a copy cat with the path as the key
+                        self.add_node(fake_path)
 
                     else:
+                        self[item_id].name = item_id
                         fake_path = os.path.join(item_dict['path'], item_id)
 
                     self[item_id].add_fake_path(fake_path)
@@ -326,9 +336,6 @@ class StoryFileTree(Tree):
                 # By default, assume is a file
 
                 if 'directory' in item_dict.keys():
-                    # When converting from python to yaml and back to python,
-                    # booleans go from True to true
-                    # is_dir = item_dict['directory'].lower() == "true"
                     self[item_id].set_as_dir(item_dict['directory'])
 
                     # Create the directory in the file system
@@ -342,9 +349,6 @@ class StoryFileTree(Tree):
                         )
 
                 else:
-                    # print 'entering create_item'
-                    # print 'item_id = {}'.format(item_id)
-                    # print 'self[item_id] = {}'.format(self[item_id])
                     self.create_item(
                         self[item_id].real_path,
                         item_type="file",
