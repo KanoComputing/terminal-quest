@@ -16,8 +16,9 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.Tree import load_global_tree, default_global_tree
-from linux_story.common import tq_file_system
+from linux_story.common import tq_backup_tree
 from kano_profile.apps import load_app_state_variable
+from kano.logging import logger
 
 
 def launch_project(challenge_number=1, step_number=1):
@@ -55,13 +56,13 @@ def launch_project(challenge_number=1, step_number=1):
         if challenge_number != level + 1:
             show_dialog = True
         # if level is defined but the file system has disappeared
-        elif not os.path.exists(tq_file_system):
+        elif not os.path.exists(tq_backup_tree):
             show_dialog = True
 
     # We could send a signal to the the GTK side of the app to
     # launch a dialog
     if show_dialog:
-        print "showing dialog"
+        logger.debug("Problem locating original filetree data.")
 
         # TODO: show a dialog telling the user their file system has changed
 
