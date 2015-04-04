@@ -294,7 +294,7 @@ class StoryFileTree(Tree):
                     # Go to the next item_id
                     continue
 
-                # This is here to stop a node being overwriten should it
+                # This is here to stop a node being overwritten should it
                 # already exist.
                 # This may be an unnecessary condition as there is a condition
                 # in add_node which may be enough.

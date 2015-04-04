@@ -13,8 +13,15 @@ from linux_story.common import tq_file_system
 
 
 class Node:
-    def __init__(self, identifier, path="", is_dir=False):
+    def __init__(self, identifier, path="", is_dir=False, name=""):
+
         self.__identifier = identifier
+
+        if name:
+            self.__name = name
+        else:
+            self.__name = identifier
+
         self.__fake_path = path
         self.calculate_real_path()
         self.__children = []
@@ -45,15 +52,15 @@ class Node:
     def is_dir(self):
         return self.__is_dir
 
+    @property
+    def name(self):
+        return self.__name
+
     def add_child(self, identifier):
         self.__children.append(identifier)
 
     def add_parent(self, identifier):
         self.__parent = identifier
-
-    def add_fake_path(self, identifier):
-        self.__fake_path = identifier
-        self.calculate_real_path()
 
     def calculate_real_path(self):
         self.__real_path = self.__fake_path.replace(
@@ -63,3 +70,7 @@ class Node:
 
     def set_as_dir(self, is_dir):
         self.__is_dir = is_dir
+
+    def add_fake_path(self, identifier):
+        self.__fake_path = identifier
+        self.calculate_real_path()
