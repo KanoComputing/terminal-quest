@@ -90,32 +90,50 @@ def play_sound(object_name):
 
 # TODO: NEEDS A BETTER NAME
 def get_completion_desc(current_dir, tree, line, list_type="both"):
-    '''This is to help the completion function in the classes
-    we give this function a possible list of files and directories
+    '''This returns the last valid directory from a partly completed path
+    e.g. if the user enters ls ../my-room/w then this should return my-room
+    assuming the current_dir is one of kitchen, my-room etc.
     list_type = "dirs", "files", or "both"
     '''
+
+    # This is the directory which we evaluate the relevant descendents or
+    # ancestors.
+    # e.g. if the user starts off at my-house and does the command ls ../town/,
+    # temp_current_dir will start off at my-house, but then should move to
+    # ~ and then town
+    temp_current_dir = current_dir
 
     # list of directories
     # command will be of the form:
     # "command_name" -params directory/directory/(dir OR file)
     elements = line.split(" ")
 
-    # if the last element is a load of directories (no guarentee) then we need
-    # to pick the last element to compare against
-    direct_descs = tree.show_files_or_dirs(current_dir, list_type)
-
     final_list = []
     dirs = elements[-1].split("/")
 
-    for d in dirs:
-        if d in direct_descs:
-            final_list.append(d)
-            direct_descs = tree.show_files_or_dirs(d, list_type)
+    if dirs[0] == '~':
+        temp_current_dir = '~'
+        final_list.append('~')
+        # if the last element is a load of directories (no guarentee) then we
+        # need to pick the last element to compare against
+        direct_descs = tree.show_files_or_dirs('~', list_type)
+        dirs.pop(0)
+    else:
+        final_list.append(temp_current_dir)
+        direct_descs = tree.show_files_or_dirs(current_dir, list_type)
 
-    # return the final element
-    if final_list:
-        return final_list[-1]
-    return current_dir
+    for d in dirs:
+        if d == '..':
+            temp_current_dir = tree.show_ancestor(temp_current_dir)
+            final_list.append(temp_current_dir)
+            direct_descs = tree.show_files_or_dirs(temp_current_dir, list_type)
+        else:
+            if d in direct_descs:
+                final_list.append(d)
+                direct_descs = tree.show_files_or_dirs(d, list_type)
+            break
+
+    return final_list[-1]
 
 
 def get_preset_from_id(id):
