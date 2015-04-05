@@ -16,7 +16,8 @@ from linux_story.common import tq_file_system
 from kano.colours import colourize256
 
 
-# We edit this to colourise the output - otherwise, we could just use shell_command
+# We edit this to colourise the output - otherwise, we could just use
+# shell_command
 # TODO: ls -d .* doesn't work
 def ls(current_dir, tree, line=""):
 

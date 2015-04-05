@@ -105,7 +105,7 @@ class Step3(StepTemplateCdBell):
     command = "ls"
     hints = "{{r:To look around, use}} {{yb:ls}}"
     story_dict = {
-        "young_girl": {
+        "young-girl": {
             "exists": False
         }
     }

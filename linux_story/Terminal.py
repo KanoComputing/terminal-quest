@@ -9,7 +9,7 @@
 
 from cmd import Cmd
 from helper_functions import (
-    get_completion_desc, get_script_cmd, debugger
+    get_last_dir, get_script_cmd, debugger
 )
 from Tree import story_filetree  # generate_file_tree, modify_file_tree
 from socket_functions import is_server_busy
@@ -146,11 +146,11 @@ class Terminal(Cmd):
 
         try:
             # If we do 'ls my-room', then we want the autocompletion
-            # to be the same as though we were typing ls with the current directory
-            # being my-room,
+            # to be the same as though we were typing ls with the current
+            # directory being my-room,
             # temp_dir returns the directory we want to do the autocompletions
             # with respect to
-            temp_dir = get_completion_desc(
+            temp_dir = get_last_dir(
                 self.current_dir, self.filetree, line, completion_type
             )
 
@@ -170,6 +170,9 @@ class Terminal(Cmd):
             if not text:
                 for i in autocomplete_list:
                     completions.append(self.filetree[i].name)
+            # Since ../ never comes up automatically, we have to force it
+            elif text == "..":
+                completions.append(text + "/")
             else:
                 for f in autocomplete_list:
                     name = self.filetree[f].name

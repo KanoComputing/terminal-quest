@@ -62,6 +62,7 @@ def get_default_file_dict(challenge_number, step_number):
     return story_dict
 
 
+# Move this to common.py?
 def get_default_tree_filename():
     '''Get the filepath to the default tree yaml
     '''
@@ -107,7 +108,7 @@ def filter_later_challenges(data_dict, current_challenge, current_step):
     challenges and steps which are greater than the ones we're interested in
     '''
 
-    # TODO: be consistent with whether the chalenge and step numbers
+    # TODO: be consistent with whether the challenge and step numbers
     # are strings or integers
     current_challenge = int(current_challenge)
     current_step = int(current_step)

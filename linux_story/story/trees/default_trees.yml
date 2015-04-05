@@ -168,19 +168,19 @@ Mayor, grumpy-man, young-girl, little-boy:
 grumpy-man:
     challenges:
         - challenge: 8
-          step: 4
+          step: 1
           exists: False
 
 young-girl:
     challenges:
         - challenge: 8
-          step: 5
+          step: 2
           exists: False
 
 little-boy:
     challenges:
         - challenge: 8
-          step: 6
+          step: 3
           exists: False
 
 Mayor:
@@ -268,3 +268,27 @@ CAT, CD, LS:
         - challenge: 8
           step: 1
           path: "~/my-house/my-room/.chest"
+
+# Generate farm
+# Horse, pig, cow
+Cobweb, Trotter, Daisy, Ruth:
+    challenges:
+        - challenge: 17
+          step: 1
+          path: "~/farm/barn"
+
+# Farmer's wife
+bed_farmhouse:
+    name: "bed"
+
+    challenges:
+        - challenge: 17
+          step: 1
+          path: "~/farm/farmhouse"
+
+# Mum's diary
+diary, ECHO, map:
+    challenges:
+        - challenge: 17
+          step: 1
+          path: "~/my-house/parents-room/.safe"
