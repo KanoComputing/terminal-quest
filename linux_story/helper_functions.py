@@ -89,7 +89,7 @@ def play_sound(object_name):
 
 
 # TODO: NEEDS A BETTER NAME
-def get_completion_desc(current_dir, tree, line, list_type="both"):
+def get_last_dir(current_dir, tree, line, list_type="both"):
     '''This returns the last valid directory from a partly completed path
     e.g. if the user enters ls ../my-room/w then this should return my-room
     assuming the current_dir is one of kitchen, my-room etc.
@@ -127,10 +127,10 @@ def get_completion_desc(current_dir, tree, line, list_type="both"):
             temp_current_dir = tree.show_ancestor(temp_current_dir)
             final_list.append(temp_current_dir)
             direct_descs = tree.show_files_or_dirs(temp_current_dir, list_type)
+        elif d in direct_descs:
+            final_list.append(d)
+            direct_descs = tree.show_files_or_dirs(d, list_type)
         else:
-            if d in direct_descs:
-                final_list.append(d)
-                direct_descs = tree.show_files_or_dirs(d, list_type)
             break
 
     return final_list[-1]
