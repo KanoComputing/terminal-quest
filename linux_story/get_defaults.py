@@ -145,7 +145,7 @@ def filter_later_challenges(data_dict, current_challenge, current_step):
             # We don't have all the information yet, so we can't
             # reorder the elements yet
 
-        # Here we change the structure of the dictionary, so instead of a
+        # Here we change the structure of the dictionary
         filenames = dict_id.split(', ')
         for name in filenames:
 
@@ -172,24 +172,42 @@ def get_relevant_challenge(draft_story_dict):
     We can then take the last element of the ordered dictionaries, and this
     will be the relevent challenge.
     '''
-
     story_dict = {}
     for name, file_dict in draft_story_dict.iteritems():
 
+        # Check if 'challenges' is in the file_dict - if not, then this
+        # file shouldn't be added to the dictionary
         if 'challenges' in file_dict:
-            challenge_array = file_dict['challenges']
 
-            sorted_challenges = sorted(
-                challenge_array, key=lambda k: (k['challenge'], k['step'])
-            )
+            # initialise story_dict
+            story_dict[name] = {}
 
-            # If the list is non empty,
-            # only last element should be relevent
-            if sorted_challenges:
-                story_dict[name] = {}
-                story_dict[name] = sorted_challenges[-1]
+            # Go through the keys in the dictionary.  If the key is
+            # 'challenges, filter the challenges.  Otherwise, just
+            # copy them across
+            for key in file_dict.keys():
+                if key == 'challenges':
+                    challenge_array = file_dict['challenges']
 
-                if 'name' in file_dict:
-                    story_dict[name]['name'] = file_dict['name']
+                    sorted_challenges = sorted(
+                        challenge_array, key=lambda k: (k['challenge'], k['step'])
+                    )
+
+                    # If the list is non empty,
+                    # only last element should be relevent
+                    if sorted_challenges:
+                        story_dict[name].update(sorted_challenges[-1])
+
+                        if 'name' in file_dict:
+                            story_dict[name]['name'] = file_dict['name']
+
+                else:
+                    story_dict[name][key] = file_dict[key]
+
+            # If at the end, story_dict[name]["challenge"] is empty,
+            # then delete the entry since that file shouldn't exist for
+            # the specified challenge/step combo
+            if 'challenge' not in story_dict[name]:
+                del story_dict[name]
 
     return story_dict

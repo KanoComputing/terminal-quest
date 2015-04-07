@@ -87,6 +87,30 @@ note_greenhouse:
           step: 3
           path: "~/my-house/garden/greenhouse"
 
+# This is the contents of the basket. Moves around a lot in challenges 13-14
+# We could also specify the basket directory, but then we would have to specify the contents separately
+empty-bottle:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/town/.hidden-shelter/basket"
+
+        - challenge: 13
+          step: 5
+          path: "~/basket"
+
+        - challenge: 14
+          step: 1
+          path: "~/my-house/kitchen/basket"
+
+        - challenge: 14
+          step: 14
+          path: "~/basket"
+
+        - challenge: 14
+          step: 6
+          path: "~/town/.hidden-shelter/basket"
+
 # Kitchen
 # Any of the food could go on a journey, but these items
 # we select by default
@@ -107,7 +131,7 @@ banana, cake, crossaint:
 
         - challenge: 14
           step: 6
-          path: "~/town/.hidden-shelter"
+          path: "~/town/.hidden-shelter/basket"
 
 # These could be selected but are not by default
 grapes, milk, pie, sandwich:
@@ -115,20 +139,6 @@ grapes, milk, pie, sandwich:
         - challenge: 1
           step: 1
           path: "~/my-house/kitchen"
-
-        # Here it might be moved to the basket
-        - challenge: 14
-          step: 3
-          path: "~/my-house/kitchen"
-
-        - challenge: 14
-          step: 4
-          path: "~/my-house/kitchen"
-
-        - challenge: 14
-          step: 6
-          path: "~/my-house/kitchen"
-
 
 
 # Mum disappears after bell
@@ -226,29 +236,7 @@ dog:
           step: 2
           path: "~/town/.hidden-shelter"
 
-# This is the contents of the basket. Moves around a lot in challenges 13-14
-# We could also specify the basket directory, but then we would have to specify the contents separately
-empty-bottle:
-    challenges:
-        - challenge: 1
-          step: 1
-          path: "~/town/.hidden-shelter/basket"
 
-        - challenge: 14
-          step: 1
-          path: "~/basket"
-
-        - challenge: 15
-          step: 1
-          path: "~/my-house/kitchen/basket"
-
-        - challenge: 16
-          step: 1
-          path: "~/basket"
-
-        - challenge: 17
-          step: 1
-          path: "~/town/.hidden-shelter/basket"
 
 # Find the .tiny-chest in the .hidden-shelter
 MV:
@@ -269,6 +257,13 @@ CAT, CD, LS:
           step: 1
           path: "~/my-house/my-room/.chest"
 
+# Mum's diary
+diary, ECHO, map:
+    challenges:
+        - challenge: 17
+          step: 1
+          path: "~/my-house/parents-room/.safe"
+
 # Generate farm
 # Horse, pig, cow
 Cobweb, Trotter, Daisy, Ruth:
@@ -286,9 +281,9 @@ bed_farmhouse:
           step: 1
           path: "~/farm/farmhouse"
 
-# Mum's diary
-diary, ECHO, map:
+# toolshed
+MKDIR, spanner, hammer, saw, tape-measure:
     challenges:
         - challenge: 17
           step: 1
-          path: "~/my-house/parents-room/.safe"
+          path: "~/farm/toolshed"

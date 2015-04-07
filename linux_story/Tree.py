@@ -25,7 +25,9 @@ from linux_story.Node import Node
 from linux_story.get_defaults import get_default_file_dict
 
 # This is the path to the filesystem on the system
-from linux_story.common import tq_backup_folder, tq_file_system, tq_backup_tree
+from linux_story.common import (tq_backup_folder, tq_file_system,
+                                get_tq_backup_tree_path,
+                                create_tq_backup_tree_path)
 
 (_ROOT, _DEPTH, _BREADTH) = range(3)
 
@@ -33,14 +35,16 @@ from linux_story.common import tq_backup_folder, tq_file_system, tq_backup_tree
 story_filetree = None
 
 
-def load_global_tree():
-    '''This loads the filetree from the save file in the system
+def load_global_tree(challenge, step):
+    '''This loads the filetree from the save file in the system.
+    We may have multiple save states in the system for the different challenges
+    and steps, so we may load different files
     '''
 
     global story_filetree
 
     story_filetree = StoryFileTree()
-    success = story_filetree.load_tree()
+    success = story_filetree.load_tree(challenge, step)
 
     # if successful, exit
     if success == 0:
@@ -52,6 +56,11 @@ def default_global_tree(challenge, step):
     '''
 
     global story_filetree
+
+    # If we are loading from the default file system, we
+    # don't want to pollute it with anything lingering
+    if os.path.exists(tq_file_system):
+        shutil.rmtree(tq_file_system)
 
     story_filetree = StoryFileTree()
     story_dict = get_default_file_dict(challenge, step)
@@ -224,7 +233,7 @@ class StoryFileTree(Tree):
         '''
 
         if os.path.exists(path):
-            if os.path.isdir():
+            if os.path.isdir(path):
                 shutil.rmtree(path)
             else:
                 os.remove(path)
@@ -302,8 +311,8 @@ class StoryFileTree(Tree):
                     self.add_node(item_id)
 
                 # If 'path' is in the item dictionary, then make sure the
-                # relevent directory or file exists in the right place
-                if 'path' in item_dict.keys():
+                # relevant directory or file exists in the right place
+                if 'path' in item_dict.keys() and item_dict["path"]:
 
                     # Check also if "name" is in the dictionary, as this will
                     # change the name of the filepath.
@@ -340,7 +349,10 @@ class StoryFileTree(Tree):
 
                     # Create the directory in the file system
                     if item_dict['directory']:
-                        self.create_item(self[item_id].real_path, "directory")
+                        self.create_item(
+                            self[item_id].real_path,
+                            item_type="directory"
+                        )
                     else:
                         self.create_item(
                             self[item_id].real_path,
@@ -358,11 +370,11 @@ class StoryFileTree(Tree):
                 if 'parent' in item_dict.keys():
                     self.add_parent_to_identifier(item_id, item_dict['parent'])
 
-    def save_tree(self):
+    def save_tree(self, challenge, step):
         '''This saves the filesystem as a yaml, which is then stored in
         Terminal-Quest-content.
         '''
-
+        tq_backup_tree = create_tq_backup_tree_path(challenge, step)
         file_dict = {}
 
         nodes = self.nodes
@@ -388,13 +400,16 @@ class StoryFileTree(Tree):
         f.write(yaml_data)
         f.close()
 
-    def load_tree(self):
+    def load_tree(self, challenge, step):
         '''This loads the tree from the yaml and creates it at linux-story
         (Is this the best way?)
         This returns 1 if unsuccessful, 0 otherwise
         '''
+        tq_backup_tree = get_tq_backup_tree_path(challenge, step)
 
-        if os.path.exists(tq_backup_tree):
+        # The last condition may be redundant since it may be checked in
+        # the get_tq_backup_tree_path function
+        if tq_backup_tree and os.path.exists(tq_backup_tree):
             f = open(tq_backup_tree)
             yaml_data = f.read()
             f.close()

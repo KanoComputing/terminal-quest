@@ -41,7 +41,9 @@ class Step1(StepTemplateMv):
         'ls .chest',
         'ls .chest/',
         'ls -a .chest',
-        'ls -a .chest/'
+        'ls -a .chest/',
+        'ls .chest/ -a',
+        'ls .chest -a'
     ]
 
     hints = [
@@ -132,7 +134,9 @@ class Step4(StepTemplateMv):
 
     command = [
         "ls -a .chest",
-        "ls -a .chest/"
+        "ls -a .chest/",
+        'ls .chest/ -a',
+        'ls .chest -a'
     ]
 
     def next(self):
