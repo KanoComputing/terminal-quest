@@ -104,7 +104,7 @@ empty-bottle:
           path: "~/my-house/kitchen/basket"
 
         - challenge: 14
-          step: 14
+          step: 4
           path: "~/basket"
 
         - challenge: 14
@@ -236,8 +236,6 @@ dog:
           step: 2
           path: "~/town/.hidden-shelter"
 
-
-
 # Find the .tiny-chest in the .hidden-shelter
 MV:
     challenges:
@@ -246,19 +244,19 @@ MV:
           path: "~/town/.hidden-shelter/.tiny-chest"
 
         # Move the MV command into .chest
-        - challenge: 10
-          step: 1
+        - challenge: 16
+          step: 6
           path: "~/my-house/my-room/.chest"
 
 # Find the .chest in your room
-CAT, CD, LS:
+CAT, CD, LS, .note:
     challenges:
         - challenge: 8
           step: 1
           path: "~/my-house/my-room/.chest"
 
 # Mum's diary
-diary, ECHO, map:
+mums-diary, ECHO, map:
     challenges:
         - challenge: 17
           step: 1
