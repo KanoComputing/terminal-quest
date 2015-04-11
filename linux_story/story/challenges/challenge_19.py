@@ -43,7 +43,7 @@ class Step1(StepTemplate):
         self.story = [
             "Ruth: {{Bb:Oh hello there!  You startled me.",
             "Do I know you?  You look familiar...",
-            "Ah, you're Betty's kid aren't you!",
+            "Wait, you're Betty's kid aren't you!",
             "..."
             "Yes?  Do you have a tongue?",
             "Is your name not}} {{yb:" + username + "}}{{Bb:?}}",
@@ -73,7 +73,7 @@ class Step2(StepTemplate):
 
         if answer.lower() == "echo yes":
             self.story = [
-                "Ruth: {{Bb:\"Yes, I knew it!\"}}"
+                "Ruth: {{Bb:\"Ah, I knew it!\"}}"
             ]
         elif answer == "echo no":
             self.story = [
@@ -133,9 +133,9 @@ class Step3(StepTemplate):
             self.story = ["Ruth: {{Bb:You don't know?  That's worrying...}}"]
 
         self.story = self.story + [
-            "\n{{Bb:On a separate note, have you seen my husband?",
+            "\n{{Bb:Did you walk all the way from Town? Did you see my husband there?",
             "He's a pretty}} {{yb:grumpy-man}}{{Bb:, he was travelling "
-            "to town because we heard on the radio there was a big "
+            "to town because of that big "
             "meeting with the Mayor}}",
             "\n{{yb:1: \"I'm sorry, he disappeared in front of me.\"}}",
             "{{yb:2: \"I didn't see your husband, but people have been "
@@ -163,7 +163,7 @@ class Step3(StepTemplate):
         elif line == "echo 3":  # I don't know anything
             hint = (
                 "Ruth: {{Bb:Really?  Are you sure you didn't see a}} "
-                "{{yb:grumpy-man}}{{Bb:?}}"
+                "{{yb:grumpy-man}}{{Bb: in Town?}}"
             )
             self.send_hint(hint)
             return False
@@ -181,7 +181,7 @@ class Step3(StepTemplate):
 
 class Step4(StepTemplate):
     story = [
-        "Ruth: {{Bb:\"He disappeared in front of you?? Oh no that's terrible! "
+        "Ruth: {{Bb:\"He disappeared in front of you?? Oh no! "
         "They've been saying on the radio that people have been "
         "going missing...what should I do?\"}}",
         "\n{{yb:1: \"Some people survived by going into hiding.}}\"",
@@ -209,7 +209,7 @@ class Step4(StepTemplate):
         elif line == "echo 2":
             response = (
                 "Ruth: {{Bb:\"I would, but I'm scared of going missing myself."
-                "...I know I'm a coward.  Can you think of anything "
+                "...I know I'm a coward, he might come back, I should stay here in case he does.  Can you think of anything "
                 "else?\"}}"
             )
             self.send_hint(response)

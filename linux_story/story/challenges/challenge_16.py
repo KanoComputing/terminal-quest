@@ -28,10 +28,10 @@ class StepTemplateMv(Step):
 
 class Step1(StepTemplateMv):
     story = [
-        "You find an old antique chest hidden under your bed, "
+        "Is that an old antique chest hidden ... there ... under your bed, "
         "which you don't remember seeing before.",
         "You walk into my-room to have a closer look",
-        "Have a look inside the {{yb:.chest}} and see what it contains"
+        "Have a look inside the {{yb:.chest}} and see what it contains!"
     ]
 
     start_dir = "my-room"
@@ -65,7 +65,7 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        "You find some rolls of parchment, similar to what you found in "
+        "There are some rolls of parchment, similar to what you found in "
         "the .hidden-shelter",
         "Use {{yb:cat}} to read one of the scrolls"
     ]
@@ -92,7 +92,7 @@ class Step3(StepTemplateMv):
         "You recognise these commands.",
         "Maybe you should {{yb:move}} the one you found in the "
         "{{yb:~/town/.hidden-shelter/.tiny-chest}} to this {{yb:.chest}}, "
-        "so they're all in the same place."
+        "so they're all safe and in the same place."
     ]
 
     start_dir = "my-room"
@@ -120,8 +120,8 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "Is there anything else in this {{yb:.chest}}?",
-        "Have a closer look for hidden items."
+        "I wonder if theres anything else hidden in this {{yb:.chest}}?",
+        "Have a closer look for some more items."
     ]
 
     start_dir = "my-room"
@@ -167,7 +167,7 @@ class Step5(StepTemplateMv):
 
 class Step6(StepTemplateMv):
     story = [
-        "So someone left these for you to find?",
+        "So ... someone left these for you to find?",
         "But who?",
         "\n{{gb:Press Enter to continue}}"
     ]

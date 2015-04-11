@@ -28,10 +28,9 @@ class StepTemplateMkdir(Step):
 
 class Step1(StepTemplateEcho):
     story = [
-        "Ruth: {{Bb:Oh that's a good idea!  That reminds me - my husband was "
-        "very good at building shelters. I think he used a specific tool. "
-        "We should take a look in his toolshed to see if we can figure "
-        "out what he's doing.}}",
+        "Ruth: {{Bb:Oh that's a good idea!  My husband used "
+        "to build special shelters to store the crops in. They'd keep everything safe over winter. I think he used a specific tool. "
+        "We should take a look in his toolshed to see if we can find it "
         "\n{{gb:Use}} {{yb:cd}} {{gb:to go into the toolshed}}"
     ]
 
@@ -60,7 +59,7 @@ class Step1(StepTemplateEcho):
 class Step2(StepTemplateEcho):
     story = [
         "Ruth follows you into the toolshed.  It's a very large "
-        "space with many tools lining the walls.",
+        "space with tools lining the walls.",
         "Ruth: {{Bb:Lets have a look around for anything that "
         "could be useful}}"
     ]
@@ -80,8 +79,8 @@ class Step2(StepTemplateEcho):
 # the user to cat the,
 class Step3(StepTemplateEcho):
     story = [
-        "Ruth: {{Bb:Ah, I see a note called MKDIR.",
-        "Could this be a set of instructions?",
+        "Ruth: {{Bb:Ah, look! A note.",
+        "I think this is what he used to use?",
         "What does it say?}}"
     ]
     hints = [
@@ -101,7 +100,7 @@ class Step4(StepTemplateMkdir):
     story = [
         "Ruth: {{Bb:This says you can make something using something "
         "called}} {{yb:mkdir}}{{Bb:?}}",
-        "\n{{gb:Try making an igloo using the instructions.}}"
+        "\n{{gb:Try making an igloo using }} {{yb:mkdir}}"
     ]
     hints = [
         "{{rb:Create an igloo structure by using}} {{yb:mkdir igloo}}"

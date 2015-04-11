@@ -28,7 +28,7 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
-        "Have a look around to see what's going on in town."
+        "Have a look around to see what's going on!"
     ]
     start_dir = "town"
     end_dir = "town"
@@ -41,7 +41,7 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "Wow, there's so many people here. Find the {{yb:Mayor}} and see "
+        "It looks like the whole town has come to the meeting. Find the {{yb:Mayor}} and see "
         "what's going on!"
     ]
     start_dir = "town"
@@ -55,11 +55,11 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "{{wb:Mayor:}} {{Bn:\"Calm down please! We have our best "
-        "people looking into the disappearances, and we're hoping to "
-        "have an explanation soon.\"}}\n",
-        "Something strange is happening. Better check everyone is ok.",
-        "Type {{yb:cat}} to check on everyone."
+        "{{wb:Mayor:}} {{Bn:\"People of Folderton please Calm down! We have the scientists "
+        "at Folderton University looking into the disappearances. We're hoping to "
+        "have an explanation soon and then all this can be sorted out.\"}}\n",
+        "Not even the Mayor knows what's going on! Better check everyone is ok.",
+        "Type {{yb:cat}} to check on the people."
     ]
     start_dir = "town"
     end_dir = "town"
@@ -67,12 +67,12 @@ class Step3(StepTemplateCd):
     # Use functions here
     command = ""
     all_commands = {
-        "cat grumpy-man": "\n{{wb:Man:}} {{Bn:\"I don't know what's "
-        "happening to me. I heard this bell, and now my legs have "
+        "cat grumpy-man": "\n{{wb:Man:}} {{Bn:\"Help! I don't know what's "
+        "happening to me. I heard this bell ring, and now my legs have "
         "gone all strange.\"}}",
-        "cat young-girl": "\n{{wb:Girl:}} {{Bn:\"I can't find my "
-        "friend Amy anywhere. If you see her, will you let me know?\"}}",
-        "cat little-boy": "\n{{wb:Boy:}} {{Bn:\"Has anyone seen my "
+        "cat young-girl": "\n{{wb:Girl:}} {{Bn:\"Can you help me? I can't find my "
+        "friend Amy anywhere. Please! If you see her, will you let me know?\"}}",
+        "cat little-boy": "\n{{wb:Boy:}} {{Bn:\"Bernard? Bernard? Has anyone seen my "
         "dog Bernard? He's never run away before...\"}}"
     }
 
@@ -89,7 +89,7 @@ class Step3(StepTemplateCd):
 
         # If they enter ls, say Well Done
         if line == 'ls':
-            hint = "\n{{g:Well done for looking around.}}"
+            hint = "\n{{g:Nice work!}}"
             self.send_text(hint)
             return False
 

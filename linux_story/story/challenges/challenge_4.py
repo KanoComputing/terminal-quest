@@ -29,9 +29,10 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
-        "That's weird. No time for that now though - lets find Mum.",
+        "Well that looks kind of sinister, I wonder what it means?",
+        " No time for that now though - lets find Mum.",
         "\n{{wb:New Spell}}: {{yb:cd}} lets you move between places.",
-        "\nTo leave your room, use the command {{yb:cd ..}}"
+        "\nUse the command {{yb:cd ..}} to leave your room"
     ]
     start_dir = "my-room"
     end_dir = "my-house"
@@ -55,8 +56,8 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "You are now in the main hall of your house",
-        "Have a look at the different rooms of your house using {{yb:ls}}"
+        "Now you're in the hall.",
+        "Why not have a look at the different rooms of your house. You can use {{yb:ls}}"
     ]
     start_dir = "my-house"
     end_dir = "my-house"
@@ -80,9 +81,8 @@ class Step2(StepTemplateCd):
 class Step3(StepTemplateCd):
     story = [
         "{{pb:Ding. Dong.}}\n",
-        "What was that?  A bell?  That's a bit odd.",
-        "You see the door to your kitchen, and hear the sound of cooking.",
-        "Sounds like someone is preparing breakfast!",
+        "What was that?  A bell?  Strange.",
+        "Sounds like someone is preparing breakfast, can you see the kitchen door?!",
         "To go inside the kitchen, use {{yb:cd kitchen}}."
     ]
     start_dir = "my-house"
@@ -100,7 +100,7 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "You are in the kitchen.",
+        "Great, now you're in the kitchen.",
         "Try and find Mum using {{yb:ls}}"
     ]
     start_dir = "kitchen"
@@ -114,7 +114,7 @@ class Step4(StepTemplateCd):
 
 class Step5(StepTemplateCd):
     story = [
-        "You see your Mum busily working in a cloud of steam",
+        "There she is! Look's like she's busily working in a cloud of steam",
         "Let's see what {{yb:Mum}} wants by using {{yb:cat}}"
     ]
     start_dir = "kitchen"

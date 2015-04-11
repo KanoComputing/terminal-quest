@@ -20,7 +20,7 @@ class StepTemplateMkdir(Step):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "{{gb:Congratulations, you learnt the new skill mkdir!}}"
+        "{{gb:Nice! You learned the new skill - mkdir!}}"
         "\nRuth: {{Bb:Awesome!  So you can help me build a shelter!",
         "Can we make it back at the barn?  Then it'll be easier to "
         "move the animals inside.}}",
@@ -42,9 +42,9 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateMkdir):
     story = [
-        "Ruth: {{Bb:Now, I need this shelter to be hidden, "
-        "something that people can't easily find.  Do you have "
-        "any ideas of how to do that?}}"
+        "Ruth: {{Bb:Anyone can find the igloo though, "
+        "can we make something that people can't find.  Do you have "
+        "any ideas how we can make a hidden structure?}}"
     ]
     start_dir = "barn"
     end_dir = "barn"
@@ -65,7 +65,7 @@ class Step2(StepTemplateMkdir):
 
 class Step3(StepTemplateMkdir):
     story = [
-        "Ruth: {{Bb:Did you make something? I can't see anything...",
+        "Ruth: {{Bb:Did you make something? That's amazing! I can't even see it. ",
         "Put me and the animals inside.  Please.}}"
     ]
     start_dir = "barn"
@@ -79,9 +79,9 @@ class Step3(StepTemplateMkdir):
 
 class Step4(StepTemplateMkdir):
     story = [
-        "{{gb:Congratulations!  You've saved the farm}}",
-        "\nRuth: {{Bb:Thank you so much!  You've saved me "
-        "and my animals.  I'm so grateful to everything you've done}}",
+        "{{gb:Nice work!}}",
+        "\nRuth: {{Bb:Thank you so much! "
+        "We'll stay in here to keep safe.  I'm so grateful to everything you've done}}",
         "{{Bb:Do you think there are others like me, who could "
         "be stranded and in hiding?}}"
     ]

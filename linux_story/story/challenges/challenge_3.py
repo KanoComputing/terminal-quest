@@ -27,8 +27,8 @@ class StepTemplateCat(Step):
 
 class Step1(StepTemplateCat):
     story = [
-        "Love it! Put it on quickly.",
-        "There's loads more interesting stuff in your room.",
+        "Looks good!",
+        "There's loads more interesting stuff in your room, see what you can find.",
         "Let's look in your {{yb:shelves}} using {{yb:ls}}"
     ]
     start_dir = "my-room"
@@ -42,7 +42,7 @@ class Step1(StepTemplateCat):
 
 class Step2(StepTemplateCat):
     story = [
-        "That comic book looks fun. Take a look inside with "
+        "That comic book looks fun. You can take a look inside with "
         "{{yb:cat shelves/comic-book}}"
     ]
     start_dir = "my-room"
@@ -56,8 +56,9 @@ class Step2(StepTemplateCat):
 
 class Step3(StepTemplateCat):
     story = [
-        "Why is it covered in pawprints?",
-        "Hang on, there's a {{yb:note}} amongst your books.",
+        "Wait! It's covered in pawprints, what's going on?",
+        "Hang on, can you see that?"
+        "There's a {{yb:note}} amongst your books.",
         "Read the note using {{yb:cat}}"
     ]
     start_dir = "my-room"

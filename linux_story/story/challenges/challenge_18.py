@@ -23,7 +23,7 @@ class StepTemplate(Step):
 class Step1(StepTemplate):
     story = [
         "{{gb:Congratulations, you learnt the new skill echo!}}",
-        "\nSo you spoke {{yb:Hello}} aloud into an empty room.",
+        "\n Woah! It makes you talk!",
         "This command can probably be used to talk to people.",
         "Move this command into your chest for safe keeping."
     ]
@@ -61,7 +61,7 @@ class Step1(StepTemplate):
 
 class Step2(StepTemplate):
     story = [
-        "Now let's head to ~ to find the farm!",
+        "Nice work! Let's head to ~ to find that farm!",
         "Type {{yb:cd}} by itself to go to {{yb:~}}"
     ]
 
@@ -106,7 +106,7 @@ class Step3(StepTemplate):
 class Step4(StepTemplate):
     story = [
         "You notice a small remote farm in the distance.",
-        "Go towards it."
+        "Let's go that way."
     ]
 
     start_dir = "~"
@@ -141,7 +141,7 @@ class Step6(StepTemplate):
         "You are in a farm, with a {{bb:barn}}, a {{bb:farmhouse}} and "
         "a large {{bb:toolshed}} in sight.",
         "The land is well tended and weed free, so there must"
-        " be people present here.  See if you can find someone to "
+        " be people about here.  See if you can find someone to "
         "talk to."
     ]
     start_dir = "farm"
@@ -167,8 +167,7 @@ class Step7(StepTemplate):
 
     story = [
         "In the barn, you see a woman called {{yb:Ruth}}",
-        "You walk into the barn.",
-        "See what she has to say."
+        "You should talk to her and see if she knows what's going on."
     ]
 
     last_challenge = True

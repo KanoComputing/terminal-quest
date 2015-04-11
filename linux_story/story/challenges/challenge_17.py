@@ -51,7 +51,7 @@ class StepTemplateEcho(Step):
 class Step1(StepTemplateMv):
     story = [
         "You are in your room, standing in front of the {{yb:.chest}} "
-        "containing all the comands you've learnt so far",
+        "containing all the comands you've learned so far",
         "Maybe something else is hidden in the house?",
         "Have you looked in your parent's room yet?"
     ]
@@ -119,8 +119,8 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        "You found a {{yb:.safe}} in your parent's room.",
-        "Go into your parent's room to make it easier to examine."
+        "Is that a {{yb:.safe}} in your parent's room?",
+        "I wonder why they've never told you about this? Go into your parent's room to make it easier to examine."
     ]
     start_dir = "my-room"
     end_dir = "parents-room"
@@ -140,7 +140,7 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        "Look into the safe"
+        "Take a look inside the safe, maybe theres a hint as to where your parents have gone."
     ]
 
     command = ["ls", "ls -a"]
@@ -193,7 +193,7 @@ class Step4(StepTemplateMv):
 
         # Check to see if the kid reads his/her Mum's journal
         if line == 'cat .safe/mums-diary' and self.check_diary == 0:
-            self.send_hint('\n{{rb:You read your Mum\'s diary! How could you?}}')
+            self.send_hint('\n{{rb:You read your Mum\'s diary! How could you?}}')   #Game resets and they have to go back to the beggining? Or is that mean...
             self.check_diary += 1
             return False
 
@@ -207,9 +207,9 @@ class Step4(StepTemplateMv):
 
 class Step5(StepTemplateEcho):
     story = [
-        "So there's a map leading to a farm?",
+        "So there's a farm around here?",
         "Apparently it's not far from our house, just off the windy road...",
-        "What is this {{yb:ECHO}} note?  Have a read of it."
+        "What is this {{yb:ECHO}} note?  Take a look."
     ]
 
     start_dir = "parents-room"

@@ -35,7 +35,7 @@ class Step1(StepTemplateMv):
     story = [
         "{{wb:Edith:}} {{Bb:Thank you for saving her!}}",
         "{{wb:Eleanor:}} {{Bb:Doggy!}}",
-        "{{wb:Edith:}} {{Bb:Can you save her dog too?  I'm worried something "
+        "{{wb:Edith:}} {{Bb:Please! Can you save her dog too?  I'm worried something "
         "will happen to it if it stays outside.}}"
     ]
     start_dir = ".hidden-shelter"
@@ -78,9 +78,8 @@ class Step2(StepTemplateMv):
     story = [
         "{{wb:Eleanor:}} {{Bb:Yay, Doggie!}}",
         "{{wb:Dog:}} {{Bb:Ruff!}}",
-        "{{wb:Edith:}} {{Bb:Oh thank goodness you got them both back.",
-        "I was wrong about you. You're clearly a good person.}}\n",
-        "{{gb:Awesome!  You're a hero!}}",
+        "{{wb:Edith:}} {{Bb:Thank you! Thank you for getting them both back.",
+        "I was wrong about you. You're a hero!}}",
         "Talk to everyone and see if there's anything else you can do to "
         "help further."
     ]
@@ -89,7 +88,7 @@ class Step2(StepTemplateMv):
     command = "cat Edward"
     all_commands = {
         "cat Edith": "\n{{wb:Edith:}} {{Bb:\"Thank you so much! "
-        "Eleanor, don't wander outside again.\"}}",
+        "Eleanor, don't wander outside again - you scared the life out of me!\"}}",
         "cat Eleanor": "\n{{wb:Eleanor:}} {{Bb:\"Where do you think the "
         "bell would have taken us?\"}}",
         "cat dog": "\n{{wb:Dog:}} {{Bb:\"Woof! Woof woof!\"}}"

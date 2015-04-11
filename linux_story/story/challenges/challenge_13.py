@@ -28,9 +28,8 @@ class StepTemplateMv(Step):
 
 class Step1(StepTemplateMv):
     story = [
-        "{{wb:Edward:}} {{Bb:\"Hey, since you don't seem to be affected by "
-        "going outside, can you gather some food for us?  We didn't have "
-        "time to grab any before we went into hiding.\"",
+        "{{wb:Edward:}} {{Bb:\"Erm... can you help us? We haven't got any food or water,  can you gather some food for us?  We didn't have "
+        "time to grab anything before we went into hiding.\"",
         "\"Do you remember seeing any food in your travels?\"}}",
         "\n...ah! You have all that food in your {{yb:kitchen}}! "
         "We could give that to this family.",
@@ -87,7 +86,7 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        "You are now on a long windy road.  Look around you "
+        "You are now back on the long windy road.  Look around you "
         "with {{yb:ls}} to check that you have your basket with you"
     ]
 
@@ -108,7 +107,8 @@ class Step3(StepTemplateMv):
 class Step4(StepTemplateMv):
     story = [
         "You have your basket safely alongside you, and "
-        "you see my-house close by.",
+        "you see my-house close by.", 
+        # should my-house be different?
         "Move the {{yb:basket}} to {{yb:my-house/kitchen}}",
     ]
 

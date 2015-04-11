@@ -29,7 +29,7 @@ class StepTemplateMv(Step):
 
 class Step1(StepTemplateMv):
     story = [
-        "Look around at the food available in the kitchen."
+        "Let's see what food is available in the kitchen."
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"
@@ -178,7 +178,7 @@ class Step4(StepTemplateMv):
 
 class Step5(StepTemplateMv):
     story = [
-        "Get the basket with all the food to the family. ",
+        "Now you just need to get the food-filled baset to the family. ",
         "Move the {{yb:basket}} to {{yb:town/.hidden-shelter}}",
     ]
 
@@ -234,8 +234,8 @@ class Step6(StepTemplateMv):
 
 class Step7(StepTemplateMv):
     story = [
-        "{{wn:Talk to the people using}} {{yb:cat}} {{wn:and see how they "
-        "react to the food.}}"
+        "{{wn:Talk to the people using}} {{yb:cat}} {{wn:to see if  "
+        "everything is ok with the food.}}"
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
@@ -245,7 +245,7 @@ class Step7(StepTemplateMv):
     allowed_commands = {
         "cat Edith": (
             "\n{{wb:Edith:}} {{Bb:You saved my little girl and my dog, "
-            "and now you've saved us from starvation...how can I thank "
+            "and now you've brought us food...how can I thank "
             "you?}}\n"
         ),
         "cat Eleanor": (
@@ -254,7 +254,7 @@ class Step7(StepTemplateMv):
         ),
         "cat Edward": (
             "\n{{wb:Edward:}} {{Bb:Thank you!  I knew you would come "
-            "through for us.}}\n"
+            "through for us. You really are a hero!}}\n"
         ),
         "cat dog": (
             "\n{{wb:Dog:}} {{Bb:\"Woof!\"}} {{wn:\nThe dog seems very "

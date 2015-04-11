@@ -28,9 +28,9 @@ class StepTemplateCat(Step):
 
 class Step1(StepTemplateCat):
     story = [
-        "Better turn that alarm off.",
-        "\n{{wb:New Spell}}: to look at objects, we type {{yb:cat <object name>}}",
-        "To look at the alarm, type {{yb:cat alarm}}"
+        "Euuughh ... turn that alarm off!",
+        "\n{{wb:New Spell}}: to look at objects, type {{yb:cat <object name>}}",
+        "Try looking at the alarm, type {{yb:cat alarm}}"
     ]
     start_dir = "my-room"
     end_dir = "my-room"
@@ -43,13 +43,13 @@ class Step1(StepTemplateCat):
 
 class Step2(StepTemplateCat):
     story = [
-        "Ok - it's switched off. Better get dressed...",
-        "Type {{yb:ls wardrobe}} to find something to wear"
+        "Now that it's off I better get dressed...",
+        "Type {{yb:ls wardrobe}} to look for something to wear"
     ]
     start_dir = "my-room"
     end_dir = "my-room"
     command = ["ls wardrobe", "ls wardrobe/"]
-    hints = "{{rb:Type}} {{yb:ls wardrobe}} {{rb:to find something to wear}}"
+    hints = "{{rb:Type}} {{yb:ls wardrobe}} {{rb:to look for something to wear}}"
 
     def next(self):
         Step3()
@@ -57,7 +57,7 @@ class Step2(StepTemplateCat):
 
 class Step3(StepTemplateCat):
     story = [
-        "Check out the {{yb:t-shirt}}",
+        "Check out that {{yb:t-shirt}}!",
         "Type {{yb:cat wardrobe/t-shirt}} to see how it looks"
     ]
     start_dir = "my-room"
@@ -74,8 +74,8 @@ class Step3(StepTemplateCat):
 
 class Step4(StepTemplateCat):
     story = [
-        "Looking good!  Put that on and look for something else",
-        "Try on the {{yb:skirt}} or the {{yb:trousers}}"
+        "Nice!  Put that on and look for something else",
+        "Look at the {{yb:skirt}} or the {{yb:trousers}}"
     ]
     start_dir = "my-room"
     end_dir = "my-room"
@@ -103,7 +103,7 @@ class Step4(StepTemplateCat):
 class Step5(StepTemplateCat):
     story = [
         "Awesome, you're nearly done.",
-        "Finally, put on the {{yb:cap}} to finish off your outfit"
+        "Finally, put on the {{yb:cap}} so we're ready to go"
     ]
     start_dir = "my-room"
     end_dir = "my-room"

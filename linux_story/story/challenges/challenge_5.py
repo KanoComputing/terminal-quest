@@ -28,8 +28,8 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
-        "{{wb:Mum:}} {{Bn:\"Hi sleepyhead, can you go and grab your Dad? "
-        "Breakfast is nearly ready. I think he's in the garden.\"}}\n",
+        "{{wb:Mum:}} {{Bn:\"Hiey there sleepyhead, can you go and grab your Dad? "
+        "Let him know breakfast is nearly ready. I think he's in the garden.\"}}\n",
         "Let's look for your Dad in the garden.",
         "First we need to leave the kitchen using {{yb:cd ..}}"
     ]
@@ -62,7 +62,7 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "You see doors to the garden, your room and your parent's room.",
+        "It looks like there are doors to the garden, your room and your parent's room.",
         "You want to go into your {{yb:garden}}"
     ]
     start_dir = "my-house"
@@ -96,9 +96,9 @@ class Step4(StepTemplateCd):
 
 class Step5(StepTemplateCd):
     story = [
-        "The garden is well tended and the flowers are in bloom.",
-        "Hmmm... you can't see him anywhere.",
-        "Maybe he's in the {{yb:greenhouse}}. Go into the greenhouse."
+        "The garden looks beautiful at this time of year.",
+        "Hmmm... but you can't see him anywhere.",
+        "Maybe he's in the {{yb:greenhouse}}. Let's have a look in there."
     ]
     start_dir = "garden"
     end_dir = "greenhouse"
@@ -128,8 +128,8 @@ class Step6(StepTemplateCd):
 
 class Step7(StepTemplateCd):
     story = [
-        "Your dad has been busy, there are loads of vegetables here.",
-        "Hmmmm. He's not here. But there is something odd.",
+        "It looks like your dad has been busy, there are loads of vegetables here.",
+        "He's not here though. But there is something odd...",
         "You see a note on the ground.  Use {{yb:cat note}} to read what "
         "it says"
     ]
@@ -162,7 +162,7 @@ class Step8(StepTemplateCd):
 
 class Step9(StepTemplateCd):
     story = [
-        "You're back in the garden.  Use {{yb:cd ..}} again to go back to "
+        "Great! Now you're back in the garden.  Use {{yb:cd ..}} again to go back to "
         "the house."
     ]
     start_dir = "garden"
@@ -180,7 +180,7 @@ class Step9(StepTemplateCd):
 
 class Step10(StepTemplateCd):
     story = [
-        "Head back into the kitchen"
+        "Now go back into the kitchen and see Mum."
     ]
     start_dir = "my-house"
     end_dir = "kitchen"

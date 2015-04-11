@@ -44,8 +44,8 @@ class Step1(StepTemplateCd):
 
     story = [
         "{{pb:Ding. Dong.}}\n",
-        "That sounds like the bell you heard before.",
-        "Use {{yb:ls}} to see if anything has changed."
+        "It's that bell again? I wonder what it means.",
+        "Use {{yb:ls}} to slook around again."
     ]
     start_dir = "town"
     end_dir = "town"
@@ -66,13 +66,13 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCdBell):
 
     story = [
-        "{{wb:Little-boy:}} {{Bb:Oh no!  The man with the funny legs "
-        "disappeared.}}",
-        "{{wb:Little-boy:}} {{Bb:Is that bell making people disappear?}}",
+        "{{wb:Little-boy:}} {{Bb:Oh no!  Did you see that man with the funny legs earlier? "
+        "He's gone! Disappeared!}}",
+        "{{wb:Little-boy:}} {{Bb:Did you hear the bell just before he vanished??}}",
         "{{wb:Young-girl:}} {{Bb:I'm scared...}}",
         "\n{{pb:Ding. Dong.}}\n",
-        "{{wb:Young-girl:}} {{Bb:Oh!  I heard it go again!}}",
-        "\nLook around to see if anything has changed"
+        "{{wb:Young-girl:}} {{Bb:Did you hear it? It rung again! I wonder if someone has disappeared this time?}}",
+        "\nTake a look around you to check."
     ]
     start_dir = "town"
     end_dir = "town"
@@ -94,9 +94,9 @@ class Step2(StepTemplateCdBell):
 class Step3(StepTemplateCdBell):
 
     story = [
-        "{{wb:Young-girl:}} {{Bb:Now the little boy has gone",
+        "{{wb:Young-girl:}} {{Bb:Wait, there was a little boy here...right?",
         "Everytime that bell goes, someone disappears!}}",
-        "{{wb:Mayor:}} {{Bb:Maybe they just decided to go home...?}}",
+        "{{wb:Mayor:}} {{Bb:It's fine, settle down everybody. Maybe they just decided to go home...?}}",
         "\n{{pb:Ding. Dong.}}\n",
         "Look around."
     ]
@@ -136,8 +136,8 @@ class Step4(StepTemplateCd):
 class Step5(StepTemplateCdBell):
 
     story = [
-        "{{wb:Mayor:}} {{Bb:\"Everyone has disappeared??\"",
-        "....I should head home now...}}",
+        "{{wb:Mayor:}} {{Bb:\"Everyone ... has disappeared??\"",
+        "....I need to go, you should get home and be safe!}}",
         "\n{{pb:Ding. Dong.}}\n"
     ]
     start_dir = "town"
@@ -164,7 +164,7 @@ class Step5(StepTemplateCdBell):
 class Step6(StepTemplateCd):
     story = [
         "Everyone has gone.",
-        "Wait - there's just a note on the floor.",
+        "Wait - there's another note on the floor.",
         "Use {{yb:cat}} to read the note."
     ]
     start_dir = "town"
