@@ -71,7 +71,7 @@ def launch_project(challenge_number=1, step_number=1):
         default_global_tree(challenge_number, step_number)
     else:
         # Initialise the tree from the yaml
-        load_global_tree()
+        load_global_tree(challenge_number, step_number)
 
     step = get_step_class(challenge_number, step_number)
     step()
