@@ -49,14 +49,16 @@ def launch_project(challenge_number=1, step_number=1):
         show_dialog = True
 
     if not level:
-        # start at challenge 1
-        if not challenge_number == 1:
-            show_dialog = True
+        # Use a default tree.
+        # TODO: do we want to check save points instead? We currently only have
+        # one save point when ideally we want multiple.
+        show_dialog = True
 
     else:
         if challenge_number != level + 1:
             show_dialog = True
         # if level is defined but the file system has disappeared
+        # TODO: should this be an if or an elif?
         elif not tq_backup_tree or not os.path.exists(tq_backup_tree):
             show_dialog = True
 
@@ -71,6 +73,9 @@ def launch_project(challenge_number=1, step_number=1):
         default_global_tree(challenge_number, step_number)
     else:
         # Initialise the tree from the yaml
+
+        # TODO: we go here automatically when we launch the first challenge
+        # and haven't launched anything prior.
         load_global_tree(challenge_number, step_number)
 
     step = get_step_class(challenge_number, step_number)
