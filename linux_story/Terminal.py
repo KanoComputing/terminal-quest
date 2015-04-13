@@ -114,7 +114,14 @@ class Terminal(Cmd):
         '''
 
         cmd_output_correct = self.check_output(self.last_cmd_output)
-        condition = cmd_output_correct or self.check_command(line, self.current_dir)
+
+        # TODO: Re-evaluate this logic.
+        # This logic depends on our emphasis - do we want to pass levels using
+        # self.check_output, or specifically block levels depending on the
+        # output
+        condition = cmd_output_correct or \
+            self.check_command(line, self.current_dir)
+
         return self.finish_if_server_ready(condition)
 
     def complete_list(self):

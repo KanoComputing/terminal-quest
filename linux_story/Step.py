@@ -12,7 +12,7 @@ from linux_story.Tree import story_filetree
 from socket_functions import launch_client, is_server_busy
 from kano_profile.badges import save_app_state_variable_with_dialog
 from kano_profile.apps import (
-    load_app_state_variable, save_app_state_variable, get_app_xp_for_challenge
+    load_app_state_variable, get_app_xp_for_challenge
 )
 
 
@@ -147,6 +147,7 @@ class Step():
     def save_challenge(self):
         '''Integration with kano world
         '''
+
         global story_filetree
 
         level = load_app_state_variable("linux-story", "level")
@@ -161,6 +162,7 @@ class Step():
         '''Starts off the terminal's game loop.
         This function does not stop until the user has passed the level
         '''
+
         self.terminal.cmdloop()
 
     def check_command(self, line, current_dir):
@@ -230,7 +232,8 @@ class Step():
         The argument is the output from the command printed in the terminal.
         If the function return True, will break out of cmdloop and go to next
         Step.
-        if the function returns False, will stay in this Step.
+        if the function returns False, whether the level passes depends on
+        the return value of self.check_command
         '''
 
         if not output:
@@ -251,15 +254,3 @@ class Step():
 
         if self.story_dict:
             story_filetree.modify_file_tree(self.story_dict)
-
-    # This is not currently used
-    # Maybe use the new tree implementation to save forks instead?
-    def save_fork(self, fork):
-        '''Save fork using kano profile
-        '''
-
-        save_app_state_variable(
-            'linux-story',
-            'fork_' + str(self.challenge_number),
-            fork
-        )
