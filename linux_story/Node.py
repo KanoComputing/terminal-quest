@@ -28,6 +28,9 @@ class Node:
         self.__parent = None
         self.__is_dir = is_dir
 
+        # This determines whether we save the node to a file
+        self.__save_to_file = True
+
     @property
     def identifier(self):
         return self.__identifier
@@ -56,6 +59,10 @@ class Node:
     def name(self):
         return self.__name
 
+    @property
+    def save_to_file(self):
+        return self.__save_to_file
+
     def add_child(self, identifier):
         self.__children.append(identifier)
 
@@ -74,3 +81,6 @@ class Node:
     def add_fake_path(self, identifier):
         self.__fake_path = identifier
         self.calculate_real_path()
+
+    def set_save_to_file(self, identifier):
+        self.__save_to_file = identifier

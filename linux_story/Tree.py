@@ -226,6 +226,7 @@ class StoryFileTree(Tree):
         src_path: a string of the source path
         '''
 
+        logger.debug("creating '{}'".format(dest_path))
         if not os.path.exists(dest_path):
             if item_type == 'file':
                 shutil.copyfile(src_path, dest_path)
@@ -330,6 +331,9 @@ class StoryFileTree(Tree):
                         # Add a copy cat with the path as the key
                         self.add_node(fake_path)
 
+                        # Don't allow this new node to be saved to file
+                        self[fake_path].set_save_to_file(False)
+
                     else:
                         self[item_id].name = item_id
                         fake_path = os.path.join(item_dict['path'], item_id)
@@ -379,12 +383,20 @@ class StoryFileTree(Tree):
         Terminal-Quest-content.
         '''
         logger.debug("Saving tree")
+        # increase the challenge by one, as we save at the end of the challenge
+        challenge = int(challenge) + 1
         tq_backup_tree = create_tq_backup_tree_path(challenge, step)
         file_dict = {}
 
         nodes = self.nodes
 
         for item_id, node in nodes.iteritems():
+            # if we've set the node not to be saved to a file
+            # then skip
+
+            if not node.save_to_file:
+                continue
+
             nodename = node.fake_path.split('/')[-1]
             nodepath = '/'.join(node.fake_path.split('/')[:-1])
 
