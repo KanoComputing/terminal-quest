@@ -8,7 +8,7 @@
 from linux_story.Step import Step
 from linux_story.step_helper_functions import unblock_command_list
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
-# from linux_story.story.challenges.challenge_22 import Step1 as NextChallengeStep
+from linux_story.story.challenges.challenge_22 import Step1 as NextChallengeStep
 
 
 class StepTemplateMkdir(Step):
@@ -20,17 +20,22 @@ class StepTemplateMkdir(Step):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "{{gb:Nice! You learned the new skill - mkdir!}}"
+        "{{gb:Nice! You learned the new skill - mkdir!}}",
         "\nRuth: {{Bb:Awesome!  So you can help me build a shelter!",
         "Can we make it back at the barn?  Then it'll be easier to "
         "move the animals inside.}}",
-        "\n{{gb:Go back into the barn}}"
+        "\n{{yb:Go back into the barn}}"
     ]
     start_dir = "toolshed"
     end_dir = "barn"
     command = [
         "cd ../barn/",
         "cd ../barn"
+    ]
+    hints = [
+        "{{rb:Go back to the barn in one step by going back "
+        "a directory first. Try using}} "
+        "{{yb: cd ../barn}}"
     ]
 
     def block_command(self, line):
@@ -43,20 +48,28 @@ class Step1(StepTemplateMkdir):
 class Step2(StepTemplateMkdir):
     story = [
         "Ruth: {{Bb:Anyone can find the igloo though, "
-        "can we make something that people can't find.  Do you have "
-        "any ideas how we can make a hidden structure?}}"
+        "can we make something that people can't find. Do you have "
+        "any ideas how we can make a hidden shelter?}}",
+        "\nTo make something hidden, you need to put a dot . in front of the "
+        "name.",
+        "Make a shelter called {{yb:.shelter}}. Remember the dot at the start!"
     ]
     start_dir = "barn"
     end_dir = "barn"
 
     hint = [
-        "To make something hidden, you need to put a dot . in front of the name",
-        "Make a shelter called {{yb:.shelter}}. Remember the dot at the start!"
+        "{{rb:Make a shelter called}} {{yb:.shelter}}{{rb:. Remember the dot at the start!}}"
     ]
 
+    def block_command(self, line):
+        line = line.strip()
+        if line.startswith("mkdir ."):
+            return False
+        else:
+            return True
+
     def check_command(self, line, current_dir):
-        # need to check if there is a directory made with a
-        # dot in the front of the name
+        # check files in the toolshed directory
         pass
 
     def next(self):
@@ -65,13 +78,21 @@ class Step2(StepTemplateMkdir):
 
 class Step3(StepTemplateMkdir):
     story = [
-        "Ruth: {{Bb:Did you make something? That's amazing! I can't even see it. ",
-        "Put me and the animals inside.  Please.}}"
+        "Check it is properly hidden. Use {{yb:ls}} to "
+        "see if it is visible.",
     ]
-    start_dir = "barn"
-    end_dir = "barn"
 
-    # need to specify the hint depending on what animal needs help next
+    command = [
+        "ls"
+    ]
+
+    def check_command(self, line, current_dir):
+        line = line.strip()
+        if line == "ls -a":
+            self.send_hint(
+                "{{rb:Use}} {{yb:ls}} {{rb:instead of}} {{yb:ls -a}} "
+                "{{yb:to check that you can't see it}}"
+            )
 
     def next(self):
         Step4()
@@ -79,12 +100,42 @@ class Step3(StepTemplateMkdir):
 
 class Step4(StepTemplateMkdir):
     story = [
-        "{{gb:Nice work!}}",
-        "\nRuth: {{Bb:Thank you so much! "
-        "We'll stay in here to keep safe.  I'm so grateful to everything you've done}}",
-        "{{Bb:Do you think there are others like me, who could "
-        "be stranded and in hiding?}}"
+        "Now look around with {{yb:ls -a}} to check it actually exists!"
+    ]
+    start_dir = "barn"
+    end_dir = "barn"
+    command = [
+        "ls -a"
+    ]
+    hints = [
+        "{{rb:Use}} {{yb:ls -a}} {{rb:to look around}}"
     ]
 
+    def next(self):
+        Step5()
 
-# Do we now go into town and help the people there?
+
+class Step5(StepTemplateMkdir):
+    story = [
+        "Ruth: {{Bb:Did you make something? That's amazing! "
+        "Unfortunately I can't see it...please can you put me ",
+        "and the animals inside?}}"
+    ]
+    start_dir = "barn"
+    end_dir = "barn"
+    commands = [
+        "mv Trotter .shelter",
+        "mv Trotter .shelter/",
+        "mv Daisy .shelter",
+        "mv Daisy .shelter/",
+        "mv Cobweb .shelter",
+        "mv Cobweb .shelter/"
+    ]
+
+    def block_command(self, line):
+        return unblock_command_list(line, self.command)
+
+    # move the animals in one by one
+
+    def next(self):
+        NextChallengeStep(self.xp)

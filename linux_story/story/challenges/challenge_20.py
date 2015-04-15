@@ -29,7 +29,8 @@ class StepTemplateMkdir(Step):
 class Step1(StepTemplateEcho):
     story = [
         "Ruth: {{Bb:Oh that's a good idea!  My husband used "
-        "to build special shelters to store the crops in. They'd keep everything safe over winter. I think he used a specific tool. "
+        "to build special shelters to store the crops in. "
+        "They'd keep everything safe over winter. I think he used a specific tool. "
         "We should take a look in his toolshed to see if we can find it "
         "\n{{gb:Use}} {{yb:cd}} {{gb:to go into the toolshed}}"
     ]
@@ -41,6 +42,10 @@ class Step1(StepTemplateEcho):
 
     start_dir = "barn"
     end_dir = "toolshed"
+    hints = [
+        "Go to the toolshed in one step"
+        " using {{yb:cd ../toolshed}}"
+    ]
 
     def block_command(self, line):
         return unblock_command_list(line, self.command)
@@ -65,6 +70,9 @@ class Step2(StepTemplateEcho):
     ]
     start_dir = "toolshed"
     end_dir = "toolshed"
+    hints = [
+        "Use {{yb:ls}} to look around"
+    ]
 
     def check_output(self, output):
         if "MKDIR" in output:
@@ -79,8 +87,8 @@ class Step2(StepTemplateEcho):
 # the user to cat the,
 class Step3(StepTemplateEcho):
     story = [
-        "Ruth: {{Bb:Ah, look! A note.",
-        "I think this is what he used to use?",
+        "Ruth: {{Bb:Ah, look! There are some instructions ",
+        "labelled under {{yb:MKDIR}}."
         "What does it say?}}"
     ]
     hints = [
@@ -119,7 +127,6 @@ class Step4(StepTemplateMkdir):
 
     def next(self):
         Step5()
-        # NextChallengeStep(self.xp)
 
 
 class Step5(StepTemplateMkdir):
@@ -133,6 +140,9 @@ class Step5(StepTemplateMkdir):
         "ls -a",
         "ls .",
         "ls ./"
+    ]
+    hints = [
+        "Look around using {{yb:ls}}"
     ]
 
     def next(self):
