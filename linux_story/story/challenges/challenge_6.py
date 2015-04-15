@@ -44,7 +44,7 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "{{wb:Mum:}} {{Bn:\"You couldn't find him? That's strange, "
+        "{{wb:Mum:}} {{Bb:\"You couldn't find him? That's strange, "
         "he wouldn't leave home without telling me first.\"",
         "\"Maybe he went to that town meeting with the Mayor,"
         " the one they were talking about on the news. "

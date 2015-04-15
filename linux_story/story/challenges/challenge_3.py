@@ -42,8 +42,10 @@ class Step1(StepTemplateCat):
 
 class Step2(StepTemplateCat):
     story = [
-        "That comic book looks fun. Take a look inside with "
-        "{{yb:cat shelves/comic-book}}"
+        "Did you know you can use the TAB key to speed up your typing?",
+        "Try it by checking out that comic book. Take a look inside with "
+        "{{yb:cat shelves/comic-book}}",
+        "Press the TAB key before you've finished typing!"
     ]
     start_dir = "my-room"
     end_dir = "my-room"

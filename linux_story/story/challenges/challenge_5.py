@@ -28,7 +28,7 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
-        "{{wb:Mum:}} {{Bn:\"Hi sleepyhead, can you go and grab your Dad? "
+        "{{wb:Mum:}} {{Bb:\"Hi sleepyhead, can you go and grab your Dad? "
         "Breakfast is nearly ready. I think he's in the garden.\"}}\n",
         "Let's look for your Dad in the garden.",
         "First we need to leave the kitchen using {{yb:cd ..}}"
@@ -62,8 +62,8 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "You see doors to the garden, your room and your parent's room.",
-        "You want to go into your {{yb:garden}}"
+        "You see doors to the garden, kitchen, your room and your parent's room.",
+        "Head into your {{yb:garden}}"
     ]
     start_dir = "my-house"
     end_dir = "garden"

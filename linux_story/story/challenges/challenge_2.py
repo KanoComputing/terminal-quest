@@ -29,8 +29,8 @@ class StepTemplateCat(Step):
 class Step1(StepTemplateCat):
     story = [
         "Awesome, now you can see the objects around you.",
-        "There's your {{yb:bed}}, an {{yb:alarm}}...",
-        "Euuughh ... turn that alarm off!",
+        "There's your bed, an alarm...",
+        "Euuughh...turn that alarm off!",
         "\n{{wb:New Spell}}: to look at objects, type {{yb:cat <object name>}}",
         "Try looking at the alarm using {{yb:cat alarm}}"
     ]
@@ -76,7 +76,7 @@ class Step3(StepTemplateCat):
 
 class Step4(StepTemplateCat):
     story = [
-        "Looking good!  Put that on and look for something else",
+        "Looking good!  Put that on and look for something else.",
         "Look at the {{yb:skirt}} or the {{yb:trousers}}"
     ]
     start_dir = "my-room"
