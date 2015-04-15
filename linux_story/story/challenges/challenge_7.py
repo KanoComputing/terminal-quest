@@ -41,7 +41,7 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "It looks like the whole town has come to the meeting. Find the {{yb:Mayor}} and see "
+        "Wow, there's so many people here. Find the {{yb:Mayor}} and see "
         "what's going on!"
     ]
     start_dir = "town"
@@ -55,10 +55,10 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "{{wb:Mayor:}} {{Bn:\"People of Folderton please Calm down! We have the scientists "
-        "at Folderton University looking into the disappearances. We're hoping to "
-        "have an explanation soon and then all this can be sorted out.\"}}\n",
-        "Not even the Mayor knows what's going on! Better check everyone is ok.",
+        "{{wb:Mayor:}} {{Bn:\"Calm down please! We have our best "
+        "people looking into the disappearances, and we're hoping to "
+        "have an explanation soon.\"}}\n",
+        "Something strange is happening. Better check everyone is ok.",
         "Type {{yb:cat}} to check on the people."
     ]
     start_dir = "town"
@@ -70,10 +70,11 @@ class Step3(StepTemplateCd):
         "cat grumpy-man": "\n{{wb:Man:}} {{Bn:\"Help! I don't know what's "
         "happening to me. I heard this bell ring, and now my legs have "
         "gone all strange.\"}}",
-        "cat young-girl": "\n{{wb:Girl:}} {{Bn:\"Can you help me? I can't find my "
-        "friend Amy anywhere. Please! If you see her, will you let me know?\"}}",
-        "cat little-boy": "\n{{wb:Boy:}} {{Bn:\"Bernard? Bernard? Has anyone seen my "
-        "dog Bernard? He's never run away before...\"}}"
+        "cat young-girl": "\n{{wb:Girl:}} {{Bn:\"Can you help me? I can't "
+        "find my friend Amy anywhere. If you see her, will you let me"
+        " know?\"}}",
+        "cat little-boy": "\n{{wb:Boy:}} {{Bn:\"Bernard? Bernard? Has "
+        "anyone seen my dog Bernard? He's never run away before...\"}}"
     }
 
     last_step = True
@@ -89,7 +90,7 @@ class Step3(StepTemplateCd):
 
         # If they enter ls, say Well Done
         if line == 'ls':
-            hint = "\n{{g:Nice work!}}"
+            hint = "\n{{g:Well done for looking around.}}"
             self.send_text(hint)
             return False
 

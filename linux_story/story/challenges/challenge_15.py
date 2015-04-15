@@ -28,8 +28,9 @@ class StepTemplateMv(Step):
 
 class Step1(StepTemplateMv):
     story = [
-        "What was that spell that helped you find these hidden townsfolk? "
-        "you should try that again to make sure theres nothing you've overlooked!"
+        "You get the nagging feeling you're missing something",
+        "What was that spell that helped you find this place?",
+        "Use it to have a closer look around you."
     ]
     hints = [
         "{{rb:Use}} {{yb:ls -a}} {{rb:to look more closely around you}}"
@@ -49,7 +50,7 @@ class Step2(StepTemplateMv):
     story = [
         "What's that! There's {{yb:.tiny-chest}} in the corner of the shelter",
         "\n{{wb:Edward:}} {{Bb:\"Hey, what's that doing there? "
-        "Has it been there all along? Why couldn't I see it?\"}}",
+        "Has it been there all along? What's in it?\"}}",
         "\nHave a look inside the {{yb:.tiny-chest}}"
     ]
 
@@ -94,9 +95,9 @@ class Step3(StepTemplateMv):
 class Step4(StepTemplateMv):
     story = [
         "{{wb:Edward:}} {{Bb:\"Hey, that contains information about the "
-        "mv command you taught me. Why is it here?",
+        "mv command you taught me.",
         "I wonder where it came from?\"}}",
-        "\nMaybe you should go back to {{yb:my-house}} to see if you can find any more of these hidden items.",
+        "\nMaybe you should go back to {{yb:my-house}} to look for more hidden items.",
         "To quickly go back home, use {{yb:cd ~/my-house/}}"
     ]
 

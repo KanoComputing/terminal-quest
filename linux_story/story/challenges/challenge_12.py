@@ -35,7 +35,7 @@ class Step1(StepTemplateMv):
     story = [
         "{{wb:Edith:}} {{Bb:Thank you for saving her!}}",
         "{{wb:Eleanor:}} {{Bb:Doggy!}}",
-        "{{wb:Edith:}} {{Bb:Please! Can you save her dog too?  I'm worried something "
+        "{{wb:Edith:}} {{Bb:Can you save her dog too?  I'm worried something "
         "will happen to it if it stays outside.}}"
     ]
     start_dir = ".hidden-shelter"
@@ -78,7 +78,7 @@ class Step2(StepTemplateMv):
     story = [
         "{{wb:Eleanor:}} {{Bb:Yay, Doggie!}}",
         "{{wb:Dog:}} {{Bb:Ruff!}}",
-        "{{wb:Edith:}} {{Bb:Thank you! Thank you for getting them both back.",
+        "{{wb:Edith:}} {{Bb:Thank you so much for getting them both back.",
         "I was wrong about you. You're a hero!}}",
         "Talk to everyone and see if there's anything else you can do to "
         "help further."

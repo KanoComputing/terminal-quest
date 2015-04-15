@@ -29,10 +29,9 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
-        "Well that looks kind of sinister, I wonder what it means?",
-        " No time for that now though - lets find Mum.",
+        "That's weird. No time for that now though - lets find Mum.",
         "\n{{wb:New Spell}}: {{yb:cd}} lets you move between places.",
-        "\nUse the command {{yb:cd ..}} to leave your room"
+        "\nUse the command {{yb:cd ..}} to leave your room."
     ]
     start_dir = "my-room"
     end_dir = "my-house"
@@ -56,8 +55,8 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "Now you're in the hall.",
-        "Why not have a look at the different rooms of your house. You can use {{yb:ls}}"
+        "You've left {{yb:my-room}} and are in the hall of {{yb:my-house}}",
+        "Have a look at the different rooms of your house using {{yb:ls}}"
     ]
     start_dir = "my-house"
     end_dir = "my-house"
@@ -82,7 +81,7 @@ class Step3(StepTemplateCd):
     story = [
         "{{pb:Ding. Dong.}}\n",
         "What was that?  A bell?  Strange.",
-        "Sounds like someone is preparing breakfast, can you see the kitchen door?!",
+        "Sounds like someone is preparing breakfast in the kitchen.",
         "To go inside the kitchen, use {{yb:cd kitchen}}."
     ]
     start_dir = "my-house"
@@ -100,7 +99,7 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "Great, now you're in the kitchen.",
+        "Great, you're in the kitchen.",
         "Try and find Mum using {{yb:ls}}"
     ]
     start_dir = "kitchen"
@@ -114,8 +113,8 @@ class Step4(StepTemplateCd):
 
 class Step5(StepTemplateCd):
     story = [
-        "There she is! Look's like she's busily working in a cloud of steam",
-        "Let's see what {{yb:Mum}} wants by using {{yb:cat}}"
+        "You see her busily working in a cloud of steam",
+        "Let's see what {{yb:Mum}} has to say by using {{yb:cat}}"
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"

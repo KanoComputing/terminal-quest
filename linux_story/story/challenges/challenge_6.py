@@ -44,9 +44,10 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "{{wb:Mum:}} {{Bn:\"You couldn't find him? That's strange, I'm sure he was out there "
-        "and he wouldn't leave home without telling me first.\"",
-        "\"Maybe he went to that town meeting with the Mayor, the one they were talking about on the news. "
+        "{{wb:Mum:}} {{Bn:\"You couldn't find him? That's strange, "
+        "he wouldn't leave home without telling me first.\"",
+        "\"Maybe he went to that town meeting with the Mayor,"
+        " the one they were talking about on the news. "
         "Why don't you go and check? I'll stay here in case he comes "
         "back.\"}}\n",
         "Let's head to town. To leave the house, use {{yb:cd}} by itself"
@@ -66,7 +67,8 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "You're out of the house and on a long windy road, called ~",
+        "You're out of the house and on a long windy road called Tilde.",
+        "Sometimes it is represented by the symbol ~"
         "Look around again to see where to go next."
     ]
     start_dir = "~"
@@ -80,7 +82,7 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "You can see a {{yb:town}} off in the distance! Let's go into town using "
+        "You can see a {{yb:town}} in the distance! Let's go there using "
         "{{yb:cd}}."
     ]
     start_dir = "~"

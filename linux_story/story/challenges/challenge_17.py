@@ -119,7 +119,7 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        "Is that a {{yb:.safe}} in your parent's room?",
+        "You find a {{yb:.safe}} in your parent's room?",
         "I wonder why they've never told you about this? Go into your parent's room to make it easier to examine."
     ]
     start_dir = "my-room"
@@ -140,7 +140,7 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        "Take a look inside the safe, maybe theres a hint as to where your parents have gone."
+        "Maybe there's something useful in here.  Look inside the {{yb:.safe}}."
     ]
 
     command = ["ls", "ls -a"]
@@ -193,12 +193,11 @@ class Step4(StepTemplateMv):
 
         # Check to see if the kid reads his/her Mum's journal
         if line == 'cat .safe/mums-diary' and self.check_diary == 0:
-            self.send_hint('\n{{rb:You read your Mum\'s diary! How could you?}}')   #Game resets and they have to go back to the beggining? Or is that mean...
+            self.send_hint('\n{{rb:You read your Mum\'s diary! How could you?}}')
             self.check_diary += 1
             return False
 
         return_value = StepTemplateMv.check_command(self, line, current_dir)
-        print return_value
         return return_value
 
     def next(self):

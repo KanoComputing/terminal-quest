@@ -44,8 +44,8 @@ class Step1(StepTemplateCd):
 
     story = [
         "{{pb:Ding. Dong.}}\n",
-        "It's that bell again? I wonder what it means.",
-        "Use {{yb:ls}} to slook around again."
+        "It sounds like the bell you heard before.",
+        "Use {{yb:ls}} to look around again."
     ]
     start_dir = "town"
     end_dir = "town"
@@ -66,12 +66,12 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCdBell):
 
     story = [
-        "{{wb:Little-boy:}} {{Bb:Oh no!  Did you see that man with the funny legs earlier? "
-        "He's gone! Disappeared!}}",
+        "{{wb:Little-boy:}} {{Bb:Oh no!  That man with the funny legs "
+        "has gone!}}",
         "{{wb:Little-boy:}} {{Bb:Did you hear the bell just before he vanished??}}",
         "{{wb:Young-girl:}} {{Bb:I'm scared...}}",
         "\n{{pb:Ding. Dong.}}\n",
-        "{{wb:Young-girl:}} {{Bb:Did you hear it? It rung again! I wonder if someone has disappeared this time?}}",
+        "{{wb:Young-girl:}} {{Bb:Oh!  I heard it go again!}}",
         "\nTake a look around you to check."
     ]
     start_dir = "town"
@@ -95,8 +95,8 @@ class Step3(StepTemplateCdBell):
 
     story = [
         "{{wb:Young-girl:}} {{Bb:Wait, there was a little boy here...right?",
-        "Everytime that bell goes, someone disappears!}}",
-        "{{wb:Mayor:}} {{Bb:It's fine, settle down everybody. Maybe they just decided to go home...?}}",
+        "Every time that bell goes, someone disappears!}}",
+        "{{wb:Mayor:}} {{Bb:Maybe they just decided to go home...?}}",
         "\n{{pb:Ding. Dong.}}\n",
         "Look around."
     ]
@@ -111,7 +111,6 @@ class Step3(StepTemplateCdBell):
     }
 
     def run(self):
-        # copy_data(8, 5)
         StepTemplateCdBell.run(self)
 
     def next(self):
@@ -137,7 +136,7 @@ class Step5(StepTemplateCdBell):
 
     story = [
         "{{wb:Mayor:}} {{Bb:\"Everyone ... has disappeared??\"",
-        "....I need to go, you should get home and be safe!}}",
+        "....I should head home now...}}",
         "\n{{pb:Ding. Dong.}}\n"
     ]
     start_dir = "town"

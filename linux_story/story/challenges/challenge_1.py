@@ -25,15 +25,17 @@ class StepTemplateLs(Step):
 
 class Step1(StepTemplateLs):
     story = [
-        "{{wb:Alarm}} : \"Beep beep beep! Beep beep beep!\"",
-        "{{wb:Radio}} : {{Bb:\"Good Morning, this is the 7am news.\"",
-        "\"The town of Folderton has awoken to strange news this morning. "
-        "There have been reports of missing people and damaged buildings across the town"
-        "and there are more stories coming in as we speak.\"",
-        "\"Mayor Hubert has called an emergency town meeting and  "
-        "we'll keep you posted about that as it happens...\"}}\n",
-        "It's time to get up sleepy head!",
-        "\n{{wb:New Spell:}} {{yb:ls}} - lets you see what's around you."
+        "boo"
+        #"{{wb:Alarm}} : \"Beep beep beep! Beep beep beep!\"",
+        #"{{wb:Radio}} : {{Bb:\"Good Morning, this is the 7am news.\"",
+        #"\"The town of Folderton has awoken to strange news. "
+        #"There have been reports of missing people and damaged"
+        #" buildings across the town,"
+        #" with more stories coming in as we speak.\"",
+        #"\"Mayor Hubert has called an emergency town meeting and"
+        #" we'll keep you posted as it happens...\"}}\n",
+        #"It's time to get up sleepy head!",
+        #"\n{{wb:New Spell:}} {{yb:ls}} - lets you see what's around you."
     ]
     start_dir = "my-room"
     end_dir = "my-room"

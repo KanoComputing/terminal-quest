@@ -28,10 +28,10 @@ class StepTemplateMv(Step):
 
 class Step1(StepTemplateMv):
     story = [
-        "Is that an old antique chest hidden ... there ... under your bed, "
+        "There is an old antique chest hidden under your bed, "
         "which you don't remember seeing before.",
-        "You walk into my-room to have a closer look",
-        "Have a look inside the {{yb:.chest}} and see what it contains!"
+        "You walk into my-room to have a closer look.",
+        "Peer inside the {{yb:.chest}} and see what it contains."
     ]
 
     start_dir = "my-room"
@@ -167,7 +167,7 @@ class Step5(StepTemplateMv):
 
 class Step6(StepTemplateMv):
     story = [
-        "So ... someone left these for you to find?",
+        "So someone left these for you to find?",
         "But who?",
         "\n{{gb:Press Enter to continue}}"
     ]

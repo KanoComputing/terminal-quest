@@ -41,7 +41,7 @@ class StepTemplateMv(Step):
 # The next few steps should be like the disappearing of people in the town
 class Step1(StepTemplateCd):
     story = [
-        "You clamber into the directory and see a group of scared looking townsfolk and a dog.",
+        "You see a group of scared looking people and a dog.",
         "Try talking to them with {{yb:cat}}"
     ]
     start_dir = ".hidden-shelter"
@@ -53,7 +53,7 @@ class Step1(StepTemplateCd):
         "you to keep your voice down.\"}}",
         "cat Eleanor": "\n{{wb:Eleanor:}} {{Bb:\"My mummy is scared the "
         "bell will find us if we go outside.\"}}",
-        "cat Edward": "\n{{wb:Edward:}} {{Bb:\"I'm sorry Edith...but I... "
+        "cat Edward": "\n{{wb:Edward:}} {{Bb:\"I'm sorry Edith...but "
         "I don't think they mean any harm.  Maybe they could help us?\"}}",
         "cat dog": "\n{{wb:Dog:}} {{Bb:\"Woof woof!\"}}"
     }
@@ -113,13 +113,13 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateMv):
     story = [
         "Edward looks like he has something he wants to say to you.\n",
-        "{{wb:Edward:}} {{Bb:\"Can you help me with something please?\"",
+        "{{wb:Edward:}} {{Bb:\"Hi there. Can you help me with something?\"",
         "\"I learnt this spell for moving items from"
-        " one place to another.\"",
-        "\"But I can't seem to make it work. I've been trying to move this}} {{yb:apple}} {{Bb:into the}} "
+        " one place to another.  But I can't seem to make it work.\"",
+        "\"I've been trying to move this}} {{yb:apple}} {{Bb:into the}} "
         "{{yb:basket}}{{Bb:\"}}",
         "{{Bb:\"I was told the command was}} {{yb:mv apple basket/}}\"",
-        "{{Bb:\"But I don't understand what that means.  Do I say it or write it? Do you think that you can make it work?\"}}"
+        "{{Bb:\"But I don't understand what that means.  Do I say it?  Or write it?\"}}"
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
@@ -160,7 +160,7 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "{{gb:Nice work! The apple isn't in this directory anymore}}\n",
+        "{{gb:Nice work! The apple isn't in this directory anymore.}}\n",
         "{{wn:Now check the apple is in the}} {{yb:basket}} {{wn:using}} "
         "{{yb:ls}}"
     ]
@@ -183,10 +183,10 @@ class Step4(StepTemplateMv):
 # After cat-ing the person again?
 class Step5(StepTemplateMv):
     story = [
-        "{{gb:Cool! You managed to move it!}}",
+        "{{gb:Cool, you moved the apple into the basket!}}",
         "\n{{wb:Edward:}} {{Bb:\"Hey, you did it!  What was I doing "
         "wrong?\"}}",
-        "{{Bb:\"Can you move the apple back from the basket to here?\"}}\n",
+        "{{Bb:\"Can you move the apple back from the basket back here?\"}}\n",
         "Try to move the apple from the {{yb:basket}} "
         "to your current position {{yb:.}}, so use {{yb:mv basket/apple .}}",
         "You need the {{yb:.}} !"
@@ -236,9 +236,9 @@ class Step6(StepTemplateMv):
         "{{Bb:\"Ah!  The dog ran outside!\"}}",
         "{{wb:Eleanor:}} {{Bb:\"Doggy!\"}}",
         "{{wb:Edith:}} {{Bb:\"No, honey!  Don't go outside!\"}}",
-        "\n{{wn:She's run out after the dog! "
+        "\n{{wn:Eleanor follows her dog and leaves the"
         ".hidden-shelter}}",
-        "Check, just to make sure she isn't in here somewhere."
+        "Have a look around to check this."
     ]
 
     start_dir = ".hidden-shelter"

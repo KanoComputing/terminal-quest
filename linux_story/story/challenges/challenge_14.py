@@ -178,7 +178,7 @@ class Step4(StepTemplateMv):
 
 class Step5(StepTemplateMv):
     story = [
-        "Now you just need to get the food-filled baset to the family. ",
+        "Now get the food-filled basket to the family.",
         "Move the {{yb:basket}} to {{yb:town/.hidden-shelter}}",
     ]
 
@@ -234,7 +234,7 @@ class Step6(StepTemplateMv):
 
 class Step7(StepTemplateMv):
     story = [
-        "{{wn:Talk to the people using}} {{yb:cat}} {{wn:to see if  "
+        "{{wn:See what everyone has to say using}} {{yb:cat}} {{wn:and check "
         "everything is ok with the food.}}"
     ]
     start_dir = ".hidden-shelter"
@@ -245,7 +245,7 @@ class Step7(StepTemplateMv):
     allowed_commands = {
         "cat Edith": (
             "\n{{wb:Edith:}} {{Bb:You saved my little girl and my dog, "
-            "and now you've brought us food...how can I thank "
+            "and now you've saved us from starvation...how can I thank "
             "you?}}\n"
         ),
         "cat Eleanor": (

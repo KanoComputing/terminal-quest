@@ -33,7 +33,7 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
-        "Back in your empty house.",
+        "You're in your house.  You appear to be alone.",
         "Use {{yb:cat}} to have a look at some of the objects around you."
     ]
     allowed_commands = [
@@ -90,7 +90,7 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "There doesn't seem to be anything exciting here but loads of food.",
+        "There doesn't seem to be anything but loads of food.",
         "See if you can find something back in {{yb:town}}.",
         "First, use {{yb:cd ..}} to leave the kitchen."
     ]
@@ -122,7 +122,7 @@ class Step2(StepTemplateCd):
             # If the last command the user used was to get here
             # then congratulate them
             if line == "cd .." or line == 'cd' or line == 'cd ../':
-                hint = "{{gb:Good work!  Do it again to leave the house!}}"
+                hint = "{{gb:Good work!  Do it again!}}"
 
             # Otherwise, give them a hint
             else:
@@ -168,8 +168,8 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "The  whole place appears to be deserted.",
-        "Can you hear that. Can you hear whispering?.",
+        "The whole place appears to be deserted.",
+        "However, you think you hear whispers.",
         # Make this writing small
         "\n{{Bn:\".....if they use}} {{yb:ls -a}}{{Bn:, they'll see us...\"}}",
         "{{Bn:\"..Shhh!  ...might hear....\"}}"
@@ -189,7 +189,7 @@ class Step4(StepTemplateCd):
 class Step5(StepTemplateCd):
     story = [
         "You see a {{yb:.hidden-shelter}} that you didn't notice before.",
-        "Are the whispers coming from in there?  Try going in."
+        "It sounds like the whispers are coming from there.  Try going in."
     ]
     start_dir = "town"
     end_dir = ".hidden-shelter"

@@ -28,8 +28,10 @@ class StepTemplateMv(Step):
 
 class Step1(StepTemplateMv):
     story = [
-        "{{wb:Edward:}} {{Bb:\"Erm... can you help us? We haven't got any food or water,  can you gather some food for us?  We didn't have "
-        "time to grab anything before we went into hiding.\"",
+        "{{wb:Edward:}} {{Bb:\"Erm...can you help us? "
+        "We haven't got any food, could you gather some for us?"
+        "We didn't have "
+        "time to grab any before we went into hiding.\"",
         "\"Do you remember seeing any food in your travels?\"}}",
         "\n...ah! You have all that food in your {{yb:kitchen}}! "
         "We could give that to this family.",
@@ -63,7 +65,7 @@ class Step1(StepTemplateMv):
 class Step2(StepTemplateMv):
     story = [
         "Now follow the basket.  Use {{yb:cd}} by itself "
-        "to go to the road ~"
+        "to go to the road Tilde."
     ]
     start_dir = ".hidden-shelter"
     end_dir = "~"
@@ -107,8 +109,7 @@ class Step3(StepTemplateMv):
 class Step4(StepTemplateMv):
     story = [
         "You have your basket safely alongside you, and "
-        "you see my-house close by.", 
-        # should my-house be different?
+        "you see {{yb:my-house}} close by.",
         "Move the {{yb:basket}} to {{yb:my-house/kitchen}}",
     ]
 

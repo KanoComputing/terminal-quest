@@ -29,7 +29,7 @@ class StepTemplateCd(Step):
 
 class Step1(StepTemplateCd):
     story = [
-        "Oh no! Go make sure your Mum is OK!.",
+        "Oh no! Check your Mum is alright.",
         "Type {{yb:cd ..}} to leave town."
     ]
     start_dir = "town"
@@ -87,8 +87,8 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "She's gone - Your Mum's vanished too.",
-        "Look - another note.",
+        "Oh no - Mum's vanished too.",
+        "Wait, there's another note",
         "Use {{yb:cat}} to read the note."
     ]
     start_dir = "kitchen"
