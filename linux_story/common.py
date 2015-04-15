@@ -3,6 +3,7 @@
 # This would contain all the common names across the OS
 
 import os
+from kano.logging import logger
 
 # setting up directories
 current_dir = os.path.abspath(os.path.dirname(__file__))
@@ -51,6 +52,8 @@ def create_tq_backup_tree_path(challenge, step):
 def get_tq_backup_tree_path(challenge, step):
     '''Get the last saved state which is applicable for the
     '''
+    logger.debug("Getting last backup path")
+
     if not os.path.exists(tq_backup_folder):
         os.mkdir(tq_backup_folder)
 
@@ -60,7 +63,11 @@ def get_tq_backup_tree_path(challenge, step):
     relevant_save_states = []
 
     for f in contents:
-        f_elements = f.split('_')
+
+        # remove yml extensiion
+        new_f = f.replace('.yml', '')
+        f_elements = new_f.split('_')
+
         if f.startswith("challenge") and len(f_elements) == 4:
             f_challenge = int(f_elements[1])
             f_step = int(f_elements[3])
@@ -76,6 +83,7 @@ def get_tq_backup_tree_path(challenge, step):
         sorted_challenges = sorted(
             relevant_save_states, key=lambda k: (k['challenge'], k['step'])
         )
-        print sorted_challenges
-        save_state = sorted_challenges[-1]
+        logger.debug("sorted_challenges = {}".format(sorted_challenges))
+        save_state = sorted_challenges[-1]['path']
+        logger.debug("Restoring save_state = {}".format(save_state))
         return os.path.join(tq_backup_folder, save_state)
