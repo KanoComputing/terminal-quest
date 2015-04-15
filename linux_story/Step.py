@@ -143,7 +143,7 @@ class Step():
                                       )
 
         if xp > 0:
-            self.xp = "{{gb:Congratulations, you earned " + str(xp) + " XP!}}\n"
+            self.xp = "{{gb:Congratulations, you earned " + str(xp) + " XP!}}\n\n"
 
     def save_challenge(self):
         '''Integration with kano world
