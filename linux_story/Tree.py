@@ -29,6 +29,8 @@ from linux_story.common import (tq_backup_folder, tq_file_system,
                                 get_tq_backup_tree_path,
                                 create_tq_backup_tree_path)
 
+from kano.logging import logger
+
 (_ROOT, _DEPTH, _BREADTH) = range(3)
 
 # Global variable
@@ -213,6 +215,8 @@ class Tree:
 # These are functions to control and save the Tree class
 
 class StoryFileTree(Tree):
+    def __init__(self):
+        Tree.__init__(self)
 
     def create_item(self, dest_path, item_type="file", src_path=""):
         '''Create a file or directory
@@ -374,6 +378,7 @@ class StoryFileTree(Tree):
         '''This saves the filesystem as a yaml, which is then stored in
         Terminal-Quest-content.
         '''
+        logger.debug("Saving tree")
         tq_backup_tree = create_tq_backup_tree_path(challenge, step)
         file_dict = {}
 
@@ -396,6 +401,7 @@ class StoryFileTree(Tree):
         if not os.path.exists(tq_backup_folder):
             os.mkdir(tq_backup_folder)
 
+        logger.debug("Writing to tq_backup_tree = {}".format(tq_backup_tree))
         f = open(tq_backup_tree, 'w+')
         f.write(yaml_data)
         f.close()

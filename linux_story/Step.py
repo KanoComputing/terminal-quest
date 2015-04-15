@@ -24,6 +24,7 @@ class Step():
     hints = ""
     last_step = False
     challenge_number = 1
+    step_number = 1
     output_condition = lambda x, y: False
     story_dict = {}
     xp = ""
@@ -155,7 +156,7 @@ class Step():
             save_app_state_variable_with_dialog("linux-story", "level",
                                                 self.challenge_number)
             # save file contents as a yaml
-            story_filetree.save_tree()
+            story_filetree.save_tree(self.challenge_number, self.step_number)
             self.get_xp()
 
     def launch_terminal(self):
