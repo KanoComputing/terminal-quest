@@ -16,7 +16,7 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.Tree import load_global_tree, default_global_tree
-from linux_story.common import get_tq_backup_tree_path
+from linux_story.common import create_tq_backup_tree_path
 from kano_profile.apps import load_app_state_variable
 from kano.logging import logger
 
@@ -41,7 +41,12 @@ def launch_project(challenge_number=1, step_number=1):
 
     # We don't save the step number.
     level = load_app_state_variable("linux-story", "level")
-    tq_backup_tree = get_tq_backup_tree_path(challenge_number, step_number)
+
+    # Rather than retrieving the latest valid path, create a pth and see if it exists
+    tq_tree_backup = create_tq_backup_tree_path(challenge_number, step_number)
+
+    if not os.path.exists(tq_tree_backup):
+        show_dialog = True
 
     if step_number != 1:
         # Only time step_number is not 1 is when someone is testing.
@@ -59,8 +64,9 @@ def launch_project(challenge_number=1, step_number=1):
             show_dialog = True
         # if level is defined but the file system has disappeared
         # TODO: should this be an if or an elif?
-        elif not tq_backup_tree or not os.path.exists(tq_backup_tree):
-            show_dialog = True
+        # Not sure if this is still needed
+        # elif not tq_backup_tree or not os.path.exists(tq_backup_tree):
+        #    show_dialog = True
 
     # We could send a signal to the the GTK side of the app to
     # launch a dialog
