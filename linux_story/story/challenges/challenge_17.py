@@ -143,7 +143,7 @@ class Step3(StepTemplateMv):
         "Maybe there's something useful in here.  Look inside the {{yb:.safe}}."
     ]
 
-    command = ["ls", "ls -a"]
+    commands = ["ls", "ls -a"]
     start_dir = "parents-room"
     end_dir = "parents-room"
     hints = [
@@ -213,7 +213,7 @@ class Step5(StepTemplateEcho):
 
     start_dir = "parents-room"
     end_dir = "parents-room"
-    command = "cat .safe/ECHO"
+    commands = "cat .safe/ECHO"
     hints = [
         "{{rb:Use the}} {{yb:cat}} {{rb:command to read the note}}",
         "{{rb:Use}} {{yb:cat .safe/ECHO}} {{rb:to read the note}}"
@@ -231,7 +231,7 @@ class Step6(StepTemplateEcho):
     hint = [
         "{{rb:Use the command}} {{yb:echo Hello}}"
     ]
-    command = "echo Hello"
+    commands = "echo Hello"
     start_dir = "parents-room"
     end_dir = "parents-room"
 

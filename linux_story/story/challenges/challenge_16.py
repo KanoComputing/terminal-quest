@@ -15,7 +15,8 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.Step import Step
 from linux_story.story.terminals.terminal_mv import TerminalMv
-from linux_story.step_helper_functions import unblock_command_list
+from linux_story.story.challenges.challenge_17 import Step1 as NextChallengeStep
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 import time
 
 
@@ -37,7 +38,7 @@ class Step1(StepTemplateMv):
     start_dir = "my-room"
     end_dir = "my-room"
 
-    command = [
+    commands = [
         'ls .chest',
         'ls .chest/',
         'ls -a .chest',
@@ -73,7 +74,7 @@ class Step2(StepTemplateMv):
     start_dir = "my-room"
     end_dir = "my-room"
 
-    command = [
+    commands = [
         'cat .chest/LS',
         'cat .chest/CAT',
         'cat .chest/CD'
@@ -98,7 +99,7 @@ class Step3(StepTemplateMv):
     start_dir = "my-room"
     end_dir = "my-room"
 
-    command = [
+    commands = [
         "mv ~/town/.hidden-shelter/.tiny-chest/MV .chest/",
         "mv ~/town/.hidden-shelter/.tiny-chest/MV .chest",
         "mv ../../.hidden-shelter/.tiny-chest/MV .chest/",
@@ -112,7 +113,7 @@ class Step3(StepTemplateMv):
     ]
 
     def block_command(self, line):
-        return unblock_command_list(line, self.command)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
         Step4()
@@ -132,7 +133,7 @@ class Step4(StepTemplateMv):
         "hidden items in the chest}}"
     ]
 
-    command = [
+    commands = [
         "ls -a .chest",
         "ls -a .chest/",
         'ls .chest/ -a',
@@ -157,7 +158,7 @@ class Step5(StepTemplateMv):
         "{{rb:Use}} {{yb:cat .chest/.note}} {{rb:to read the}} {{yb:.note}}"
     ]
 
-    command = [
+    commands = [
         "cat .chest/.note"
     ]
 
@@ -177,7 +178,8 @@ class Step6(StepTemplateMv):
     last_step = True
 
     def next(self):
-        self.exit()
+        NextChallengeStep(self.xp)
+        # self.exit()
 
         # So that server has time to send message before it closes
-        time.sleep(3)
+        # time.sleep(3)

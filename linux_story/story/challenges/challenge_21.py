@@ -6,7 +6,7 @@
 # A chapter of the story
 
 from linux_story.Step import Step
-from linux_story.step_helper_functions import unblock_command_list
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
 from linux_story.story.challenges.challenge_22 import Step1 as NextChallengeStep
 
@@ -28,7 +28,7 @@ class Step1(StepTemplateMkdir):
     ]
     start_dir = "toolshed"
     end_dir = "barn"
-    command = [
+    commands = [
         "cd ../barn/",
         "cd ../barn"
     ]
@@ -39,7 +39,7 @@ class Step1(StepTemplateMkdir):
     ]
 
     def block_command(self, line):
-        return unblock_command_list(line, self.command)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
         Step2()
@@ -82,7 +82,7 @@ class Step3(StepTemplateMkdir):
         "see if it is visible.",
     ]
 
-    command = [
+    commands = [
         "ls"
     ]
 
@@ -104,7 +104,7 @@ class Step4(StepTemplateMkdir):
     ]
     start_dir = "barn"
     end_dir = "barn"
-    command = [
+    commands = [
         "ls -a"
     ]
     hints = [
@@ -133,7 +133,7 @@ class Step5(StepTemplateMkdir):
     ]
 
     def block_command(self, line):
-        return unblock_command_list(line, self.command)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     # move the animals in one by one
 

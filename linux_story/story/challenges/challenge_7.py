@@ -32,7 +32,7 @@ class Step1(StepTemplateCd):
     ]
     start_dir = "town"
     end_dir = "town"
-    command = "ls"
+    commands = "ls"
     hints = "{{rb:To look around, use}} {{yb:ls}}"
 
     def next(self):
@@ -46,7 +46,7 @@ class Step2(StepTemplateCd):
     ]
     start_dir = "town"
     end_dir = "town"
-    command = "cat Mayor"
+    commands = "cat Mayor"
     hints = "{{rb:Stuck? Type:}} {{yb:cat Mayor}}"
 
     def next(self):
@@ -55,7 +55,7 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "{{wb:Mayor:}} {{Bn:\"Calm down please! We have our best "
+        "{{wb:Mayor:}} {{Bb:\"Calm down please! We have our best "
         "people looking into the disappearances, and we're hoping to "
         "have an explanation soon.\"}}\n",
         "Something strange is happening. Better check everyone is ok.",
@@ -67,13 +67,13 @@ class Step3(StepTemplateCd):
     # Use functions here
     command = ""
     all_commands = {
-        "cat grumpy-man": "\n{{wb:Man:}} {{Bn:\"Help! I don't know what's "
+        "cat grumpy-man": "\n{{wb:Man:}} {{Bb:\"Help! I don't know what's "
         "happening to me. I heard this bell ring, and now my legs have "
         "gone all strange.\"}}",
-        "cat young-girl": "\n{{wb:Girl:}} {{Bn:\"Can you help me? I can't "
+        "cat young-girl": "\n{{wb:Girl:}} {{Bb:\"Can you help me? I can't "
         "find my friend Amy anywhere. If you see her, will you let me"
         " know?\"}}",
-        "cat little-boy": "\n{{wb:Boy:}} {{Bn:\"Bernard? Bernard? Has "
+        "cat little-boy": "\n{{wb:Boy:}} {{Bb:\"Bernard? Bernard? Has "
         "anyone seen my dog Bernard? He's never run away before...\"}}"
     }
 
@@ -82,7 +82,7 @@ class Step3(StepTemplateCd):
     def check_command(self, line, current_dir):
 
         if not self.all_commands:
-            hint = "\n{{g:Press Enter to continue}}"
+            hint = "\n{{gb:Press Enter to continue}}"
             return True
 
         # strip any spaces off the beginning and end
@@ -90,7 +90,7 @@ class Step3(StepTemplateCd):
 
         # If they enter ls, say Well Done
         if line == 'ls':
-            hint = "\n{{g:Well done for looking around.}}"
+            hint = "\n{{gb:Well done for looking around.}}"
             self.send_text(hint)
             return False
 
@@ -112,14 +112,14 @@ class Step3(StepTemplateCd):
             self.all_commands.pop(line, None)
 
             if len(self.all_commands) == 1:
-                hint += "\n{{g:Well done! Check on 1 more person.}}"
+                hint += "\n{{gb:Well done! Check on 1 more person.}}"
             elif len(self.all_commands) > 0:
-                hint += "\n{{g:Well done! Check on " + \
+                hint += "\n{{gb:Well done! Check on " + \
                     str(len(self.all_commands)) + \
                     " more people.}}"
             else:
                 command_validated = True
-                hint += "\n{{g:Press Enter to continue}}"
+                hint += "\n{{gb:Press Enter to continue}}"
 
             self.send_text(hint)
 

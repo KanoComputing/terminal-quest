@@ -16,7 +16,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.challenges.challenge_14 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_command_list
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
 class StepTemplateMv(Step):
@@ -40,7 +40,7 @@ class Step1(StepTemplateMv):
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
-    command = [
+    commands = [
         "mv basket ~",
         "mv basket/ ~",
         "mv basket ~/",
@@ -56,7 +56,7 @@ class Step1(StepTemplateMv):
     ]
 
     def block_command(self, line):
-        return unblock_command_list(line, self.command)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
         Step2()
@@ -69,7 +69,7 @@ class Step2(StepTemplateMv):
     ]
     start_dir = ".hidden-shelter"
     end_dir = "~"
-    command = [
+    commands = [
         "cd",
         "cd ~",
         "cd ~/"
@@ -80,7 +80,7 @@ class Step2(StepTemplateMv):
     ]
 
     def block_command(self, line):
-        return unblock_command_list(line, self.command)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
         Step3()
@@ -94,7 +94,7 @@ class Step3(StepTemplateMv):
 
     start_dir = "~"
     end_dir = "~"
-    command = [
+    commands = [
         "ls"
     ]
     hints = [
@@ -115,7 +115,7 @@ class Step4(StepTemplateMv):
 
     start_dir = "~"
     end_dir = "~"
-    command = [
+    commands = [
         "mv basket my-house/kitchen",
         "mv basket/ my-house/kitchen",
         "mv basket my-house/kitchen/",
@@ -131,7 +131,7 @@ class Step4(StepTemplateMv):
     ]
 
     def block_command(self, line):
-        return unblock_command_list(line, self.command)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
         Step5()
@@ -144,7 +144,7 @@ class Step5(StepTemplateMv):
 
     start_dir = "~"
     end_dir = "kitchen"
-    command = [
+    commands = [
         "cd my-house/kitchen",
         "cd my-house/kitchen/",
         "cd ~/my-house/kitchen",
@@ -157,7 +157,7 @@ class Step5(StepTemplateMv):
     last_step = True
 
     def block_command(self, line):
-        return unblock_command_list(line, self.command)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
         NextStep(self.xp)

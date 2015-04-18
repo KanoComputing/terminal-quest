@@ -16,7 +16,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from linux_story.story.terminals.terminal_cd import TerminalCd
 from linux_story.story.challenges.challenge_11 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_command_list
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
 class StepTemplateCd(Step):
@@ -90,29 +90,27 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "There doesn't seem to be anything but loads of food.",
+        "There doesn't seem to be anything here but loads of food.",
         "See if you can find something back in {{yb:town}}.",
         "First, use {{yb:cd ..}} to leave the kitchen."
     ]
     start_dir = "kitchen"
     end_dir = "town"
-    command = ""
+    commands = [
+        "cd ~/town",
+        "cd ~/town/",
+        "cd ..",
+        "cd ../",
+        "cd town",
+        "cd town/",
+        "cd ../..",
+        "cd ../../",
+        "cd"
+    ]
     num_turns_in_home_dir = 0
 
     def block_command(self, line):
-        allowed_commands = [
-            "cd ~/town",
-            "cd ~/town/",
-            "cd ..",
-            "cd ../",
-            "cd town",
-            "cd town/",
-            "cd ../..",
-            "cd ../../",
-            "cd"
-        ]
-
-        return unblock_command_list(line, allowed_commands)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def show_hint(self, line, current_dir):
 
@@ -159,7 +157,7 @@ class Step3(StepTemplateCd):
     ]
     start_dir = "town"
     end_dir = "town"
-    command = "ls"
+    commands = "ls"
     hints = "{{rb:Use}} {{yb:ls}} {{rb:to have a look around the town}}"
 
     def next(self):
@@ -176,7 +174,7 @@ class Step4(StepTemplateCd):
     ]
     start_dir = "town"
     end_dir = "town"
-    command = "ls -a"
+    commands = "ls -a"
     hints = [
         "{{rb:You heard whispers referring to}} {{yb:ls -a}}"
         "{{rb:, try using it!}}",
@@ -193,7 +191,10 @@ class Step5(StepTemplateCd):
     ]
     start_dir = "town"
     end_dir = ".hidden-shelter"
-    command = ""
+    commands = [
+        "cd .hidden-shelter",
+        "cd .hidden-shelter/"
+    ]
     hints = [
         "{{rb:Try going inside the}} {{yb:.hidden-shelter}} {{rb:using }}"
         "{{yb:cd}}",
@@ -202,12 +203,7 @@ class Step5(StepTemplateCd):
     ]
 
     def block_command(self, line):
-        allowed_commands = [
-            "cd .hidden-shelter",
-            "cd .hidden-shelter/"
-        ]
-
-        return unblock_command_list(line, allowed_commands)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
         Step6()
@@ -219,7 +215,7 @@ class Step6(StepTemplateCd):
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
-    command = [
+    commands = [
         "ls",
         "ls -a"
     ]

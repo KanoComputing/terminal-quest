@@ -26,7 +26,7 @@ class Step1(StepTemplate):
         "{{rb:Reply with yes by using}} {{gb:echo yes}}"
     ]
 
-    command = [
+    commands = [
         "echo yes",
         "echo no",
         "echo Yes",
@@ -64,7 +64,7 @@ class Step1(StepTemplate):
 class Step2(StepTemplate):
     start_dir = "barn"
     end_dir = "barn"
-    command = ["echo 1", "echo 2", "echo 3"]
+    commands = ["echo 1", "echo 2", "echo 3"]
     hints = [
         "{{rb:If you want to reply with \"Yes\", use}} {{yb:echo 1}}"
     ]
@@ -94,7 +94,7 @@ class Step2(StepTemplate):
 
     def check_command(self, line, current_dir):
         line = line.strip()
-        if line in self.command:
+        if line in self.commands:
             # Record the command used so we can change the response
             self.command_used = line
 
@@ -112,7 +112,7 @@ class Step3(StepTemplate):
     end_dir = "barn"
 
     # echo 3 should NOT pass this level
-    command = [
+    commands = [
         "echo 1",
         "echo 2"
     ]
@@ -191,7 +191,7 @@ class Step4(StepTemplate):
     start_dir = "barn"
     end_dir = "barn"
 
-    command = [
+    commands = [
         "echo 1",
         "echo 2"
     ]
@@ -209,7 +209,8 @@ class Step4(StepTemplate):
         elif line == "echo 2":
             response = (
                 "Ruth: {{Bb:\"I would, but I'm scared of going missing myself."
-                "...I know I'm a coward, he might come back, I should stay here in case he does.  Can you think of anything "
+                "...I know I'm a coward, he might come back, I should stay "
+                "here in case he does.  Can you think of anything "
                 "else?\"}}"
             )
             self.send_hint(response)

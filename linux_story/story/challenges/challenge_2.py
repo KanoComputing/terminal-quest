@@ -36,7 +36,7 @@ class Step1(StepTemplateCat):
     ]
     start_dir = "my-room"
     end_dir = "my-room"
-    command = "cat alarm"
+    commands = "cat alarm"
     hints = "{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}"
 
     def next(self):
@@ -50,7 +50,7 @@ class Step2(StepTemplateCat):
     ]
     start_dir = "my-room"
     end_dir = "my-room"
-    command = ["ls wardrobe", "ls wardrobe/"]
+    commands = ["ls wardrobe", "ls wardrobe/"]
     hints = "{{rb:Type}} {{yb:ls wardrobe}} {{rb:to look for something to wear}}"
 
     def next(self):
@@ -64,7 +64,7 @@ class Step3(StepTemplateCat):
     ]
     start_dir = "my-room"
     end_dir = "my-room"
-    command = "cat wardrobe/t-shirt"
+    commands = "cat wardrobe/t-shirt"
     hints = (
         "{{rb:Type}} {{yb:cat wardrobe/t-shirt}} "
         "{{rb:to investigate how it looks}}"
@@ -81,7 +81,7 @@ class Step4(StepTemplateCat):
     ]
     start_dir = "my-room"
     end_dir = "my-room"
-    command = [
+    commands = [
         "cat wardrobe/skirt",
         "cat wardrobe/trousers"
     ]
@@ -109,7 +109,7 @@ class Step5(StepTemplateCat):
     ]
     start_dir = "my-room"
     end_dir = "my-room"
-    command = [
+    commands = [
         "cat wardrobe/cap"
     ]
     hints = (

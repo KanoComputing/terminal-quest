@@ -49,7 +49,7 @@ class Step1(StepTemplateCd):
     ]
     start_dir = "town"
     end_dir = "town"
-    command = "ls"
+    commands = "ls"
     hints = "{{r:To look around, use}} {{yb:ls}}"
 
     story_dict = {
@@ -66,9 +66,9 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCdBell):
 
     story = [
-        "{{wb:Little-boy:}} {{Bb:Oh no!  That man with the funny legs "
-        "has gone!}}",
-        "{{wb:Little-boy:}} {{Bb:Did you hear the bell just before he vanished??}}",
+        "{{wb:Little-boy:}} {{Bb:Oh no! That man with the funny legs "
+        "has gone!}} "
+        "{{Bb:Did you hear the bell just before he vanished??}}",
         "{{wb:Young-girl:}} {{Bb:I'm scared...}}",
         "\n{{pb:Ding. Dong.}}\n",
         "{{wb:Young-girl:}} {{Bb:Oh!  I heard it go again!}}",
@@ -76,7 +76,7 @@ class Step2(StepTemplateCdBell):
     ]
     start_dir = "town"
     end_dir = "town"
-    command = "ls"
+    commands = "ls"
     hints = "{{rb:To look around, use}} {{yb:ls}}"
     story_dict = {
         "little-boy": {
@@ -102,7 +102,7 @@ class Step3(StepTemplateCdBell):
     ]
     start_dir = "town"
     end_dir = "town"
-    command = "ls"
+    commands = "ls"
     hints = "{{r:To look around, use}} {{yb:ls}}"
     story_dict = {
         "young-girl": {
@@ -125,8 +125,8 @@ class Step4(StepTemplateCd):
     ]
     start_dir = "town"
     end_dir = "town"
-    command = "cat Mayor"
-    hints = "{{r:Use}} {{yb:cat Mayor}} {{r:to talk to the Mayor}}"
+    commands = "cat Mayor"
+    hints = "{{rb:Use}} {{yb:cat Mayor}} {{r:to talk to the Mayor}}"
 
     def next(self):
         Step5()
@@ -135,14 +135,14 @@ class Step4(StepTemplateCd):
 class Step5(StepTemplateCdBell):
 
     story = [
-        "{{wb:Mayor:}} {{Bb:\"Everyone ... has disappeared??\"",
+        "{{wb:Mayor:}} {{Bb:\"Everyone...has disappeared??\"",
         "....I should head home now...}}",
         "\n{{pb:Ding. Dong.}}\n"
     ]
     start_dir = "town"
     end_dir = "town"
-    command = "ls"
-    hints = "{{r:To look around, use}} {{yb:ls}}"
+    commands = "ls"
+    hints = "{{rb:To look around, use}} {{yb:ls}}"
     story_dict = {
         "Mayor": {
             "exists": False
@@ -163,12 +163,12 @@ class Step5(StepTemplateCdBell):
 class Step6(StepTemplateCd):
     story = [
         "Everyone has gone.",
-        "Wait - there's another note on the floor.",
+        "Wait - there's a note on the floor.",
         "Use {{yb:cat}} to read the note."
     ]
     start_dir = "town"
     end_dir = "town"
-    command = "cat note"
+    commands = "cat note"
     hints = "{{rb:To read the note, use}} {{yb:cat note}}"
     last_step = True
 

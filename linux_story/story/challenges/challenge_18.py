@@ -7,7 +7,7 @@
 
 import os
 from linux_story.Step import Step
-from linux_story.step_helper_functions import unblock_command_list
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_19 import Step1 as NextChallengeStep
 from linux_story.common import tq_file_system
@@ -34,7 +34,7 @@ class Step1(StepTemplate):
         "{{yb:.safe}} {{rb:to}} {{yb:../my-room/.chest}}",
         "{{rb:Use}} {{yb:mv .safe/ECHO ../my-room/.chest/}}"
     ]
-    command = [
+    commands = [
         "mv .safe/ECHO ../my-room/.chest/",
         "mv .safe/ECHO ../my-room/.chest",
         "mv .safe/ECHO ~/my-house/my-room/.chest/",
@@ -43,7 +43,7 @@ class Step1(StepTemplate):
     start_dir = "parents-room"
 
     def block_command(self, line):
-        return unblock_command_list(line, self.command)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def check_output(self, output):
         # This is run after the command has been run, so can check for the
@@ -69,7 +69,7 @@ class Step2(StepTemplate):
         "Use {{yb:cd}} by itself to go to {{yb:~}}"
     ]
 
-    command = [
+    commands = [
         "cd",
         "cd ~"
         "cd ~/"
@@ -80,7 +80,7 @@ class Step2(StepTemplate):
     last_step = True
 
     def block_command(self, line):
-        return unblock_command_list(line, self.command)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
         Step3()
@@ -95,7 +95,7 @@ class Step3(StepTemplate):
         "{{rb:Look around with}} {{yb:ls}}"
     ]
 
-    command = "ls"
+    commands = "ls"
     start_dir = '~'
     end_dir = '~'
 
@@ -111,13 +111,13 @@ class Step4(StepTemplate):
 
     start_dir = "~"
     end_dir = "farm"
-    command = [
+    commands = [
         "cd farm",
         "cd farm/"
     ]
 
     def block_command(self, line):
-        return unblock_command_list(line, self.command)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
         Step5()

@@ -20,7 +20,7 @@ from linux_story.story.terminals.terminal_cd import TerminalCd
 # together
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.challenges.challenge_12 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_command_list
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 from linux_story.common import tq_file_system
 
 
@@ -123,7 +123,7 @@ class Step2(StepTemplateMv):
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
-    command = [
+    commands = [
         "mv apple basket",
         "mv apple basket/"
     ]
@@ -133,7 +133,7 @@ class Step2(StepTemplateMv):
     ]
 
     def block_command(self, line):
-        return unblock_command_list(line, self.command)
+        return unblock_commands_with_cd_hint(line, self.command)
 
     def next(self):
         Step3()
@@ -146,7 +146,7 @@ class Step3(StepTemplateMv):
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
-    command = [
+    commands = [
         "ls",
         "ls -a"
     ]
@@ -166,7 +166,7 @@ class Step4(StepTemplateMv):
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
-    command = [
+    commands = [
         "ls basket",
         "ls basket/",
         "ls -a basket",
@@ -193,7 +193,7 @@ class Step5(StepTemplateMv):
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
-    command = [
+    commands = [
         "mv basket/apple .",
         "mv basket/apple ./"
     ]
@@ -212,7 +212,7 @@ class Step5(StepTemplateMv):
     }
 
     def block_command(self, line):
-        return unblock_command_list(line, self.command)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def check_command(self, line, current_dir):
         if line.strip() == "mv basket/apple":
@@ -243,7 +243,7 @@ class Step6(StepTemplateMv):
 
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
-    command = [
+    commands = [
         "ls", "ls -a"
     ]
     hints = [
@@ -264,7 +264,7 @@ class Step7(StepTemplateMv):
     ]
     start_dir = ".hidden-shelter"
     end_dir = ""
-    command = [
+    commands = [
         "ls ..",
         "ls ../",
         "ls ~/town",
@@ -286,7 +286,7 @@ class Step8(StepTemplateMv):
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden_shelter"
-    command = [
+    commands = [
         "mv ../Eleanor .",
         "mv ../Eleanor ./",
         "mv ~/town/Eleanor ~/town/.hidden-shelter",
@@ -304,7 +304,7 @@ class Step8(StepTemplateMv):
     girl_file = os.path.join(tq_file_system, 'town/.hidden-shelter/Eleanor')
 
     def block_command(self, line):
-        return unblock_command_list(line, self.command)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def check_command(self, line, current_dir):
 

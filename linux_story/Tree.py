@@ -294,6 +294,7 @@ class StoryFileTree(Tree):
         )
 
         for item_names, item_dict in filesystem_dict.iteritems():
+
             item_ids = item_names.split(', ')
             for item_id in item_ids:
 

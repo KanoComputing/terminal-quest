@@ -33,7 +33,7 @@ class Step1(StepTemplateCat):
     ]
     start_dir = "my-room"
     end_dir = "my-room"
-    command = ["ls shelves", "ls shelves/"]
+    commands = ["ls shelves", "ls shelves/"]
     hints = "{{rb:Type}} {{yb:ls shelves}} {{rb:to look at your books.}}"
 
     def next(self):
@@ -49,7 +49,7 @@ class Step2(StepTemplateCat):
     ]
     start_dir = "my-room"
     end_dir = "my-room"
-    command = "cat shelves/comic-book"
+    commands = "cat shelves/comic-book"
     hints = "{{rb:Type}} {{yb:cat shelves/comic-book}} {{rb:to read the comic.}}"
 
     def next(self):
@@ -64,7 +64,7 @@ class Step3(StepTemplateCat):
     ]
     start_dir = "my-room"
     end_dir = "my-room"
-    command = "cat shelves/note"
+    commands = "cat shelves/note"
     hints = "{{rb:Type}} {{yb:cat shelves/note}} {{rb:to read the note.}}"
 
     last_step = True

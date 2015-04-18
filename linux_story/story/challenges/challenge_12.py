@@ -20,7 +20,7 @@ from linux_story.Step import Step
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.challenges.challenge_13 import Step1 as NextStep
 from linux_story.common import tq_file_system
-from linux_story.step_helper_functions import unblock_command_list
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
 class StepTemplateMv(Step):
@@ -40,7 +40,7 @@ class Step1(StepTemplateMv):
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
-    command = [
+    commands = [
         "mv ../dog .",
         "mv ../dog ./",
         "mv ~/town/dog ~/town/.hidden-shelter",
@@ -67,7 +67,7 @@ class Step1(StepTemplateMv):
     }
 
     def block_command(self, line):
-        return unblock_command_list(line, self.command)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
         Step2()
@@ -85,7 +85,7 @@ class Step2(StepTemplateMv):
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
-    command = "cat Edward"
+    commands = "cat Edward"
     all_commands = {
         "cat Edith": "\n{{wb:Edith:}} {{Bb:\"Thank you so much! "
         "Eleanor, don't wander outside again - you scared the life out of me!\"}}",

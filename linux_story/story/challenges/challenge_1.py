@@ -38,7 +38,7 @@ class Step1(StepTemplateLs):
     ]
     start_dir = "my-room"
     end_dir = "my-room"
-    command = "ls"
+    commands = "ls"
     hints = [
         "{{rb:Type}} {{yb:ls}} {{rb:and press Enter to take a look around "
         "your bedroom}}"

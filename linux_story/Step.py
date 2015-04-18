@@ -20,7 +20,7 @@ class Step():
     story = [""]
     start_dir = "~"
     end_dir = "~"
-    command = ""
+    commands = ""
     hints = ""
     last_step = False
     challenge_number = 1
@@ -42,7 +42,7 @@ class Step():
         self.modify_file_tree()
 
         # Available commands that can be used in the Terminal
-        self.commands = Terminal_Class.commands
+        self.terminal_commands = Terminal_Class.commands
 
         # if hints are a string
         if isinstance(self.hints, basestring):
@@ -121,7 +121,7 @@ class Step():
 
         data['story'] = "\n".join(self.story)
         data['challenge'] = str(self.challenge_number)
-        data['spells'] = self.commands
+        data['spells'] = self.terminal_commands
         t = threading.Thread(target=launch_client, args=(data,))
         t.daemon = True
         t.start()
@@ -167,8 +167,8 @@ class Step():
         self.terminal.cmdloop()
 
     def check_command(self, line, current_dir):
-        '''If self.command is provided, checks the command entered
-        by the user matches self.command.
+        '''If self.commands is provided, checks the command entered
+        by the user matches self.commands.
         '''
 
         # check through list of commands
@@ -179,13 +179,13 @@ class Step():
         line = line.strip()
 
         # if the validation is included
-        if self.command:
+        if self.commands:
             # if only one command can pass the level
-            if isinstance(self.command, basestring):
-                command_validated = line == self.command
+            if isinstance(self.commands, basestring):
+                command_validated = line == self.commands
             # else there are multiple commands that can pass the level
             else:
-                command_validated = line in self.command
+                command_validated = line in self.commands
 
         if self.end_dir:
             end_dir_validated = current_dir == self.end_dir

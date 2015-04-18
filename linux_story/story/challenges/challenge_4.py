@@ -17,7 +17,7 @@ from linux_story.Step import Step
 from linux_story.story.terminals.terminal_cd import TerminalCd
 from linux_story.story.challenges.challenge_5 import Step1 as NextChallengeStep
 from linux_story.helper_functions import play_sound
-from linux_story.step_helper_functions import unblock_command_list
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
 class StepTemplateCd(Step):
@@ -35,19 +35,20 @@ class Step1(StepTemplateCd):
     ]
     start_dir = "my-room"
     end_dir = "my-house"
-    command = ""
-    hints = (
-        "{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room}}"
-    )
+    commands = [
+        "cd ..",
+        "cd ../",
+        "cd ~/my-house",
+        "cd ~/my-house/"
+    ]
+    hints = [
+        "{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room. The .. "
+        "represents the room behind you.}}",
+        "{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room.}}"
+    ]
 
     def block_command(self, line):
-        allowed_commands = [
-            "cd ..",
-            "cd ../",
-            "cd ~/my-house",
-            "cd ~/my-house/"
-        ]
-        return unblock_command_list(line, allowed_commands)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
         Step2()
@@ -56,11 +57,11 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCd):
     story = [
         "You've left {{yb:my-room}} and are in the hall of {{yb:my-house}}",
-        "Have a look at the different rooms of your house using {{yb:ls}}"
+        "Have a look at the different rooms around you using {{yb:ls}}"
     ]
     start_dir = "my-house"
     end_dir = "my-house"
-    command = "ls"
+    commands = "ls"
     hints = "{{rb:Type}} {{yb:ls}} {{rb:and press Enter.}}"
     story_dict = {
         "Dad": {
@@ -80,18 +81,18 @@ class Step2(StepTemplateCd):
 class Step3(StepTemplateCd):
     story = [
         "{{pb:Ding. Dong.}}\n",
-        "What was that?  A bell?  Strange.",
-        "Sounds like someone is preparing breakfast in the kitchen.",
-        "To go inside the kitchen, use {{yb:cd kitchen}}."
+        "What was that?  A bell?  That's a bit odd.",
+        "You see the door to your kitchen, and hear the sound of cooking.",
+        "Sounds like someone is preparing breakfast!",
+        "To go inside the kitchen, use {{yb:cd kitchen}}"
     ]
     start_dir = "my-house"
     end_dir = "kitchen"
-    command = ""
+    commands = ["cd kitchen", "cd kitchen/"]
     hints = ["{{rb:Type}} {{yb:cd kitchen}} {{rb:and press Enter.}}"]
 
     def block_command(self, line):
-        allowed_commands = ["cd kitchen", "cd kitchen/"]
-        return unblock_command_list(line, allowed_commands)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
         Step4()
@@ -104,7 +105,7 @@ class Step4(StepTemplateCd):
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"
-    command = "ls"
+    commands = "ls"
     hints = "{{rb:Can't find her?  Type}} {{yb:ls}} {{rb:and press Enter.}}"
 
     def next(self):
@@ -118,7 +119,7 @@ class Step5(StepTemplateCd):
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"
-    command = "cat Mum"
+    commands = "cat Mum"
     hints = (
         "{{rb:Stuck? Type:}} {{yb:cat Mum}}. "
         "{{rb:Don\'t forget the capital letter!}}"

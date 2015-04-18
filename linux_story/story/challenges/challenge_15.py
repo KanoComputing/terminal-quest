@@ -16,7 +16,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.challenges.challenge_16 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_command_list
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
 class StepTemplateMv(Step):
@@ -38,7 +38,7 @@ class Step1(StepTemplateMv):
 
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
-    command = [
+    commands = [
         "ls -a"
     ]
 
@@ -60,7 +60,7 @@ class Step2(StepTemplateMv):
 
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
-    command = [
+    commands = [
         "ls .tiny-chest",
         "ls .tiny-chest/",
         "ls -a .tiny-chest",
@@ -84,7 +84,7 @@ class Step3(StepTemplateMv):
 
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
-    command = [
+    commands = [
         "cat .tiny-chest/MV"
     ]
 
@@ -103,7 +103,7 @@ class Step4(StepTemplateMv):
 
     start_dir = ".hidden-shelter"
     end_dir = "my-house"
-    command = [
+    commands = [
         'cd ~/my-house/',
         'cd ~/my-house'
     ]
@@ -113,7 +113,7 @@ class Step4(StepTemplateMv):
     ]
 
     def block_command(self, line):
-        return unblock_command_list(line, self.command)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
         Step5()

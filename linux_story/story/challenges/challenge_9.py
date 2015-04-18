@@ -17,7 +17,7 @@ from linux_story.Step import Step
 from linux_story.story.terminals.terminal_cd import TerminalCd
 from linux_story.story.challenges.challenge_10 import Step1 as NextStep
 from linux_story.helper_functions import play_sound
-from linux_story.step_helper_functions import unblock_command_list
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
 class StepTemplateCd(Step):
@@ -34,12 +34,11 @@ class Step1(StepTemplateCd):
     ]
     start_dir = "town"
     end_dir = "~"
-    command = ""
+    commands = ["cd ..", "cd ../"]
     hints = "{{rb:Use}} {{yb:cd ..}} {{rb:to progress.}}"
 
     def block_command(self, line):
-        allowed_commands = ["cd ..", "cd ../"]
-        return unblock_command_list(line, allowed_commands)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
         play_sound('bell')
@@ -53,17 +52,20 @@ class Step2(StepTemplateCd):
     ]
     start_dir = "~"
     end_dir = "kitchen"
-    command = ""
+    commands = ["cd my-house/kitchen", "cd my-house/kitchen/"]
     hints = "{{rb:Use}} {{yb:cd my-house/kitchen}} {{rb:to go to the kitchen.}}"
     story_dict = {
         "Mum": {
             "exists": False
+        },
+        "note_kitchen": {
+            "name": "note",
+            "path": "~/my-house/kitchen"
         }
     }
 
     def block_command(self, line):
-        allowed_commands = ["cd my-house/kitchen", "cd my-house/kitchen/"]
-        return unblock_command_list(line, allowed_commands)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
         Step3()
@@ -75,7 +77,7 @@ class Step3(StepTemplateCd):
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"
-    command = "ls"
+    commands = "ls"
     hints = [
         "{{rb:Use}} {{yb:ls}} {{rb:to see that everything is where it "
         "should be.}}"
@@ -93,7 +95,7 @@ class Step4(StepTemplateCd):
     ]
     start_dir = "kitchen"
     end_dir = "kitchen"
-    command = "cat note"
+    commands = "cat note"
     hints = "{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}"
     last_step = True
     story_dict = {

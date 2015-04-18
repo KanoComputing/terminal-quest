@@ -6,7 +6,7 @@
 # A chapter of the story
 
 from linux_story.Step import Step
-from linux_story.step_helper_functions import unblock_command_list
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
 from linux_story.story.challenges.challenge_21 import Step1 as NextChallengeStep
@@ -35,7 +35,7 @@ class Step1(StepTemplateEcho):
         "\n{{gb:Use}} {{yb:cd}} {{gb:to go into the toolshed}}"
     ]
 
-    command = [
+    commands = [
         "cd ../toolshed",
         "cd ../toolshed/"
     ]
@@ -48,7 +48,7 @@ class Step1(StepTemplateEcho):
     ]
 
     def block_command(self, line):
-        return unblock_command_list(line, self.command)
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
         # Move Ruth into the toolshed
@@ -98,7 +98,7 @@ class Step3(StepTemplateEcho):
     ]
     start_dir = "toolshed"
     end_dir = "toolshed"
-    command = "cat MKDIR"
+    commands = "cat MKDIR"
 
     def next(self):
         Step4()
@@ -115,7 +115,7 @@ class Step4(StepTemplateMkdir):
     ]
     start_dir = "toolshed"
     end_dir = "toolshed"
-    command = "mkdir igloo"
+    commands = "mkdir igloo"
 
     def check_command(self, line, current_dir):
         line = line.strip()
@@ -135,7 +135,7 @@ class Step5(StepTemplateMkdir):
     ]
     start_dir = "toolshed"
     end_dir = "toolshed"
-    command = [
+    commands = [
         "ls",
         "ls -a",
         "ls .",
