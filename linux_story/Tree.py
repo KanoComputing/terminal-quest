@@ -70,7 +70,7 @@ def default_global_tree(challenge, step):
     return story_filetree.modify_file_tree(story_dict)
 
 
-class Tree:
+class Tree():
 
     def __init__(self):
         self.__nodes = {}
@@ -78,6 +78,15 @@ class Tree:
     @property
     def nodes(self):
         return self.__nodes
+
+    def __getitem__(self, key):
+        return self.__nodes[key]
+
+    def __setitem__(self, key, item):
+        self.__nodes[key] = item
+
+    def __delitem__(self, key):
+        del self.__nodes[key]
 
     def add_node(self, identifier, parent=None):
         '''Identifier comes from the item_id and the path leading to that
@@ -109,8 +118,18 @@ class Tree:
         self[identifier].add_parent(parent)
 
     def remove_node(self, identifier):
-        if hasattr(self, identifier):
+        if self.node_exists(identifier):
             del self[identifier]
+
+    def remove_relationships_from_node(self, identifier):
+        '''This removes any child parent relationships in other nodes that
+        relate to this node
+        '''
+        parent_id = self[identifier].parent
+        self[parent_id].remove_child(identifier)
+
+        for child in self[identifier].children:
+            self[child].remove_parent(identifier)
 
     def display(self, identifier, depth=_ROOT):
         children = self[identifier].children
@@ -190,13 +209,7 @@ class Tree:
             queue = expansion
 
     def node_exists(self, identifier):
-        return identifier in self.__nodes
-
-    def __getitem__(self, key):
-        return self.__nodes[key]
-
-    def __setitem__(self, key, item):
-        self.__nodes[key] = item
+        return identifier in self.nodes
 
     def generate_prompt(self, current_dir):
         # In kano-toolset, but for now want to avoid dependencies
@@ -281,11 +294,14 @@ class StoryFileTree(Tree):
 
     # TODO this is a MONSTER function.
     # Break it up.
+    # TODO: if we modifiy apple path, when autocompleting we still see where
+    # the old apple was.
     def modify_file_tree(self, filesystem_dict):
         '''This modifies the tree in memory and the filesystem the user
         interacts with. It also stores the tree as a yaml, which is saved on
         Kano World
         '''
+
         containing_dir = os.path.dirname(os.path.abspath(__file__))
 
         # Move this to the common.py?
@@ -297,6 +313,14 @@ class StoryFileTree(Tree):
 
             item_ids = item_names.split(', ')
             for item_id in item_ids:
+
+                if self.node_exists(item_id) and not self[item_id].is_dir:
+                    self.delete_item(self[item_id].real_path)
+                    self.remove_relationships_from_node(item_id)
+                    self.remove_node(item_id)
+                    # TODO: not sure if these are needed
+                    # fake_path = self[item_id].fake_path
+                    # self.remove_node(fake_path)
 
                 # Check if the item is specified to exist
                 if 'exists' in item_dict.keys() and not item_dict['exists']:
@@ -438,7 +462,7 @@ class StoryFileTree(Tree):
                 shutil.rmtree(tq_file_system)
 
             self.modify_file_tree(file_data_dict)
-            # If successful, return 1
+            # If successful, return 0
             return 0
 
         # If it fails, return 1

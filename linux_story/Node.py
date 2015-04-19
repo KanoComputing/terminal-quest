@@ -66,8 +66,15 @@ class Node:
     def add_child(self, identifier):
         self.__children.append(identifier)
 
+    def remove_child(self, identifier):
+        if identifier in self.children:
+            self.children.remove(identifier)
+
     def add_parent(self, identifier):
         self.__parent = identifier
+
+    def remove_parent(self):
+        self.__parent = None
 
     def calculate_real_path(self):
         self.__real_path = self.__fake_path.replace(
