@@ -12,6 +12,7 @@
 import os
 import yaml
 import sys
+from copy import deepcopy
 
 
 if __name__ == '__main__' and __package__ is None:
@@ -148,7 +149,6 @@ def filter_later_challenges(data_dict, current_challenge, current_step):
         # Here we change the structure of the dictionary
         filenames = dict_id.split(', ')
         for name in filenames:
-
             # if challenges in the data dictionary, remove all challenges
             # greater than the one we're considering now
 
@@ -162,7 +162,7 @@ def filter_later_challenges(data_dict, current_challenge, current_step):
                     draft_story_dict[name]['challenges'] = data_dict['challenges']
 
             else:
-                draft_story_dict[name] = data_dict
+                draft_story_dict[name] = deepcopy(data_dict)
 
     return draft_story_dict
 

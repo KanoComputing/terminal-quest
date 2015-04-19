@@ -20,7 +20,7 @@ from linux_story.Step import Step
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.challenges.challenge_13 import Step1 as NextStep
 from linux_story.common import tq_file_system
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import unblock_commands
 
 
 class StepTemplateMv(Step):
@@ -63,11 +63,14 @@ class Step1(StepTemplateMv):
         },
         "CAT, LS, CD": {
             "path": "~/my-house/my-room/.chest"
+        },
+        "Eleanor": {
+            "path": "~/town/.hidden-shelter"
         }
     }
 
     def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+        return unblock_commands(line, self.commands)
 
     def next(self):
         Step2()
