@@ -207,6 +207,10 @@ note_town:
           step: 6
           path: "~/town"
 
+        - challenge: 10
+          step: 1
+          exists: False
+
 # .hidden-shelter folk
 # start off all in the same place
 Edith, Edward, Eleanor, dog, apple:

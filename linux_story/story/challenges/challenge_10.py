@@ -187,6 +187,7 @@ class Step4(StepTemplateCd):
 class Step5(StepTemplateCd):
     story = [
         "You see a {{yb:.hidden-shelter}} that you didn't notice before.",
+        "{{gb:Something that starts with . is normally hidden from view.}}",
         "It sounds like the whispers are coming from there.  Try going in."
     ]
     start_dir = "town"

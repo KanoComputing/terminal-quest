@@ -20,7 +20,7 @@ from linux_story.story.terminals.terminal_cd import TerminalCd
 # together
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.challenges.challenge_12 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import unblock_commands
 from linux_story.common import tq_file_system
 
 
@@ -61,7 +61,6 @@ class Step1(StepTemplateCd):
     def check_command(self, line, current_dir):
 
         if not self.all_commands:
-            hint = "\n{{gb:Press Enter to continue}}"
             return True
 
         # strip any spaces off the beginning and end
@@ -95,6 +94,8 @@ class Step1(StepTemplateCd):
                     str(len(self.all_commands)) + \
                     " more.}}"
             else:
+                # TODO: this messes up sometimes, unpredictably.
+                # Ocassionally skips the key press needed from the user.
                 command_validated = True
                 hint += "\n{{gb:Press Enter to continue}}"
 
@@ -129,11 +130,14 @@ class Step2(StepTemplateMv):
     ]
     hints = [
         "{{ob:Use the command}} {{yb:mv apple basket/}} {{ob:to "
-        "move the apple into the basket}}"
+        "move the apple into the basket.}}"
     ]
+    # This is to add the apple into the virtual tree
+    # we would like to integrate when using mv with the tree
+    # automatically
 
     def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.command)
+        return unblock_commands(line, self.commands)
 
     def next(self):
         Step3()
@@ -142,7 +146,7 @@ class Step2(StepTemplateMv):
 class Step3(StepTemplateMv):
     story = [
         "{{w:Check you've managed to move the apple.  Look around in this "
-        "directory}}"
+        "directory.}}"
     ]
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
@@ -151,8 +155,13 @@ class Step3(StepTemplateMv):
         "ls -a"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around}}"
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     ]
+    story_dict = {
+        "apple": {
+            "path": "~/town/.hidden-shelter/basket"
+        }
+    }
 
     def next(self):
         Step4()
@@ -173,7 +182,7 @@ class Step4(StepTemplateMv):
         "ls -a basket/"
     ]
     hints = [
-        "{{rb:Use the command}} {{yb:ls basket/}} {{rb:to look in the basket}}"
+        "{{rb:Use the command}} {{yb:ls basket/}} {{rb:to look in the basket.}}"
     ]
 
     def next(self):
@@ -183,7 +192,7 @@ class Step4(StepTemplateMv):
 # After cat-ing the person again?
 class Step5(StepTemplateMv):
     story = [
-        "{{gb:Cool, you moved the apple into the basket!}}",
+        "{{gb:Excellent, you moved the apple into the basket!}}",
         "\n{{wb:Edward:}} {{Bb:\"Hey, you did it!  What was I doing "
         "wrong?\"}}",
         "{{Bb:\"Can you move the apple back from the basket back here?\"}}\n",
@@ -202,17 +211,9 @@ class Step5(StepTemplateMv):
         "{{yb:m}}{{rb:o}}{{yb:v}}{{rb:e the apple from the basket to your "
         "current position.}}"
     ]
-    story_dict = {
-        "Eleanor": {
-            "path": "~/town"
-        },
-        "dog": {
-            "path": "~/town"
-        }
-    }
 
     def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+        return unblock_commands(line, self.commands)
 
     def check_command(self, line, current_dir):
         if line.strip() == "mv basket/apple":
@@ -225,7 +226,6 @@ class Step5(StepTemplateMv):
             return StepTemplateMv.check_command(self, line, current_dir)
 
     def next(self):
-        self.move_girl_and_dog()
         Step6()
 
 
@@ -236,10 +236,20 @@ class Step6(StepTemplateMv):
         "{{Bb:\"Ah!  The dog ran outside!\"}}",
         "{{wb:Eleanor:}} {{Bb:\"Doggy!\"}}",
         "{{wb:Edith:}} {{Bb:\"No, honey!  Don't go outside!\"}}",
-        "\n{{wn:Eleanor follows her dog and leaves the"
-        ".hidden-shelter}}",
+        "\n{{wn:Eleanor follows her dog and leaves the .hidden-shelter}}",
         "Have a look around to check this."
     ]
+    story_dict = {
+        "Eleanor": {
+            "path": "~/town"
+        },
+        "dog": {
+            "path": "~/town"
+        },
+        "apple": {
+            "path": "~/town/.hidden-shelter"
+        }
+    }
 
     start_dir = ".hidden-shelter"
     end_dir = ".hidden-shelter"
@@ -304,7 +314,7 @@ class Step8(StepTemplateMv):
     girl_file = os.path.join(tq_file_system, 'town/.hidden-shelter/Eleanor')
 
     def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+        return unblock_commands(line, self.commands)
 
     def check_command(self, line, current_dir):
 
