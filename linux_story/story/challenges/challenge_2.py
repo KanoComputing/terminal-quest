@@ -91,9 +91,9 @@ class Step4(StepTemplateCat):
     )
 
     def check_command(self, line, current_dir):
-        if line.strip() == self.command[0]:
+        if line.strip() == self.commands[0]:
             save_app_state_variable('linux-story', 'outfit', 'skirt')
-        elif line.strip() == self.command[1]:
+        elif line.strip() == self.commands[1]:
             save_app_state_variable('linux-story', 'outfit', 'trousers')
 
         return StepTemplateCat.check_command(self, line, current_dir)
