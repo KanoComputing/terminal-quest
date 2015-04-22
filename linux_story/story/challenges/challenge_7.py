@@ -129,5 +129,4 @@ class Step3(StepTemplateCd):
         return False
 
     def next(self):
-        play_sound('bell')
         NextChallengeStep(self.xp)

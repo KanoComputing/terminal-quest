@@ -58,6 +58,10 @@ class Step1(StepTemplateCd):
         }
     }
 
+    def __init__(self, xp=""):
+        play_sound('bell')
+        StepTemplateCd.__init__(self, xp)
+
     def next(self):
         # This was the code we had originally.  Did the bell ring properly?
         Step2()
