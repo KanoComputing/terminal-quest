@@ -81,8 +81,8 @@ class Step3(StepTemplateCd):
 
     def check_command(self, line, current_dir):
 
+        # If we've emptied the list of available commands, then pass the level
         if not self.all_commands:
-            hint = "\n{{gb:Press Enter to continue}}"
             return True
 
         # strip any spaces off the beginning and end
@@ -95,7 +95,6 @@ class Step3(StepTemplateCd):
             return False
 
         # check through list of commands
-        command_validated = False
         end_dir_validated = False
         self.hints = [
             "{{rb:Use}} {{yb:" + self.all_commands.keys()[0] + "}} "
@@ -118,7 +117,6 @@ class Step3(StepTemplateCd):
                     str(len(self.all_commands)) + \
                     " more people.}}"
             else:
-                command_validated = True
                 hint += "\n{{gb:Press Enter to continue}}"
 
             self.send_text(hint)
@@ -126,7 +124,9 @@ class Step3(StepTemplateCd):
         else:
             self.send_text("\n" + self.hints[0])
 
-        return command_validated and end_dir_validated
+        # Always return False unless the list of valid commands have been
+        # emptied
+        return False
 
     def next(self):
         play_sound('bell')
