@@ -96,11 +96,11 @@ empty-bottle:
           path: "~/town/.hidden-shelter/basket"
 
         - challenge: 13
-          step: 5
+          step: 2
           path: "~/basket"
 
-        - challenge: 14
-          step: 1
+        - challenge: 13
+          step: 5
           path: "~/my-house/kitchen/basket"
 
         - challenge: 14
