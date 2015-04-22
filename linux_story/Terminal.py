@@ -13,6 +13,7 @@ from helper_functions import (
 )
 from Tree import story_filetree  # generate_file_tree, modify_file_tree
 from socket_functions import is_server_busy
+from kano.logging import logger
 
 # If this is not imported, the escape characters used for the colour prompts
 # show up as special characters.
@@ -177,6 +178,7 @@ class Terminal(Cmd):
             if not text:
                 for i in autocomplete_list:
                     completions.append(self.filetree[i].name)
+
             # Since ../ never comes up automatically, we have to force it
             elif text == "..":
                 completions.append(text + "/")
@@ -193,7 +195,10 @@ class Terminal(Cmd):
             return completions
 
         except Exception as e:
-            return ["Exception caught = {}".format(str(e))]
+            logger.debug("Exception caught = {}".format(str(e)))
+
+            # For debugging, might want to return the exception
+            return None
 
     def autocomplete(self, text, line, complete_list):
         if not text:
