@@ -185,7 +185,6 @@ class Terminal(Cmd):
                 completions = os.listdir(path)
             else:
                 contents = os.listdir(path)
-                logger.debug("contents = {}".format(contents))
 
                 if only_dirs:
                     completions = [f

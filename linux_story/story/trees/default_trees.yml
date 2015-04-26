@@ -91,7 +91,7 @@ note_greenhouse:
 # We could also specify the basket directory, but then we would have to specify the contents separately
 empty-bottle:
     challenges:
-        - challenge: 1
+        - challenge: 10
           step: 1
           path: "~/town/.hidden-shelter/basket"
 
@@ -160,6 +160,10 @@ note_kitchen:
         - challenge: 8
           step: 1
           path: "~/my-house/kitchen"
+
+        - challenge: 10
+          step: 1
+          exists: False
 
 # All other items in the kitchen
 newspaper, oven, table:

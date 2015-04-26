@@ -12,26 +12,6 @@ from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_18 import Step1 as NextChallengeStep
 
 
-'''
-Chapter 3
-
-What other hidden files could be around here?  Have a look around with ls -a
-Go around the rooms with ls -a
-(Can level up when all the hidden files we've hidden have been shown)
-
-.safe-box (parent's room, containing journal, money and ECHO)
-journal entry:
-$USERNAME is so quiet, I'm a bit worried.  Andrea is a talkative woman, maybe
-we should go and
-
-.diary (your room) (empty? "Looks like you don't write in it very often")
-.footprints
-
-With ECHO, suggest they move it to your chest.
-Then go to town to talk to the
-'''
-
-
 # This is for the challenges that only need ls
 class StepTemplateMv(Step):
     challenge_number = 17
@@ -81,9 +61,9 @@ class Step1(StepTemplateMv):
         }
     }
 
-    def __init__(self):
+    def __init__(self, xp=""):
         self.fork = 0
-        StepTemplateMv.__init__(self)
+        StepTemplateMv.__init__(self, xp)
 
     # Deactivate check_command
     def check_command(self, arg1, arg2):

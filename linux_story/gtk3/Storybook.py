@@ -19,7 +19,7 @@ if is_model_2_b():
     OTHER_SLEEP = 0.025
 else:
     NEWLINE_SLEEP = 0.07
-    OTHER_SLEEP = 0.01
+    OTHER_SLEEP = 0.007
 
 
 class Storybook(Gtk.TextView):

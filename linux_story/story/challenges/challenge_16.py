@@ -93,7 +93,9 @@ class Step3(StepTemplateMv):
         "You recognise these commands.",
         "Maybe you should {{yb:move}} the one you found in the "
         "{{yb:~/town/.hidden-shelter/.tiny-chest}} to this {{yb:.chest}}, "
-        "so they're all safe and in the same place."
+        "so they're all safe and in the same place.",
+        "\n{{gb:Use the TAB key to complete the file paths - it will save you "
+        "typing!}}"
     ]
 
     start_dir = "~/my-house/my-room"

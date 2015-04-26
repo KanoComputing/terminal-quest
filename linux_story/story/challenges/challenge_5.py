@@ -62,7 +62,7 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "You see doors to the garden, kitchen, your room and your parent's "
+        "You see doors to the garden, kitchen, your room and your parents' "
         "room.",
         "Head into your {{yb:garden}}"
     ]
@@ -161,7 +161,8 @@ class Step8(StepTemplateCd):
 class Step9(StepTemplateCd):
     story = [
         "You're back in the garden. Use {{yb:cd ..}} again to"
-        " go back to the house."
+        " go back to the house.",
+        "Top tip: Press the UP arrow key to replay your previous command."
     ]
     start_dir = "~/my-house/garden"
     end_dir = "~/my-house"
@@ -177,7 +178,7 @@ class Step9(StepTemplateCd):
 
 class Step10(StepTemplateCd):
     story = [
-        "Now go back into the kitchen and see Mum."
+        "Now go back into the {{yb:kitchen}} and see Mum."
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house/kitchen"

@@ -11,7 +11,7 @@ import os
 import subprocess
 
 from kano.colours import colourize256, decorate_string
-# from kano_profile.apps import load_app_state_variable
+from kano_profile.apps import load_app_state_variable
 from linux_story.common import common_media_dir
 
 
@@ -183,8 +183,6 @@ def colourizeInput256(string, fg_num=None, bg_num=None, bold=False):
 
 
 def print_gained_exp(challenge, fork):
-    pass
-    '''
     old_xp = load_app_state_variable('linux_story', challenge + '_' + fork)
     # Look up XP here
     new_xp = 0
@@ -193,4 +191,3 @@ def print_gained_exp(challenge, fork):
         return "Fantastic! You gained {} experience points!".format(xp_gained)
     else:
         return None
-    '''

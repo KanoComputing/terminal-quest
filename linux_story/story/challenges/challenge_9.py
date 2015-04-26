@@ -60,7 +60,8 @@ class Step2(StepTemplateCd):
             "path": "~/my-house/kitchen"
         }
     }
-    deleted_items = ['~/my-house/kitchen/Mum']
+    # Remove the note as well.
+    deleted_items = ['~/my-house/kitchen/Mum', '~/town/note']
 
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)

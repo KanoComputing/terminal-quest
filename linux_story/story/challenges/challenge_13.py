@@ -28,8 +28,9 @@ class StepTemplateMv(Step):
 
 class Step1(StepTemplateMv):
     story = [
-        "{{wb:Edward:}} {{Bb:\"Erm...can you help us? "
-        "We haven't got any food, could you gather some for us?"
+        "{{wb:Edward:}} {{Bb:\"Thank you so much for saving my little girl!",
+        "I have another favour to ask...",
+        "We haven't got any food, could you gather some for us? "
         "We didn't have "
         "time to grab any before we went into hiding.\"",
         "\"Do you remember seeing any food in your travels?\"}}",

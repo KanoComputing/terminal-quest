@@ -63,6 +63,12 @@ class Step2(StepTemplateMv):
         'milk',
         'sandwich'
     ]
+    unmovable_items = {
+        "newspaper": "{{ob:They asked for food, they probably shouldn't eat the newspaper.}}",
+        "oven": "{{ob:This is a bit heavy for you to carry!}}",
+        "table": "{{ob:This is a bit heavy for you to carry!}}"
+    }
+    moved_items = []
 
     def block_command(self, line):
         line = line.strip()
@@ -75,7 +81,17 @@ class Step2(StepTemplateMv):
                                           separate_words[-1] == 'basket/'):
             for item in separate_words[1:-1]:
                 if item not in self.passable_items:
-                    return True
+                    if item in self.unmovable_items:
+                        self.send_hint(self.unmovable_items[item])
+                        return True
+                    else:
+                        hint = (
+                            '{{rb:You\'re trying to move something that isn\'t in'
+                            ' the folder.\nTry using}} {{yb:mv %s basket/}}'
+                            % self.passable_items[0]
+                        )
+                        self.send_hint(hint)
+                        return True
 
             return False
 
@@ -87,17 +103,7 @@ class Step2(StepTemplateMv):
         if separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
                                           separate_words[-1] == 'basket/'):
             for item in separate_words[1:-1]:
-                if item not in self.passable_items:
-                    hint = (
-                        '{{rb:You\'re trying to move something that isn\'t in'
-                        ' the folder.\n Try using}} {{yb:mv %s basket/}}'
-                        % self.passable_items[0]
-                    )
-                    self.send_hint(hint)
-                    return
-
-                else:
-                    all_items.append(item)
+                all_items.append(item)
 
             for item in all_items:
                 self.passable_items.remove(item)

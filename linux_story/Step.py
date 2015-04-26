@@ -10,10 +10,10 @@
 import threading
 import os
 from socket_functions import launch_client, is_server_busy
-# from kano_profile.badges import save_app_state_variable_with_dialog
-# from kano_profile.apps import (
-#    load_app_state_variable, get_app_xp_for_challenge
-# )
+from kano_profile.badges import save_app_state_variable_with_dialog
+from kano_profile.apps import (
+    load_app_state_variable, get_app_xp_for_challenge
+)
 from load_defaults_into_filetree import delete_item, modify_file_tree
 
 
@@ -148,9 +148,6 @@ class Step():
     def get_xp(self):
         '''Look up XP earned after challenge
         '''
-
-        pass
-        '''
         # Look up XP earned
         xp = get_app_xp_for_challenge("linux-story",
                                       str(self.challenge_number)
@@ -158,24 +155,16 @@ class Step():
 
         if xp > 0:
             self.xp = "{{gb:Congratulations, you earned " + str(xp) + " XP!}}\n\n"
-        '''
 
     def save_challenge(self):
-        pass
         '''Integration with kano world
         '''
-
-        '''
-        global story_filetree
 
         level = load_app_state_variable("linux-story", "level")
         if self.challenge_number > level:
             save_app_state_variable_with_dialog("linux-story", "level",
                                                 self.challenge_number)
-            # save file contents as a yaml
-            story_filetree.save_tree(self.challenge_number, self.step_number)
             self.get_xp()
-        '''
 
     def launch_terminal(self):
         '''Starts off the terminal's game loop.
