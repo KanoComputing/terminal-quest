@@ -10,6 +10,7 @@ from linux_story.Step import Step
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_18 import Step1 as NextChallengeStep
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
 # This is for the challenges that only need ls
@@ -30,10 +31,10 @@ class StepTemplateEcho(Step):
 
 class Step1(StepTemplateMv):
     story = [
-        "You are in your room, standing in front of the {{yb:.chest}} "
-        "containing all the comands you've learned so far",
+        "You are in your room, standing in front of the .chest "
+        "containing all the commands you've learned so far.",
         "Maybe something else is hidden in the house?",
-        "Have you looked in your parent's room yet?"
+        "Have you looked in your parents' room yet?"
     ]
     start_dir = "~/my-house/my-room"
 
@@ -41,18 +42,27 @@ class Step1(StepTemplateMv):
     end_dir = "~/my-house/my-room"
 
     # Want to check your parents room
-    hints = ["{{rb:Is there anything in your parent's room?}}"]
+    hints = [
+        "{{rb:Your parents' room is in}} {{yb:../parents-room}} "
+        "{{relative to where you are now.}}",
+        "{{rb:Use}} {{yb:ls ../parents-room}} to look in your parents' room"
+    ]
+
+    commands = [
+        "ls -a ../parents-room",
+        "ls -a ../parents-room/"
+    ]
 
     # This is for the people who are continuing to play from the
     # beginning.
     # At the start, add the farm directory to the file system
     # Also add the map and journal in your Mum's room
     story_dict = {
-        "Cobweb, Trotter, Daisy": {
+        "Cobweb, Trotter, Daisy, Ruth": {
             "path": "~/farm/barn"
         },
-        "Ruth": {
-            "path": "~/farm/farmhouse"
+        "MKDIR, spanner, hammer, saw, tape-measure": {
+            "path": "~/farm/toolshed"
         },
         # this should be added earlier on, but for people who have updated,
         # we should figure out how to give them the correct file system
@@ -61,13 +71,9 @@ class Step1(StepTemplateMv):
         }
     }
 
-    def __init__(self, xp=""):
-        self.fork = 0
-        StepTemplateMv.__init__(self, xp)
-
     # Deactivate check_command
-    def check_command(self, arg1, arg2):
-        return False
+    # def check_command(self, arg1, arg2):
+    #    return False
 
     def check_output(self, output):
         # Want output to contain the mums-diary file from your mum
@@ -76,10 +82,6 @@ class Step1(StepTemplateMv):
             return False
 
         if '.safe' in output:
-            self.fork = 2
-            return True
-        elif 'mums-diary' in output:
-            self.fork = 3
             return True
         elif 'tv' in output:
             # looking in parents room, but not using ls -a
@@ -91,28 +93,32 @@ class Step1(StepTemplateMv):
             return False
 
     def next(self):
-        if self.fork == 2:
-            Step2()
-        elif self.fork == 3:
-            Step3()
+        Step2()
 
 
 class Step2(StepTemplateMv):
     story = [
-        "You find a {{yb:.safe}} in your parent's room?",
-        "I wonder why they've never told you about this? Go into your parent's room to make it easier to examine."
+        "You find a {{yb:.safe}} in your parents' room?",
+        "I wonder why they've never told you about this? Go into your "
+        "parents' room to make it easier to examine."
     ]
     start_dir = "my-room"
     end_dir = "parents-room"
     hints = [
-        "{{rb:Use the command}} {{yb:cd}} {{rb:to go into your}} {{yb:parents-room}}"
+        "{{rb:Use the command}} {{yb:cd}} {{rb:to go into your}} "
+        "{{yb:parents-room}}",
+        "{{rb:Use the command}} {{yb:cd ../parents-room}} {{rb:to go ",
+        "into your parents' room}}"
+    ]
+    commands = [
+        "cd ../parents-room",
+        "cd ../parents-room/",
+        "cd ~/my-house/parents-room",
+        "cd ~/my-house/parents-room/"
     ]
 
-    # Maybe this should be more refined
     def block_command(self, line):
-        if "mv" in line:
-            return True
-        return False
+        unblock_commands_with_cd_hint(self.commands)
 
     def next(self):
         Step3()
@@ -120,31 +126,16 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        "Maybe there's something useful in here.  Look inside the {{yb:.safe}}."
+        "Maybe there's something useful in here.  Look inside the "
+        "{{yb:.safe}}."
     ]
 
-    commands = ["ls", "ls -a"]
+    commands = ["ls .safe", "ls -a .safe"]
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
     hints = [
         "{{rb:Look into the}} {{yb:.safe}} {{rb:using}} {{yb:ls}}"
     ]
-
-    # This is simply to get the current_dir
-    def check_command(self, current_dir, line):
-        self.current_dir = current_dir
-        StepTemplateMv.check_command(self, current_dir, line)
-
-    def check_output(self, output):
-        # Want output to contain the .journal file from your mum
-
-        if not output:
-            return False
-
-        if 'mums-diary' in output:
-            return True
-
-        self.send_hint()
 
     def next(self):
         Step4()
@@ -162,7 +153,7 @@ class Step4(StepTemplateMv):
         "{{rb:Use}} {{yb:cat}} {{rb:to read the}} {{yb:map}}"
     ]
 
-    command = "cat .safe/map"
+    commands = "cat .safe/map"
 
     def __init__(self):
         self.check_diary = 0
@@ -177,8 +168,7 @@ class Step4(StepTemplateMv):
             self.check_diary += 1
             return False
 
-        return_value = StepTemplateMv.check_command(self, line, current_dir)
-        return return_value
+        return StepTemplateMv.check_command(self, line, current_dir)
 
     def next(self):
         Step5()

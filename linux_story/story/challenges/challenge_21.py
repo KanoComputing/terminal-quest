@@ -6,7 +6,10 @@
 # A chapter of the story
 
 from linux_story.Step import Step
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import (
+    unblock_commands_with_cd_hint, unblock_commands_with_mkdir_hint,
+    unblock_commands
+)
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
 from linux_story.story.challenges.challenge_22 import Step1 as NextChallengeStep
 
@@ -20,9 +23,9 @@ class StepTemplateMkdir(Step):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "{{gb:Nice! You learned the new skill - mkdir!}}",
-        "\nRuth: {{Bb:Awesome!  So you can help me build a shelter!",
-        "Can we make it back at the barn?  Then it'll be easier to "
+        "{{gb:Nice! You've build an igloo! You learned the new skill - mkdir!}}",
+        "\nRuth: {{Bb:That's amazing!  Please help me build a shelter!",
+        "Can we build it in the}} {{yb:barn}}, {{Bb:as then it'll be easier to "
         "move the animals inside.}}",
         "\n{{yb:Go back into the barn}}"
     ]
@@ -30,7 +33,9 @@ class Step1(StepTemplateMkdir):
     end_dir = "~/farm/barn"
     commands = [
         "cd ../barn/",
-        "cd ../barn"
+        "cd ../barn",
+        "cd ~/farm/barn",
+        "cd ~/farm/barn/"
     ]
     hints = [
         "{{rb:Go back to the barn in one step by going back "
@@ -58,15 +63,14 @@ class Step2(StepTemplateMkdir):
     end_dir = "~/farm/barn"
 
     hint = [
-        "{{rb:Make a shelter called}} {{yb:.shelter}}{{rb:. Remember the dot at the start!}}"
+        "{{rb:Make a shelter called}} {{yb:.shelter}}{{rb: - remember the dot at the start!}}"
+    ]
+    commands = [
+        "mkdir .shelter"
     ]
 
     def block_command(self, line):
-        line = line.strip()
-        if line.startswith("mkdir ."):
-            return False
-        else:
-            return True
+        return unblock_commands_with_mkdir_hint()
 
     def check_command(self, line, current_dir):
         # check files in the toolshed directory
@@ -91,7 +95,7 @@ class Step3(StepTemplateMkdir):
         if line == "ls -a":
             self.send_hint(
                 "{{rb:Use}} {{yb:ls}} {{rb:instead of}} {{yb:ls -a}} "
-                "{{yb:to check that you can't see it}}"
+                "{{yb:to check that you can't see it.}}"
             )
 
     def next(self):
@@ -102,7 +106,7 @@ class Step4(StepTemplateMkdir):
     story = [
         "Now look around with {{yb:ls -a}} to check it actually exists!"
     ]
-    start_dir = "~/farm/~/farm/barn"
+    start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
     commands = [
         "ls -a"
@@ -118,12 +122,14 @@ class Step4(StepTemplateMkdir):
 class Step5(StepTemplateMkdir):
     story = [
         "Ruth: {{Bb:Did you make something? That's amazing! "
-        "Unfortunately I can't see it...please can you put me ",
-        "and the animals inside?}}"
+        "...unfortunately I can't see it...please can you put me ",
+        "and the animals inside?}}",
+        "{{gb:Move everyone into the}} {{.shelter}} {{gb:one by one using}} "
+        "{{yb:mv <name> .shelter}}"
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
-    commands = [
+    all_commands = [
         "mv Trotter .shelter",
         "mv Trotter .shelter/",
         "mv Daisy .shelter",
@@ -133,9 +139,91 @@ class Step5(StepTemplateMkdir):
     ]
 
     def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+        return unblock_commands(line, self.all_commands)
 
-    # move the animals in one by one
+    def check_command(self, line, current_dir):
+
+        # If we've emptied the list of available commands, then pass the level
+        if not self.all_commands:
+            return True
+
+        # strip any spaces off the beginning and end
+        line = line.strip()
+
+        # If they enter ls, say Well Done
+        if line == 'ls':
+            hint = "\n{{gb:Well done for looking around.}}"
+            self.send_text(hint)
+            return False
+
+        # check through list of commands
+        end_dir_validated = False
+        self.hints = [
+            "{{rb:Use}} {{yb:" + self.all_commands.keys()[0] + "}} "
+            "{{rb:to progress}}"
+        ]
+
+        end_dir_validated = current_dir == self.end_dir
+
+        # if the validation is included
+        if line in self.all_commands.keys() and end_dir_validated:
+            # Print hint from person
+            hint = "\n" + self.all_commands[line]
+
+            self.all_commands.pop(line, None)
+
+            if len(self.all_commands) == 1:
+                hint += (
+                    "\n{{gb:Well done! Move one more in the}}"
+                    " {{yb:.shelter}}"
+                )
+            elif len(self.all_commands) > 0:
+                hint += "\n{{gb:Well done! Move " + \
+                    str(len(self.all_commands)) + \
+                    " more.}}"
+            else:
+                hint += "\n{{gb:Press Enter to continue}}"
+
+            self.send_text(hint)
+
+        else:
+            self.send_text("\n" + self.hints[0])
+
+        # Always return False unless the list of valid commands have been
+        # emptied
+        return False
+
+    def next(self):
+        Step6()
+
+
+class Step6(StepTemplateMkdir):
+    story = [
+        "Head into the {{yb:.shelter}} along with Ruth and the "
+        "animals"
+    ]
+    start_dir = "~/farm/barn"
+    end_dir = "~/farm/barn/.shelter"
+    commands = [
+        "cd .shelter",
+        "cd .shelter/"
+    ]
+
+    def block_commands(self, line):
+        unblock_commands_with_cd_hint(line, self.commands)
+
+    def next(self):
+        Step7()
+
+
+class Step7(StepTemplateMkdir):
+    story = [
+        "Have a look around with {{yb:ls}} to check you moved everyone."
+    ]
+    start_dir = "~/farm/barn/.shelter"
+    end_dir = "~/farm/barn/.shelter"
+    commands = ["ls"]
+    hints = ["Look around using {{yb:ls}}"]
 
     def next(self):
         NextChallengeStep(self.xp)

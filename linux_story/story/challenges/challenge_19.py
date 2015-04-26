@@ -19,7 +19,19 @@ class StepTemplate(Step):
 
 
 class Step1(StepTemplate):
+    username = os.environ['LOGNAME']
+    story = [
+        "Ruth: {{Bb:You startled me!",
+        "Do I know you?  You look familiar...",
+        "Wait, you're Betty's kid aren't you!",
+        "..."
+        "Yes?  Do you have a tongue?",
+        "Is your name not}} {{yb:" + username + "}}{{Bb:?}}",
+        "\n{{gb:Reply with}} {{yb:echo yes}} "
+        "{{gb:or}} {{yb:echo no}}."
+    ]
 
+    # Story has been moved to
     hints = [
         "{{rb:Use}} {{yb:echo}} {{rb:to reply to her "
         "question}}",
@@ -27,70 +39,47 @@ class Step1(StepTemplate):
     ]
 
     commands = [
-        "echo yes",
-        "echo no",
-        "echo Yes",
-        "echo No",
-        "echo YES",
-        "echo NO"
+        "echo yes"
+        "echo Yes"
+        "echo YES"
     ]
 
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
 
-    def __init__(self, xp=""):
-        username = os.environ['LOGNAME']
-        self.story = [
-            "Ruth: {{Bb:Oh hello there!  You startled me.",
-            "Do I know you?  You look familiar...",
-            "Wait, you're Betty's kid aren't you!",
-            "..."
-            "Yes?  Do you have a tongue?",
-            "Is your name not}} {{yb:" + username + "}}{{Bb:?}}",
-            "\n{{gb:Reply with}} {{yb:echo yes}} "
-            "{{gb:or}} {{yb:echo no}}."
-        ]
-        StepTemplate.__init__(self, xp)
-
     def check_command(self, line, current_dir):
         line = line.strip()
-        self.answer = line
+
+        if line == "echo no" or line == "echo No" or line == "echo NO":
+            hint = (
+                "Ruth: {{Bb:\"Oh don't be ridiculous, you're the "
+                "spitting image of Betty.\"}}"
+            )
+            self.send_hint(hint)
+
         return StepTemplate.check_command(self, line, current_dir)
 
     def next(self):
-        Step2(self.answer)
+        Step2()
 
 
 class Step2(StepTemplate):
+    story = [
+        "Ruth: {{Bb:\"Ah, I knew it!\"}}",
+        "{{Bb:\"So you live in that little house outside town?}}",
+        "{{yb:1: Yes}}",
+        "{{yb:2: No}}",
+        "{{yb:3: I don't know}}",
+        "\n{{gb:Use}} {{yb:echo 1}}{{gb:,}} {{yb:echo 2}} {{gb:or}} "
+        "{{yb:echo 3}} {{gb:to reply with either option 1, 2 or 3}}\n"
+    ]
+
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
     commands = ["echo 1", "echo 2", "echo 3"]
     hints = [
         "{{rb:If you want to reply with \"Yes\", use}} {{yb:echo 1}}"
     ]
-
-    def __init__(self, answer="echo yes"):
-
-        if answer.lower() == "echo yes":
-            self.story = [
-                "Ruth: {{Bb:\"Ah, I knew it!\"}}"
-            ]
-        elif answer == "echo no":
-            self.story = [
-                "Ruth: {{Bb:\"Oh don't be ridiculous, you're the "
-                "spitting image of Betty.\"}}"
-            ]
-
-        self.story = self.story + [
-            "{{Bb:\"So you live in that little house outside town?}}",
-            "{{yb:1: Yes}}",
-            "{{yb:2: No}}",
-            "{{yb:3: I don't know}}",
-            "\n{{gb:Use}} {{yb:echo 1}}{{gb:,}} {{yb:echo 2}} {{gb:or}} "
-            "{{yb:echo 3}} {{gb:to reply with either option 1, 2 or 3}}\n"
-        ]
-
-        StepTemplate.__init__(self)
 
     def check_command(self, line, current_dir):
         line = line.strip()

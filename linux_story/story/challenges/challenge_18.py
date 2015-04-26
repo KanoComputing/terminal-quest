@@ -5,12 +5,10 @@
 #
 # A chapter of the story
 
-import os
 from linux_story.Step import Step
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_19 import Step1 as NextChallengeStep
-from linux_story.common import tq_file_system
 
 
 class StepTemplate(Step):
@@ -23,13 +21,11 @@ class StepTemplate(Step):
 class Step1(StepTemplate):
     story = [
         "{{gb:Congratulations, you learnt the new skill echo!}}",
-        "\n Woah! It makes you talk!",
+        "\n Woah! You spoke aloud into the empty room!",
         "This command can probably be used to talk to people.",
         "Move this command into your chest for safe keeping."
     ]
     hints = [
-        "{{rb:Move the}} {{yb:mv}} {{rb:command into your}} {{yb:chest}} "
-        "{{rb:in your}} {{yb:room}}",
         "{{rb:An easy way to do it is to}} {{yb:mv ECHO}} {{rb:from}} "
         "{{yb:.safe}} {{rb:to}} {{yb:../my-room/.chest}}",
         "{{rb:Use}} {{yb:mv .safe/ECHO ../my-room/.chest/}}"
@@ -45,23 +41,13 @@ class Step1(StepTemplate):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def check_output(self, output):
-        # This is run after the command has been run, so can check for the
-        # existance of a file now
-
-        echo_note_path = os.path.join(tq_file_system, 'my-house/my-room/.chest/ECHO')
-        if os.path.exists(echo_note_path):
-            return True
-
-        return False
-
     def next(self):
         Step2()
 
 
 class Step2(StepTemplate):
     story = [
-        "Nice work! Let's head to ~ to find that farm!",
+        "{{gb:Nice work!}} Let's head to ~ to find that farm!",
         "Type {{yb:cd}} by itself to go to {{yb:~}}"
     ]
 
@@ -95,7 +81,10 @@ class Step3(StepTemplate):
         "{{rb:Look around with}} {{yb:ls}}"
     ]
 
-    commands = "ls"
+    commands = [
+        "ls",
+        "ls -a"
+    ]
     start_dir = '~'
     end_dir = '~'
 
@@ -113,7 +102,12 @@ class Step4(StepTemplate):
     end_dir = "~/farm"
     commands = [
         "cd farm",
-        "cd farm/"
+        "cd farm/",
+        "cd ~/farm",
+        "cd ~/farm/"
+    ]
+    hints = [
+        "{{rb:Use}} {{yb:cd farm}} {{rb:to head to the farm.}}"
     ]
 
     def block_command(self, line):
@@ -140,8 +134,8 @@ class Step6(StepTemplate):
     story = [
         "You are in a farm, with a {{bb:barn}}, a {{bb:farmhouse}} and "
         "a large {{bb:toolshed}} in sight.",
-        "The land is well tended and weed free, so there must"
-        " be people about here.  See if you can find someone to "
+        "The land is well tended and weed free, so there must "
+        "be people about here.  See if you can find someone to "
         "talk to."
     ]
     start_dir = "farm"
@@ -166,26 +160,75 @@ class Step6(StepTemplate):
 class Step7(StepTemplate):
 
     story = [
-        "In the barn, you see a woman called {{yb:Ruth}}",
-        "You should talk to her and see if she knows what's going on."
+        "In the barn, you see a woman tending some animals.",
+        "Take a closer look at everyone in the barn using "
+        "the {{yb:cat}} command."
     ]
 
     last_challenge = True
 
-    command = "cat Ruth"
-    hints = [
-        "{{rb:Use}} {{yb:cat Ruth}} {{rb:to see what "
-        "she has to say.}}"
-    ]
+    all_commands = {
+        "cat Ruth": "Ruth: {{Bb:Ah! Who are you?!}}",
+        "cat Cobweb": "Cobweb: {{Bb:Neiiigh}}",
+        "cat Trotter": "Trotter: {{Bb:Oink Oink}}",
+        "cat Daisy": "Daisy: {{Bb:Mooooooooo}}"
+    }
 
     start_dir = "~/farm/barn"
-
-    # TODO: why does this need to be specified here?
     end_dir = "~/farm/barn"
 
+    # TODO: move this into step_helper_functions, used a few too
+    # many times outside.
     def check_command(self, line, current_dir):
-        return_value = StepTemplate.check_command(self, line, current_dir)
-        return return_value
+
+        # If we've emptied the list of available commands, then pass the level
+        if not self.all_commands:
+            return True
+
+        # strip any spaces off the beginning and end
+        line = line.strip()
+
+        # If they enter ls, say Well Done
+        if line == 'ls':
+            hint = "\n{{gb:Well done for looking around.}}"
+            self.send_text(hint)
+            return False
+
+        # check through list of commands
+        end_dir_validated = False
+        self.hints = [
+            "{{rb:Use}} {{yb:" + self.all_commands.keys()[0] + "}} "
+            "{{rb:to progress}}"
+        ]
+
+        end_dir_validated = current_dir == self.end_dir
+
+        # if the validation is included
+        if line in self.all_commands.keys() and end_dir_validated:
+            # Print hint from person
+            hint = "\n" + self.all_commands[line]
+
+            self.all_commands.pop(line, None)
+
+            if len(self.all_commands) == 1:
+                hint += (
+                    "\n{{gb:Well done! Have a look at one more}}"
+                )
+            elif len(self.all_commands) > 0:
+                hint += "\n{{gb:Well done! Look at " + \
+                    str(len(self.all_commands)) + \
+                    " more.}}"
+            else:
+                hint += "\n{{gb:Press Enter to continue}}"
+
+            self.send_text(hint)
+
+        else:
+            self.send_text("\n" + self.hints[0])
+
+        # Always return False unless the list of valid commands have been
+        # emptied
+        return False
 
     def next(self):
         NextChallengeStep(self.xp)

@@ -51,15 +51,6 @@ class Step1(StepTemplateMv):
         "{{rb:Use}} {{yb:ls .chest}} {{rb:to look inside the .chest}}"
     ]
 
-    def check_output(self, output):
-        if not output:
-            return False
-
-        if 'ls' in output and 'cd' in output:
-            return True
-
-        return False
-
     def next(self):
         Step2()
 

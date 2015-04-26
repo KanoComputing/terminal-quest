@@ -35,3 +35,20 @@ def unblock_commands_with_cd_hint(line, list_of_commands):
 
         print 'Nice try! But you do not need that command for this challenge'
         return True
+
+
+def unblock_commands_with_mkdir_hint(line, list_of_commands):
+    line = line.strip()
+    if ("mkdir" in line and line not in list_of_commands):
+        print (
+            "Nearly there!  But you're trying to build something "
+            "different from what was expected.  Try building something else."
+        )
+
+        return True
+
+    elif ("mv" in line or "cd" in line) and \
+            not line.strip() == 'mv --help':
+
+        print 'Nice try! But you do not need that command for this challenge'
+        return True

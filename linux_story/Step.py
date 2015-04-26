@@ -177,6 +177,10 @@ class Step():
         '''If self.commands is provided, checks the command entered
         by the user matches self.commands.
         '''
+
+        print "line = {}".format(line)
+        print "current_dir = {}".format(current_dir)
+
         # check through list of commands
         command_validated = True
         end_dir_validated = True
@@ -203,6 +207,7 @@ class Step():
         return self.finish_if_server_ready(condition)
 
     def finish_if_server_ready(self, other_condition):
+        print "in if_server_ready"
         return self.terminal.finish_if_server_ready(other_condition)
 
     def show_hint(self, line, current_dir):
@@ -226,8 +231,8 @@ class Step():
         '''
 
         line = line.strip()
-        if "cd" in line or "mv" in line and \
-                not line == 'mv --help':
+        if "cd" in line or "mkdir" in line or \
+                ("mv" in line and not line == 'mv --help'):
 
             print ('Nice try! But you do not need that command for this '
                    'challenge')
