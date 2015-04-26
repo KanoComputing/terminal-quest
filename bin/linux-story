@@ -15,7 +15,7 @@ dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
-from linux_story.launch_functions_2 import launch_project
+from linux_story.launch_functions import launch_project
 # from kano_profile.apps import load_app_state_variable, save_app_state_variable
 
 

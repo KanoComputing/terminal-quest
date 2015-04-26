@@ -188,8 +188,6 @@ class Step():
         '''If self.commands is provided, checks the command entered
         by the user matches self.commands.
         '''
-
-        print "current_dir = {}".format(current_dir)
         # check through list of commands
         command_validated = True
         end_dir_validated = True
