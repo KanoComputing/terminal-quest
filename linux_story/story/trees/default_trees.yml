@@ -219,6 +219,16 @@ Edith, Edward, Eleanor, dog, apple:
           step: 1
           path: "~/town/.hidden-shelter"
 
+apple:
+    challenges:
+        - challenge: 11
+          step: 5
+          path: "~/town/.hidden-shelter/basket"
+
+        - challenge: 11
+          step: 6
+          path: "~/town/.hidden-shelter"
+
 # Eleanor and the dog run outside
 Eleanor, dog:
     challenges:

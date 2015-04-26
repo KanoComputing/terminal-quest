@@ -30,8 +30,8 @@ class Step1(StepTemplateMkdir):
         "Head back to the {{yb:.hidden-shelter}}."
     ]
 
-    start_dir = "toolshed"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/farm/toolshed"
+    end_dir = "~/town/.hidden-shelter"
 
     def block_command(self):
         return unblock_commands_with_cd_hint(line, self.commands)
@@ -45,8 +45,8 @@ class Step2(StepTemplateMkdir):
         "Have a look around"
     ]
 
-    start_dir = ".hidden-shelter",
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter",
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "ls",
         "ls -a"

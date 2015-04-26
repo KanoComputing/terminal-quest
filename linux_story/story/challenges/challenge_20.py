@@ -40,8 +40,8 @@ class Step1(StepTemplateEcho):
         "cd ../toolshed/"
     ]
 
-    start_dir = "barn"
-    end_dir = "toolshed"
+    start_dir = "~/farm/barn"
+    end_dir = "~/farm/toolshed"
     hints = [
         "Go to the toolshed in one step"
         " using {{yb:cd ../toolshed}}"
@@ -68,8 +68,8 @@ class Step2(StepTemplateEcho):
         "Ruth: {{Bb:Lets have a look around for anything that "
         "could be useful}}"
     ]
-    start_dir = "toolshed"
-    end_dir = "toolshed"
+    start_dir = "~/farm/toolshed"
+    end_dir = "~/farm/toolshed"
     hints = [
         "Use {{yb:ls}} to look around"
     ]
@@ -96,8 +96,8 @@ class Step3(StepTemplateEcho):
         "{{Bb:to read things\"}}",
         "Ruth: {{Bb:\"Just use}} {{yb:cat MKDIR}} {{Bb:\"}}"
     ]
-    start_dir = "toolshed"
-    end_dir = "toolshed"
+    start_dir = "~/farm/toolshed"
+    end_dir = "~/farm/toolshed"
     commands = "cat MKDIR"
 
     def next(self):
@@ -113,8 +113,8 @@ class Step4(StepTemplateMkdir):
     hints = [
         "{{rb:Create an igloo structure by using}} {{yb:mkdir igloo}}"
     ]
-    start_dir = "toolshed"
-    end_dir = "toolshed"
+    start_dir = "~/farm/toolshed"
+    end_dir = "~/farm/toolshed"
     commands = "mkdir igloo"
 
     def check_command(self, line, current_dir):
@@ -133,8 +133,8 @@ class Step5(StepTemplateMkdir):
     story = [
         "Now have a look around and see what's changed"
     ]
-    start_dir = "toolshed"
-    end_dir = "toolshed"
+    start_dir = "~/farm/toolshed"
+    end_dir = "~/farm/toolshed"
     commands = [
         "ls",
         "ls -a",

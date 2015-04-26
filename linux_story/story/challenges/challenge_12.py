@@ -38,8 +38,8 @@ class Step1(StepTemplateMv):
         "{{wb:Edith:}} {{Bb:Can you save her dog too?  I'm worried something "
         "will happen to it if it stays outside.}}"
     ]
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "mv ../dog .",
         "mv ../dog ./",
@@ -86,8 +86,8 @@ class Step2(StepTemplateMv):
         "Talk to everyone and see if there's anything else you can do to "
         "help further."
     ]
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = "cat Edward"
     all_commands = {
         "cat Edith": "\n{{wb:Edith:}} {{Bb:\"Thank you so much! "

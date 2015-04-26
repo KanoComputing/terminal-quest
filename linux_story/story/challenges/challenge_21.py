@@ -26,8 +26,8 @@ class Step1(StepTemplateMkdir):
         "move the animals inside.}}",
         "\n{{yb:Go back into the barn}}"
     ]
-    start_dir = "toolshed"
-    end_dir = "barn"
+    start_dir = "~/farm/toolshed"
+    end_dir = "~/farm/barn"
     commands = [
         "cd ../barn/",
         "cd ../barn"
@@ -54,8 +54,8 @@ class Step2(StepTemplateMkdir):
         "name.",
         "Make a shelter called {{yb:.shelter}}. Remember the dot at the start!"
     ]
-    start_dir = "barn"
-    end_dir = "barn"
+    start_dir = "~/farm/barn"
+    end_dir = "~/farm/barn"
 
     hint = [
         "{{rb:Make a shelter called}} {{yb:.shelter}}{{rb:. Remember the dot at the start!}}"
@@ -102,8 +102,8 @@ class Step4(StepTemplateMkdir):
     story = [
         "Now look around with {{yb:ls -a}} to check it actually exists!"
     ]
-    start_dir = "barn"
-    end_dir = "barn"
+    start_dir = "~/farm/~/farm/barn"
+    end_dir = "~/farm/barn"
     commands = [
         "ls -a"
     ]
@@ -121,8 +121,8 @@ class Step5(StepTemplateMkdir):
         "Unfortunately I can't see it...please can you put me ",
         "and the animals inside?}}"
     ]
-    start_dir = "barn"
-    end_dir = "barn"
+    start_dir = "~/farm/barn"
+    end_dir = "~/farm/barn"
     commands = [
         "mv Trotter .shelter",
         "mv Trotter .shelter/",

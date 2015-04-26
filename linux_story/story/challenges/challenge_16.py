@@ -16,7 +16,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.challenges.challenge_17 import Step1 as NextChallengeStep
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import unblock_commands
 import time
 
 
@@ -35,8 +35,8 @@ class Step1(StepTemplateMv):
         "Peer inside the {{yb:.chest}} and see what it contains."
     ]
 
-    start_dir = "my-room"
-    end_dir = "my-room"
+    start_dir = "~/my-house/my-room"
+    end_dir = "~/my-house/my-room"
 
     commands = [
         'ls .chest',
@@ -71,8 +71,8 @@ class Step2(StepTemplateMv):
         "Use {{yb:cat}} to read one of the scrolls"
     ]
 
-    start_dir = "my-room"
-    end_dir = "my-room"
+    start_dir = "~/my-house/my-room"
+    end_dir = "~/my-house/my-room"
 
     commands = [
         'cat .chest/LS',
@@ -96,8 +96,8 @@ class Step3(StepTemplateMv):
         "so they're all safe and in the same place."
     ]
 
-    start_dir = "my-room"
-    end_dir = "my-room"
+    start_dir = "~/my-house/my-room"
+    end_dir = "~/my-house/my-room"
 
     commands = [
         "mv ~/town/.hidden-shelter/.tiny-chest/MV .chest/",
@@ -113,7 +113,7 @@ class Step3(StepTemplateMv):
     ]
 
     def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+        return unblock_commands(line, self.commands)
 
     def next(self):
         Step4()
@@ -125,8 +125,8 @@ class Step4(StepTemplateMv):
         "Have a closer look for some more items."
     ]
 
-    start_dir = "my-room"
-    end_dir = "my-room"
+    start_dir = "~/my-house/my-room"
+    end_dir = "~/my-house/my-room"
 
     hints = [
         "{{rb:Use}} {{yb:ls -a .chest}} {{rb:to see if there are any "
@@ -151,8 +151,8 @@ class Step5(StepTemplateMv):
         "What does it say?"
     ]
 
-    start_dir = "my-room"
-    end_dir = "my-room"
+    start_dir = "~/my-house/my-room"
+    end_dir = "~/my-house/my-room"
 
     hints = [
         "{{rb:Use}} {{yb:cat .chest/.note}} {{rb:to read the}} {{yb:.note}}"
@@ -163,22 +163,8 @@ class Step5(StepTemplateMv):
     ]
 
     def next(self):
-        Step6()
-
-
-class Step6(StepTemplateMv):
-    story = [
-        "So someone left these for you to find?",
-        "But who?",
-        "\n{{gb:Press Enter to continue}}"
-    ]
-
-    start_dir = "my-room"
-    end_dir = "my-room"
-    last_step = True
-
-    def next(self):
         NextChallengeStep(self.xp)
+
         # self.exit()
 
         # So that server has time to send message before it closes

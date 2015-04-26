@@ -47,16 +47,11 @@ class Step1(StepTemplateCd):
         "It sounds like the bell you heard before.",
         "Use {{yb:ls}} to look around again."
     ]
-    start_dir = "town"
-    end_dir = "town"
+    start_dir = "~/town"
+    end_dir = "~/town"
     commands = "ls"
     hints = "{{r:To look around, use}} {{yb:ls}}"
-
-    story_dict = {
-        "grumpy-man": {
-            "exists": False
-        }
-    }
+    deleted_items = ["~/town/grumpy-man"]
 
     def __init__(self, xp=""):
         play_sound('bell')
@@ -78,15 +73,11 @@ class Step2(StepTemplateCdBell):
         "{{wb:Young-girl:}} {{Bb:Oh!  I heard it go again!}}",
         "\nTake a look around you to check."
     ]
-    start_dir = "town"
-    end_dir = "town"
+    start_dir = "~/town"
+    end_dir = "~/town"
     commands = "ls"
     hints = "{{rb:To look around, use}} {{yb:ls}}"
-    story_dict = {
-        "little-boy": {
-            "exists": False
-        }
-    }
+    deleted_items = ["~/town/little-boy"]
 
     def run(self):
         StepTemplateCdBell.run(self)
@@ -104,15 +95,11 @@ class Step3(StepTemplateCdBell):
         "\n{{pb:Ding. Dong.}}\n",
         "Look around."
     ]
-    start_dir = "town"
-    end_dir = "town"
+    start_dir = "~/town"
+    end_dir = "~/town"
     commands = "ls"
     hints = "{{r:To look around, use}} {{yb:ls}}"
-    story_dict = {
-        "young-girl": {
-            "exists": False
-        }
-    }
+    deleted_items = ["~/town/young-girl"]
 
     def run(self):
         StepTemplateCdBell.run(self)
@@ -127,8 +114,8 @@ class Step4(StepTemplateCd):
         "You are alone with the Mayor.",
         "Talk to the Mayor"
     ]
-    start_dir = "town"
-    end_dir = "town"
+    start_dir = "~/town"
+    end_dir = "~/town"
     commands = "cat Mayor"
     hints = "{{rb:Use}} {{yb:cat Mayor}} {{r:to talk to the Mayor}}"
 
@@ -143,14 +130,12 @@ class Step5(StepTemplateCdBell):
         "....I should head home now...}}",
         "\n{{pb:Ding. Dong.}}\n"
     ]
-    start_dir = "town"
-    end_dir = "town"
+    start_dir = "~/town"
+    end_dir = "~/town"
     commands = "ls"
     hints = "{{rb:To look around, use}} {{yb:ls}}"
+    deleted_items = ["~/town/Mayor"]
     story_dict = {
-        "Mayor": {
-            "exists": False
-        },
         "note_town": {
             "name": "note",
             "path": "~/town"
@@ -170,8 +155,8 @@ class Step6(StepTemplateCd):
         "Wait - there's a note on the floor.",
         "Use {{yb:cat}} to read the note."
     ]
-    start_dir = "town"
-    end_dir = "town"
+    start_dir = "~/town"
+    end_dir = "~/town"
     commands = "cat note"
     hints = "{{rb:To read the note, use}} {{yb:cat note}}"
     last_step = True

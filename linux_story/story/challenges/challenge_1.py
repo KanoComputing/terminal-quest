@@ -36,8 +36,8 @@ class Step1(StepTemplateLs):
         "It's time to get up sleepy head!",
         "\n{{wb:New Spell:}} {{yb:ls}} - lets you see what's around you."
     ]
-    start_dir = "my-room"
-    end_dir = "my-room"
+    start_dir = "~/my-house/my-room"
+    end_dir = "~/my-house/my-room"
     commands = "ls"
     hints = [
         "{{rb:Type}} {{yb:ls}} {{rb:and press Enter to take a look around "

@@ -30,8 +30,8 @@ class Step1(StepTemplateCd):
     story = [
         "Let Mum know about Dad. Type {{yb:cat Mum}}"
     ]
-    start_dir = "kitchen"
-    end_dir = "kitchen"
+    start_dir = "~/my-house/kitchen"
+    end_dir = "~/my-house/kitchen"
     commands = "cat Mum"
     hints = (
         "{{rb:To talk to your Mum, type}} {{yb:cat Mum}} {{rb:and press "
@@ -52,7 +52,7 @@ class Step2(StepTemplateCd):
         "back.\"}}\n",
         "Let's head to town. To leave the house, use {{yb:cd}} by itself"
     ]
-    start_dir = "kitchen"
+    start_dir = "~/my-house/kitchen"
     end_dir = "~"
     commands = "cd"
     hints = "{{rb:Type}} {{yb:cd}} {{rb:to start the journey.}}"
@@ -85,7 +85,7 @@ class Step4(StepTemplateCd):
         "{{yb:cd}}."
     ]
     start_dir = "~"
-    end_dir = "town"
+    end_dir = "~/town"
     commands = ["cd town", "cd town/"]
     hints = "{{rb:Type}} {{yb:cd town}} {{rb:to walk into town.}}"
 

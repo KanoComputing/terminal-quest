@@ -17,7 +17,7 @@ from linux_story.Step import Step
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.common import tq_file_system
 from linux_story.story.challenges.challenge_15 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint, unblock_commands
 
 
 class StepTemplateMv(Step):
@@ -31,8 +31,8 @@ class Step1(StepTemplateMv):
     story = [
         "Let's see what food is available in the kitchen."
     ]
-    start_dir = "kitchen"
-    end_dir = "kitchen"
+    start_dir = "~/my-house/kitchen"
+    end_dir = "~/my-house/kitchen"
     commands = [
         "ls",
         "ls -a"
@@ -52,8 +52,8 @@ class Step2(StepTemplateMv):
         "You can move multiple items using {{yb:mv <item1> <item2>"
         " <item3> basket/}}"
     ]
-    start_dir = "kitchen"
-    end_dir = "kitchen"
+    start_dir = "~/my-house/kitchen"
+    end_dir = "~/my-house/kitchen"
     passable_items = [
         'banana',
         'cake',
@@ -133,8 +133,8 @@ class Step3(StepTemplateMv):
         "basket",
         "Move the {{yb:basket}} back to {{yb:~}}"
     ]
-    start_dir = "kitchen"
-    end_dir = "kitchen"
+    start_dir = "~/my-house/kitchen"
+    end_dir = "~/my-house/kitchen"
     commands = [
         "mv basket ~",
         "mv basket/ ~",
@@ -147,7 +147,7 @@ class Step3(StepTemplateMv):
     ]
 
     def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+        return unblock_commands(line, self.commands)
 
     def next(self):
         Step4()
@@ -157,7 +157,7 @@ class Step4(StepTemplateMv):
     story = [
         "Follow the basket by using {{yb:cd}}"
     ]
-    start_dir = "kitchen"
+    start_dir = "~/my-house/kitchen"
     end_dir = "~"
     commands = [
         "cd",
@@ -200,7 +200,7 @@ class Step5(StepTemplateMv):
     ]
 
     def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+        return unblock_commands(line, self.commands)
 
     def next(self):
         Step6()
@@ -213,7 +213,7 @@ class Step6(StepTemplateMv):
     ]
 
     start_dir = "~"
-    end_dir = ".hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "cd town/.hidden-shelter",
         "cd town/.hidden-shelter/",
@@ -237,8 +237,8 @@ class Step7(StepTemplateMv):
         "{{wn:See what everyone has to say using}} {{yb:cat}} {{wn:and check "
         "everything is ok with the food.}}"
     ]
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     hints = [
         "Talk to everyone using {{yb:cat}}"
     ]
@@ -296,5 +296,4 @@ class Step7(StepTemplateMv):
         self.send_hint(hint)
 
     def next(self):
-        self.create_secret_chest()
         NextStep(self.xp)

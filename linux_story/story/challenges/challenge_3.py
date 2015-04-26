@@ -31,8 +31,8 @@ class Step1(StepTemplateCat):
         "There's loads more interesting stuff in your room.",
         "Let's look in your {{yb:shelves}} using {{yb:ls}}"
     ]
-    start_dir = "my-room"
-    end_dir = "my-room"
+    start_dir = "~/my-house/my-room"
+    end_dir = "~/my-house/my-room"
     commands = ["ls shelves", "ls shelves/"]
     hints = "{{rb:Type}} {{yb:ls shelves}} {{rb:to look at your books.}}"
 
@@ -47,8 +47,8 @@ class Step2(StepTemplateCat):
         "{{yb:cat shelves/comic-book}}",
         "Press the TAB key before you've finished typing!"
     ]
-    start_dir = "my-room"
-    end_dir = "my-room"
+    start_dir = "~/my-house/my-room"
+    end_dir = "~/my-house/my-room"
     commands = "cat shelves/comic-book"
     hints = "{{rb:Type}} {{yb:cat shelves/comic-book}} {{rb:to read the comic.}}"
 
@@ -62,8 +62,8 @@ class Step3(StepTemplateCat):
         "Hang on, can you see that? There's a {{yb:note}} amongst your books.",
         "Read the note using {{yb:cat}}"
     ]
-    start_dir = "my-room"
-    end_dir = "my-room"
+    start_dir = "~/my-house/my-room"
+    end_dir = "~/my-house/my-room"
     commands = "cat shelves/note"
     hints = "{{rb:Type}} {{yb:cat shelves/note}} {{rb:to read the note.}}"
 

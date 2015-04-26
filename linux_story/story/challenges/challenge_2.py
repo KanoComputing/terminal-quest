@@ -16,7 +16,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.Step import Step
 from linux_story.story.terminals.terminal_cat import TerminalCat
 from linux_story.story.challenges.challenge_3 import Step1 as NextChallengeStep
-from kano_profile.apps import save_app_state_variable
+# from kano_profile.apps import save_app_state_variable
 
 
 class StepTemplateCat(Step):
@@ -34,8 +34,8 @@ class Step1(StepTemplateCat):
         "\n{{wb:New Spell}}: to look at objects, type {{yb:cat <object name>}}",
         "Try looking at the alarm using {{yb:cat alarm}}"
     ]
-    start_dir = "my-room"
-    end_dir = "my-room"
+    start_dir = "~/my-house/my-room"
+    end_dir = "~/my-house/my-room"
     commands = "cat alarm"
     hints = "{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}"
 
@@ -48,8 +48,8 @@ class Step2(StepTemplateCat):
         "Ok - it's switched off. Better get dressed...",
         "Type {{yb:ls wardrobe}} to look inside your wardrobe."
     ]
-    start_dir = "my-room"
-    end_dir = "my-room"
+    start_dir = "~/my-house/my-room"
+    end_dir = "~/my-house/my-room"
     commands = ["ls wardrobe", "ls wardrobe/"]
     hints = "{{rb:Type}} {{yb:ls wardrobe}} {{rb:to look for something to wear}}"
 
@@ -62,8 +62,8 @@ class Step3(StepTemplateCat):
         "Check out that {{yb:t-shirt}}!",
         "Type {{yb:cat wardrobe/t-shirt}} to see how it looks."
     ]
-    start_dir = "my-room"
-    end_dir = "my-room"
+    start_dir = "~/my-house/my-room"
+    end_dir = "~/my-house/my-room"
     commands = "cat wardrobe/t-shirt"
     hints = (
         "{{rb:Type}} {{yb:cat wardrobe/t-shirt}} "
@@ -79,8 +79,8 @@ class Step4(StepTemplateCat):
         "Looking good!  Put that on and look for something else.",
         "Look at the {{yb:skirt}} or the {{yb:trousers}}"
     ]
-    start_dir = "my-room"
-    end_dir = "my-room"
+    start_dir = "~/my-house/my-room"
+    end_dir = "~/my-house/my-room"
     commands = [
         "cat wardrobe/skirt",
         "cat wardrobe/trousers"
@@ -92,9 +92,11 @@ class Step4(StepTemplateCat):
 
     def check_command(self, line, current_dir):
         if line.strip() == self.commands[0]:
-            save_app_state_variable('linux-story', 'outfit', 'skirt')
+            # save_app_state_variable('linux-story', 'outfit', 'skirt')
+            pass
         elif line.strip() == self.commands[1]:
-            save_app_state_variable('linux-story', 'outfit', 'trousers')
+            # save_app_state_variable('linux-story', 'outfit', 'trousers')
+            pass
 
         return StepTemplateCat.check_command(self, line, current_dir)
 
@@ -107,8 +109,8 @@ class Step5(StepTemplateCat):
         "Awesome, you're nearly done.",
         "Finally, put on the {{yb:cap}} so we're ready to go."
     ]
-    start_dir = "my-room"
-    end_dir = "my-room"
+    start_dir = "~/my-house/my-room"
+    end_dir = "~/my-house/my-room"
     commands = [
         "cat wardrobe/cap"
     ]

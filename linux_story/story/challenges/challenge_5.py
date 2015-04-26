@@ -34,8 +34,8 @@ class Step1(StepTemplateCd):
         "Let's look for your Dad in the garden.",
         "First we need to leave the kitchen using {{yb:cd ..}}"
     ]
-    start_dir = "kitchen"
-    end_dir = "my-house"
+    start_dir = "~/my-house/kitchen"
+    end_dir = "~/my-house"
     commands = ["cd ..", "cd ../"]
     hints = "{{rb:To leave the kitchen, type}} {{yb:cd ..}}"
 
@@ -51,8 +51,8 @@ class Step2(StepTemplateCd):
         "You are back in the main hall of your house",
         "Can you see your garden?  Have a look around you."
     ]
-    start_dir = "my-house"
-    end_dir = "my-house"
+    start_dir = "~/my-house"
+    end_dir = "~/my-house"
     commands = "ls"
     hints = "{{rb:Type}} {{yb:ls}} {{rb:to look around you}}"
 
@@ -66,8 +66,8 @@ class Step3(StepTemplateCd):
         "room.",
         "Head into your {{yb:garden}}"
     ]
-    start_dir = "my-house"
-    end_dir = "garden"
+    start_dir = "~/my-house"
+    end_dir = "~/my-house/garden"
     commands = ["cd garden", "cd garden/"]
     hints = "{{rb:Type}} {{yb:cd garden}} {{rb:to go into the garden}}"
 
@@ -82,8 +82,8 @@ class Step4(StepTemplateCd):
     story = [
         "Use {{yb:ls}} to look in the garden for your Dad."
     ]
-    start_dir = "garden"
-    end_dir = "garden"
+    start_dir = "~/my-house/garden"
+    end_dir = "~/my-house/garden"
     commands = "ls"
     hints = (
         "{{rb:To look for your Dad, type}} {{yb:ls}} {{rb:and press "
@@ -100,8 +100,8 @@ class Step5(StepTemplateCd):
         "Hmmm...but you can't see him anywhere.",
         "Maybe he's in the {{yb:greenhouse}}. Go inside the greenhouse."
     ]
-    start_dir = "garden"
-    end_dir = "greenhouse"
+    start_dir = "~/my-house/garden"
+    end_dir = "~/my-house/garden/greenhouse"
     commands = ["cd greenhouse", "cd greenhouse/"]
     hints = "{{rb:To go to the greenhouse, type}} {{yb:cd greenhouse}}"
 
@@ -116,8 +116,8 @@ class Step6(StepTemplateCd):
     story = [
         "Is he here? Type {{yb:ls}} to find out."
     ]
-    start_dir = "greenhouse"
-    end_dir = "greenhouse"
+    start_dir = "~/my-house/garden/greenhouse"
+    end_dir = "~/my-house/garden/greenhouse"
     commands = "ls"
     hints = "{{rb:Type}} {{yb:ls}} {{rb:to look for your Dad.}}"
 
@@ -132,8 +132,8 @@ class Step7(StepTemplateCd):
         "You see a note on the ground.  Use {{yb:cat note}} to read what "
         "it says"
     ]
-    start_dir = "greenhouse"
-    end_dir = "greenhouse"
+    start_dir = "~/my-house/garden/greenhouse"
+    end_dir = "~/my-house/garden/greenhouse"
     commands = "cat note"
     hints = "{{rb:Type}} {{yb:cat note}} {{rb:to see what the note says!}}"
 
@@ -146,8 +146,8 @@ class Step8(StepTemplateCd):
         "Going back is super easy. Just type {{yb:cd ..}} to go back the way "
         "you came."
     ]
-    start_dir = "greenhouse"
-    end_dir = "garden"
+    start_dir = "~/my-house/garden/greenhouse"
+    end_dir = "~/my-house/garden"
     commands = ["cd ..", "cd ../"]
     hints = "{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the garden}}"
 
@@ -163,8 +163,8 @@ class Step9(StepTemplateCd):
         "You're back in the garden. Use {{yb:cd ..}} again to"
         " go back to the house."
     ]
-    start_dir = "garden"
-    end_dir = "my-house"
+    start_dir = "~/my-house/garden"
+    end_dir = "~/my-house"
     commands = ["cd ..", "cd ../"]
     hints = "{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the house}}"
 
@@ -179,8 +179,8 @@ class Step10(StepTemplateCd):
     story = [
         "Now go back into the kitchen and see Mum."
     ]
-    start_dir = "my-house"
-    end_dir = "kitchen"
+    start_dir = "~/my-house"
+    end_dir = "~/my-house/kitchen"
     commands = ["cd kitchen", "cd kitchen/"]
     hints = "{{rb:Type}} {{yb:cd kitchen}} {{rb:to go back to the kitchen}}"
 

@@ -40,7 +40,7 @@ class Step1(StepTemplate):
         "mv .safe/ECHO ~/my-house/my-room/.chest/",
         "mv .safe/ECHO ~/my-house/my-room/.chest"
     ]
-    start_dir = "parents-room"
+    start_dir = "~/my-house/parents-room"
 
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
@@ -75,7 +75,7 @@ class Step2(StepTemplate):
         "cd ~/"
     ]
 
-    start_dir = "parents-room"
+    start_dir = "~/my-house/parents-room"
     end_dir = "~"
     last_step = True
 
@@ -110,7 +110,7 @@ class Step4(StepTemplate):
     ]
 
     start_dir = "~"
-    end_dir = "farm"
+    end_dir = "~/farm"
     commands = [
         "cd farm",
         "cd farm/"
@@ -129,8 +129,8 @@ class Step5(StepTemplate):
     ]
 
     command = "ls"
-    start_dir = "farm"
-    end_dir = "farm"
+    start_dir = "~/farm"
+    end_dir = "~/farm"
 
     def next(self):
         Step6()
@@ -178,10 +178,10 @@ class Step7(StepTemplate):
         "she has to say.}}"
     ]
 
-    start_dir = "barn"
+    start_dir = "~/farm/barn"
 
     # TODO: why does this need to be specified here?
-    end_dir = "barn"
+    end_dir = "~/farm/barn"
 
     def check_command(self, line, current_dir):
         return_value = StepTemplate.check_command(self, line, current_dir)

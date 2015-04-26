@@ -35,8 +35,8 @@ class Step1(StepTemplate):
         "echo NO"
     ]
 
-    start_dir = "barn"
-    end_dir = "barn"
+    start_dir = "~/farm/barn"
+    end_dir = "~/farm/barn"
 
     def __init__(self, xp=""):
         username = os.environ['LOGNAME']
@@ -62,8 +62,8 @@ class Step1(StepTemplate):
 
 
 class Step2(StepTemplate):
-    start_dir = "barn"
-    end_dir = "barn"
+    start_dir = "~/farm/barn"
+    end_dir = "~/farm/barn"
     commands = ["echo 1", "echo 2", "echo 3"]
     hints = [
         "{{rb:If you want to reply with \"Yes\", use}} {{yb:echo 1}}"
@@ -108,8 +108,8 @@ class Step2(StepTemplate):
 # chasing a rabbit, and that we have to find the dog.
 # We could go to the woods here, but not enter them.
 class Step3(StepTemplate):
-    start_dir = "barn"
-    end_dir = "barn"
+    start_dir = "~/farm/barn"
+    end_dir = "~/farm/barn"
 
     # echo 3 should NOT pass this level
     commands = [
@@ -188,8 +188,8 @@ class Step4(StepTemplate):
         "{{yb:2: \"I think you should go and look for your husband\"}}"
     ]
 
-    start_dir = "barn"
-    end_dir = "barn"
+    start_dir = "~/farm/barn"
+    end_dir = "~/farm/barn"
 
     commands = [
         "echo 1",

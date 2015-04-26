@@ -7,45 +7,29 @@
 #
 # Terminal commands which are emulated
 
+import os
 
-def cd(current_dir, tree, line=None):
 
-    # if user enters 'cd' by itself, takae them to ~
+def cd(real_path, line):
+    # for now, avoid awkward import statements
+    tq_file_system = os.path.join(os.path.expanduser('~'), '.linux-story')
+
     if not line:
-        new_current_dir = "~"
-
-    # Decide where to move the user
+        new_path = tq_file_system
     else:
-        new_current_dir = current_dir
-
-        folders = filter(None, line.split('/'))
-
-        # if user starts line with ~, take their path as an absolute path
-        if folders[0] == '~':
-
-            # Need to check that the path is valid
-            # Check the subsequent folder do indeed belong to the correct
-            # folders
-            for i in range(1, len(folders)):
-                if not folders[i] in tree.show_dirs(folders[i - 1]):
-                    new_current_dir = current_dir
-                    return new_current_dir
-
-            new_current_dir = folders[-1]
-
-        # This assumes you are moving somewhere relative to where you started
-        # from
+        if line.startswith('~'):
+            new_line = line.replace('~', '~/.linux-story')
+            new_path = os.path.expanduser(new_line)
         else:
-            for f in folders:
-                if f in tree.show_dirs(new_current_dir):
-                    new_current_dir = f
-                elif f == "..":
-                    new_current_dir = tree.show_ancestor(new_current_dir)
+            new_path = os.path.join(real_path, line)
 
-                # if the directory ends in a /
-                elif f == "":
-                    pass
-                else:
-                    new_current_dir = current_dir
+            # We use os.path.abspath so we don't get paths
+            # like ~/my-house/../my-house
+            new_path = os.path.abspath(new_path)
 
-    return new_current_dir
+        if not os.path.exists(new_path) or not os.path.isdir(new_path):
+            new_path = real_path
+
+    if new_path[-1] == '/':
+        new_path = new_path[:-1]
+    return new_path

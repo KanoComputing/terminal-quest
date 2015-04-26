@@ -48,9 +48,19 @@ class Step1(StepTemplateCd):
         "cat sandwich",
         "cat table"
     ]
-    start_dir = "kitchen"
-    end_dir = "kitchen"
+    start_dir = "~/my-house/kitchen"
+    end_dir = "~/my-house/kitchen"
     counter = 0
+    deleted_items = ["~/my-house/kitchen/note"]
+    story_dict = {
+        "Eleanor, Edward, Edith, apple": {
+            "path": "~/town/.hidden-shelter",
+        },
+        "empty-bottle": {
+            "path": "~/town/.hidden-shelter/basket"
+        }
+    }
+    # for check_command logic
     first_time = True
 
     def check_command(self, line, current_dir):
@@ -94,8 +104,8 @@ class Step2(StepTemplateCd):
         "See if you can find something back in {{yb:town}}.",
         "First, use {{yb:cd ..}} to leave the kitchen."
     ]
-    start_dir = "kitchen"
-    end_dir = "town"
+    start_dir = "~/my-house/kitchen"
+    end_dir = "~/town"
     commands = [
         "cd ~/town",
         "cd ~/town/",
@@ -112,10 +122,10 @@ class Step2(StepTemplateCd):
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
 
-    def show_hint(self, line, current_dir):
+    def show_hint(self, line, current_path):
 
         # decide command needed to get to next part of town
-        if current_dir == 'kitchen' or current_dir == 'my-house':
+        if current_path == '~/my-house/kitchen' or current_path == '~/my-house':
 
             # If the last command the user used was to get here
             # then congratulate them
@@ -128,7 +138,7 @@ class Step2(StepTemplateCd):
                     '{{rb:Use}} {{yb:cd ..}} {{rb:to make your way to town}}'
                 )
 
-        elif current_dir == '~':
+        elif current_path == '~':
             # If they have only just got to the home directory,
             # then they used an appropriate command
             if self.num_turns_in_home_dir == 0:
@@ -155,8 +165,8 @@ class Step3(StepTemplateCd):
     story = [
         "Have another look around {{yb:ls}}",
     ]
-    start_dir = "town"
-    end_dir = "town"
+    start_dir = "~/town"
+    end_dir = "~/town"
     commands = "ls"
     hints = "{{rb:Use}} {{yb:ls}} {{rb:to have a look around the town}}"
 
@@ -172,8 +182,8 @@ class Step4(StepTemplateCd):
         "\n{{Bn:\".....if they use}} {{yb:ls -a}}{{Bn:, they'll see us...\"}}",
         "{{Bn:\"..Shhh!  ...might hear....\"}}"
     ]
-    start_dir = "town"
-    end_dir = "town"
+    start_dir = "~/town"
+    end_dir = "~/town"
     commands = "ls -a"
     hints = [
         "{{rb:You heard whispers referring to}} {{yb:ls -a}}"
@@ -190,8 +200,8 @@ class Step5(StepTemplateCd):
         "{{gb:Something that starts with . is normally hidden from view.}}",
         "It sounds like the whispers are coming from there.  Try going in."
     ]
-    start_dir = "town"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "cd .hidden-shelter",
         "cd .hidden-shelter/"
@@ -214,8 +224,8 @@ class Step6(StepTemplateCd):
     story = [
         "Have a look around."
     ]
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "ls",
         "ls -a"

@@ -22,9 +22,32 @@ class TerminalMv(TerminalCd):
     commands = ["ls", "cat", "cd", "mv"]
 
     def do_mv(self, line):
-        shell_command(self.current_dir, self.filetree, line, "mv")
-        # self.update_tree()
+        shell_command(self.real_path, line, "mv")
 
     def complete_mv(self, text, line, begidx, endidx):
-        completions = self.autocomplete_desc(text, line, "both")
+        completions = self.autocomplete_files(text, line, begidx, endidx)
         return completions
+
+
+if __name__ == "__main__":
+    start_path = '~'
+    end_path = '~/my-house'
+
+    def check_command(arg1=None, arg2=None):
+        pass
+
+    def block_command(arg1=None, arg2=None):
+        pass
+
+    def check_output(arg1=None, arg2=None):
+        pass
+
+    terminal = TerminalMv(
+        start_path,
+        end_path,
+        check_command,
+        block_command,
+        check_output
+    )
+
+    terminal.cmdloop()

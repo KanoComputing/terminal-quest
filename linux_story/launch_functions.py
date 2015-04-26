@@ -15,74 +15,14 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.Tree import load_global_tree, default_global_tree
-from linux_story.common import create_tq_backup_tree_path
-from kano_profile.apps import load_app_state_variable
-from kano.logging import logger
+from linux_story.load_defaults_into_filetree import default_global_tree
 
 
 def launch_project(challenge_number=1, step_number=1):
 
-    # TODO: Check the yaml exists in Terminal-Quest-content
-    # Warn user otherwise
-
-    # Check save_app_variable_state.  If the program has been loaded before,
-    # then the yaml of the file system should exist.
-    # If this yaml does not exist, then we should load a warning to the user.
-
-    # TODO: all current users will get a warning, so we need to suppress it
-    # for people updating. Maybe update stable-verion to 2?
-
-    # This shows a dialog if the challenge number is inconsistent with the
-    # file system e.g. if the file system is missing, or the challenge number
-    # is different to the one saved in the profile
-
-    show_dialog = False
-
-    # We don't save the step number.
-    level = load_app_state_variable("linux-story", "level")
-
-    # Rather than retrieving the latest valid path, create a pth and see if it exists
-    tq_tree_backup = create_tq_backup_tree_path(challenge_number, step_number)
-
-    if not os.path.exists(tq_tree_backup):
-        show_dialog = True
-
-    if step_number != 1:
-        # Only time step_number is not 1 is when someone is testing.
-        # Warn tester that the file system will be changed
-        show_dialog = True
-
-    if not level:
-        # Use a default tree.
-        # TODO: do we want to check save points instead? We currently only have
-        # one save point when ideally we want multiple.
-        show_dialog = True
-
-    else:
-        if challenge_number != level + 1:
-            show_dialog = True
-        # if level is defined but the file system has disappeared
-        # TODO: should this be an if or an elif?
-        # Not sure if this is still needed
-        # elif not tq_backup_tree or not os.path.exists(tq_backup_tree):
-        #    show_dialog = True
-
-    # We could send a signal to the the GTK side of the app to
-    # launch a dialog
-    if show_dialog:
-        logger.debug("Problem locating original filetree data.")
-
-        # TODO: show a dialog telling the user their file system has changed
-
-        # Copy across a default tree
-        default_global_tree(challenge_number, step_number)
-    else:
-        # Initialise the tree from the yaml
-
-        # TODO: we go here automatically when we launch the first challenge
-        # and haven't launched anything prior.
-        load_global_tree(challenge_number, step_number)
+    # TODO: show saved file system if it is available.
+    # For now, just show the default filesystem for that step.
+    default_global_tree(challenge_number, step_number)
 
     step = get_step_class(challenge_number, step_number)
     step()

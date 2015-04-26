@@ -44,8 +44,8 @@ class Step1(StepTemplateCd):
         "You see a group of scared looking people and a dog.",
         "Try talking to them with {{yb:cat}}"
     ]
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
 
     # Use functions here
     all_commands = {
@@ -119,8 +119,8 @@ class Step2(StepTemplateMv):
         "{{Bb:\"I was told the command was}} {{yb:mv apple basket/}}\"",
         "{{Bb:\"But I don't understand what that means.  Do I say it?  Or write it?\"}}"
     ]
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "mv apple basket",
         "mv apple basket/"
@@ -145,8 +145,8 @@ class Step3(StepTemplateMv):
         "{{w:Check you've managed to move the apple.  Look around in this "
         "directory.}}"
     ]
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "ls",
         "ls -a"
@@ -170,8 +170,8 @@ class Step4(StepTemplateMv):
         "{{wn:Now check the apple is in the}} {{yb:basket}} {{wn:using}} "
         "{{yb:ls}}"
     ]
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "ls basket",
         "ls basket/",
@@ -197,8 +197,8 @@ class Step5(StepTemplateMv):
         "to your current position {{yb:.}}, so use {{yb:mv basket/apple .}}",
         "You need the {{yb:.}} !"
     ]
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "mv basket/apple .",
         "mv basket/apple ./"
@@ -242,14 +242,15 @@ class Step6(StepTemplateMv):
         },
         "dog": {
             "path": "~/town"
-        },
-        "apple": {
-            "path": "~/town/.hidden-shelter"
         }
     }
+    deleted_items = [
+        '~/town/.hidden-shelter/Eleanor',
+        '~/town/.hidden-shelter/dog'
+    ]
 
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "ls", "ls -a"
     ]
@@ -269,7 +270,7 @@ class Step7(StepTemplateMv):
         "First, look for Eleanor outside with {{yb:ls ..}}",
 
     ]
-    start_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
     end_dir = ""
     commands = [
         "ls ..",
@@ -291,8 +292,8 @@ class Step8(StepTemplateMv):
         "Now move {{yb:Eleanor}} from the town outside {{yb:..}} to "
         "your current position {{yb:.}} "
     ]
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden_shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "mv ../Eleanor .",
         "mv ../Eleanor ./",

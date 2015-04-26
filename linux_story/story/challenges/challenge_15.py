@@ -36,11 +36,16 @@ class Step1(StepTemplateMv):
         "{{rb:Use}} {{yb:ls -a}} {{rb:to look more closely around you}}"
     ]
 
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "ls -a"
     ]
+    story_dict = {
+        "MV": {
+            "path": "~/town/.hidden-shelter/.tiny-chest"
+        }
+    }
 
     def next(self):
         Step2()
@@ -58,8 +63,8 @@ class Step2(StepTemplateMv):
         "{{rb:Use}} {{yb:ls .tiny-chest}} {{rb:to look inside}}"
     ]
 
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "ls .tiny-chest",
         "ls .tiny-chest/",
@@ -82,8 +87,8 @@ class Step3(StepTemplateMv):
         "{{rb:Use}} {{yb:cat .tiny-chest/MV}} {{rb:to read the MV parchment}}"
     ]
 
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "cat .tiny-chest/MV"
     ]
@@ -101,8 +106,8 @@ class Step4(StepTemplateMv):
         "To quickly go back home, use {{yb:cd ~/my-house/}}"
     ]
 
-    start_dir = ".hidden-shelter"
-    end_dir = "my-house"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/my-house"
     commands = [
         'cd ~/my-house/',
         'cd ~/my-house'
@@ -125,7 +130,7 @@ class Step5(StepTemplateMv):
         "Where do you think any hidden things could be?"
     ]
 
-    start_dir = 'my-house'
+    start_dir = '~/my-house'
 
     hints = [
         "{{gb:Have a look in all the places of my-house using}} {{yb:ls -a}}",

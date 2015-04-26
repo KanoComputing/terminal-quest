@@ -55,10 +55,10 @@ class Step1(StepTemplateMv):
         "Maybe something else is hidden in the house?",
         "Have you looked in your parent's room yet?"
     ]
-    start_dir = "my-room"
+    start_dir = "~/my-house/my-room"
 
     # Keep this unspecified
-    end_dir = "my-room"
+    end_dir = "~/my-house/my-room"
 
     # Want to check your parents room
     hints = ["{{rb:Is there anything in your parent's room?}}"]
@@ -144,8 +144,8 @@ class Step3(StepTemplateMv):
     ]
 
     commands = ["ls", "ls -a"]
-    start_dir = "parents-room"
-    end_dir = "parents-room"
+    start_dir = "~/my-house/parents-room"
+    end_dir = "~/my-house/parents-room"
     hints = [
         "{{rb:Look into the}} {{yb:.safe}} {{rb:using}} {{yb:ls}}"
     ]
@@ -176,8 +176,8 @@ class Step4(StepTemplateMv):
         "You probably shouldn't read it...",
         "What else is here?  Lets have a closer look at that {{yb:map}}"
     ]
-    start_dir = "parents-room"
-    end_dir = "parents-room"
+    start_dir = "~/my-house/parents-room"
+    end_dir = "~/my-house/parents-room"
     hints = [
         "{{rb:Use}} {{yb:cat}} {{rb:to read the}} {{yb:map}}"
     ]
@@ -211,8 +211,8 @@ class Step5(StepTemplateEcho):
         "What is this {{yb:ECHO}} note?  Take a look."
     ]
 
-    start_dir = "parents-room"
-    end_dir = "parents-room"
+    start_dir = "~/my-house/parents-room"
+    end_dir = "~/my-house/parents-room"
     commands = "cat .safe/ECHO"
     hints = [
         "{{rb:Use the}} {{yb:cat}} {{rb:command to read the note}}",
@@ -232,8 +232,8 @@ class Step6(StepTemplateEcho):
         "{{rb:Use the command}} {{yb:echo Hello}}"
     ]
     commands = "echo Hello"
-    start_dir = "parents-room"
-    end_dir = "parents-room"
+    start_dir = "~/my-house/parents-room"
+    end_dir = "~/my-house/parents-room"
 
     def next(self):
         NextChallengeStep(self.xp)

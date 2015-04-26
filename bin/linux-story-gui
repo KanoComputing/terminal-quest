@@ -1,4 +1,6 @@
-#!/usr/bin/kano-splash /usr/share/linux-story/media/images/splash.png /usr/bin/env python
+#!/usr/bin/env python
+
+#  !/usr/bin/kano-splash /usr/share/linux-story/media/images/splash.png /usr/bin/env python
 
 # linux-story-gui
 #
@@ -29,8 +31,8 @@ from linux_story.gtk3.FinishDialog import FinishDialog
 from linux_story.common import css_dir
 from kano.gtk3.apply_styles import apply_styling_to_screen
 
-from kano_profile.tracker import Tracker
-kanotracker = Tracker()
+# from kano_profile.tracker import Tracker
+# kanotracker = Tracker()
 
 
 class MainWindow(Gtk.Window):
@@ -168,8 +170,8 @@ class Application(MainWindow):
 
         # this to hide the spellbook and terminal from view until the story has
         # finished displaying
-        self.terminal.hide()
-        self.spellbook.hide()
+        # self.terminal.hide()
+        # self.spellbook.hide()
 
         os.system("kano-stop-splash")
 

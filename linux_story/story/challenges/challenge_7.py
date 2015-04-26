@@ -30,8 +30,8 @@ class Step1(StepTemplateCd):
     story = [
         "Have a look around to see what's going on!"
     ]
-    start_dir = "town"
-    end_dir = "town"
+    start_dir = "~/town"
+    end_dir = "~/town"
     commands = "ls"
     hints = "{{rb:To look around, use}} {{yb:ls}}"
 
@@ -44,8 +44,8 @@ class Step2(StepTemplateCd):
         "Wow, there's so many people here. Find the {{yb:Mayor}} and see "
         "what's going on!"
     ]
-    start_dir = "town"
-    end_dir = "town"
+    start_dir = "~/town"
+    end_dir = "~/town"
     commands = "cat Mayor"
     hints = "{{rb:Stuck? Type:}} {{yb:cat Mayor}}"
 
@@ -61,8 +61,8 @@ class Step3(StepTemplateCd):
         "Something strange is happening. Better check everyone is ok.",
         "Type {{yb:cat}} to check on the people."
     ]
-    start_dir = "town"
-    end_dir = "town"
+    start_dir = "~/town"
+    end_dir = "~/town"
 
     # Use functions here
     command = ""
