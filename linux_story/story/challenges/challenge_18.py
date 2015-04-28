@@ -6,7 +6,9 @@
 # A chapter of the story
 
 from linux_story.Step import Step
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import (
+    unblock_commands, unblock_commands_with_cd_hint
+)
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_19 import Step1 as NextChallengeStep
 
@@ -21,7 +23,7 @@ class StepTemplate(Step):
 class Step1(StepTemplate):
     story = [
         "{{gb:Congratulations, you learnt the new skill echo!}}",
-        "\n Woah! You spoke aloud into the empty room!",
+        "\nWoah! You spoke aloud into the empty room!",
         "This command can probably be used to talk to people.",
         "Move this command into your chest for safe keeping."
     ]
@@ -37,9 +39,10 @@ class Step1(StepTemplate):
         "mv .safe/ECHO ~/my-house/my-room/.chest"
     ]
     start_dir = "~/my-house/parents-room"
+    end_dir = "~/my-house/parents-room"
 
     def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+        return unblock_commands(line, self.commands)
 
     def next(self):
         Step2()
@@ -57,13 +60,12 @@ class Step2(StepTemplate):
 
     commands = [
         "cd",
-        "cd ~"
+        "cd ~",
         "cd ~/"
     ]
 
     start_dir = "~/my-house/parents-room"
     end_dir = "~"
-    last_step = True
 
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
@@ -138,7 +140,8 @@ class Step6(StepTemplate):
         "be people about here.  See if you can find someone to "
         "talk to."
     ]
-    start_dir = "farm"
+    start_dir = "~/farm"
+    end_dir = "~/farm"
 
     def check_output(self, output):
         if not output:
@@ -165,6 +168,7 @@ class Step7(StepTemplate):
         "the {{yb:cat}} command."
     ]
 
+    # what is this?
     last_challenge = True
 
     all_commands = {
@@ -176,6 +180,7 @@ class Step7(StepTemplate):
 
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
+    last_step = True
 
     # TODO: move this into step_helper_functions, used a few too
     # many times outside.
