@@ -15,7 +15,7 @@ Examples
  Shows you what is around your current position
 
  ls kitchen
- Shows you what is in the directory my-house, assuming you are in my-house
+ Shows you what is in the directory kitchen, assuming you are in my-house
 
  ls ../
  Shows you what is in the directory behind you

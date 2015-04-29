@@ -24,8 +24,7 @@ class Step():
     commands = ""
     hints = ""
     last_step = False
-    challenge_number = 1
-    step_number = 1
+    challenge_number = ""
     output_condition = lambda x, y: False
     story_dict = {}
     deleted_items = []
@@ -120,10 +119,10 @@ class Step():
 
         # Get data about any XP.
         data['xp'] = self.xp
-
         data['story'] = "\n".join(self.story)
         data['challenge'] = str(self.challenge_number)
         data['spells'] = self.terminal_commands
+
         t = threading.Thread(target=launch_client, args=(data,))
         t.daemon = True
         t.start()
@@ -159,8 +158,8 @@ class Step():
     def save_challenge(self):
         '''Integration with kano world
         '''
-
         level = load_app_state_variable("linux-story", "level")
+
         if self.challenge_number > level:
             save_app_state_variable_with_dialog("linux-story", "level",
                                                 self.challenge_number)
@@ -177,9 +176,6 @@ class Step():
         '''If self.commands is provided, checks the command entered
         by the user matches self.commands.
         '''
-
-        print "line = {}".format(line)
-        print "current_dir = {}".format(current_dir)
 
         # check through list of commands
         command_validated = True
@@ -207,7 +203,6 @@ class Step():
         return self.finish_if_server_ready(condition)
 
     def finish_if_server_ready(self, other_condition):
-        print "in if_server_ready"
         return self.terminal.finish_if_server_ready(other_condition)
 
     def show_hint(self, line, current_dir):

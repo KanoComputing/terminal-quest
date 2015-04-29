@@ -131,16 +131,18 @@ class Storybook(Gtk.TextView):
         green = Gdk.RGBA()
         green.parse('#7DCF02')
         lilac = Gdk.RGBA()
-        lilac.parse('#7DCF02')
+        lilac.parse('#AAA7FA')
+        pink = Gdk.RGBA()
+        pink.parse("#EB98D2")
         cyan = Gdk.RGBA()
         cyan.parse('#00FFEE')
         light_blue = Gdk.RGBA()
-        # light_blue.parse('#78C0A8')
         light_blue.parse('#a2eabf')
         purple = Gdk.RGBA()
         purple.parse('#c894f1')
         red = Gdk.RGBA()
-        red.parse('#F52F11')
+        # red.parse('#F52F11')
+        red.parse('#D94C4A')
         orange = Gdk.RGBA()
         orange.parse('#EB6841')
         yellow = Gdk.RGBA()
@@ -157,6 +159,7 @@ class Storybook(Gtk.TextView):
         textbuffer.create_tag('cyan', foreground_rgba=cyan)
         textbuffer.create_tag('light_blue', foreground_rgba=light_blue)
         textbuffer.create_tag('purple', foreground_rgba=purple)
+        textbuffer.create_tag('pink', foreground_rgba=pink)
         textbuffer.create_tag('red', foreground_rgba=red)
         textbuffer.create_tag('orange', foreground_rgba=orange)
         textbuffer.create_tag('yellow', foreground_rgba=yellow)
@@ -259,6 +262,7 @@ class Storybook(Gtk.TextView):
             'l': 'lilac',
             'c': 'cyan',
             'p': 'purple',
+            'P': 'pink',
             'B': 'light_blue'
         }
         return pairs[colour_id]

@@ -30,8 +30,8 @@ class StepTemplateCd(Step):
 class Step1(StepTemplateCd):
     story = [
         "That's weird. No time for that now though - lets find Mum.",
-        "\n{{wb:New Spell}}: {{yb:cd}} lets you move between places.",
-        "\nUse the command {{yb:cd ..}} to leave your room."
+        "\n{{wb:New Spell}}: {{lb:cd}} lets you move between places.",
+        "\nUse the command {{yb:cd ../}} to leave your room.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house"
@@ -42,9 +42,10 @@ class Step1(StepTemplateCd):
         "cd ~/my-house/"
     ]
     hints = [
-        "{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room. The .. "
-        "represents the room behind you.}}",
-        "{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room.}}"
+        "{{rb:Type}} {{yb:cd ../}} {{rb:to leave your room. The}} "
+        "{{lb:..}} "
+        "{{rb:is the room behind you.}}",
+        "{{rb:Type}} {{yb:cd ../}} {{rb:to leave your room.}}"
     ]
 
     def block_command(self, line):
@@ -56,8 +57,8 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "You've left {{yb:my-room}} and are in the hall of {{yb:my-house}}",
-        "Have a look at the different rooms around you using {{yb:ls}}"
+        "You've left {{lb:my-room}} and are in the hall of {{lb:my-house}}.",
+        "Have a look at the different rooms around you using {{yb:ls}}\n"
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house"
@@ -82,12 +83,12 @@ class Step3(StepTemplateCd):
         "What was that?  A bell?  That's a bit odd.",
         "You see the door to your kitchen, and hear the sound of cooking.",
         "Sounds like someone is preparing breakfast!",
-        "To go inside the kitchen, use {{yb:cd kitchen}}"
+        "To go inside the kitchen, use {{yb:cd kitchen/}}"
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house/kitchen"
     commands = ["cd kitchen", "cd kitchen/"]
-    hints = ["{{rb:Type}} {{yb:cd kitchen}} {{rb:and press Enter.}}"]
+    hints = ["{{rb:Type}} {{yb:cd kitchen/}} {{rb:and press Enter.}}"]
 
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
@@ -112,8 +113,8 @@ class Step4(StepTemplateCd):
 
 class Step5(StepTemplateCd):
     story = [
-        "You see her busily working in a cloud of steam",
-        "Let's see what {{yb:Mum}} has to say by using {{yb:cat}}"
+        "You see her busily working in a cloud of steam.",
+        "Let's see what {{lb:Mum}} has to say by using {{lb:cat}}."
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"

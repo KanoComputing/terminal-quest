@@ -269,7 +269,7 @@ MV:
 # Find the .chest in your room
 CAT, CD, LS, .note:
     challenges:
-        - challenge: 8
+        - challenge: 15
           step: 1
           path: "~/my-house/my-room/.chest"
 

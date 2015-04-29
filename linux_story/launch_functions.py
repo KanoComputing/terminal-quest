@@ -22,7 +22,10 @@ def launch_project(challenge_number=1, step_number=1):
 
     # TODO: show saved file system if it is available.
     # For now, just show the default filesystem for that step.
-    default_global_tree(challenge_number, step_number)
+    if challenge_number == 0:
+        default_global_tree(1, 1)
+    else:
+        default_global_tree(challenge_number, step_number)
 
     step = get_step_class(challenge_number, step_number)
     step()
@@ -30,9 +33,13 @@ def launch_project(challenge_number=1, step_number=1):
 
 def get_step_class(challenge_number, step_number):
 
-    # If no fork, use this module name
-    module_name = "story.challenges.challenge_{}".format(challenge_number)
-    step_class_name = "Step{}".format(step_number)
+    if challenge_number == 0:
+        module_name = "story.challenges.introduction"
+        step_class_name = "Step1"
+    else:
+        # If no fork, use this module name
+        module_name = "story.challenges.challenge_{}".format(challenge_number)
+        step_class_name = "Step{}".format(step_number)
 
     try:
         module = __import__(

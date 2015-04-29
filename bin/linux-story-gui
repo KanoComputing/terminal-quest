@@ -51,7 +51,7 @@ class MainWindow(Gtk.Window):
         self.connect('delete-event', self.close_window)
         self.get_style_context().add_class("main_window")
         self.maximize()
-        self.set_title("Legendary Terminal Quest")
+        self.set_title("Terminal Quest")
         self.set_icon_name("linux-story")
 
 
@@ -247,6 +247,10 @@ class Application(MainWindow):
 
                     # Print the challenge title at the top of the screen
                     challenge = data_dict['challenge']
+
+                    # If challenge is passed, then print a title
+                    # if challenge:
+
                     self.print_challenge_title(challenge)
 
                     # So the xp is not hardcoded in the story

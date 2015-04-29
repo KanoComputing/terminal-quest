@@ -26,15 +26,10 @@ class StepTemplateCd(Step):
         Step.__init__(self, TerminalCd, xp)
 
 
-# This is the difficult bit to get through
-# In this level, try and find lots of corrupted ascii art around the kicthen?
-# Or add pawprints?
-# Encourage them to use cat in a few places
-
 class Step1(StepTemplateCd):
     story = [
         "You're in your house.  You appear to be alone.",
-        "Use {{yb:cat}} to have a look at some of the objects around you."
+        "Use {{lb:cat}} to have a look at some of the objects around you.\n"
     ]
     allowed_commands = [
         "cat banana",
@@ -58,6 +53,9 @@ class Step1(StepTemplateCd):
         },
         "empty-bottle": {
             "path": "~/town/.hidden-shelter/basket"
+        },
+        "MV": {
+            "path": "~/town/.hidden-shelter/.tiny-chest"
         }
     }
     # for check_command logic
@@ -70,20 +68,19 @@ class Step1(StepTemplateCd):
             self.counter += 1
             self.allowed_commands.remove(line)
             hint = (
-                "\n{{gb:Well done!  Just look at}} {{yb:one}} "
-                "{{gb:more item}}"
+                "\n{{gb:Well done!  Just look at one "
+                "more item.}}"
             )
 
         else:
             if self.first_time:
                 hint = (
-                    "{{ob:Look at two of the objects around you "
-                    "using}} {{yb:cat}}"
+                    "{{ob:Use}} {{lb:cat}} {{ob:to look at two of the objects around you.}}"
                 )
             else:
                 hint = (
                     '{{rb:Use the command}} {{yb:' + self.allowed_commands[0] +
-                    '}} {{rb:to progress}}'
+                    '}} {{rb:to progress.}}'
                 )
 
         level_up = (self.counter >= 2)
@@ -101,8 +98,8 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCd):
     story = [
         "There doesn't seem to be anything here but loads of food.",
-        "See if you can find something back in {{yb:town}}.",
-        "First, use {{yb:cd ..}} to leave the kitchen."
+        "See if you can find something back in {{lb:town}}.",
+        "First, use {{yb:cd ../}} to leave the kitchen.\n"
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/town"
@@ -129,13 +126,16 @@ class Step2(StepTemplateCd):
 
             # If the last command the user used was to get here
             # then congratulate them
-            if line == "cd .." or line == 'cd' or line == 'cd ../':
-                hint = "{{gb:Good work!  Do it again!}}"
+            if line == "cd .." or line == 'cd ../':
+                hint = (
+                    "{{gb:Good work!  Now replay the last command using "
+                    "the UP arrow on your keyboard.}}"
+                )
 
             # Otherwise, give them a hint
             else:
                 hint = (
-                    '{{rb:Use}} {{yb:cd ..}} {{rb:to make your way to town}}'
+                    '{{rb:Use}} {{yb:cd ../}} {{rb:to make your way to town.}}'
                 )
 
         elif current_path == '~':
@@ -143,12 +143,12 @@ class Step2(StepTemplateCd):
             # then they used an appropriate command
             if self.num_turns_in_home_dir == 0:
                 hint = (
-                    "{{gb:Good work!  Now head to town with}} {{yb:cd town}}"
+                    "{{gb:Good work! Now use}} {{yb:cd town/}} {{gb: to head to town.}}"
                 )
 
             # Otherwise give them a hint
             else:
-                hint = '{{rb:Use}} {{yb:cd town}} {{rb:to go into town}}'
+                hint = '{{rb:Use}} {{yb:cd town/}} {{rb:to go into town.}}'
 
             # So we can keep track of the number of turns they've been in the
             # home directory
@@ -163,12 +163,12 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "Have another look around {{yb:ls}}",
+        "Use {{yb:ls}} to look around.\n",
     ]
     start_dir = "~/town"
     end_dir = "~/town"
     commands = "ls"
-    hints = "{{rb:Use}} {{yb:ls}} {{rb:to have a look around the town}}"
+    hints = "{{rb:Use}} {{yb:ls}} {{rb:to have a look around the town.}}"
 
     def next(self):
         Step4()
@@ -176,11 +176,11 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "The whole place appears to be deserted.",
+        "The place appears to be deserted.",
         "However, you think you hear whispers.",
         # Make this writing small
         "\n{{Bn:\".....if they use}} {{yb:ls -a}}{{Bn:, they'll see us...\"}}",
-        "{{Bn:\"..Shhh!  ...might hear....\"}}"
+        "{{Bn:\"..Shhh!  ...might hear....\"}}\n"
     ]
     start_dir = "~/town"
     end_dir = "~/town"
@@ -196,9 +196,9 @@ class Step4(StepTemplateCd):
 
 class Step5(StepTemplateCd):
     story = [
-        "You see a {{yb:.hidden-shelter}} that you didn't notice before.",
+        "You see a {{bb:.hidden-shelter}} that you didn't notice before.",
         "{{gb:Something that starts with . is normally hidden from view.}}",
-        "It sounds like the whispers are coming from there.  Try going in."
+        "It sounds like the whispers are coming from there.  Try going in.\n"
     ]
     start_dir = "~/town"
     end_dir = "~/town/.hidden-shelter"
@@ -207,10 +207,10 @@ class Step5(StepTemplateCd):
         "cd .hidden-shelter/"
     ]
     hints = [
-        "{{rb:Try going inside the}} {{yb:.hidden-shelter}} {{rb:using }}"
-        "{{yb:cd}}",
-        "{{rb:Use the command}} {{yb:cd .hidden-shelter }}"
-        "{{rb:to go inside}}"
+        "{{rb:Try going inside the}} {{lb:.hidden-shelter}} {{rb:using }}"
+        "{{lb:cd}}{{rb:.}}",
+        "{{rb:Use the command}} {{yb:cd .hidden-shelter/ }}"
+        "{{rb:to go inside.}}"
     ]
 
     def block_command(self, line):
@@ -222,7 +222,7 @@ class Step5(StepTemplateCd):
 
 class Step6(StepTemplateCd):
     story = [
-        "Have a look around."
+        "Have a look around.\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
@@ -231,7 +231,7 @@ class Step6(StepTemplateCd):
         "ls -a"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to have a look around you}}"
+        "{{rb:Use}} {{yb:ls}} {{rb:to have a look around you.}}"
     ]
     last_step = True
 

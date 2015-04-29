@@ -41,7 +41,7 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "Wow, there's so many people here. Find the {{yb:Mayor}} and see "
+        "Wow, there's so many people here. Find the {{lb:Mayor}} and see "
         "what's going on!"
     ]
     start_dir = "~/town"
@@ -59,7 +59,7 @@ class Step3(StepTemplateCd):
         "people looking into the disappearances, and we're hoping to "
         "have an explanation soon.\"}}\n",
         "Something strange is happening. Better check everyone is ok.",
-        "Type {{yb:cat}} to check on the people."
+        "Type {{lb:cat}} to check on the people."
     ]
     start_dir = "~/town"
     end_dir = "~/town"
@@ -98,7 +98,7 @@ class Step3(StepTemplateCd):
         end_dir_validated = False
         self.hints = [
             "{{rb:Use}} {{yb:" + self.all_commands.keys()[0] + "}} "
-            "{{rb:to progress}}"
+            "{{rb:to progress.}}"
         ]
 
         end_dir_validated = current_dir == self.end_dir
@@ -111,13 +111,13 @@ class Step3(StepTemplateCd):
             self.all_commands.pop(line, None)
 
             if len(self.all_commands) == 1:
-                hint += "\n{{gb:Well done! Check on 1 more person.}}"
+                hint += "\n{{gb:Well done! Check on 1 more person.}}\n"
             elif len(self.all_commands) > 0:
                 hint += "\n{{gb:Well done! Check on " + \
                     str(len(self.all_commands)) + \
-                    " more people.}}"
+                    " more people.}}\n"
             else:
-                hint += "\n{{gb:Press Enter to continue}}"
+                hint += "\n{{gb:Press Enter to continue.}}"
 
             self.send_text(hint)
 

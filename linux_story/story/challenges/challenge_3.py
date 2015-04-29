@@ -29,12 +29,12 @@ class Step1(StepTemplateCat):
     story = [
         "Love it! Put it on quickly.",
         "There's loads more interesting stuff in your room.",
-        "Let's look in your {{yb:shelves}} using {{yb:ls}}"
+        "Let's look in your {{lb:shelves}} using {{lb:ls}}.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = ["ls shelves", "ls shelves/"]
-    hints = "{{rb:Type}} {{yb:ls shelves}} {{rb:to look at your books.}}"
+    hints = "{{rb:Type}} {{yb:ls shelves/}} {{rb:to look at your books.}}"
 
     def next(self):
         Step2()
@@ -45,7 +45,7 @@ class Step2(StepTemplateCat):
         "Did you know you can use the TAB key to speed up your typing?",
         "Try it by checking out that comic book. Take a look inside with "
         "{{yb:cat shelves/comic-book}}",
-        "Press the TAB key before you've finished typing!"
+        "Press the TAB key before you've finished typing!\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -59,8 +59,8 @@ class Step2(StepTemplateCat):
 class Step3(StepTemplateCat):
     story = [
         "Why is it covered in pawprints?",
-        "Hang on, can you see that? There's a {{yb:note}} amongst your books.",
-        "Read the note using {{yb:cat}}"
+        "Hang on, can you see that? There's a {{lb:note}} amongst your books.",
+        "Read the note using {{lb:cat}}.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"

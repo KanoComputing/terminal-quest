@@ -31,8 +31,10 @@ class Step1(StepTemplateCat):
         "Awesome, now you can see the objects around you.",
         "There's your bed, an alarm...",
         "Euuughh...turn that alarm off!",
-        "\n{{wb:New Spell}}: to look at objects, type {{yb:cat <object name>}}",
-        "Try looking at the alarm using {{yb:cat alarm}}"
+        "\n{{wb:New Spell}}: to look at objects, type {{lb:cat}} and the "
+        "object name.",
+        "\nUse {{yb:cat alarm}} to look at the alarm.\n",
+
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -46,12 +48,12 @@ class Step1(StepTemplateCat):
 class Step2(StepTemplateCat):
     story = [
         "Ok - it's switched off. Better get dressed...",
-        "Type {{yb:ls wardrobe}} to look inside your wardrobe."
+        "Type {{yb:ls wardrobe/}} to look inside your wardrobe.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = ["ls wardrobe", "ls wardrobe/"]
-    hints = "{{rb:Type}} {{yb:ls wardrobe}} {{rb:to look for something to wear}}"
+    hints = "{{rb:Type}} {{yb:ls wardrobe/}} {{rb:to look for something to wear.}}"
 
     def next(self):
         Step3()
@@ -59,15 +61,15 @@ class Step2(StepTemplateCat):
 
 class Step3(StepTemplateCat):
     story = [
-        "Check out that {{yb:t-shirt}}!",
-        "Type {{yb:cat wardrobe/t-shirt}} to see how it looks."
+        "Check out that {{lb:t-shirt}}!",
+        "Type {{yb:cat wardrobe/t-shirt}} to see how it looks.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat wardrobe/t-shirt"
     hints = (
         "{{rb:Type}} {{yb:cat wardrobe/t-shirt}} "
-        "{{rb:to investigate how it looks}}"
+        "{{rb:to investigate how it looks.}}"
     )
 
     def next(self):
@@ -77,7 +79,7 @@ class Step3(StepTemplateCat):
 class Step4(StepTemplateCat):
     story = [
         "Looking good!  Put that on and look for something else.",
-        "Look at the {{yb:skirt}} or the {{yb:trousers}}"
+        "Look at the {{lb:skirt}} or the {{lb:trousers}}.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -87,7 +89,7 @@ class Step4(StepTemplateCat):
     ]
     hints = (
         "{{rb:Type}} {{yb:cat wardrobe/trousers}} {{rb:or}} "
-        "{{yb:cat wardrobe/skirt}} {{rb:to dress yourself}}"
+        "{{yb:cat wardrobe/skirt}} {{rb:to dress yourself.}}"
     )
 
     def check_command(self, line, current_dir):
@@ -107,7 +109,7 @@ class Step4(StepTemplateCat):
 class Step5(StepTemplateCat):
     story = [
         "Awesome, you're nearly done.",
-        "Finally, put on the {{yb:cap}} so we're ready to go."
+        "Finally, put on the {{lb:cap}} so we're ready to go.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -116,7 +118,7 @@ class Step5(StepTemplateCat):
     ]
     hints = (
         "{{rb:Type}} {{yb:cat wardrobe/cap}} {{rb:to finish "
-        "off your outfit}}"
+        "off your outfit.}}"
     )
 
     last_step = True
