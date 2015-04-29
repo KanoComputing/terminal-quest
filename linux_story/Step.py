@@ -8,12 +8,13 @@
 # Step class to describe the flow
 
 import threading
-from linux_story.Tree import story_filetree
+import os
 from socket_functions import launch_client, is_server_busy
 from kano_profile.badges import save_app_state_variable_with_dialog
 from kano_profile.apps import (
     load_app_state_variable, get_app_xp_for_challenge
 )
+from load_defaults_into_filetree import delete_item, modify_file_tree
 
 
 class Step():
@@ -23,10 +24,10 @@ class Step():
     commands = ""
     hints = ""
     last_step = False
-    challenge_number = 1
-    step_number = 1
+    challenge_number = ""
     output_condition = lambda x, y: False
     story_dict = {}
+    deleted_items = []
     xp = ""
 
     # We can either tree as a global variable in common, or pass it as a
@@ -38,8 +39,8 @@ class Step():
         self.xp = xp
         self.pipe_busy = False
 
-        # if self.story_dict is non empty, you can modify the file_tree
         self.modify_file_tree()
+        self.delete_items()
 
         # Available commands that can be used in the Terminal
         self.terminal_commands = Terminal_Class.commands
@@ -118,10 +119,10 @@ class Step():
 
         # Get data about any XP.
         data['xp'] = self.xp
-
         data['story'] = "\n".join(self.story)
         data['challenge'] = str(self.challenge_number)
         data['spells'] = self.terminal_commands
+
         t = threading.Thread(target=launch_client, args=(data,))
         t.daemon = True
         t.start()
@@ -133,10 +134,19 @@ class Step():
 
         pass
 
+    def delete_items(self):
+        '''self.delete_items should be a list of fake_paths we want removed
+        '''
+        if self.deleted_items:
+            for path in self.deleted_items:
+
+                # TODO: move this to common
+                real_path = os.path.expanduser(path.replace('~', '~/.linux-story'))
+                delete_item(real_path)
+
     def get_xp(self):
         '''Look up XP earned after challenge
         '''
-
         # Look up XP earned
         xp = get_app_xp_for_challenge("linux-story",
                                       str(self.challenge_number)
@@ -148,15 +158,11 @@ class Step():
     def save_challenge(self):
         '''Integration with kano world
         '''
-
-        global story_filetree
-
         level = load_app_state_variable("linux-story", "level")
+
         if self.challenge_number > level:
             save_app_state_variable_with_dialog("linux-story", "level",
                                                 self.challenge_number)
-            # save file contents as a yaml
-            story_filetree.save_tree(self.challenge_number, self.step_number)
             self.get_xp()
 
     def launch_terminal(self):
@@ -220,8 +226,8 @@ class Step():
         '''
 
         line = line.strip()
-        if "cd" in line or "mv" in line and \
-                not line == 'mv --help':
+        if "cd" in line or "mkdir" in line or \
+                ("mv" in line and not line == 'mv --help'):
 
             print ('Nice try! But you do not need that command for this '
                    'challenge')
@@ -236,7 +242,6 @@ class Step():
         if the function returns False, whether the level passes depends on
         the return value of self.check_command
         '''
-
         if not output:
             return False
 
@@ -244,14 +249,7 @@ class Step():
         return self.output_condition(output)
 
     def modify_file_tree(self):
-        '''This modififies the file system specified by the dictionary
-        file_dict.
-        For example, file_dict = {basket: {exists: False}} would remove the
-        file basket, should it exist.
-        It will also remove basket if it is an empty directory, but may not if
-        it is non empty.
+        '''If self.story_dict is specified, add files to the filetree
         '''
-        global story_filetree
-
         if self.story_dict:
-            story_filetree.modify_file_tree(self.story_dict)
+            modify_file_tree(self.story_dict)

@@ -30,12 +30,12 @@ class StepTemplateCd(Step):
 class Step1(StepTemplateCd):
     story = [
         "Oh no! Check your Mum is alright.",
-        "Type {{yb:cd ..}} to leave town."
+        "Type {{yb:cd ../}} to leave town."
     ]
-    start_dir = "town"
+    start_dir = "~/town"
     end_dir = "~"
     commands = ["cd ..", "cd ../"]
-    hints = "{{rb:Use}} {{yb:cd ..}} {{rb:to progress.}}"
+    hints = "{{rb:Use}} {{yb:cd ../}} {{rb:to start heading back home.}}"
 
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
@@ -48,21 +48,21 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCd):
     story = [
         "{{pb:Ding. Dong.}}\n",
-        "Type {{yb:cd my-house/kitchen}} to go straight to the kitchen"
+        "Type {{yb:cd my-house/kitchen/}} to go straight to the kitchen.",
+        "{{gb:Press TAB to speed up your typing!}}"
     ]
     start_dir = "~"
-    end_dir = "kitchen"
+    end_dir = "~/my-house/kitchen"
     commands = ["cd my-house/kitchen", "cd my-house/kitchen/"]
-    hints = "{{rb:Use}} {{yb:cd my-house/kitchen}} {{rb:to go to the kitchen.}}"
+    hints = "{{rb:Use}} {{yb:cd my-house/kitchen/}} {{rb:to go to the kitchen.}}"
     story_dict = {
-        "Mum": {
-            "exists": False
-        },
         "note_kitchen": {
             "name": "note",
             "path": "~/my-house/kitchen"
         }
     }
+    # Remove the note as well.
+    deleted_items = ['~/my-house/kitchen/Mum', '~/town/note']
 
     def block_command(self, line):
         return unblock_commands_with_cd_hint(line, self.commands)
@@ -75,8 +75,8 @@ class Step3(StepTemplateCd):
     story = [
         "Take a look around to make sure everything is OK."
     ]
-    start_dir = "kitchen"
-    end_dir = "kitchen"
+    start_dir = "~/my-house/kitchen"
+    end_dir = "~/my-house/kitchen"
     commands = "ls"
     hints = [
         "{{rb:Use}} {{yb:ls}} {{rb:to see that everything is where it "
@@ -89,27 +89,15 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "Oh no - Mum's vanished too.",
-        "Wait, there's another note",
-        "Use {{yb:cat}} to read the note."
+        "Oh no - Mum's vanished too!",
+        "Wait, there's another {{lb:note}}.",
+        "Use {{lb:cat}} to read the {{lb:note}}."
     ]
-    start_dir = "kitchen"
-    end_dir = "kitchen"
+    start_dir = "~/my-house/kitchen"
+    end_dir = "~/my-house/kitchen"
     commands = "cat note"
     hints = "{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}"
     last_step = True
-    story_dict = {
-        "Eleanor, Edward, Edith, apple": {
-            "path": "~/town/.hidden-shelter",
-        },
-        "basket": {
-            "directory": True,
-            "path": "~/town/.hidden-shelter",
-        },
-        "empty-bottle": {
-            "path": "~/town/.hidden-shelter"
-        }
-    }
 
     def next(self):
         NextStep(self.xp)

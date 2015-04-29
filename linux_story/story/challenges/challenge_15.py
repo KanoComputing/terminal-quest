@@ -28,19 +28,30 @@ class StepTemplateMv(Step):
 
 class Step1(StepTemplateMv):
     story = [
-        "You get the nagging feeling you're missing something",
+        "You get the nagging feeling you're missing something.",
         "What was that spell that helped you find this place?",
-        "Use it to have a closer look around you."
+        "Use it to have a closer look around you.\n"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls -a}} {{rb:to look more closely around you}}"
+        "{{rb:Use}} {{yb:ls -a}} {{rb:to look more closely around you.}}"
     ]
 
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    story_dict = {
+        "CAT, LS, CD": {
+            "path": "~/my-house/my-room/.chest"
+        }
+    }
+
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "ls -a"
     ]
+    story_dict = {
+        "MV": {
+            "path": "~/town/.hidden-shelter/.tiny-chest"
+        }
+    }
 
     def next(self):
         Step2()
@@ -48,18 +59,16 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        "What's that! There's {{yb:.tiny-chest}} in the corner of the shelter",
-        "\n{{wb:Edward:}} {{Bb:\"Hey, what's that doing there? "
-        "Has it been there all along? What's in it?\"}}",
-        "\nHave a look inside the {{yb:.tiny-chest}}"
+        "What's that! There's {{lb:.tiny-chest}} in the corner of the shelter",
+        "Have a look inside the {{lb:.tiny-chest}}."
     ]
 
     hints = [
         "{{rb:Use}} {{yb:ls .tiny-chest}} {{rb:to look inside}}"
     ]
 
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "ls .tiny-chest",
         "ls .tiny-chest/",
@@ -74,7 +83,7 @@ class Step2(StepTemplateMv):
 class Step3(StepTemplateMv):
     story = [
         "You see a scroll of parchment inside, with a stamp on it saying "
-        "{{yb:MV}}.",
+        "{{lb:MV}}.",
         "Read what it says."
     ]
 
@@ -82,8 +91,8 @@ class Step3(StepTemplateMv):
         "{{rb:Use}} {{yb:cat .tiny-chest/MV}} {{rb:to read the MV parchment}}"
     ]
 
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "cat .tiny-chest/MV"
     ]
@@ -94,22 +103,23 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "{{wb:Edward:}} {{Bb:\"Hey, that contains information about the "
-        "mv command you taught me.",
-        "I wonder where it came from?\"}}",
-        "\nMaybe you should go back to {{yb:my-house}} to look for more hidden items.",
-        "To quickly go back home, use {{yb:cd ~/my-house/}}"
+        "{{wb:Edward:}} {{Bb:\"Hey, that's our}} {{lb:.tiny-chest}}{{Bb:. We "
+        "use it to keep our possessions safe. ",
+        "I learnt about how to move objects from that}} {{Bb:MV}} {{Bb:parchment.",
+        "It's probably of more use to you, please take it with my thanks.}}",
+        "\nMaybe you should go back to {{lb:my-house}} to look for more hidden items.",
+        "To quickly go back home, use {{yb:cd ~/my-house/}}\n"
     ]
 
-    start_dir = ".hidden-shelter"
-    end_dir = "my-house"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/my-house"
     commands = [
         'cd ~/my-house/',
         'cd ~/my-house'
     ]
     hints = [
         '{{rb:No shortcuts!  Use}} {{yb:cd ~/my-house}} '
-        '{{rb:to get back to your house in one step}}'
+        '{{rb:to get back to your house in one step.}}'
     ]
 
     def block_command(self, line):
@@ -122,18 +132,16 @@ class Step4(StepTemplateMv):
 class Step5(StepTemplateMv):
     story = [
         "Let's see if we can find anything hidden around here!",
-        "Where do you think any hidden things could be?"
+        "Where do you think any hidden things could be?",
+        "Try looking in {{lb:my-room}} first."
     ]
 
-    start_dir = 'my-house'
+    start_dir = '~/my-house'
 
     hints = [
-        "{{gb:Have a look in all the places of my-house using}} {{yb:ls -a}}",
-        "{{gb:Have a look in all the places of my-house using}} {{yb:ls -a}}",
-        "{{gb:Have a look in all the places of my-house using}} {{yb:ls -a}}",
-        "{{rb:Stuck?  Have a look in}} {{yb:my-room}}",
-        "{{rb:Use}} {{yb:ls -a my-room}} {{rb:to look for hidden files in "
-        "my-room}}"
+        "{{rb:Stuck?  Have a look in}} {{yb:my-room}}{{rb:.}}",
+        "{{rb:Use}} {{yb:ls -a my-room}} {{rb:to look for hidden files in}} "
+        "{{lb:my-room}}{{rb:.}}"
     ]
 
     last_step = True

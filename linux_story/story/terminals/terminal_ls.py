@@ -15,8 +15,43 @@ class TerminalLs(Terminal):
     commands = ["ls"]
 
     def do_ls(self, line):
-        return ls(self.current_dir, self.filetree, line)
+        # this is so we can read the output of the command for
+        # self.output_command
+        return ls(self.real_path, line)
 
     def complete_ls(self, text, line, begidx, endidx):
-        text = text.split(" ")[-1]
-        return self.autocomplete_desc(text, line, "both")
+        return self.autocomplete_files(text, line, begidx, endidx)
+
+
+# For testing separately
+if __name__ == "__main__":
+
+    import os
+    import sys
+
+    if __name__ == '__main__' and __package__ is None:
+        dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
+        if dir_path != '/usr':
+            sys.path.insert(1, dir_path)
+
+    start_path = '~'
+    end_path = '~/my-house'
+
+    def check_command(arg1=None, arg2=None):
+        pass
+
+    def block_command(arg1=None, arg2=None):
+        pass
+
+    def check_output(arg1=None, arg2=None):
+        pass
+
+    terminal = TerminalLs(
+        start_path,
+        end_path,
+        check_command,
+        block_command,
+        check_output
+    )
+
+    terminal.cmdloop()

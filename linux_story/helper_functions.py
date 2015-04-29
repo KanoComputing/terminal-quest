@@ -23,7 +23,7 @@ def debugger(text):
         print text
 
 
-def get_script_cmd(string, current_dir, tree):
+def get_script_cmd(string, real_path):
     '''Checks whether the string (from the user's point of view)
     is an executible.
     So we convert the path entered into the real path (i.e. including the
@@ -34,15 +34,13 @@ def get_script_cmd(string, current_dir, tree):
 
     if string.startswith("./"):
         string = string[2:]
-        real_loc = tree[current_dir].real_path
-        script = os.path.join(real_loc, string)
+        script = os.path.join(real_path, string)
 
     elif string.startswith("/"):
         script = string
 
     else:
-        real_loc = tree[current_dir].real_path
-        script = os.path.join(real_loc, string)
+        script = os.path.join(real_path, string)
 
     # directories are executable, so exclude directories
     if os.path.exists(script) and not os.path.isdir(script):
@@ -86,54 +84,6 @@ def play_sound(object_name):
         ["/usr/bin/aplay", sound_path],
         stderr=subprocess.STDOUT, stdout=subprocess.PIPE
     )
-
-
-# TODO: NEEDS A BETTER NAME
-def get_last_dir(current_dir, tree, line, list_type="both"):
-    '''This returns the last valid directory from a partly completed path
-    e.g. if the user enters ls ../my-room/w then this should return my-room
-    assuming the current_dir is one of kitchen, my-room etc.
-    list_type = "dirs", "files", or "both"
-    '''
-
-    # This is the directory which we evaluate the relevant descendents or
-    # ancestors.
-    # e.g. if the user starts off at my-house and does the command ls ../town/,
-    # temp_current_dir will start off at my-house, but then should move to
-    # ~ and then town
-    temp_current_dir = current_dir
-
-    # list of directories
-    # command will be of the form:
-    # "command_name" -params directory/directory/(dir OR file)
-    elements = line.split(" ")
-
-    final_list = []
-    dirs = elements[-1].split("/")
-
-    if dirs[0] == '~':
-        temp_current_dir = '~'
-        final_list.append('~')
-        # if the last element is a load of directories (no guarentee) then we
-        # need to pick the last element to compare against
-        direct_descs = tree.show_files_or_dirs('~', list_type)
-        dirs.pop(0)
-    else:
-        final_list.append(temp_current_dir)
-        direct_descs = tree.show_files_or_dirs(current_dir, list_type)
-
-    for d in dirs:
-        if d == '..':
-            temp_current_dir = tree.show_ancestor(temp_current_dir)
-            final_list.append(temp_current_dir)
-            direct_descs = tree.show_files_or_dirs(temp_current_dir, list_type)
-        elif d in direct_descs:
-            final_list.append(d)
-            direct_descs = tree.show_files_or_dirs(d, list_type)
-        else:
-            break
-
-    return final_list[-1]
 
 
 def get_preset_from_id(id):

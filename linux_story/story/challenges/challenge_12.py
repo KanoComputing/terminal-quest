@@ -36,10 +36,10 @@ class Step1(StepTemplateMv):
         "{{wb:Edith:}} {{Bb:Thank you for saving her!}}",
         "{{wb:Eleanor:}} {{Bb:Doggy!}}",
         "{{wb:Edith:}} {{Bb:Can you save her dog too?  I'm worried something "
-        "will happen to it if it stays outside.}}"
+        "will happen to it if it stays outside.}}\n"
     ]
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "mv ../dog .",
         "mv ../dog ./",
@@ -51,23 +51,9 @@ class Step1(StepTemplateMv):
         "mv ../dog ~/town/.hidden-shelter/",
     ]
     hints = [
-        "{{rb:Use the command}} {{yb:mv ../dog .}} {{rb:to rescue the dog}}"
+        "{{rb:Use the command}} {{yb:mv ../dog ./}} {{rb:to rescue the dog.}}"
     ]
     dog_file = os.path.join(tq_file_system, 'town/.hidden-shelter/dog')
-
-    # At this point, bring in the .tiny-chest, since they have completed MV
-    # correctly
-    story_dict = {
-        "MV": {
-            "path": "~/town/.hidden-shelter/.tiny-chest"
-        },
-        "CAT, LS, CD": {
-            "path": "~/my-house/my-room/.chest"
-        },
-        "Eleanor": {
-            "path": "~/town/.hidden-shelter"
-        }
-    }
 
     def block_command(self, line):
         return unblock_commands(line, self.commands)
@@ -82,12 +68,12 @@ class Step2(StepTemplateMv):
         "{{wb:Eleanor:}} {{Bb:Yay, Doggie!}}",
         "{{wb:Dog:}} {{Bb:Ruff!}}",
         "{{wb:Edith:}} {{Bb:Thank you so much for getting them both back.",
-        "I was wrong about you. You're a hero!}}",
+        "I was wrong about you. You're a hero!}}\n",
         "Talk to everyone and see if there's anything else you can do to "
-        "help further."
+        "help.\n"
     ]
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = "cat Edward"
     all_commands = {
         "cat Edith": "\n{{wb:Edith:}} {{Bb:\"Thank you so much! "

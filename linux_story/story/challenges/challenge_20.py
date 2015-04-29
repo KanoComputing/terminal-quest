@@ -6,7 +6,9 @@
 # A chapter of the story
 
 from linux_story.Step import Step
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import (
+    unblock_commands_with_cd_hint, unblock_commands_with_mkdir_hint
+)
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
 from linux_story.story.challenges.challenge_21 import Step1 as NextChallengeStep
@@ -32,7 +34,7 @@ class Step1(StepTemplateEcho):
         "to build special shelters to store the crops in. "
         "They'd keep everything safe over winter. I think he used a specific tool. "
         "We should take a look in his toolshed to see if we can find it "
-        "\n{{gb:Use}} {{yb:cd}} {{gb:to go into the toolshed}}"
+        "\n{{gb:Use the}} {{yb:cd}} {{gb:command to go into the toolshed}}"
     ]
 
     commands = [
@@ -40,8 +42,8 @@ class Step1(StepTemplateEcho):
         "cd ../toolshed/"
     ]
 
-    start_dir = "barn"
-    end_dir = "toolshed"
+    start_dir = "~/farm/barn"
+    end_dir = "~/farm/toolshed"
     hints = [
         "Go to the toolshed in one step"
         " using {{yb:cd ../toolshed}}"
@@ -51,13 +53,6 @@ class Step1(StepTemplateEcho):
         return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        # Move Ruth into the toolshed
-        self.story_dict = {
-            "Ruth": {
-                "path": "~/farm/toolshed"
-            }
-        }
-        self.modify_file_tree()
         Step2()
 
 
@@ -68,36 +63,39 @@ class Step2(StepTemplateEcho):
         "Ruth: {{Bb:Lets have a look around for anything that "
         "could be useful}}"
     ]
-    start_dir = "toolshed"
-    end_dir = "toolshed"
+    start_dir = "~/farm/toolshed"
+    end_dir = "~/farm/toolshed"
     hints = [
-        "Use {{yb:ls}} to look around"
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     ]
-
-    def check_output(self, output):
-        if "MKDIR" in output:
-            return True
-        return False
+    commands = [
+        "ls"
+    ]
+    # Move Ruth into toolshed
+    story_dict = {
+        "Ruth": {
+            "path": "~/farm/toolshed"
+        }
+    }
+    deleted_items = ["~/farm/barn/Ruth"]
 
     def next(self):
         Step3()
 
 
-# We could have a lot of items in the shed.  We should encourage
-# the user to cat the,
 class Step3(StepTemplateEcho):
     story = [
         "Ruth: {{Bb:Ah, look! There are some instructions ",
-        "labelled under {{yb:MKDIR}}."
-        "What does it say?}}"
+        "labelled under}} {{yb:MKDIR}}."
+        "{{Bb:What does it say?}}"
     ]
     hints = [
         "Ruth: {{Bb:\"...you are able to read, yes? You can use}} {{yb:cat}} "
         "{{Bb:to read things\"}}",
         "Ruth: {{Bb:\"Just use}} {{yb:cat MKDIR}} {{Bb:\"}}"
     ]
-    start_dir = "toolshed"
-    end_dir = "toolshed"
+    start_dir = "~/farm/toolshed"
+    end_dir = "~/farm/toolshed"
     commands = "cat MKDIR"
 
     def next(self):
@@ -113,9 +111,12 @@ class Step4(StepTemplateMkdir):
     hints = [
         "{{rb:Create an igloo structure by using}} {{yb:mkdir igloo}}"
     ]
-    start_dir = "toolshed"
-    end_dir = "toolshed"
+    start_dir = "~/farm/toolshed"
+    end_dir = "~/farm/toolshed"
     commands = "mkdir igloo"
+
+    def block_command(self):
+        return unblock_commands_with_mkdir_hint(self.commands)
 
     def check_command(self, line, current_dir):
         line = line.strip()
@@ -133,8 +134,8 @@ class Step5(StepTemplateMkdir):
     story = [
         "Now have a look around and see what's changed"
     ]
-    start_dir = "toolshed"
-    end_dir = "toolshed"
+    start_dir = "~/farm/toolshed"
+    end_dir = "~/farm/toolshed"
     commands = [
         "ls",
         "ls -a",

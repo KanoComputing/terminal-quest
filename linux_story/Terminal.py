@@ -7,13 +7,21 @@
 #
 # The template of the terminal classes.
 
+import os
+import sys
 from cmd import Cmd
+
+if __name__ == '__main__' and __package__ is None:
+    dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    if dir_path != '/usr':
+        sys.path.insert(1, dir_path)
+
 from helper_functions import (
-    get_last_dir, get_script_cmd, debugger
+    get_script_cmd, debugger, parse_string
 )
-from Tree import story_filetree  # generate_file_tree, modify_file_tree
 from socket_functions import is_server_busy
 from kano.logging import logger
+from common import tq_file_system
 
 # If this is not imported, the escape characters used for the colour prompts
 # show up as special characters.
@@ -25,8 +33,8 @@ class Terminal(Cmd):
 
     def __init__(
         self,
-        start_dir,
-        end_dir,
+        start_path,
+        end_path,
         check_command,
         block_command,
         check_output
@@ -39,14 +47,10 @@ class Terminal(Cmd):
         old_delims = readline.get_completer_delims()
         readline.set_completer_delims(old_delims.replace('-', ''))
 
-        # This was originally here to generate the file tree in memory.
-        # Now the tree is passed to Terminal via Step, so we don't need this
-        # self.update_tree()
-        self.filetree = story_filetree
-
-        self.current_dir = start_dir
-        self.current_path = self.filetree[start_dir]
-        self.end_dir = end_dir
+        # this should be a complete path
+        self.fake_path = start_path
+        self.generate_real_path()
+        self.end_dir = end_path
 
         # output from last command
         self.last_cmd_output = None
@@ -58,11 +62,30 @@ class Terminal(Cmd):
 
         self.set_prompt()
 
-    def set_prompt(self):
-        '''Sets prompt according to the current directory
-        '''
+    def generate_real_path(self):
+        self.real_path = self.fake_path.replace('~', tq_file_system)
 
-        self.prompt = self.filetree.generate_prompt(self.current_dir)
+    def generate_fake_path(self):
+        self.fake_path = self.real_path.replace(tq_file_system, '~')
+
+    def set_prompt(self):
+        home_dir = os.path.expanduser('~')
+        cwd = self.real_path.replace(home_dir, '~')
+        fake_cwd = cwd.replace('/.linux-story', '')
+
+        # if prompt ends with / strip it off
+        if fake_cwd[-1] == '/':
+            fake_cwd = fake_cwd[:-1]
+
+        # In kano-toolset, but for now want to avoid dependencies
+        username = os.environ['LOGNAME']
+        prompt = fake_cwd + ' $ '
+        # for node in self.show_all_ancestors(fake_cwd):
+        #    prompt = node + "/" + prompt
+        prompt = "{{Y" + username + "@kano " + "}}" + "{{b" + prompt + "}}"
+
+        coloured_prompt = parse_string(prompt, input=True)
+        self.prompt = coloured_prompt
 
     def do_help(self, line):
         '''This is to overwrite the in built function in cmd
@@ -94,15 +117,16 @@ class Terminal(Cmd):
 
         Keyword arguments:
         line - string.  Is what the user enters at the terminal
+
+        Check if value entered is a shell script
         '''
 
-        # Check if value entered is a shell script
         is_script, script = get_script_cmd(
             line,
-            self.current_dir,
-            self.filetree
+            self.real_path
         )
         if is_script:
+            # TODO: what is this?
             self.do_shell(script)
         else:
             self.last_cmd_output = Cmd.onecmd(self, line)
@@ -121,15 +145,9 @@ class Terminal(Cmd):
         # self.check_output, or specifically block levels depending on the
         # output
         condition = cmd_output_correct or \
-            self.check_command(line, self.current_dir)
+            self.check_command(line, self.fake_path)
 
         return self.finish_if_server_ready(condition)
-
-    def complete_list(self):
-        '''Show the list of files in the current directory
-        '''
-
-        return list(self.filetree.show_direct_descendents(self.current_dir))
 
     @staticmethod
     def finish_if_server_ready(other_condition):
@@ -143,69 +161,48 @@ class Terminal(Cmd):
     #######################################################
     # Helper commands
 
-    def autocomplete_desc(self, text, line, completion_type="both"):
-        '''This is used to autcomplete the next file/folder
-
-        Keyword arguments:
-        text, string, is the last part you are trying to autocomplete
-        line, string, is the line so far entered by the user in the terminal
-        completion_type, string. Can be 'file', 'dir' or 'both'
-        '''
+    def autocomplete_files(self, text, line, begidx, endidx, only_dirs=False):
 
         try:
-            # If we do 'ls my-room', then we want the autocompletion
-            # to be the same as though we were typing ls with the current
-            # directory being my-room,
-            # temp_dir returns the directory we want to do the autocompletions
-            # with respect to
-            temp_dir = get_last_dir(
-                self.current_dir, self.filetree, line, completion_type
-            )
+            additional_path = line[:int(begidx)].split(" ")[-1]
 
-            # This is the list of item_ids from self.filetree
-            autocomplete_list = list(
-                self.filetree.show_files_or_dirs(
-                    temp_dir,
-                    completion_type
-                )
-            )
-
-            completions = []
-
-            # text is the text entered by the user that has not
-            # been used up by calculating
-            # e.g. if we type 'ls my-room/b', then text = "b"
-            if not text:
-                for i in autocomplete_list:
-                    completions.append(self.filetree[i].name)
-
-            # Since ../ never comes up automatically, we have to force it
-            elif text == "..":
-                completions.append(text + "/")
+            # If we do ls ~/ we need to change the path to be absolute.
+            if additional_path.startswith('~'):
+                # Needs to be moved to helper_functions
+                additional_path = additional_path.replace('~', '~/.linux-story')
+                # should actually be the hidden-directory
+                path = os.path.expanduser(additional_path)
             else:
-                for f in autocomplete_list:
-                    name = self.filetree[f].name
-                    if name.startswith(text):
-                        completions.append(name)
-                if len(completions) == 1:
-                    if self.filetree.node_exists(completions[0]):
-                        if self.filetree[completions[0]].is_dir:
-                            completions[0] += "/"
+                path = os.path.join(self.real_path, additional_path)
+
+            # If the path doesn't exist, return early
+            if not os.path.exists(path):
+                return []
+
+            if text == "..":
+                completions = [text]
+            elif not text:
+                completions = os.listdir(path)
+            else:
+                contents = os.listdir(path)
+
+                if only_dirs:
+                    completions = [f
+                                   for f in contents
+                                   if f.startswith(text) and
+                                   os.path.isdir(os.path.join(path, f))
+                                   ]
+                else:
+                    completions = [f
+                                   for f in contents
+                                   if f.startswith(text)
+                                   ]
+
+            if len(completions) == 1 and \
+                    os.path.isdir(os.path.join(path, completions[0])):
+                completions = [completions[0] + '/']
 
             return completions
 
         except Exception as e:
-            logger.debug("Exception caught = {}".format(str(e)))
-
-            # For debugging, might want to return the exception
-            return None
-
-    def autocomplete(self, text, line, complete_list):
-        if not text:
-            completions = complete_list[:]
-        else:
-            completions = [f
-                           for f in complete_list
-                           if f.startswith(text)
-                           ]
-        return completions
+            logger.debug("hit exception {}".format(str(e)))

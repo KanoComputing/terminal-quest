@@ -17,7 +17,7 @@ from linux_story.Step import Step
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.common import tq_file_system
 from linux_story.story.challenges.challenge_15 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint, unblock_commands
 
 
 class StepTemplateMv(Step):
@@ -29,16 +29,16 @@ class StepTemplateMv(Step):
 
 class Step1(StepTemplateMv):
     story = [
-        "Let's see what food is available in the kitchen."
+        "Let's see what food is available in the kitchen.\n"
     ]
-    start_dir = "kitchen"
-    end_dir = "kitchen"
+    start_dir = "~/my-house/kitchen"
+    end_dir = "~/my-house/kitchen"
     commands = [
         "ls",
         "ls -a"
     ]
     hints = [
-        "{{r:Use}} {{yb:ls}} {{rn:to have a look around the kitchen}}"
+        "{{rb:Use}} {{yb:ls}} {{rb:to have a look around the kitchen.}}"
     ]
 
     def next(self):
@@ -48,12 +48,12 @@ class Step1(StepTemplateMv):
 # Move three pieces of food into the basket
 class Step2(StepTemplateMv):
     story = [
-        "Move three pieces of food into your basket",
-        "You can move multiple items using {{yb:mv <item1> <item2>"
-        " <item3> basket/}}"
+        "Move three pieces of food into your basket.",
+        "You can move multiple items using {{lb:mv <item1> <item2>"
+        " <item3> basket/}}.\n"
     ]
-    start_dir = "kitchen"
-    end_dir = "kitchen"
+    start_dir = "~/my-house/kitchen"
+    end_dir = "~/my-house/kitchen"
     passable_items = [
         'banana',
         'cake',
@@ -63,6 +63,12 @@ class Step2(StepTemplateMv):
         'milk',
         'sandwich'
     ]
+    unmovable_items = {
+        "newspaper": "{{ob:They asked for food, they probably shouldn't eat the newspaper.}}",
+        "oven": "{{ob:This is a bit heavy for you to carry!}}",
+        "table": "{{ob:This is a bit heavy for you to carry!}}"
+    }
+    moved_items = []
 
     def block_command(self, line):
         line = line.strip()
@@ -75,7 +81,17 @@ class Step2(StepTemplateMv):
                                           separate_words[-1] == 'basket/'):
             for item in separate_words[1:-1]:
                 if item not in self.passable_items:
-                    return True
+                    if item in self.unmovable_items:
+                        self.send_hint(self.unmovable_items[item])
+                        return True
+                    else:
+                        hint = (
+                            '{{rb:You\'re trying to move something that isn\'t in'
+                            ' the folder.\nTry using}} {{yb:mv %s basket/}}'
+                            % self.passable_items[0]
+                        )
+                        self.send_hint(hint)
+                        return True
 
             return False
 
@@ -87,22 +103,12 @@ class Step2(StepTemplateMv):
         if separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
                                           separate_words[-1] == 'basket/'):
             for item in separate_words[1:-1]:
-                if item not in self.passable_items:
-                    hint = (
-                        '{{rb:You\'re trying to move something that isn\'t in'
-                        ' the folder.\n Try using}} {{yb:mv %s basket/}}'
-                        % self.passable_items[0]
-                    )
-                    self.send_hint(hint)
-                    return
-
-                else:
-                    all_items.append(item)
+                all_items.append(item)
 
             for item in all_items:
                 self.passable_items.remove(item)
 
-            hint = '{{gb:Well done!  Keep going.}}'
+            hint = '\n{{gb:Well done!  Keep going.}}'
 
         else:
             hint = '{{rb:Try using}} {{yb:mv %s basket/}}' \
@@ -130,11 +136,11 @@ class Step2(StepTemplateMv):
 class Step3(StepTemplateMv):
     story = [
         "\nNow we want to head back to the .hidden-shelter with the "
-        "basket",
-        "Move the {{yb:basket}} back to {{yb:~}}"
+        "basket.",
+        "Move the {{lb:basket}} back to {{lb:~}}.\n"
     ]
-    start_dir = "kitchen"
-    end_dir = "kitchen"
+    start_dir = "~/my-house/kitchen"
+    end_dir = "~/my-house/kitchen"
     commands = [
         "mv basket ~",
         "mv basket/ ~",
@@ -142,12 +148,12 @@ class Step3(StepTemplateMv):
         "mv basket/ ~/"
     ]
     hints = [
-        "{{rb:Use the command}} {{yb:mv basket ~}} "
-        "{{rb:to move the basket to the road ~}}"
+        "{{rb:Use the command}} {{yb:mv basket ~/}} "
+        "{{rb:to move the basket to the windy road ~}}"
     ]
 
     def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+        return unblock_commands(line, self.commands)
 
     def next(self):
         Step4()
@@ -155,9 +161,9 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "Follow the basket by using {{yb:cd}}"
+        "Follow the basket by using {{yb:cd}}.\n"
     ]
-    start_dir = "kitchen"
+    start_dir = "~/my-house/kitchen"
     end_dir = "~"
     commands = [
         "cd",
@@ -179,7 +185,7 @@ class Step4(StepTemplateMv):
 class Step5(StepTemplateMv):
     story = [
         "Now get the food-filled basket to the family.",
-        "Move the {{yb:basket}} to {{yb:town/.hidden-shelter}}",
+        "Move the {{lb:basket}} to {{lb:town/.hidden-shelter}}.",
     ]
 
     start_dir = "~"
@@ -196,11 +202,11 @@ class Step5(StepTemplateMv):
     ]
     hints = [
         "{{rb:Use}} {{yb:mv basket town/.hidden-shelter/}} "
-        "{{rb:to move the basket to the family in need}}"
+        "{{rb:to move the basket to the family.}}"
     ]
 
     def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+        return unblock_commands(line, self.commands)
 
     def next(self):
         Step6()
@@ -208,12 +214,12 @@ class Step5(StepTemplateMv):
 
 class Step6(StepTemplateMv):
     story = [
-        "{{gb:Nearly there!}} Go into {{yb:town/.hidden-shelter}} "
-        "using {{yb:cd}}",
+        "{{gb:Nearly there!}} Finally go into {{lb:town/.hidden-shelter}} "
+        "using {{lb:cd}}.\n",
     ]
 
     start_dir = "~"
-    end_dir = ".hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     commands = [
         "cd town/.hidden-shelter",
         "cd town/.hidden-shelter/",
@@ -234,13 +240,13 @@ class Step6(StepTemplateMv):
 
 class Step7(StepTemplateMv):
     story = [
-        "{{wn:See what everyone has to say using}} {{yb:cat}} {{wn:and check "
-        "everything is ok with the food.}}"
+        "{{wn:Check on everyone with}} {{lb:cat}} {{wn:to see if "
+        "they're happy with the food.}}\n"
     ]
-    start_dir = ".hidden-shelter"
-    end_dir = ".hidden-shelter"
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
     hints = [
-        "Talk to everyone using {{yb:cat}}"
+        "Check on everyone using {{yb:cat}}"
     ]
     allowed_commands = {
         "cat Edith": (
@@ -282,19 +288,18 @@ class Step7(StepTemplateMv):
             # If the hint is not empty
             elif hint:
                 hint += (
-                    "\n{{gb:Talk to}} {{yb:" + str(num_people) +
+                    "\n{{gb:Check on}} {{yb:" + str(num_people) +
                     "}} {{gb:other}}"
                 )
                 if num_people > 1:
                     hint += "{{gb:s}}"
         else:
             hint = (
-                "{{rn:Use}} {{yb:" + self.allowed_commands.keys()[0] +
-                "}} {{rn:to progress.}}"
+                "{{rb:Use}} {{yb:" + self.allowed_commands.keys()[0] +
+                "}} {{rb:to progress.}}"
             )
 
         self.send_hint(hint)
 
     def next(self):
-        self.create_secret_chest()
         NextStep(self.xp)

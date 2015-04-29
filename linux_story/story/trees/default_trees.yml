@@ -91,7 +91,7 @@ note_greenhouse:
 # We could also specify the basket directory, but then we would have to specify the contents separately
 empty-bottle:
     challenges:
-        - challenge: 1
+        - challenge: 10
           step: 1
           path: "~/town/.hidden-shelter/basket"
 
@@ -161,6 +161,10 @@ note_kitchen:
           step: 1
           path: "~/my-house/kitchen"
 
+        - challenge: 10
+          step: 1
+          exists: False
+
 # All other items in the kitchen
 newspaper, oven, table:
     challenges:
@@ -219,6 +223,16 @@ Edith, Edward, Eleanor, dog, apple:
           step: 1
           path: "~/town/.hidden-shelter"
 
+apple:
+    challenges:
+        - challenge: 11
+          step: 5
+          path: "~/town/.hidden-shelter/basket"
+
+        - challenge: 11
+          step: 6
+          path: "~/town/.hidden-shelter"
+
 # Eleanor and the dog run outside
 Eleanor, dog:
     challenges:
@@ -255,7 +269,7 @@ MV:
 # Find the .chest in your room
 CAT, CD, LS, .note:
     challenges:
-        - challenge: 8
+        - challenge: 15
           step: 1
           path: "~/my-house/my-room/.chest"
 

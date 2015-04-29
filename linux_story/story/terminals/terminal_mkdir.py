@@ -22,4 +22,28 @@ class TerminalMkdir(TerminalEcho):
     commands = ["ls", "cat", "cd", "mv", "echo", "mkdir"]
 
     def do_mkdir(self, line):
-        shell_command(self.current_dir, self.filetree, line, "mkdir")
+        shell_command(self.real_path, line, "mkdir")
+
+
+if __name__ == "__main__":
+    start_path = '~'
+    end_path = '~/my-house'
+
+    def check_command(arg1=None, arg2=None):
+        pass
+
+    def block_command(arg1=None, arg2=None):
+        pass
+
+    def check_output(arg1=None, arg2=None):
+        pass
+
+    terminal = TerminalMkdir(
+        start_path,
+        end_path,
+        check_command,
+        block_command,
+        check_output
+    )
+
+    terminal.cmdloop()
