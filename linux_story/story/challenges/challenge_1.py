@@ -36,7 +36,7 @@ class Step1(StepTemplateLs):
         "\"Mayor Hubert has called an emergency town meeting and"
         " we'll keep you posted as it happens...\"}}\n",
         "It's time to get up sleepy head!",
-        "\n{{wb:New Spell:}} Type {{lb:ls}} and press Enter to see what's "
+        "\n{{wb:New Spell:}} Type {{yb:ls}} and press Enter to see what's "
         "around you.\n"
     ]
     start_dir = "~/my-house/my-room"
