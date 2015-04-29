@@ -48,7 +48,7 @@ class Step1(StepTemplateCd):
     counter = 0
     deleted_items = ["~/my-house/kitchen/note"]
     story_dict = {
-        "Eleanor, Edward, Edith, apple": {
+        "Eleanor, Edward, Edith, apple, dog": {
             "path": "~/town/.hidden-shelter",
         },
         "empty-bottle": {
