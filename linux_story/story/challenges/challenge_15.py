@@ -39,6 +39,9 @@ class Step1(StepTemplateMv):
     story_dict = {
         "CAT, LS, CD": {
             "path": "~/my-house/my-room/.chest"
+        },
+        "MV": {
+            "path": "~/town/.hidden-shelter/.tiny-chest"
         }
     }
 
@@ -47,11 +50,6 @@ class Step1(StepTemplateMv):
     commands = [
         "ls -a"
     ]
-    story_dict = {
-        "MV": {
-            "path": "~/town/.hidden-shelter/.tiny-chest"
-        }
-    }
 
     def next(self):
         Step2()
