@@ -126,7 +126,7 @@ class Step2(StepTemplateMv):
         "mv apple basket/"
     ]
     hints = [
-        "{{ob:Use the command}} {{yb:mv apple basket/}} {{ob:to "
+        "{{rb:Use the command}} {{yb:mv apple basket/}} {{rb:to "
         "move the apple into the basket.}}"
     ]
     # This is to add the apple into the virtual tree

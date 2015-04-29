@@ -75,7 +75,7 @@ class Step1(StepTemplateCd):
         else:
             if self.first_time:
                 hint = (
-                    "{{ob:Use}} {{lb:cat}} {{ob:to look at two of the objects around you.}}"
+                    "{{rb:Use}} {{lb:cat}} {{rb:to look at two of the objects around you.}}"
                 )
             else:
                 hint = (

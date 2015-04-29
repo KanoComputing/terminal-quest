@@ -64,9 +64,9 @@ class Step2(StepTemplateMv):
         'sandwich'
     ]
     unmovable_items = {
-        "newspaper": "{{ob:They asked for food, they probably shouldn't eat the newspaper.}}",
-        "oven": "{{ob:This is a bit heavy for you to carry!}}",
-        "table": "{{ob:This is a bit heavy for you to carry!}}"
+        "newspaper": "{{rb:They asked for food, they probably shouldn't eat the newspaper.}}",
+        "oven": "{{rb:This is a bit heavy for you to carry!}}",
+        "table": "{{rb:This is a bit heavy for you to carry!}}"
     }
     moved_items = []
 

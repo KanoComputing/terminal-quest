@@ -83,7 +83,7 @@ class Step2(StepTemplateMv):
         "cat dog": "\n{{wb:Dog:}} {{Bb:\"Woof! Woof woof!\"}}"
     }
     hints = [
-        "{{ob:Edward looks like he has something he wants to say. "
+        "{{gb:Edward looks like he has something he wants to say. "
         "Talk to Edward with}} {{yb:cat Edward}}"
     ]
     last_step = True
