@@ -101,7 +101,8 @@ class Step3(StepTemplateMv):
     ]
     hints = [
         "{{rb:You want to use the command}} "
-        "{{yb:mv ~/town/.hidden-shelter/.tiny-chest/MV .chest/}}"
+        "{{yb:mv ~/town/.hidden-shelter/.tiny-chest/MV .chest/}}\n"
+        "{{rb:Use the UP arrow to replay your last command if you were close!}}"
     ]
 
     def block_command(self, line):

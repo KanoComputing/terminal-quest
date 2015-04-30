@@ -246,7 +246,7 @@ class Step7(StepTemplateMv):
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
     hints = [
-        "Check on everyone using {{yb:cat}}"
+        "{{rb:Check on everyone using}} {{yb:cat}}"
     ]
     allowed_commands = {
         "cat Edith": (
