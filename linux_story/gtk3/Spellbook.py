@@ -17,7 +17,7 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.paths import common_media_dir
+from linux_story.common import common_media_dir
 
 
 class Spellbook(Gtk.EventBox):
@@ -29,7 +29,7 @@ class Spellbook(Gtk.EventBox):
     CMD_HEIGHT = 80
     CMD_WIDTH = 80
     HEIGHT = 100
-    number_of_spells = 4
+    number_of_spells = 6
 
     def __init__(self):
         self.stop = False
@@ -79,13 +79,15 @@ class Spellbook(Gtk.EventBox):
         label_background = Gtk.EventBox()
         label_background.get_style_context().add_class("spell_label_background")
 
+        images_dir = os.path.join(common_media_dir, 'images')
+
         if locked:
-            filename = os.path.join(common_media_dir, "padlock.png")
+            filename = os.path.join(images_dir, "padlock.png")
             icon_background.get_style_context().add_class("locked")
             label_background.get_style_context().add_class("locked")
 
         else:
-            filename = os.path.join(common_media_dir, name + ".png")
+            filename = os.path.join(images_dir, name + ".png")
 
         icon = Gtk.Image.new_from_file(filename)
         icon_background.add(icon)

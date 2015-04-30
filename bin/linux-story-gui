@@ -1,4 +1,4 @@
-#!/usr/bin/kano-splash /usr/share/linux-story/media/splash.png /usr/bin/env python
+#!/usr/bin/kano-splash /usr/share/linux-story/media/images/splash.png /usr/bin/env python
 
 # linux-story-gui
 #
@@ -26,8 +26,9 @@ from linux_story.gtk3.TerminalUi import TerminalUi
 from linux_story.gtk3.Spellbook import Spellbook
 from linux_story.gtk3.Storybook import Storybook
 from linux_story.gtk3.FinishDialog import FinishDialog
-from linux_story.paths import css_dir
+from linux_story.common import css_dir
 from kano.gtk3.apply_styles import apply_styling_to_screen
+from kano.gtk3.scrolled_window import ScrolledWindow
 
 from kano_profile.tracker import Tracker
 kanotracker = Tracker()
@@ -51,7 +52,7 @@ class MainWindow(Gtk.Window):
         self.connect('delete-event', self.close_window)
         self.get_style_context().add_class("main_window")
         self.maximize()
-        self.set_title("Legendary Terminal Quest")
+        self.set_title("Terminal Quest")
         self.set_icon_name("linux-story")
 
 
@@ -84,7 +85,8 @@ class Application(MainWindow):
         self.story.set_margin_left(10)
         self.story.set_margin_right(10)
 
-        story_sw = Gtk.ScrolledWindow()
+        story_sw = ScrolledWindow()
+        story_sw.apply_styling_to_screen()
         story_sw.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         story_sw.add(self.story)
 
@@ -247,7 +249,16 @@ class Application(MainWindow):
 
                     # Print the challenge title at the top of the screen
                     challenge = data_dict['challenge']
+
+                    # If challenge is passed, then print a title
+                    # if challenge:
+
                     self.print_challenge_title(challenge)
+
+                    # So the xp is not hardcoded in the story
+                    if 'xp' in data_dict and data_dict['xp']:
+                        xp = data_dict['xp']
+                        self.type_text(xp)
 
                     # Type the story out
                     self.type_text(data_dict['story'])

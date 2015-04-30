@@ -11,26 +11,18 @@
 import os
 import subprocess
 
-from helper_functions import colour_file_dir, debugger, hidden_dir
+from helper_functions import colour_file_dir, debugger
+from linux_story.common import tq_file_system
 from kano.colours import colourize256
 
 
-# We edit this to colourise the output - otherwise, we could just use shell_command
-# TODO: ls -d .* doesn't work
-def ls(current_dir, tree, line=""):
-
-    # find current_location
-    real_loc = tree[current_dir].path
-
-    # Don't print anything
-    if not real_loc:
-        return
+def ls(real_loc, line):
 
     new_loc = real_loc
     get_all_info = False
     new_lines = False
     args = ["ls"]
-    line = line.replace('~', hidden_dir)
+    line = line.replace('~', tq_file_system)
 
     if line:
         args = line.split(" ")
@@ -63,7 +55,7 @@ def ls(current_dir, tree, line=""):
     # The error will need to be edited if it contains info about the edited
     # filename
     if err:
-        err = err.replace(hidden_dir, '~')
+        err = err.replace(tq_file_system, '~')
         print err
         return
 
@@ -100,7 +92,7 @@ def ls(current_dir, tree, line=""):
 
 def grep(current_dir, tree, line):
     # find current_location
-    real_loc = tree[current_dir].path
+    real_loc = tree[current_dir].real_path
 
     # Don't print anything
     if not real_loc:
@@ -129,7 +121,7 @@ def grep(current_dir, tree, line):
         print coloured_results
 
 
-def sudo(current_dir, tree, line):
+def sudo(real_path, line):
     allowed_commands = ["chmod", "touch", "mkdir"]
 
     # take the list of elements
@@ -139,22 +131,17 @@ def sudo(current_dir, tree, line):
     command = elements[0]
 
     if command in allowed_commands:
-        shell_command(current_dir, tree, line, "sudo")
+        shell_command(current_dir, line, "sudo")
 
 
 # TODO: change this so returns differently depending on whether
 # it is successful or not
-def shell_command(current_dir, tree, line, command_word=""):
+def shell_command(real_loc, line, command_word=""):
 
-    line = " ".join([command_word] + line.split(" "))
+    if command_word:
+        line = command_word + " " + line
 
-    real_loc = tree[current_dir].path
-
-    # Don't do anything
-    if not real_loc:
-        return False
-
-    line = line.replace('~', hidden_dir)
+    line = line.replace('~', tq_file_system)
 
     args = line.split(" ")
     p = subprocess.Popen(args, cwd=real_loc,
@@ -163,7 +150,7 @@ def shell_command(current_dir, tree, line, command_word=""):
     stdout, stderr = p.communicate()
 
     if stderr:
-        print stderr.strip().replace(hidden_dir, '~')
+        print stderr.strip().replace(tq_file_system, '~')
         return False
 
     if stdout:
@@ -177,64 +164,14 @@ def shell_command(current_dir, tree, line, command_word=""):
 
 
 def turn_abs_path_to_real_loc(path):
-    return path.replace('~', hidden_dir)
+    return path.replace('~', tq_file_system)
 
 
-# This checks if the path is valid
-def check_real_loc(tree, path):
-    '''Takes a path with ~ and checks the path is consistent with the
-    saved file structure.
-    If so, replaces the ~ with the hidden_dir path (~/.linux-story) and
-    returns the path.
-    '''
-    folders = path.split('/')
-
-    # if user starts line with ~, take their path as an absolute path
-    if folders[0] == '~':
-
-        # Need to check that the path is valid
-        # Check the subsequent folder do indeed belong to the correct
-        # folders
-        for i in range(1, len(folders)):
-            if not folders[i] in tree.show_dirs(folders[i - 1]):
-                return None
-
-    path = path.replace('~', hidden_dir)
-    return path
-
-
-# Will be identical to touch
-def mkdir(current_dir, tree, line):
-    # TODO: determine if this is successful
-    if shell_command(current_dir, tree, line, "mkdir"):
-        real_loc = tree[current_dir].path
-        args = line.split(" ")
-        filepath = args[-1]
-
-        # Hopefully we're left with the filepath
-        new_dir = os.path.join(real_loc, filepath)
-
-        # If new path was created successfully
-        if os.path.exists(new_dir):
-            dirs = [current_dir] + filepath.split("/")
-
-            # Add new nodes to tree
-            for i in range(len(dirs)):
-                if not tree.node_exists(dirs[i]):
-                    tree.add_node(dirs[i], dirs[i - 1])
-
-
-def launch_application(current_dir, tree, line, command_word=""):
+def launch_application(real_path, line, command_word=""):
 
     line = " ".join([command_word] + line.split(" "))
 
-    real_loc = tree[current_dir].path
-
-    # Don't do anything
-    if not real_loc:
-        return
-
-    p = subprocess.Popen(line, cwd=real_loc, shell=True)
+    p = subprocess.Popen(line, cwd=real_path, shell=True)
     stdout, stderr = p.communicate()
 
     if stdout:

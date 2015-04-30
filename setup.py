@@ -35,13 +35,11 @@ def is_image(filepath):
     return ext in img_extensions
 
 
-file_system = recursively_get_dirs("linux_story", "file_system")
-data = recursively_get_dirs("linux_story", "data")
-animation = recursively_get_dirs("linux_story", "animation")
-challenges = recursively_get_dirs("linux_story", "challenges")
+story = recursively_get_dirs("linux_story", "story")
+ascii_assets = recursively_get_dirs("linux_story", "ascii_assets")
 gtk3 = recursively_get_dirs("linux_story", "gtk3")
-terminals = recursively_get_dirs("linux_story", "terminals")
-media = recursively_get_dirs("", "media")
+media_images = recursively_get_dirs("", "media/images")
+media_sounds = recursively_get_dirs("", "media/sounds")
 icons = filter(is_image, recursively_get_dirs("", "icon"))
 kdesktop = recursively_get_dirs("", "kdesktop")
 
@@ -55,11 +53,11 @@ setup(name='Linux Story',
       package_dir={'linux_story': 'linux_story'},
       scripts=['bin/linux-story'],
       package_data={
-          'linux_story': file_system + data + animation +
-          challenges + gtk3 + terminals
+          'linux_story': story + ascii_assets + gtk3
       },
       data_files=[
-          ('/usr/share/linux-story/media/', media),
+          ('/usr/share/linux-story/media/images', media_images),
+          ('/usr/share/linux-story/media/sounds', media_sounds),
           ('/usr/share/kano-desktop/kdesk/kdesktop/', kdesktop),
           ('/usr/share/icons/Kano/88x88/apps', icons)
       ]

@@ -1,0 +1,305 @@
+# Assume items are files unless otherwsie directed
+
+# Non movable items in my-room
+# group them by directory (if possible?)
+
+# We have a choice, we can either have the array of item initialised,
+# or do them all separately.
+# Or, PYTHON
+alarm, chair, computer, desk:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/my-room"
+
+bed_my-room:
+    name: "bed"
+
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/my-room"
+
+# shelves
+redwall, watership-down, alice-and-wonderland, comic-book:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/my-room/shelves"
+
+note_my-room:
+    name: "note"
+
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/my-room/shelves"
+
+# wardrobe
+cap, dress, jumper, shirt, skirt, t-shirt, trousers:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/my-room/wardrobe"
+
+# Parents-room
+picture, tv, window:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/parents-room"
+
+bed_parents-room:
+    name: "bed"
+
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/parents-room"
+
+# Garden
+bench, flowers, fence:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/garden"
+
+# Dad is there for consistancy, (as he should disappear when the bell goes)
+# However, he should be deleted before the bell goes
+carrots, pumpkin, Dad, tomato, onion:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/garden/greenhouse"
+
+Dad:
+    challenges:
+        - challenge: 4
+          step: 3
+          exists: False
+
+# The note should appear once the bell has gone
+note_greenhouse:
+    name: "note"
+
+    challenges:
+        - challenge: 4
+          step: 3
+          path: "~/my-house/garden/greenhouse"
+
+# This is the contents of the basket. Moves around a lot in challenges 13-14
+# We could also specify the basket directory, but then we would have to specify the contents separately
+empty-bottle:
+    challenges:
+        - challenge: 10
+          step: 1
+          path: "~/town/.hidden-shelter/basket"
+
+        - challenge: 13
+          step: 2
+          path: "~/basket"
+
+        - challenge: 13
+          step: 5
+          path: "~/my-house/kitchen/basket"
+
+        - challenge: 14
+          step: 4
+          path: "~/basket"
+
+        - challenge: 14
+          step: 6
+          path: "~/town/.hidden-shelter/basket"
+
+# Kitchen
+# Any of the food could go on a journey, but these items
+# we select by default
+banana, cake, croissant:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/kitchen"
+
+        # Here it might be moved to the basket
+        - challenge: 14
+          step: 3
+          path: "~/my-house/kitchen/basket"
+
+        - challenge: 14
+          step: 4
+          path: "~/basket"
+
+        - challenge: 14
+          step: 6
+          path: "~/town/.hidden-shelter/basket"
+
+# These could be selected but are not by default
+grapes, milk, pie, sandwich:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/kitchen"
+
+
+# Mum disappears after bell
+Mum:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/kitchen"
+
+        - challenge: 8
+          step: 1
+          exists: False
+
+# Appears after Mum disappears
+note_kitchen:
+    name: "note"
+
+    challenges:
+        - challenge: 8
+          step: 1
+          path: "~/my-house/kitchen"
+
+        - challenge: 10
+          step: 1
+          exists: False
+
+# All other items in the kitchen
+newspaper, oven, table:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/my-house/kitchen"
+
+# Town folk
+Mayor, grumpy-man, young-girl, little-boy:
+    challenges:
+        - challenge: 1
+          step: 1
+          path: "~/town"
+
+grumpy-man:
+    challenges:
+        - challenge: 8
+          step: 1
+          exists: False
+
+young-girl:
+    challenges:
+        - challenge: 8
+          step: 2
+          exists: False
+
+little-boy:
+    challenges:
+        - challenge: 8
+          step: 3
+          exists: False
+
+Mayor:
+    challenges:
+        - challenge: 8
+          step: 6
+          exists: False
+
+note_town:
+    name: "note"
+
+    challenges:
+        - challenge: 8
+          step: 6
+          path: "~/town"
+
+        - challenge: 10
+          step: 1
+          exists: False
+
+# .hidden-shelter folk
+# start off all in the same place
+Edith, Edward, Eleanor, dog, apple:
+    challenges:
+        - challenge: 10
+          step: 1
+          path: "~/town/.hidden-shelter"
+
+apple:
+    challenges:
+        - challenge: 11
+          step: 5
+          path: "~/town/.hidden-shelter/basket"
+
+        - challenge: 11
+          step: 6
+          path: "~/town/.hidden-shelter"
+
+# Eleanor and the dog run outside
+Eleanor, dog:
+    challenges:
+        - challenge: 11
+          step: 6
+          path: "~/town"
+
+# Then Eleanor is saved
+Eleanor:
+    challenges:
+        - challenge: 12
+          step: 1
+          path: "~/town/.hidden-shelter"
+
+# Finally the dog is saved
+dog:
+    challenges:
+        - challenge: 12
+          step: 2
+          path: "~/town/.hidden-shelter"
+
+# Find the .tiny-chest in the .hidden-shelter
+MV:
+    challenges:
+        - challenge: 10
+          step: 1
+          path: "~/town/.hidden-shelter/.tiny-chest"
+
+        # Move the MV command into .chest
+        - challenge: 16
+          step: 6
+          path: "~/my-house/my-room/.chest"
+
+# Find the .chest in your room
+CAT, CD, LS, .note:
+    challenges:
+        - challenge: 15
+          step: 1
+          path: "~/my-house/my-room/.chest"
+
+# Mum's diary
+mums-diary, ECHO, map:
+    challenges:
+        - challenge: 17
+          step: 1
+          path: "~/my-house/parents-room/.safe"
+
+# Generate farm
+# Horse, pig, cow
+Cobweb, Trotter, Daisy, Ruth:
+    challenges:
+        - challenge: 17
+          step: 1
+          path: "~/farm/barn"
+
+# Farmer's wife
+bed_farmhouse:
+    name: "bed"
+
+    challenges:
+        - challenge: 17
+          step: 1
+          path: "~/farm/farmhouse"
+
+# toolshed
+MKDIR, spanner, hammer, saw, tape-measure:
+    challenges:
+        - challenge: 17
+          step: 1
+          path: "~/farm/toolshed"

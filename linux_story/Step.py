@@ -8,26 +8,42 @@
 # Step class to describe the flow
 
 import threading
+import os
 from socket_functions import launch_client, is_server_busy
 from kano_profile.badges import save_app_state_variable_with_dialog
-from kano_profile.apps import load_app_state_variable, save_app_state_variable
+from kano_profile.apps import (
+    load_app_state_variable, get_app_xp_for_challenge
+)
+from load_defaults_into_filetree import delete_item, modify_file_tree
 
 
 class Step():
     story = [""]
     start_dir = "~"
     end_dir = "~"
-    command = ""
+    commands = ""
     hints = ""
     last_step = False
-    challenge_number = 1
+    challenge_number = ""
     output_condition = lambda x, y: False
+    story_dict = {}
+    deleted_items = []
+    xp = ""
 
-    def __init__(self, Terminal_Class):
+    # We can either tree as a global variable in common, or pass it as a
+    # variable between the files.
+    # We have to be careful with tree, as it has to be accessed from the right
+    # thread otherwise the old data is erased.
+    def __init__(self, Terminal_Class, xp=""):
+
+        self.xp = xp
         self.pipe_busy = False
 
+        self.modify_file_tree()
+        self.delete_items()
+
         # Available commands that can be used in the Terminal
-        self.commands = Terminal_Class.commands
+        self.terminal_commands = Terminal_Class.commands
 
         # if hints are a string
         if isinstance(self.hints, basestring):
@@ -51,13 +67,16 @@ class Step():
         - Once the terminal exits, takes you to the next Step
         '''
 
+        # Save the challenge information on run.
+        # We would save on every step, but it's a little too
+        # slow to do this since save_app_state_variable refreshes kdesk
+
         # Send all story data together
         self.send_start_challenge_data()
         self.launch_terminal()
 
-        # Structure copied from snake
         if self.last_step:
-            self.complete_challenge()
+            self.save_challenge()
 
         # Tell storyline the step is finished
         self.next()
@@ -97,9 +116,13 @@ class Step():
         '''
 
         data = {}
+
+        # Get data about any XP.
+        data['xp'] = self.xp
         data['story'] = "\n".join(self.story)
         data['challenge'] = str(self.challenge_number)
-        data['spells'] = self.commands
+        data['spells'] = self.terminal_commands
+
         t = threading.Thread(target=launch_client, args=(data,))
         t.daemon = True
         t.start()
@@ -111,24 +134,47 @@ class Step():
 
         pass
 
-    def complete_challenge(self):
+    def delete_items(self):
+        '''self.delete_items should be a list of fake_paths we want removed
+        '''
+        if self.deleted_items:
+            for path in self.deleted_items:
+
+                # TODO: move this to common
+                real_path = os.path.expanduser(path.replace('~', '~/.linux-story'))
+                delete_item(real_path)
+
+    def get_xp(self):
+        '''Look up XP earned after challenge
+        '''
+        # Look up XP earned
+        xp = get_app_xp_for_challenge("linux-story",
+                                      str(self.challenge_number)
+                                      )
+
+        if xp > 0:
+            self.xp = "{{gb:Congratulations, you earned " + str(xp) + " XP!}}\n\n"
+
+    def save_challenge(self):
         '''Integration with kano world
         '''
-
         level = load_app_state_variable("linux-story", "level")
+
         if self.challenge_number > level:
             save_app_state_variable_with_dialog("linux-story", "level",
                                                 self.challenge_number)
+            self.get_xp()
 
     def launch_terminal(self):
         '''Starts off the terminal's game loop.
         This function does not stop until the user has passed the level
         '''
+
         self.terminal.cmdloop()
 
     def check_command(self, line, current_dir):
-        '''If self.command is provided, checks the command entered
-        by the user matches self.command.
+        '''If self.commands is provided, checks the command entered
+        by the user matches self.commands.
         '''
 
         # check through list of commands
@@ -139,13 +185,13 @@ class Step():
         line = line.strip()
 
         # if the validation is included
-        if self.command:
+        if self.commands:
             # if only one command can pass the level
-            if isinstance(self.command, basestring):
-                command_validated = line == self.command
+            if isinstance(self.commands, basestring):
+                command_validated = line == self.commands
             # else there are multiple commands that can pass the level
             else:
-                command_validated = line in self.command
+                command_validated = line in self.commands
 
         if self.end_dir:
             end_dir_validated = current_dir == self.end_dir
@@ -180,10 +226,12 @@ class Step():
         '''
 
         line = line.strip()
-        if "cd" in line or "mv" in line and \
-                not line == 'mv --help':
+        if "cd" in line or "mkdir" in line or \
+                ("mv" in line and not line == 'mv --help'):
 
-            print 'Nice try! But you do not need that command for this challenge'
+            print ('Nice try! But you do not need that command for this '
+                   'challenge')
+
             return True
 
     def check_output(self, output):
@@ -191,21 +239,17 @@ class Step():
         The argument is the output from the command printed in the terminal.
         If the function return True, will break out of cmdloop and go to next
         Step.
-        if the function returns False, will stay in this Step.
+        if the function returns False, whether the level passes depends on
+        the return value of self.check_command
         '''
-
         if not output:
             return False
 
         output = output.strip()
         return self.output_condition(output)
 
-    def save_fork(self, fork):
-        '''Save fork using kano profile
+    def modify_file_tree(self):
+        '''If self.story_dict is specified, add files to the filetree
         '''
-
-        save_app_state_variable(
-            'linux-story',
-            'fork_' + str(self.challenge_number),
-            fork
-        )
+        if self.story_dict:
+            modify_file_tree(self.story_dict)

@@ -12,10 +12,7 @@ import subprocess
 
 from kano.colours import colourize256, decorate_string
 from kano_profile.apps import load_app_state_variable
-
-
-home = os.path.expanduser("~")
-hidden_dir = os.path.join(home, ".linux-story")
+from linux_story.common import common_media_dir
 
 
 def debugger(text):
@@ -26,7 +23,7 @@ def debugger(text):
         print text
 
 
-def get_script_cmd(string, current_dir, tree):
+def get_script_cmd(string, real_path):
     '''Checks whether the string (from the user's point of view)
     is an executible.
     So we convert the path entered into the real path (i.e. including the
@@ -37,15 +34,13 @@ def get_script_cmd(string, current_dir, tree):
 
     if string.startswith("./"):
         string = string[2:]
-        real_loc = tree[current_dir].path
-        script = os.path.join(real_loc, string)
+        script = os.path.join(real_path, string)
 
     elif string.startswith("/"):
         script = string
 
     else:
-        real_loc = tree[current_dir].path
-        script = os.path.join(real_loc, string)
+        script = os.path.join(real_path, string)
 
     # directories are executable, so exclude directories
     if os.path.exists(script) and not os.path.isdir(script):
@@ -79,11 +74,9 @@ def play_sound(object_name):
     the options are 'alarm' and 'bell'
     '''
 
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-
     sound_path = os.path.join(
-        current_dir,
-        "animation/sounds/",
+        common_media_dir,
+        "sounds",
         object_name + '.wav'
     )
 
@@ -91,36 +84,6 @@ def play_sound(object_name):
         ["/usr/bin/aplay", sound_path],
         stderr=subprocess.STDOUT, stdout=subprocess.PIPE
     )
-
-
-# TODO: NEEDS A BETTER NAME
-def get_completion_desc(current_dir, tree, line, list_type="both"):
-    '''This is to help the completion function in the classes
-    we give this function a possible list of files and directories
-    list_type = "dirs", "files", or "both"
-    '''
-
-    # list of directories
-    # command will be of the form:
-    # "command_name" -params directory/directory/(dir OR file)
-    elements = line.split(" ")
-
-    # if the last element is a load of directories (no guarentee) then we need
-    # to pick the last element to compare against
-    direct_descs = tree.show_files_or_dirs(current_dir, list_type)
-
-    final_list = []
-    dirs = elements[-1].split("/")
-
-    for d in dirs:
-        if d in direct_descs:
-            final_list.append(d)
-            direct_descs = tree.show_files_or_dirs(d, list_type)
-
-    # return the final element
-    if final_list:
-        return final_list[-1]
-    return current_dir
 
 
 def get_preset_from_id(id):
