@@ -39,9 +39,6 @@ class Step1(StepTemplateMv):
     story_dict = {
         "CAT, LS, CD, .note": {
             "path": "~/my-house/my-room/.chest"
-        },
-        "MV": {
-            "path": "~/town/.hidden-shelter/.tiny-chest"
         }
     }
 
