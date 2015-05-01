@@ -34,7 +34,7 @@ class Step1(StepTemplateCd):
     ]
     start_dir = "~/town"
     end_dir = "~"
-    commands = ["cd ..", "cd ../"]
+    commands = ["cd ..", "cd ../", "cd"]
     hints = "{{rb:Use}} {{yb:cd ../}} {{rb:to start heading back home.}}"
 
     def block_command(self, line):
