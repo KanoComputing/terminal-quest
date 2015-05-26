@@ -10,6 +10,10 @@
 import os
 from gi.repository import Gtk, GObject
 
+from linux_story.common import get_max_challenge_number
+from kano.gtk3.buttons import KanoButton
+from kano_profile.apps import load_app_state_variable
+
 
 # This doesn't include the introduction as the introduction isn't a challenge
 chapters = {
@@ -34,78 +38,103 @@ chapters = {
 # Contains the text describing the challenges
 challenges = {
     1: {
-        'title': 'Wake up!'
+        'title': 'Wake up!',
+        'chapter': 1
     },
     2: {
-        'title': 'Look in your wardrobe'
+        'title': 'Look in your wardrobe',
+        'chapter': 1
     },
     3: {
-        'title': 'Look on your shelves'
+        'title': 'Look on your shelves',
+        'chapter': 1
     },
     4: {
-        'title': 'Find Mum'
+        'title': 'Find Mum',
+        'chapter': 1
     },
     5: {
-        'title': 'Where\'s Dad?'
+        'title': 'Where\'s Dad?',
+        'chapter': 1
     },
     6: {
-        'title': 'Visit the town'
+        'title': 'Visit the town',
+        'chapter': 1
     },
     7: {
-        'title': 'Town meeting'
+        'title': 'Town meeting',
+        'chapter': 1
     },
     8: {
-        'title': 'The bell strikes'
+        'title': 'The bell strikes',
+        'chapter': 1
     },
     9: {
-        'title': 'Where\'s Mum?'
+        'title': 'Where\'s Mum?',
+        'chapter': 1
     },
     10: {
-        'title': 'See more clearly'
+        'title': 'See more clearly',
+        'chapter': 2
     },
     11: {
-        'title': 'Save the girl'
+        'title': 'Save the girl',
+        'chapter': 2
     },
     12: {
-        'title': 'Save the dog'
+        'title': 'Save the dog',
+        'chapter': 2
     },
     13: {
-        'title': 'Food hunt'
+        'title': 'Food hunt',
+        'chapter': 2
     },
     14: {
-        'title': 'Folderton Hero'
+        'title': 'Folderton Hero',
+        'chapter': 2
     },
     15: {
-        'title': 'Have a closer look'
+        'title': 'Have a closer look',
+        'chapter': 2
     },
     16: {
-        'title': 'A gift'
+        'title': 'A gift',
+        'chapter': 2
     },
     17: {
-        'title': ''
+        'title': '',
+        'chapter': 3
     },
     18: {
-        'title': ''
+        'title': '',
+        'chapter': 3
     },
     19: {
-        'title': ''
+        'title': '',
+        'chapter': 3
     },
     20: {
-        'title': ''
+        'title': '',
+        'chapter': 3
     },
     21: {
-        'title': ''
+        'title': '',
+        'chapter': 3
     },
     22: {
-        'title': ''
+        'title': '',
+        'chapter': 3
     },
     23: {
-        'title': ''
+        'title': '',
+        'chapter': 3
     }
 }
 
 
 class MenuScreen(Gtk.EventBox):
+    '''This shows the user the challenges they can select.
+    '''
 
     __gsignals__ = {
         # This returns an integer of the challenge the user wants to start from
@@ -114,21 +143,71 @@ class MenuScreen(Gtk.EventBox):
 
     def __init__(self):
         Gtk.EventBox.__init__(self)
-        grid = self.create_chapter_menu()
-        self.add(grid)
+
+        # Find the greatest challenge that has been created according to
+        # kano profile
+        self.max_challenge = get_max_challenge_number()
+
+        # Get the last unlocked challenge.
+        self.last_unlocked_challenge = load_app_state_variable('linux-story', 'level')
+
+        # With this data, we need to decide which chapters are locked.
+        self.last_unlocked_chapter = challenges[self.last_unlocked_challenge]['chapter']
+
+        menu = self.continue_story_or_select_chapter_menu()
+        self.add(menu)
+
+    def continue_story_or_select_chapter_menu(self):
+        '''This gives the user a simple option of just continuing the story
+        from where they left off, or selecting the chapter manually
+        '''
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+
+        # This takes the user to the latest point in the story
+        continue_btn = KanoButton("CONTINUE")
+        continue_btn.connect(
+            'clicked', self.launch_challenge, self.last_unlocked_challenge
+        )
+
+        # This takes the user to the chapter menu
+        select_chapter_btn = KanoButton('SELECT CHAPTER')
+        select_chapter_btn.connect('clicked', self.show_chapter_menu_wrapper)
+
+        vbox.pack_start(continue_btn, False, False, 0)
+        vbox.pack_start(select_chapter_btn, False, False, 0)
+
+        return vbox
+
+    ################################################################
+    # Lots of repetition here.
 
     def show_challenge_menu_wrapper(self, widget, challenge_number):
         self.show_challenge_menu(challenge_number)
 
     def show_challenge_menu(self, challenge_number):
-        for child in self:
+        '''Show a menu for the challenges available in a certain chapter
+        '''
+        for child in self.get_children():
             self.remove(child)
 
         grid = self.create_challenge_menu(challenge_number)
         self.add(grid)
         self.show_all()
 
+    def show_chapter_menu_wrapper(self, widget):
+        self.show_chapter_menu()
+
+    def show_chapter_menu(self):
+        for child in self.get_children():
+            self.remove(child)
+
+        grid = self.create_chapter_menu()
+        self.add(grid)
+        self.show_all()
+
     def create_chapter_menu(self):
+        '''Create a menu of the available chapters
+        '''
         grid = Gtk.Grid()
         num_of_chapters = len(chapters)
 
@@ -148,7 +227,6 @@ class MenuScreen(Gtk.EventBox):
         return grid
 
     def create_challenge_menu(self, chapter_number):
-
         grid = Gtk.Grid()
         start_challenge = chapters[chapter_number]['start_challenge']
         end_challenge = chapters[chapter_number]['end_challenge']
@@ -169,12 +247,19 @@ class MenuScreen(Gtk.EventBox):
         return grid
 
     def create_challenge_button(self, challenge_number):
-        button = Gtk.Button(challenge_number)
+        button = KanoButton(challenge_number)
         button.connect("clicked", self.launch_challenge, challenge_number)
 
         title = challenges[challenge_number]['title']
         button.set_property('has-tooltip', True)
         button.connect('query-tooltip', self.custom_tooltip, title)
+
+        # If the chapter number is greater than the maximum chapter unlocked,
+        # set the styling to locked and make it insensitive.
+        if challenge_number > self.last_unlocked_challenge:
+            button.get_style_context().add_class("locked")
+            button.set_sensitive(False)
+
         return button
 
     def custom_tooltip(self, x, y, z, a, tooltip, title):
@@ -188,11 +273,19 @@ class MenuScreen(Gtk.EventBox):
         return True
 
     def create_chapter_button(self, chapter_number):
-        button = Gtk.Button(chapter_number)
+        button = KanoButton(chapter_number)
         button.connect(
             "clicked", self.show_challenge_menu_wrapper, chapter_number
         )
+        # If the chapter number is greater than the maximum chapter unlocked,
+        # set the styling to locked and make it insensitive.
+        if chapter_number > self.last_unlocked_chapter:
+            button.get_style_context().add_class("locked")
+            button.set_sensitive(False)
+
         return button
+
+    ####################################################################
 
     def launch_challenge(self, widget, challenge_number):
         self.emit('challenge_selected', challenge_number)

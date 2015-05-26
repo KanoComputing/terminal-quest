@@ -16,6 +16,7 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 from linux_story.launch_functions import launch_project
+from linux_story.common import get_max_challenge_number
 from kano_profile.apps import load_app_state_variable, save_app_state_variable
 
 
@@ -53,7 +54,8 @@ if __name__ == "__main__":
             challenge = profile_level + 1
 
         # If the project was completed previously, just start over
-        if challenge > 16:
+        max_challenge = get_max_challenge_number()
+        if challenge > max_challenge:
             challenge = 0
 
         launch_project(challenge, 1)
