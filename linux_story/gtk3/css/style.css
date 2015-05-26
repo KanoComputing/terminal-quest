@@ -40,3 +40,15 @@
 .spellbook_background {
 	background: @spellbook_background;
 }
+
+.menu_background {
+	background: @spellbook_background;
+	border-style: solid;
+	border-radius: 3px;
+	border-width: 5px;
+}
+
+.menu_title {
+	color: #ffffff;
+	font: Bariol Bold 20;
+}

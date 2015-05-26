@@ -132,7 +132,9 @@ challenges = {
 }
 
 
-class MenuScreen(Gtk.EventBox):
+# TODO: have a design for the GUI.  For example, could have a terminal based
+# selection screen
+class MenuScreen(Gtk.Alignment):
     '''This shows the user the challenges they can select.
     '''
 
@@ -142,7 +144,13 @@ class MenuScreen(Gtk.EventBox):
     }
 
     def __init__(self):
-        Gtk.EventBox.__init__(self)
+        Gtk.Alignment.__init__(self, xalign=0.5, yalign=0.5, xscale=0, yscale=0)
+
+        self.background = Gtk.EventBox()
+        self.background.get_style_context().add_class("menu_background")
+
+        self.add(self.background)
+        self.set_size_request(300, 300)
 
         # Find the greatest challenge that has been created according to
         # kano profile
@@ -154,14 +162,34 @@ class MenuScreen(Gtk.EventBox):
         # With this data, we need to decide which chapters are locked.
         self.last_unlocked_chapter = challenges[self.last_unlocked_challenge]['chapter']
 
-        menu = self.continue_story_or_select_chapter_menu()
-        self.add(menu)
+        self.continue_story_or_select_chapter_menu()
 
-    def continue_story_or_select_chapter_menu(self):
+    def replace_widget(self, new_menu):
+
+        for child in self.background.get_children():
+            self.background.remove(child)
+
+        new_menu.set_margin_top(10)
+        new_menu.set_margin_bottom(10)
+        new_menu.set_margin_left(10)
+        new_menu.set_margin_right(10)
+
+        self.background.add(new_menu)
+        self.show_all()
+
+    def create_menu_title(self, title):
+        label = Gtk.Label(title)
+        label.get_style_context().add_class('menu_title')
+        return label
+
+    def continue_story_or_select_chapter_menu(self, widget=None):
         '''This gives the user a simple option of just continuing the story
         from where they left off, or selecting the chapter manually
         '''
-        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+
+        label = self.create_menu_title("TERMINAL QUEST")
 
         # This takes the user to the latest point in the story
         continue_btn = KanoButton("CONTINUE")
@@ -173,10 +201,11 @@ class MenuScreen(Gtk.EventBox):
         select_chapter_btn = KanoButton('SELECT CHAPTER')
         select_chapter_btn.connect('clicked', self.show_chapter_menu_wrapper)
 
+        vbox.pack_start(label, False, False, 5)
         vbox.pack_start(continue_btn, False, False, 0)
         vbox.pack_start(select_chapter_btn, False, False, 0)
 
-        return vbox
+        self.replace_widget(vbox)
 
     ################################################################
     # Lots of repetition here.
@@ -187,29 +216,49 @@ class MenuScreen(Gtk.EventBox):
     def show_challenge_menu(self, challenge_number):
         '''Show a menu for the challenges available in a certain chapter
         '''
-        for child in self.get_children():
-            self.remove(child)
 
-        grid = self.create_challenge_menu(challenge_number)
-        self.add(grid)
-        self.show_all()
+        menu = self.create_challenge_menu(challenge_number)
+        self.replace_widget(menu)
 
     def show_chapter_menu_wrapper(self, widget):
         self.show_chapter_menu()
 
     def show_chapter_menu(self):
-        for child in self.get_children():
-            self.remove(child)
-
-        grid = self.create_chapter_menu()
-        self.add(grid)
+        menu = self.create_chapter_menu()
+        self.replace_widget(menu)
         self.show_all()
+
+    def create_generic_menu(self, title):
+        '''Create a grid which we can then attach callbacks to the buttons
+        '''
+        label = self.create_menu_title(title)
+
+        grid = Gtk.Grid()
+        grid.set_row_spacing(10)
+        grid.set_column_spacing(10)
+
+        # Include back button
+        self.back_btn = KanoButton("<-", color='blue')
+
+        hbox = Gtk.Box(spacing=20)
+        hbox.pack_start(self.back_btn, False, False, 0)
+        hbox.pack_start(grid, False, False, 0)
+
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        vbox.pack_start(label, False, False, 0)
+        vbox.pack_start(hbox, False, False, 0)
+
+        return (vbox, grid)
 
     def create_chapter_menu(self):
         '''Create a menu of the available chapters
         '''
-        grid = Gtk.Grid()
+
+        # hbox is the total container, grid is the container that has all
+        # the buttons
+        (box, grid) = self.create_generic_menu("CHAPTERS")
         num_of_chapters = len(chapters)
+        self.back_btn.connect('clicked', self.continue_story_or_select_chapter_menu)
 
         row = 0
         column = 0
@@ -224,12 +273,13 @@ class MenuScreen(Gtk.EventBox):
                 row += 1
                 column = 0
 
-        return grid
+        return box
 
     def create_challenge_menu(self, chapter_number):
-        grid = Gtk.Grid()
+        (box, grid) = self.create_generic_menu("CHALLENGES")
         start_challenge = chapters[chapter_number]['start_challenge']
         end_challenge = chapters[chapter_number]['end_challenge']
+        self.back_btn.connect('clicked', self.show_chapter_menu_wrapper)
 
         row = 0
         column = 0
@@ -244,7 +294,7 @@ class MenuScreen(Gtk.EventBox):
                 row += 1
                 column = 0
 
-        return grid
+        return box
 
     def create_challenge_button(self, challenge_number):
         button = KanoButton(challenge_number)
@@ -314,17 +364,3 @@ class MenuScreen(Gtk.EventBox):
         )
 
         os.system(command)
-
-
-class TestWindow(Gtk.Window):
-    def __init__(self):
-        Gtk.Window.__init__(self)
-        self.connect('delete-event', Gtk.main_quit)
-        menu = MenuScreen()
-        self.add(menu)
-        self.show_all()
-
-
-if __name__ == '__main__':
-    TestWindow()
-    Gtk.main()
