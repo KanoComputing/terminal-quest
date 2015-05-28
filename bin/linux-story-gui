@@ -7,9 +7,24 @@
 #
 # Launches linux tutorial in a Gtk application
 
+
+"""
+linux-story-gui launches the application Terminal Quest at different points in the story
+
+Usage:
+  linux-story-gui -d | --debug
+  linux-story-gui challenge <challenge> <step> [-d | --debug]
+
+Options:
+   -h, --help       Show this message.
+   -d, --debug      Debug mode, don't hide the terminal and spellbook by default at the start
+"""
+
+
 from gi.repository import Gtk
 import os
 import sys
+import docopt
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -23,15 +38,15 @@ from kano_profile.tracker import Tracker
 kanotracker = Tracker()
 
 
-def main():
-    win = MainWindow()
+def main(debug=False, challenge=None, step=None):
+    win = MainWindow(debug)
 
     # If the application is launched with two arguments, then this is
     # debugging and we want to launch the application directly from the level
     # specified
-    if len(sys.argv) == 3:
+    if challenge and step:
         win.setup_application_widgets()
-        win.create_terminal(sys.argv[1], sys.argv[2])
+        win.create_terminal(challenge, step)
 
     else:
         # Show the selection menu for the unlocked challenges
@@ -47,7 +62,13 @@ def handle_cleanup():
 
 
 if __name__ == "__main__":
+    args = docopt.docopt(__doc__)
+
+    debug = args['--debug']
+    challenge = args['<challenge>']
+    step = args['<step>']
+
     try:
-        main()
+        main(debug, challenge, step)
     finally:
         handle_cleanup()
