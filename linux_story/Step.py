@@ -7,7 +7,9 @@
 #
 # Step class to describe the flow
 
+import time
 import threading
+import ast
 import os
 from socket_functions import launch_client, is_server_busy
 from kano_profile.badges import save_app_state_variable_with_dialog
@@ -29,6 +31,8 @@ class Step():
     story_dict = {}
     deleted_items = []
     xp = ""
+    SAVING_NANO_PROMPT = "Save modified buffer (ANSWERING \"No\" WILL DESTROY CHANGES) ? "
+    SAVE_FILENAME = "File Name to Write"
 
     # We can either tree as a global variable in common, or pass it as a
     # variable between the files.
@@ -38,6 +42,18 @@ class Step():
 
         self.xp = xp
         self.pipe_busy = False
+        self.nano_running = False
+        self.nano_content = ""
+        self.last_nano_prompt = ""
+        self.ctrl_x = False
+        self.on_nano_filename_screen = False
+        self.exited_nano = True
+        self.nano_x = 0
+        self.nano_y = 0
+        self.last_cmd_output = None
+        self.fake_path = self.start_dir
+        self.save_prompt_showing = False
+        self.nano_filename = ""
 
         self.modify_file_tree()
         self.delete_items()
@@ -54,7 +70,16 @@ class Step():
             self.end_dir,
             self.check_command,
             self.block_command,
-            self.check_output
+            self.check_output,
+            self.last_cmd_output,
+            self.fake_path,
+
+            # Because of this, we may not need
+            # self.check_command and self.check_output
+            self.finished_challenge,
+
+            self.get_nano_contents,
+            self.set_nano_running
         )
 
         self.run()
@@ -73,6 +98,7 @@ class Step():
 
         # Send all story data together
         self.send_start_challenge_data()
+
         self.launch_terminal()
 
         if self.last_step:
@@ -248,8 +274,243 @@ class Step():
         output = output.strip()
         return self.output_condition(output)
 
+    def finished_challenge(self, line):
+        '''If this returns True, we exit the cmdloop.
+        If this return False, we stay in the cmdloop.
+
+        Depending on the challenge, we may want to either pass only
+        depending on the output, but not on the command.  So we may want
+        to change this in an instance of the Step class.
+        '''
+
+        finished = self.check_output(self.last_cmd_output) or \
+            self.check_command(line, self.fake_path)
+
+        return finished
+
     def modify_file_tree(self):
         '''If self.story_dict is specified, add files to the filetree
         '''
         if self.story_dict:
             modify_file_tree(self.story_dict)
+
+    ##################################################################
+    # nano functions
+
+    def set_nano_running(self, nano_running):
+        '''Set this while nano is running
+        '''
+        self.nano_running = nano_running
+
+    def get_nano_running(self):
+        return self.nano_running
+
+    def quit_nano(self):
+        self.cancel_everything()
+        self.set_nano_running(False)
+
+    def set_nano_content(self, nano_content):
+        '''Setter for the self.nano_content for this Step
+        '''
+        self.nano_content = nano_content
+
+    def get_nano_content(self):
+        '''Getter for the self.nano_content for this Step
+        '''
+        return self.nano_content
+
+    def check_nano_content(self):
+        '''These can be updated by the individual Step instances
+        to do something with the changed values
+        '''
+        # Do something with the self.nano_content
+        pass
+
+    def set_nano_x(self, x):
+        '''These can be updated by the individual Step instances
+        to do something with the changed values
+        '''
+        self.nano_x = x
+
+    def set_nano_y(self, y):
+        '''These can be updated by the individual Step instances
+        to do something with the changed values
+        '''
+        self.nano_y = y
+
+    def set_ctrl_x_nano(self, ctrl_x):
+        '''Setting whether the user pressed Ctrl X.
+        ctrl_x is a bool.
+        '''
+        self.ctrl_x = ctrl_x
+
+    def get_ctrl_x_nano(self):
+        '''Getting whether the user pressed Ctrl X.
+        '''
+        return self.ctrl_x
+
+    def set_last_prompt(self, last_prompt):
+        '''Save last prompt.  This means we can see what the response
+        is responding to.
+        '''
+        self.last_nano_prompt = last_prompt
+
+    def set_on_filename_screen(self, on_filename_screen):
+        self.on_nano_filename_screen = on_filename_screen
+
+    def get_on_filename_screen(self):
+        return self.on_nano_filename_screen
+
+    def get_last_prompt(self):
+        return self.last_nano_prompt
+
+    def set_nano_content_values(self, content_dict):
+        '''Set the x, y coordinates and the content.
+        content_dict = {'x': 1, 'y': 2, 'text': ['line1', 'line2']}
+        '''
+        self.set_nano_x(content_dict["x"])
+        self.set_nano_x(content_dict["y"])
+        nano_content = "\n".join(content_dict["text"])
+        self.set_nano_content(nano_content)
+        self.set_save_prompt_showing(False)
+
+    '''
+        self.update_nano_content_values()
+
+    def update_nano_content_values(self):
+        pass
+    '''
+
+    def cancel_everything(self):
+        '''If the response of any prompt or statusbar is Cancel,
+        then everything should be set to False
+        '''
+        self.set_save_prompt_showing(False)
+        self.set_ctrl_x_nano(False)
+        self.set_on_filename_screen(False)
+
+    def set_save_prompt_showing(self, showing):
+        self.save_prompt_showing = showing
+
+    def get_save_prompt_showing(self):
+        return self.save_prompt_showing
+
+    def set_nano_filename(self, filename):
+        self.nano_filename = filename
+
+    '''
+        self.update_nano_filename()
+
+    def update_nano_filename(self):
+        pass
+    '''
+
+    def get_nano_filename(self):
+        return self.nano_filename
+
+    # def nano_content_is_correct(self)
+
+    def get_nano_contents(self):
+        pipename = "/tmp/myfifo"
+        f = open(pipename)
+
+        while self.get_nano_running():
+            time.sleep(0.1)
+            line = None
+
+            for line in iter(f.readline, ''):
+
+                # Assuming we're receiving something of the form
+                # {x: 1, y: 1, text: ["line1", "line2"]}
+                # {response: this is the response message}
+
+                data = ast.literal_eval(line)
+
+                if "contents" in data:
+                    self.cancel_everything()
+                    value = data["contents"]
+
+                    if self.get_nano_content() != self.end_text:
+                        self.set_nano_content_values(value)
+
+                if "statusbar" in data:
+                    value = data["statusbar"]
+                    # Everything is set to False, since anything could
+                    # have been cancelled
+                    if value.strip().lower() == "cancelled":
+                        self.cancel_everything()
+
+                if "response" in data:
+                    value = data["response"]
+                    # If the last prompt is the saving nano buffer prompt,
+                    # then the user has tried to exit without saving
+                    # his/her work.
+
+                    if self.get_last_prompt() == self.SAVING_NANO_PROMPT:
+                        if value.lower() == "cancel":
+                            self.cancel_everything()
+
+                        elif value.lower() == "yes":
+                            # Starting to save.
+                            # Bring up the relevent prompt about entering
+                            # the filename and pressing Y.
+                            # Set variable that says the player is on this
+                            # screen
+                            self.set_save_prompt_showing(True)
+                            self.set_on_filename_screen(True)
+
+                        elif value.lower() == "no":
+                            # Exited nano and chose not to save
+                            # This may not need to be recorded.
+                            self.quit_nano()
+
+                    elif self.get_last_prompt() == self.SAVE_FILENAME:
+                        if value.lower() == "no":
+                            self.quit_nano()
+                        elif value.lower() == "cancel":
+                            self.cancel_everything()
+                        # TODO: this may not be needed
+                        elif value.lower() == "yes":
+                            pass
+                            # self.quit_nano()
+                        elif value.lower() == "aborted enter":
+                            self.cancel_everything()
+
+                if "prompt" in data:
+                    value = data["prompt"]
+                    self.set_last_prompt(value)
+
+                    if value == self.SAVE_FILENAME:
+                        self.set_save_prompt_showing(False)
+                        self.set_on_filename_screen(True)
+
+                    # Do we set anything here?
+                    elif value == self.SAVING_NANO_PROMPT:
+                        self.set_save_prompt_showing(True)
+                        self.set_on_filename_screen(False)
+
+                ###############################################
+                # TODO: Which one?
+
+                if "saved" in data:
+                    self.set_nano_filename(data["filename"])
+
+                ###############################################
+
+                if "finish" in data:
+                    self.quit_nano()
+
+            else:
+                if line:
+                    # Run a check for self.nano_content.
+                    # If this returns True, break out of the loop.
+                    if self.check_nano_content():
+                        return
+
+    def check_nano_has_been_saved(self, file_contents, file_name):
+        '''
+        To check nano has been saved correctly:
+        - Check the filepath exists.
+        - That the file contains the correct contents.
+        '''
+        pass

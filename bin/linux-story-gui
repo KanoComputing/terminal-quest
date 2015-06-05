@@ -12,7 +12,7 @@
 linux-story-gui launches the application Terminal Quest at different points in the story
 
 Usage:
-  linux-story-gui -d | --debug
+  linux-story-gui [-d | --debug]
   linux-story-gui challenge <challenge> <step> [-d | --debug]
 
 Options:

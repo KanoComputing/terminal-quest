@@ -131,7 +131,7 @@ def sudo(real_path, line):
     command = elements[0]
 
     if command in allowed_commands:
-        shell_command(current_dir, line, "sudo")
+        shell_command(real_path, line, "sudo")
 
 
 # TODO: change this so returns differently depending on whether
@@ -172,6 +172,29 @@ def launch_application(real_path, line, command_word=""):
     line = " ".join([command_word] + line.split(" "))
 
     p = subprocess.Popen(line, cwd=real_path, shell=True)
+    stdout, stderr = p.communicate()
+
+    if stdout:
+        print stdout.strip()
+
+    if stderr:
+        print stderr.strip()
+
+
+def nano(real_path, line):
+
+    # File path of the local nano
+    dir_path = os.path.abspath(os.path.dirname(__file__))
+    nano_filepath = os.path.join(dir_path, "..", "nano-2.2.6/src/nano")
+
+    if not os.path.exists(nano_filepath):
+        # File path of installed nano
+        nano_filepath = "/usr/share/linux-story/nano"
+
+    if not os.path.exists(nano_filepath):
+        raise Exception("Cannot find nano")
+
+    p = subprocess.Popen(nano_filepath, cwd=real_path, shell=True)
     stdout, stderr = p.communicate()
 
     if stdout:

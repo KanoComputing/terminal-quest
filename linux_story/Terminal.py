@@ -16,10 +16,11 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
+import threading
 from helper_functions import (
     get_script_cmd, debugger, parse_string
 )
-from socket_functions import is_server_busy
+from socket_functions import is_server_busy, launch_client
 from kano.logging import logger
 from common import tq_file_system
 
@@ -37,7 +38,12 @@ class Terminal(Cmd):
         end_path,
         check_command,
         block_command,
-        check_output
+        check_output,
+        last_cmd_output,
+        fake_path,
+        finished_challenge,
+        get_nano_contents,
+        set_nano_running
     ):
 
         Cmd.__init__(self)
@@ -48,17 +54,23 @@ class Terminal(Cmd):
         readline.set_completer_delims(old_delims.replace('-', ''))
 
         # this should be a complete path
-        self.fake_path = start_path
+        self.fake_path = fake_path
         self.generate_real_path()
         self.end_dir = end_path
 
         # output from last command
         self.last_cmd_output = None
 
-        # validation and check_output should be functions
-        self.check_command = check_command
+        # Validation and check_output should be functions
+        # self.check_command = check_command
         self.block_command = block_command
-        self.check_output = check_output
+        # self.check_output = check_output
+        self.finished_challenge = finished_challenge
+
+        # These are so we can monitor nano in the nano_terminal instance of
+        # this class
+        self.get_nano_contents = get_nano_contents
+        self.set_nano_running = set_nano_running
 
         self.set_prompt()
 
@@ -138,16 +150,8 @@ class Terminal(Cmd):
         Returning True exits the cmdloop() function
         '''
 
-        cmd_output_correct = self.check_output(self.last_cmd_output)
-
-        # TODO: Re-evaluate this logic.
-        # This logic depends on our emphasis - do we want to pass levels using
-        # self.check_output, or specifically block levels depending on the
-        # output
-        condition = cmd_output_correct or \
-            self.check_command(line, self.fake_path)
-
-        return self.finish_if_server_ready(condition)
+        finished = self.finished_challenge(line)
+        return self.finish_if_server_ready(finished)
 
     @staticmethod
     def finish_if_server_ready(other_condition):
@@ -206,3 +210,16 @@ class Terminal(Cmd):
 
         except Exception as e:
             logger.debug("hit exception {}".format(str(e)))
+
+    ##################################################################
+    # Send info to the server
+
+    def send_text(self, string):
+        '''Sends a string through the pipe to the GUI
+        '''
+
+        if not is_server_busy():
+            data = {'hint': string}
+            t = threading.Thread(target=launch_client, args=(data,))
+            t.daemon = True
+            t.start()
