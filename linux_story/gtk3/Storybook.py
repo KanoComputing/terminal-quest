@@ -104,14 +104,10 @@ class Storybook(Gtk.TextView):
         '''Print Challenge title from file at the top of the Story widget
         '''
 
-        fpath = os.path.join(
-            os.path.dirname(os.path.realpath(__file__)),
-            "../ascii_assets/titles/" + challenge_number
-        )
-        with open(fpath) as f:
-            for line in f.readlines():
-                self.__print(line.rstrip())
-        self.__print("")
+        border = "-------------------\n"
+        text = "CHALLENGE {}\n".format(challenge_number)
+        header = "\n" + border + "\n" + text + "\n" + border
+        self.__print(header)
 
     def __print(self, string):
         '''Mimic for python print function
