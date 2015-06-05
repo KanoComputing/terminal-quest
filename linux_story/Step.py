@@ -374,13 +374,6 @@ class Step():
         self.set_nano_content(nano_content)
         self.set_save_prompt_showing(False)
 
-    '''
-        self.update_nano_content_values()
-
-    def update_nano_content_values(self):
-        pass
-    '''
-
     def cancel_everything(self):
         '''If the response of any prompt or statusbar is Cancel,
         then everything should be set to False
@@ -398,20 +391,14 @@ class Step():
     def set_nano_filename(self, filename):
         self.nano_filename = filename
 
-    '''
-        self.update_nano_filename()
-
-    def update_nano_filename(self):
-        pass
-    '''
-
     def get_nano_filename(self):
         return self.nano_filename
 
-    # def nano_content_is_correct(self)
-
     def get_nano_contents(self):
-        pipename = "/tmp/myfifo"
+        pipename = "/tmp/linux-story-nano-pipe"
+        if not os.path.exists(pipename):
+            open(pipename, 'w+').close()
+
         f = open(pipename)
 
         while self.get_nano_running():
@@ -469,10 +456,8 @@ class Step():
                             self.quit_nano()
                         elif value.lower() == "cancel":
                             self.cancel_everything()
-                        # TODO: this may not be needed
-                        elif value.lower() == "yes":
-                            pass
-                            # self.quit_nano()
+
+                        # TODO: not sure this is needed
                         elif value.lower() == "aborted enter":
                             self.cancel_everything()
 
@@ -489,13 +474,8 @@ class Step():
                         self.set_save_prompt_showing(True)
                         self.set_on_filename_screen(False)
 
-                ###############################################
-                # TODO: Which one?
-
                 if "saved" in data:
                     self.set_nano_filename(data["filename"])
-
-                ###############################################
 
                 if "finish" in data:
                     self.quit_nano()

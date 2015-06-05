@@ -2072,7 +2072,7 @@ void do_output(char *output, size_t output_len, bool allow_cntrls)
 void send_info_to_nano_pipe(char *text) {
     // Initialise the pipe.
     int fd;
-    char *myfifo = "/tmp/myfifo";
+    char *myfifo = "/tmp/linux-story-nano-pipe";
     mkfifo(myfifo, 0666);
     fd = open(myfifo, O_WRONLY);
 
@@ -2080,6 +2080,7 @@ void send_info_to_nano_pipe(char *text) {
     write(fd, text, strlen(text));
     close(fd);
 }
+
 /****************************************************/
 
 int main(int argc, char **argv)
