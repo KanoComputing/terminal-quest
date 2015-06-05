@@ -60,6 +60,6 @@ setup(name='Linux Story',
           ('/usr/share/linux-story/media/sounds', media_sounds),
           ('/usr/share/kano-desktop/kdesk/kdesktop/', kdesktop),
           ('/usr/share/icons/Kano/88x88/apps', icons),
-          ('/usr/share/linux-story/nano/src', ['nano-2.2.6/src/nano'])
+          ('/usr/share/linux-story', ['nano-2.2.6/src/nano'])
       ]
       )
