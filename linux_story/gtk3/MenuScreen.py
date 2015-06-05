@@ -29,7 +29,7 @@ chapters = {
     },
     3: {
         'start_challenge': 17,
-        'end_challenge': 22,
+        'end_challenge': 25,
         'title': 'Go to the farm'
     }
 }
