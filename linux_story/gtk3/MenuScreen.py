@@ -128,6 +128,14 @@ challenges = {
     23: {
         'title': '',
         'chapter': 3
+    },
+    24: {
+        'title': '',
+        'chapter': 3
+    },
+    25: {
+        'title': '',
+        'chapter': 3
     }
 }
 
