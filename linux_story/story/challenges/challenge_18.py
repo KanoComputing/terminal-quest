@@ -5,7 +5,6 @@
 #
 # A chapter of the story
 
-from linux_story.Step import Step
 from linux_story.step_helper_functions import (
     unblock_commands, unblock_commands_with_cd_hint
 )
@@ -13,11 +12,8 @@ from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_19 import Step1 as NextChallengeStep
 
 
-class StepTemplate(Step):
+class StepTemplate(TerminalEcho):
     challenge_number = 18
-
-    def __init__(self, xp=""):
-        Step.__init__(self, TerminalEcho, xp)
 
 
 class Step1(StepTemplate):
@@ -28,9 +24,10 @@ class Step1(StepTemplate):
         "Move this command into your chest for safe keeping."
     ]
     hints = [
-        "{{rb:An easy way to do it is to}} {{yb:mv ECHO}} {{rb:from}} "
-        "{{yb:.safe}} {{rb:to}} {{yb:../my-room/.chest}}",
-        "{{rb:Use}} {{yb:mv .safe/ECHO ../my-room/.chest/}}"
+        "{{rb:An easy way to do it is to move}} {{lb:ECHO}} {{rb:from}} "
+        "{{lb:.safe}} {{rb:to}} {{lb:../my-room/.chest}}{{rb:.}}",
+        "{{rb:Use}} {{yb:mv .safe/ECHO ../my-room/.chest/}}{{rb:. "
+        "Remember you can use TAB to speed up your typing.}}"
     ]
     commands = [
         "mv .safe/ECHO ../my-room/.chest/",
@@ -51,11 +48,11 @@ class Step1(StepTemplate):
 class Step2(StepTemplate):
     story = [
         "{{gb:Nice work!}} Let's head to ~ to find that farm!",
-        "Type {{yb:cd}} by itself to go to {{yb:~}}"
+        "Type {{yb:cd}} by itself to go to the Windy Road {{lb:~}}"
     ]
 
-    hint = [
-        "Use {{yb:cd}} by itself to go to {{yb:~}}"
+    hints = [
+        "{{rb:Use}} {{yb:cd}} {{rb:by itself to go to}} {{lb:~}}"
     ]
 
     commands = [
@@ -80,7 +77,7 @@ class Step3(StepTemplate):
         "directions.  Look around."
     ]
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}"
+        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
     ]
 
     commands = [
@@ -109,7 +106,7 @@ class Step4(StepTemplate):
         "cd ~/farm/"
     ]
     hints = [
-        "{{rb:Use}} {{yb:cd farm}} {{rb:to head to the farm.}}"
+        "{{rb:Use}} {{yb:cd farm/}} {{rb:to head to the farm.}}"
     ]
 
     def block_command(self, line):
@@ -124,9 +121,10 @@ class Step5(StepTemplate):
         "Look around."
     ]
 
-    command = "ls"
+    commands = "ls"
     start_dir = "~/farm"
     end_dir = "~/farm"
+    hints = ["{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"]
 
     def next(self):
         Step6()
@@ -143,10 +141,10 @@ class Step6(StepTemplate):
     start_dir = "~/farm"
     end_dir = "~/farm"
 
-    def check_output(self, output):
-        if not output:
-            return False
+    def finished_challenge(self, line, current_dir):
+        return self.check_output(self.last_cmd_output)
 
+    def output_condition(self, output):
         if 'Ruth' in output:
             return True
 

@@ -5,25 +5,14 @@
 #
 # A chapter of the story
 
-import sys
 import os
-
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-        print sys.path
-
-from linux_story.Step import Step
 from linux_story.story.terminals.terminal_nano import TerminalNano
+# from linux_story.story.challenges.challenge_26 import Step1 as NextChallengeStep
 
 
 # Test chapter
-class StepTemplateNano(Step):
+class StepTemplateNano(TerminalNano):
     challenge_number = 25
-
-    def __init__(self, xp=''):
-        Step.__init__(self, TerminalNanoMod, xp)
 
 
 class TerminalNanoMod(TerminalNano):
@@ -44,6 +33,9 @@ class Step1(StepTemplateNano):
     end_text = "hello"
     end_filename = "filename.txt"
     start_nano = 0
+    hints = [
+        "{{rb:Try typing}} {{yb:nano}} {{rb:and pressing Enter.}}"
+    ]
 
     def check_command(self, line, current_dir):
         end_path = os.path.join(

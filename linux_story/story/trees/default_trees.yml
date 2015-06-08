@@ -287,6 +287,9 @@ Cobweb, Trotter, Daisy, Ruth:
         - challenge: 17
           step: 1
           path: "~/farm/barn"
+        - challenge: 21
+          step: 6
+          path: "~/farm/barn/.shelter"
 
 # Farmer's wife
 bed_farmhouse:

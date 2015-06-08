@@ -13,8 +13,6 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.Step import Step
-
 # Change this import statement, need to decide how to group the terminals
 # together
 from linux_story.story.terminals.terminal_mv import TerminalMv
@@ -23,11 +21,8 @@ from linux_story.common import tq_file_system
 from linux_story.step_helper_functions import unblock_commands
 
 
-class StepTemplateMv(Step):
+class StepTemplateMv(TerminalMv):
     challenge_number = 12
-
-    def __init__(self, xp=""):
-        Step.__init__(self, TerminalMv, xp)
 
 
 # Thanks you for saving the little girl

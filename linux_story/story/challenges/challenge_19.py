@@ -6,16 +6,12 @@
 # A chapter of the story
 
 import os
-from linux_story.Step import Step
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_20 import Step1 as NextChallengeStep
 
 
-class StepTemplate(Step):
+class StepTemplate(TerminalEcho):
     challenge_number = 19
-
-    def __init__(self, xp=""):
-        Step.__init__(self, TerminalEcho, xp)
 
 
 class Step1(StepTemplate):
@@ -67,6 +63,7 @@ class Step2(StepTemplate):
     story = [
         "Ruth: {{Bb:\"Ah, I knew it!\"}}",
         "{{Bb:\"So you live in that little house outside town?}}",
+        # TODO: see if this can appear as a block
         "{{yb:1: Yes}}",
         "{{yb:2: No}}",
         "{{yb:3: I don't know}}",

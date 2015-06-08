@@ -13,18 +13,14 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.Step import Step
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.common import tq_file_system
 from linux_story.story.challenges.challenge_15 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint, unblock_commands
 
 
-class StepTemplateMv(Step):
+class StepTemplateMv(TerminalMv):
     challenge_number = 14
-
-    def __init__(self, xp=""):
-        Step.__init__(self, TerminalMv, xp)
 
 
 class Step1(StepTemplateMv):

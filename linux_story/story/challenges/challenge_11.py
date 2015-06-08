@@ -13,7 +13,6 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.Step import Step
 from linux_story.story.terminals.terminal_cd import TerminalCd
 
 # Change this import statement, need to decide how to group the terminals
@@ -24,18 +23,12 @@ from linux_story.step_helper_functions import unblock_commands
 from linux_story.common import tq_file_system
 
 
-class StepTemplateCd(Step):
+class StepTemplateCd(TerminalCd):
     challenge_number = 11
 
-    def __init__(self, xp=""):
-        Step.__init__(self, TerminalCd, xp)
 
-
-class StepTemplateMv(Step):
+class StepTemplateMv(TerminalMv):
     challenge_number = 11
-
-    def __init__(self):
-        Step.__init__(self, TerminalMv)
 
 
 # The next few steps should be like the disappearing of people in the town

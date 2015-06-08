@@ -13,17 +13,14 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.Step import Step
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.step_helper_functions import unblock_commands
+from linux_story.story.challenges.challenge_17 import Step1 as NextStep
 import time
 
 
-class StepTemplateMv(Step):
+class StepTemplateMv(TerminalMv):
     challenge_number = 16
-
-    def __init__(self, xp=""):
-        Step.__init__(self, TerminalMv, xp)
 
 
 class Step1(StepTemplateMv):
@@ -156,7 +153,7 @@ class Step5(StepTemplateMv):
     ]
 
     def next(self):
-        Step6()
+        NextStep(self.xp)
 
 
 class Step6(StepTemplateMv):

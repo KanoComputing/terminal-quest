@@ -13,19 +13,15 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.Step import Step
 from linux_story.story.terminals.terminal_ls import TerminalLs
 from linux_story.story.challenges.challenge_2 import Step1 as NextChallengeStep
 
 
-class StepTemplateLs(Step):
+class StepLs(TerminalLs):
     challenge_number = 1
 
-    def __init__(self):
-        Step.__init__(self, TerminalLs)
 
-
-class Step1(StepTemplateLs):
+class Step1(StepLs):
     story = [
         "{{wb:Alarm}} : \"Beep beep beep! Beep beep beep!\"",
         "{{wb:Radio}} : {{Bb:\"Good Morning, this is the 9am news.\"",

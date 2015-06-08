@@ -15,17 +15,13 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.Step import Step
 from linux_story.story.terminals.terminal_cd import TerminalCd
 from linux_story.story.challenges.challenge_9 import Step1 as NextChallengeStep
 from linux_story.helper_functions import play_sound
 
 
-class StepTemplateCd(Step):
+class StepTemplateCd(TerminalCd):
     challenge_number = 8
-
-    def __init__(self, xp=""):
-        Step.__init__(self, TerminalCd, xp)
 
 
 class StepTemplateCdBell(StepTemplateCd):
