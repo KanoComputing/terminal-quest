@@ -13,20 +13,16 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.Step import Step
 from linux_story.story.terminals.terminal_cat import TerminalCat
 from linux_story.story.challenges.challenge_3 import Step1 as NextChallengeStep
 from kano_profile.apps import save_app_state_variable
 
 
-class StepTemplateCat(Step):
+class StepCat(TerminalCat):
     challenge_number = 2
 
-    def __init__(self, xp=""):
-        Step.__init__(self, TerminalCat, xp)
 
-
-class Step1(StepTemplateCat):
+class Step1(StepCat):
     story = [
         "Awesome, now you can see the objects around you.",
         "There's your bed, an alarm...",
@@ -45,7 +41,7 @@ class Step1(StepTemplateCat):
         Step2()
 
 
-class Step2(StepTemplateCat):
+class Step2(StepCat):
     story = [
         "Ok - it's switched off. Better get dressed...",
         "Type {{yb:ls wardrobe/}} to look inside your wardrobe.\n"
@@ -59,7 +55,7 @@ class Step2(StepTemplateCat):
         Step3()
 
 
-class Step3(StepTemplateCat):
+class Step3(StepCat):
     story = [
         "Check out that {{lb:t-shirt}}!",
         "Type {{yb:cat wardrobe/t-shirt}} to see how it looks.\n"
@@ -76,7 +72,7 @@ class Step3(StepTemplateCat):
         Step4()
 
 
-class Step4(StepTemplateCat):
+class Step4(StepCat):
     story = [
         "Looking good!  Put that on and look for something else.",
         "Look at the {{lb:skirt}} or the {{lb:trousers}}.\n"
@@ -92,21 +88,21 @@ class Step4(StepTemplateCat):
         "{{yb:cat wardrobe/skirt}} {{rb:to dress yourself.}}"
     )
 
-    def check_command(self, line, current_dir):
-        if line.strip() == self.commands[0]:
+    def check_command(self, current_dir):
+        if self.last_user_input == self.commands[0]:
             save_app_state_variable('linux-story', 'outfit', 'skirt')
             pass
-        elif line.strip() == self.commands[1]:
+        elif self.last_user_input == self.commands[1]:
             save_app_state_variable('linux-story', 'outfit', 'trousers')
             pass
 
-        return StepTemplateCat.check_command(self, line, current_dir)
+        return StepCat.check_command(self, current_dir)
 
     def next(self):
         Step5()
 
 
-class Step5(StepTemplateCat):
+class Step5(StepCat):
     story = [
         "Awesome, you're nearly done.",
         "Finally, put on the {{lb:cap}} so we're ready to go.\n"

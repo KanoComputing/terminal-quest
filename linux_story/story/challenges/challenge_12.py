@@ -50,8 +50,8 @@ class Step1(StepTemplateMv):
     ]
     dog_file = os.path.join(tq_file_system, 'town/.hidden-shelter/dog')
 
-    def block_command(self, line):
-        return unblock_commands(line, self.commands)
+    def block_command(self):
+        return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step2()
@@ -83,12 +83,13 @@ class Step2(StepTemplateMv):
     ]
     last_step = True
 
-    def show_hint(self, line, current_dir):
-        if line in self.all_commands.keys():
-            hint = self.all_commands[line]
+    def show_hint(self, current_dir):
+        if self.last_user_input in self.all_commands.keys():
+            hint = self.all_commands[self.last_user_input]
             self.send_hint(hint)
         else:
-            StepTemplateMv.show_hint(self, line, current_dir)
+            # Show default hints.
+            self.send_hint()
 
     def next(self):
         NextStep(self.xp)

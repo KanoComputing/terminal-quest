@@ -35,8 +35,10 @@ class Step1(StepTemplateCd):
     commands = ["cd ..", "cd ../"]
     hints = "{{rb:To leave the kitchen, type}} {{yb:cd ../}}"
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step2()
@@ -67,8 +69,10 @@ class Step3(StepTemplateCd):
     commands = ["cd garden", "cd garden/"]
     hints = "{{rb:Type}} {{yb:cd garden/}} {{rb:to go into the garden.}}"
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step4()
@@ -101,8 +105,10 @@ class Step5(StepTemplateCd):
     commands = ["cd greenhouse", "cd greenhouse/"]
     hints = "{{rb:To go to the greenhouse, type}} {{yb:cd greenhouse/}}"
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step6()
@@ -147,8 +153,10 @@ class Step8(StepTemplateCd):
     commands = ["cd ..", "cd ../"]
     hints = "{{rb:Type}} {{yb:cd ../}} {{rb:to go back to the garden.}}"
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step9()
@@ -165,8 +173,10 @@ class Step9(StepTemplateCd):
     commands = ["cd ..", "cd ../"]
     hints = "{{rb:Type}} {{yb:cd ../}} {{rb:to go back to the house.}}"
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step10()
@@ -183,8 +193,10 @@ class Step10(StepTemplateCd):
 
     last_step = True
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         NextChallengeStep(self.xp)

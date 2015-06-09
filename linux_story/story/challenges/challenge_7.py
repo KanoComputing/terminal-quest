@@ -15,7 +15,6 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.story.terminals.terminal_cd import TerminalCd
 from linux_story.story.challenges.challenge_8 import Step1 as NextChallengeStep
-from linux_story.helper_functions import play_sound
 
 
 class StepTemplateCd(TerminalCd):
@@ -75,17 +74,14 @@ class Step3(StepTemplateCd):
 
     last_step = True
 
-    def check_command(self, line, current_dir):
+    def check_command(self, current_dir):
 
         # If we've emptied the list of available commands, then pass the level
         if not self.all_commands:
             return True
 
-        # strip any spaces off the beginning and end
-        line = line.strip()
-
         # If they enter ls, say Well Done
-        if line == 'ls':
+        if self.last_user_input == 'ls':
             hint = "\n{{gb:Well done for looking around.}}"
             self.send_text(hint)
             return False
@@ -100,11 +96,12 @@ class Step3(StepTemplateCd):
         end_dir_validated = current_dir == self.end_dir
 
         # if the validation is included
-        if line in self.all_commands.keys() and end_dir_validated:
+        if (self.last_user_input in self.all_commands.keys()) and \
+                end_dir_validated:
             # Print hint from person
-            hint = "\n" + self.all_commands[line]
+            hint = "\n" + self.all_commands[self.last_user_input]
 
-            self.all_commands.pop(line, None)
+            self.all_commands.pop(self.last_user_input, None)
 
             if len(self.all_commands) == 1:
                 hint += "\n{{gb:Well done! Check on 1 more person.}}\n"

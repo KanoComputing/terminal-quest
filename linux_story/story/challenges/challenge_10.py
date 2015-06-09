@@ -57,12 +57,11 @@ class Step1(StepTemplateCd):
     # for check_command logic
     first_time = True
 
-    def check_command(self, line, current_dir):
-        line = line.strip()
+    def check_command(self, current_dir):
 
-        if line in self.allowed_commands:
+        if self.last_user_input in self.allowed_commands:
             self.counter += 1
-            self.allowed_commands.remove(line)
+            self.allowed_commands.remove(self.last_user_input)
             hint = (
                 "\n{{gb:Well done!  Just look at one "
                 "more item.}}"
@@ -71,7 +70,8 @@ class Step1(StepTemplateCd):
         else:
             if self.first_time:
                 hint = (
-                    "{{rb:Use}} {{lb:cat}} {{rb:to look at two of the objects around you.}}"
+                    "{{rb:Use}} {{lb:cat}} {{rb:to look at two of the "
+                    "objects around you.}}"
                 )
             else:
                 hint = (
@@ -112,17 +112,21 @@ class Step2(StepTemplateCd):
     ]
     num_turns_in_home_dir = 0
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
-    def show_hint(self, line, current_path):
+    def show_hint(self, current_path):
 
         # decide command needed to get to next part of town
-        if current_path == '~/my-house/kitchen' or current_path == '~/my-house':
+        if current_path == '~/my-house/kitchen' or \
+                current_path == '~/my-house':
 
             # If the last command the user used was to get here
             # then congratulate them
-            if line == "cd .." or line == 'cd ../':
+            if self.last_user_input == "cd .." or \
+                    self.last_user_input == 'cd ../':
                 hint = (
                     "{{gb:Good work!  Now replay the last command using "
                     "the UP arrow on your keyboard.}}"
@@ -139,7 +143,8 @@ class Step2(StepTemplateCd):
             # then they used an appropriate command
             if self.num_turns_in_home_dir == 0:
                 hint = (
-                    "{{gb:Good work! Now use}} {{yb:cd town/}} {{gb: to head to town.}}"
+                    "{{gb:Good work! Now use}} {{yb:cd town/}} {{gb: "
+                    "to head to town.}}"
                 )
 
             # Otherwise give them a hint
@@ -151,7 +156,7 @@ class Step2(StepTemplateCd):
             self.num_turns_in_home_dir += 1
 
         # print the hint
-        self.send_hint(hint)
+        self.send_text(hint)
 
     def next(self):
         Step3()
@@ -209,8 +214,10 @@ class Step5(StepTemplateCd):
         "{{rb:to go inside.}}"
     ]
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step6()

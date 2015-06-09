@@ -5,33 +5,30 @@
 #
 # A chapter of the story
 
-from linux_story.Step import Step
-from linux_story.step_helper_functions import (
-    unblock_commands
-)
+
+# from linux_story.step_helper_functions import (
+#    unblock_commands
+# )
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
-import time
+# import time
+# from linux_story.story.challenges.challenge_24 import Step1 as NextChallengeStep
 
 
-class StepTemplateMkdir(Step):
+class StepTemplateMkdir(TerminalMkdir):
     challenge_number = 23
-
-    def __init__(self, xp=''):
-        Step.__init__(self, TerminalMkdir, xp)
 
 
 class Step1(StepTemplateMkdir):
     story = [
-        "There's no one here anymore....where did they all go?",
-        "That bell you heard earlier...could it have found this family?",
-        "You remember it only rang twice...",
-        "Have a closer look around."
+        "You see Eleanor.  Listen to what she has to say."
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
-
+    commands = [
+        "cat Eleanor"
+    ]
     hints = [
-        "{{rb:Use}} {{yb:ls -a}} {{rb:to have a closer look around.}}"
+        "{{rb:Use}} {{yb:cat Eleanor}} {{rb:to see what she has to say.}}"
     ]
 
     def next(self):
@@ -40,77 +37,148 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateMkdir):
     story = [
-        "Do you see those footprints?  They seem to be leading to "
-        "{{yb:.tiny-chest}} in the corner.",
-        "Have a look in the {{yb:.tiny-chest}}"
+        "Eleanor: {{Bb:Oh, it's you! Thank you for finding me!",
+        # "My parents went outside as we ran out of food."
+        "I heard this bell. Do you know where my Mum and Dad are?}}",
+        "\n{{gb:Use the echo command to talk to Eleanor.}}",
+        # TODO: change colour
+        "{{yb:1: \"Weren't they with you in the hidden-shelter?\"}}"
+        "{{yb:2: \"Did you see anything strange?\"}}"
     ]
+
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
     commands = [
-        "ls .tiny-chest",
-        "ls -a .tiny-chest",
-        "ls -a .tiny-chest/",
-        "ls .tiny-chest/"
+        "echo 1",
+        "echo 2"
+    ]
+    hints = [
+        "{{rb:NO HINTS}}"
     ]
 
     def next(self):
-        Step3()
+        Step3(self.last_user_input)
 
 
 class Step3(StepTemplateMkdir):
-    story = [
-        "You see Eleanor curled up tightly inside the .tiny-chest.",
-        "Help her {{yb:move}} outside the .tiny-chest back into the ",
-        ".hidden-shelter"
-    ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
     commands = [
-        "mv .tiny-chest/Eleanor .",
-        "mv .tiny-chest/Eleanor ./"
+        "echo 1",
+        "echo 2",
+        "echo 3"
     ]
     hints = [
-        "{{rb:Move Eleanor from the}} {{yb:.tiny-chest}} {{rb:to "
-        "your current position using:}} {{yb:\nmv .tiny-chest/Eleanor .}}"
+        "{{rb:NO HINTS}}"
     ]
 
-    def block_command(self, line):
-        return unblock_commands(line, self.commands)
+    def __init__(self, prev_command="echo 1"):
+        self.story = []
+
+        if prev_command == "echo 1":
+            self.story += [
+                "{{yb:\"Weren't they with you in the hidden-shelter?\"}}",
+                "Eleanor: {{Bb:No, the dog ate all the food, so they went to find some more.",
+                "Then I heard the bell",
+                "I guess they disappeared?}}"
+            ]
+
+        elif prev_command == "echo 2":
+            self.story += [
+                "{{yb:\"Did you see anything strange?\"}}",
+                "Eleanor: {{Bb:No, I didn't see anything.}}",
+                "{{Bb:My parents were outside the shelter looking for food, so I was by myself.}}",
+                "{{Bb:Do you think they disappeared?}}"
+            ]
+
+        self.story = [
+            "{{gb:Use echo to reply.}}",
+            "{{yb:1: \"Yes, I saw people disappear in \"}}",
+            "{{yb:2: \"(lie) No, I saw them outside.\"}}",
+            "{{yb:3: \"Probably. My Mum and Dad also disappeared.\"}}"
+        ]
+
+        StepTemplateMkdir.__init__(self)
 
     def next(self):
-        Step4()
+        Step4(self.command_used)
 
 
 class Step4(StepTemplateMkdir):
-    story = [
-        "Check on Eleanor using {{yb:cat}}"
-    ]
     start_dir = "~/town/.hidden-shelter"
-    end_dir = "~/town/.hidden-shelter"
-    commands = [
-        "cat Eleanor"
-    ]
+    end_dir = "~/town"
+
     hints = [
-        "{{rb:Use}} {{yb:cat Eleanor}} {{to check on Eleanor}}"
+        "{{rb:NO HINTS}}"
     ]
 
+    def __init__(self, prev_command="echo 1"):
+        self.story = []
+
+        if prev_command == "echo 1":
+            self.story += [
+                "{{yb:1: \"Yes\"}}",
+                "Eleanor: {{Bb:No, they went to get food.}}"
+            ]
+
+        elif prev_command == "echo 2":
+            self.story += [
+                "{{yb:\"(lie) No\"}}",
+                "Eleanor: {{Bb:I don't believe you.}}"
+            ]
+
+        elif prev_command == "echo 3":
+            self.story += [
+                "{{yb:\"My Mum and Dad also disappeared.\"}}",
+                "Eleanor: {{Bb:Let's find them!}}"
+            ]
+
+        self.story += [
+            "{{Bb:Maybe there are other people like us in town.}}",
+            "{{Bb:Let's look! I can show you around.}}",
+            "{{gb:Let's go back to town. Use}} {{yb:cd}} {{gb:to head back.}}"
+        ]
+
+        StepTemplateMkdir.__init__(self)
+
     def next(self):
-        Step5()
+        Step5(self.command_used)
 
 
 class Step5(StepTemplateMkdir):
-    story = [
-        "Eleanor: {{Bb:Oh, it's you! Thank you for finding me!",
-        "I heard this bell, and was so scared I squeezed in the "
-        ".tiny-chest to hide.  Do you know where my Mum and Dad are?}}",
-        "\n{{gb:Press Enter to continue.}}"
-    ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
-    last_step = True
 
-    def next(self):
-        self.exit()
+    commands = [
+        "echo 1",
+        "echo 2",
+        "echo 3"
+    ]
 
-        # So that server has time to send message before it closes
-        time.sleep(3)
+    hints = [
+        "{{rb:NO HINTS}}"
+    ]
+
+    def __init__(self, prev_command="echo 1"):
+        self.story = []
+
+        if prev_command == "echo 1":
+            self.story += [
+                "{{yb:You said: \"Weren't they with you in the "
+                "hidden-shelter?\"}}",
+                "Eleanor: No."
+            ]
+
+        elif prev_command == "echo 2":
+            self.story += [
+                "{{yb:You said: \"Did you see your parents disappear?\"}}",
+                "Eleanor: No."
+            ]
+
+        elif prev_command == "echo 3":
+            self.story += [
+                "{{yb:You said: \"My Mum and Dad also disappeared.\"}}",
+                "Eleanor: No."
+            ]
+
+        StepTemplateMkdir.__init__(self)

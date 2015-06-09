@@ -45,8 +45,10 @@ class Step1(StepTemplateCd):
         "{{rb:Type}} {{yb:cd ../}} {{rb:to leave your room.}}"
     ]
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step2()
@@ -87,8 +89,10 @@ class Step3(StepTemplateCd):
     commands = ["cd kitchen", "cd kitchen/"]
     hints = ["{{rb:Type}} {{yb:cd kitchen/}} {{rb:and press Enter.}}"]
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step4()

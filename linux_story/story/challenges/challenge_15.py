@@ -96,9 +96,11 @@ class Step4(StepTemplateMv):
     story = [
         "{{wb:Edward:}} {{Bb:\"Hey, that's our}} {{lb:.tiny-chest}}{{Bb:. We "
         "use it to keep our possessions safe. ",
-        "I learnt about how to move objects from that}} {{Bb:MV}} {{Bb:parchment.",
+        "I learnt about how to move objects from that}} {{Bb:MV}} "
+        "{{Bb:parchment.",
         "It's probably of more use to you, please take it with my thanks.}}",
-        "\nMaybe you should go back to {{lb:my-house}} to look for more hidden items.",
+        "\nMaybe you should go back to {{lb:my-house}} to look for more "
+        "hidden items.",
         "To quickly go back home, use {{yb:cd ~/my-house/}}\n"
     ]
 
@@ -113,8 +115,10 @@ class Step4(StepTemplateMv):
         '{{rb:to get back to your house in one step.}}'
     ]
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step5()

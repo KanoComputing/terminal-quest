@@ -52,8 +52,8 @@ class Step1(StepTemplateMv):
         "{{rb:to move the}} {{lb:basket}} {{rb:to the windy road}} {{lb:~}}"
     ]
 
-    def block_command(self, line):
-        return unblock_commands(line, self.commands)
+    def block_command(self):
+        return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step2()
@@ -76,8 +76,10 @@ class Step2(StepTemplateMv):
         "to move yourself to the road ~}}"
     ]
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step3()
@@ -128,8 +130,8 @@ class Step4(StepTemplateMv):
         "{{rb:to move the basket to your kitchen.}}",
     ]
 
-    def block_command(self, line):
-        return unblock_commands(line, self.commands)
+    def block_command(self):
+        return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step5()
@@ -154,8 +156,10 @@ class Step5(StepTemplateMv):
     ]
     last_step = True
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         NextStep(self.xp)

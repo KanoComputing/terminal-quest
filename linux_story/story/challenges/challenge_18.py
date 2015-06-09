@@ -38,8 +38,8 @@ class Step1(StepTemplate):
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
 
-    def block_command(self, line):
-        return unblock_commands(line, self.commands)
+    def block_command(self):
+        return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step2()
@@ -64,8 +64,10 @@ class Step2(StepTemplate):
     start_dir = "~/my-house/parents-room"
     end_dir = "~"
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step3()
@@ -109,8 +111,10 @@ class Step4(StepTemplate):
         "{{rb:Use}} {{yb:cd farm/}} {{rb:to head to the farm.}}"
     ]
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step5()
@@ -140,9 +144,15 @@ class Step6(StepTemplate):
     ]
     start_dir = "~/farm"
     end_dir = "~/farm"
+    counter = 0
 
-    def finished_challenge(self, line, current_dir):
-        return self.check_output(self.last_cmd_output)
+    def finished_challenge(self, current_dir):
+        output = self.check_output(self.last_cmd_output)
+        if not output:
+            # If Ruth not in output, check if command is ls
+            self.check_command(current_dir)
+
+        return output
 
     def output_condition(self, output):
         if 'Ruth' in output:
@@ -150,8 +160,28 @@ class Step6(StepTemplate):
 
         return False
 
-    def block_command(self, line):
-        if "mv" in line:
+    def check_command(self, current_dir):
+        if self.last_user_input == 'ls' or 'ls ' in self.last_user_input:
+            self.counter += 1
+
+            if self.counter >= 3:
+                self.send_text(
+                    "\n{{rb:Use}} {{yb:ls barn}} {{rb:to look in the barn.}}"
+                )
+            if self.counter == 2:
+                self.send_text(
+                    "\n{{rb:Have you looked in the}} {{lb:barn}} {{rb:yet?}}"
+                )
+            elif self.counter == 1:
+                self.send_text(
+                    "\n{{rb:Look in a different directory.}}"
+                )
+
+        else:
+            self.send_text("\n{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
+
+    def block_command(self):
+        if "mv" in self.last_user_input:
             return True
 
     def next(self):
@@ -171,9 +201,9 @@ class Step7(StepTemplate):
 
     all_commands = {
         "cat Ruth": "Ruth: {{Bb:Ah! Who are you?!}}",
-        "cat Cobweb": "Cobweb: {{Bb:Neiiigh}}",
-        "cat Trotter": "Trotter: {{Bb:Oink Oink}}",
-        "cat Daisy": "Daisy: {{Bb:Mooooooooo}}"
+        "cat Cobweb": "Cobweb: {{Bb:Neiiigh.}}",
+        "cat Trotter": "Trotter: {{Bb:Oink Oink.}}",
+        "cat Daisy": "Daisy: {{Bb:Mooooooooo.}}"
     }
 
     start_dir = "~/farm/barn"
@@ -182,17 +212,14 @@ class Step7(StepTemplate):
 
     # TODO: move this into step_helper_functions, used a few too
     # many times outside.
-    def check_command(self, line, current_dir):
+    def check_command(self, current_dir):
 
         # If we've emptied the list of available commands, then pass the level
         if not self.all_commands:
             return True
 
-        # strip any spaces off the beginning and end
-        line = line.strip()
-
         # If they enter ls, say Well Done
-        if line == 'ls':
+        if self.last_user_input == 'ls':
             hint = "\n{{gb:Well done for looking around.}}"
             self.send_text(hint)
             return False
@@ -201,28 +228,30 @@ class Step7(StepTemplate):
         end_dir_validated = False
         self.hints = [
             "{{rb:Use}} {{yb:" + self.all_commands.keys()[0] + "}} "
-            "{{rb:to progress}}"
+            "{{rb:to progress.}}"
         ]
 
         end_dir_validated = current_dir == self.end_dir
 
         # if the validation is included
-        if line in self.all_commands.keys() and end_dir_validated:
-            # Print hint from person
-            hint = "\n" + self.all_commands[line]
+        if self.last_user_input in self.all_commands.keys() and \
+                end_dir_validated:
 
-            self.all_commands.pop(line, None)
+            # Print hint from person
+            hint = "\n" + self.all_commands[self.last_user_input]
+
+            self.all_commands.pop(self.last_user_input, None)
 
             if len(self.all_commands) == 1:
                 hint += (
-                    "\n{{gb:Well done! Have a look at one more}}"
+                    "\n{{gb:Well done! Have a look at one more.}}"
                 )
             elif len(self.all_commands) > 0:
                 hint += "\n{{gb:Well done! Look at " + \
                     str(len(self.all_commands)) + \
                     " more.}}"
             else:
-                hint += "\n{{gb:Press Enter to continue}}"
+                hint += "\n{{gb:Press Enter to continue.}}"
 
             self.send_text(hint)
 

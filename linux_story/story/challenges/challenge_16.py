@@ -99,11 +99,12 @@ class Step3(StepTemplateMv):
     hints = [
         "{{rb:You want to use the command}} "
         "{{yb:mv ~/town/.hidden-shelter/.tiny-chest/MV .chest/}}\n"
-        "{{rb:Use the UP arrow to replay your last command if you were close!}}"
+        "{{rb:Use the UP arrow to replay your last command if you were "
+        "close!}}"
     ]
 
-    def block_command(self, line):
-        return unblock_commands(line, self.commands)
+    def block_command(self):
+        return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step4()
@@ -145,7 +146,8 @@ class Step5(StepTemplateMv):
     end_dir = "~/my-house/my-room"
 
     hints = [
-        "{{rb:Use}} {{yb:cat .chest/.note}} {{rb:to read the}} {{lb:.note}}{{rb:.}}"
+        "{{rb:Use}} {{yb:cat .chest/.note}} {{rb:to read the}} "
+        "{{lb:.note}}{{rb:.}}"
     ]
 
     commands = [

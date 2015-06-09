@@ -51,16 +51,13 @@ class Step1(StepTemplateCd):
         "cat dog": "\n{{wb:Dog:}} {{Bb:\"Woof woof!\"}}"
     }
 
-    def check_command(self, line, current_dir):
+    def check_command(self, current_dir):
 
         if not self.all_commands:
             return True
 
-        # strip any spaces off the beginning and end
-        line = line.strip()
-
         # If they enter ls, say Well Done
-        if line == 'ls':
+        if self.last_user_input == 'ls':
             hint = "\n{{gb:Well done for looking around.}}"
             self.send_text(hint)
             return False
@@ -75,11 +72,11 @@ class Step1(StepTemplateCd):
         end_dir_validated = current_dir == self.end_dir
 
         # if the validation is included
-        if line in self.all_commands.keys() and end_dir_validated:
+        if self.last_user_input in self.all_commands.keys() and end_dir_validated:
             # Print hint from person
-            hint = "\n" + self.all_commands[line]
+            hint = "\n" + self.all_commands[self.last_user_input]
 
-            self.all_commands.pop(line, None)
+            self.all_commands.pop(self.last_user_input, None)
 
             if len(self.all_commands) > 0:
                 hint += "\n{{gb:Well done! Check on " + \
@@ -126,8 +123,8 @@ class Step2(StepTemplateMv):
     # we would like to integrate when using mv with the tree
     # automatically
 
-    def block_command(self, line):
-        return unblock_commands(line, self.commands)
+    def block_command(self):
+        return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step3()
@@ -203,8 +200,8 @@ class Step5(StepTemplateMv):
         "current position}} {{lb:./}}"
     ]
 
-    def block_command(self, line):
-        if line.strip() == "mv basket/apple":
+    def block_command(self):
+        if self.last_user_input == "mv basket/apple":
             hint = (
                 "{{gb:Nearly!  The full command is}} "
                 "{{yb:mv basket/apple ./}} {{gb:- don't forget the dot!}}"
@@ -212,7 +209,7 @@ class Step5(StepTemplateMv):
             self.send_hint(hint)
             return True
         else:
-            return unblock_commands(line, self.commands)
+            return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step6()
@@ -225,7 +222,8 @@ class Step6(StepTemplateMv):
         "{{Bb:\"Ah!  The dog ran outside!\"}}",
         "{{wb:Eleanor:}} {{Bb:\"Doggy!\"}}",
         "{{wb:Edith:}} {{Bb:\"No, honey!  Don't go outside!\"}}",
-        "\n{{lb:Eleanor}} follows her {{lb:dog}} and leaves the {{lb:.hidden-shelter}}.",
+        "\n{{lb:Eleanor}} follows her {{lb:dog}} and leaves the "
+        "{{lb:.hidden-shelter}}.",
         "Have a look around to check this.\n"
     ]
     story_dict = {
@@ -303,19 +301,16 @@ class Step8(StepTemplateMv):
     last_step = True
     girl_file = os.path.join(tq_file_system, 'town/.hidden-shelter/Eleanor')
 
-    def block_command(self, line):
-        return unblock_commands(line, self.commands)
+    def block_command(self):
+        return unblock_commands(self.last_user_input, self.commands)
 
-    def check_command(self, line, current_dir):
-
-        # strip any spaces off the beginning and end
-        line = line.strip()
+    def check_command(self, current_dir):
 
         if os.path.exists(self.girl_file):
             return True
 
         else:
-            self.show_hint(line, current_dir)
+            self.send_hint()
             return False
 
     def next(self):

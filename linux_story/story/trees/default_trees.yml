@@ -217,7 +217,7 @@ note_town:
 
 # .hidden-shelter folk
 # start off all in the same place
-Edith, Edward, Eleanor, dog, apple:
+Edith, Edward, apple:
     challenges:
         - challenge: 10
           step: 1
@@ -236,6 +236,9 @@ apple:
 # Eleanor and the dog run outside
 Eleanor, dog:
     challenges:
+        - challenge: 10
+          step: 1
+          path: "~/town/.hidden-shelter"
         - challenge: 11
           step: 6
           path: "~/town"
@@ -288,7 +291,7 @@ Cobweb, Trotter, Daisy, Ruth:
           step: 1
           path: "~/farm/barn"
         - challenge: 21
-          step: 6
+          step: 7
           path: "~/farm/barn/.shelter"
 
 # Farmer's wife
@@ -306,3 +309,10 @@ MKDIR, spanner, hammer, saw, tape-measure:
         - challenge: 17
           step: 1
           path: "~/farm/toolshed"
+
+".shelter":
+    directory: True
+    challenges:
+        - challenge: 21
+          step: 4
+          path: "~/farm/barn"

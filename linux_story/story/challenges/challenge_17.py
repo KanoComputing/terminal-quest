@@ -115,8 +115,10 @@ class Step3(StepTemplateMv):
         "cd ~/my-house/parents-room/"
     ]
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step4()
@@ -164,16 +166,18 @@ class Step5(StepTemplateMv):
         self.check_diary = 0
         StepTemplateMv.__init__(self)
 
-    def check_command(self, line, current_dir):
-        line = line.strip()
+    def check_command(self, current_dir):
 
         # Check to see if the kid reads his/her Mum's journal
-        if line == 'cat .safe/mums-diary' and self.check_diary == 0:
-            self.send_hint('\n{{rb:You read your Mum\'s diary! How could you??}}')
+        if self.last_user_input == 'cat .safe/mums-diary' and \
+                self.check_diary == 0:
+            self.send_hint(
+                '\n{{rb:You read your Mum\'s diary! How could you??}}'
+            )
             self.check_diary += 1
             return False
 
-        return StepTemplateMv.check_command(self, line, current_dir)
+        return StepTemplateMv.check_command(self, current_dir)
 
     def next(self):
         Step6()

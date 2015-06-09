@@ -5,35 +5,38 @@
 #
 # A chapter of the story
 
-from linux_story.Step import Step
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
 from linux_story.helper_functions import play_sound
 from linux_story.story.challenges.challenge_23 import Step1 as NextChallengeStep
 
 
-class StepTemplateMkdir(Step):
+class StepTemplateMkdir(TerminalMkdir):
     challenge_number = 22
-
-    def __init__(self, xp=''):
-        Step.__init__(self, TerminalMkdir, xp)
 
 
 class Step1(StepTemplateMkdir):
     story = [
-        "{{gb:Well done, it looks like everyone is here!}}"
-        "\nRuth: {{Bb:Thank you so much! "
-        "We'll stay in here to keep safe.  I'm so grateful to everything "
-        "you've done}}",
-        "\nUse {{yb:cat}} to check that everyone is happy in here."
+        "{{gb:Well done, it looks like everyone is here!}}",
+        "\nRuth: {{Bb:Thank you so much!}}",
+        "{{Bb:We'll stay in here to keep safe.  I'm so grateful to everything "
+        "you've done.}}",
+        "\nUse {{lb:cat}} to check that the animals are happy in here."
     ]
 
     start_dir = "~/farm/barn/.shelter"
     end_dir = "~/farm/barn/.shelter"
+
     commands = [
         "cat Daisy",
         "cat Trotter",
         "cat Cobweb"
+    ]
+    hints = ["Use cat to examine an animal, e.g. {{yb:cat Daisy}}"]
+
+    # Remove the basket with all the food
+    deleted_items = [
+        "~/town/.hidden-shelter/basket"
     ]
 
     def next(self):
@@ -42,9 +45,10 @@ class Step1(StepTemplateMkdir):
 
 
 class Step2(StepTemplateMkdir):
-    def __init__(self):
+    story = [
         "Ruth: {{Bb:What?? I heard a bell!  What does that mean?}}",
-        "\nQuick! Look around and see if anyone is missing"
+        "\nQuick! Look around and see if anyone is missing."
+    ]
 
     start_dir = "~/farm/barn/.shelter"
     end_dir = "~/farm/barn/.shelter"
@@ -53,7 +57,12 @@ class Step2(StepTemplateMkdir):
         "ls -a"
     ]
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}"
+        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+    ]
+
+    # Remove Edith
+    deleted_items = [
+        "~/town/.hidden-shelter/Edith"
     ]
 
     def next(self):
@@ -62,11 +71,11 @@ class Step2(StepTemplateMkdir):
 
 
 class Step3(StepTemplateMkdir):
-
-    def __init__(self):
+    story = [
         "Ruth: {{Bb:I heard it again!  Is that the sound you heard when "
         "my husband went missing?}}",
-        "Have another quick look around"
+        "Have another quick look around."
+    ]
 
     start_dir = "~/farm/barn/.shelter"
     end_dir = "~/farm/barn/.shelter"
@@ -75,7 +84,11 @@ class Step3(StepTemplateMkdir):
         "ls -a"
     ]
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}"
+        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+    ]
+    # Remove Edward
+    deleted_items = [
+        "~/town/.hidden-shelter/Edward"
     ]
 
     def next(self):
@@ -85,25 +98,30 @@ class Step3(StepTemplateMkdir):
 class Step4(StepTemplateMkdir):
     story = [
         "Ruth: {{Bb:It's alright. We're all safe, everyone's still here. "
-        "I wonder why it's ringing?}}"
-        "\nPerhaps we should investigate that sound.  Who else could do we know?",
-        "Maybe you could check back on the family in the {{yb:.hidden-shelter}} ",
+        "I wonder why it's ringing?}}",
+        "\nPerhaps we should investigate that sound.  Who else could do we "
+        "know?",
+        "Maybe you could check back on the family in the "
+        "{{yb:.hidden-shelter}} ",
         "and see if you can talk with your new found voice.",
-        "Start heading back to the {{yb:.hidden-shelter}} using {{yb:cd}}"
+        "Start heading back to the {{yb:.hidden-shelter}} using {{yb:cd}}."
     ]
 
     start_dir = "~/farm/barn/.shelter"
     end_dir = "~/town/.hidden-shelter"
     commands = [
-        "cd ~/town/.hidden-shelter"
+        "cd ~/town/.hidden-shelter",
+        "cd ~/town/.hidden-shelter/"
     ]
     hints = [
-        "{{rb:We can go directly to the}} {{yb:.hidden-shelter}} "
-        "{{rb:using}} {{yb:cd ~/town/.hidden-shelter}}"
+        "{{rb:We can go directly to the}} {{lb:.hidden-shelter}} "
+        "{{rb:using}} {{yb:cd ~/town/.hidden-shelter/}}"
     ]
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step5()
@@ -114,7 +132,7 @@ class Step5(StepTemplateMkdir):
         "Have a look around."
     ]
 
-    start_dir = "~/town/.hidden-shelter",
+    start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
     commands = [
         "ls",
@@ -126,4 +144,4 @@ class Step5(StepTemplateMkdir):
     last_step = True
 
     def next(self):
-            NextChallengeStep(self.xp)
+        NextChallengeStep(self.xp)

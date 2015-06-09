@@ -53,8 +53,10 @@ class Step2(StepTemplateCd):
     commands = "cd"
     hints = "{{rb:Type}} {{yb:cd}} {{rb:to start the journey.}}"
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step3()
@@ -88,7 +90,9 @@ class Step4(StepTemplateCd):
     last_step = True
 
     def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         NextChallengeStep(self.xp)

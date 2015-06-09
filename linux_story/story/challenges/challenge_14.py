@@ -16,7 +16,9 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.common import tq_file_system
 from linux_story.story.challenges.challenge_15 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint, unblock_commands
+from linux_story.step_helper_functions import (
+    unblock_commands_with_cd_hint, unblock_commands
+)
 
 
 class StepTemplateMv(TerminalMv):
@@ -66,11 +68,10 @@ class Step2(StepTemplateMv):
     }
     moved_items = []
 
-    def block_command(self, line):
-        line = line.strip()
-        separate_words = line.split(' ')
+    def block_command(self):
+        separate_words = self.last_user_input.split(' ')
 
-        if "cd" in line:
+        if "cd" in self.last_user_input:
             return True
 
         if separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
@@ -91,9 +92,8 @@ class Step2(StepTemplateMv):
 
             return False
 
-    def check_command(self, line, current_dir):
-        line = line.strip()
-        separate_words = line.split(' ')
+    def check_command(self, current_dir):
+        separate_words = self.last_user_input.split(' ')
         all_items = []
 
         if separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
@@ -113,7 +113,7 @@ class Step2(StepTemplateMv):
         self.send_hint(hint)
 
     # Check that the basket folder contains the correct number of files?
-    def check_output(self, line):
+    def check_output(self):
         basket_dir = os.path.join(tq_file_system, 'my-house/kitchen/basket')
         food_files = [
             f for f in os.listdir(basket_dir)
@@ -148,8 +148,8 @@ class Step3(StepTemplateMv):
         "{{rb:to move the basket to the windy road ~}}"
     ]
 
-    def block_command(self, line):
-        return unblock_commands(line, self.commands)
+    def block_command(self):
+        return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step4()
@@ -171,8 +171,8 @@ class Step4(StepTemplateMv):
         "to move yourself to the road ~}}"
     ]
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(self.last_user_input, self.commands)
 
     def next(self):
         Step5()
@@ -201,8 +201,8 @@ class Step5(StepTemplateMv):
         "{{rb:to move the basket to the family.}}"
     ]
 
-    def block_command(self, line):
-        return unblock_commands(line, self.commands)
+    def block_command(self):
+        return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step6()
@@ -227,8 +227,10 @@ class Step6(StepTemplateMv):
         "{{rb:to be reunited with the family.}}",
     ]
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step7()
@@ -266,16 +268,14 @@ class Step7(StepTemplateMv):
 
     last_step = True
 
-    def check_command(self, line, current_dir):
+    def check_command(self, current_dir):
         if not self.allowed_commands:
             return True
 
-        line = line.strip()
+        if self.last_user_input in self.allowed_commands.keys():
 
-        if line in self.allowed_commands.keys():
-
-            hint = self.allowed_commands[line]
-            del self.allowed_commands[line]
+            hint = self.allowed_commands[self.last_user_input]
+            del self.allowed_commands[self.last_user_input]
             num_people = len(self.allowed_commands.keys())
 
             if num_people == 0:

@@ -58,7 +58,10 @@ class Terminal(Cmd):
 
         # Currently this is passed to the Terminal class but NOT updated
         # because we're making a copy.
-        self.last_cmd_output = None
+        self.last_cmd_output = ""
+
+        # Last command user tried to run.
+        self.last_user_input = ""
 
         # self.fake_path is the current path that the user sees
         self.fake_path = self.start_dir
@@ -140,7 +143,9 @@ class Terminal(Cmd):
         Otherwise, it is run
         '''
 
-        if self.block_command(line):
+        self.last_user_input = line.strip()
+
+        if self.block_command():
             return Cmd.precmd(self, "")
         else:
             return Cmd.precmd(self, line)
@@ -193,16 +198,17 @@ class Terminal(Cmd):
         '''
         pass
 
-    def block_command(self, line):
+    def block_command(self):
         '''line is the user entered input from the terminal.
         If this function returns True, input entered will be blocked
         Otherwise, command will be run as normal.
         Default behaviour is to block cd and mv
         '''
 
-        line = line.strip()
-        if "cd" in line or "mkdir" in line or \
-                ("mv" in line and not line == 'mv --help'):
+        if "cd" in self.last_user_input or \
+                "mkdir" in self.last_user_input or \
+                ("mv" in self.last_user_input and
+                    not self.last_user_input == 'mv --help'):
 
             print ('Nice try! But you do not need that command for this '
                    'challenge')
@@ -232,11 +238,11 @@ class Terminal(Cmd):
         to change this in an instance of the Step class.
         '''
         finished = self.check_output(self.last_cmd_output) or \
-            self.check_command(line, current_dir)
+            self.check_command(current_dir)
 
         return finished
 
-    def check_command(self, line, current_dir):
+    def check_command(self, current_dir):
         '''If self.commands is provided, checks the command entered
         by the user matches self.commands.
         '''
@@ -245,23 +251,20 @@ class Terminal(Cmd):
         command_validated = True
         end_dir_validated = True
 
-        # strip any spaces off the beginning and end
-        line = line.strip()
-
         # if the validation is included
         if self.commands:
             # if only one command can pass the level
             if isinstance(self.commands, basestring):
-                command_validated = line == self.commands
+                command_validated = (self.last_user_input == self.commands)
             # else there are multiple commands that can pass the level
             else:
-                command_validated = line in self.commands
+                command_validated = self.last_user_input in self.commands
 
         if self.end_dir:
             end_dir_validated = current_dir == self.end_dir
 
         if not (command_validated and end_dir_validated):
-            self.show_hint(line, current_dir)
+            self.show_hint(current_dir)
 
         condition = (command_validated and end_dir_validated)
         return self.finish_if_server_ready(condition)
@@ -269,19 +272,19 @@ class Terminal(Cmd):
     #######################################################
     # Send text to the GUI.
 
-    # TODO: show_hint and send_hint need to be refactored.
-    def show_hint(self, line, current_dir):
+    def show_hint(self, current_dir):
         '''Customize the hint that is shown to the user
-        depending on their input
+        depending on their input.
+        Default behaviour, display normal hint.
         '''
         # Default behaviour
         # if user does not pass challenge, show hints.
         # Go through hints until we get to last hint
         # then just keep showing last hint
-        self.send_hint()
 
-        if len(self.hints) > 1:
-            self.hints.pop(0)
+        # The last line the user typed is self.last_user_input
+
+        self.send_hint()
 
     def send_hint(self, hint=None):
         '''Sends a hint string through the pipe to the GUI
@@ -297,10 +300,12 @@ class Terminal(Cmd):
             t.daemon = True
             t.start()
 
+        if len(self.hints) > 1:
+            self.hints.pop(0)
+
     def send_text(self, string):
         '''Sends a string through the pipe to the GUI
         '''
-
         if not is_server_busy():
             data = {'hint': string}
             t = threading.Thread(target=launch_client, args=(data,))
@@ -357,7 +362,7 @@ class Terminal(Cmd):
     # File system functions
 
     def delete_items(self):
-        '''self.delete_items should be a list of fake_paths we want removed
+        '''self.deleted_items should be a list of fake_paths we want removed
         '''
         if self.deleted_items:
             for path in self.deleted_items:

@@ -33,8 +33,10 @@ class Step1(StepTemplateCd):
     commands = ["cd ..", "cd ../", "cd"]
     hints = "{{rb:Use}} {{yb:cd ../}} {{rb:to start heading back home.}}"
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         play_sound('bell')
@@ -60,8 +62,10 @@ class Step2(StepTemplateCd):
     # Remove the note as well.
     deleted_items = ['~/my-house/kitchen/Mum', '~/town/note']
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step3()
