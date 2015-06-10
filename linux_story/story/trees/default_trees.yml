@@ -316,3 +316,25 @@ MKDIR, spanner, hammer, saw, tape-measure:
         - challenge: 21
           step: 4
           path: "~/farm/barn"
+
+# make .hidden-shelter folk disappear
+Edith:
+    challenges:
+        - challenge: 22
+          step: 4
+          path: "~/town/.hidden-shelter"
+          exists: False
+
+Edward:
+    challenges:
+        - challenge: 22
+          step: 3
+          path: "~/town/.hidden-shelter"
+          exists: False
+
+dog:
+    challenges:
+        - challenge: 22
+          step: 2
+          path: "~/town/.hidden-shelter"
+          exists: False

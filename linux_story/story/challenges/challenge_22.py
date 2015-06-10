@@ -34,9 +34,10 @@ class Step1(StepTemplateMkdir):
     ]
     hints = ["Use cat to examine an animal, e.g. {{yb:cat Daisy}}"]
 
-    # Remove the basket with all the food
+    # Remove all the food
     deleted_items = [
-        "~/town/.hidden-shelter/basket"
+        "~/town/.hidden-shelter/basket",
+        "~/town/.hidden-shelter/apple"
     ]
 
     def next(self):
@@ -92,6 +93,7 @@ class Step3(StepTemplateMkdir):
     ]
 
     def next(self):
+        play_sound("bell")
         Step4()
 
 
@@ -116,6 +118,10 @@ class Step4(StepTemplateMkdir):
     hints = [
         "{{rb:We can go directly to the}} {{lb:.hidden-shelter}} "
         "{{rb:using}} {{yb:cd ~/town/.hidden-shelter/}}"
+    ]
+    # Remove Edith
+    deleted_items = [
+        "~/town/.hidden-shelter/dog"
     ]
 
     def block_command(self):
