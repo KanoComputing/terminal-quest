@@ -76,6 +76,20 @@ class Storybook(Gtk.TextView):
             while Gtk.events_pending():
                 Gtk.main_iteration_do(False)
 
+    ##############################################################
+    def print_coloured_output(self, string):
+        # hacky function - same as above but removed the sleeps.
+        lines = self.__split_into_printable_chars(string)
+
+        for line in lines:
+            self.__style_char(
+                line['letter'],
+
+                # TODO: get size tag working
+                [line['colour'], line['bold']]
+            )
+    ##############################################################
+
     def __style_char(self, line, tag_names):
         '''Add styling (e.g. colours) to each character and puts it into the
         text buffer
@@ -107,9 +121,9 @@ class Storybook(Gtk.TextView):
         border = "-------------------\n"
         text = "CHALLENGE {}\n".format(challenge_number)
         header = "\n" + border + "\n" + text + "\n" + border
-        self.__print(header)
+        self.print_text(header)
 
-    def __print(self, string):
+    def print_text(self, string):
         '''Mimic for python print function
         '''
 

@@ -37,6 +37,7 @@ import readline
 
 class Terminal(Cmd):
     terminal_commands = []
+    print_text = [""]
     story = [""]
     start_dir = "~"
     end_dir = "~"
@@ -65,7 +66,7 @@ class Terminal(Cmd):
 
         # self.fake_path is the current path that the user sees
         self.fake_path = self.start_dir
-        self.generate_real_path()
+        self.real_path = self.generate_real_path(self.fake_path)
 
         self.modify_file_tree()
         self.delete_items()
@@ -99,11 +100,11 @@ class Terminal(Cmd):
         # Tell storyline the step is finished
         self.next()
 
-    def generate_real_path(self):
-        self.real_path = self.fake_path.replace('~', tq_file_system)
+    def generate_real_path(self, fake_path):
+        return fake_path.replace('~', tq_file_system)
 
-    def generate_fake_path(self):
-        self.fake_path = self.real_path.replace(tq_file_system, '~')
+    def generate_fake_path(self, real_path):
+        return real_path.replace(tq_file_system, '~')
 
     def set_prompt(self):
         home_dir = os.path.expanduser('~')
@@ -320,6 +321,7 @@ class Terminal(Cmd):
 
         # Get data about any XP.
         data['xp'] = self.xp
+        data["print_text"] = "\n".join(self.print_text)
         data['story'] = "\n".join(self.story)
         data['challenge'] = str(self.challenge_number)
         data['spells'] = self.terminal_commands

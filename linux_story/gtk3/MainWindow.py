@@ -28,6 +28,8 @@ from linux_story.gtk3.Storybook import Storybook
 from linux_story.gtk3.FinishDialog import FinishDialog
 from linux_story.common import css_dir
 from linux_story.gtk3.MenuScreen import MenuScreen
+from linux_story.load_defaults_into_filetree import revert_to_default_permissions
+
 from kano.gtk3.apply_styles import apply_styling_to_screen
 from kano.gtk3.scrolled_window import ScrolledWindow
 
@@ -125,10 +127,14 @@ class MainWindow(GenericWindow):
     def close_window(self, widget=None, event=None):
         '''Shut the server down and close the window
         '''
-
         self.server.socket.shutdown(socket.SHUT_RDWR)
         self.server.socket.close()
         self.server.shutdown()
+
+        # Do this AFTER the server shutdown, so if this goes wrong,
+        # we can quickly relaunch TQ.
+        revert_to_default_permissions()
+
         Gtk.main_quit()
 
     def finish_app(self, widget=None, event=None):
@@ -191,6 +197,10 @@ class MainWindow(GenericWindow):
         '''
 
         self.story.print_challenge_title(number)
+
+    def print_text(self, text):
+        # self.story.print_text(text)
+        self.story.print_coloured_output(text)
 
     def repack_spells(self, spells):
         '''Wrapper function for repacking the spells
@@ -255,14 +265,16 @@ class MainWindow(GenericWindow):
                     challenge = data_dict['challenge']
 
                     # If challenge is passed, then print a title
-                    # if challenge:
-
                     self.print_challenge_title(challenge)
 
                     # So the xp is not hardcoded in the story
                     if 'xp' in data_dict and data_dict['xp']:
-                        xp = data_dict['xp']
-                        self.type_text(xp)
+                        self.type_text(data_dict['xp'])
+
+                    # If we have have just used echo in the previous
+                    # challenge, we should print out the user's choice
+                    if "print_text" in data_dict and data_dict["print_text"]:
+                        self.print_text(data_dict["print_text"])
 
                     # Type the story out
                     self.type_text(data_dict['story'])
