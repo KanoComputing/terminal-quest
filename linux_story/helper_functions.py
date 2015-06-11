@@ -50,7 +50,7 @@ def get_script_cmd(string, real_path):
 
 
 def is_exe(fpath):
-    return os.access(fpath, os.X_OK)
+    return (os.path.isfile(fpath) and os.access(fpath, os.X_OK))
 
 
 # TODO: tidy up

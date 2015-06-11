@@ -18,7 +18,7 @@ if __name__ == '__main__' and __package__ is None:
 
 import threading
 from helper_functions import (
-    get_script_cmd, debugger, parse_string
+    get_script_cmd, debugger, parse_string, is_exe
 )
 from kano_profile.apps import (
     load_app_state_variable, get_app_xp_for_challenge
@@ -29,6 +29,7 @@ from socket_functions import is_server_busy, launch_client
 from kano.logging import logger
 from common import tq_file_system
 from load_defaults_into_filetree import delete_item, modify_file_tree
+from linux_story.commands_real import run_executable
 
 # If this is not imported, the escape characters used for the colour prompts
 # show up as special characters.
@@ -125,18 +126,18 @@ class Terminal(Cmd):
         coloured_prompt = parse_string(prompt, input=True)
         self.prompt = coloured_prompt
 
-    def do_help(self, line):
-        '''This is to overwrite the in built function in cmd
-        '''
-
-        pass
-
     def emptyline(self):
         '''To overwrite default behaviour in the cmd module.
         Do nothing if the user enters an empty line.
         '''
-
         pass
+
+    def do_shell(self, line):
+        '''This is run by default if the line starts with !.
+        '''
+        # We use this over os.system so that the command is run in the
+        # correct directory
+        run_executable(self.real_path, line)
 
     def precmd(self, line):
         '''Hook before the command is run
@@ -167,7 +168,7 @@ class Terminal(Cmd):
         )
         if is_script:
             # TODO: what is this?
-            self.do_shell(script)
+            self.do_shell(line)
         else:
             self.last_cmd_output = Cmd.onecmd(self, line)
             return self.last_cmd_output
@@ -382,7 +383,8 @@ class Terminal(Cmd):
     #######################################################
     # Helper commands
 
-    def autocomplete_files(self, text, line, begidx, endidx, only_dirs=False):
+    def autocomplete_files(self, text, line, begidx, endidx, only_dirs=False,
+                           only_exe=False):
 
         try:
             additional_path = line[:int(begidx)].split(" ")[-1]
@@ -397,11 +399,22 @@ class Terminal(Cmd):
                 path = os.path.join(self.real_path, additional_path)
 
             # If the path doesn't exist, return early
+            # TODO: move this part to a separate function?
+            # Then we can have a list of all the functions that get called
             if not os.path.exists(path):
                 return []
 
             if text == "..":
                 completions = [text]
+            elif not text and line == "./":
+                # This is repeated
+                contents = os.listdir(path)
+                completions = [f
+                               for f in contents
+                               if f.startswith(text) and (
+                                   os.path.isdir(os.path.join(path, f)) or
+                                   is_exe(os.path.join(path, f)))
+                               ]
             elif not text:
                 completions = os.listdir(path)
             else:
@@ -412,6 +425,13 @@ class Terminal(Cmd):
                                    for f in contents
                                    if f.startswith(text) and
                                    os.path.isdir(os.path.join(path, f))
+                                   ]
+                elif only_exe:
+                    completions = [f
+                                   for f in contents
+                                   if f.startswith(text) and (
+                                       os.path.isdir(os.path.join(path, f)) or
+                                       is_exe(os.path.join(path, f)))
                                    ]
                 else:
                     completions = [f
@@ -427,3 +447,56 @@ class Terminal(Cmd):
 
         except Exception as e:
             logger.debug("hit exception {}".format(str(e)))
+
+    # Overwrite this to check for shell scripts instead.
+    def completedefault(self, *ignored):
+        '''ignored = [text, line, begidx, endidx]
+        text = (string I think?) ?
+        line = (string) line the user entered
+        begidx = (int) ?
+        endidx = (int) ?
+        '''
+        [text, line, begidx, endidx] = ignored
+        return self.autocomplete_files(
+            text, line, begidx, endidx, only_exe=True
+        )
+
+    def complete_executable(self, text, line, begidx, endidx):
+        # Asssuming the input is of the form.
+        return ["./"]
+
+    # The original text from the cmd module.
+    def complete(self, text, state):
+        """Return the next possible completion for 'text'.
+
+        If a command has not been entered, then complete against command list.
+        Otherwise try to call complete_<command> to get list of completions.
+        """
+
+        if state == 0:
+            import readline
+            origline = readline.get_line_buffer()
+            line = origline.lstrip()
+            stripped = len(origline) - len(line)
+            begidx = readline.get_begidx() - stripped
+            endidx = readline.get_endidx() - stripped
+            if begidx > 0:
+                cmd, args, foo = self.parseline(line)
+                if cmd == '':
+                    compfunc = self.completedefault
+                else:
+                    try:
+                        compfunc = getattr(self, 'complete_' + cmd)
+                    except AttributeError:
+                        compfunc = self.completedefault
+            else:
+                # Modified this so we check for executables sometimes
+                if line == ".":
+                    compfunc = self.complete_executable
+                else:
+                    compfunc = self.completenames
+            self.completion_matches = compfunc(text, line, begidx, endidx)
+        try:
+            return self.completion_matches[state]
+        except IndexError:
+            return None

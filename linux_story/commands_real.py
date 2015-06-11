@@ -202,3 +202,21 @@ def nano(real_path, line):
 
     if stderr:
         print stderr.strip()
+
+
+def run_executable(real_path, line):
+
+    # print "line = {}".format(line)
+    line = line.strip()
+
+    if line.startswith("./"):
+        line = line[2:]
+
+    p = subprocess.Popen(["sh", line], cwd=real_path)
+    stdout, stderr = p.communicate()
+
+    if stdout:
+        print stdout.strip()
+
+    if stderr:
+        print stderr.strip()
