@@ -1,12 +1,18 @@
+#!/usr/bin/env python
+#
+# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+# load_defaults_into_filetree.py
+
+# This takes the file tree from the yaml and creates it.
+
 
 import os
 import shutil
 
-from kano.logging import logger
 from linux_story.get_defaults import get_default_file_dict
-from linux_story.common import (tq_backup_folder, tq_file_system,
-                                get_tq_backup_tree_path,
-                                create_tq_backup_tree_path)
+from linux_story.common import tq_file_system
 
 
 def default_global_tree(challenge, step):
@@ -75,8 +81,6 @@ def split_path_and_add_dirs_to_tree(item_id, fake_path):
 
 # TODO this is a MONSTER function.
 # Break it up.
-# TODO: if we modifiy apple path, when autocompleting we still see where
-# the old apple was.
 def modify_file_tree(filesystem_dict):
     '''This modifies the tree in memory and the filesystem the user
     interacts with. It also stores the tree as a yaml, which is saved on
@@ -117,8 +121,10 @@ def modify_file_tree(filesystem_dict):
                     containing_dir_of_files,
                     item_id
                 )
+
+                # If the file is specified as a directory.
                 if 'directory' in item_dict.keys():
-                    # Create the directory in the file system
+                    # Create the directory in the file system.
                     if item_dict['directory']:
                         create_item(
                             real_path,
@@ -130,13 +136,34 @@ def modify_file_tree(filesystem_dict):
                             item_type="file",
                             src_path=path_to_file_in_system
                         )
-
+                # Default - make the item into a file.
                 else:
                     create_item(
                         real_path,
                         item_type="file",
                         src_path=path_to_file_in_system
                     )
+
+                # If specified, change the permissions of the file
+                if "permissions" in item_dict.keys():
+                    mode = item_dict["permissions"]
+                    # TODO: have a clean up of this afterwards
+                    os.chmod(real_path, mode)
+
+
+# Call this on closing the application.
+# TODO: Also record what the permission was before overwriting.
+def revert_to_default_permissions():
+    '''This is the brute force way of cleaning up the permissions
+    We go through the tree and change ALL permissions to 666
+    '''
+    for root, dirs, files in os.walk(tq_file_system):
+        for d in dirs:
+            path = os.path.join(root, d)
+            os.chmod(path, 0755)
+        for f in files:
+            path = os.path.join(root, f)
+            os.chmod(path, 0644)
 
 
 def save_tree(challenge, step):
