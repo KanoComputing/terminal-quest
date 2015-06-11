@@ -5,62 +5,185 @@
 #
 # A chapter of the story
 
-from linux_story.story.terminals.terminal_nano_step import TerminalNano
-# from linux_story.story.challenges.challenge_21 import Step1 as NextChallengeStep
+
+from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
+from linux_story.story.challenges.challenge_27 import Step1 as NextChallengeStep
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
-# Test chapter
-class StepTemplateNano(TerminalNano):
+class StepTemplateMkdir(TerminalMkdir):
     challenge_number = 26
 
 
-class Step1(StepTemplateNano):
+class Step1(StepTemplateMkdir):
     story = [
-        "hello"
+        "You are back in town. Have a look around."
     ]
 
-    start_dir = "~/farm/barn"
-    end_dir = "~/farm/barn"
+    start_dir = "~/town/east-part"
+    end_dir = "~/town/east-part"
 
-    def finished_challenge(self):
-        return self.check_nano_output()
+    hints = [
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+    ]
 
-    def check_nano_content(self, nano_content):
-        '''Have a similar system as with block_command and check_command
-
-        Stages we need to achieve:
-
-        ALREADY CREATED FILE:
-        - check they open the correct file
-        - check the user types the correct text into the file, on the right line
-        - prompt the user to save (Ctrl X)
-        - check the user did save it correctly
-
-        NEW FILE:
-        - open new file
-        - check the user types the correct text into the file, on the right line
-        - prompt the user to save (Ctrl X)
-        - Check they enter the correct filename at this point.
-        - check the user did save it correctly (did not cancel before saving.)
-
-        - double check: after the process, check the file exists and the text inside is correct.
-        '''
-
-        if nano_content == "hello alejandro":
-            self.send_text("\n{{gb:Congratulations}}")
-            return True
+    commands = [
+        "ls",
+        "ls -a"
+    ]
 
     def next(self):
         Step2()
 
 
-class Step2(StepTemplateNano):
+class Step2(StepTemplateMkdir):
     story = [
-        "Congratulations"
+        "You see the {{lb:library}} ahead.  Go inside."
     ]
 
-    start_dir = "~/farm/barn"
-    end_dir = "~/farm/barn"
+    start_dir = "~/town/east-part"
+    end_dir = "~/town/east-part/library"
+
+    hints = [
+        "{{rb:Use}} {{yb:cd library/}} {{rb:to go inside the library.}}"
+    ]
+    commands = [
+        "cd library",
+        "cd library/"
+    ]
+
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
-        pass
+        Step3()
+
+
+class Step3(StepTemplateMkdir):
+    story = [
+        "Look around."
+    ]
+
+    start_dir = "~/town/east-part/library"
+    end_dir = "~/town/east-part/library"
+
+    hints = [
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+    ]
+    commands = [
+        "ls",
+        "ls -a"
+    ]
+
+    def next(self):
+        Step4()
+
+
+class Step4(StepTemplateMkdir):
+    story = [
+        "Eleanor: {{Bb:\"Wow, this place is a lot more empty than I "
+        "remembered.",
+
+        "There used to be a librarian here...",
+
+        "She used to tell me off for trying to look in the}} "
+        "{{lb:private-section}}.",
+
+        "{{Bb:What do you think is in there?  Let's look with}} {{lb:ls}}"
+        "{{Bb:\"}}"
+    ]
+
+    start_dir = "~/town/east-part/library"
+    end_dir = "~/town/east-part/library"
+
+    commands = [
+        "ls private-section/",
+        "ls private-section"
+    ]
+
+    hints = [
+        "{{rb:Use}} {{yb:ls private-section/}} {{rb:to look in the "
+        "private-section of the library.}}"
+    ]
+
+    def next(self):
+        Step5()
+
+
+class Step5(StepTemplateMkdir):
+
+    story = [
+        "Eleanor: {{Bb:I guess the private-section is locked to outsiders...",
+
+        "Let's see if we can find something useful in the public section.}}",
+
+        "\nUse {{lb:ls}} to look in the {{lb:public-section}}."
+    ]
+
+    start_dir = "~/town/east-part/library"
+    end_dir = "~/town/east-part/library"
+    commands = [
+        "ls public-section",
+        "ls public-section/",
+        "ls -a public-section",
+        "ls -a public-section/"
+    ]
+    hints = [
+        "{{rb:Use}} {{lb:ls}} {{rb:to look in the public section.}}",
+        "{{rb:Use}} {{yb:ls public-section}} {{rb:to look in the public-"
+        "section.}}"
+    ]
+
+    def next(self):
+        Step6()
+
+
+class Step6(StepTemplateMkdir):
+    story = [
+        "Eleanor: {{Bb:Wow, all the commands have disappeared.",
+        "I wonder if people have been stealing them?}}",
+
+        "{{Bb:What is that}} {{lb:NANO}} {{Bb:paper?}}"
+    ]
+    start_dir = "~/town/east-part/library"
+    end_dir = "~/town/east-part/library"
+    commands = [
+        "cat public-section/NANO"
+    ]
+    hints = [
+        "{{rb:Examine the NANO script with}} {{yb:cat public-section/NANO}}"
+    ]
+
+    def next(self):
+        Step7()
+
+
+class Step7(StepTemplateMkdir):
+    story = [
+        "Eleanor: {{Bb:So}} {{lb:nano}} {{Bb:allows you to "
+        "edit files?}}",
+
+        "{{Bb:Maybe we could use this to fix that}} "
+        "{{lb:best-horn-in-the-world}}{{Bb:?}}",
+
+        "{{Bb:Let's head back to the shed-maker.}}"
+    ]
+    start_dir = "~/town/east-part/library"
+    end_dir = "~/town/east-part/shed-shop"
+    commands = [
+        "cd ../shed-shop",
+        "cd ../shed-shop/",
+        "cd ..",
+        "cd ../",
+        "cd shed-maker",
+        "cd shed-maker/"
+    ]
+    last_step = True
+
+    def block_command(self):
+        return unblock_commands_with_cd_hint(self.last_user_input, self.commands)
+
+    def next(self):
+        NextChallengeStep(self.xp)

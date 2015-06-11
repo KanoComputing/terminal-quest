@@ -37,6 +37,14 @@ class Step1(StepTemplateMkdir):
     hints = [
         "{{rb:Try using}} {{yb: cd ../barn/}}"
     ]
+    deleted_items = [
+        "~/farm/toolshed/Ruth"
+    ]
+    story_dict = {
+        "Ruth": {
+            "path": "~/farm/toolshed",
+        }
+    }
 
     def block_command(self):
         return unblock_commands_with_cd_hint(

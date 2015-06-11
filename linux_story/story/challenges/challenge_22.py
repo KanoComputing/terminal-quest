@@ -119,7 +119,7 @@ class Step4(StepTemplateMkdir):
         "{{rb:We can go directly to the}} {{lb:.hidden-shelter}} "
         "{{rb:using}} {{yb:cd ~/town/.hidden-shelter/}}"
     ]
-    # Remove Edith
+    # Remove the dog
     deleted_items = [
         "~/town/.hidden-shelter/dog"
     ]

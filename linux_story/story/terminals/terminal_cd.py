@@ -20,7 +20,7 @@ class TerminalCd(TerminalCat):
         new_path = cd(self.real_path, line)
         if new_path:
             self.real_path = new_path
-            self.generate_fake_path()
+            self.fake_path = self.generate_fake_path(self.real_path)
             self.set_prompt()
 
     def complete_cd(self, text, line, begidx, endidx):

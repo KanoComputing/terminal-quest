@@ -6,12 +6,12 @@
 # A chapter of the story
 
 
-# from linux_story.step_helper_functions import (
-#    unblock_commands
-# )
+from linux_story.step_helper_functions import (
+    unblock_commands_with_cd_hint
+)
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
 # import time
-# from linux_story.story.challenges.challenge_24 import Step1 as NextChallengeStep
+from linux_story.story.challenges.challenge_24 import Step1 as NextChallengeStep
 
 
 class StepTemplateMkdir(TerminalMkdir):
@@ -37,30 +37,16 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateMkdir):
     story = [
-        "Eleanor: {{Bb:Oh, it's you! Thank you for finding me!",
+        "Eleanor: {{Bb:\"Oh, it's you!",
         # "My parents went outside as we ran out of food."
-        "I heard this bell. Do you know where my Mum and Dad are?}}",
-        "\n{{gb:Use the echo command to talk to Eleanor.}}",
+        "Have you seen my Mum and Dad?\"}}",
         # TODO: change colour
-        "{{yb:1: \"Weren't they with you in the hidden-shelter?\"}}"
-        "{{yb:2: \"Did you see anything strange?\"}}"
+        "\n{{yb:1: \"I'm afraid not.  When did you last see them?\"}}",
+        "{{yb:2: \"Weren't they with you in the hidden-shelter?\"}}",
+        "{{yb:3: \"(lie) Yes, I saw them in town.\"}}",
+        "\n{{gb:Use the echo command to talk to Eleanor.}}"
     ]
 
-    start_dir = "~/town/.hidden-shelter"
-    end_dir = "~/town/.hidden-shelter"
-    commands = [
-        "echo 1",
-        "echo 2"
-    ]
-    hints = [
-        "{{rb:NO HINTS}}"
-    ]
-
-    def next(self):
-        Step3(self.last_user_input)
-
-
-class Step3(StepTemplateMkdir):
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
     commands = [
@@ -68,42 +54,164 @@ class Step3(StepTemplateMkdir):
         "echo 2",
         "echo 3"
     ]
+
+    def check_command(self, current_dir):
+        if self.last_user_input in self.commands:
+            return True
+        elif self.last_user_input.startswith("echo"):
+            text = (
+                "\nEleanor: {{Bb:\"Pardon?  What did you say?\"}}"
+            )
+        else:
+            text = (
+                "\n{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} "
+                "{{rb:or}} {{yb:echo 3}} {{rb:to reply.}}"
+            )
+
+        self.send_text(text)
+
+    def next(self):
+        Step3(self.last_user_input)
+
+
+class Step3(StepTemplateMkdir):
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town"
+
     hints = [
-        "{{rb:NO HINTS}}"
+        "{{rb:Use}} {{yb:cd ../}} {{rb:to go into town.}}"
+    ]
+    commands = [
+        "cd ..",
+        "cd ../",
+        "cd ~/town",
+        "cd ~/town/"
     ]
 
     def __init__(self, prev_command="echo 1"):
         self.story = []
 
         if prev_command == "echo 1":
+            self.print_text = [
+                "{{yb:\"I'm afraid not.  When did you last see them?\"}}\n"
+            ]
             self.story += [
-                "{{yb:\"Weren't they with you in the hidden-shelter?\"}}",
-                "Eleanor: {{Bb:No, the dog ate all the food, so they went to find some more.",
-                "Then I heard the bell",
-                "I guess they disappeared?}}"
+                "\nEleanor: {{Bb:\"Not long ago. The dog ran out again, "
+                "so they went outside to look for him. "
+                "I'm sure they're fine.\"}}"
             ]
 
         elif prev_command == "echo 2":
+            self.print_text = [
+                "{{yb:\"Weren't they with you in the hidden-shelter?\"}}\n"
+            ]
             self.story += [
-                "{{yb:\"Did you see anything strange?\"}}",
-                "Eleanor: {{Bb:No, I didn't see anything.}}",
-                "{{Bb:My parents were outside the shelter looking for food, so I was by myself.}}",
-                "{{Bb:Do you think they disappeared?}}"
+                "\nEleanor: {{Bb:No, they went outside. "
+                "The dog ran away again, and then went outside to look for "
+                "it. Maybe they got lost?\"}}"
             ]
 
-        self.story = [
-            "{{gb:Use echo to reply.}}",
-            "{{yb:1: \"Yes, I saw people disappear in \"}}",
-            "{{yb:2: \"(lie) No, I saw them outside.\"}}",
-            "{{yb:3: \"Probably. My Mum and Dad also disappeared.\"}}"
+        elif prev_command == "echo 3":
+            self.print_text = [
+                "{{yb:\"(lie) Yes, I saw them in town.\"}}\n"
+            ]
+            self.story += [
+                "\nEleanor: {{Bb:\"Oh that's good! The bell scared me, but "
+                "I'm pleased they're alright.\"}}"
+            ]
+
+        self.story += [
+            "{{Bb:\"Let's go to town together and find them. I'm sure I'll be "
+            "safe if I'm with you.\"}}",
+            "\nEleanor joined you as a companion!",
+            "{{lb:Leave the .hidden-shelter.}} "
+            "Don't worry, Eleanor will follow!"
         ]
 
         StepTemplateMkdir.__init__(self)
 
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
+
     def next(self):
-        Step4(self.command_used)
+        Step4()
 
 
+class Step4(StepTemplateMkdir):
+    start_dir = "~/town"
+    end_dir = "~/town"
+    hints = [
+        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+    ]
+    commands = [
+        "ls",
+        "ls -a"
+    ]
+
+    story = [
+        "Eleanor: {{Bb:Let's go to the}} {{yb:east part}} "
+        "{{Bb:of town.}}",
+        "{{Bb:Have you not noticed it before? It's over there! "
+        "Look over there.}}",
+        "\nUse {{yb:ls}} to see what Eleanor is trying to show you."
+    ]
+
+    story_dict = {
+        "Bernard": {
+            "path": "~/town/east-part/shed-shop"
+        },
+        "best-shed-maker-in-the-world.sh, best-horn-in-the-world.sh": {
+            "path": "~/town/east-part/shed-shop",
+            "permissions": 0755
+        },
+        "NANO": {
+            "path": "~/town/east-part/library/public-section"
+        },
+        "private-section": {
+            "path": "~/town/east-part/library",
+            # Remove all read and write permissions
+            "permissions": 0000,
+            "directory": True
+        }
+    }
+
+    def next(self):
+        Step5()
+
+
+class Step5(StepTemplateMkdir):
+    story = [
+        "You see a new part of town called {{lb:east-part}}.",
+        "Eleanor: {{Bb:Lets go there and see if we can find my "
+        "parents.}}",
+        "\nGo into the east-part of town."
+    ]
+    start_dir = "~/town"
+    end_dir = "~/town/east-part"
+
+    hints = [
+        "{{rb:Use}} {{lb:cd}} {{rb:to go into the "
+        "east part of town}}",
+        "{{rb:Use}} {{yb:cd east-part/}} {{rb:}}"
+    ]
+    last_step = True
+
+    commands = [
+        "cd east-part/",
+        "cd east-part"
+    ]
+
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
+
+    def next(self):
+        NextChallengeStep(self.xp)
+
+'''
 class Step4(StepTemplateMkdir):
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town"
@@ -182,3 +290,4 @@ class Step5(StepTemplateMkdir):
             ]
 
         StepTemplateMkdir.__init__(self)
+'''

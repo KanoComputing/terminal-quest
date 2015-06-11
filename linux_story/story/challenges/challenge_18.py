@@ -146,7 +146,7 @@ class Step6(StepTemplate):
     end_dir = "~/farm"
     counter = 0
 
-    def finished_challenge(self, current_dir):
+    def finished_challenge(self, line, current_dir):
         output = self.check_output(self.last_cmd_output)
         if not output:
             # If Ruth not in output, check if command is ls

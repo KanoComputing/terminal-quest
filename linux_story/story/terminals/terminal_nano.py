@@ -19,12 +19,20 @@ class TerminalNano(TerminalEcho):
     SAVING_NANO_PROMPT = "Save modified buffer (ANSWERING \"No\" WILL DESTROY CHANGES) ? "
     SAVE_FILENAME = "File Name to Write"
 
+    # This is the content we want to end up with in the file.
+    nano_end_content = ""
+
+    # This is the fake filepath of the nano file.
+    nano_filepath = ""
+
     def __init__(self):
 
         ##############################################
         # nano variables
-        self.nano_running = False
+
+        # This is the CURRENT nano content, not what we are aiming for
         self.nano_content = ""
+        self.nano_running = False
         self.last_nano_prompt = ""
         self.ctrl_x = False
         self.on_nano_filename_screen = False
@@ -32,7 +40,6 @@ class TerminalNano(TerminalEcho):
         self.nano_x = 0
         self.nano_y = 0
         self.save_prompt_showing = False
-        self.nano_filename = ""
         ################################################
 
         TerminalEcho.__init__(self)
@@ -71,13 +78,6 @@ class TerminalNano(TerminalEcho):
         '''Getter for the self.nano_content for this Step
         '''
         return self.nano_content
-
-    def check_nano_content(self):
-        '''These can be updated by the individual Step instances
-        to do something with the changed values
-        '''
-        # Do something with the self.nano_content
-        pass
 
     def set_nano_x(self, x):
         '''These can be updated by the individual Step instances
@@ -177,7 +177,7 @@ class TerminalNano(TerminalEcho):
                     self.cancel_everything()
                     value = data["contents"]
 
-                    if self.get_nano_content() != self.end_text:
+                    if self.get_nano_content() != self.nano_end_content:
                         self.set_nano_content_values(value)
 
                 if "statusbar" in data:
@@ -246,3 +246,60 @@ class TerminalNano(TerminalEcho):
                     # If this returns True, break out of the loop.
                     if self.check_nano_content():
                         return
+
+    def check_command(self, line, current_dir):
+        end_path = self.generate_real_path(self.nano_filepath)
+
+        if os.path.exists(end_path):
+            # check contents of file contains the self.end_text
+            f = open(end_path, "r")
+            text = f.read()
+            f.close()
+
+            if text.strip() == self.nano_end_content:
+                return self.finish_if_server_ready(True)
+
+    def check_nano_content(self):
+        '''We want to customise this for the individual Step classes.
+        '''
+        # Make the if statements cumulative, so you trickle down as less
+        # conditions are satisfied.
+
+        if not self.get_nano_running():
+            if self.get_nano_filename() == self.nano_filepath:
+                return True
+            else:
+                self.send_text(
+                    "\n{{ob:Your filename is wrong. Try starting again by "
+                    "typing}} {{yb:nano}} {{ob:and press Enter}}"
+                )
+
+        elif self.get_on_filename_screen() and \
+                self.get_nano_content().strip() == self.nano_end_content:
+
+            hint = (
+                "\n{{gb:Type}} {{yb:" + self.nano_filepath + "}} "
+                "{{gb:and press}} {{yb:Enter}}"
+            )
+            self.send_text(hint)
+
+        elif self.get_on_filename_screen():
+            self.send_text(
+                "\n{{ob:Oops, your text isn't correct. Press}} "
+                "{{yb:Ctrl C}} {{ob:to cancel.}}"
+            )
+
+        elif self.get_save_prompt_showing():
+            self.send_text(
+                "\n{{gb:Press}} {{yb:Y}} {{gb:to confirm that you want to "
+                "save.}}"
+            )
+
+        elif self.get_nano_content().strip() == self.nano_end_content:
+            hint = (
+                "\n{{gb:Excellent, you typed " + self.nano_end_content +
+                ". Now press}} {{yb:Ctrl X}} {{gb:to exit.}}"
+            )
+            self.send_text(hint)
+
+        return False

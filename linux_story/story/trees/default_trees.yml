@@ -318,10 +318,10 @@ MKDIR, spanner, hammer, saw, tape-measure:
           path: "~/farm/barn"
 
 # make .hidden-shelter folk disappear
-Edith:
+dog:
     challenges:
         - challenge: 22
-          step: 4
+          step: 2
           path: "~/town/.hidden-shelter"
           exists: False
 
@@ -332,9 +332,43 @@ Edward:
           path: "~/town/.hidden-shelter"
           exists: False
 
-dog:
+Edith:
     challenges:
         - challenge: 22
-          step: 2
+          step: 4
           path: "~/town/.hidden-shelter"
           exists: False
+
+Bernard:
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east-part/shed-shop"
+
+best-shed-maker-in-the-world.sh, best-horn-in-the-world.sh:
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east-part/shed-shop"
+          permissions: 0755
+
+secret-room:
+    directory: True
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east-part/shed-shop"
+
+NANO:
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east-part/library/public-section"
+
+private-section:
+    directory: True
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east-part/library"
+          permissions: 0000
