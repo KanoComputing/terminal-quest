@@ -20,17 +20,21 @@ class TerminalNano(TerminalEcho):
     SAVE_FILENAME = "File Name to Write"
 
     # This is the content we want to end up with in the file.
-    nano_end_content = ""
+    goal_nano_end_content = ""
 
-    # This is the fake filepath of the nano file.
-    nano_filepath = ""
+    # This is the fake filepath of the nano file we want to change.
+    goal_nano_filepath = ""
+
+    # Save name we want to ask user to write
+    goal_nano_save_name = ""
 
     def __init__(self):
 
         ##############################################
         # nano variables
 
-        # This is the CURRENT nano content, not what we are aiming for
+        # This is tracking the CURRENT nano content filepath,
+        # not what we are aiming for
         self.nano_content = ""
         self.nano_running = False
         self.last_nano_prompt = ""
@@ -40,17 +44,25 @@ class TerminalNano(TerminalEcho):
         self.nano_x = 0
         self.nano_y = 0
         self.save_prompt_showing = False
+        self.last_nano_filename = ""
         ################################################
 
         TerminalEcho.__init__(self)
 
     def do_nano(self, line):
+        # line = the filepath of the nano file
+
         self.set_nano_running(True)
 
         # Read nano in a separate thread
         t = threading.Thread(target=self.try_and_get_nano_contents)
         t.daemon = True
         t.start()
+
+        # If the line is given, it is the filepath of the file we are
+        # adjusting.
+        # if line:
+        #    self.set_last_nano_filepath(line)
 
         nano(self.real_path, line)
 
@@ -141,24 +153,29 @@ class TerminalNano(TerminalEcho):
     def get_save_prompt_showing(self):
         return self.save_prompt_showing
 
-    def set_nano_filename(self, filename):
-        self.nano_filename = filename
+    def set_last_nano_filename(self, filename):
+        '''Set the fake filepath of the actual nano file
+        '''
+        self.last_nano_filename = filename
 
-    def get_nano_filename(self):
-        return self.nano_filename
+    def get_last_nano_filename(self):
+        '''Get the fake filepath of the actual nano file
+        '''
+        return self.last_nano_filename
 
     def try_and_get_nano_contents(self):
+        print "trying to get nano contents"
         try:
             self.get_nano_contents()
-        except:
-            self.send_text("\nFailed to get nano contents")
+        except Exception as e:
+            print "\nFailed to get nano contents, {}".format(str(e))
+            self.send_text("\nFailed to get nano contents, {}".format(str(e)))
 
     def get_nano_contents(self):
         pipename = "/tmp/linux-story-nano-pipe"
 
         if not os.path.exists(pipename):
             os.mkfifo(pipename)
-
         f = open(pipename)
 
         while self.get_nano_running():
@@ -235,7 +252,7 @@ class TerminalNano(TerminalEcho):
                         self.set_on_filename_screen(False)
 
                 if "saved" in data:
-                    self.set_nano_filename(data["filename"])
+                    self.set_last_nano_filename(data["filename"])
 
                 if "finish" in data:
                     self.quit_nano()
@@ -247,8 +264,8 @@ class TerminalNano(TerminalEcho):
                     if self.check_nano_content():
                         return
 
-    def check_command(self, line, current_dir):
-        end_path = self.generate_real_path(self.nano_filepath)
+    def check_nano_input(self):
+        end_path = self.generate_real_path(self.goal_nano_filepath)
 
         if os.path.exists(end_path):
             # check contents of file contains the self.end_text
@@ -258,6 +275,23 @@ class TerminalNano(TerminalEcho):
 
             if text.strip() == self.nano_end_content:
                 return self.finish_if_server_ready(True)
+            else:
+                error_text = (
+                    "\n{{rb:The contents of the file is not correct. "
+                    "You have}} {{lb:" + text +
+                    "}} {{rb:when we expected}} {{lb:" +
+                    self.nano_end_content +
+                    "}}{{rb:. Try again!}}"
+                )
+                self.send_text(error_text)
+
+        else:
+            error_text = (
+                "\n{{rb:The file path}} {{lb:" +
+                end_path +
+                "}} {{rb:does not exists - did you save your file correctly?}}"
+            )
+            self.send_text(error_text)
 
     def check_nano_content(self):
         '''We want to customise this for the individual Step classes.
@@ -266,19 +300,21 @@ class TerminalNano(TerminalEcho):
         # conditions are satisfied.
 
         if not self.get_nano_running():
-            if self.get_nano_filename() == self.nano_filepath:
+            if self.get_last_nano_filename() == self.goal_nano_save_name:
                 return True
             else:
                 self.send_text(
                     "\n{{ob:Your filename is wrong. Try starting again by "
-                    "typing}} {{yb:nano}} {{ob:and press Enter}}"
+                    "typing}} {{yb:nano}} {{ob:and press Enter}} " +
+                    self.get_last_nano_filename() + " " +
+                    self.goal_nano_save_name
                 )
 
         elif self.get_on_filename_screen() and \
                 self.get_nano_content().strip() == self.nano_end_content:
 
             hint = (
-                "\n{{gb:Type}} {{yb:" + self.nano_filepath + "}} "
+                "\n{{gb:Type}} {{yb:" + self.goal_nano_save_name + "}} "
                 "{{gb:and press}} {{yb:Enter}}"
             )
             self.send_text(hint)
@@ -297,8 +333,8 @@ class TerminalNano(TerminalEcho):
 
         elif self.get_nano_content().strip() == self.nano_end_content:
             hint = (
-                "\n{{gb:Excellent, you typed " + self.nano_end_content +
-                ". Now press}} {{yb:Ctrl X}} {{gb:to exit.}}"
+                "\n{{gb:Excellent, you typed}} {{lb:" + self.nano_end_content +
+                "}}{{gb:. Now press}} {{yb:Ctrl X}} {{gb:to exit.}}"
             )
             self.send_text(hint)
 

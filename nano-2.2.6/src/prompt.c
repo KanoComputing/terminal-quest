@@ -1166,24 +1166,8 @@ int do_prompt(bool allow_tabs,
     char *editable = "\'editable\': ";
     char nano_info[strlen(nano_prompt) + strlen(editable) + strlen(msg) + strlen(curranswer) + 30];
 
-    /*
-    strcpy(nano_info, nano_prompt);
-    strcat(nano_info, "\'");
-    strcat(nano_info, msg);
-    strcat(nano_info, "\', ");
-    strcat(nano_info, editable);
-    strcat(nano_info, "\'");
-    strcat(nano_info, curranswer);
-    strcat(nano_info, "\'}\n");
-    */
-
-    //strcpy(nano_info, msg);
-    //send_info_to_nano_pipe(nano_info);
-    // send_info_to_nano_pipe(nano_info);
-
     /* prompt has been freed and set to NULL unless the user resized
      * while at the statusbar prompt. */
-
 
     if (prompt != NULL)
 	free(prompt);
@@ -1196,10 +1180,18 @@ int do_prompt(bool allow_tabs,
 
     vsnprintf(prompt, (COLS - 4) * mb_cur_max(), msg, ap);
 
+    /* Nano prompt section */
     strcpy(nano_info, nano_prompt);
     strcat(nano_info, "\'");
     strcat(nano_info, prompt);
+    strcat(nano_info, "\', ");
+
+    /* Editable section */
+    strcat(nano_info, editable);
     strcat(nano_info, "\'");
+    strcat(nano_info, curranswer);
+    strcat(nano_info, "\'");
+
     strcat(nano_info, "}");
     send_info_to_nano_pipe(nano_info);
 

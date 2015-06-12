@@ -86,7 +86,6 @@ class Terminal(Cmd):
         readline.set_completer_delims(old_delims.replace('-', ''))
 
         self.set_prompt()
-
         self.send_start_challenge_data()
 
         # Need to call .cmdloop() to start terminal class.
