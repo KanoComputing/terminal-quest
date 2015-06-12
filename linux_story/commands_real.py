@@ -194,7 +194,8 @@ def nano(real_path, line):
     if not os.path.exists(nano_filepath):
         raise Exception("Cannot find nano")
 
-    p = subprocess.Popen(nano_filepath, cwd=real_path, shell=True)
+    cmd = nano_filepath + " " + line
+    p = subprocess.Popen(cmd, cwd=real_path, shell=True)
     stdout, stderr = p.communicate()
 
     if stdout:
