@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
@@ -62,8 +62,11 @@ class Step2(StepTemplateMv):
         'sandwich'
     ]
     unmovable_items = {
-        "newspaper": "{{rb:They asked for food, they probably shouldn't eat the newspaper.}}",
+        "newspaper": "{{rb:They asked for food, they probably shouldn't "
+        "eat the newspaper.}}",
+
         "oven": "{{rb:This is a bit heavy for you to carry!}}",
+
         "table": "{{rb:This is a bit heavy for you to carry!}}"
     }
     moved_items = []
@@ -83,8 +86,9 @@ class Step2(StepTemplateMv):
                         return True
                     else:
                         hint = (
-                            '{{rb:You\'re trying to move something that isn\'t in'
-                            ' the folder.\nTry using}} {{yb:mv %s basket/}}'
+                            "{{rb:You\'re trying to move something that "
+                            "isn\'t in the folder.\nTry using}} "
+                            "{{yb:mv %s basket/}}"
                             % self.passable_items[0]
                         )
                         self.send_hint(hint)
@@ -172,7 +176,9 @@ class Step4(StepTemplateMv):
     ]
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(self.last_user_input, self.commands)
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step5()

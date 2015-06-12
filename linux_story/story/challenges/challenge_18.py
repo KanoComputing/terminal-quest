@@ -9,7 +9,7 @@ from linux_story.step_helper_functions import (
     unblock_commands, unblock_commands_with_cd_hint
 )
 from linux_story.story.terminals.terminal_echo import TerminalEcho
-from linux_story.story.challenges.challenge_19 import Step1 as NextChallengeStep
+from linux_story.story.challenges.challenge_19 import Step1 as NextStep
 
 
 class StepTemplate(TerminalEcho):
@@ -263,4 +263,4 @@ class Step7(StepTemplate):
         return False
 
     def next(self):
-        NextChallengeStep(self.xp)
+        NextStep(self.xp)

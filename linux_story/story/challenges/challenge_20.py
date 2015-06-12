@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU Gpl v2
 #
 # A chapter of the story
 
@@ -10,7 +10,7 @@ from linux_story.step_helper_functions import (
 )
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
-from linux_story.story.challenges.challenge_21 import Step1 as NextChallengeStep
+from linux_story.story.challenges.challenge_21 import Step1 as NextStep
 
 
 class StepTemplateEcho(TerminalEcho):
@@ -22,6 +22,9 @@ class StepTemplateMkdir(TerminalMkdir):
 
 
 class Step1(StepTemplateEcho):
+    print_text = [
+        "{{yb:\"Some people survived by going into hiding.\"}}"
+    ]
     story = [
         "Ruth: {{Bb:Oh that's a good idea!  My husband used "
         "to build special shelters to store crops in over winter. "
@@ -143,4 +146,4 @@ class Step5(StepTemplateMkdir):
     ]
 
     def next(self):
-        NextChallengeStep(self.xp)
+        NextStep(self.xp)

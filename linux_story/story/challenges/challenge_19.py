@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
@@ -15,7 +15,7 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.story.terminals.terminal_echo import TerminalEcho
-from linux_story.story.challenges.challenge_20 import Step1 as NextChallengeStep
+from linux_story.story.challenges.challenge_20 import Step1 as NextStep
 
 
 class StepTemplate(TerminalEcho):
@@ -113,10 +113,13 @@ class Step3(StepTemplate):
 
     def __init__(self, prev_command='echo 1'):
         if prev_command == "echo 1":  # yes
+            self.print_text = ["{{yb:Yes}}"]
             self.story = ["Ruth: {{Bb:\"I thought so!\"}}"]
         elif prev_command == "echo 2":  # no
+            self.print_text = ["{{yb:No}}"]
             self.story = ["Ruth: {{Bb:Stop lying, I know you do.}}"]
         elif prev_command == "echo 3":  # I don't know
+            self.print_text = ["{{yb:I don't know}}"]
             self.story = ["Ruth: {{Bb:You don't know?  That's worrying...}}"]
 
         self.story = self.story + [
@@ -202,4 +205,4 @@ class Step4(StepTemplate):
             self.send_hint()
 
     def next(self):
-        NextChallengeStep(self.xp)
+        NextStep(self.xp)

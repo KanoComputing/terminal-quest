@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
 
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.terminals.terminal_echo import TerminalEcho
-from linux_story.story.challenges.challenge_18 import Step1 as NextChallengeStep
+from linux_story.story.challenges.challenge_18 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
@@ -221,4 +221,4 @@ class Step7(StepTemplateEcho):
     last_step = True
 
     def next(self):
-        NextChallengeStep(self.xp)
+        NextStep(self.xp)

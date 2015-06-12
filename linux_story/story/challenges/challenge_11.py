@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
@@ -72,7 +72,8 @@ class Step1(StepTemplateCd):
         end_dir_validated = current_dir == self.end_dir
 
         # if the validation is included
-        if self.last_user_input in self.all_commands.keys() and end_dir_validated:
+        if self.last_user_input in self.all_commands.keys() and \
+                end_dir_validated:
             # Print hint from person
             hint = "\n" + self.all_commands[self.last_user_input]
 
@@ -102,13 +103,19 @@ class Step2(StepTemplateMv):
     story = [
         "Edward looks like he has something he wants to say to you.\n",
         "{{wb:Edward:}} {{Bb:\"Hi there. Can you help me with something?\"",
+
         "\"I learnt this spell for moving items from"
         " one place to another.  But I can't seem to make it work.\"",
+
         "\"I've been trying to move this}} {{lb:apple}} {{Bb:into the}} "
         "{{lb:basket}}{{Bb:\"}}",
+
         "{{Bb:\"I was told the command was}} {{yb:mv apple basket/}}{{Bb:\"}}",
-        "{{Bb:\"But I don't understand what that means.  Do I say it?  Or write it?\"}}\n"
+
+        "{{Bb:\"But I don't understand what that means.  Do I say it? "
+        "Or write it?\"}}\n"
     ]
+
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
     commands = [
@@ -169,7 +176,8 @@ class Step4(StepTemplateMv):
         "ls -a basket/"
     ]
     hints = [
-        "{{rb:Use the command}} {{yb:ls basket/}} {{rb:to look in the basket.}}"
+        "{{rb:Use the command}} {{yb:ls basket/}} {{rb:to look in the "
+        "basket.}}"
     ]
 
     def next(self):
