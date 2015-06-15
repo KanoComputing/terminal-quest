@@ -1,4 +1,9 @@
 
+ * {
+ 	/* Remove annoying focus borders around buttons */
+	-GtkWidget-focus-line-width: 0px;
+}
+
 .main_window {
 	background: @story_background;
 }
@@ -29,7 +34,7 @@
 
 .spell_label {
 	color: #cccccc;
-	font: monospace 13px;
+	font: Bariol 13px;
 }
 
 .spell_command {
@@ -51,4 +56,34 @@
 .menu_title {
 	color: #ffffff;
 	font: Bariol Bold 20;
+}
+
+.menu_button {
+	background: @spell_icon_background;
+	font: Bariol bold;
+	border-style: solid;
+	border-color: transparent;
+	border-width: 5px;
+	border-radius: 2px;
+}
+
+.menu_button GtkLabel {
+	color: #ffffff;
+}
+
+/*********** Focus styling *********/
+.menu_button:focus, .menu_button:hover  {
+	border-color: #B1B3C9;
+	border-width: 5px;
+	border-style: solid;
+	border-radius: 2px;
+}
+
+.menu_button:insensitive {
+	background: @spell_icon_background_locked;
+}
+
+.menu_button GtkLabel:insensitive {
+	color: @spell_label_background_locked;
+	background: transparent;
 }

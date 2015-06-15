@@ -8,169 +8,71 @@
 # Shows the menu for selecting the appropriate challenge
 
 import os
+import sys
+
+if __name__ == '__main__' and __package__ is None:
+    dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+    if dir_path != '/usr':
+        sys.path.insert(1, dir_path)
+
 from gi.repository import Gtk, GObject
-
 from linux_story.common import get_max_challenge_number
-from kano.gtk3.buttons import KanoButton
 from kano_profile.apps import load_app_state_variable
+from linux_story.titles import challenges, chapters
 
 
-# This doesn't include the introduction as the introduction isn't a challenge
-chapters = {
-    1: {
-        'start_challenge': 1,
-        'end_challenge': 9,
-        'title': 'Start exploring'
-    },
-    2: {
-        'start_challenge': 10,
-        'end_challenge': 16,
-        'title': 'Save a family'
-    },
-    3: {
-        'start_challenge': 17,
-        'end_challenge': 25,
-        'title': 'Go to the farm'
-    }
-}
+'''
+
+TITLE
+
+MENU BUTTONS
+
+INFO BOX
+
+'''
 
 
-# Contains the text describing the challenges
-challenges = {
-    1: {
-        'title': 'Wake up!',
-        'chapter': 1
-    },
-    2: {
-        'title': 'Look in your wardrobe',
-        'chapter': 1
-    },
-    3: {
-        'title': 'Look on your shelves',
-        'chapter': 1
-    },
-    4: {
-        'title': 'Find Mum',
-        'chapter': 1
-    },
-    5: {
-        'title': 'Where\'s Dad?',
-        'chapter': 1
-    },
-    6: {
-        'title': 'Visit the town',
-        'chapter': 1
-    },
-    7: {
-        'title': 'Town meeting',
-        'chapter': 1
-    },
-    8: {
-        'title': 'The bell strikes',
-        'chapter': 1
-    },
-    9: {
-        'title': 'Where\'s Mum?',
-        'chapter': 1
-    },
-    10: {
-        'title': 'See more clearly',
-        'chapter': 2
-    },
-    11: {
-        'title': 'Save the girl',
-        'chapter': 2
-    },
-    12: {
-        'title': 'Save the dog',
-        'chapter': 2
-    },
-    13: {
-        'title': 'Food hunt',
-        'chapter': 2
-    },
-    14: {
-        'title': 'Folderton Hero',
-        'chapter': 2
-    },
-    15: {
-        'title': 'Have a closer look',
-        'chapter': 2
-    },
-    16: {
-        'title': 'A gift',
-        'chapter': 2
-    },
-    17: {
-        'title': '',
-        'chapter': 3
-    },
-    18: {
-        'title': '',
-        'chapter': 3
-    },
-    19: {
-        'title': '',
-        'chapter': 3
-    },
-    20: {
-        'title': '',
-        'chapter': 3
-    },
-    21: {
-        'title': '',
-        'chapter': 3
-    },
-    22: {
-        'title': '',
-        'chapter': 3
-    },
-    23: {
-        'title': '',
-        'chapter': 3
-    },
-    24: {
-        'title': '',
-        'chapter': 3
-    },
-    25: {
-        'title': '',
-        'chapter': 3
-    }
-}
-
-
-# TODO: have a design for the GUI.  For example, could have a terminal based
-# selection screen
 class MenuScreen(Gtk.Alignment):
     '''This shows the user the challenges they can select.
     '''
 
     __gsignals__ = {
         # This returns an integer of the challenge the user wants to start from
-        'challenge_selected': (GObject.SIGNAL_RUN_FIRST, None, (int,))
+        'challenge_selected': (GObject.SIGNAL_RUN_FIRST, None, (int,)),
+        'chapter_highlighted': (GObject.SIGNAL_RUN_FIRST, None, (int,)),
+        'challenge_highlighted': (GObject.SIGNAL_RUN_FIRST, None, (int,)),
     }
 
+    width = 500
+    height = 200
+
     def __init__(self):
-        Gtk.Alignment.__init__(self, xalign=0.5, yalign=0.5, xscale=0, yscale=0)
+        Gtk.Alignment.__init__(
+            self, xalign=0.5, yalign=0.5, xscale=0, yscale=0
+        )
 
         self.background = Gtk.EventBox()
         self.background.get_style_context().add_class("menu_background")
+        self.background.set_size_request(self.width, self.height)
 
         self.add(self.background)
-        self.set_size_request(300, 300)
 
         # Find the greatest challenge that has been created according to
         # kano profile
         self.max_challenge = get_max_challenge_number()
 
         # Get the last unlocked challenge.
-        self.last_unlocked_challenge = load_app_state_variable('linux-story', 'level')
+        self.last_unlocked_challenge = load_app_state_variable(
+            'linux-story', 'level'
+        )
 
         # With this data, we need to decide which chapters are locked.
         self.last_unlocked_chapter = challenges[self.last_unlocked_challenge]['chapter']
-
         self.continue_story_or_select_chapter_menu()
+
+    def update_descriptions(self, title, description):
+        self.menu_title.set_text(title)
+        self.menu_description.set_text(description)
 
     def replace_widget(self, new_menu):
 
@@ -188,6 +90,7 @@ class MenuScreen(Gtk.Alignment):
     def create_menu_title(self, title):
         label = Gtk.Label(title)
         label.get_style_context().add_class('menu_title')
+        label.set_padding(10, 10)
         return label
 
     def continue_story_or_select_chapter_menu(self, widget=None):
@@ -195,25 +98,35 @@ class MenuScreen(Gtk.Alignment):
         from where they left off, or selecting the chapter manually
         '''
 
-        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-
+        grid = Gtk.Grid()
+        grid.set_row_spacing(8)
+        grid.set_column_spacing(8)
         label = self.create_menu_title("TERMINAL QUEST")
 
         # This takes the user to the latest point in the story
-        continue_btn = KanoButton("CONTINUE")
+        continue_btn = self.create_menu_button("CONTINUE")
+
+        # For now, remove the launching functionality.
         continue_btn.connect(
-            'clicked', self.launch_challenge, self.last_unlocked_challenge
+            "clicked", self.launch_challenge, self.last_unlocked_challenge
         )
 
         # This takes the user to the chapter menu
-        select_chapter_btn = KanoButton('SELECT CHAPTER')
-        select_chapter_btn.connect('clicked', self.show_chapter_menu_wrapper)
+        select_chapter_btn = self.create_menu_button("SELECT CHAPTER")
+        select_chapter_btn.connect("clicked", self.show_chapter_menu_wrapper)
 
-        vbox.pack_start(label, False, False, 5)
-        vbox.pack_start(continue_btn, False, False, 0)
-        vbox.pack_start(select_chapter_btn, False, False, 0)
+        grid.attach(label, 0, 0, 1, 1)
+        grid.attach(continue_btn, 0, 1, 1, 1)
+        grid.attach(select_chapter_btn, 0, 2, 1, 1)
 
-        self.replace_widget(vbox)
+        align = Gtk.Alignment(xalign=0.5, yalign=0.5, xscale=0, yscale=0)
+        align.add(grid)
+
+        self.replace_widget(align)
+
+        # Make the CONTINUE button grab the focus
+        continue_btn.grab_focus()
+        self.show_all()
 
     ################################################################
     # Lots of repetition here.
@@ -225,15 +138,25 @@ class MenuScreen(Gtk.Alignment):
         '''Show a menu for the challenges available in a certain chapter
         '''
 
-        menu = self.create_challenge_menu(challenge_number)
-        self.replace_widget(menu)
+        self.menu = self.create_challenge_menu(challenge_number)
+        self.replace_widget(self.menu)
+
+        # Reset the highlighted location
+        button = self.button_grid.get_child_at(0, 0)
+        button.grab_focus()
+
+        self.show_all()
 
     def show_chapter_menu_wrapper(self, widget):
         self.show_chapter_menu()
 
     def show_chapter_menu(self):
-        menu = self.create_chapter_menu()
-        self.replace_widget(menu)
+        self.menu = self.create_chapter_menu()
+        self.replace_widget(self.menu)
+
+        # Reset the highlighted location
+        button = self.button_grid.get_child_at(0, 0)
+        button.grab_focus()
         self.show_all()
 
     def create_generic_menu(self, title):
@@ -246,7 +169,7 @@ class MenuScreen(Gtk.Alignment):
         grid.set_column_spacing(10)
 
         # Include back button
-        self.back_btn = KanoButton("<-", color='blue')
+        self.back_btn = self.create_back_button()
 
         hbox = Gtk.Box(spacing=20)
         hbox.pack_start(self.back_btn, False, False, 0)
@@ -256,24 +179,30 @@ class MenuScreen(Gtk.Alignment):
         vbox.pack_start(label, False, False, 0)
         vbox.pack_start(hbox, False, False, 0)
 
-        return (vbox, grid)
+        # Pack into an alignment to centre the menu
+        align = Gtk.Alignment(xalign=0.5, yalign=0.5, xscale=0, yscale=0)
+        align.add(vbox)
 
-    def create_chapter_menu(self):
+        return (align, vbox, grid)
+
+    def create_menu(self, title, start, end, create_button_cb, back_button_cb):
         '''Create a menu of the available chapters
         '''
 
         # hbox is the total container, grid is the container that has all
         # the buttons
-        (box, grid) = self.create_generic_menu("CHAPTERS")
-        num_of_chapters = len(chapters)
-        self.back_btn.connect('clicked', self.continue_story_or_select_chapter_menu)
+        (align, box, grid) = self.create_generic_menu("CHAPTERS")
+        self.button_grid = grid
+        self.back_btn.connect(
+            'clicked', back_button_cb
+        )
 
         row = 0
         column = 0
         total_columns = 6
 
-        for i in range(1, num_of_chapters + 1):
-            button = self.create_chapter_button(i)
+        for i in range(start, end + 1):
+            button = create_button_cb(i)
             grid.attach(button, column, row, 1, 1)
             column += 1
 
@@ -281,69 +210,147 @@ class MenuScreen(Gtk.Alignment):
                 row += 1
                 column = 0
 
-        return box
+        # Show title and description
+        self.info_box = self.create_info_box()
+
+        # Pack the title and description in the menu
+        box.pack_start(self.info_box, False, False, 10)
+
+        return align
+
+    def create_chapter_menu(self):
+        '''Create a menu of the available chapters
+        '''
+
+        num_of_chapters = len(chapters)
+        return self.create_menu(
+            "CHAPTERS",
+            1,
+            num_of_chapters,
+            self.create_chapter_button,
+            self.continue_story_or_select_chapter_menu
+        )
 
     def create_challenge_menu(self, chapter_number):
-        (box, grid) = self.create_generic_menu("CHALLENGES")
+
         start_challenge = chapters[chapter_number]['start_challenge']
         end_challenge = chapters[chapter_number]['end_challenge']
-        self.back_btn.connect('clicked', self.show_chapter_menu_wrapper)
 
-        row = 0
-        column = 0
-        total_columns = 6
+        return self.create_menu(
+            "CHALLENGES",
+            start_challenge,
+            end_challenge,
+            self.create_challenge_button,
+            self.show_chapter_menu_wrapper
+        )
 
-        for i in range(start_challenge, end_challenge + 1):
-            button = self.create_challenge_button(i)
-            grid.attach(button, column, row, 1, 1)
-            column += 1
+    def create_menu_button(self, title):
+        width = 50
+        height = 50
 
-            if column > total_columns:
-                row += 1
-                column = 0
+        button = Gtk.Button(title)
+        button.set_size_request(width, height)
+        button.get_style_context().add_class("menu_button")
+        return button
 
-        return box
+    def create_back_button(self):
+        button = self.create_menu_button("<- BACK")
+        # Get title, description.
+        title = "Press ENTER to go to the previous screen"
+        description = ""
 
-    def create_challenge_button(self, challenge_number):
-        button = KanoButton(challenge_number)
-        button.connect("clicked", self.launch_challenge, challenge_number)
+        button.connect(
+            "focus-in-event", self.edit_info_box_focus_in_wrapper,
+            title, description
+        )
+        return button
 
-        title = challenges[challenge_number]['title']
-        button.set_property('has-tooltip', True)
-        button.connect('query-tooltip', self.custom_tooltip, title)
+    def create_menu_number_button(self, number, locking_number):
+        button = self.create_menu_button(number)
 
-        # If the chapter number is greater than the maximum chapter unlocked,
-        # set the styling to locked and make it insensitive.
-        if challenge_number > self.last_unlocked_challenge:
+        if number > locking_number:
             button.get_style_context().add_class("locked")
             button.set_sensitive(False)
 
         return button
 
-    def custom_tooltip(self, x, y, z, a, tooltip, title):
-        '''There is a much simpler function for having a tooltip with just
-        text, but if we want to make it more complex, we can just modify this
-        widget here.
-        '''
-        # Edit this if we want the tooltip to get any more complicated.
-        custom_widget = Gtk.Label(title)
-        tooltip.set_custom(custom_widget)
-        return True
-
-    def create_chapter_button(self, chapter_number):
-        button = KanoButton(chapter_number)
-        button.connect(
-            "clicked", self.show_challenge_menu_wrapper, chapter_number
+    def create_challenge_button(self, number):
+        button = self.create_menu_number_button(
+            number, self.last_unlocked_challenge
         )
-        # If the chapter number is greater than the maximum chapter unlocked,
-        # set the styling to locked and make it insensitive.
-        if chapter_number > self.last_unlocked_chapter:
-            button.get_style_context().add_class("locked")
-            button.set_sensitive(False)
 
+        # Get title, description from the yaml.
+        title = challenges[number]["title"]
+        # description = challenges[number]["description"]
+        description = ""
+
+        button.connect(
+            "focus-in-event", self.edit_info_box_focus_in_wrapper, title,
+            description
+        )
+
+        button.connect("clicked", self.launch_challenge, number)
+        return button
+
+    def create_chapter_button(self, number):
+        button = self.create_menu_number_button(
+            number, self.last_unlocked_chapter
+        )
+
+        # Get title, description from the yaml.
+        title = chapters[number]["title"]
+        # description = chapters[number]["description"]
+        description = ""
+
+        button.connect(
+            "focus-in-event", self.edit_info_box_focus_in_wrapper, title,
+            description
+        )
+
+        button.connect(
+            "clicked", self.show_challenge_menu_wrapper, number
+        )
         return button
 
     ####################################################################
+
+    def create_info_box(self, title="", description=""):
+        '''This shows the information about the chapter the user is trying
+        to select.
+        '''
+        background = Gtk.EventBox()
+
+        # width = 400
+        # height = 50
+        # background.set_size_request(width, height)
+
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+
+        # These are the descriptions and titles for the menu
+        self.menu_title = Gtk.Label(title)
+        self.menu_title.get_style_context().add_class("menu_title")
+
+        self.menu_description = Gtk.Label(description)
+        self.menu_description.get_style_context().add_class("menu_description")
+
+        box.pack_start(self.menu_title, False, False, 0)
+        box.pack_start(self.menu_description, False, False, 0)
+
+        background.add(box)
+
+        # align = Gtk.Alignment(xalign=0.5, yalign=0.5, xscale=0, yscale=0)
+        # align.add(box)
+        # background.add(align)
+
+        return background
+
+    def edit_info_box_focus_in_wrapper(self, widget, event, title,
+                                       description):
+        self.edit_info_box(title, description)
+
+    def edit_info_box(self, title, description):
+        self.menu_title.set_text(title)
+        self.menu_description.set_text(description)
 
     def launch_challenge(self, widget, challenge_number):
         self.emit('challenge_selected', challenge_number)
@@ -372,3 +379,31 @@ class MenuScreen(Gtk.Alignment):
         )
 
         os.system(command)
+
+
+if __name__ == "__main__":
+
+    from linux_story.common import css_dir
+    from kano.gtk3.apply_styles import apply_styling_to_screen
+
+    window = Gtk.Window()
+
+    # add styling
+    CSS_FILE = os.path.join(
+        css_dir,
+        "style.css"
+    )
+    COLOUR_CSS_FILE = os.path.join(
+        css_dir,
+        "colours.css"
+    )
+
+    apply_styling_to_screen(CSS_FILE)
+    apply_styling_to_screen(COLOUR_CSS_FILE)
+
+    menuscreen = MenuScreen()
+    window.add(menuscreen)
+    window.connect("delete-event", Gtk.main_quit)
+    window.show_all()
+
+    Gtk.main()
