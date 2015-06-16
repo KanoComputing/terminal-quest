@@ -42,7 +42,7 @@ class Step1(StepTemplateMkdir):
     ]
     story_dict = {
         "Ruth": {
-            "path": "~/farm/toolshed",
+            "path": "~/farm/barn",
         }
     }
 
