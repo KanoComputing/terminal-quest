@@ -202,6 +202,7 @@ class Step4(StepTemplate):
 
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
+    last_step = True
 
     commands = [
         "echo 1",

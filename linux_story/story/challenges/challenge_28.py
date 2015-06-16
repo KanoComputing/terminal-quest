@@ -144,6 +144,7 @@ class Step6(StepTemplateNano):
     commands = [
         "cat Clara"
     ]
+    last_step = True
 
     def next(self):
         time.sleep(3)

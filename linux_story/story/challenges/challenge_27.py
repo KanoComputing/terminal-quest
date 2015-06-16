@@ -173,6 +173,7 @@ class Step5(StepTemplateNano):
 
     start_dir = "~/town/east-part/shed-shop"
     end_dir = "~/town/east-part"
+    last_step = True
 
     def block_command(self):
         return unblock_commands_with_cd_hint(

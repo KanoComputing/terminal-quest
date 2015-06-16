@@ -152,6 +152,7 @@ class Step5(StepTemplateMkdir):
     hints = [
         "{{rb:Look around using}} {{yb:ls}}{{rb:.}}"
     ]
+    last_step = True
 
     def next(self):
         NextStep(self.xp)
