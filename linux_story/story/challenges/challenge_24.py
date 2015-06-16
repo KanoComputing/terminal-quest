@@ -84,7 +84,6 @@ class Step3(StepTemplateMkdir):
 class Step4(StepTemplateMkdir):
 
     story = [
-        "You seem to be in a pretty empty space.",
         "You see a man called Bernard, a door and a "
         "couple of tools.",
         "\nThe tools show up as {{gb:green}} in the Terminal.",

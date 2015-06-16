@@ -152,7 +152,7 @@ class Step4(StepTemplateMkdir):
     ]
 
     story = [
-        "Eleanor: {{Bb:Let's go to the}} {{yb:east part}} "
+        "Eleanor: {{Bb:Let's go to the}} {{lb:east part}} "
         "{{Bb:of town.}}",
         "{{Bb:Have you not noticed it before? It's over there! "
         "Look over there.}}",
@@ -167,6 +167,10 @@ class Step4(StepTemplateMkdir):
             "path": "~/town/east-part/shed-shop",
             "permissions": 0755
         },
+        "secret-room": {
+            "directory": True,
+            "path": "~/town/east-part/shed-shop"
+        },
         "NANO": {
             "path": "~/town/east-part/library/public-section"
         },
@@ -175,6 +179,9 @@ class Step4(StepTemplateMkdir):
             # Remove all read and write permissions
             "permissions": 0000,
             "directory": True
+        },
+        "Clara": {
+            "path": "~/town/east-part/restaurant/.cellar"
         }
     }
 
@@ -184,10 +191,12 @@ class Step4(StepTemplateMkdir):
 
 class Step5(StepTemplateMkdir):
     story = [
-        "You see a new part of town called {{lb:east-part}}.",
+        "You look in the direction Eleanor is pointing.",
+        "There is a narrow road leading to another part of town.",
+        "This must take us to the east part.",
         "Eleanor: {{Bb:Let's go there and see if we can find my "
         "parents.}}",
-        "\nGo into the east-part of town."
+        "\n{{lb:Go}} into the {{lb:east-part}} of town."
     ]
     start_dir = "~/town"
     end_dir = "~/town/east-part"
