@@ -291,7 +291,7 @@ Cobweb, Trotter, Daisy, Ruth:
           step: 1
           path: "~/farm/barn"
         - challenge: 21
-          step: 7
+          step: 10
           path: "~/farm/barn/.shelter"
 
 # Farmer's wife
@@ -314,7 +314,7 @@ MKDIR, spanner, hammer, saw, tape-measure:
     directory: True
     challenges:
         - challenge: 21
-          step: 4
+          step: 7
           path: "~/farm/barn"
 
 # make .hidden-shelter folk disappear
@@ -359,6 +359,13 @@ secret-room:
           step: 4
           path: "~/town/east-part/shed-shop"
 
+shed:
+    directory: True
+    challenges:
+        - challenge: 25
+          step: 5
+          path: "~/town/east-part/shed-shop"
+
 NANO:
     challenges:
         - challenge: 23
@@ -372,3 +379,10 @@ private-section:
           step: 4
           path: "~/town/east-part/library"
           permissions: 0000
+
+# Hidden librarian
+Clara:
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east-part/restaurant/.cellar"

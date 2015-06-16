@@ -28,7 +28,7 @@ class TerminalNano(TerminalEcho):
     # Save name we want to ask user to write
     goal_nano_save_name = ""
 
-    def __init__(self):
+    def __init__(self, xp=""):
 
         ##############################################
         # nano variables
@@ -47,7 +47,7 @@ class TerminalNano(TerminalEcho):
         self.last_nano_filename = ""
         ################################################
 
-        TerminalEcho.__init__(self)
+        TerminalEcho.__init__(self, xp)
 
     def do_nano(self, line):
         # line = the filepath of the nano file

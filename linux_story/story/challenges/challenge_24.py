@@ -37,7 +37,7 @@ class Step1(StepTemplateMkdir):
 class Step2(StepTemplateMkdir):
     story = [
         "Eleanor: {{Bb:Hey, what is that shed-shop?}}",
-        "{{Bb:Let's go in!}}"
+        "{{Bb:Let's}} {{lb:go in}}{{Bb:!}}"
     ]
 
     start_dir = "~/town/east-part"
@@ -85,10 +85,10 @@ class Step4(StepTemplateMkdir):
 
     story = [
         "You seem to be in a pretty empty space.",
-        "You see a man called {{lb:Bernard}}, a sign and a "
-        "couple of tools. The {{lb:shed-maker}} looks functional, "
-        "but the {{lb:loudspeaker}} looks a tad broken.",
-        "See what {{lb:Bernard}} has to say."
+        "You see a man called Bernard, a door and a "
+        "couple of tools.",
+        "\nThe tools show up as {{gb:green}} in the Terminal.",
+        "\n{{lb:Listen}} to what {{lb:Bernard}} has to say."
     ]
 
     start_dir = "~/town/east-part/shed-shop"

@@ -85,8 +85,29 @@ class Step2(StepTemplate):
     end_dir = "~/farm/barn"
     commands = ["echo 1", "echo 2", "echo 3"]
     hints = [
-        "{{rb:If you want to reply with \"Yes\", use}} {{yb:echo 1}}"
+        "{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} "
+        "{{yb:echo 3}} {{rb:to reply to Ruth.}}"
     ]
+
+    def check_command(self, current_dir):
+        replies = {
+            "echo yes": "1",
+            "echo no": "2",
+            "echo \"i don't know\"": "3",
+            "echo i don't know": "3"
+        }
+
+        if self.last_user_input.lower() in replies:
+            hint = [
+                "\n{{rb:If you want to reply with \"" +
+                self.last_user_input +
+                "\", use}} {{yb:echo " +
+                replies[self.last_user_input.lower()] +
+                "}}"
+            ]
+            self.send_text(hint)
+        else:
+            return StepTemplate.check_command(self, current_dir)
 
     def next(self):
         Step3(self.last_user_input)
@@ -108,19 +129,19 @@ class Step3(StepTemplate):
         "Ruth: {{Bb:\"Excuse me? What did you say? "
         "You know to use the}} {{lb:echo}} {{Bb:command, yes?\"}}",
         "{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} "
-        "{{yb:echo 3}} {{rb:to reply}}"
+        "{{yb:echo 3}} {{rb:to reply.}}"
     ]
 
     def __init__(self, prev_command='echo 1'):
         if prev_command == "echo 1":  # yes
             self.print_text = ["{{yb:Yes}}"]
-            self.story = ["Ruth: {{Bb:\"I thought so!\"}}"]
+            self.story = ["\nRuth: {{Bb:\"I thought so!\"}}"]
         elif prev_command == "echo 2":  # no
             self.print_text = ["{{yb:No}}"]
-            self.story = ["Ruth: {{Bb:Stop lying, I know you do.}}"]
+            self.story = ["\nRuth: {{Bb:Stop lying, I know you do.}}"]
         elif prev_command == "echo 3":  # I don't know
             self.print_text = ["{{yb:I don't know}}"]
-            self.story = ["Ruth: {{Bb:You don't know?  That's worrying...}}"]
+            self.story = ["\nRuth: {{Bb:You don't know?  That's worrying...}}"]
 
         self.story = self.story + [
             "\n{{Bb:Did you walk all the way from town? "
@@ -132,8 +153,8 @@ class Step3(StepTemplate):
             "{{yb:2: \"I didn't see your husband, but people have been "
             "disappearing in town.\"}}",
             "{{yb:3: \"I don't know anything.\"}}",
-            "\nRespond to one of the following options using the {{lb:echo}} "
-            "and option number.\n"
+            "\nRespond with one of the following options using the "
+            "{{lb:echo}} command and option number.\n"
         ]
         StepTemplate.__init__(self)
 
@@ -168,8 +189,11 @@ class Step3(StepTemplate):
 
 
 class Step4(StepTemplate):
+    print_text = [
+        "{{yb:\"I'm sorry, he disappeared in front of me.\"}}\n"
+    ]
     story = [
-        "Ruth: {{Bb:\"He disappeared in front of you?? Oh no! "
+        "\nRuth: {{Bb:\"He disappeared in front of you?? Oh no! "
         "They've been saying on the radio that people have been "
         "going missing...what should I do?\"}}",
         "\n{{yb:1: \"Some people survived by going into hiding.\"}}",
@@ -196,7 +220,7 @@ class Step4(StepTemplate):
         elif self.last_user_input == "echo 2":
             response = (
                 "Ruth: {{Bb:\"I would, but I'm scared of going missing myself."
-                "He might come back, so I should stay "
+                "\nHe might come back, so I should stay "
                 "here in case he does.  Can you think of anything "
                 "else?\"}}"
             )

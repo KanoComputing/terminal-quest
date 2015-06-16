@@ -19,9 +19,13 @@ class StepTemplate(TerminalEcho):
 class Step1(StepTemplate):
     story = [
         "{{gb:Congratulations, you learnt the new skill echo!}}",
+
         "\nWoah! You spoke aloud into the empty room!",
+
         "This command can probably be used to talk to people.",
-        "Move this command into your chest for safe keeping."
+
+        "Move this {{lb:ECHO}} command into your {{lb.chest}} "
+        "for safe keeping."
     ]
     hints = [
         "{{rb:An easy way to do it is to move}} {{lb:ECHO}} {{rb:from}} "
@@ -76,7 +80,7 @@ class Step2(StepTemplate):
 class Step3(StepTemplate):
     story = [
         "You are back on the windy road, which stretches endlessly in both "
-        "directions.  Look around."
+        "directions. {{lb:Look around.}}"
     ]
     hints = [
         "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
@@ -96,7 +100,7 @@ class Step3(StepTemplate):
 class Step4(StepTemplate):
     story = [
         "You notice a small remote farm in the distance.",
-        "Let's go that way."
+        "{{lb:Let's go}} to the {{lb:farm}}."
     ]
 
     start_dir = "~"
@@ -139,8 +143,9 @@ class Step6(StepTemplate):
         "You are in a farm, with a {{bb:barn}}, a {{bb:farmhouse}} and "
         "a large {{bb:toolshed}} in sight.",
         "The land is well tended and weed free, so there must "
-        "be people about here.  See if you can find someone to "
-        "talk to."
+        "be people about here.",
+        "{{lb:Look around}} and see if you can "
+        "find someone to talk to."
     ]
     start_dir = "~/farm"
     end_dir = "~/farm"
@@ -192,8 +197,8 @@ class Step7(StepTemplate):
 
     story = [
         "In the barn, you see a woman tending some animals.",
-        "Take a closer look at everyone in the barn using "
-        "the {{yb:cat}} command."
+        "{{lb:Examine}} everyone in the barn using "
+        "the {{lb:cat}} command."
     ]
 
     # what is this?
@@ -209,6 +214,11 @@ class Step7(StepTemplate):
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
     last_step = True
+
+    hints = [
+        "{{rb:If you've forgotten who's in the barn, use}} "
+        "{{yb:ls}} {{rb:to remind yourself.}}"
+    ]
 
     # TODO: move this into step_helper_functions, used a few too
     # many times outside.
@@ -226,11 +236,6 @@ class Step7(StepTemplate):
 
         # check through list of commands
         end_dir_validated = False
-        self.hints = [
-            "{{rb:Use}} {{yb:" + self.all_commands.keys()[0] + "}} "
-            "{{rb:to progress.}}"
-        ]
-
         end_dir_validated = current_dir == self.end_dir
 
         # if the validation is included
@@ -256,7 +261,13 @@ class Step7(StepTemplate):
             self.send_text(hint)
 
         else:
-            self.send_text("\n" + self.hints[0])
+            if not self.hints:
+                self.hints = [
+                    "{{rb:Use}} {{yb:" + self.all_commands.keys()[0] + "}} "
+                    "{{rb:to progress.}}"
+                ]
+            self.send_hint()
+            self.hints.pop()
 
         # Always return False unless the list of valid commands have been
         # emptied

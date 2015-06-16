@@ -28,7 +28,9 @@ from linux_story.gtk3.Storybook import Storybook
 from linux_story.gtk3.FinishDialog import FinishDialog
 from linux_story.common import css_dir
 from linux_story.gtk3.MenuScreen import MenuScreen
-from linux_story.load_defaults_into_filetree import revert_to_default_permissions
+from linux_story.load_defaults_into_filetree import (
+    revert_to_default_permissions
+)
 
 from kano.gtk3.apply_styles import apply_styling_to_screen
 from kano.gtk3.scrolled_window import ScrolledWindow
@@ -274,7 +276,9 @@ class MainWindow(GenericWindow):
                     # If we have have just used echo in the previous
                     # challenge, we should print out the user's choice
                     if "print_text" in data_dict and data_dict["print_text"]:
-                        self.print_text(data_dict["print_text"])
+                        # Automatically stick a double newline at the end of
+                        # the user text to save us having to do it ourselves.
+                        self.print_text(data_dict["print_text"] + "\n\n")
 
                     # Type the story out
                     self.type_text(data_dict['story'])

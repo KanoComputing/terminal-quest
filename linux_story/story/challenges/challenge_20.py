@@ -23,14 +23,14 @@ class StepTemplateMkdir(TerminalMkdir):
 
 class Step1(StepTemplateEcho):
     print_text = [
-        "{{yb:\"Some people survived by going into hiding.\"}}"
+        "{{yb:\"Some people survived by going into hiding.\"}}\n"
     ]
     story = [
-        "Ruth: {{Bb:Oh that's a good idea!  My husband used "
+        "\nRuth: {{Bb:Oh! That reminds me, my husband used "
         "to build special shelters to store crops in over winter. "
         "I think he used a specific tool. "
-        "We should take a look in his toolshed to see if we can find it.}}"
-        "\n{{gb:Use the}} {{lb:cd}} {{gb:command to go into the toolshed.}}\n"
+        "We should take a look in his toolshed to see if we can find it.}}",
+        "\nUse the {{lb:cd}} command to go into the toolshed.\n"
     ]
 
     commands = [
@@ -56,10 +56,10 @@ class Step1(StepTemplateEcho):
 
 class Step2(StepTemplateEcho):
     story = [
-        "Ruth follows you into the toolshed.  It's a very large "
+        "Ruth follows you into the toolshed. It's a very large "
         "space with tools lining the walls.",
-        "Ruth: {{Bb:Let's have a look around for anything that "
-        "could be useful.}}\n"
+        "Ruth: {{Bb:Let's}} {{lb:look around}} {{Bb:for "
+        "anything that could be useful.}}\n"
     ]
     start_dir = "~/farm/toolshed"
     end_dir = "~/farm/toolshed"
@@ -67,7 +67,12 @@ class Step2(StepTemplateEcho):
         "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     ]
     commands = [
-        "ls"
+        "ls",
+        "ls -a",
+        "ls .",
+        "ls ./",
+        "ls -a .",
+        "ls -a ./"
     ]
     # Move Ruth into toolshed
     story_dict = {
@@ -84,13 +89,16 @@ class Step2(StepTemplateEcho):
 class Step3(StepTemplateEcho):
     story = [
         "Ruth: {{Bb:Ah, look! There are some instructions "
-        "labelled under}} {{lb:MKDIR}}{{Bb:.}}",
-        "{{Bb:What does it say?}}\n"
+        "under}} {{lb:MKDIR}}{{Bb:.}}",
+        "{{Bb:What does it say?}}",
+        "\n{{lb:Examine}} the {{lb:MKDIR}} instructions."
     ]
     hints = [
         "Ruth: {{Bb:\"...you are able to read, yes? You use}} {{lb:cat}} "
         "{{Bb:to read things.\"}}",
-        "Ruth: {{Bb:\"Just use}} {{yb:cat MKDIR}} {{Bb:to read the paper.\"}}"
+        "Ruth: {{Bb:\"What do you kids learn in schools nowadays...\""
+        "\n\"Just use}} {{yb:cat MKDIR}} {{Bb:to read the paper.\"}}",
+        "{{rb:Use}} {{yb:cat MKDIR}} {{rb:to read it.}}"
     ]
     start_dir = "~/farm/toolshed"
     end_dir = "~/farm/toolshed"
@@ -103,8 +111,8 @@ class Step3(StepTemplateEcho):
 class Step4(StepTemplateMkdir):
     story = [
         "Ruth: {{Bb:This says you can make something using something "
-        "called}} {{yb:mkdir}}{{Bb:?}}",
-        "\n{{gb:Try making an igloo using}} {{yb:mkdir}}"
+        "called}} {{lb:mkdir}}{{Bb:?}}",
+        "\n{{gb:Try making an igloo using}} {{yb:mkdir igloo}}"
     ]
     hints = [
         "{{rb:Create an igloo structure by using}} {{yb:mkdir igloo}}\n"
@@ -131,7 +139,7 @@ class Step4(StepTemplateMkdir):
 
 class Step5(StepTemplateMkdir):
     story = [
-        "Now have a look around and see what's changed."
+        "Now have a {{lb:look around}} and see what's changed."
     ]
     start_dir = "~/farm/toolshed"
     end_dir = "~/farm/toolshed"
@@ -142,7 +150,7 @@ class Step5(StepTemplateMkdir):
         "ls ./"
     ]
     hints = [
-        "Look around using {{yb:ls}}"
+        "{{rb:Look around using}} {{yb:ls}}{{rb:.}}"
     ]
 
     def next(self):

@@ -21,10 +21,10 @@ class Step1(StepTemplateMkdir):
     story = [
         "{{gb:Nice! You've build an igloo! You learned the new skill, "
         "mkdir!}}",
-        "\nRuth: {{Bb:That's amazing!  Please help me build a shelter!",
+        "\nRuth: {{Bb:That's amazing! Please help me build a shelter!",
         "Can we build it in the}} {{lb:barn}}{{Bb:, as then it'll be easier "
         "to move the animals inside.}}",
-        "\n{{yb:Go back into the barn.}}"
+        "\n{{lb:Go}} back into the {{lb:barn}}."
     ]
     start_dir = "~/farm/toolshed"
     end_dir = "~/farm/barn"
@@ -57,14 +57,14 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateMkdir):
     story = [
-        "Ruth: {{Bb:Anyone can find the igloo, "
-        "can we make something that people can't find. Do you have "
-        "any ideas how we can make something hidden?}}\n",
+        "Ruth: {{Bb:Anyone would be able to find the igloo "
+        "you just made.",
+        "Is it possible to make something hidden?}}\n",
         "{{yb:1: If we call it}} {{lb:hidden-shelter}}"
         "{{yb:, that will make it hidden.}}",
         "{{yb:2: Putting a . at the front makes things hidden.}}",
         "{{yb:3: It's impossible to make a hidden shelter.}}\n",
-        "Use echo to tell Ruth how to make things hidden."
+        "Use {{lb:echo}} to tell Ruth how to make things hidden."
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
@@ -86,10 +86,10 @@ class Step2(StepTemplateMkdir):
 
     def check_command(self, current_dir):
         if self.last_user_input == "echo 1":
-            self.next_class = Step3a
+            self.next_class = Step3
             return True
         elif self.last_user_input == "echo 2":
-            self.next_class = Step3b
+            self.next_class = Step6
             return True
         elif self.last_user_input == "echo 3":
             hint = (
@@ -103,8 +103,8 @@ class Step2(StepTemplateMkdir):
         self.next_class()
 
 
-# Fork a - try making a hidden shelter
-class Step3a(StepTemplateMkdir):
+# First fork - try making a hidden shelter
+class Step3(StepTemplateMkdir):
     story = [
         "Ruth: {{Bb:So creating one called}} {{lb:hidden-shelter}} "
         "{{Bb:should make it hidden?  Ok, let's try that.}}\n",
@@ -128,6 +128,7 @@ class Step3a(StepTemplateMkdir):
                 "\nRuth: {{Bb:You said the shelter should be called}} "
                 "{{lb:hidden-shelter}}{{Bb:, not}} {{lb:.hidden-shelter}}"
                 "{{Bb:.}}"
+                "\n{{yb:Press UP to replay the old command, and edit it.}}"
             )
             self.send_text(hint)
         else:
@@ -139,18 +140,48 @@ class Step3a(StepTemplateMkdir):
         )
 
     def next(self):
-        Step4a()
+        Step4()
 
 
-class Step4a(StepTemplateMkdir):
+class Step4(StepTemplateMkdir):
     story = [
-        "Ruth: {{Bb:You made}} {{lb:hidden-shelter!}}",
+        "{{lb:Look around}} to see if it is hidden correctly."
+    ]
+    start_dir = "~/farm/barn"
+    end_dir = "~/farm/barn"
+    commands = [
+        "ls"
+    ]
+    hints = [
+        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+    ]
+    ls_a_hint = True
+
+    def check_command(self, current_dir):
+        if self.last_user_input == "ls -a" and self.ls_a_hint:
+            hint = (
+                "\n{{gb:Close!}} {{ob:But you need to check if the "
+                "shelter is hidden, so don't look "
+                "around you}} {{yb:too closely}}{{rb:.}}"
+            )
+            self.send_text(hint)
+            self.ls_a_hint = False
+        else:
+            return StepTemplateMkdir.check_command(self, current_dir)
+
+    def next(self):
+        Step5()
+
+
+class Step5(StepTemplateMkdir):
+    story = [
+        "Ruth: {{Bb:You made}} {{lb:hidden-shelter}}{{Bb:!}}",
         "{{Bb:...The problem is, I can see it too.  I don't think it worked.",
-        "How else could you make something hidden?}}\n",
-        "{{yb:1: If you put a . in front of the name, it makes it hidden.}}",
+        "How else could you make something hidden?}}",
+        "\n{{yb:1: If you put a . in front of the name, it makes it hidden.}}",
         "{{yb:2: You're mistaken. You can't see the hidden-shelter, it's "
         "hidden.}}\n",
-        "Use echo to talk to Ruth.",
+        "Use {{lb:echo}} to talk to Ruth.",
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
@@ -178,15 +209,18 @@ class Step4a(StepTemplateMkdir):
             self.send_hint()
 
     def next(self):
-        Step3b()
+        Step6()
 
 
 ###########################################
 # Second fork
 
-class Step3b(StepTemplateMkdir):
+class Step6(StepTemplateMkdir):
+    print_text = [
+        "{{yb:If you put a . in front of the name, it makes it hidden.}}\n"
+    ]
     story = [
-        "Ruth: {{Bb:So if we called the shelter}} {{lb:.shelter}}"
+        "\nRuth: {{Bb:So if we called the shelter}} {{lb:.shelter}}"
         "{{Bb:, it would be hidden?  Let's try it!}}",
         "Make a shelter called {{lb:.shelter}}"
     ]
@@ -207,13 +241,13 @@ class Step3b(StepTemplateMkdir):
         )
 
     def next(self):
-        Step4()
+        Step7()
 
 
-class Step4(StepTemplateMkdir):
+class Step7(StepTemplateMkdir):
     story = [
         "Check it is properly hidden. Use {{yb:ls}} to "
-        "see if it is visible.",
+        "see if it is visible."
     ]
 
     start_dir = "~/farm/barn"
@@ -224,25 +258,17 @@ class Step4(StepTemplateMkdir):
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:ls}}{{rb, not ls -a, to check your shelter "
+        "{{rb:Use}} {{yb:ls}}{{rb:, not ls -a, to check your shelter "
         "is hidden.}}"
     ]
 
-    def check_command(self, current_dir):
-        if self.last_user_input == "ls -a":
-            self.send_hint(
-                "{{rb:Use}} {{yb:ls}} {{rb:instead of}} {{yb:ls -a}} "
-                "{{yb:to check it's hidden.}}"
-            )
-        else:
-            return StepTemplateMkdir.check_command(self, current_dir)
-
     def next(self):
-        Step5()
+        Step8()
 
 
-class Step5(StepTemplateMkdir):
+class Step8(StepTemplateMkdir):
     story = [
+        "{{gb:Good, we can't see it in the barn.}}",
         "Now look around with {{yb:ls -a}} to check it actually exists!"
     ]
     start_dir = "~/farm/barn"
@@ -255,16 +281,17 @@ class Step5(StepTemplateMkdir):
     ]
 
     def next(self):
-        Step6()
+        Step9()
 
 
-class Step6(StepTemplateMkdir):
+class Step9(StepTemplateMkdir):
     story = [
-        "Ruth: {{Bb:Did you make something? That's amazing!",
+        "{{gb:It worked! You've succesfully created something hidden.}}",
+        "\nRuth: {{Bb:Did you make something? That's amazing!",
         "...unfortunately I can't see it...please can you put me "
         "and the animals inside?}}\n",
-        "Move everyone into the {{lb:.shelter}} "
-        "one by one using {{yb:mv <name> .shelter}}\n"
+        "{{lb:Move}} everyone into the {{lb:.shelter}} "
+        "one by one.\n"
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
@@ -337,12 +364,12 @@ class Step6(StepTemplateMkdir):
         return False
 
     def next(self):
-        Step7()
+        Step10()
 
 
-class Step7(StepTemplateMkdir):
+class Step10(StepTemplateMkdir):
     story = [
-        "Head into the {{yb:.shelter}} along with Ruth and the "
+        "{{lb:Go}} into the {{lb:.shelter}} along with Ruth and the "
         "animals."
     ]
     start_dir = "~/farm/barn"
@@ -362,17 +389,22 @@ class Step7(StepTemplateMkdir):
         )
 
     def next(self):
-        Step8()
+        Step11()
 
 
-class Step8(StepTemplateMkdir):
+class Step11(StepTemplateMkdir):
     story = [
-        "Have a look around with {{yb:ls}} to check you moved everyone."
+        "Have a {{lb:look around}} to check you moved everyone."
     ]
     start_dir = "~/farm/barn/.shelter"
     end_dir = "~/farm/barn/.shelter"
-    commands = ["ls"]
-    hints = ["Look around using {{yb:ls}}"]
+    commands = [
+        "ls",
+        "ls -a"
+    ]
+    hints = [
+        "{{rb:Look around using}} {{yb:ls}}"
+    ]
     last_step = True
 
     def next(self):

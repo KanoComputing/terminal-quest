@@ -21,20 +21,19 @@ class StepTemplateNano(TerminalNano):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "You are back in the shed-maker's place.",
-        "Have a look around."
+        "You are back in the Bernard's place.",
+        "{{lb:Listen to what Bernard has to say.}}"
     ]
 
     start_dir = "~/town/east-part/shed-shop"
     end_dir = "~/town/east-part/shed-shop"
 
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+        "{{rb:Use}} {{yb:cat Bernard}} {{rb:to interact with Bernard.}}"
     ]
 
     commands = [
-        "ls",
-        "ls -a"
+        "cat Bernard"
     ]
 
     def next(self):
@@ -97,13 +96,21 @@ class Step4(StepTemplateNano):
     # Allow the user to ask all the questions within the same Step?
     story = [
         "{{gb:Congratulations, the script now prints \"Honk!\"}}",
+
         "\nBernard: {{Bb:The tool is working! Wonderful! "
         "Thank you so much!}}",
-        "It occurs to you that we haven't asked Bernard much about himself.",
+
+        "\nIt occurs to you that you haven't asked Bernard much about "
+        "himself.",
+
         "What would you like to ask him?",
-        "{{yb:1: \"Are you going into hiding now?\"",
-        "2: \"What's the next big tool you want to create?\"",
-        "3: \"What's in the secret room?\"}}",
+
+        "\n{{yb:1: \"What's the next big tool you want to create?\"}}",
+
+        "{{yb:2: \"Are you going into hiding now?\"}}",
+
+        "{{yb:3: \"What's in the secret room?\"}}",
+
         "\nUse {{lb:echo}} to ask him a question."
     ]
 
@@ -111,16 +118,53 @@ class Step4(StepTemplateNano):
     end_dir = "~/town/east-part/shed-shop"
 
     commands = [
-        "echo 1",
-        "echo 2",
-        "echo 3"
+        "echo 1"
     ]
 
+    def check_command(self, current_dir):
+        if self.last_user_input == "echo 2":
+            text = (
+                "\nBernard: {{Bb:\"Er, what? No, I wasn't planning "
+                "on doing so. Why would I do that?\"}}"
+            )
+            self.send_text(text)
+        elif self.last_user_input == "echo 3":
+            text = (
+                "\nBernard: {{Bb:Oh ho ho ho, that's none of your business.}}"
+            )
+            self.send_text(text)
+        else:
+            return StepTemplateNano.check_command(self, current_dir)
+
     def next(self):
-        Step5(self.last_user_input)
+        Step5()
 
 
 class Step5(StepTemplateNano):
+    print_text = [
+        "{{yb:\"What's the next big tool you want to create?\"}}"
+    ]
+
+    story = [
+        "Bernard: {{Bb:Well there are some spells I've heard "
+        "about. Spells that lock doors, make items disappear, and "
+        "even one that turns the user into a}} {{yb:superuser}}"
+        "{{Bb:. Whatever that means.}}",
+
+        "{{Bb:I guess the first I'd make is a key which locks "
+        "doors, like in the}} {{lb:library}}.",
+
+        "\nEleanor: {{Bb:I wonder how the librarian locked the }}"
+        "{{lb:protected-section}} {{Bb:so people couldn't go in?}}",
+
+        "{{Bb:Maybe she can give us information about where she found "
+        "that?",
+
+        "She might have gone into hiding somewhere. We should look "
+        "for her.}}",
+
+        "\n{{lb:Leave}} the shed-shop."
+    ]
 
     commands = [
         "cd ..",
@@ -129,57 +173,6 @@ class Step5(StepTemplateNano):
 
     start_dir = "~/town/east-part/shed-shop"
     end_dir = "~/town/east-part"
-
-    def __init__(self, prev_command="echo 1"):
-
-        if prev_command == "echo 1":
-            self.print_text = [
-                "{{yb:\"Are you going into hiding now?\"}}"
-            ]
-            self.story = [
-                # This shouldn't be a leading question, we don't
-                # want to have to ask another question with echo.
-                "Bernard: {{Bb:\"Er, what? No, I wasn't planning "
-                "on doing so.  Why would I do that?\"}}"
-            ]
-
-        elif prev_command == "echo 2":
-            self.print_text = [
-                "{{yb:\"What's the next big tool you want to create?\"}}"
-            ]
-            self.story = [
-                "Bernard: {{Bb:Well there's a few spells I've heard "
-                "about that I heard about that allow people to "
-                "locks doors, make items disappear, and even one that makes "
-                "the user a}} {{yb:superuser}}{{Bb:. Whatever that means.}}",
-
-                "{{Bb:I guess the first I'd make is a key which locks "
-                "doors.}}",
-
-                "{{Bb:I heard there's a strange hermit outside town whose "
-                "door is always locked to strangers.}}"
-            ]
-
-        elif prev_command == "echo 3":
-            self.print_text = [
-                "{{yb:\"What's in the secret room?\"}}"
-            ]
-            self.story = [
-                "Bernard: {{Bb:Oh ho ho ho, that's none of your business.}}"
-            ]
-
-        self.story = self.story + [
-            "Eleanor: {{Bb:I wonder how the librarian locked the }}"
-            "{{lb:protected-section}} {{Bb:so people couldn't use it?}}",
-
-            "{{Bb:Maybe she can give us information about where she found that?",
-            "Perhaps she went into hiding somewhere. We should look "
-            "for her.}}",
-
-            "\nLeave the shed-shop"
-        ]
-
-        StepTemplateNano.__init__(self)
 
     def block_command(self):
         return unblock_commands_with_cd_hint(

@@ -52,13 +52,13 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateMkdir):
     story = [
-        "Bernard: {{Bb:It's like magic!  Just run the command, "
+        "Bernard: {{Bb:It's like magic! Just run the command, "
         "and you get a new shed.}}",
 
-        "We recognise the contents...it's just the command {{lb:mkdir}} "
+        "\nWe recognise the contents...it's just the command {{lb:mkdir}} "
         "that we learnt before.",
 
-        "Bernard: {{Bb:Try it out! Use it with}} "
+        "\nBernard: {{Bb:Try it out! Use it with}} "
         "{{yb:./best-shed-maker-in-the-world.sh}}",
 
         "\n{{gb:Use TAB to speed up your typing.}}"
@@ -68,8 +68,9 @@ class Step2(StepTemplateMkdir):
     end_dir = "~/town/east-part/shed-shop"
 
     hints = [
-        "{{rb:Do as Bernard says - use}} {{yb:./shed-maker}} "
-        "{{yb:to run his script}}"
+        "{{rb:Do as Bernard says - use}} "
+        "{{yb:./best-shed-maker-in-the-world.sh}} "
+        "{{rb:to run his script}}"
     ]
     commands = [
         "./best-shed-maker-in-the-world.sh"
@@ -81,7 +82,7 @@ class Step2(StepTemplateMkdir):
 
 class Step3(StepTemplateMkdir):
     story = [
-        "Look around to see if it created a shed."
+        "{{lb:Look around}} to see if it created a shed."
     ]
     start_dir = "~/town/east-part/shed-shop"
     end_dir = "~/town/east-part/shed-shop"
@@ -90,7 +91,7 @@ class Step3(StepTemplateMkdir):
         "ls -a"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around yourself.}}"
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     ]
 
     def next(self):
@@ -101,7 +102,7 @@ class Step4(StepTemplateMkdir):
     story = [
         "It worked! You can see a new shed in the room.",
         "What happens if you run it again?",
-        "{{gb:Press UP twice to replay the old command.}}"
+        "{{gb:Press UP twice to replay the command.}}"
     ]
 
     start_dir = "~/town/east-part/shed-shop"
@@ -124,7 +125,8 @@ class Step4(StepTemplateMkdir):
 
 class Step5(StepTemplateMkdir):
     story = [
-        "Bernard: {{Bb:Of course it won't work second time - "
+        "You get the error {{yb:mkdir: cannot create directory `shed': File exists}}",
+        "\nBernard: {{Bb:Of course it won't work second time - "
         "you already have a shed!",
 
         "I'm working on the next big thing,}} "
@@ -162,10 +164,9 @@ class Step6(StepTemplateMkdir):
         "That looks a lot like {{lb:echo}}...we could probably fix this tool!",
         "How could we make changes to this tool?",
         "\nBruno: {{Bb:Ho ho, you look like you understand the problem.}}",
-        "Eleanor: {{Bb:If we need extra information, we can go look in the "
-        "library.}}"
-        "{{Bb:It was just outside.}}",
-        "\nBefore we go, have a look in the {{lb:secret-room}}."
+        "Eleanor: {{Bb:If we need extra help, we can go look in the "
+        "library.  It was just outside.}}",
+        "\nBefore we go, have a {{lb:look}} in the {{lb:secret-room}}."
     ]
 
     start_dir = "~/town/east-part/shed-shop"
@@ -190,7 +191,7 @@ class Step6(StepTemplateMkdir):
 class Step7(StepTemplateMkdir):
     story = [
         "Bernard: {{Bb:Oooh naughty, you can't go in there.}}",
-        "\nLet's leave the shed shop and find the library."
+        "\nLet's {{lb:leave}} the shed shop and go back to town."
     ]
 
     start_dir = "~/town/east-part/shed-shop"

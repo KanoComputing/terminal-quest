@@ -17,7 +17,7 @@ class StepTemplateMkdir(TerminalMkdir):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "You are back in town. Have a look around."
+        "You are back in town. Have a {{lb:look around}}."
     ]
 
     start_dir = "~/town/east-part"
@@ -83,7 +83,7 @@ class Step3(StepTemplateMkdir):
 
 class Step4(StepTemplateMkdir):
     story = [
-        "Eleanor: {{Bb:\"Wow, this place is a lot more empty than I "
+        "Eleanor: {{Bb:Wow, this place is a lot more empty than I "
         "remembered.",
 
         "There used to be a librarian here...",
@@ -91,8 +91,8 @@ class Step4(StepTemplateMkdir):
         "She used to tell me off for trying to look in the}} "
         "{{lb:private-section}}.",
 
-        "{{Bb:What do you think is in there?  Let's look with}} {{lb:ls}}"
-        "{{Bb:\"}}"
+        "{{Bb:What do you think is in there?  Let's}} {{lb:look inside}}"
+        "{{Bb:.}}"
     ]
 
     start_dir = "~/town/east-part/library"
@@ -145,7 +145,8 @@ class Step6(StepTemplateMkdir):
         "Eleanor: {{Bb:Wow, all the commands have disappeared.",
         "I wonder if people have been stealing them?}}",
 
-        "{{Bb:What is that}} {{lb:NANO}} {{Bb:paper?}}"
+        "{{Bb:What is that}} {{lb:NANO}} {{Bb:paper?}}",
+        "{{Bb:Let's}} {{lb:examine}} {{Bb:it.}}"
     ]
     start_dir = "~/town/east-part/library"
     end_dir = "~/town/east-part/library"
@@ -162,13 +163,13 @@ class Step6(StepTemplateMkdir):
 
 class Step7(StepTemplateMkdir):
     story = [
-        "Eleanor: {{Bb:So}} {{lb:nano}} {{Bb:allows you to "
+        "Eleanor: {{Bb:So nano allows you to "
         "edit files?}}",
 
-        "{{Bb:Maybe we could use this to fix that}} "
-        "{{lb:best-horn-in-the-world}}{{Bb:?}}",
+        "{{Bb:Maybe we could use this to fix that "
+        "best-horn-in-the-world.sh script?}}",
 
-        "{{Bb:Let's head back to the shed-maker.}}"
+        "{{Bb:Let's}} {{lb:head back}} {{Bb:to the}} {{lb:shed-shop}}{{Bb:.}}"
     ]
     start_dir = "~/town/east-part/library"
     end_dir = "~/town/east-part/shed-shop"
@@ -177,8 +178,8 @@ class Step7(StepTemplateMkdir):
         "cd ../shed-shop/",
         "cd ..",
         "cd ../",
-        "cd shed-maker",
-        "cd shed-maker/"
+        "cd shed-shop",
+        "cd shed-shop/"
     ]
     last_step = True
 

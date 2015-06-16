@@ -44,7 +44,7 @@ class Step2(StepTemplateMkdir):
         "\n{{yb:1: \"I'm afraid not.  When did you last see them?\"}}",
         "{{yb:2: \"Weren't they with you in the hidden-shelter?\"}}",
         "{{yb:3: \"(lie) Yes, I saw them in town.\"}}",
-        "\n{{gb:Use the echo command to talk to Eleanor.}}"
+        "\nUse the {{lb:echo}} command to talk to Eleanor."
     ]
 
     start_dir = "~/town/.hidden-shelter"
@@ -107,7 +107,7 @@ class Step3(StepTemplateMkdir):
             ]
             self.story += [
                 "\nEleanor: {{Bb:No, they went outside. "
-                "The dog ran away again, and then went outside to look for "
+                "The dog ran away again, so they went outside to look for "
                 "it. Maybe they got lost?\"}}"
             ]
 
@@ -116,8 +116,9 @@ class Step3(StepTemplateMkdir):
                 "{{yb:\"(lie) Yes, I saw them in town.\"}}\n"
             ]
             self.story += [
-                "\nEleanor: {{Bb:\"Oh that's good! The bell scared me, but "
-                "I'm pleased they're alright.\"}}"
+                "\nEleanor: {{Bb:\"Oh that's good! The dog ran away again, "
+                "and they went outside to look for him.",
+                "The bell scared me, but I'm pleased they're alright.\"}}"
             ]
 
         self.story += [
@@ -184,7 +185,7 @@ class Step4(StepTemplateMkdir):
 class Step5(StepTemplateMkdir):
     story = [
         "You see a new part of town called {{lb:east-part}}.",
-        "Eleanor: {{Bb:Lets go there and see if we can find my "
+        "Eleanor: {{Bb:Let's go there and see if we can find my "
         "parents.}}",
         "\nGo into the east-part of town."
     ]

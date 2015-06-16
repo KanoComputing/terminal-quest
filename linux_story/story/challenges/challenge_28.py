@@ -6,7 +6,8 @@
 # A chapter of the story
 
 from linux_story.story.terminals.terminal_nano import TerminalNano
-# from linux_story.story.challenges.challenge_29 import Step1 as NextStep
+from linux_story.story.challenges.challenge_29 import Step1 as NextStep
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
 class StepTemplateNano(TerminalNano):
@@ -38,7 +39,7 @@ class Step1(StepTemplateNano):
 class Step2(StepTemplateNano):
     story = [
         "We haven't checked out the restaurant yet.",
-        "Let's {[lb:go into the restaurant}}."
+        "Let's {{lb:go into the restaurant}}."
     ]
 
     start_dir = "~/town/east-part"
@@ -51,6 +52,11 @@ class Step2(StepTemplateNano):
         "cd restaurant/",
         "cd restaurant"
     ]
+
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step3()
@@ -65,27 +71,78 @@ class Step3(StepTemplateNano):
     end_dir = "~/town/east-part/restaurant"
 
     hints = [
-        "{{rb:Look around}} {{lb:closely}}",
-
-        "Eleanor: {{Bb:Do you remember how to look around?"
-        "You use}} {{lb:ls}} {{Bb:right?}}"
+        "Eleanor: {{Bb:Do you remember how you found me?"
+        " You used}} {{yb:ls -a}} {{Bb:right?}}"
     ]
 
     commands = [
         "ls -a"
     ]
 
-    def check_command(self, current_dir):
-        if self.last_user_input == "ls":
-            text = (
-                "\nYou need to look around more closely "
-                "with {{yb:ls -a}}"
-            )
-            self.send_text(text)
-            return False
-        else:
-            StepTemplateNano.check_command(self, current_dir)
+    def next(self):
+        Step4()
 
 
 class Step4(StepTemplateNano):
+    story = [
+        "Do you see the .cellar?",
+        "Let's {{lb:go in the .cellar}}."
+    ]
 
+    start_dir = "~/town/east-part/restaurant"
+    end_dir = "~/town/east-part/restaurant/.cellar"
+
+    hints = [
+        "{{rb:Go in the wine cellar using}} {{yb:cd .cellar}}"
+    ]
+
+    commands = [
+        "cd .cellar/",
+        "cd .cellar"
+    ]
+
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
+
+    def next(self):
+        Step5()
+
+
+class Step5(StepTemplateNano):
+    story = [
+        "Look around."
+    ]
+
+    start_dir = "~/town/east-part/restaurant/.cellar"
+    end_dir = "~/town/east-part/restaurant/.cellar"
+
+    hints = [
+        "{{rb:Look around with}} {{yb:ls}}"
+    ]
+
+    def next(self):
+        Step6()
+
+
+class Step6(StepTemplateNano):
+    story = [
+        "You see a woman {{lb:Clara}} sitting in the cellar",
+        "{{lb:Listen}} to what she has to say."
+    ]
+
+    start_dir = "~/town/east-part/restaurant/.cellar"
+    end_dir = "~/town/east-part/restaurant/.cellar"
+
+    hints = [
+        "{{rb:Use}} {{lb:cat}} {{rb:to listen what she has to say.}}",
+        "{{rb:Use}} {{yb:cat Clara}} {{rb:to listen to Clara.}}"
+    ]
+
+    commands = [
+        "cat Clara"
+    ]
+
+    def next(self):
+        NextStep(self.xp)
