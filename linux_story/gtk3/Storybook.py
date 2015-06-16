@@ -118,8 +118,12 @@ class Storybook(Gtk.TextView):
         '''Print Challenge title from file at the top of the Story widget
         '''
 
+        if challenge_number == "0":
+            text = "INTRODUCTION\n"
+        else:
+            text = "CHALLENGE {}\n".format(challenge_number)
+
         border = "-------------------\n"
-        text = "CHALLENGE {}\n".format(challenge_number)
         header = "\n" + border + "\n" + text + "\n" + border
         self.print_text(header)
 

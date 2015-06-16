@@ -32,6 +32,7 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.gtk3.MainWindow import MainWindow
+from kano_profile.apps import load_app_state_variable
 
 # Track the user's progress
 from kano_profile.tracker import Tracker
@@ -50,7 +51,19 @@ def main(debug=False, challenge=None, step=None):
 
     else:
         # Show the selection menu for the unlocked challenges
-        win.show_menu()
+
+        # Get the last unlocked challenge.
+        last_unlocked_challenge = load_app_state_variable(
+            'linux-story', 'level'
+        )
+
+        if last_unlocked_challenge:
+            # With this data, we need to decide which chapters are locked.
+            win.show_menu()
+
+        else:
+            win.setup_application_widgets()
+            win.create_terminal("1", "1")
 
     os.system("kano-stop-splash")
     Gtk.main()

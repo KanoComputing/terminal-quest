@@ -66,9 +66,13 @@ class MenuScreen(Gtk.Alignment):
             'linux-story', 'level'
         )
 
-        # With this data, we need to decide which chapters are locked.
-        self.last_unlocked_chapter = challenges[self.last_unlocked_challenge]['chapter']
-        self.continue_story_or_select_chapter_menu()
+        if self.last_unlocked_challenge:
+            # With this data, we need to decide which chapters are locked.
+            self.last_unlocked_chapter = challenges[self.last_unlocked_challenge]['chapter']
+            self.continue_story_or_select_chapter_menu()
+
+        else:
+            self.directly_launch_challenge(1)
 
     def update_descriptions(self, title, description):
         self.menu_title.set_text(title)
