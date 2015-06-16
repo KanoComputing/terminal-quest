@@ -9,6 +9,7 @@ from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
 from linux_story.helper_functions import play_sound
 from linux_story.story.challenges.challenge_23 import Step1 as NextStep
+from linux_story.step_helper_functions import route_between_paths
 
 
 class StepTemplateMkdir(TerminalMkdir):
@@ -99,6 +100,7 @@ class Step3(StepTemplateMkdir):
         Step4()
 
 
+# TODO: FIX THIS STEP
 class Step4(StepTemplateMkdir):
     story = [
         "Ruth: {{Bb:It's alright. We're all safe, everyone's still here. "
@@ -106,30 +108,36 @@ class Step4(StepTemplateMkdir):
         "\nPerhaps we should investigate that sound.  Who else do we "
         "know?",
         "Maybe you could check back on the family in the "
-        "{{yb:.hidden-shelter}} ",
+        "{{lb:.hidden-shelter}} ",
         "and see if you can talk with your new found voice.",
-        "Start heading back to the {{yb:.hidden-shelter}} using {{yb:cd}}."
+        "Start heading back to the {{lb:.hidden-shelter}} using {{lb:cd}}."
     ]
 
     start_dir = "~/farm/barn/.shelter"
     end_dir = "~/town/.hidden-shelter"
-    commands = [
-        "cd ~/town/.hidden-shelter",
-        "cd ~/town/.hidden-shelter/"
-    ]
+
     hints = [
         "{{rb:We can go directly to the}} {{lb:.hidden-shelter}} "
         "{{rb:using}} {{yb:cd ~/town/.hidden-shelter/}}"
     ]
+
     # Remove the dog
     deleted_items = [
         "~/town/.hidden-shelter/dog"
     ]
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        pass
+
+    def check_command(self, current_dir):
+        # If the command passes, then print a nice hint.
+        if self.last_user_input.startswith("cd") and \
+                not self.get_command_blocked() and \
+                not self.fake_path == self.end_dir:
+            hint = "\n{{gb:Well done! Keep going!}}"
+            self.send_text(hint)
+        else:
+            return StepTemplateMkdir.check_command(self, current_dir)
 
     def next(self):
         Step5()
@@ -137,7 +145,7 @@ class Step4(StepTemplateMkdir):
 
 class Step5(StepTemplateMkdir):
     story = [
-        "Have a look around."
+        "Have a {{lb:look around}}."
     ]
 
     start_dir = "~/town/.hidden-shelter"

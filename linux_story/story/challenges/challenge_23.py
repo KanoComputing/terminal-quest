@@ -20,7 +20,7 @@ class StepTemplateMkdir(TerminalMkdir):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "You see Eleanor.  Listen to what she has to say."
+        "You see Eleanor. Listen to what she has to say."
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"

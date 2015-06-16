@@ -49,6 +49,7 @@ class Terminal(Cmd):
     output_condition = lambda x, y: False
     story_dict = {}
     deleted_items = []
+    command_blocked = False
 
     # Trying to merge Step and Terminal
     def __init__(self, xp=""):
@@ -147,8 +148,10 @@ class Terminal(Cmd):
         self.last_user_input = line.strip()
 
         if self.block_command():
+            self.set_command_blocked(True)
             return Cmd.precmd(self, "")
         else:
+            self.set_command_blocked(False)
             return Cmd.precmd(self, line)
 
     def onecmd(self, line):
@@ -499,3 +502,12 @@ class Terminal(Cmd):
             return self.completion_matches[state]
         except IndexError:
             return None
+
+    #######################################################
+    # Set whether command has been blocked
+
+    def set_command_blocked(self, blocked):
+        self.command_blocked = blocked
+
+    def get_command_blocked(self):
+        return self.command_blocked
