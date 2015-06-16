@@ -24,7 +24,7 @@ class Step1(StepTemplate):
 
         "This command can probably be used to talk to people.",
 
-        "Move this {{lb:ECHO}} command into your {{lb.chest}} "
+        "Move this {{lb:ECHO}} command into your {{lb:.chest}} "
         "for safe keeping."
     ]
     hints = [
