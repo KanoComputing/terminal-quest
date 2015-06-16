@@ -74,6 +74,7 @@ class Step2(StepTemplateMkdir):
 
 class Step3(StepTemplateMkdir):
     story = [
+        "{{pb:Ding. Dong.}}",
         "Ruth: {{Bb:I heard it again!  Is that the sound you heard when "
         "my husband went missing?}}",
         "Have another quick look around."
