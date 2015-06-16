@@ -103,7 +103,7 @@ class Step4(StepTemplateMkdir):
     story = [
         "Ruth: {{Bb:It's alright. We're all safe, everyone's still here. "
         "I wonder why it's ringing?}}",
-        "\nPerhaps we should investigate that sound.  Who else could do we "
+        "\nPerhaps we should investigate that sound.  Who else do we "
         "know?",
         "Maybe you could check back on the family in the "
         "{{yb:.hidden-shelter}} ",
