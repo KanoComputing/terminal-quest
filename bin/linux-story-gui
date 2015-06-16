@@ -63,7 +63,7 @@ def main(debug=False, challenge=None, step=None):
 
         else:
             win.setup_application_widgets()
-            win.create_terminal("1", "1")
+            win.create_terminal("0", "1")
 
     os.system("kano-stop-splash")
     Gtk.main()
