@@ -93,30 +93,30 @@ class Step3(StepTemplateMkdir):
 
         if prev_command == "echo 1":
             self.print_text = [
-                "{{yb:\"I'm afraid not.  When did you last see them?\"}}\n"
+                "{{yb:\"I'm afraid not.  When did you last see them?\"}}"
             ]
             self.story += [
-                "\nEleanor: {{Bb:\"Not long ago. The dog ran out again, "
+                "Eleanor: {{Bb:\"Not long ago. The dog ran out again, "
                 "so they went outside to look for him. "
                 "I'm sure they're fine.\"}}"
             ]
 
         elif prev_command == "echo 2":
             self.print_text = [
-                "{{yb:\"Weren't they with you in the hidden-shelter?\"}}\n"
+                "{{yb:\"Weren't they with you in the hidden-shelter?\"}}"
             ]
             self.story += [
-                "\nEleanor: {{Bb:No, they went outside. "
+                "Eleanor: {{Bb:No, they went outside. "
                 "The dog ran away again, so they went outside to look for "
                 "it. Maybe they got lost?\"}}"
             ]
 
         elif prev_command == "echo 3":
             self.print_text = [
-                "{{yb:\"(lie) Yes, I saw them in town.\"}}\n"
+                "{{yb:\"(lie) Yes, I saw them in town.\"}}"
             ]
             self.story += [
-                "\nEleanor: {{Bb:\"Oh that's good! The dog ran away again, "
+                "Eleanor: {{Bb:\"Oh that's good! The dog ran away again, "
                 "and they went outside to look for him.",
                 "The bell scared me, but I'm pleased they're alright.\"}}"
             ]

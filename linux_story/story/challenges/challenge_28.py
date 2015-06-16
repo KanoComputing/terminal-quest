@@ -6,8 +6,9 @@
 # A chapter of the story
 
 from linux_story.story.terminals.terminal_nano import TerminalNano
-from linux_story.story.challenges.challenge_29 import Step1 as NextStep
+# from linux_story.story.challenges.challenge_29 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+import time
 
 
 class StepTemplateNano(TerminalNano):
@@ -145,4 +146,6 @@ class Step6(StepTemplateNano):
     ]
 
     def next(self):
-        NextStep(self.xp)
+        time.sleep(3)
+        self.exit()
+        # NextStep(self.xp)

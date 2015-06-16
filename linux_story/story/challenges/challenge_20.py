@@ -23,10 +23,10 @@ class StepTemplateMkdir(TerminalMkdir):
 
 class Step1(StepTemplateEcho):
     print_text = [
-        "{{yb:\"Some people survived by going into hiding.\"}}\n"
+        "{{yb:\"Some people survived by going into hiding.\"}}"
     ]
     story = [
-        "\nRuth: {{Bb:Oh! That reminds me, my husband used "
+        "Ruth: {{Bb:Oh! That reminds me, my husband used "
         "to build special shelters to store crops in over winter. "
         "I think he used a specific tool. "
         "We should take a look in his toolshed to see if we can find it.}}",

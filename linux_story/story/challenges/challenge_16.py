@@ -16,7 +16,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.step_helper_functions import unblock_commands
 from linux_story.story.challenges.challenge_17 import Step1 as NextStep
-import time
+# import time
 
 
 class StepTemplateMv(TerminalMv):
@@ -170,7 +170,4 @@ class Step6(StepTemplateMv):
     last_step = True
 
     def next(self):
-        self.exit()
-
-        # So that server has time to send message before it closes
-        time.sleep(3)
+        NextStep(self.xp)

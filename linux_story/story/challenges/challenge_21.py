@@ -217,10 +217,10 @@ class Step5(StepTemplateMkdir):
 
 class Step6(StepTemplateMkdir):
     print_text = [
-        "{{yb:If you put a . in front of the name, it makes it hidden.}}\n"
+        "{{yb:If you put a . in front of the name, it makes it hidden.}}"
     ]
     story = [
-        "\nRuth: {{Bb:So if we called the shelter}} {{lb:.shelter}}"
+        "Ruth: {{Bb:So if we called the shelter}} {{lb:.shelter}}"
         "{{Bb:, it would be hidden?  Let's try it!}}",
         "Make a shelter called {{lb:.shelter}}"
     ]

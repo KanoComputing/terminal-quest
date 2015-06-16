@@ -12,11 +12,14 @@ import time
 import ast
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.commands_real import nano
+from kano.logging import logger
 
 
 class TerminalNano(TerminalEcho):
     terminal_commands = ["ls", "cat", "cd", "mv", "echo", "mkdir", "nano"]
-    SAVING_NANO_PROMPT = "Save modified buffer (ANSWERING \"No\" WILL DESTROY CHANGES) ? "
+    SAVING_NANO_PROMPT = (
+        "Save modified buffer (ANSWERING \"No\" WILL DESTROY CHANGES) ? "
+    )
     SAVE_FILENAME = "File Name to Write"
 
     # This is the content we want to end up with in the file.
@@ -45,6 +48,7 @@ class TerminalNano(TerminalEcho):
         self.nano_y = 0
         self.save_prompt_showing = False
         self.last_nano_filename = ""
+        self.editable = ""
         ################################################
 
         TerminalEcho.__init__(self, xp)
@@ -163,11 +167,29 @@ class TerminalNano(TerminalEcho):
         '''
         return self.last_nano_filename
 
+    def get_editable(self):
+        '''If nano is launched with a filename argument after,
+        then when saving, the filename appears in the editable field.
+        Get the last set one from this function.
+        '''
+        return self.editable
+
+    def set_editable(self, editable):
+        '''If nano is launched with a filename argument after,
+        then when saving, the filename appears in the editable field.
+        Get the last set one from this function.
+        '''
+        self.editable = editable
+
     def try_and_get_nano_contents(self):
-        print "trying to get nano contents"
         try:
             self.get_nano_contents()
         except Exception as e:
+            logger.error(
+                "\nFailed to get nano contents, exception {}".format(str(e))
+            )
+
+            # TODO: Remove this when shipping
             print "\nFailed to get nano contents, {}".format(str(e))
             self.send_text("\nFailed to get nano contents, {}".format(str(e)))
 
@@ -242,6 +264,9 @@ class TerminalNano(TerminalEcho):
                     value = data["prompt"]
                     self.set_last_prompt(value)
 
+                    if "editable" in data:
+                        self.set_editable(data["editable"])
+
                     if value == self.SAVE_FILENAME:
                         self.set_save_prompt_showing(False)
                         self.set_on_filename_screen(True)
@@ -302,6 +327,9 @@ class TerminalNano(TerminalEcho):
         if not self.get_nano_running():
             if self.get_last_nano_filename() == self.goal_nano_save_name:
                 return True
+
+            # This hint appears along another one, so this feels redundant.
+            '''
             else:
                 self.send_text(
                     "\n{{ob:Your filename is wrong. Try starting again by "
@@ -309,14 +337,21 @@ class TerminalNano(TerminalEcho):
                     self.get_last_nano_filename() + " " +
                     self.goal_nano_save_name
                 )
+            '''
 
         elif self.get_on_filename_screen() and \
                 self.get_nano_content().strip() == self.nano_end_content:
 
-            hint = (
-                "\n{{gb:Type}} {{yb:" + self.goal_nano_save_name + "}} "
-                "{{gb:and press}} {{yb:Enter}}"
-            )
+            if self.get_editable() == self.goal_nano_save_name:
+                hint = (
+                    "\n{{gb:Press}} {{yb:Enter}} {{gb:to confirm the "
+                    "filename.}}"
+                )
+            else:
+                hint = (
+                    "\n{{gb:Type}} {{yb:" + self.goal_nano_save_name + "}} "
+                    "{{gb:and press}} {{yb:Enter}}"
+                )
             self.send_text(hint)
 
         elif self.get_on_filename_screen():

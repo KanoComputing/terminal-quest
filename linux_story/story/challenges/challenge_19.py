@@ -135,13 +135,13 @@ class Step3(StepTemplate):
     def __init__(self, prev_command='echo 1'):
         if prev_command == "echo 1":  # yes
             self.print_text = ["{{yb:Yes}}"]
-            self.story = ["\nRuth: {{Bb:\"I thought so!\"}}"]
+            self.story = ["Ruth: {{Bb:\"I thought so!\"}}"]
         elif prev_command == "echo 2":  # no
             self.print_text = ["{{yb:No}}"]
-            self.story = ["\nRuth: {{Bb:Stop lying, I know you do.}}"]
+            self.story = ["Ruth: {{Bb:Stop lying, I know you do.}}"]
         elif prev_command == "echo 3":  # I don't know
             self.print_text = ["{{yb:I don't know}}"]
-            self.story = ["\nRuth: {{Bb:You don't know?  That's worrying...}}"]
+            self.story = ["Ruth: {{Bb:You don't know?  That's worrying...}}"]
 
         self.story = self.story + [
             "\n{{Bb:Did you walk all the way from town? "
@@ -190,10 +190,10 @@ class Step3(StepTemplate):
 
 class Step4(StepTemplate):
     print_text = [
-        "{{yb:\"I'm sorry, he disappeared in front of me.\"}}\n"
+        "{{yb:\"I'm sorry, he disappeared in front of me.\"}}"
     ]
     story = [
-        "\nRuth: {{Bb:\"He disappeared in front of you?? Oh no! "
+        "Ruth: {{Bb:\"He disappeared in front of you?? Oh no! "
         "They've been saying on the radio that people have been "
         "going missing...what should I do?\"}}",
         "\n{{yb:1: \"Some people survived by going into hiding.\"}}",
