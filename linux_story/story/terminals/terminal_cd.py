@@ -60,11 +60,14 @@ class TerminalCd(TerminalCat):
         user_path = self.last_user_input.replace("cd", "").strip()
 
         if user_path:
-            new_path = os.path.join(current_path, user_path)
+            if user_path.startswith("~"):
+                new_path = user_path
+            else:
+                new_path = os.path.join(current_path, user_path)
         else:
             # If the user didn't enter a path, assume they want to go to
             # home folder
-            new_path = os.path.expanduser('~')
+            new_path = '~'
 
         new_path = os.path.abspath(os.path.expanduser(new_path))
         if new_path in route:
