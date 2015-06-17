@@ -344,6 +344,9 @@ Bernard:
         - challenge: 23
           step: 4
           path: "~/town/east-part/shed-shop"
+        - challenge: 30
+          step: 1
+          exists: False
 
 best-shed-maker-in-the-world.sh, best-horn-in-the-world.sh:
     challenges:
@@ -358,6 +361,19 @@ secret-room:
         - challenge: 23
           step: 4
           path: "~/town/east-part/shed-shop"
+
+bernards-diary:
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east-part/shed-shop/secret-room"
+
+photocopier.sh:
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east-part/shed-shop/secret-room"
+          permissions: 0755
 
 shed:
     directory: True

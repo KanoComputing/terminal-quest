@@ -5,8 +5,10 @@
 #
 # A chapter of the story
 
+import os
 from linux_story.story.terminals.terminal_nano import TerminalNano
 from linux_story.story.challenges.challenge_31 import Step1 as NextStep
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
 class StepTemplateNano(TerminalNano):
@@ -16,8 +18,8 @@ class StepTemplateNano(TerminalNano):
 class Step1(StepTemplateNano):
     story = [
         "{{pb:Ding. Dong.}}",
-        "Eleanor: {{Bb:...what was that?}}",
-        "Look around."
+        "\nEleanor: {{Bb:...what was that?}}",
+        "{{lb:Look around.}}"
     ]
     start_dir = "~/town/east-part/restaurant/.cellar"
     end_dir = "~/town/east-part/restaurant/.cellar"
@@ -28,6 +30,7 @@ class Step1(StepTemplateNano):
     hints = [
         "{{rb:Use}} {{yb:ls}} {{rb:to check everyone is still present.}}"
     ]
+    deleted_items = ["~/town/east-part/shed-shop/Bernard"]
 
     def next(self):
         Step2()
@@ -35,9 +38,8 @@ class Step1(StepTemplateNano):
 
 class Step2(StepTemplateNano):
     story = [
-        "Everyone seems to be here.",
-        "What was that bell?",
-        "Clara looks like she has something to say. {{lb:Listen to her.}}"
+        "Everyone seems to be here. What was that bell?",
+        "\nClara looks like she has something to say. {{lb:Listen to her.}}"
     ]
     commands = [
         "cat Clara"
@@ -55,11 +57,13 @@ class Step2(StepTemplateNano):
 class Step3(StepTemplateNano):
     story = [
         "Clara: {{Bb:Are you two going back out there?}}",
-        "{{Bb:username, you look like you can take care of yourself, but "
+        "{{gb:" + os.environ['LOGNAME'] + "}}"
+        "{{Bb:, you look like you can take care of yourself, but "
         "I don't feel happy with Eleanor going outside.}}",
-        "\nClara: {{Bb:username, will you leave Eleanor with me?}} "
-        "{Bb:I'll look after her.}}",
-        "{{\nyb:1: That's a good idea, take good care of her.}}",
+        "\n" + "{{gb:" + os.environ['LOGNAME'] + "}}"
+        "{{Bb:, will you leave Eleanor with me? "
+        "I'll look after her.}}",
+        "\n{{yb:1: That's a good idea, take good care of her.}}",
         "{{yb:2: No I don't trust you, she's safer with me.}}",
         "{{yb:3: (Ask Eleanor.) Are you happy to stay here?}}",
         "{{yb:4: Do you have enough food here?}}",
@@ -86,11 +90,13 @@ class Step3(StepTemplateNano):
             text = "\nEleanor: {{Bb:I'm happy to stay here. I like Clara.}}"
             self.send_text(text)
         elif self.last_user_input == "echo 4":
-            text = "\nClara: {{Bb:There's loads of food here, look in the}} "
-            "{{lb:larder}} {{Bb:if you don't believe me.}}"
+            text = (
+                "\nClara: {{Bb:There's loads of food here, look in the}} "
+                "{{lb:larder}} {{Bb:if you don't believe me.}}"
+            )
             self.send_text(text)
         else:
-            StepTemplateNano.check_command(self, current_dir)
+            return StepTemplateNano.check_command(self, current_dir)
 
     def next(self):
         Step4()
@@ -118,8 +124,10 @@ class Step4(StepTemplateNano):
         "cd ../../shed-shop/"
     ]
 
-    def block_command(self, current_dir):
-        return unblock_command_with_cd_hint(current_dir)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step5()
@@ -127,7 +135,7 @@ class Step4(StepTemplateNano):
 
 class Step5(StepTemplateNano):
     story = [
-        "Look around"
+        "Look around."
     ]
     start_dir = "~/town/east-part/shed-shop"
     end_dir = "~/town/east-part/shed-shop"

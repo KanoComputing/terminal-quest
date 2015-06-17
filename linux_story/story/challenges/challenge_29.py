@@ -8,6 +8,7 @@
 import os
 from linux_story.story.terminals.terminal_nano import TerminalNano
 from linux_story.story.challenges.challenge_30 import Step1 as NextStep
+from linux_story.helper_functions import play_sound
 
 
 class StepTemplateNano(TerminalNano):
@@ -22,8 +23,8 @@ class Step1(StepTemplateNano):
         os.environ['LOGNAME'] + "}}{{Bb:.}}",
         "{{Bb:I recognise you!  You used to work in the library!}}",
 
-        "\nClara: {{Bb:...ah, Eleanor! Yes, I remember you, you came in"
-        " almost everyday.}}",
+        "\nClara: {{Bb:...ah, Eleanor! Yes, I remember you, you used to "
+        "come in almost everyday.}}",
 
         # Options
         "\n{{yb:1: Why are you hiding down here?}}",
@@ -45,37 +46,39 @@ class Step1(StepTemplateNano):
     def check_command(self, current_dir):
         if self.last_user_input == "echo 1":
             # This apparently doesn't wrap around? :/
-            text = [
-                "\n{{yb:1: Why are you hiding down here?}}",
-                "\nClara: {{Bb:I heard this bell go, and saw the "
+            text = (
+                "\n{{yb:Why are you hiding down here?}}"
+
+                "\n\nClara: {{Bb:I heard this bell go, and saw the "
                 "lead librarian disappear in front of me. I was "
-                "so scared I ran away, and found this .cellar here.}}",
-            ]
+                "so scared I ran away, and found this .cellar here.}}"
+            )
             self.send_text(text)
         elif self.last_user_input == "echo 2":
-            text = [
-                "\n{{yb:2: How did you lock the protected-section}}",
-                "\nClara: {{Bb:I didn't! The only person that could do that "
-                "was lead librarian.",
+            text = (
+                "\n{{yb:How did you lock the protected-section}}"
+                "\n\nClara: {{Bb:I didn't! The only person that could do that "
+                "was lead librarian."
 
-                "He had to find a special command to be able to do that. "
-                "I think he met a strange hermit outside town who taught him.",
+                "\nHe had to find a special command to be able to do that. "
+                "I think he met a strange hermit outside town who taught him."
 
-                "I'm not sure where you'd find him, my best guess would be "
-                "near the woods.",
+                "\nI'm not sure where you'd find him, my best guess would be "
+                "near the woods.}}"
 
-                "\n{{gb:Press Enter to continue, or ask Clara more questions "
+                "\n\n{{gb:Press Enter to continue, or ask Clara more questions "
                 "using}} {{lb:echo}}{{gb:.}}"
-            ]
+            )
             self.send_text(text)
             self.level_passed = True
             # Add to the map?
         elif self.last_user_input == "echo 3":
-            text = [
-                "\n{{yb:2: Do you know about any other people in town?}}",
-                "\nClara: {{Bb:There's a man I don't trust in the shed-shop. "
+            text = (
+                "\n{{yb:Do you know about any other people in town?}}"
+
+                "\n\nClara: {{Bb:There's a man I don't trust in the shed-shop. "
                 "He makes very simple tools and charges a fortune for them.}}"
-            ]
+            )
             self.send_text(text)
         # If no text is typed and the user entered "echo 2" on a previous
         # occasion, pass the level.
@@ -83,4 +86,5 @@ class Step1(StepTemplateNano):
             return True
 
     def next(self):
+        play_sound("bell")
         NextStep(self.xp)
