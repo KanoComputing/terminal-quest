@@ -49,7 +49,7 @@ class Step1(StepTemplateNano):
             text = (
                 "\n{{yb:Why are you hiding down here?}}"
 
-                "\n\nClara: {{Bb:I heard this bell go, and saw the "
+                "\n\nClara: {{Bb:I heard a bell ring, and saw the "
                 "lead librarian disappear in front of me. I was "
                 "so scared I ran away, and found this .cellar here.}}"
             )

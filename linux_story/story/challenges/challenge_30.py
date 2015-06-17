@@ -66,7 +66,7 @@ class Step3(StepTemplateNano):
         "\n{{yb:1: That's a good idea, take good care of her.}}",
         "{{yb:2: No I don't trust you, she's safer with me.}}",
         "{{yb:3: (Ask Eleanor.) Are you happy to stay here?}}",
-        "{{yb:4: Do you have enough food here?}}",
+        # "{{yb:4: Do you have enough food here?}}",
         "\n{{lb:Reply to Clara.}}"
     ]
     commands = [
@@ -89,12 +89,12 @@ class Step3(StepTemplateNano):
         elif self.last_user_input == "echo 3":
             text = "\nEleanor: {{Bb:I'm happy to stay here. I like Clara.}}"
             self.send_text(text)
-        elif self.last_user_input == "echo 4":
-            text = (
-                "\nClara: {{Bb:There's loads of food here, look in the}} "
-                "{{lb:larder}} {{Bb:if you don't believe me.}}"
-            )
-            self.send_text(text)
+        # elif self.last_user_input == "echo 4":
+        #    text = (
+        #        "\nClara: {{Bb:There's loads of food here, look in the}} "
+        #        "{{lb:larder}} {{Bb:if you don't believe me.}}"
+        #    )
+        #    self.send_text(text)
         else:
             return StepTemplateNano.check_command(self, current_dir)
 
