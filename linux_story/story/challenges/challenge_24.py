@@ -29,6 +29,12 @@ class Step1(StepTemplateMkdir):
     hints = [
         "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
     ]
+    deleted_items = ["~/town/Eleanor"]
+    story_dict = {
+        "Eleanor": {
+            "path": "~/town/east-part"
+        }
+    }
 
     def next(self):
         Step2()
@@ -76,6 +82,12 @@ class Step3(StepTemplateMkdir):
         "ls",
         "ls -a"
     ]
+    deleted_items = ["~/town/east-part/Eleanor"]
+    story_dict = {
+        "Eleanor": {
+            "path": "~/town/east-part/shed-shop"
+        }
+    }
 
     def next(self):
         Step4()

@@ -6,9 +6,8 @@
 # A chapter of the story
 
 from linux_story.story.terminals.terminal_nano import TerminalNano
-# from linux_story.story.challenges.challenge_29 import Step1 as NextStep
+from linux_story.story.challenges.challenge_29 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
-import time
 
 
 class StepTemplateNano(TerminalNano):
@@ -27,6 +26,13 @@ class Step1(StepTemplateNano):
     hints = [
         "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     ]
+
+    deleted_items = ["~/town/east-part/shed-shop/Eleanor"]
+    story_dict = {
+        "Eleanor": {
+            "path": "~/town/east-part"
+        }
+    }
 
     commands = [
         "ls",
@@ -80,6 +86,13 @@ class Step3(StepTemplateNano):
         "ls -a"
     ]
 
+    deleted_items = ["~/town/east-part/Eleanor"]
+    story_dict = {
+        "Eleanor": {
+            "path": "~/town/east-part/restaurant"
+        }
+    }
+
     def next(self):
         Step4()
 
@@ -123,6 +136,17 @@ class Step5(StepTemplateNano):
         "{{rb:Look around with}} {{yb:ls}}"
     ]
 
+    deleted_items = ["~/town/east-part/restaurant/Eleanor"]
+    story_dict = {
+        "Eleanor": {
+            "path": "~/town/east-part/restaurant/.cellar"
+        }
+    }
+    commands = [
+        "ls",
+        "ls -a"
+    ]
+
     def next(self):
         Step6()
 
@@ -147,6 +171,4 @@ class Step6(StepTemplateNano):
     last_step = True
 
     def next(self):
-        time.sleep(3)
-        self.exit()
-        # NextStep(self.xp)
+        NextStep(self.xp)

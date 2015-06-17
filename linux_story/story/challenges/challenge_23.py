@@ -150,6 +150,7 @@ class Step4(StepTemplateMkdir):
         "ls",
         "ls -a"
     ]
+    deleted_items = ["~/town/.hidden-shelter/Eleanor"]
 
     story = [
         "Eleanor: {{Bb:Let's go to the}} {{lb:east part}} "
@@ -182,6 +183,9 @@ class Step4(StepTemplateMkdir):
         },
         "Clara": {
             "path": "~/town/east-part/restaurant/.cellar"
+        },
+        "Eleanor": {
+            "path": "~/town"
         }
     }
 

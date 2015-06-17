@@ -36,6 +36,13 @@ class Step1(StepTemplateMkdir):
         "cat Bernard"
     ]
 
+    deleted_items = ["~/town/east-part/library/Eleanor"]
+    story_dict = {
+        "Eleanor": {
+            "path": "~/town/east-part/shed-shop"
+        }
+    }
+
     def next(self):
         Step2()
 
