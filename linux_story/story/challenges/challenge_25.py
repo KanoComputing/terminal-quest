@@ -163,7 +163,7 @@ class Step6(StepTemplateMkdir):
         "The tool reads {{yb:eco \"Honk!\"}}",
         "That looks a lot like {{lb:echo}}...we could probably fix this tool!",
         "How could we make changes to this tool?",
-        "\nBruno: {{Bb:Ho ho, you look like you understand the problem.}}",
+        "\nBernard: {{Bb:Ho ho, you look like you understand the problem.}}",
         "Eleanor: {{Bb:If we need extra help, we can go look in the "
         "library.  It was just outside.}}",
         "\nBefore we go, have a {{lb:look}} in the {{lb:secret-room}}."

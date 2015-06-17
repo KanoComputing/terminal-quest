@@ -168,9 +168,8 @@ class Step4(StepTemplateMkdir):
             "path": "~/town/east-part/shed-shop",
             "permissions": 0755
         },
-        "secret-room": {
-            "directory": True,
-            "path": "~/town/east-part/shed-shop"
+        "photocopier.sh, bernards-diary": {
+            "path": "~/town/east-part/shed-shop/secret-room"
         },
         "NANO": {
             "path": "~/town/east-part/library/public-section"
