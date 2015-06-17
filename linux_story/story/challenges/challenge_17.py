@@ -49,7 +49,7 @@ class Step2(StepTemplateMv):
         "You see doors to your {{bb:garden}}, {{bb:kitchen}}, "
         "{{bb:my-room}} and {{bb:parents-room}}.",
         "We haven't checked out your parents' room properly yet.",
-        "{{lb:Go into parents-room}}."
+        "{{lb:Go into your parents-room}}."
     ]
 
     start_dir = "~/my-house/my-room"

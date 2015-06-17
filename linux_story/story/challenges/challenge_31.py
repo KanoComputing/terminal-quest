@@ -95,8 +95,8 @@ class Step3(StepTemplateNano):
 
 class Step4(StepTemplateNano):
     story = [
-        "Enough wandering. Let's go and try and find this "
-        "hermit near the woods.",
+        "Enough wandering. Let's go and try and find the "
+        "hermit near the woods that Clara mentioned.",
         "{{gb:Press Enter to continue.}}"
     ]
     start_dir = "~/town/east-part/shed-shop/secret-room"

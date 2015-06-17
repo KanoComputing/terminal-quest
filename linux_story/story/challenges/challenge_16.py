@@ -27,7 +27,7 @@ class Step1(StepTemplateMv):
     story = [
         "There is an old antique {{lb:.chest}} hidden under your bed, "
         "which you don't remember seeing before.",
-        "You walk into my-room to have a closer look.",
+        "You walk into {{bb:my-room}} to have a closer look.",
         "Peer inside the {{lb:.chest}} and see what it contains."
     ]
 
@@ -54,7 +54,7 @@ class Step1(StepTemplateMv):
 class Step2(StepTemplateMv):
     story = [
         "There are some rolls of parchment, similar to what you found in "
-        "the .hidden-shelter",
+        "the {{bb:.hidden-shelter}}",
         "Use {{lb:cat}} to read one of the scrolls.\n"
     ]
 
@@ -112,7 +112,7 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "I wonder if there's anything else hidden in this {{yb:.chest}}?",
+        "I wonder if there's anything else hidden in this {{lb:.chest}}?",
         "Have a closer look for some more items."
     ]
 

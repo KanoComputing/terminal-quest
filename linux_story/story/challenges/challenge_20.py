@@ -56,7 +56,7 @@ class Step1(StepTemplateEcho):
 
 class Step2(StepTemplateEcho):
     story = [
-        "Ruth follows you into the toolshed. It's a very large "
+        "Ruth follows you into the {{bb:toolshed}}. It's a very large "
         "space with tools lining the walls.",
         "Ruth: {{Bb:Let's}} {{lb:look around}} {{Bb:for "
         "anything that could be useful.}}\n"

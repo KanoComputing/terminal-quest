@@ -56,15 +56,15 @@ class Step1(StepTemplateNano):
             self.send_text(text)
         elif self.last_user_input == "echo 2":
             text = (
-                "\n{{yb:How did you lock the protected-section}}"
+                "\n{{yb:How did you lock the protected-section?}}"
                 "\n\nClara: {{Bb:I didn't! The only person that could do that "
-                "was lead librarian."
+                "was the lead librarian."
 
                 "\nHe had to find a special command to be able to do that. "
                 "I think he met a strange hermit outside town who taught him."
 
                 "\nI'm not sure where you'd find him, my best guess would be "
-                "near the woods.}}"
+                "near the}} {{bb:woods}}{{Bb:.}}"
 
                 "\n\n{{gb:Press Enter to continue, or ask Clara more questions "
                 "using}} {{lb:echo}}{{gb:.}}"
