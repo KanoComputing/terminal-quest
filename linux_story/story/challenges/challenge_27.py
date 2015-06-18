@@ -78,6 +78,9 @@ class Step2(StepTemplateNano):
     def check_command(self, current_dir):
         return self.check_nano_input()
 
+    def check_nano_content(self):
+        return self.check_nano_content_default()
+
     def next(self):
         Step3()
 
