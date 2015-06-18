@@ -58,6 +58,10 @@ class TerminalNano(TerminalEcho):
 
         self.set_nano_running(True)
 
+        # Read contents of the file
+        text = self.read_goal_contents()
+        self.set_nano_content(text)
+
         # Read nano in a separate thread
         t = threading.Thread(target=self.try_and_get_nano_contents)
         t.daemon = True
@@ -194,6 +198,13 @@ class TerminalNano(TerminalEcho):
             self.send_text("\nFailed to get nano contents, {}".format(str(e)))
 
     def get_nano_contents(self):
+
+        hint = (
+            "\n{{gb:You've opened nano! Now type}} {{yb:" +
+            self.goal_nano_end_content +
+            "}}{{gb:. If you want to exit, press Ctrl X.}}"
+        )
+        self.send_text(hint)
         pipename = "/tmp/linux-story-nano-pipe"
 
         if not os.path.exists(pipename):
@@ -216,7 +227,7 @@ class TerminalNano(TerminalEcho):
                     self.cancel_everything()
                     value = data["contents"]
 
-                    if self.get_nano_content() != self.nano_end_content:
+                    if self.get_nano_content() != self.goal_nano_end_content:
                         self.set_nano_content_values(value)
 
                 if "statusbar" in data:
@@ -289,6 +300,18 @@ class TerminalNano(TerminalEcho):
                     if self.check_nano_content():
                         return
 
+    def read_goal_contents(self):
+        text = ""
+        end_path = self.generate_real_path(self.goal_nano_filepath)
+
+        if os.path.exists(end_path):
+            # check contents of file contains the self.end_text
+            f = open(end_path, "r")
+            text = f.read()
+            f.close()
+
+        return text
+
     def check_nano_input(self):
         end_path = self.generate_real_path(self.goal_nano_filepath)
 
@@ -298,14 +321,14 @@ class TerminalNano(TerminalEcho):
             text = f.read()
             f.close()
 
-            if text.strip() == self.nano_end_content:
+            if text.strip() == self.goal_nano_end_content:
                 return self.finish_if_server_ready(True)
             else:
                 error_text = (
                     "\n{{rb:The contents of the file is not correct. "
                     "You have}} {{lb:" + text +
                     "}} {{rb:when we expected}} {{lb:" +
-                    self.nano_end_content +
+                    self.goal_nano_end_content +
                     "}}{{rb:. Try again!}}"
                 )
                 self.send_text(error_text)
@@ -340,7 +363,7 @@ class TerminalNano(TerminalEcho):
             '''
 
         elif self.get_on_filename_screen() and \
-                self.get_nano_content().strip() == self.nano_end_content:
+                self.get_nano_content().strip() == self.goal_nano_end_content:
 
             if self.get_editable() == self.goal_nano_save_name:
                 hint = (
@@ -366,9 +389,10 @@ class TerminalNano(TerminalEcho):
                 "save.}}"
             )
 
-        elif self.get_nano_content().strip() == self.nano_end_content:
+        elif self.get_nano_content().strip() == self.goal_nano_end_content:
             hint = (
-                "\n{{gb:Excellent, you typed}} {{lb:" + self.nano_end_content +
+                "\n{{gb:Excellent, you typed}} {{lb:" +
+                self.goal_nano_end_content +
                 "}}{{gb:. Now press}} {{yb:Ctrl X}} {{gb:to exit.}}"
             )
             self.send_text(hint)

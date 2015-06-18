@@ -69,7 +69,7 @@ class Step2(StepTemplateNano):
         "{{rb:to edit the tool.}}"
     ]
 
-    nano_end_content = "echo \"Honk!\""
+    goal_nano_end_content = "echo \"Honk!\""
     goal_nano_filepath = "~/town/east-part/shed-shop/best-horn-in-the-world.sh"
     goal_nano_save_name = "best-horn-in-the-world.sh"
 
