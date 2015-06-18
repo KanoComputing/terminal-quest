@@ -6,12 +6,12 @@
 # A chapter of the story
 
 
-from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
+from linux_story.story.terminals.terminal_eleanor import TerminalMkdirEleanor
 from linux_story.story.challenges.challenge_27 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
-class StepTemplateMkdir(TerminalMkdir):
+class StepTemplateMkdir(TerminalMkdirEleanor):
     challenge_number = 26
 
 
@@ -38,6 +38,7 @@ class Step1(StepTemplateMkdir):
             "path": "~/town/east-part"
         }
     }
+    eleanors_speech = "Eleanor: {{Bb:The library is over there!}}"
 
     def next(self):
         Step2()
@@ -58,6 +59,7 @@ class Step2(StepTemplateMkdir):
         "cd library",
         "cd library/"
     ]
+    eleanors_speech = "Eleanor: {{Bb:Let's go in!}}"
 
     def block_command(self):
         return unblock_commands_with_cd_hint(
@@ -89,6 +91,7 @@ class Step3(StepTemplateMkdir):
             "path": "~/town/east-part/library"
         }
     }
+    eleanors_speech = "Eleanor: {{Bb:It's all echo-y-y-y-y..}}"
 
     def next(self):
         Step4()
@@ -120,6 +123,7 @@ class Step4(StepTemplateMkdir):
         "{{rb:Use}} {{yb:ls private-section/}} {{rb:to look in the "
         "private-section of the library.}}"
     ]
+    eleanors_speech = "Eleanor: {{Bb:What's in the private-section?}}"
 
     def next(self):
         Step5()
@@ -148,6 +152,7 @@ class Step5(StepTemplateMkdir):
         "{{rb:Use}} {{yb:ls public-section}} {{rb:to look in the public-"
         "section.}}"
     ]
+    eleanors_speech = "Eleanor: {{Bb:What's in the public-section?}}"
 
     def next(self):
         Step6()
@@ -169,6 +174,10 @@ class Step6(StepTemplateMkdir):
     hints = [
         "{{rb:Examine the NANO script with}} {{yb:cat public-section/NANO}}"
     ]
+    eleanors_speech = (
+        "Eleanor: {{Bb:The library should probably have introduced late "
+        "fees.}}"
+    )
 
     def next(self):
         Step7()
@@ -194,6 +203,9 @@ class Step7(StepTemplateMkdir):
         "cd shed-shop",
         "cd shed-shop/"
     ]
+    eleanors_speech = (
+        "Bernard: {{Bb:...do we have to go and see creepy Bernard again?}}"
+    )
     last_step = True
 
     def block_command(self):

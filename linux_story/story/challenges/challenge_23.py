@@ -10,15 +10,19 @@ from linux_story.step_helper_functions import (
     unblock_commands_with_cd_hint
 )
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
-# import time
+from linux_story.story.terminals.terminal_eleanor import TerminalMkdirEleanor
 from linux_story.story.challenges.challenge_24 import Step1 as NextStep
 
 
-class StepTemplateMkdir(TerminalMkdir):
+class StepMkdir(TerminalMkdir):
     challenge_number = 23
 
 
-class Step1(StepTemplateMkdir):
+class StepMkdirEleanor(TerminalMkdirEleanor):
+    challenge_number = 23
+
+
+class Step1(StepMkdir):
     story = [
         "You see Eleanor. Listen to what she has to say."
     ]
@@ -35,7 +39,7 @@ class Step1(StepTemplateMkdir):
         Step2()
 
 
-class Step2(StepTemplateMkdir):
+class Step2(StepMkdir):
     story = [
         "Eleanor: {{Bb:\"Oh, it's you!",
         # "My parents went outside as we ran out of food."
@@ -74,7 +78,7 @@ class Step2(StepTemplateMkdir):
         Step3(self.last_user_input)
 
 
-class Step3(StepTemplateMkdir):
+class Step3(StepMkdirEleanor):
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town"
 
@@ -87,6 +91,9 @@ class Step3(StepTemplateMkdir):
         "cd ~/town",
         "cd ~/town/"
     ]
+    eleanors_speech = (
+        "Eleanor: {{Bb:Yay, we're going on an adventure!}}"
+    )
 
     def __init__(self, prev_command="echo 1"):
         self.story = []
@@ -129,7 +136,7 @@ class Step3(StepTemplateMkdir):
             "Don't worry, Eleanor will follow!"
         ]
 
-        StepTemplateMkdir.__init__(self)
+        StepMkdirEleanor.__init__(self)
 
     def block_command(self):
         return unblock_commands_with_cd_hint(
@@ -140,7 +147,7 @@ class Step3(StepTemplateMkdir):
         Step4()
 
 
-class Step4(StepTemplateMkdir):
+class Step4(StepMkdirEleanor):
     start_dir = "~/town"
     end_dir = "~/town"
     hints = [
@@ -155,7 +162,7 @@ class Step4(StepTemplateMkdir):
     story = [
         "Eleanor: {{Bb:Let's go to the}} {{lb:east part}} "
         "{{Bb:of town.}}",
-        "{{Bb:Have you not noticed it before? It's over there! "
+        "{{Bb:Haven't you noticed it before? It's over there! "
         "Look over there.}}",
         "\nUse {{yb:ls}} to see what Eleanor is trying to show you."
     ]
@@ -188,11 +195,16 @@ class Step4(StepTemplateMkdir):
         }
     }
 
+    eleanors_speech = (
+        "\nEleanor: {{Bb:Why are you looking at me? "
+        "You should be looking over THERE.}}"
+    )
+
     def next(self):
         Step5()
 
 
-class Step5(StepTemplateMkdir):
+class Step5(StepMkdirEleanor):
     story = [
         "You look in the direction Eleanor is pointing.",
         "There is a narrow road leading to another part of town.",
@@ -215,6 +227,11 @@ class Step5(StepTemplateMkdir):
         "cd east-part/",
         "cd east-part"
     ]
+
+    eleanors_speech = (
+        "\nEleanor: {{Bb:Let's go to the}} {{lb:east-part.}} "
+        "{{Bb:Come on slow coach!}}"
+    )
 
     def block_command(self):
         return unblock_commands_with_cd_hint(

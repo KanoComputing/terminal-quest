@@ -250,6 +250,43 @@ Eleanor:
           step: 1
           path: "~/town/.hidden-shelter"
 
+          # Chapter 4
+        - challenge: 23
+          step: 4
+          path: "~/town"
+
+        - challenge: 24
+          step: 1
+          path: "~/town/east-part"
+
+        - challenge: 24
+          step: 3
+          path: "~/town/east-part/shed-shop"
+
+        - challenge: 26
+          step: 1
+          path: "~/town"
+
+        - challenge: 26
+          step: 3
+          path: "~/town/east-part/library"
+
+        - challenge: 27
+          step: 1
+          path: "~/town/east-part/shed-shop"
+
+        - challenge: 28
+          step: 1
+          path: "~/town/east-part"
+
+        - challenge: 28
+          step: 3
+          path: "~/town/east-part/restaurant"
+
+        - challenge: 28
+          step: 5
+          path: "~/town/east-part/restaurant/.cellar"
+
 # Finally the dog is saved
 dog:
     challenges:

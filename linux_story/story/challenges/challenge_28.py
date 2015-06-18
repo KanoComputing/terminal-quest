@@ -5,12 +5,12 @@
 #
 # A chapter of the story
 
-from linux_story.story.terminals.terminal_nano import TerminalNano
+from linux_story.story.terminals.terminal_eleanor import TerminalNanoEleanor
 from linux_story.story.challenges.challenge_29 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
-class StepTemplateNano(TerminalNano):
+class StepTemplateNano(TerminalNanoEleanor):
     challenge_number = 28
 
 
@@ -39,6 +39,10 @@ class Step1(StepTemplateNano):
         "ls -a"
     ]
 
+    eleanors_speech = (
+        "Eleanor: {{Bb:I'm hungry. Can you see anywhere we could eat?}}"
+    )
+
     def next(self):
         Step2()
 
@@ -59,6 +63,10 @@ class Step2(StepTemplateNano):
         "cd restaurant/",
         "cd restaurant"
     ]
+
+    eleanors_speech = (
+        "Eleanor: {{Bb:Ooh, do you think they'll have a sandwich anywhere?}}"
+    )
 
     def block_command(self):
         return unblock_commands_with_cd_hint(
@@ -93,6 +101,10 @@ class Step3(StepTemplateNano):
         }
     }
 
+    eleanors_speech = (
+        "Eleanor: {{Bb:It seems really empty here...}}"
+    )
+
     def next(self):
         Step4()
 
@@ -114,6 +126,10 @@ class Step4(StepTemplateNano):
         "cd .cellar/",
         "cd .cellar"
     ]
+
+    eleanors_speech = (
+        "Eleanor: {{Bb:I'm scared...can you hold my hand?}}"
+    )
 
     def block_command(self):
         return unblock_commands_with_cd_hint(
@@ -147,6 +163,10 @@ class Step5(StepTemplateNano):
         "ls -a"
     ]
 
+    eleanors_speech = (
+        "Eleanor: {{Bb:...is there someone there?}}"
+    )
+
     def next(self):
         Step6()
 
@@ -168,6 +188,10 @@ class Step6(StepTemplateNano):
     commands = [
         "cat Clara"
     ]
+    eleanors_speech = (
+        "Eleanor: {{Bb:...oh! I think I recognise you!}}"
+    )
+
     last_step = True
 
     def next(self):

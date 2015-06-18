@@ -6,12 +6,12 @@
 # A chapter of the story
 
 
-from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
+from linux_story.story.terminals.terminal_eleanor import TerminalMkdirEleanor
 from linux_story.story.challenges.challenge_26 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
-class StepTemplateMkdir(TerminalMkdir):
+class StepTemplateMkdir(TerminalMkdirEleanor):
     challenge_number = 25
 
 
@@ -42,9 +42,11 @@ class Step1(StepTemplateMkdir):
     ]
 
     commands = [
-        "cat best-shed-maker-in-the-world.sh",
-        "cat ./best-shed-maker-in-the-world.sh"
+        "cat best-shed-maker-in-the-world.sh"
     ]
+    eleanors_speech = (
+        "Eleanor: {{Bb:Bernard scares me a bit...}}"
+    )
 
     def next(self):
         Step2()
@@ -75,6 +77,10 @@ class Step2(StepTemplateMkdir):
     commands = [
         "./best-shed-maker-in-the-world.sh"
     ]
+    eleanors_speech = (
+        "Eleanor: {{Bb:Isn't that just the same as running}} "
+        "{{yb:mkdir shed}}{{Bb:?}}"
+    )
 
     def next(self):
         Step3()
@@ -93,6 +99,9 @@ class Step3(StepTemplateMkdir):
     hints = [
         "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     ]
+    eleanors_speech = (
+        "Eleanor: {{Bb:Ah, look over there!}}"
+    )
 
     def next(self):
         Step4()
@@ -118,6 +127,9 @@ class Step4(StepTemplateMkdir):
     commands = [
         "./best-shed-maker-in-the-world.sh"
     ]
+    eleanors_speech = (
+        "Eleanor: {{Bb:I don't think this will work...}}"
+    )
 
     def next(self):
         Step5()
@@ -125,7 +137,8 @@ class Step4(StepTemplateMkdir):
 
 class Step5(StepTemplateMkdir):
     story = [
-        "You get the error {{yb:mkdir: cannot create directory `shed': File exists}}",
+        "You get the error {{yb:mkdir: cannot create directory `shed': "
+        "File exists}}",
         "\nBernard: {{Bb:Of course it won't work second time - "
         "you already have a shed!",
 
@@ -153,6 +166,10 @@ class Step5(StepTemplateMkdir):
         "{{rb:Use}} {{yb:cat best-horn-in-the-world.sh}} {{rb:to examine the "
         "tool.}}"
     ]
+
+    eleanors_speech = (
+        "Eleanor: {{Bb:I think this tool is a bit broken.}}"
+    )
 
     def next(self):
         Step6()
@@ -184,6 +201,10 @@ class Step6(StepTemplateMkdir):
         "{{rb:Use}} {{yb:ls secret-room/}} {{rb:to look inside.}}"
     ]
 
+    eleanors_speech = (
+        "Eleanor: {{Bb:OooOOoh, are there sweets in there?}}"
+    )
+
     def next(self):
         Step7()
 
@@ -203,6 +224,9 @@ class Step7(StepTemplateMkdir):
     hints = [
         "{{rb:Leave the shed-shop using}} {{yb:cd ../}}"
     ]
+    eleanors_speech = (
+        "Eleanor: {{Bb:Yay, I like the library. Let's go back to town!}}"
+    )
 
     last_step = True
 

@@ -6,12 +6,12 @@
 # A chapter of the story
 
 
-from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
+from linux_story.story.terminals.terminal_eleanor import TerminalMkdirEleanor
 from linux_story.story.challenges.challenge_25 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
-class StepTemplateMkdir(TerminalMkdir):
+class StepTemplateMkdir(TerminalMkdirEleanor):
     challenge_number = 24
 
 
@@ -36,13 +36,19 @@ class Step1(StepTemplateMkdir):
         }
     }
 
+    eleanors_speech = (
+        "Eleanor: {{Bb:I can't see my parents anywhere...but there's "
+        "a weird building there.}}"
+    )
+
     def next(self):
         Step2()
 
 
 class Step2(StepTemplateMkdir):
     story = [
-        "Eleanor: {{Bb:Hey, what is that shed-shop?}}",
+        "You see a {{bb:shed-shop}}, {{bb:library}} and {{bb:restaurant}}.",
+        "\nEleanor: {{Bb:Hey, what is that shed-shop?}}",
         "{{Bb:Let's}} {{lb:go in}}{{Bb:!}}"
     ]
 
@@ -55,6 +61,10 @@ class Step2(StepTemplateMkdir):
     hints = [
         "{{rb:Use}} {{yb:cd shed-shop/}} {{rb:to go in the shed-shop.}}"
     ]
+
+    eleanors_speech = (
+        "Eleanor: {{Bb:Do you think they sell candy?}}"
+    )
 
     def block_command(self):
         return unblock_commands_with_cd_hint(
@@ -88,6 +98,9 @@ class Step3(StepTemplateMkdir):
             "path": "~/town/east-part/shed-shop"
         }
     }
+    eleanors_speech = (
+        "Eleanor: {{Bb::Achoo! It's dusty in here!}}"
+    )
 
     def next(self):
         Step4()
@@ -106,8 +119,6 @@ class Step4(StepTemplateMkdir):
     end_dir = "~/town/east-part/shed-shop"
 
     hints = [
-        "Eleanor: {{Bb:My}} {{lb:cat}} {{Bb:used to be a great "
-        "listener, I'd tell her everything.}}",
         "{{rb:Use}} {{yb:cat Bernard}} {{rb:to see what Bernard has "
         "to say.}}"
     ]
@@ -115,6 +126,10 @@ class Step4(StepTemplateMkdir):
     commands = [
         "cat Bernard"
     ]
+    eleanors_speech = (
+        "Eleanor: {{Bb:My}} {{lb:cat}} {{Bb:used to be a great "
+        "listener, I'd tell her everything.}}"
+    )
 
     last_step = True
 
