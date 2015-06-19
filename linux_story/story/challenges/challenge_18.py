@@ -6,7 +6,7 @@
 # A chapter of the story
 
 from linux_story.step_helper_functions import (
-    unblock_commands, unblock_cd_commands  # , unblock_commands_with_cd_hint
+    unblock_cd_commands
 )
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_19 import Step1 as NextStep
@@ -16,6 +16,7 @@ class StepTemplate(TerminalEcho):
     challenge_number = 18
 
 
+'''
 class Step1(StepTemplate):
     story = [
         "{{gb:Congratulations, you learnt the new skill echo!}}",
@@ -25,7 +26,7 @@ class Step1(StepTemplate):
         "This command can probably be used to talk to people.",
 
         "Move this {{lb:ECHO}} command into your {{lb:.chest}} "
-        "for safe keeping."
+        "in {{lb:my-room}} for safe keeping."
     ]
     hints = [
         "{{rb:An easy way to do it is to move}} {{lb:ECHO}} {{rb:from}} "
@@ -59,10 +60,31 @@ class Step2(StepTemplate):
         "{{rb:Use}} {{yb:cd}} {{rb:by itself to go to}} {{lb:~}}"
     ]
 
-    commands = [
-        "cd",
-        "cd ~",
-        "cd ~/"
+    start_dir = "~/my-house/parents-room"
+    end_dir = "~"
+
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
+
+    def next(self):
+        Step3()
+'''
+
+
+class Step1(StepTemplate):
+    story = [
+        "{{gb:Congratulations, you learnt the new skill echo!}}",
+
+        "\nWoah! You spoke aloud into the empty room!",
+
+        "This command can probably be used to talk to people.",
+
+        "\nNow let's head to ~ to find that farm!",
+        "Type {{yb:cd}} by itself to go to the Windy Road {{lb:~}}"
+    ]
+
+    hints = [
+        "{{rb:Use}} {{yb:cd}} {{rb:by itself to go to}} {{lb:~}}"
     ]
 
     start_dir = "~/my-house/parents-room"
@@ -72,10 +94,10 @@ class Step2(StepTemplate):
         return unblock_cd_commands(self.last_user_input)
 
     def next(self):
-        Step3()
+        Step2()
 
 
-class Step3(StepTemplate):
+class Step2(StepTemplate):
     story = [
         "You are back on the windy road, which stretches endlessly in both "
         "directions. {{lb:Look around.}}"
@@ -92,10 +114,10 @@ class Step3(StepTemplate):
     end_dir = '~'
 
     def next(self):
-        Step4()
+        Step3()
 
 
-class Step4(StepTemplate):
+class Step3(StepTemplate):
     story = [
         "You notice a small remote farm in the distance.",
         "{{lb:Let's go}} to the {{lb:farm}}."
@@ -103,12 +125,6 @@ class Step4(StepTemplate):
 
     start_dir = "~"
     end_dir = "~/farm"
-    commands = [
-        "cd farm",
-        "cd farm/",
-        "cd ~/farm",
-        "cd ~/farm/"
-    ]
     hints = [
         "{{rb:Use}} {{yb:cd farm/}} {{rb:to head to the farm.}}"
     ]
@@ -117,10 +133,10 @@ class Step4(StepTemplate):
         return unblock_cd_commands(self.last_user_input)
 
     def next(self):
-        Step5()
+        Step4()
 
 
-class Step5(StepTemplate):
+class Step4(StepTemplate):
     story = [
         "Look around."
     ]
@@ -131,10 +147,10 @@ class Step5(StepTemplate):
     hints = ["{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"]
 
     def next(self):
-        Step6()
+        Step5()
 
 
-class Step6(StepTemplate):
+class Step5(StepTemplate):
     story = [
         "You are in a farm, with a {{bb:barn}}, a {{bb:farmhouse}} and "
         "a large {{bb:toolshed}} in sight.",
@@ -186,10 +202,10 @@ class Step6(StepTemplate):
             return True
 
     def next(self):
-        Step7()
+        Step6()
 
 
-class Step7(StepTemplate):
+class Step6(StepTemplate):
 
     story = [
         "In the barn, you see a woman tending some animals.",

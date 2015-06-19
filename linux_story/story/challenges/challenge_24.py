@@ -24,15 +24,15 @@ class Step1(StepTemplateMkdir):
         "ls -a"
     ]
 
-    start_dir = "~/town/east-part"
-    end_dir = "~/town/east-part"
+    start_dir = "~/town/east"
+    end_dir = "~/town/east"
     hints = [
         "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
     ]
     deleted_items = ["~/town/Eleanor"]
     story_dict = {
         "Eleanor": {
-            "path": "~/town/east-part"
+            "path": "~/town/east"
         }
     }
 
@@ -52,12 +52,8 @@ class Step2(StepTemplateMkdir):
         "{{Bb:Let's}} {{lb:go in}}{{Bb:!}}"
     ]
 
-    start_dir = "~/town/east-part"
-    end_dir = "~/town/east-part/shed-shop"
-    commands = [
-        "cd shed-shop",
-        "cd shed-shop/"
-    ]
+    start_dir = "~/town/east"
+    end_dir = "~/town/east/shed-shop"
     hints = [
         "{{rb:Use}} {{yb:cd shed-shop/}} {{rb:to go in the shed-shop.}}"
     ]
@@ -81,8 +77,8 @@ class Step3(StepTemplateMkdir):
         "Look around."
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
     hints = [
         "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
     ]
@@ -90,10 +86,10 @@ class Step3(StepTemplateMkdir):
         "ls",
         "ls -a"
     ]
-    deleted_items = ["~/town/east-part/Eleanor"]
+    deleted_items = ["~/town/east/Eleanor"]
     story_dict = {
         "Eleanor": {
-            "path": "~/town/east-part/shed-shop"
+            "path": "~/town/east/shed-shop"
         }
     }
     eleanors_speech = (
@@ -113,8 +109,8 @@ class Step4(StepTemplateMkdir):
         "\n{{lb:Listen}} to what {{lb:Bernard}} has to say."
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
 
     hints = [
         "{{rb:Use}} {{yb:cat Bernard}} {{rb:to see what Bernard has "

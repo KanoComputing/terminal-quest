@@ -21,8 +21,8 @@ class Step1(StepNano):
         "\nEleanor: {{Bb:...what was that?}}",
         "{{lb:Look around.}}"
     ]
-    start_dir = "~/town/east-part/restaurant/.cellar"
-    end_dir = "~/town/east-part/restaurant/.cellar"
+    start_dir = "~/town/east/restaurant/.cellar"
+    end_dir = "~/town/east/restaurant/.cellar"
     commands = [
         "ls",
         "ls -a"
@@ -30,7 +30,7 @@ class Step1(StepNano):
     hints = [
         "{{rb:Use}} {{yb:ls}} {{rb:to check everyone is still present.}}"
     ]
-    deleted_items = ["~/town/east-part/shed-shop/Bernard"]
+    deleted_items = ["~/town/east/shed-shop/Bernard"]
     eleanors_speech = (
         "Eleanor: {{Bb:......}}"
     )
@@ -47,8 +47,8 @@ class Step2(StepNano):
     commands = [
         "cat Clara"
     ]
-    start_dir = "~/town/east-part/restaurant/.cellar"
-    end_dir = "~/town/east-part/restaurant/.cellar"
+    start_dir = "~/town/east/restaurant/.cellar"
+    end_dir = "~/town/east/restaurant/.cellar"
     hints = [
         "{{rb:Use}} {{yb:cat Clara}} {{rb:to see what Clara has to say.}}"
     ]
@@ -79,8 +79,8 @@ class Step3(StepNano):
     commands = [
         "echo 1"
     ]
-    start_dir = "~/town/east-part/restaurant/.cellar"
-    end_dir = "~/town/east-part/restaurant/.cellar"
+    start_dir = "~/town/east/restaurant/.cellar"
+    end_dir = "~/town/east/restaurant/.cellar"
     hints = [
         "{{rb:Use}} {{yb:echo 1}} {{rb:or}} {{yb:echo 2}} {{rb:to reply "
         "to Clara.}}"
@@ -122,8 +122,8 @@ class Step4(StepNano):
         "the {{lb:masked swordsmaster}}.",
         "{{lb:Head to the shed-shop.}}"
     ]
-    start_dir = "~/town/east-part/restaurant/.cellar"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/restaurant/.cellar"
+    end_dir = "~/town/east/shed-shop"
 
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)
@@ -136,8 +136,8 @@ class Step5(StepNano):
     story = [
         "Look around."
     ]
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
     commands = [
         "ls",
         "ls -a"

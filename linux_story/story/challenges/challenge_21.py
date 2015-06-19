@@ -28,15 +28,6 @@ class Step1(StepTemplateMkdir):
     ]
     start_dir = "~/farm/toolshed"
     end_dir = "~/farm/barn"
-    commands = [
-        "cd ../barn/",
-        "cd ../barn",
-        "cd ~/farm/barn",
-        "cd ~/farm/barn/"
-    ]
-    hints = [
-        "{{rb:Try using}} {{yb: cd ../barn/}}"
-    ]
     deleted_items = [
         "~/farm/toolshed/Ruth"
     ]
@@ -372,10 +363,6 @@ class Step10(StepTemplateMkdir):
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn/.shelter"
-    commands = [
-        "cd .shelter",
-        "cd .shelter/"
-    ]
     hints = [
         "{{rb:Type}} {{yb:cd .shelter/}} {{rb:to go into the}} "
         "{{lb:.shelter}}{{rb:.}}"

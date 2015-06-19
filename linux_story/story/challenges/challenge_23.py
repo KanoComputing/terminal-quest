@@ -83,12 +83,7 @@ class Step3(StepMkdirEleanor):
     hints = [
         "{{rb:Use}} {{yb:cd ../}} {{rb:to go into town.}}"
     ]
-    commands = [
-        "cd ..",
-        "cd ../",
-        "cd ~/town",
-        "cd ~/town/"
-    ]
+
     eleanors_speech = (
         "Eleanor: {{Bb:Yay, we're going on an adventure!}}"
     )
@@ -165,26 +160,26 @@ class Step4(StepMkdirEleanor):
 
     story_dict = {
         "Bernard": {
-            "path": "~/town/east-part/shed-shop"
+            "path": "~/town/east/shed-shop"
         },
         "best-shed-maker-in-the-world.sh, best-horn-in-the-world.sh": {
-            "path": "~/town/east-part/shed-shop",
+            "path": "~/town/east/shed-shop",
             "permissions": 0755
         },
-        "photocopier.sh, bernards-diary": {
-            "path": "~/town/east-part/shed-shop/secret-room"
+        "photocopier.sh, bernards-diary-1, bernards-diary-2": {
+            "path": "~/town/east/shed-shop/basement"
         },
         "NANO": {
-            "path": "~/town/east-part/library/public-section"
+            "path": "~/town/east/library/public-section"
         },
         "private-section": {
-            "path": "~/town/east-part/library",
+            "path": "~/town/east/library",
             # Remove all read and write permissions
             "permissions": 0000,
             "directory": True
         },
         "Clara": {
-            "path": "~/town/east-part/restaurant/.cellar"
+            "path": "~/town/east/restaurant/.cellar"
         },
         "Eleanor": {
             "path": "~/town"
@@ -207,26 +202,21 @@ class Step5(StepMkdirEleanor):
         "This must take us to the east part.",
         "Eleanor: {{Bb:Let's go there and see if we can find my "
         "parents.}}",
-        "\n{{lb:Go}} into the {{lb:east-part}} of town."
+        "\n{{lb:Go}} into the {{lb:east}} of town."
     ]
     start_dir = "~/town"
-    end_dir = "~/town/east-part"
+    end_dir = "~/town/east"
 
     hints = [
         "{{rb:Use}} {{lb:cd}} {{rb:to go into the "
         "east part of town}}",
-        "{{rb:Use}} {{yb:cd east-part/}} {{rb:}}"
+        "{{rb:Use}} {{yb:cd east/}} {{rb:}}"
     ]
     last_step = True
 
-    commands = [
-        "cd east-part/",
-        "cd east-part"
-    ]
-
     eleanors_speech = (
-        "\nEleanor: {{Bb:Let's go to the}} {{lb:east-part.}} "
-        "{{Bb:Come on slow coach!}}"
+        "\nEleanor: {{Bb:Let's go to the}} {{lb:east}} "
+        "{{Bb:of town. Come on slow coach!}}"
     )
 
     def block_command(self):

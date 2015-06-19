@@ -33,11 +33,6 @@ class Step1(StepTemplateEcho):
         "\nUse the {{lb:cd}} command to go into the toolshed.\n"
     ]
 
-    commands = [
-        "cd ../toolshed",
-        "cd ../toolshed/"
-    ]
-
     start_dir = "~/farm/barn"
     end_dir = "~/farm/toolshed"
     hints = [

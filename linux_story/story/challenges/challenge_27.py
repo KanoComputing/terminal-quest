@@ -26,8 +26,8 @@ class Step1(StepTemplateMkdir):
         "{{lb:Listen to what Bernard has to say.}}"
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
 
     hints = [
         "{{rb:Use}} {{yb:cat Bernard}} {{rb:to interact with Bernard.}}"
@@ -37,10 +37,10 @@ class Step1(StepTemplateMkdir):
         "cat Bernard"
     ]
 
-    deleted_items = ["~/town/east-part/library/Eleanor"]
+    deleted_items = ["~/town/east/library/Eleanor"]
     story_dict = {
         "Eleanor": {
-            "path": "~/town/east-part/shed-shop"
+            "path": "~/town/east/shed-shop"
         }
     }
     eleanors_speech = (
@@ -61,8 +61,8 @@ class Step2(StepTemplateNano):
         "edit it."
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
 
     commands = [
         "nano best-horn-in-the-world.sh"
@@ -79,7 +79,7 @@ class Step2(StepTemplateNano):
     )
 
     goal_nano_end_content = "echo \"Honk!\""
-    goal_nano_filepath = "~/town/east-part/shed-shop/best-horn-in-the-world.sh"
+    goal_nano_filepath = "~/town/east/shed-shop/best-horn-in-the-world.sh"
     goal_nano_save_name = "best-horn-in-the-world.sh"
 
     # Overwrite the default behaviour for most of the steps - nano needs
@@ -103,8 +103,8 @@ class Step3(StepTemplateNano):
         "Use {{yb:./best-horn-in-the-world.sh}} to run it."
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
 
     commands = [
         "./best-horn-in-the-world.sh"
@@ -142,8 +142,8 @@ class Step4(StepTemplateNano):
         "\nUse {{lb:echo}} to ask him a question."
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
 
     eleanors_speech = (
         "Eleanor: {{Bb:I have a question - does he have candy in his "
@@ -200,13 +200,8 @@ class Step5(StepTemplateNano):
         "\n{{lb:Leave}} the shed-shop."
     ]
 
-    commands = [
-        "cd ..",
-        "cd ../"
-    ]
-
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east"
     eleanors_speech = (
         "Eleanor: {{Bb:What do you think is hidden in the protected-section?}}"
         "\n{{Bb:Maybe Bernard shouldn't see it...}}"

@@ -20,8 +20,8 @@ class Step1(StepTemplateMkdir):
         "You are back in town. Have a {{lb:look around}}."
     ]
 
-    start_dir = "~/town/east-part"
-    end_dir = "~/town/east-part"
+    start_dir = "~/town/east"
+    end_dir = "~/town/east"
 
     hints = [
         "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
@@ -32,10 +32,10 @@ class Step1(StepTemplateMkdir):
         "ls -a"
     ]
 
-    deleted_items = ["~/town/east-part/shed-shop/Eleanor"]
+    deleted_items = ["~/town/east/shed-shop/Eleanor"]
     story_dict = {
         "Eleanor": {
-            "path": "~/town/east-part"
+            "path": "~/town/east"
         }
     }
     eleanors_speech = "Eleanor: {{Bb:The library is over there!}}"
@@ -49,15 +49,11 @@ class Step2(StepTemplateMkdir):
         "You see the {{lb:library}} ahead.  Go inside."
     ]
 
-    start_dir = "~/town/east-part"
-    end_dir = "~/town/east-part/library"
+    start_dir = "~/town/east"
+    end_dir = "~/town/east/library"
 
     hints = [
         "{{rb:Use}} {{yb:cd library/}} {{rb:to go inside the library.}}"
-    ]
-    commands = [
-        "cd library",
-        "cd library/"
     ]
     eleanors_speech = "Eleanor: {{Bb:Let's go in!}}"
 
@@ -73,8 +69,8 @@ class Step3(StepTemplateMkdir):
         "Look around."
     ]
 
-    start_dir = "~/town/east-part/library"
-    end_dir = "~/town/east-part/library"
+    start_dir = "~/town/east/library"
+    end_dir = "~/town/east/library"
 
     hints = [
         "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
@@ -83,10 +79,10 @@ class Step3(StepTemplateMkdir):
         "ls",
         "ls -a"
     ]
-    deleted_items = ["~/town/east-part/Eleanor"]
+    deleted_items = ["~/town/east/Eleanor"]
     story_dict = {
         "Eleanor": {
-            "path": "~/town/east-part/library"
+            "path": "~/town/east/library"
         }
     }
     eleanors_speech = "Eleanor: {{Bb:It's all echo-y-y-y-y..}}"
@@ -109,8 +105,8 @@ class Step4(StepTemplateMkdir):
         "{{Bb:.}}"
     ]
 
-    start_dir = "~/town/east-part/library"
-    end_dir = "~/town/east-part/library"
+    start_dir = "~/town/east/library"
+    end_dir = "~/town/east/library"
 
     commands = [
         "ls private-section/",
@@ -137,8 +133,8 @@ class Step5(StepTemplateMkdir):
         "\nUse {{lb:ls}} to look in the {{lb:public-section}}."
     ]
 
-    start_dir = "~/town/east-part/library"
-    end_dir = "~/town/east-part/library"
+    start_dir = "~/town/east/library"
+    end_dir = "~/town/east/library"
     commands = [
         "ls public-section",
         "ls public-section/",
@@ -164,8 +160,8 @@ class Step6(StepTemplateMkdir):
         "{{Bb:What is that}} {{lb:NANO}} {{Bb:paper?}}",
         "{{Bb:Let's}} {{lb:examine}} {{Bb:it.}}"
     ]
-    start_dir = "~/town/east-part/library"
-    end_dir = "~/town/east-part/library"
+    start_dir = "~/town/east/library"
+    end_dir = "~/town/east/library"
     commands = [
         "cat public-section/NANO"
     ]
@@ -191,16 +187,8 @@ class Step7(StepTemplateMkdir):
 
         "{{Bb:Let's}} {{lb:head back}} {{Bb:to the}} {{lb:shed-shop}}{{Bb:.}}"
     ]
-    start_dir = "~/town/east-part/library"
-    end_dir = "~/town/east-part/shed-shop"
-    commands = [
-        "cd ../shed-shop",
-        "cd ../shed-shop/",
-        "cd ..",
-        "cd ../",
-        "cd shed-shop",
-        "cd shed-shop/"
-    ]
+    start_dir = "~/town/east/library"
+    end_dir = "~/town/east/shed-shop"
     eleanors_speech = (
         "Bernard: {{Bb:...do we have to go and see creepy Bernard again?}}"
     )

@@ -9,7 +9,7 @@
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_18 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import unblock_cd_commands
 
 
 # This is for the challenges that only need ls
@@ -62,11 +62,6 @@ class Step2(StepTemplateMv):
         "your parents' room.}}"
     ]
 
-    commands = [
-        "cd ../parents-room",
-        "cd ../parents-room/"
-    ]
-
     # This is for the people who are continuing to play from the
     # beginning.
     # At the start, add the farm directory to the file system
@@ -94,9 +89,7 @@ class Step2(StepTemplateMv):
     counter = 0
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def check_command(self):
         # Only show this hint once.
@@ -132,9 +125,7 @@ class Step3(StepTemplateMv):
     ]
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step4()

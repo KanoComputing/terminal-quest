@@ -257,11 +257,11 @@ Eleanor:
 
         - challenge: 24
           step: 1
-          path: "~/town/east-part"
+          path: "~/town/east"
 
         - challenge: 24
           step: 3
-          path: "~/town/east-part/shed-shop"
+          path: "~/town/east/shed-shop"
 
         - challenge: 26
           step: 1
@@ -269,23 +269,23 @@ Eleanor:
 
         - challenge: 26
           step: 3
-          path: "~/town/east-part/library"
+          path: "~/town/east/library"
 
         - challenge: 27
           step: 1
-          path: "~/town/east-part/shed-shop"
+          path: "~/town/east/shed-shop"
 
         - challenge: 28
           step: 1
-          path: "~/town/east-part"
+          path: "~/town/east"
 
         - challenge: 28
           step: 3
-          path: "~/town/east-part/restaurant"
+          path: "~/town/east/restaurant"
 
         - challenge: 28
           step: 5
-          path: "~/town/east-part/restaurant/.cellar"
+          path: "~/town/east/restaurant/.cellar"
 
 # Finally the dog is saved
 dog:
@@ -380,7 +380,7 @@ Bernard:
     challenges:
         - challenge: 23
           step: 4
-          path: "~/town/east-part/shed-shop"
+          path: "~/town/east/shed-shop"
         - challenge: 30
           step: 1
           exists: False
@@ -389,27 +389,27 @@ best-shed-maker-in-the-world.sh, best-horn-in-the-world.sh:
     challenges:
         - challenge: 23
           step: 4
-          path: "~/town/east-part/shed-shop"
+          path: "~/town/east/shed-shop"
           permissions: 0755
 
-secret-room:
+basement:
     directory: True
     challenges:
         - challenge: 23
           step: 4
-          path: "~/town/east-part/shed-shop"
+          path: "~/town/east/shed-shop"
 
-bernards-diary:
+bernards-diary-1, bernards-diary-2:
     challenges:
         - challenge: 23
           step: 4
-          path: "~/town/east-part/shed-shop/secret-room"
+          path: "~/town/east/shed-shop/basement"
 
 photocopier.sh:
     challenges:
         - challenge: 23
           step: 4
-          path: "~/town/east-part/shed-shop/secret-room"
+          path: "~/town/east/shed-shop/basement"
           permissions: 0755
 
 shed:
@@ -417,20 +417,20 @@ shed:
     challenges:
         - challenge: 25
           step: 5
-          path: "~/town/east-part/shed-shop"
+          path: "~/town/east/shed-shop"
 
 NANO:
     challenges:
         - challenge: 23
           step: 4
-          path: "~/town/east-part/library/public-section"
+          path: "~/town/east/library/public-section"
 
 private-section:
     directory: True
     challenges:
         - challenge: 23
           step: 4
-          path: "~/town/east-part/library"
+          path: "~/town/east/library"
           permissions: 0000
 
 # Hidden librarian
@@ -438,4 +438,4 @@ Clara:
     challenges:
         - challenge: 23
           step: 4
-          path: "~/town/east-part/restaurant/.cellar"
+          path: "~/town/east/restaurant/.cellar"

@@ -166,8 +166,8 @@ class StepNanoStory(StepNano):
         "echo 1"
     ]
 
-    start_dir = "~/town/east-part/restaurant/.cellar"
-    end_dir = "~/town/east-part/restaurant/.cellar"
+    start_dir = "~/town/east/restaurant/.cellar"
+    end_dir = "~/town/east/restaurant/.cellar"
     hints = [
         "{{rb:Talk to Clara using}} {{yb:echo 1}}{{rb:,}} "
         "{{yb:echo 2}} {{rb:or}} {{yb:echo 3}}{{rb:.}}"

@@ -30,8 +30,8 @@ class Step1(StepTemplateMkdir):
         "\n{{gb:Use TAB to speed up your typing.}}"
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
 
     hints = [
         "{{rb:Use}} {{lb:cat}} {{rb:to examine the}} "
@@ -66,8 +66,8 @@ class Step2(StepTemplateMkdir):
         "\n{{gb:Use TAB to speed up your typing.}}"
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
 
     hints = [
         "{{rb:Do as Bernard says - use}} "
@@ -90,8 +90,8 @@ class Step3(StepTemplateMkdir):
     story = [
         "{{lb:Look around}} to see if it created a shed."
     ]
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
     commands = [
         "ls",
         "ls -a"
@@ -114,8 +114,8 @@ class Step4(StepTemplateMkdir):
         "{{gb:Press UP twice to replay the command.}}"
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
 
     hints = [
         "{{rb:See what happens when you run the script again.}}",
@@ -155,8 +155,8 @@ class Step5(StepTemplateMkdir):
         "{{gb:Remember to use TAB!}}"
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
     commands = [
         "cat best-horn-in-the-world.sh"
     ]
@@ -183,22 +183,22 @@ class Step6(StepTemplateMkdir):
         "\nBernard: {{Bb:Ho ho, you look like you understand the problem.}}",
         "Eleanor: {{Bb:If we need extra help, we can go look in the "
         "library.  It was just outside.}}",
-        "\nBefore we go, have a {{lb:look}} in the {{lb:secret-room}}."
+        "\nBefore we go, have a {{lb:look}} in the {{lb:basement}}."
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
 
     commands = [
-        "ls secret-room",
-        "ls secret-room/",
-        "ls -a secret-room",
-        "ls -a secret-room/",
+        "ls basement",
+        "ls basement/",
+        "ls -a basement",
+        "ls -a basement/",
     ]
 
     hints = [
         "{{rb:Use}} {{lb:ls}} {{rb:to look through.}}",
-        "{{rb:Use}} {{yb:ls secret-room/}} {{rb:to look inside.}}"
+        "{{rb:Use}} {{yb:ls basement/}} {{rb:to look inside.}}"
     ]
 
     eleanors_speech = (
@@ -215,12 +215,8 @@ class Step7(StepTemplateMkdir):
         "\nLet's {{lb:leave}} the shed shop and go back to town."
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part"
-    commands = [
-        "cd ../",
-        "cd .."
-    ]
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east"
     hints = [
         "{{rb:Leave the shed-shop using}} {{yb:cd ../}}"
     ]
