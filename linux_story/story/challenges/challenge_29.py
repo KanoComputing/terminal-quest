@@ -15,38 +15,6 @@ from linux_story.helper_functions import play_sound
 story_replies = {
     "echo 1": [
         {
-            "user": "Why are you hiding down here?",
-            "clara": (
-                "Clara: {{Bb:I heard a bell ring, and saw the "
-                "lead librarian disappear in front of me. I was "
-                "so scared I ran away, and found this .cellar here.}}"
-            )
-        },
-        {
-            "user": "What do you think that bell is?",
-            "clara": (
-                "Clara: {{Bb:There's a legend that says there's a bell that "
-                "calls a pet to its master. So maybe the bell is "
-                "nothing to be afraid of?  At least, I hope so..."
-            )
-        },
-        {
-            "user": "Do you have any relatives in town?",
-            "clara": (
-                "I had a couple of children, a {{lb:young-boy}} and a "
-                "{{lb:little-girl}}. I hope they are alright."
-            )
-        },
-        {
-            "user": "echo 1 Question 4",
-            "clara": (
-                "echo 1 Answer 4"
-            )
-        }
-    ],
-
-    "echo 2": [
-        {
             "user": "Why is the private section locked?",
             "clara": (
                 "Clara: {{Bb:It contains some powerful information."
@@ -56,7 +24,7 @@ story_replies = {
             )
         },
         {
-            "user": "How did you lock the protected section?",
+            "user": "How did you lock the private section?",
             "clara": (
                 "Clara: {{Bb:I didn't! The only person that could do that "
                 "was lead librarian."
@@ -73,8 +41,8 @@ story_replies = {
                 "\n{{Bb:I think he found it from this strange}} "
                 "{{lb:masked swordsmaster}} {{Bb:outside of town.}}"
 
-                "\nHe recorded the command, but it was stolen from the "
-                "library."
+                "\n{{Bb:He recorded the command, but it was stolen from the "
+                "library.}}"
             )
         },
         {
@@ -86,6 +54,40 @@ story_replies = {
                 "\n{{Bb:I presume he meant the woods just off the}} "
                 "{{lb:Windy Road}}{{Bb:? The one "
                 "near the farm and that funny lonely house outside town.}}"
+            )
+        }
+    ],
+
+    "echo 2": [
+        {
+            "user": "Why are you hiding down here?",
+            "clara": (
+                "Clara: {{Bb:I heard a bell ring, and saw the "
+                "lead librarian disappear in front of me. I was "
+                "so scared I ran away, and found this .cellar here.}}"
+            )
+        },
+        {
+            "user": "What do you think that bell is?",
+            "clara": (
+                "Clara: {{Bb:There's a legend that says there's a bell that "
+                "calls a pet to its master. So maybe the bell is "
+                "nothing to be afraid of?  At least, I hope so...}}"
+            )
+        },
+        {
+            "user": "Do you have any relatives in town?",
+            "clara": (
+                "Clara: {{Bb:I had a couple of children, a}} "
+                "{{lb:young-boy}} {{Bb:and a}} "
+                "{{lb:little-girl}}{{Bb:. I hope they are alright.}}"
+            )
+        },
+        {
+            "user": "Why is the library so empty?",
+            "clara": (
+                "Clara: {{Bb:We should have introduced late fees a long "
+                "time ago...}}"
             )
         }
     ],
@@ -103,22 +105,26 @@ story_replies = {
             "clara": (
                 "Clara: {{Bb:He makes very simple tools and charges a fortune "
                 "for them.}}"
-                "\n{{Bb:His father was a very clever man and would spend all "
+                "\n{{Bb:His father was a very clever man and spent all "
                 "his time in the library reading up commands. He became a "
-                "successful business man as a result."
+                "successful business man as a result.}}"
             )
         },
         {
-            "user": "Why is the library so empty?",
+            "user": "What happened to Bernard's father?",
             "clara": (
-                "Clara: {{Bb:We should have introduced late fees a long "
-                "time ago...}}"
+                "Clara: {{Bb:People aren't sure, he disappeared one day. "
+                "It was "
+                "assumed he had died. I saw him leave the library the day "
+                "he went missing, "
+                "he left in a hurry.  He looked absolutely terrified.}}"
             )
         },
         {
-            "user": "echo 3 Question 4",
+            "user": "Do we have any idea who this masked swordsmaster could "
+            "be?",
             "clara": (
-                "echo 3 Answer 4"
+                "Clara: {{Bb:Phh, just some crazy man. Maybe he's made up.}}"
             )
         }
     ]
@@ -130,17 +136,14 @@ def create_story(step):
     print_text = ""
 
     if step > 1:
-        print_text = "{{yb:" + story_replies["echo 2"][step - 2]["user"] + "}}"
+        print_text = "{{yb:" + story_replies["echo 1"][step - 2]["user"] + "}}"
 
     story = [
-        story_replies["echo 2"][step - 2]["clara"],
-        "\n{{yb:1: " + story_replies["echo 1"][0]["user"] + "}}",
-        "{{yb:2: " + story_replies["echo 2"][step - 1]["user"] + "}}",
+        story_replies["echo 1"][step - 2]["clara"],
+        "\n{{yb:1: " + story_replies["echo 1"][step - 1]["user"] + "}}",
+        "{{yb:2: " + story_replies["echo 2"][0]["user"] + "}}",
         "{{yb:3: " + story_replies["echo 3"][0]["user"] + "}}"
     ]
-
-    # print "print_text = {}".format(print_text)
-    # print "story = {}".format(story)
 
     return (print_text, story)
 
@@ -150,44 +153,57 @@ def pop_story(user_input):
     # if the user_input is echo 1, echo 2 or echo 3
     if user_input in story_replies:
         reply = story_replies[user_input][0]
-        # print "reply = {}".format(reply)
-        # print "story_replies = {}".format(story_replies)
         story_replies[user_input].remove(reply)
         return reply
 
 
-class StepTemplateNano(TerminalNanoEleanor):
+class StepNano(TerminalNanoEleanor):
     challenge_number = 29
 
+
+class StepNanoStory(StepNano):
     commands = [
-        "echo 2"
+        "echo 1"
     ]
 
     start_dir = "~/town/east-part/restaurant/.cellar"
     end_dir = "~/town/east-part/restaurant/.cellar"
-    echo_hit = {
-        "echo 1": True,
-        "echo 3": True
-    }
+    hints = [
+        "{{rb:Talk to Clara using}} {{yb:echo 1}}{{rb:,}} "
+        "{{yb:echo 2}} {{rb:or}} {{yb:echo 3}}{{rb:.}}"
+    ]
+
+    def __init__(self, step_number=None):
+        self.echo_hit = {
+            "echo 2": True,
+            "echo 3": True
+        }
+
+        if step_number:
+            self.print_text = [create_story(step_number)[0]]
+            self.story = create_story(step_number)[1]
+
+        StepNano.__init__(self, "")
 
     def check_command(self, current_dir):
 
         # If self.last_user_input equal to "echo 1" or "echo 3"
         if self.last_user_input in story_replies:
 
-            if self.last_user_input == "echo 2":
+            if self.last_user_input == "echo 1":
                 return True
+
             else:
                 if self.echo_hit[self.last_user_input]:
                     self.echo_hit[self.last_user_input] = False
                     reply = pop_story(self.last_user_input)["clara"]
-                    self.send_text("\n" + reply)
+                    self.send_text("\n\n" + reply)
 
         else:
             return TerminalNanoEleanor.check_command(self, current_dir)
 
 
-class Step1(StepTemplateNano):
+class Step1(StepNanoStory):
     story = [
         "Clara: {{Bb:What? Who are you?}}",
 
@@ -199,8 +215,8 @@ class Step1(StepTemplateNano):
         "come in almost everyday.}}",
 
         # Options
-        "\n{{yb:1: Why are you hiding down here?}}",
-        "{{yb:2: Why is the protected-section locked?}}",
+        "\n{{yb:1: Why is the private-section locked?}}",
+        "{{yb:2: Why are you hiding down here?}}",
         "{{yb:3: Do you know about any other people in town?}}",
 
         "\nUse {{lb:echo}} to ask Clara a question."
@@ -211,86 +227,61 @@ class Step1(StepTemplateNano):
     )
 
     def next(self):
-        Step2()
+        Step2(2)
 
 
-class Step2(StepTemplateNano):
-    print_text = [create_story(2)[0]]
-    story = create_story(2)[1]
+class Step2(StepNanoStory):
 
-    # print "Step2 print_text = {}".format(print_text)
-    # print "Step2 story = {}".format(story)
-
-    def next(self):
-        Step3()
-
-
-class Step3(StepTemplateNano):
-    print_text = [create_story(3)[0]]
-    story = create_story(3)[1]
-    # (print_text, story) = create_story(3)
+    eleanors_speech = (
+        "Eleanor: {{Bb:What is so dangerous in the private-section?}}"
+    )
 
     def next(self):
-        Step4()
+        Step3(3)
 
 
-class Step4(StepTemplateNano):
-    print_text = [create_story(4)[0]]
-    story = create_story(4)[1]
+class Step3(StepNanoStory):
+
+    eleanors_speech = (
+        "Eleanor: {{Bb:Do we want to unlock something so dangerous?}}"
+    )
+
+    def next(self):
+        Step4(4)
+
+
+class Step4(StepNanoStory):
+
+    eleanors_speech = (
+        "Eleanor: {{Bb:Do we want to unlock something so dangerous?}}"
+    )
+
+    def next(self):
+        Step5()
+
+
+class Step5(StepNanoStory):
     last_step = True
 
-    def next(self):
-        play_sound("bell")
-        NextStep(self.xp)
-
-
-'''
-class Step3(StepTemplateNano):
-    print_text = [
-        "{{yb:How did you lock the protected-section}}"
-    ]
-
+    print_text = "{{yb:Where would I find this masked swordsmaster?}}",
     story = [
-        "Clara: {{Bb:I didn't! The only person that could do that "
-        "was lead librarian."
+        "Clara: {{Bb:He said the}} "
+        "{{lb:masked swordsmaster}} {{Bb:lived in the woods.}}",
 
-        "\nHe had to find a special command to be able to do that. "
-        "I think he met a strange hermit outside town who taught him.}}",
+        "{{Bb:I presume he meant the woods just off the}} "
+        "{{lb:Windy Road}}{{Bb:? The one "
+        "near the farm and that funny lonely house outside town.}}",
 
-        "\n"
-
-        "\nI'm not sure where you'd find him, my best guess would be "
-        "near the woods.}}"
-
-        "\n\n{{gb:Press Enter to continue, or ask Clara more questions "
-        "using}} {{lb:echo}}{{gb:.}}"
+        "\n{{gb:Press ENTER to continue.}}"
     ]
 
-    def __init__(self, user_replies, xp=""):
-        pass
+    eleanors_speech = (
+        "Eleanor: {{Bb:A masked swordmaster??}}"
+    )
 
     def check_command(self, current_dir):
-        if self.last_user_input == "echo 2":
-            text = (
-                "\n{{yb:How did you lock the protected-section}}"
-                "\n\nClara: {{Bb:I didn't! The only person that could do that "
-                "was lead librarian."
-
-                "\nHe had to find a special command to be able to do that. "
-                "I think he met a strange hermit outside town who taught him.}}",
-
-                "\n"
-
-                "\nI'm not sure where you'd find him, my best guess would be "
-                "near the woods.}}"
-
-                "\n\n{{gb:Press Enter to continue, or ask Clara more questions "
-                "using}} {{lb:echo}}{{gb:.}}"
-            )
-            self.send_text(text)
-            self.level_passed = True
+        return True
 
     def next(self):
         play_sound("bell")
         NextStep(self.xp)
-'''
