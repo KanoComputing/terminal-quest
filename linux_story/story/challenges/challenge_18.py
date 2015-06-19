@@ -29,6 +29,7 @@ class Step1(StepTemplate):
         "in {{lb:my-room}} for safe keeping."
     ]
     hints = [
+        "{{rb:Remember that your}} {{lb:.chest}} {{rb:is in}} {{lb:../my-room}}",
         "{{rb:An easy way to do it is to move}} {{lb:ECHO}} {{rb:from}} "
         "{{lb:.safe}} {{rb:to}} {{lb:../my-room/.chest}}{{rb:.}}",
         "{{rb:Use}} {{yb:mv .safe/ECHO ../my-room/.chest/}}{{rb:. "
@@ -52,7 +53,7 @@ class Step1(StepTemplate):
 
 class Step2(StepTemplate):
     story = [
-        "{{gb:Nice work!}} Let's head to ~ to find that farm!",
+        "Nice work! Let's head to ~ to find that farm!",
         "Type {{yb:cd}} by itself to go to the Windy Road {{lb:~}}"
     ]
 
@@ -138,7 +139,7 @@ class Step3(StepTemplate):
 
 class Step4(StepTemplate):
     story = [
-        "Look around."
+        "{{lb:Look around.}}"
     ]
 
     commands = "ls"
@@ -191,7 +192,7 @@ class Step5(StepTemplate):
                 )
             elif self.counter == 1:
                 self.send_text(
-                    "\n{{rb:Look in a different directory.}}"
+                    "\n{{rb:There is no one here. You should look somewhere else.}}"
                 )
 
         else:

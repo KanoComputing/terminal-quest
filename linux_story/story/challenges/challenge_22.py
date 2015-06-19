@@ -109,7 +109,7 @@ class Step4(StepTemplateMkdir):
         "Maybe you could check back on the family in the "
         "{{lb:.hidden-shelter}} ",
         "and see if you can talk with your new found voice.",
-        "Start heading back to the {{lb:.hidden-shelter}} using {{lb:cd}}."
+        "\nStart heading back to the {{lb:.hidden-shelter}} using {{lb:cd}}."
     ]
 
     start_dir = "~/farm/barn/.shelter"

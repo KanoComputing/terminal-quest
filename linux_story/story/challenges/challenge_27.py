@@ -23,7 +23,7 @@ class StepTemplateNano(TerminalNanoEleanor):
 class Step1(StepTemplateMkdir):
     story = [
         "You are back in the Bernard's place.",
-        "{{lb:Listen to what Bernard has to say.}}"
+        "{{lb:Listen}} to what {{lb:Bernard}} has to say."
     ]
 
     start_dir = "~/town/east/shed-shop"
@@ -54,8 +54,6 @@ class Step1(StepTemplateMkdir):
 class Step2(StepTemplateNano):
     story = [
         "Bernard: {{Bb:Hellooooo. You came back to fix my script!}}",
-
-        "Let's see whether we can fix it.",
 
         "Let's try and use {{yb:nano best-horn-in-the-world.sh}} to "
         "edit it."

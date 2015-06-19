@@ -93,8 +93,8 @@ class Step4(StepTemplateNano):
     story = [
         "Enough wandering. Let's go and try and find the "
         "{{lb:masked swordsmaster}} near the woods, and see "
-        "what information he can tell us."
-        "{{gb:Press Enter to continue.}}"
+        "what information he can tell us.",
+        "\n{{gb:Press Enter to continue.}}"
     ]
     start_dir = "~/town/east/shed-shop/basement"
     end_dir = "~/town/east/shed-shop/basement"

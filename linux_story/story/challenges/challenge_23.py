@@ -125,7 +125,7 @@ class Step3(StepMkdirEleanor):
             "{{Bb:\"Let's go to town together and find them. I'm sure I'll be "
             "safe if I'm with you.\"}}",
             "\nEleanor joined you as a companion!",
-            "{{lb:Leave the .hidden-shelter.}} "
+            "{{lb:Leave}} the {{lb:.hidden-shelter.}} "
             "Don't worry, Eleanor will follow!"
         ]
 
