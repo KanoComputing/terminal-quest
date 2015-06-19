@@ -28,7 +28,7 @@ class TerminalCd(TerminalCat):
 
             if new_path:
                 self.real_path = new_path
-                self.fake_path = self.generate_fake_path(self.real_path)
+                self.current_path = self.generate_fake_path(self.real_path)
                 self.set_prompt()
         else:
             self.set_command_blocked(True)
@@ -48,10 +48,8 @@ class TerminalCd(TerminalCat):
         user's choice of path.
         '''
 
-        current_path = self.fake_path
-
         # Get the current list of the paths that we're allowed to go on
-        route = route_between_paths(current_path, self.end_dir)
+        route = route_between_paths(self.current_path, self.end_dir)
 
         if not self.last_user_input.startswith("cd"):
             return False
@@ -63,7 +61,7 @@ class TerminalCd(TerminalCat):
             if user_path.startswith("~"):
                 new_path = user_path
             else:
-                new_path = os.path.join(current_path, user_path)
+                new_path = os.path.join(self.current_path, user_path)
         else:
             # If the user didn't enter a path, assume they want to go to
             # home folder

@@ -74,7 +74,7 @@ class Step3(StepTemplateCd):
 
     last_step = True
 
-    def check_command(self, current_dir):
+    def check_command(self):
 
         # If we've emptied the list of available commands, then pass the level
         if not self.all_commands:
@@ -93,7 +93,7 @@ class Step3(StepTemplateCd):
             "{{rb:to progress.}}"
         ]
 
-        end_dir_validated = current_dir == self.end_dir
+        end_dir_validated = self.current_path == self.end_dir
 
         # if the validation is included
         if (self.last_user_input in self.all_commands.keys()) and \

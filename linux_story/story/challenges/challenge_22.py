@@ -5,11 +5,10 @@
 #
 # A chapter of the story
 
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
 from linux_story.helper_functions import play_sound
 from linux_story.story.challenges.challenge_23 import Step1 as NextStep
-from linux_story.step_helper_functions import route_between_paths
 
 
 class StepTemplateMkdir(TerminalMkdir):
@@ -127,9 +126,9 @@ class Step4(StepTemplateMkdir):
     ]
 
     def block_command(self):
-        pass
+        return unblock_cd_commands(self.user_input)
 
-    def check_command(self, current_dir):
+    def check_command(self):
         # If the command passes, then print a nice hint.
         if self.last_user_input.startswith("cd") and \
                 not self.get_command_blocked() and \
@@ -137,7 +136,7 @@ class Step4(StepTemplateMkdir):
             hint = "\n{{gb:Well done! Keep going!}}"
             self.send_text(hint)
         else:
-            return StepTemplateMkdir.check_command(self, current_dir)
+            return StepTemplateMkdir.check_command(self)
 
     def next(self):
         Step5()

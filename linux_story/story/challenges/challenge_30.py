@@ -6,16 +6,16 @@
 # A chapter of the story
 
 import os
-from linux_story.story.terminals.terminal_nano import TerminalNano
+from linux_story.story.terminals.terminal_eleanor import TerminalNanoEleanor
 from linux_story.story.challenges.challenge_31 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import unblock_cd_commands
 
 
-class StepTemplateNano(TerminalNano):
+class StepNano(TerminalNanoEleanor):
     challenge_number = 30
 
 
-class Step1(StepTemplateNano):
+class Step1(StepNano):
     story = [
         "{{pb:Ding. Dong.}}",
         "\nEleanor: {{Bb:...what was that?}}",
@@ -31,12 +31,15 @@ class Step1(StepTemplateNano):
         "{{rb:Use}} {{yb:ls}} {{rb:to check everyone is still present.}}"
     ]
     deleted_items = ["~/town/east-part/shed-shop/Bernard"]
+    eleanors_speech = (
+        "Eleanor: {{Bb:......}}"
+    )
 
     def next(self):
         Step2()
 
 
-class Step2(StepTemplateNano):
+class Step2(StepNano):
     story = [
         "Everyone seems to be here. What was that bell?",
         "\nClara looks like she has something to say. {{lb:Listen to her.}}"
@@ -49,12 +52,16 @@ class Step2(StepTemplateNano):
     hints = [
         "{{rb:Use}} {{yb:cat Clara}} {{rb:to see what Clara has to say.}}"
     ]
+    eleanors_speech = (
+        "Eleanor: {{Bb:....I was so scared. I don't think I want to go "
+        "outside now.}}"
+    )
 
     def next(self):
         Step3()
 
 
-class Step3(StepTemplateNano):
+class Step3(StepNano):
     story = [
         "Clara: {{Bb:Are you two going back out there?}}",
         "{{gb:" + os.environ['LOGNAME'] + "}}"
@@ -78,8 +85,11 @@ class Step3(StepTemplateNano):
         "{{rb:Use}} {{yb:echo 1}} {{rb:or}} {{yb:echo 2}} {{rb:to reply "
         "to Clara.}}"
     ]
+    eleanors_speech = (
+        "Eleanor: {{Bb:I'm happy to stay here. I like Clara.}}"
+    )
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input == "echo 2":
             text = (
                 "\nClara: {{Bb:Please let me look after her. "
@@ -96,44 +106,33 @@ class Step3(StepTemplateNano):
         #    )
         #    self.send_text(text)
         else:
-            return StepTemplateNano.check_command(self, current_dir)
+            return StepNano.check_command(self)
 
     def next(self):
         Step4()
 
 
-class Step4(StepTemplateNano):
+class Step4(StepNano):
     story = [
         "Clara: {{Bb:Thank you!}}",
-        "Eleanor: {{Bb:When you find my parents, can you tell them I'm here?}}",
+        "Eleanor: {{Bb:When you find my parents, can you tell them I'm "
+        "here?}}",
         "Clara: {{Bb:Where are you going to go now?}}",
-        "\nLet's head back to see {{lb:Bernard}} and see if he's heard of this "
-        "hermit. He seemed interested in this ability to lock doors.",
-        "{{lb:Head to the shed-shop}}"
+        "\nLet's head back to see {{lb:Bernard}} and see if he's heard of "
+        "the {{lb:masked swordsmaster}}.",
+        "{{lb:Head to the shed-shop.}}"
     ]
     start_dir = "~/town/east-part/restaurant/.cellar"
     end_dir = "~/town/east-part/shed-shop"
-    commands = [
-        "cd ../",
-        "cd ..",
-        "cd ../../",
-        "cd ../..",
-        "cd shed-shop/",
-        "cd shed-shop",
-        "cd ../../shed-shop",
-        "cd ../../shed-shop/"
-    ]
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step5()
 
 
-class Step5(StepTemplateNano):
+class Step5(StepNano):
     story = [
         "Look around."
     ]

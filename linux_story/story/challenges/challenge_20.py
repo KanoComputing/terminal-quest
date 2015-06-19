@@ -6,7 +6,7 @@
 # A chapter of the story
 
 from linux_story.step_helper_functions import (
-    unblock_commands_with_cd_hint, unblock_commands_with_mkdir_hint
+    unblock_commands_with_mkdir_hint, unblock_cd_commands
 )
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
@@ -46,9 +46,7 @@ class Step1(StepTemplateEcho):
     ]
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step2()
@@ -126,12 +124,12 @@ class Step4(StepTemplateMkdir):
             self.last_user_input, self.commands
         )
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input == "cat MKDIR":
             self.send_hint("\n{{gb:Well done for checking the page again!}}")
             return False
 
-        return StepTemplateMkdir.check_command(self, current_dir)
+        return StepTemplateMkdir.check_command(self)
 
     def next(self):
         Step5()

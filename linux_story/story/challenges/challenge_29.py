@@ -185,7 +185,7 @@ class StepNanoStory(StepNano):
 
         StepNano.__init__(self, "")
 
-    def check_command(self, current_dir):
+    def check_command(self):
 
         # If self.last_user_input equal to "echo 1" or "echo 3"
         if self.last_user_input in story_replies:
@@ -200,7 +200,7 @@ class StepNanoStory(StepNano):
                     self.send_text("\n\n" + reply)
 
         else:
-            return TerminalNanoEleanor.check_command(self, current_dir)
+            return TerminalNanoEleanor.check_command(self)
 
 
 class Step1(StepNanoStory):
@@ -279,7 +279,7 @@ class Step5(StepNanoStory):
         "Eleanor: {{Bb:A masked swordmaster??}}"
     )
 
-    def check_command(self, current_dir):
+    def check_command(self):
         return True
 
     def next(self):

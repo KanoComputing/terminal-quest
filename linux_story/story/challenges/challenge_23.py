@@ -6,9 +6,7 @@
 # A chapter of the story
 
 
-from linux_story.step_helper_functions import (
-    unblock_commands_with_cd_hint
-)
+from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
 from linux_story.story.terminals.terminal_eleanor import TerminalMkdirEleanor
 from linux_story.story.challenges.challenge_24 import Step1 as NextStep
@@ -59,7 +57,7 @@ class Step2(StepMkdir):
         "echo 3"
     ]
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input in self.commands:
             return True
         elif self.last_user_input.startswith("echo"):
@@ -139,9 +137,7 @@ class Step3(StepMkdirEleanor):
         StepMkdirEleanor.__init__(self)
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step4()
@@ -234,9 +230,7 @@ class Step5(StepMkdirEleanor):
     )
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         NextStep(self.xp)

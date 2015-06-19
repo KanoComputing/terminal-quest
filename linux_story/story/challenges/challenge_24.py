@@ -8,7 +8,7 @@
 
 from linux_story.story.terminals.terminal_eleanor import TerminalMkdirEleanor
 from linux_story.story.challenges.challenge_25 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import unblock_cd_commands
 
 
 class StepTemplateMkdir(TerminalMkdirEleanor):
@@ -67,9 +67,7 @@ class Step2(StepTemplateMkdir):
     )
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step3()

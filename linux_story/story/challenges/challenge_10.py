@@ -57,7 +57,7 @@ class Step1(StepTemplateCd):
     # for check_command logic
     first_time = True
 
-    def check_command(self, current_dir):
+    def check_command(self):
 
         if self.last_user_input in self.allowed_commands:
             self.counter += 1
@@ -117,11 +117,11 @@ class Step2(StepTemplateCd):
             self.last_user_input, self.commands
         )
 
-    def show_hint(self, current_path):
+    def show_hint(self):
 
         # decide command needed to get to next part of town
-        if current_path == '~/my-house/kitchen' or \
-                current_path == '~/my-house':
+        if self.current_path == '~/my-house/kitchen' or \
+                self.current_path == '~/my-house':
 
             # If the last command the user used was to get here
             # then congratulate them
@@ -138,7 +138,7 @@ class Step2(StepTemplateCd):
                     '{{rb:Use}} {{yb:cd ../}} {{rb:to make your way to town.}}'
                 )
 
-        elif current_path == '~':
+        elif self.current_path == '~':
             # If they have only just got to the home directory,
             # then they used an appropriate command
             if self.num_turns_in_home_dir == 0:

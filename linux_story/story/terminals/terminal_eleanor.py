@@ -13,12 +13,12 @@ from linux_story.story.terminals.terminal_nano import TerminalNano
 class TerminalMkdirEleanor(TerminalMkdir):
     eleanors_speech = ""
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input == "cat Eleanor":
             self.eleanor_speaks()
 
         else:
-            return TerminalMkdir.check_command(self, current_dir)
+            return TerminalMkdir.check_command(self)
 
     def eleanor_speaks(self):
         '''Use this to get Eleanor to "speak"
@@ -30,12 +30,12 @@ class TerminalMkdirEleanor(TerminalMkdir):
 class TerminalNanoEleanor(TerminalNano):
     eleanors_speech = ""
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input == "cat Eleanor":
             self.eleanor_speaks()
 
         else:
-            return TerminalNano.check_command(self, current_dir)
+            return TerminalNano.check_command(self)
 
     def eleanor_speaks(self):
         '''Use this to get Eleanor to "speak"

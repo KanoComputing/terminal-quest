@@ -70,7 +70,7 @@ class Step3(StepTemplateNano):
         "{{rb:Use}} {{lb:cat}} {{rb:to examine the objects around you.}}"
     ]
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input in self.commands:
             self.commands.remove(self.last_user_input)
 

@@ -9,7 +9,7 @@ from linux_story.story.terminals.terminal_eleanor import (
     TerminalMkdirEleanor, TerminalNanoEleanor
 )
 from linux_story.story.challenges.challenge_28 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import unblock_cd_commands
 
 
 class StepTemplateMkdir(TerminalMkdirEleanor):
@@ -84,7 +84,7 @@ class Step2(StepTemplateNano):
 
     # Overwrite the default behaviour for most of the steps - nano needs
     # slightly different behaviour.
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input == "cat Eleanor":
             self.send_text("\n" + self.eleanors_speech)
         else:
@@ -154,7 +154,7 @@ class Step4(StepTemplateNano):
         "echo 2"
     ]
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input == "echo 1":
             text = (
                 "\nBernard: {{Bb:Ah, trade secret. *wink*}}"
@@ -172,7 +172,7 @@ class Step4(StepTemplateNano):
             )
             self.send_text(text)
         else:
-            return StepTemplateNano.check_command(self, current_dir)
+            return StepTemplateNano.check_command(self)
 
     def next(self):
         Step5()
@@ -214,9 +214,7 @@ class Step5(StepTemplateNano):
     last_step = True
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         NextStep(self.xp)

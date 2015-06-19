@@ -51,7 +51,7 @@ class Step1(StepTemplateCd):
         "cat dog": "\n{{wb:Dog:}} {{Bb:\"Woof woof!\"}}"
     }
 
-    def check_command(self, current_dir):
+    def check_command(self):
 
         if not self.all_commands:
             return True
@@ -69,7 +69,7 @@ class Step1(StepTemplateCd):
             "{{rb:to progress.}}"
         ]
 
-        end_dir_validated = current_dir == self.end_dir
+        end_dir_validated = self.current_path == self.end_dir
 
         # if the validation is included
         if self.last_user_input in self.all_commands.keys() and \
@@ -312,7 +312,7 @@ class Step8(StepTemplateMv):
     def block_command(self):
         return unblock_commands(self.last_user_input, self.commands)
 
-    def check_command(self, current_dir):
+    def check_command(self):
 
         if os.path.exists(self.girl_file):
             return True

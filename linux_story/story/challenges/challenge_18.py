@@ -6,7 +6,7 @@
 # A chapter of the story
 
 from linux_story.step_helper_functions import (
-    unblock_commands, unblock_commands_with_cd_hint
+    unblock_commands, unblock_cd_commands  # , unblock_commands_with_cd_hint
 )
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_19 import Step1 as NextStep
@@ -69,9 +69,7 @@ class Step2(StepTemplate):
     end_dir = "~"
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step3()
@@ -116,9 +114,7 @@ class Step4(StepTemplate):
     ]
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step5()
@@ -151,11 +147,11 @@ class Step6(StepTemplate):
     end_dir = "~/farm"
     counter = 0
 
-    def finished_challenge(self, line, current_dir):
+    def finished_challenge(self, line):
         output = self.check_output(self.last_cmd_output)
         if not output:
             # If Ruth not in output, check if command is ls
-            self.check_command(current_dir)
+            self.check_command()
 
         return output
 
@@ -165,7 +161,7 @@ class Step6(StepTemplate):
 
         return False
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input == 'ls' or 'ls ' in self.last_user_input:
             self.counter += 1
 
@@ -222,7 +218,7 @@ class Step7(StepTemplate):
 
     # TODO: move this into step_helper_functions, used a few too
     # many times outside.
-    def check_command(self, current_dir):
+    def check_command(self):
 
         # If we've emptied the list of available commands, then pass the level
         if not self.all_commands:
@@ -236,7 +232,7 @@ class Step7(StepTemplate):
 
         # check through list of commands
         end_dir_validated = False
-        end_dir_validated = current_dir == self.end_dir
+        end_dir_validated = self.current_path == self.end_dir
 
         # if the validation is included
         if self.last_user_input in self.all_commands.keys() and \

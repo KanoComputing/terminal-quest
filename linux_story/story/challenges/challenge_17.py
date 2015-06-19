@@ -98,7 +98,7 @@ class Step2(StepTemplateMv):
             self.last_user_input, self.commands
         )
 
-    def check_command(self, current_dir):
+    def check_command(self):
         # Only show this hint once.
         if self.last_user_input == "cd parents-room" and self.counter == 0:
             self.counter += 1
@@ -109,7 +109,7 @@ class Step2(StepTemplateMv):
             )
             self.send_text(text)
         else:
-            return StepTemplateMv.check_command(self, current_dir)
+            return StepTemplateMv.check_command(self)
 
     def next(self):
         Step3()
@@ -171,7 +171,7 @@ class CheckDiaryStep(StepTemplateMv):
         self.check_diary = check_diary
         StepTemplateMv.__init__(self)
 
-    def check_command(self, current_dir):
+    def check_command(self):
 
         # Check to see if the kid reads his/her Mum's journal
         if self.last_user_input == 'cat .safe/mums-diary' and \
@@ -182,7 +182,7 @@ class CheckDiaryStep(StepTemplateMv):
             self.check_diary += 1
             return False
 
-        return StepTemplateMv.check_command(self, current_dir)
+        return StepTemplateMv.check_command(self)
 
 
 class Step5(CheckDiaryStep):

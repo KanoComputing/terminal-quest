@@ -7,7 +7,7 @@
 
 from linux_story.story.terminals.terminal_eleanor import TerminalNanoEleanor
 from linux_story.story.challenges.challenge_29 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import unblock_cd_commands
 
 
 class StepTemplateNano(TerminalNanoEleanor):
@@ -69,9 +69,7 @@ class Step2(StepTemplateNano):
     )
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step3()
@@ -132,9 +130,7 @@ class Step4(StepTemplateNano):
     )
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step5()
