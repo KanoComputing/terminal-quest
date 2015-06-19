@@ -97,7 +97,7 @@ class Step3(StepTemplateMkdir):
     story = [
         "Ruth: {{Bb:So creating one called}} {{lb:hidden-shelter}} "
         "{{Bb:should make it hidden?  Ok, let's try that.}}\n",
-        "Try making a shelter called {{lb:hidden-shelter}}."
+        "Try {{lb:building}} a shelter called {{lb:hidden-shelter}}."
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
@@ -211,7 +211,7 @@ class Step6(StepTemplateMkdir):
     story = [
         "Ruth: {{Bb:So if we called the shelter}} {{lb:.shelter}}"
         "{{Bb:, it would be hidden?  Let's try it!}}",
-        "Make a shelter called {{lb:.shelter}}"
+        "{{lb:Build}} a shelter called {{lb:.shelter}}"
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
@@ -266,7 +266,7 @@ class Step8(StepTemplateMkdir):
         "ls -a"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls -a}} {{rb:to look around}}"
+        "{{rb:Use}} {{yb:ls -a}} {{rb:to look around.}}"
     ]
 
     def next(self):
@@ -386,7 +386,7 @@ class Step11(StepTemplateMkdir):
         "ls -a"
     ]
     hints = [
-        "{{rb:Look around using}} {{yb:ls}}"
+        "{{rb:Look around using}} {{yb:ls}}{{rb:.}}"
     ]
     last_step = True
 

@@ -32,7 +32,10 @@ class Step1(StepTemplateMkdir):
         "cat Trotter",
         "cat Cobweb"
     ]
-    hints = ["Use cat to examine an animal, e.g. {{yb:cat Daisy}}"]
+    hints = [
+        "{{rb:Use}} {{lb:cat}} {{rb:to examine an animal, e.g.}} "
+        "{{yb:cat Daisy}}{{rb:.}}"
+    ]
 
     # Remove all the food
     deleted_items = [
@@ -49,7 +52,7 @@ class Step2(StepTemplateMkdir):
     story = [
         "{{pb:Ding. Dong.}}",
         "Ruth: {{Bb:What?? I heard a bell!  What does that mean?}}",
-        "\nQuick! Look around and see if anyone is missing."
+        "\nQuick! {{lb:Look around}} and see if anyone is missing."
     ]
 
     start_dir = "~/farm/barn/.shelter"
@@ -77,7 +80,7 @@ class Step3(StepTemplateMkdir):
         "{{pb:Ding. Dong.}}",
         "Ruth: {{Bb:I heard it again!  Is that the sound you heard when "
         "my husband went missing?}}",
-        "Have another quick look around."
+        "Have another quick {{lb:look around}}."
     ]
 
     start_dir = "~/farm/barn/.shelter"
@@ -126,13 +129,13 @@ class Step4(StepTemplateMkdir):
     ]
 
     def block_command(self):
-        return unblock_cd_commands(self.user_input)
+        return unblock_cd_commands(self.last_user_input)
 
     def check_command(self):
         # If the command passes, then print a nice hint.
         if self.last_user_input.startswith("cd") and \
                 not self.get_command_blocked() and \
-                not self.fake_path == self.end_dir:
+                not self.current_path == self.end_dir:
             hint = "\n{{gb:Well done! Keep going!}}"
             self.send_text(hint)
         else:

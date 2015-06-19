@@ -146,7 +146,7 @@ class Step5(StepTemplateMkdir):
         "{{lb:best-horn-in-the-world.sh}}.",
 
         "{{Bb:It can be used to alert anyone that you're coming. "
-        "I'm having some teething problems with it, "
+        "I'm having some teething problems, "
         "but I'm sure I'll fix it soon.}}",
 
         "\n{{lb:Examine}} {{lb:best-horn-in-the-world.sh}} and see if you "
@@ -181,8 +181,8 @@ class Step6(StepTemplateMkdir):
         "That looks a lot like {{lb:echo}}...we could probably fix this tool!",
         "How could we make changes to this tool?",
         "\nBernard: {{Bb:Ho ho, you look like you understand the problem.}}",
-        "Eleanor: {{Bb:If we need extra help, we can go look in the "
-        "library.  It was just outside.}}",
+        "Eleanor: {{Bb:If we need extra help, we can go to the "
+        "library, it was just outside.}}",
         "\nBefore we go, have a {{lb:look}} in the {{lb:basement}}."
     ]
 
@@ -204,6 +204,12 @@ class Step6(StepTemplateMkdir):
     eleanors_speech = (
         "Eleanor: {{Bb:OooOOoh, are there sweets in there?}}"
     )
+
+    def block_command(self):
+        if self.last_user_input.startswith("ls basement") or \
+                self.last_user_input.startswith("cat basement"):
+            print "Bernard stopped you from looking in his basement!"
+            return True
 
     def next(self):
         Step7()

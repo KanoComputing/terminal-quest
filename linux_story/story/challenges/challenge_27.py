@@ -135,7 +135,7 @@ class Step4(StepTemplateNano):
 
         "{{yb:3: \"Are you going into hiding now?\"}}",
 
-        "{{yb:4: \"What's in the secret room?\"}}",
+        "{{yb:4: \"What's in your basement?\"}}",
 
         "\nUse {{lb:echo}} to ask him a question."
     ]
@@ -189,8 +189,7 @@ class Step5(StepTemplateNano):
 
         "\nEleanor: {{Bb:I guess the librarian would have locked it.}}",
 
-        "{{Bb:Maybe she can give us information about where she found "
-        "that?",
+        "{{Bb:Maybe she can tell us how she did it?",
 
         "She might have gone into hiding somewhere. We should look "
         "for her.}}",
@@ -201,7 +200,7 @@ class Step5(StepTemplateNano):
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east"
     eleanors_speech = (
-        "Eleanor: {{Bb:What do you think is hidden in the protected-section?}}"
+        "Eleanor: {{Bb:What do you think is hidden in the private-section?}}"
         "\n{{Bb:Maybe Bernard shouldn't see it...}}"
     )
     last_step = True

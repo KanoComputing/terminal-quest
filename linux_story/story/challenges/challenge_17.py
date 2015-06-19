@@ -217,7 +217,7 @@ class Step6(CheckDiaryStep):
 
 class Step7(StepTemplateEcho):
     story = [
-        "So the note says \"echo hello - will make you say hello\"",
+        "So the note says {{lb:echo hello - will make you say hello}}",
         "Let's test this out. "
         "Use the command {{yb:echo hello}}"
     ]

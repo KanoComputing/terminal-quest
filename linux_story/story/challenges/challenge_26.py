@@ -66,7 +66,7 @@ class Step2(StepTemplateMkdir):
 
 class Step3(StepTemplateMkdir):
     story = [
-        "Look around."
+        "{{lb:Look around.}}"
     ]
 
     start_dir = "~/town/east/library"

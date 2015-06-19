@@ -26,7 +26,7 @@ class Step1(StepTemplate):
     story = [
         "Ruth: {{Bb:You startled me!",
         "Do I know you?  You look familiar...",
-        "Wait, you're Betty's kid aren't you!",
+        "Wait, you're}} {{lb:Mum}}{{Bb:'s kid, aren't you!",
         "..."
         "Yes?  Do you have a tongue?",
         "Is your name not}} {{yb:" + username + "}}{{Bb:?}}",
@@ -37,8 +37,8 @@ class Step1(StepTemplate):
     # Story has been moved to
     hints = [
         "{{rb:Use}} {{lb:echo}} {{rb:to reply to her "
-        "question}}",
-        "{{rb:Reply with yes by using}} {{yb:echo yes}}"
+        "question.}}",
+        "{{rb:Reply with yes by using}} {{yb:echo yes}}{{rb:.}}"
     ]
 
     commands = [
@@ -56,8 +56,8 @@ class Step1(StepTemplate):
                 self.last_user_input == "echo No" or \
                 self.last_user_input == "echo NO":
             hint = (
-                "Ruth: {{Bb:\"Oh don't be ridiculous, you're the "
-                "spitting image of Betty.\"}}"
+                "Ruth: {{Bb:\"Oh don't be ridiculous, "
+                "you look just like her.\"}}"
             )
             self.send_hint(hint)
 
@@ -68,6 +68,8 @@ class Step1(StepTemplate):
 
 
 class Step2(StepTemplate):
+    print_text = ["{{yb:Yes}}"]
+
     story = [
         "Ruth: {{Bb:\"Ah, I knew it!\"}}",
         "{{Bb:\"So you live in that little house outside town?}}",

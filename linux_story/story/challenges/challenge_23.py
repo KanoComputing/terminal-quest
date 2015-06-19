@@ -124,8 +124,8 @@ class Step3(StepMkdirEleanor):
         self.story += [
             "{{Bb:\"Let's go to town together and find them. I'm sure I'll be "
             "safe if I'm with you.\"}}",
-            "\nEleanor joined you as a companion!",
-            "{{lb:Leave}} the {{lb:.hidden-shelter.}} "
+            "\n{{gb:Eleanor joined you as a companion!}}",
+            "\n{{lb:Leave}} the {{lb:.hidden-shelter.}} "
             "Don't worry, Eleanor will follow!"
         ]
 
@@ -151,7 +151,7 @@ class Step4(StepMkdirEleanor):
     deleted_items = ["~/town/.hidden-shelter/Eleanor"]
 
     story = [
-        "Eleanor: {{Bb:Let's go to the}} {{lb:east part}} "
+        "Eleanor: {{Bb:Let's go to the}} {{lb:east}} "
         "{{Bb:of town.}}",
         "{{Bb:Haven't you noticed it before? It's over there! "
         "Look over there.}}",
