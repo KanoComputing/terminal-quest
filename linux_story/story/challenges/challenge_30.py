@@ -134,13 +134,16 @@ class Step4(StepNano):
 
 class Step5(StepNano):
     story = [
-        "Look around."
+        "{{lb:Look around.}}"
     ]
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east/shed-shop"
     commands = [
         "ls",
         "ls -a"
+    ]
+    hints = [
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     ]
     last_step = True
 

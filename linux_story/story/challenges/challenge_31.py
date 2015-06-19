@@ -7,7 +7,7 @@
 
 import time
 from linux_story.story.terminals.terminal_nano import TerminalNano
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import unblock_cd_commands
 
 
 class StepTemplateNano(TerminalNano):
@@ -20,16 +20,16 @@ class Step1(StepTemplateNano):
 
         "I wonder where he went.",
 
-        "Let's {{lb:go into}} his secret room and see what "
-        "he's hiding."
+        "Maybe he's in his {{lb:basement}}? Let's {{lb:go}} inside."
     ]
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east/shed-shop/basement"
+    hints = [
+        "{{rb:Go into the basement with}} {{yb:cd basement/}}"
+    ]
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step2()
@@ -37,13 +37,16 @@ class Step1(StepTemplateNano):
 
 class Step2(StepTemplateNano):
     story = [
-        "Look around."
+        "{{lb:Look around.}}"
     ]
     start_dir = "~/town/east/shed-shop/basement"
     end_dir = "~/town/east/shed-shop/basement"
     commands = [
         "ls",
         "ls -a"
+    ]
+    hints = [
+        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
     ]
 
     def next(self):
@@ -52,8 +55,8 @@ class Step2(StepTemplateNano):
 
 class Step3(StepTemplateNano):
     story = [
-        "You see what looks like another tool and a diary.",
-        "Examine them."
+        "You see what looks like another tool and a couple of diaries.",
+        "{{lb:Examine}} them."
     ]
     start_dir = "~/town/east/shed-shop/basement"
     end_dir = "~/town/east/shed-shop/basement"

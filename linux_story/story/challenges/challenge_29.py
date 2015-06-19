@@ -17,32 +17,21 @@ story_replies = {
         {
             "user": "Why is the private section locked?",
             "clara": (
-                "Clara: {{Bb:It contains some powerful information."
+                "Clara: {{Bb:It contains some dangerous information."
 
                 "\n...I'm sorry, I shouldn't say more. The head librarian "
-                "was quite concerned that no one should go in.}}"
+                "was quite concerned that no one should go in. He was the "
+                "only one who could lock and unlock it.}}"
             )
         },
         {
-            "user": "How did you lock the private section?",
+            "user": "How did he lock it?",
             "clara": (
-                "Clara: {{Bb:I didn't! The only person that could do that "
-                "was lead librarian."
+                "Clara: {{Bb:I don't know, I wasn't senior enough "
+                "to be taught.}}"
 
-                "\nHe had to find a special command to be able to do that.}}"
-            )
-        },
-        {
-            "user": "What was the command he used to lock it?",
-            "clara": (
-                "Clara: {{Bb:He didn't teach me it, I wasn't senior enough "
-                "to learn it.}}"
-
-                "\n{{Bb:I think he found it from this strange}} "
-                "{{lb:masked swordsmaster}} {{Bb:outside of town.}}"
-
-                "\n{{Bb:He recorded the command, but it was stolen from the "
-                "library.}}"
+                "\n{{Bb:I think he was taught from a}} "
+                "{{lb:masked swordsmaster}} {{Bb:living outside of town.}}"
             )
         },
         {
@@ -64,15 +53,7 @@ story_replies = {
             "clara": (
                 "Clara: {{Bb:I heard a bell ring, and saw the "
                 "lead librarian disappear in front of me. I was "
-                "so scared I ran away, and found this .cellar here.}}"
-            )
-        },
-        {
-            "user": "What do you think that bell is?",
-            "clara": (
-                "Clara: {{Bb:There's a legend that says there's a bell that "
-                "calls a pet to its master. So maybe the bell is "
-                "nothing to be afraid of?  At least, I hope so...}}"
+                "so scared I ran away, and found this .cellar.}}"
             )
         },
         {
@@ -118,13 +99,6 @@ story_replies = {
                 "assumed he had died. I saw him leave the library the day "
                 "he went missing, "
                 "he left in a hurry.  He looked absolutely terrified.}}"
-            )
-        },
-        {
-            "user": "Do we have any idea who this masked swordsmaster could "
-            "be?",
-            "clara": (
-                "Clara: {{Bb:Phh, just some crazy man. Maybe he's made up.}}"
             )
         }
     ]
@@ -247,20 +221,10 @@ class Step3(StepNanoStory):
     )
 
     def next(self):
-        Step4(4)
+        Step4()
 
 
 class Step4(StepNanoStory):
-
-    eleanors_speech = (
-        "Eleanor: {{Bb:Do we want to unlock something so dangerous?}}"
-    )
-
-    def next(self):
-        Step5()
-
-
-class Step5(StepNanoStory):
     last_step = True
 
     print_text = "{{yb:Where would I find this masked swordsmaster?}}",
