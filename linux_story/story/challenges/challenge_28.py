@@ -160,7 +160,7 @@ class Step5(StepTemplateNano):
 
 class Step6(StepTemplateNano):
     story = [
-        "You see a woman {{lb:Clara}} sitting in the cellar",
+        "You see a woman {{lb:Clara}} sitting in the cellar.",
         "{{lb:Listen}} to what she has to say."
     ]
 

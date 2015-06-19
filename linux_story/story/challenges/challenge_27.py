@@ -187,12 +187,11 @@ class Step5(StepTemplateNano):
         "in the}} {{lb:library}}{{Bb:, and then make}} "
         "{{lb:best-key-in-the-world.sh}}",
 
-        "\nEleanor: {{Bb:I guess the librarian would have locked it.}}",
+        "\nEleanor: {{Bb:I guess the librarian would have locked the "
+        "private section.}}",
 
-        "{{Bb:Maybe she can tell us how she did it?",
-
-        "She might have gone into hiding somewhere. We should look "
-        "for her.}}",
+        "{{Bb:Maybe she can tell us how she did it? We should look for "
+        "her.}}",
 
         "\n{{lb:Leave}} the shed-shop."
     ]
