@@ -96,7 +96,7 @@ class Step2(StepTemplateMv):
 
             return False
 
-    def check_command(self, current_dir):
+    def check_command(self):
         separate_words = self.last_user_input.split(' ')
         all_items = []
 
@@ -274,7 +274,7 @@ class Step7(StepTemplateMv):
 
     last_step = True
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if not self.allowed_commands:
             return True
 

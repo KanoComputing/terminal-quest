@@ -83,7 +83,7 @@ class Step2(StepTemplateMv):
     ]
     last_step = True
 
-    def show_hint(self, current_dir):
+    def show_hint(self):
         if self.last_user_input in self.all_commands.keys():
             hint = self.all_commands[self.last_user_input]
             self.send_hint(hint)

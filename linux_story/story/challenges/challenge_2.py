@@ -88,7 +88,7 @@ class Step4(StepCat):
         "{{yb:cat wardrobe/skirt}} {{rb:to dress yourself.}}"
     )
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input == self.commands[0]:
             save_app_state_variable('linux-story', 'outfit', 'skirt')
             pass
@@ -96,7 +96,7 @@ class Step4(StepCat):
             save_app_state_variable('linux-story', 'outfit', 'trousers')
             pass
 
-        return StepCat.check_command(self, current_dir)
+        return StepCat.check_command(self)
 
     def next(self):
         Step5()

@@ -5,12 +5,12 @@
 #
 # A chapter of the story
 
-from linux_story.story.terminals.terminal_nano import TerminalNano
+from linux_story.story.terminals.terminal_eleanor import TerminalNanoEleanor
 from linux_story.story.challenges.challenge_29 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import unblock_cd_commands
 
 
-class StepTemplateNano(TerminalNano):
+class StepTemplateNano(TerminalNanoEleanor):
     challenge_number = 28
 
 
@@ -20,17 +20,17 @@ class Step1(StepTemplateNano):
         "{{lb:Look around}} to decide where to go next."
     ]
 
-    start_dir = "~/town/east-part"
-    end_dir = "~/town/east-part"
+    start_dir = "~/town/east"
+    end_dir = "~/town/east"
 
     hints = [
         "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     ]
 
-    deleted_items = ["~/town/east-part/shed-shop/Eleanor"]
+    deleted_items = ["~/town/east/shed-shop/Eleanor"]
     story_dict = {
         "Eleanor": {
-            "path": "~/town/east-part"
+            "path": "~/town/east"
         }
     }
 
@@ -38,6 +38,10 @@ class Step1(StepTemplateNano):
         "ls",
         "ls -a"
     ]
+
+    eleanors_speech = (
+        "Eleanor: {{Bb:I'm hungry. Can you see anywhere we could eat?}}"
+    )
 
     def next(self):
         Step2()
@@ -49,21 +53,19 @@ class Step2(StepTemplateNano):
         "Let's {{lb:go into the restaurant}}."
     ]
 
-    start_dir = "~/town/east-part"
-    end_dir = "~/town/east-part/restaurant"
+    start_dir = "~/town/east"
+    end_dir = "~/town/east/restaurant"
 
     hints = [
         "{{rb:Use}} {{yb:cd restaurant}} {{rb:to look in the restaurant}}"
     ]
-    commands = [
-        "cd restaurant/",
-        "cd restaurant"
-    ]
+
+    eleanors_speech = (
+        "Eleanor: {{Bb:Ooh, do you think they'll have a sandwich anywhere?}}"
+    )
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step3()
@@ -74,8 +76,8 @@ class Step3(StepTemplateNano):
         "Look around {{lb:closely}}."
     ]
 
-    start_dir = "~/town/east-part/restaurant"
-    end_dir = "~/town/east-part/restaurant"
+    start_dir = "~/town/east/restaurant"
+    end_dir = "~/town/east/restaurant"
 
     hints = [
         "Eleanor: {{Bb:Do you remember how you found me?"
@@ -86,12 +88,16 @@ class Step3(StepTemplateNano):
         "ls -a"
     ]
 
-    deleted_items = ["~/town/east-part/Eleanor"]
+    deleted_items = ["~/town/east/Eleanor"]
     story_dict = {
         "Eleanor": {
-            "path": "~/town/east-part/restaurant"
+            "path": "~/town/east/restaurant"
         }
     }
+
+    eleanors_speech = (
+        "Eleanor: {{Bb:It seems really empty here...}}"
+    )
 
     def next(self):
         Step4()
@@ -103,22 +109,19 @@ class Step4(StepTemplateNano):
         "Let's {{lb:go in the .cellar}}."
     ]
 
-    start_dir = "~/town/east-part/restaurant"
-    end_dir = "~/town/east-part/restaurant/.cellar"
+    start_dir = "~/town/east/restaurant"
+    end_dir = "~/town/east/restaurant/.cellar"
 
     hints = [
         "{{rb:Go in the wine cellar using}} {{yb:cd .cellar}}"
     ]
 
-    commands = [
-        "cd .cellar/",
-        "cd .cellar"
-    ]
+    eleanors_speech = (
+        "Eleanor: {{Bb:I'm scared...can you hold my hand?}}"
+    )
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step5()
@@ -129,23 +132,27 @@ class Step5(StepTemplateNano):
         "Look around."
     ]
 
-    start_dir = "~/town/east-part/restaurant/.cellar"
-    end_dir = "~/town/east-part/restaurant/.cellar"
+    start_dir = "~/town/east/restaurant/.cellar"
+    end_dir = "~/town/east/restaurant/.cellar"
 
     hints = [
         "{{rb:Look around with}} {{yb:ls}}"
     ]
 
-    deleted_items = ["~/town/east-part/restaurant/Eleanor"]
+    deleted_items = ["~/town/east/restaurant/Eleanor"]
     story_dict = {
         "Eleanor": {
-            "path": "~/town/east-part/restaurant/.cellar"
+            "path": "~/town/east/restaurant/.cellar"
         }
     }
     commands = [
         "ls",
         "ls -a"
     ]
+
+    eleanors_speech = (
+        "Eleanor: {{Bb:...is there someone there?}}"
+    )
 
     def next(self):
         Step6()
@@ -157,8 +164,8 @@ class Step6(StepTemplateNano):
         "{{lb:Listen}} to what she has to say."
     ]
 
-    start_dir = "~/town/east-part/restaurant/.cellar"
-    end_dir = "~/town/east-part/restaurant/.cellar"
+    start_dir = "~/town/east/restaurant/.cellar"
+    end_dir = "~/town/east/restaurant/.cellar"
 
     hints = [
         "{{rb:Use}} {{lb:cat}} {{rb:to listen what she has to say.}}",
@@ -168,6 +175,10 @@ class Step6(StepTemplateNano):
     commands = [
         "cat Clara"
     ]
+    eleanors_speech = (
+        "Eleanor: {{Bb:...oh! I think I recognise you!}}"
+    )
+
     last_step = True
 
     def next(self):

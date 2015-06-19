@@ -66,9 +66,10 @@ class Terminal(Cmd):
         # Last command user tried to run.
         self.last_user_input = ""
 
-        # self.fake_path is the current path that the user sees
-        self.fake_path = self.start_dir
-        self.real_path = self.generate_real_path(self.fake_path)
+        # self.current_path is the current path that the user sees
+        self.current_path = self.start_dir
+        # real_path is the actual filename.
+        self.real_path = self.generate_real_path(self.current_path)
 
         self.modify_file_tree()
         self.delete_items()
@@ -181,7 +182,7 @@ class Terminal(Cmd):
         Returning True exits the cmdloop() function
         '''
 
-        finished = self.finished_challenge(line, self.fake_path)
+        finished = self.finished_challenge(line)
         return self.finish_if_server_ready(finished)
 
     @staticmethod
@@ -233,7 +234,7 @@ class Terminal(Cmd):
         output = output.strip()
         return self.output_condition(output)
 
-    def finished_challenge(self, line, current_dir):
+    def finished_challenge(self, line):
         '''If this returns True, we exit the cmdloop.
         If this return False, we stay in the cmdloop.
 
@@ -242,11 +243,11 @@ class Terminal(Cmd):
         to change this in an instance of the Step class.
         '''
         finished = self.check_output(self.last_cmd_output) or \
-            self.check_command(current_dir)
+            self.check_command()
 
         return finished
 
-    def check_command(self, current_dir):
+    def check_command(self):
         '''If self.commands is provided, checks the command entered
         by the user matches self.commands.
         '''
@@ -265,10 +266,10 @@ class Terminal(Cmd):
                 command_validated = self.last_user_input in self.commands
 
         if self.end_dir:
-            end_dir_validated = current_dir == self.end_dir
+            end_dir_validated = self.current_path == self.end_dir
 
         if not (command_validated and end_dir_validated):
-            self.show_hint(current_dir)
+            self.show_hint()
 
         condition = (command_validated and end_dir_validated)
         return self.finish_if_server_ready(condition)
@@ -276,7 +277,7 @@ class Terminal(Cmd):
     #######################################################
     # Send text to the GUI.
 
-    def show_hint(self, current_dir):
+    def show_hint(self):
         '''Customize the hint that is shown to the user
         depending on their input.
         Default behaviour, display normal hint.
@@ -373,7 +374,9 @@ class Terminal(Cmd):
             for path in self.deleted_items:
 
                 # TODO: move this to common
-                real_path = os.path.expanduser(path.replace('~', '~/.linux-story'))
+                real_path = os.path.expanduser(
+                    path.replace('~', '~/.linux-story')
+                )
                 delete_item(real_path)
 
     def modify_file_tree(self):

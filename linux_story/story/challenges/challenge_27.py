@@ -5,17 +5,18 @@
 #
 # A chapter of the story
 
-from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
-from linux_story.story.terminals.terminal_nano import TerminalNano
+from linux_story.story.terminals.terminal_eleanor import (
+    TerminalMkdirEleanor, TerminalNanoEleanor
+)
 from linux_story.story.challenges.challenge_28 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import unblock_cd_commands
 
 
-class StepTemplateMkdir(TerminalMkdir):
+class StepTemplateMkdir(TerminalMkdirEleanor):
     challenge_number = 27
 
 
-class StepTemplateNano(TerminalNano):
+class StepTemplateNano(TerminalNanoEleanor):
     challenge_number = 27
 
 
@@ -25,8 +26,8 @@ class Step1(StepTemplateMkdir):
         "{{lb:Listen}} to what {{lb:Bernard}} has to say."
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
 
     hints = [
         "{{rb:Use}} {{yb:cat Bernard}} {{rb:to interact with Bernard.}}"
@@ -36,12 +37,15 @@ class Step1(StepTemplateMkdir):
         "cat Bernard"
     ]
 
-    deleted_items = ["~/town/east-part/library/Eleanor"]
+    deleted_items = ["~/town/east/library/Eleanor"]
     story_dict = {
         "Eleanor": {
-            "path": "~/town/east-part/shed-shop"
+            "path": "~/town/east/shed-shop"
         }
     }
+    eleanors_speech = (
+        "Eleanor: {{Bb:Achoo! This place is really dusty...*sniff*}}"
+    )
 
     def next(self):
         Step2()
@@ -55,8 +59,8 @@ class Step2(StepTemplateNano):
         "edit it."
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
 
     commands = [
         "nano best-horn-in-the-world.sh"
@@ -67,14 +71,25 @@ class Step2(StepTemplateNano):
         "{{rb:to edit the tool.}}"
     ]
 
-    nano_end_content = "echo \"Honk!\""
-    goal_nano_filepath = "~/town/east-part/shed-shop/best-horn-in-the-world.sh"
+    eleanors_speech = (
+        "Eleanor: {{Bb:They taught us how to write at school. "
+        "I don't think Bernard is very clever.}}"
+    )
+
+    goal_nano_end_content = "echo \"Honk!\""
+    goal_nano_filepath = "~/town/east/shed-shop/best-horn-in-the-world.sh"
     goal_nano_save_name = "best-horn-in-the-world.sh"
 
     # Overwrite the default behaviour for most of the steps - nano needs
     # slightly different behaviour.
-    def check_command(self, current_dir):
-        return self.check_nano_input()
+    def check_command(self):
+        if self.last_user_input == "cat Eleanor":
+            self.send_text("\n" + self.eleanors_speech)
+        else:
+            return self.check_nano_input()
+
+    def check_nano_content(self):
+        return self.check_nano_content_default()
 
     def next(self):
         Step3()
@@ -86,12 +101,16 @@ class Step3(StepTemplateNano):
         "Use {{yb:./best-horn-in-the-world.sh}} to run it."
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
 
     commands = [
         "./best-horn-in-the-world.sh"
     ]
+
+    eleanors_speech = (
+        "Eleanor: {{Bb:Will it be loud?}}"
+    )
 
     def next(self):
         Step4()
@@ -110,36 +129,48 @@ class Step4(StepTemplateNano):
 
         "What would you like to ask him?",
 
-        "\n{{yb:1: \"What's the next big tool you want to create?\"}}",
+        "\n{{yb:1 \"How did you create your tools?\"}}",
 
-        "{{yb:2: \"Are you going into hiding now?\"}}",
+        "{{yb:2: \"What's the next big tool you want to create?\"}}",
 
-        "{{yb:3: \"What's in the secret room?\"}}",
+        "{{yb:3: \"Are you going into hiding now?\"}}",
+
+        "{{yb:4: \"What's in the secret room?\"}}",
 
         "\nUse {{lb:echo}} to ask him a question."
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
+
+    eleanors_speech = (
+        "Eleanor: {{Bb:I have a question - does he have candy in his "
+        "secret-room?}}"
+    )
 
     commands = [
-        "echo 1"
+        "echo 2"
     ]
 
-    def check_command(self, current_dir):
-        if self.last_user_input == "echo 2":
+    def check_command(self):
+        if self.last_user_input == "echo 1":
+            text = (
+                "\nBernard: {{Bb:Ah, trade secret. *wink*}}"
+            )
+            self.send_text(text)
+        elif self.last_user_input == "echo 3":
             text = (
                 "\nBernard: {{Bb:\"Er, what? No, I wasn't planning "
                 "on doing so. Why would I do that?\"}}"
             )
             self.send_text(text)
-        elif self.last_user_input == "echo 3":
+        elif self.last_user_input == "echo 4":
             text = (
                 "\nBernard: {{Bb:Oh ho ho ho, that's none of your business.}}"
             )
             self.send_text(text)
         else:
-            return StepTemplateNano.check_command(self, current_dir)
+            return StepTemplateNano.check_command(self)
 
     def next(self):
         Step5()
@@ -151,16 +182,12 @@ class Step5(StepTemplateNano):
     ]
 
     story = [
-        "Bernard: {{Bb:Well there are some spells I've heard "
-        "about. Spells that lock doors, make items disappear, and "
-        "even one that turns the user into a}} {{yb:superuser}}"
-        "{{Bb:. Whatever that means.}}",
+        "Bernard: {{Bb:I want to know how the}} "
+        "{{lb:private-section}} {{Bb:is locked "
+        "in the}} {{lb:library}}{{Bb:, and then make}} "
+        "{{lb:best-key-in-the-world.sh}}",
 
-        "{{Bb:I guess the first I'd make is a key which locks "
-        "doors, like in the}} {{lb:library}}.",
-
-        "\nEleanor: {{Bb:I wonder how the librarian locked the }}"
-        "{{lb:protected-section}} {{Bb:so people couldn't go in?}}",
+        "\nEleanor: {{Bb:I guess the librarian would have locked it.}}",
 
         "{{Bb:Maybe she can give us information about where she found "
         "that?",
@@ -171,19 +198,16 @@ class Step5(StepTemplateNano):
         "\n{{lb:Leave}} the shed-shop."
     ]
 
-    commands = [
-        "cd ..",
-        "cd ../"
-    ]
-
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east"
+    eleanors_speech = (
+        "Eleanor: {{Bb:What do you think is hidden in the protected-section?}}"
+        "\n{{Bb:Maybe Bernard shouldn't see it...}}"
+    )
     last_step = True
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         NextStep(self.xp)

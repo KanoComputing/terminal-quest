@@ -6,12 +6,12 @@
 # A chapter of the story
 
 
-from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
+from linux_story.story.terminals.terminal_eleanor import TerminalMkdirEleanor
 from linux_story.story.challenges.challenge_25 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import unblock_cd_commands
 
 
-class StepTemplateMkdir(TerminalMkdir):
+class StepTemplateMkdir(TerminalMkdirEleanor):
     challenge_number = 24
 
 
@@ -24,17 +24,22 @@ class Step1(StepTemplateMkdir):
         "ls -a"
     ]
 
-    start_dir = "~/town/east-part"
-    end_dir = "~/town/east-part"
+    start_dir = "~/town/east"
+    end_dir = "~/town/east"
     hints = [
         "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
     ]
     deleted_items = ["~/town/Eleanor"]
     story_dict = {
         "Eleanor": {
-            "path": "~/town/east-part"
+            "path": "~/town/east"
         }
     }
+
+    eleanors_speech = (
+        "Eleanor: {{Bb:I can't see my parents anywhere...but there's "
+        "a weird building there.}}"
+    )
 
     def next(self):
         Step2()
@@ -42,24 +47,23 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateMkdir):
     story = [
-        "Eleanor: {{Bb:Hey, what is that shed-shop?}}",
+        "You see a {{bb:shed-shop}}, {{bb:library}} and {{bb:restaurant}}.",
+        "\nEleanor: {{Bb:Hey, what is that shed-shop?}}",
         "{{Bb:Let's}} {{lb:go in}}{{Bb:!}}"
     ]
 
-    start_dir = "~/town/east-part"
-    end_dir = "~/town/east-part/shed-shop"
-    commands = [
-        "cd shed-shop",
-        "cd shed-shop/"
-    ]
+    start_dir = "~/town/east"
+    end_dir = "~/town/east/shed-shop"
     hints = [
         "{{rb:Use}} {{yb:cd shed-shop/}} {{rb:to go in the shed-shop.}}"
     ]
 
+    eleanors_speech = (
+        "Eleanor: {{Bb:Do you think they sell candy?}}"
+    )
+
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step3()
@@ -73,8 +77,8 @@ class Step3(StepTemplateMkdir):
         "Look around."
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
     hints = [
         "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
     ]
@@ -82,12 +86,15 @@ class Step3(StepTemplateMkdir):
         "ls",
         "ls -a"
     ]
-    deleted_items = ["~/town/east-part/Eleanor"]
+    deleted_items = ["~/town/east/Eleanor"]
     story_dict = {
         "Eleanor": {
-            "path": "~/town/east-part/shed-shop"
+            "path": "~/town/east/shed-shop"
         }
     }
+    eleanors_speech = (
+        "Eleanor: {{Bb::Achoo! It's dusty in here!}}"
+    )
 
     def next(self):
         Step4()
@@ -102,12 +109,10 @@ class Step4(StepTemplateMkdir):
         "\n{{lb:Listen}} to what {{lb:Bernard}} has to say."
     ]
 
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop"
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
 
     hints = [
-        "Eleanor: {{Bb:My}} {{lb:cat}} {{Bb:used to be a great "
-        "listener, I'd tell her everything.}}",
         "{{rb:Use}} {{yb:cat Bernard}} {{rb:to see what Bernard has "
         "to say.}}"
     ]
@@ -115,6 +120,10 @@ class Step4(StepTemplateMkdir):
     commands = [
         "cat Bernard"
     ]
+    eleanors_speech = (
+        "Eleanor: {{Bb:My}} {{lb:cat}} {{Bb:used to be a great "
+        "listener, I'd tell her everything.}}"
+    )
 
     last_step = True
 

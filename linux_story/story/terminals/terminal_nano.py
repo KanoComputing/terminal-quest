@@ -58,8 +58,12 @@ class TerminalNano(TerminalEcho):
 
         self.set_nano_running(True)
 
+        # Read contents of the file
+        text = self.read_goal_contents()
+        self.set_nano_content(text)
+
         # Read nano in a separate thread
-        t = threading.Thread(target=self.try_and_get_nano_contents)
+        t = threading.Thread(target=self.try_and_get_pipe_contents)
         t.daemon = True
         t.start()
 
@@ -181,9 +185,9 @@ class TerminalNano(TerminalEcho):
         '''
         self.editable = editable
 
-    def try_and_get_nano_contents(self):
+    def try_and_get_pipe_contents(self):
         try:
-            self.get_nano_contents()
+            self.get_pipe_contents()
         except Exception as e:
             logger.error(
                 "\nFailed to get nano contents, exception {}".format(str(e))
@@ -193,7 +197,10 @@ class TerminalNano(TerminalEcho):
             print "\nFailed to get nano contents, {}".format(str(e))
             self.send_text("\nFailed to get nano contents, {}".format(str(e)))
 
-    def get_nano_contents(self):
+    def get_pipe_contents(self):
+
+        # Functon called when user has just opened nano
+        self.opened_nano()
         pipename = "/tmp/linux-story-nano-pipe"
 
         if not os.path.exists(pipename):
@@ -210,13 +217,15 @@ class TerminalNano(TerminalEcho):
                 # {x: 1, y: 1, text: ["line1", "line2"]}
                 # {response: this is the response message}
 
+                #############################
+                # This part of the function sets all the environment variables.
                 data = ast.literal_eval(line)
 
                 if "contents" in data:
                     self.cancel_everything()
                     value = data["contents"]
 
-                    if self.get_nano_content() != self.nano_end_content:
+                    if self.get_nano_content() != self.goal_nano_end_content:
                         self.set_nano_content_values(value)
 
                 if "statusbar" in data:
@@ -281,7 +290,13 @@ class TerminalNano(TerminalEcho):
 
                 if "finish" in data:
                     self.quit_nano()
+            #############################
 
+            # This runs for any line in the for loop which is not
+            # empty
+            # Analogous with try, exception, else.
+            # Else is called when the try (or in this case, the for loop)
+            # is successful.
             else:
                 if line:
                     # Run a check for self.nano_content.
@@ -289,7 +304,27 @@ class TerminalNano(TerminalEcho):
                     if self.check_nano_content():
                         return
 
-    def check_nano_input(self):
+    #########################################################################
+    # Handler functions, triggered in different parts of the nano event loop.
+    # Used for modifying in inheritence, so we can customise the individual
+    # steps.
+    def opened_nano(self):
+        '''This is called when user has just opened nano.
+        Use to display custom message.
+        Default behaviour - if there is goal end text to be written in nano,
+        display a hint telling the user what to write and how to exit.f
+        '''
+        if self.goal_nano_end_content:
+            hint = (
+                "\n{{gb:You've opened nano! Now type}} {{yb:" +
+                self.goal_nano_end_content +
+                "}}{{gb:. If you want to exit, press Ctrl X.}}"
+            )
+            self.send_text(hint)
+
+    #########################################################################
+    def read_goal_contents(self):
+        text = ""
         end_path = self.generate_real_path(self.goal_nano_filepath)
 
         if os.path.exists(end_path):
@@ -298,14 +333,33 @@ class TerminalNano(TerminalEcho):
             text = f.read()
             f.close()
 
-            if text.strip() == self.nano_end_content:
+        return text
+
+    # TODO: better way of doing this?
+    # This seems very messy.
+    def check_nano_input(self):
+        '''This is not called anywhere by default. The intention is that is
+        this is called after nano has been closed in check_command.
+
+        This is to check that the nano input after
+        '''
+
+        end_path = self.generate_real_path(self.goal_nano_filepath)
+
+        if os.path.exists(end_path):
+            # check contents of file contains the self.end_text
+            f = open(end_path, "r")
+            text = f.read()
+            f.close()
+
+            if text.strip() == self.goal_nano_end_content:
                 return self.finish_if_server_ready(True)
             else:
                 error_text = (
                     "\n{{rb:The contents of the file is not correct. "
                     "You have}} {{lb:" + text +
                     "}} {{rb:when we expected}} {{lb:" +
-                    self.nano_end_content +
+                    self.goal_nano_end_content +
                     "}}{{rb:. Try again!}}"
                 )
                 self.send_text(error_text)
@@ -319,12 +373,21 @@ class TerminalNano(TerminalEcho):
             self.send_text(error_text)
 
     def check_nano_content(self):
+        '''We keep this blank so we don't automatically get messages
+        when opening nano.
+        '''
+        if not self.get_nano_running():
+            return True
+
+    def check_nano_content_default(self):
         '''We want to customise this for the individual Step classes.
         '''
         # Make the if statements cumulative, so you trickle down as less
         # conditions are satisfied.
 
         if not self.get_nano_running():
+
+            # Call self.check_nano_input here?
             if self.get_last_nano_filename() == self.goal_nano_save_name:
                 return True
 
@@ -340,7 +403,7 @@ class TerminalNano(TerminalEcho):
             '''
 
         elif self.get_on_filename_screen() and \
-                self.get_nano_content().strip() == self.nano_end_content:
+                self.get_nano_content().strip() == self.goal_nano_end_content:
 
             if self.get_editable() == self.goal_nano_save_name:
                 hint = (
@@ -366,9 +429,10 @@ class TerminalNano(TerminalEcho):
                 "save.}}"
             )
 
-        elif self.get_nano_content().strip() == self.nano_end_content:
+        elif self.get_nano_content().strip() == self.goal_nano_end_content:
             hint = (
-                "\n{{gb:Excellent, you typed}} {{lb:" + self.nano_end_content +
+                "\n{{gb:Excellent, you typed}} {{lb:" +
+                self.goal_nano_end_content +
                 "}}{{gb:. Now press}} {{yb:Ctrl X}} {{gb:to exit.}}"
             )
             self.send_text(hint)

@@ -6,7 +6,6 @@
 # A chapter of the story
 
 import os
-
 import sys
 
 if __name__ == '__main__' and __package__ is None:
@@ -51,7 +50,7 @@ class Step1(StepTemplate):
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
 
-    def check_command(self, current_dir):
+    def check_command(self):
 
         if self.last_user_input == "echo no" or \
                 self.last_user_input == "echo No" or \
@@ -62,7 +61,7 @@ class Step1(StepTemplate):
             )
             self.send_hint(hint)
 
-        return StepTemplate.check_command(self, current_dir)
+        return StepTemplate.check_command(self)
 
     def next(self):
         Step2()
@@ -89,7 +88,7 @@ class Step2(StepTemplate):
         "{{yb:echo 3}} {{rb:to reply to Ruth.}}"
     ]
 
-    def check_command(self, current_dir):
+    def check_command(self):
         replies = {
             "echo yes": "1",
             "echo no": "2",
@@ -107,7 +106,7 @@ class Step2(StepTemplate):
             ]
             self.send_text(hint)
         else:
-            return StepTemplate.check_command(self, current_dir)
+            return StepTemplate.check_command(self)
 
     def next(self):
         Step3(self.last_user_input)
@@ -158,10 +157,10 @@ class Step3(StepTemplate):
         ]
         StepTemplate.__init__(self)
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input == "echo 1":  # Disappeared in front of me
             # go to next step
-            return StepTemplate.check_command(self, current_dir)
+            return StepTemplate.check_command(self)
 
         elif self.last_user_input == "echo 2":  # I didn't see him
             hint = (
@@ -214,7 +213,7 @@ class Step4(StepTemplate):
         "{{rb:Use}} {{yb:echo 1}} {{rb:or}} {{yb:echo 2}} {{rb:to reply.}}"
     ]
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input == "echo 1":  # Correct response
             # Can we asssume this is alright?
             return True

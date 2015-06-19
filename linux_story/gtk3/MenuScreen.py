@@ -21,17 +21,6 @@ from kano_profile.apps import load_app_state_variable
 from linux_story.titles import challenges, chapters
 
 
-'''
-
-TITLE
-
-MENU BUTTONS
-
-INFO BOX
-
-'''
-
-
 class MenuScreen(Gtk.Alignment):
     '''This shows the user the challenges they can select.
     '''
@@ -70,9 +59,6 @@ class MenuScreen(Gtk.Alignment):
             # With this data, we need to decide which chapters are locked.
             self.last_unlocked_chapter = challenges[self.last_unlocked_challenge]['chapter']
             self.continue_story_or_select_chapter_menu()
-
-        else:
-            self.directly_launch_challenge(1)
 
     def update_descriptions(self, title, description):
         self.menu_title.set_text(title)
@@ -358,31 +344,6 @@ class MenuScreen(Gtk.Alignment):
 
     def launch_challenge(self, widget, challenge_number):
         self.emit('challenge_selected', challenge_number)
-
-    # Currently not used, as linux-story-gui should have been launched by the
-    # time you inialise this class.
-    def directly_launch_challenge(self, challenge_number):
-        # We want to launch either the local linux-story-gui or the system one,
-        # depending on where this file is.
-        # If this starts with /usr/ go to /usr/bin, otherwise use a relative
-        # path.
-        if os.path.dirname(__file__).startswith('/usr'):
-            filepath = '/usr/bin/linux-story-gui'
-        else:
-            filepath = os.path.abspath(
-                os.path.join(
-                    os.path.dirname(__file__),
-                    "../../bin/linux-story-gui"
-                )
-            )
-
-        command = (
-            "python " +
-            filepath + " " +
-            str(challenge_number) + " 1"
-        )
-
-        os.system(command)
 
 
 if __name__ == "__main__":

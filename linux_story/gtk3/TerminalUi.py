@@ -9,8 +9,7 @@
 # Terminal Gtk emulator
 
 
-from gi.repository import Vte
-from gi.repository import GLib, GObject
+from gi.repository import Vte, GLib
 import os
 
 

@@ -8,7 +8,6 @@
 import time
 from linux_story.story.terminals.terminal_nano import TerminalNano
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
-# from linux_story.story.challenges.challenge_32 import Step1 as NextStep
 
 
 class StepTemplateNano(TerminalNano):
@@ -24,12 +23,8 @@ class Step1(StepTemplateNano):
         "Let's {{lb:go into}} his secret room and see what "
         "he's hiding."
     ]
-    start_dir = "~/town/east-part/shed-shop"
-    end_dir = "~/town/east-part/shed-shop/secret-room"
-    commands = [
-        "cd secret-room/",
-        "cd secret-room"
-    ]
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop/basement"
 
     def block_command(self):
         return unblock_commands_with_cd_hint(
@@ -44,8 +39,8 @@ class Step2(StepTemplateNano):
     story = [
         "Look around."
     ]
-    start_dir = "~/town/east-part/shed-shop/secret-room"
-    end_dir = "~/town/east-part/shed-shop/secret-room"
+    start_dir = "~/town/east/shed-shop/basement"
+    end_dir = "~/town/east/shed-shop/basement"
     commands = [
         "ls",
         "ls -a"
@@ -60,17 +55,18 @@ class Step3(StepTemplateNano):
         "You see what looks like another tool and a diary.",
         "Examine them."
     ]
-    start_dir = "~/town/east-part/shed-shop/secret-room"
-    end_dir = "~/town/east-part/shed-shop/secret-room"
+    start_dir = "~/town/east/shed-shop/basement"
+    end_dir = "~/town/east/shed-shop/basement"
     commands = [
-        "cat bernards-diary",
+        "cat bernards-diary-1",
+        "cat bernards-diary-2",
         "cat photocopier.sh"
     ]
     hints = [
         "{{rb:Use}} {{lb:cat}} {{rb:to examine the objects around you.}}"
     ]
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input in self.commands:
             self.commands.remove(self.last_user_input)
 
@@ -96,11 +92,12 @@ class Step3(StepTemplateNano):
 class Step4(StepTemplateNano):
     story = [
         "Enough wandering. Let's go and try and find the "
-        "hermit near the woods that Clara mentioned.",
-        "{{gb:Press Enter to continue.}}"
+        "{{lb:masked swordsmaster}} near the woods, and see "
+        "what information he can tell us.",
+        "\n{{gb:Press Enter to continue.}}"
     ]
-    start_dir = "~/town/east-part/shed-shop/secret-room"
-    end_dir = "~/town/east-part/shed-shop/secret-room"
+    start_dir = "~/town/east/shed-shop/basement"
+    end_dir = "~/town/east/shed-shop/basement"
     last_step = True
 
     def next(self):

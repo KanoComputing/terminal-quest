@@ -6,7 +6,7 @@
 # A chapter of the story
 
 from linux_story.step_helper_functions import (
-    unblock_commands_with_cd_hint, unblock_commands_with_mkdir_hint,
+    unblock_cd_commands, unblock_commands_with_mkdir_hint,
     unblock_commands
 )
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
@@ -28,15 +28,6 @@ class Step1(StepTemplateMkdir):
     ]
     start_dir = "~/farm/toolshed"
     end_dir = "~/farm/barn"
-    commands = [
-        "cd ../barn/",
-        "cd ../barn",
-        "cd ~/farm/barn",
-        "cd ~/farm/barn/"
-    ]
-    hints = [
-        "{{rb:Try using}} {{yb: cd ../barn/}}"
-    ]
     deleted_items = [
         "~/farm/toolshed/Ruth"
     ]
@@ -47,9 +38,7 @@ class Step1(StepTemplateMkdir):
     }
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step2()
@@ -84,7 +73,7 @@ class Step2(StepTemplateMkdir):
         self.next_class = Step4
         StepTemplateMkdir.__init__(self)
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input == "echo 1":
             self.next_class = Step3
             return True
@@ -122,7 +111,7 @@ class Step3(StepTemplateMkdir):
         "{{rb:to make the shelter.}}"
     ]
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input == "mkdir .hidden-shelter":
             hint = (
                 "\nRuth: {{Bb:You said the shelter should be called}} "
@@ -132,7 +121,7 @@ class Step3(StepTemplateMkdir):
             )
             self.send_text(hint)
         else:
-            return StepTemplateMkdir.check_command(self, current_dir)
+            return StepTemplateMkdir.check_command(self)
 
     def block_command(self):
         return unblock_commands_with_mkdir_hint(
@@ -157,7 +146,7 @@ class Step4(StepTemplateMkdir):
     ]
     ls_a_hint = True
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input == "ls -a" and self.ls_a_hint:
             hint = (
                 "\n{{gb:Close!}} {{ob:But you need to check if the "
@@ -167,7 +156,7 @@ class Step4(StepTemplateMkdir):
             self.send_text(hint)
             self.ls_a_hint = False
         else:
-            return StepTemplateMkdir.check_command(self, current_dir)
+            return StepTemplateMkdir.check_command(self)
 
     def next(self):
         Step5()
@@ -193,7 +182,7 @@ class Step5(StepTemplateMkdir):
         "{{rb:Use}} {{yb:echo 1}} {{rb:or}} {{yb:echo 2}} {{rb:to reply.}}"
     ]
 
-    def check_command(self, current_dir):
+    def check_command(self):
         if self.last_user_input == "echo 1":
             return True
 
@@ -309,7 +298,7 @@ class Step9(StepTemplateMkdir):
     def block_command(self):
         return unblock_commands(self.last_user_input, self.all_commands)
 
-    def check_command(self, current_dir):
+    def check_command(self):
 
         # If we've emptied the list of available commands, then pass the level
         if not self.all_commands:
@@ -328,7 +317,7 @@ class Step9(StepTemplateMkdir):
             "{{rb:to progress}}"
         ]
 
-        end_dir_validated = current_dir == self.end_dir
+        end_dir_validated = self.current_path == self.end_dir
 
         # if the validation is included
         if self.last_user_input in self.all_commands and \
@@ -374,19 +363,13 @@ class Step10(StepTemplateMkdir):
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn/.shelter"
-    commands = [
-        "cd .shelter",
-        "cd .shelter/"
-    ]
     hints = [
         "{{rb:Type}} {{yb:cd .shelter/}} {{rb:to go into the}} "
         "{{lb:.shelter}}{{rb:.}}"
     ]
 
     def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step11()

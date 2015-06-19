@@ -56,6 +56,13 @@ def unblock_commands_with_mkdir_hint(line, list_of_commands):
         return True
 
 
+def unblock_cd_commands(line):
+    if line.startswith("mkdir") or \
+            (line.startswith("mv") and not line.strip() == 'mv --help'):
+        print 'Nice try! But you do not need that command for this challenge'
+        return True
+
+
 def find_common_parent(path1, path2):
     # Assume they are in the same form,
     # as absolute fake paths, e.g.
