@@ -19,7 +19,7 @@ class StepTemplateMkdir(TerminalMkdir):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "{{gb:Nice! You've build an igloo! You learned the new skill, "
+        "{{gb:Nice! You've built an igloo! You learned the new skill, "
         "mkdir!}}",
         "\nRuth: {{Bb:That's amazing! Please help me build a shelter!",
         "Can we build it in the}} {{lb:barn}}{{Bb:, as then it'll be easier "

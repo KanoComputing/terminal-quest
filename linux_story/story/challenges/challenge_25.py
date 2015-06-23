@@ -147,9 +147,9 @@ class Step5(StepTemplateMkdir):
 
         "{{Bb:It can be used to alert anyone that you're coming. "
         "I'm having some teething problems, "
-        "but I'm sure I'll fix it soon.}}",
+        "but I'm sure I'll fix them soon.}}",
 
-        "\n{{lb:Examine}} {{lb:best-horn-in-the-world.sh}} and see if you "
+        "\n{{lb:Examine best-horn-in-the-world.sh}} and see if you "
         "can identify the problem.",
 
         "{{gb:Remember to use TAB!}}"

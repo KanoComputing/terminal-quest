@@ -22,7 +22,7 @@ class StepTemplateNano(TerminalNanoEleanor):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "You are back in the Bernard's place.",
+        "You are back in Bernard's place.",
         "{{lb:Listen}} to what {{lb:Bernard}} has to say."
     ]
 
