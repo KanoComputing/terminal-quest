@@ -28,11 +28,11 @@ class Step1(StepTemplateMv):
     story = [
         "{{wb:Edward:}} {{Bb:\"Thank you so much for saving my little girl!",
         "I have another favour to ask...",
-        "We haven't got any food, could you gather some for us? "
+        "We haven't got any food. Could you gather some for us? "
         "We didn't have "
         "time to grab any before we went into hiding.\"",
         "\"Do you remember seeing any food in your travels?\"}}",
-        "\n...ah! You have all that food in your {{lb:kitchen}}! "
+        "\n...ah! You have all that food in your {{bb:kitchen}}! "
         "We could give that to this family.",
         "\nStart by moving the {{lb:basket}} to {{lb:~}}. "
         "Use the command {{yb:mv basket ~/}}\n"
@@ -64,7 +64,7 @@ class Step1(StepTemplateMv):
 class Step2(StepTemplateMv):
     story = [
         "Now follow the basket.  Use {{yb:cd}} by itself "
-        "to go to the windy road Tilde.\n"
+        "to go to the windy road Tilde ~.\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~"
@@ -110,7 +110,7 @@ class Step3(StepTemplateMv):
 class Step4(StepTemplateMv):
     story = [
         "You have your basket safely alongside you, and "
-        "you see {{lb:my-house}} close by.",
+        "you see {{bb:my-house}} close by.",
         "Move the {{lb:basket}} to {{lb:my-house/kitchen}}.",
         "Don't forget to use the TAB key to autocomplete your commands.\n"
     ]

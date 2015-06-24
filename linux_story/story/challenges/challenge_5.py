@@ -26,7 +26,7 @@ class Step1(StepTemplateCd):
     story = [
         "{{wb:Mum:}} {{Bb:\"Hi sleepyhead, breakfast is nearly ready. "
         " Can you go and grab your Dad?"
-        " I think he's in the {{bb:garden}}.\"}}\n",
+        " I think he's in the}} {{bb:garden}}{{Bb:.\"}}\n",
         "Let's look for your Dad in the {{bb:garden}}.",
         "First we need to leave the kitchen using {{yb:cd ../}}\n"
     ]
@@ -96,9 +96,10 @@ class Step4(StepTemplateCd):
 
 class Step5(StepTemplateCd):
     story = [
-        "The garden looks beautiful at this time of year.",
+        "The {{bb:garden}} looks beautiful at this time of year.",
         "Hmmm...but you can't see him anywhere.",
-        "Maybe he's in the {{bb:greenhouse}}. Go inside the greenhouse.\n"
+        "Maybe he's in the {{bb:greenhouse}}.",
+        "\n{{lb:Go}} inside the {{lb:greenhouse}}.\n"
     ]
     start_dir = "~/my-house/garden"
     end_dir = "~/my-house/garden/greenhouse"

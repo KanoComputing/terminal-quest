@@ -25,7 +25,7 @@ class StepTemplateCd(TerminalCd):
 class Step1(StepTemplateCd):
     story = [
         "You're in your house.  You appear to be alone.",
-        "Use {{lb:cat}} to have a look at some of the objects around you.\n"
+        "Use {{lb:cat}} to {{lb:examine}} some of the objects around you.\n"
     ]
     allowed_commands = [
         "cat banana",
@@ -94,7 +94,7 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCd):
     story = [
         "There doesn't seem to be anything here but loads of food.",
-        "See if you can find something back in {{lb:town}}.",
+        "See if you can find something back in {{bb:town}}.",
         "First, use {{yb:cd ../}} to leave the kitchen.\n"
     ]
     start_dir = "~/my-house/kitchen"
@@ -179,7 +179,7 @@ class Step4(StepTemplateCd):
     story = [
         "The place appears to be deserted.",
         "However, you think you hear whispers.",
-        # Make this writing small
+        # TODO make this writing small
         "\n{{Bn:\".....if they use}} {{yb:ls -a}}{{Bn:, they'll see us...\"}}",
         "{{Bn:\"..Shhh!  ...might hear....\"}}\n"
     ]
@@ -197,7 +197,7 @@ class Step4(StepTemplateCd):
 
 class Step5(StepTemplateCd):
     story = [
-        "You see a {{lb:.hidden-shelter}} that you didn't notice before.",
+        "You see a {{bb:.hidden-shelter}} that you didn't notice before.",
         "{{gb:Something that starts with . is normally hidden from view.}}",
         "It sounds like the whispers are coming from there.  Try going in.\n"
     ]
@@ -225,7 +225,7 @@ class Step5(StepTemplateCd):
 
 class Step6(StepTemplateCd):
     story = [
-        "Have a look around.\n"
+        "Is anyone there? Have a look around.\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"

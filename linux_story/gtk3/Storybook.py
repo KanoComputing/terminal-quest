@@ -161,13 +161,17 @@ class Storybook(Gtk.TextView):
         orange.parse('#EB6841')
         yellow = Gdk.RGBA()
         yellow.parse('#FFE229')
+        blue = Gdk.RGBA()
+        blue.parse('#559bea')
+
 
         textbuffer = self.get_buffer()
         textbuffer.create_tag('orange_bg', background='orange')
         textbuffer.create_tag('white', foreground='white')
         textbuffer.create_tag('yellow_bg', background='yellow')
-        textbuffer.create_tag('blue', foreground='blue')
-
+        
+        textbuffer.create_tag('light_green', foreground="#D6FC49")
+        textbuffer.create_tag('blue', foreground_rgba=blue)
         textbuffer.create_tag('lilac', foreground_rgba=lilac)
         textbuffer.create_tag('green', foreground_rgba=green)
         textbuffer.create_tag('cyan', foreground_rgba=cyan)
@@ -269,6 +273,7 @@ class Storybook(Gtk.TextView):
         pairs = {
             'r': 'red',
             'g': 'green',
+            'G': 'light_green',
             'b': 'blue',
             'y': 'yellow',
             'o': 'orange',
