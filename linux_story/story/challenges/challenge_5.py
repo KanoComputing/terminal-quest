@@ -26,8 +26,8 @@ class Step1(StepTemplateCd):
     story = [
         "{{wb:Mum:}} {{Bb:\"Hi sleepyhead, breakfast is nearly ready. "
         " Can you go and grab your Dad?"
-        " I think he's in the garden.\"}}\n",
-        "Let's look for your Dad in the garden.",
+        " I think he's in the {{bb:garden}}.\"}}\n",
+        "Let's look for your Dad in the {{bb:garden}}.",
         "First we need to leave the kitchen using {{yb:cd ../}}\n"
     ]
     start_dir = "~/my-house/kitchen"
@@ -47,7 +47,7 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCd):
     story = [
         "You are back in the main hall of your house.",
-        "Can you see your garden?  Have a look around you.\n"
+        "Can you see your {{bb:garden}}?  Have a {{lb:look around}} you.\n"
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house"
@@ -60,9 +60,9 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "You see doors to the {{lb:garden}}, {{lb:kitchen}}, "
-        "{{lb:my-room}} and {{lb:parents-room}}.",
-        "Head into your {{lb:garden}}.\n"
+        "You see doors to the {{bb:garden}}, {{bb:kitchen}}, "
+        "{{bb:my-room}} and {{bb:parents-room}}.",
+        "Head into your {{bb:garden}}.\n"
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house/garden"
@@ -98,7 +98,7 @@ class Step5(StepTemplateCd):
     story = [
         "The garden looks beautiful at this time of year.",
         "Hmmm...but you can't see him anywhere.",
-        "Maybe he's in the {{lb:greenhouse}}. Go inside the greenhouse.\n"
+        "Maybe he's in the {{bb:greenhouse}}. Go inside the greenhouse.\n"
     ]
     start_dir = "~/my-house/garden"
     end_dir = "~/my-house/garden/greenhouse"
@@ -165,7 +165,7 @@ class Step8(StepTemplateCd):
 class Step9(StepTemplateCd):
     story = [
         "You're back in the garden. Use {{yb:cd ../}} again to"
-        " go back to the house.",
+        " {{lb:go back}} to the house.",
         "{{gb:Top tip: Press the UP arrow key to replay your previous command.}}\n"
     ]
     start_dir = "~/my-house/garden"
@@ -184,7 +184,7 @@ class Step9(StepTemplateCd):
 
 class Step10(StepTemplateCd):
     story = [
-        "Now go back into the {{lb:kitchen}} and see Mum.\n"
+        "Now go back into the {{bb:kitchen}} and see Mum.\n"
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house/kitchen"

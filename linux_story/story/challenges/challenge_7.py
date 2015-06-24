@@ -23,7 +23,7 @@ class StepTemplateCd(TerminalCd):
 
 class Step1(StepTemplateCd):
     story = [
-        "Have a look around to see what's going on!"
+        "Have a {{lb:look around}} to see what's going on!"
     ]
     start_dir = "~/town"
     end_dir = "~/town"

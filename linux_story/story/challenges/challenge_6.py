@@ -46,7 +46,7 @@ class Step2(StepTemplateCd):
         " the one they were talking about on the news. "
         "Why don't you go and check? I'll stay here in case he comes "
         "back.\"}}\n",
-        "Let's head to town. To leave the house, use {{yb:cd}} by itself."
+        "Let's head to {{bb:town}}. To leave the house, use {{yb:cd}} by itself."
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~"
@@ -66,7 +66,7 @@ class Step3(StepTemplateCd):
     story = [
         "You're out of the house and on the long windy road called Tilde, "
         "or {{lb:~}}",
-        "Look around again to see where to go next."
+        "{{lb:Look around}} again to see where to go next."
     ]
     start_dir = "~"
     end_dir = "~"
@@ -79,7 +79,7 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "You can see a {{lb:town}} in the distance! Let's go there using "
+        "You can see a {{bb:town}} in the distance! Let's go there using "
         "{{lb:cd}}."
     ]
     start_dir = "~"
