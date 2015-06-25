@@ -294,6 +294,10 @@ dog:
           step: 2
           path: "~/town/.hidden-shelter"
 
+        - challenge: 22
+          step: 2
+          exists: False
+
 # Find the .tiny-chest in the .hidden-shelter
 MV:
     challenges:
@@ -353,14 +357,6 @@ MKDIR, spanner, hammer, saw, tape-measure:
         - challenge: 21
           step: 7
           path: "~/farm/barn"
-
-# make .hidden-shelter folk disappear
-dog:
-    challenges:
-        - challenge: 22
-          step: 2
-          path: "~/town/.hidden-shelter"
-          exists: False
 
 Edward:
     challenges:
