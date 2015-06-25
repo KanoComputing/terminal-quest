@@ -26,7 +26,7 @@ class Step1(StepTemplateCat):
     story = [
         "Love it! Put it on quickly.",
         "There's loads more interesting stuff in your room.",
-        "Let's look in your {{lb:shelves}} using {{lb:ls}}.\n"
+        "Let's {{lb:look}} in your {{lb:shelves}} using {{lb:ls}}.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"

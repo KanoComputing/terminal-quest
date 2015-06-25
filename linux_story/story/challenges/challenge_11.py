@@ -191,7 +191,7 @@ class Step5(StepTemplateMv):
         "\n{{wb:Edward:}} {{Bb:\"Hey, you did it!  What was I doing "
         "wrong?\"}}",
         "{{Bb:\"Can you move the apple from the basket back here?\"}}\n",
-        "Move the {{lb:apple}} from the {{lb:basket}} "
+        "{{lb:Move}} the {{lb:apple}} from the {{lb:basket}} "
         "to your current position. This is represented by {{lb:./}}",
         "So {{yb:mv basket/apple ./}} is the full command. "
         "You need the {{lb:./}} !\n"

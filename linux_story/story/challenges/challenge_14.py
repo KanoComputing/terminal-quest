@@ -140,7 +140,7 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        "\nNow we want to head back to the .hidden-shelter with the "
+        "\nNow we want to head back to the {{bb:.hidden-shelter}} with the "
         "basket.",
         "Move the {{lb:basket}} back to {{lb:~}}.\n"
     ]

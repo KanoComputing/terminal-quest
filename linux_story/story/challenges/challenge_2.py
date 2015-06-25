@@ -27,9 +27,9 @@ class Step1(StepCat):
         "Awesome, now you can see the objects around you.",
         "There's your bed, an alarm...",
         "Euuughh...turn that alarm off!",
-        "\n{{wb:New Spell}}: to look at objects, type {{lb:cat}} and the "
+        "\n{{gb:New Spell}}: to examine objects, type {{lb:cat}} and the "
         "object name.",
-        "\nUse {{yb:cat alarm}} to look at the alarm.\n",
+        "\nUse {{yb:cat alarm}} to examine the alarm.\n",
 
     ]
     start_dir = "~/my-house/my-room"
@@ -75,7 +75,7 @@ class Step3(StepCat):
 class Step4(StepCat):
     story = [
         "Looking good!  Put that on and look for something else.",
-        "Look at the {{lb:skirt}} or the {{lb:trousers}}.\n"
+        "Examine the {{lb:skirt}} or the {{lb:trousers}}.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
