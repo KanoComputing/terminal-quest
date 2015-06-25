@@ -316,8 +316,8 @@ class TerminalNano(TerminalEcho):
         '''
         if self.goal_nano_end_content:
             hint = (
-                "\n{{gb:You've opened nano! Now type}} {{yb:" +
-                self.goal_nano_end_content +
+                "\n{{gb:You've opened nano! Now make sure the file says}} "
+                "{{yb:" + self.goal_nano_end_content +
                 "}}{{gb:. If you want to exit, press Ctrl X.}}"
             )
             self.send_text(hint)
