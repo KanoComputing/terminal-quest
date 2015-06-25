@@ -312,9 +312,17 @@ class TerminalNano(TerminalEcho):
         '''This is called when user has just opened nano.
         Use to display custom message.
         Default behaviour - if there is goal end text to be written in nano,
-        display a hint telling the user what to write and how to exit.f
+        display a hint telling the user what to write and how to exit.
         '''
-        if self.goal_nano_end_content:
+        # Check that the opened filename matches the goal_filename
+        if not self.last_user_input == "nano {}".format(self.goal_nano_save_name):
+            hint = (
+                "\n{{rb:Oops, you opened the wrong file! Press}} " +
+                "{{yb:Ctrl X}} {{rb:to exit.}}"
+            )
+            self.send_text(hint)
+
+        elif self.goal_nano_end_content:
             hint = (
                 "\n{{gb:You've opened nano! Now make sure the file says}} "
                 "{{yb:" + self.goal_nano_end_content +
@@ -356,8 +364,10 @@ class TerminalNano(TerminalEcho):
                 return self.finish_if_server_ready(True)
             else:
                 error_text = (
-                    "\n{{rb:The contents of the file is not correct. "
-                    "You have}} {{lb:" + text +
+                    "\n{{rb:The contents of the file}} " +
+                    "{{yb:" + self.goal_nano_save_name + "}} "
+                    "{{rb:is not correct. "
+                    "You have}} {{lb:" + text.strip() +
                     "}} {{rb:when we expected}} {{lb:" +
                     self.goal_nano_end_content +
                     "}}{{rb:. Try again!}}"
