@@ -117,7 +117,7 @@ class Step2(StepTemplateMv):
         self.send_hint(hint)
 
     # Check that the basket folder contains the correct number of files?
-    def check_output(self):
+    def check_output(self, output):
         basket_dir = os.path.join(tq_file_system, 'my-house/kitchen/basket')
         food_files = [
             f for f in os.listdir(basket_dir)

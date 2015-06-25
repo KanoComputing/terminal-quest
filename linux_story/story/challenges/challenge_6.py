@@ -89,7 +89,7 @@ class Step4(StepTemplateCd):
 
     last_step = True
 
-    def block_command(self, line):
+    def block_command(self):
         return unblock_commands_with_cd_hint(
             self.last_user_input, self.commands
         )
