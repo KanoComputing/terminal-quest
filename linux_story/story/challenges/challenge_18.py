@@ -19,7 +19,7 @@ class StepTemplate(TerminalEcho):
 '''
 class Step1(StepTemplate):
     story = [
-        "{{gb:Congratulations, you learnt the new skill echo!}}",
+        "{{gb:Congratulations, you learnt the new spell echo!}}",
 
         "\nWoah! You spoke aloud into the empty room!",
 

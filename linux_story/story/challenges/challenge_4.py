@@ -27,7 +27,7 @@ class StepTemplateCd(TerminalCd):
 class Step1(StepTemplateCd):
     story = [
         "That's weird. No time for that now though - lets find Mum.",
-        "\n{{wb:New Spell}}: {{lb:cd}} lets you move between places.",
+        "\n{{gb:New Spell}}: {{lb:cd}} lets you move between places.",
         "\nUse the command {{yb:cd ../}} to leave your room.\n"
     ]
     start_dir = "~/my-house/my-room"
@@ -57,7 +57,7 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCd):
     story = [
         "You've left {{lb:my-room}} and are in the hall of {{lb:my-house}}.",
-        "Have a look at the different rooms around you using {{yb:ls}}\n"
+        "Have a {{lb:look}} at the different rooms around you using {{yb:ls}}\n"
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house"

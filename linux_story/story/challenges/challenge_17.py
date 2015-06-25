@@ -24,7 +24,7 @@ class StepTemplateEcho(TerminalEcho):
 
 class Step1(StepTemplateMv):
     story = [
-        "You are in your room, standing in front of the .chest "
+        "You are in your room, standing in front of the {{bb:.chest}} "
         "containing all the commands you've learned so far.",
         "Maybe something else is hidden in the house?",
         "{{lb:Look}} in the hallway {{lb:behind you}}.  Remember, "
