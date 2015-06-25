@@ -3,13 +3,11 @@
 # ColouredTextView.py
 #
 # Copyright (C) 2014 Kano Computing Ltd
-# License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
+# License: GNU GPL v2 http://www.gnu.org/licenses/gpl-2.0.txt
 #
 # Author: Caroline Clark <caroline@kano.me>
 # Print text in a TextView with a typing effect
 
-import threading
-import os
 from gi.repository import Gtk, Pango, Gdk
 import time
 from kano.utils import is_model_2_b
@@ -27,6 +25,9 @@ class Storybook(Gtk.TextView):
     def __init__(self, width=None, height=None):
         Gtk.TextView.__init__(self)
         self.__generate_tags()
+
+        # Remove the right click pop up
+        self.connect("button-press-event", self.prevent_right_click)
 
         screen = Gdk.Screen.get_default()
 
@@ -430,40 +431,9 @@ class Storybook(Gtk.TextView):
         width, height = layout.get_pixel_size()
         return width
 
+    def prevent_right_click(self, widget, event):
 
-# Test container for the Storybook widget
-class Window(Gtk.Window):
-
-    def __init__(self):
-            Gtk.Window.__init__(self)
-            self.set_size_request(500, 500)
-            self.connect('delete-event', Gtk.main_quit)
-            vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-            self.add(vbox)
-            button = Gtk.Button("Click meeee")
-            self.textview = Storybook()
-            vbox.pack_start(self.textview, False, False, 0)
-            vbox.pack_start(button, False, False, 0)
-            button.connect("clicked", self.on_button_clicked)
-            self.show_all()
-
-    def on_button_clicked(self, button):
-        array = [
-            "Alarm : Beep beep beep! Beep beep beep!",
-            "Radio : \"Good Morning, this is the 7am news.\"",
-            "\"There have been reports of strange activity occurring in the "
-            "town of Folderton today, as the number of reports of missing "
-            "people and damaged buildings continues to increase...\"",
-            "\"...nobody can explain what is causing the phenomenon, and "
-            "Mayor Hubert has called an emergency town meeting...\"",
-            "It's time to get up sleepy head!",
-            "\n{{wNew Spell:}} {{yls}} - lets you see what's around you."
-        ]
-        string = '\n'.join(array)
-        t = threading.Thread(target=self.textview.print_output, args=(string,))
-        t.start()
-
-
-if __name__ == "__main__":
-    Window()
-    Gtk.main()
+        # Detect if the event is a right click
+        if event.button == 3:
+            # If so, stop the event propagating to showing a right click menu
+            return True
