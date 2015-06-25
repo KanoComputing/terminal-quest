@@ -112,7 +112,9 @@ class Step4(StepTemplateMkdir):
     ]
     start_dir = "~/farm/toolshed"
     end_dir = "~/farm/toolshed"
-    commands = "mkdir igloo"
+    commands = [
+        "mkdir igloo"
+    ]
 
     def block_command(self):
         return unblock_commands_with_mkdir_hint(
