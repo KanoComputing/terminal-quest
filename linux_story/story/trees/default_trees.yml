@@ -351,6 +351,13 @@ MKDIR, spanner, hammer, saw, tape-measure:
           step: 1
           path: "~/farm/toolshed"
 
+igloo:
+    challenges:
+        - challenge: 20
+          step: 5
+          path: "~/farm/toolshed"
+          directory: True
+
 ".shelter":
     directory: True
     challenges:
