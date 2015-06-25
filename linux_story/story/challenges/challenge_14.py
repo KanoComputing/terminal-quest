@@ -97,11 +97,16 @@ class Step2(StepTemplateMv):
             return False
 
     def check_command(self):
+
         separate_words = self.last_user_input.split(' ')
         all_items = []
 
-        if separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
-                                          separate_words[-1] == 'basket/'):
+        if self.get_command_blocked():
+            hint = '{{rb:Try using}} {{yb:mv %s basket/}}' \
+                % self.passable_items[0]
+
+        elif separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
+                                            separate_words[-1] == 'basket/'):
             for item in separate_words[1:-1]:
                 all_items.append(item)
 
