@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# ColouredTextView.py
+# Storybook.py
 #
 # Copyright (C) 2014 Kano Computing Ltd
 # License: GNU GPL v2 http://www.gnu.org/licenses/gpl-2.0.txt

@@ -8,7 +8,6 @@
 # Author: Caroline Clark <caroline@kano.me>
 # Terminal Gtk emulator
 
-
 from gi.repository import Vte, GLib
 import os
 
@@ -28,7 +27,9 @@ class TerminalUi(Vte.Terminal):
         # This prevents the user scrolling back through the history
         # self.set_scrollback_lines(0)
 
+    def feed_child(self, command):
+        Vte.Terminal.feed_child(self, command, len(command))
+
     def launch_command(self, command):
-        command = "temp=$(tty) ; " + command + " > $temp | clear\n"
-        length = len(command)
-        self.feed_child(command, length)
+        command = "temp=$(tty) ; " + command + " > $temp | reset\n"
+        self.feed_child(command)
