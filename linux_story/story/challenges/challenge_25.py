@@ -217,7 +217,7 @@ class Step6(StepTemplateMkdir):
 
 class Step7(StepTemplateMkdir):
     story = [
-        "Bernard: {{Bb:Oooh naughty, you can't go in there.}}",
+        "Bernard: {{Bb:Oooh naughty, you can't look in there.}}",
         "\nLet's {{lb:leave}} the shed shop and go back to town."
     ]
 
