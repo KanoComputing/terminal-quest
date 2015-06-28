@@ -16,62 +16,6 @@ class StepTemplate(TerminalEcho):
     challenge_number = 18
 
 
-'''
-class Step1(StepTemplate):
-    story = [
-        "{{gb:Congratulations, you learnt the new spell echo!}}",
-
-        "\nWoah! You spoke aloud into the empty room!",
-
-        "This command can probably be used to talk to people.",
-
-        "Move this {{lb:ECHO}} command into your {{lb:.chest}} "
-        "in {{lb:my-room}} for safe keeping."
-    ]
-    hints = [
-        "{{rb:Remember that your}} {{lb:.chest}} {{rb:is in}} {{lb:../my-room}}",
-        "{{rb:An easy way to do it is to move}} {{lb:ECHO}} {{rb:from}} "
-        "{{lb:.safe}} {{rb:to}} {{lb:../my-room/.chest}}{{rb:.}}",
-        "{{rb:Use}} {{yb:mv .safe/ECHO ../my-room/.chest/}}{{rb:. "
-        "Remember you can use TAB to speed up your typing.}}"
-    ]
-    commands = [
-        "mv .safe/ECHO ../my-room/.chest/",
-        "mv .safe/ECHO ../my-room/.chest",
-        "mv .safe/ECHO ~/my-house/my-room/.chest/",
-        "mv .safe/ECHO ~/my-house/my-room/.chest"
-    ]
-    start_dir = "~/my-house/parents-room"
-    end_dir = "~/my-house/parents-room"
-
-    def block_command(self):
-        return unblock_commands(self.last_user_input, self.commands)
-
-    def next(self):
-        Step2()
-
-
-class Step2(StepTemplate):
-    story = [
-        "Nice work! Let's head to ~ to find that farm!",
-        "Type {{yb:cd}} by itself to go to the Windy Road {{lb:~}}"
-    ]
-
-    hints = [
-        "{{rb:Use}} {{yb:cd}} {{rb:by itself to go to}} {{lb:~}}"
-    ]
-
-    start_dir = "~/my-house/parents-room"
-    end_dir = "~"
-
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
-
-    def next(self):
-        Step3()
-'''
-
-
 class Step1(StepTemplate):
     story = [
         "{{gb:Congratulations, you learnt the new skill echo!}}",

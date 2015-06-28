@@ -3,7 +3,7 @@
 # menu_screen.py
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # Shows the menu for selecting the appropriate challenge
 
@@ -11,7 +11,12 @@ import os
 import sys
 
 if __name__ == '__main__' and __package__ is None:
-    dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+    dir_path = os.path.abspath(
+        os.path.join(
+            os.path.dirname(__file__),
+            '../..'
+        )
+    )
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
@@ -60,41 +65,19 @@ class MenuScreen(Gtk.Alignment):
             self.last_unlocked_chapter = challenges[self.last_unlocked_challenge]['chapter']
             self.continue_story_or_select_chapter_menu()
 
-    def update_descriptions(self, title, description):
-        self.menu_title.set_text(title)
-        self.menu_description.set_text(description)
-
-    def replace_widget(self, new_menu):
-
-        for child in self.background.get_children():
-            self.background.remove(child)
-
-        new_menu.set_margin_top(10)
-        new_menu.set_margin_bottom(10)
-        new_menu.set_margin_left(10)
-        new_menu.set_margin_right(10)
-
-        self.background.add(new_menu)
-        self.show_all()
-
-    def create_menu_title(self, title):
-        label = Gtk.Label(title)
-        label.get_style_context().add_class('menu_title')
-        label.set_padding(10, 10)
-        return label
-
     def continue_story_or_select_chapter_menu(self, widget=None):
         '''This gives the user a simple option of just continuing the story
         from where they left off, or selecting the chapter manually
         '''
 
-        grid = Gtk.Grid()
-        grid.set_row_spacing(8)
-        grid.set_column_spacing(8)
-        label = self.create_menu_title("TERMINAL QUEST")
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        header = self.create_menu_header(
+            "TERMINAL QUEST MENU",
+            "Use arrow keys to select the button"
+        )
 
         # This takes the user to the latest point in the story
-        continue_btn = self.create_menu_button("CONTINUE")
+        continue_btn = self.create_menu_button("CONTINUE STORY")
 
         # For now, remove the launching functionality.
         continue_btn.connect(
@@ -105,17 +88,51 @@ class MenuScreen(Gtk.Alignment):
         select_chapter_btn = self.create_menu_button("SELECT CHAPTER")
         select_chapter_btn.connect("clicked", self.show_chapter_menu_wrapper)
 
-        grid.attach(label, 0, 0, 1, 1)
-        grid.attach(continue_btn, 0, 1, 1, 1)
-        grid.attach(select_chapter_btn, 0, 2, 1, 1)
+        vbox.pack_start(header, False, False, 15)
+        vbox.pack_start(continue_btn, False, False, 0)
+        vbox.pack_start(select_chapter_btn, False, False, 10)
 
         align = Gtk.Alignment(xalign=0.5, yalign=0.5, xscale=0, yscale=0)
-        align.add(grid)
+        align.add(vbox)
+        align.set_padding(10, 10, 0, 0)
 
-        self.replace_widget(align)
+        self.replace_menu(align)
 
         # Make the CONTINUE button grab the focus
         continue_btn.grab_focus()
+        self.show_all()
+
+    def create_menu_title(self, title):
+        label = Gtk.Label(title)
+        label.get_style_context().add_class('menu_title')
+
+        return label
+
+    def create_menu_description(self, description):
+        label = Gtk.Label(description)
+        label.get_style_context().add_class('menu_description')
+        return label
+
+    def create_menu_header(self, title, description=""):
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        menu_title = self.create_menu_title(title)
+        vbox.set_spacing(10)
+        vbox.pack_start(menu_title, False, False, 0)
+
+        if description:
+            menu_description = self.create_menu_description(description)
+            vbox.pack_start(menu_description, False, False, 0)
+
+        return vbox
+
+    def replace_menu(self, new_menu):
+        '''Unpack the widget in self.background, and
+        pack the new widget in.
+        '''
+        for child in self.background.get_children():
+            self.background.remove(child)
+
+        self.background.add(new_menu)
         self.show_all()
 
     ################################################################
@@ -129,11 +146,12 @@ class MenuScreen(Gtk.Alignment):
         '''
 
         self.menu = self.create_challenge_menu(challenge_number)
-        self.replace_widget(self.menu)
+        self.replace_menu(self.menu)
 
         # Reset the highlighted location
         button = self.button_grid.get_child_at(0, 0)
         button.grab_focus()
+        self.info_description.hide()
 
         self.show_all()
 
@@ -142,47 +160,41 @@ class MenuScreen(Gtk.Alignment):
 
     def show_chapter_menu(self):
         self.menu = self.create_chapter_menu()
-        self.replace_widget(self.menu)
+        self.replace_menu(self.menu)
 
         # Reset the highlighted location
         button = self.button_grid.get_child_at(0, 0)
         button.grab_focus()
         self.show_all()
 
-    def create_generic_menu(self, title):
-        '''Create a grid which we can then attach callbacks to the buttons
+    def create_menu(self, title, start, end, create_button_cb, back_button_cb):
+        '''Create a menu of buttons
         '''
-        label = self.create_menu_title(title)
 
-        grid = Gtk.Grid()
-        grid.set_row_spacing(10)
-        grid.set_column_spacing(10)
+        # hbox is the total container, grid is the container that has all
+        # the buttons
+        header = self.create_menu_header(title)
+
+        self.button_grid = Gtk.Grid()
+        self.button_grid.set_row_spacing(10)
+        self.button_grid.set_column_spacing(10)
 
         # Include back button
         self.back_btn = self.create_back_button()
 
         hbox = Gtk.Box(spacing=20)
         hbox.pack_start(self.back_btn, False, False, 0)
-        hbox.pack_start(grid, False, False, 0)
+        hbox.pack_start(self.button_grid, False, False, 0)
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-        vbox.pack_start(label, False, False, 0)
+        vbox.pack_start(header, False, False, 0)
         vbox.pack_start(hbox, False, False, 0)
 
         # Pack into an alignment to centre the menu
         align = Gtk.Alignment(xalign=0.5, yalign=0.5, xscale=0, yscale=0)
         align.add(vbox)
+        align.set_padding(10, 10, 0, 0)
 
-        return (align, vbox, grid)
-
-    def create_menu(self, title, start, end, create_button_cb, back_button_cb):
-        '''Create a menu of the available chapters
-        '''
-
-        # hbox is the total container, grid is the container that has all
-        # the buttons
-        (align, box, grid) = self.create_generic_menu("CHAPTERS")
-        self.button_grid = grid
         self.back_btn.connect(
             'clicked', back_button_cb
         )
@@ -193,18 +205,19 @@ class MenuScreen(Gtk.Alignment):
 
         for i in range(start, end + 1):
             button = create_button_cb(i)
-            grid.attach(button, column, row, 1, 1)
+            self.button_grid.attach(button, column, row, 1, 1)
             column += 1
 
             if column > total_columns:
                 row += 1
                 column = 0
 
-        # Show title and description
+        # Show info title and info description of the relevent chapter
+        # or challenge.
         self.info_box = self.create_info_box()
 
         # Pack the title and description in the menu
-        box.pack_start(self.info_box, False, False, 10)
+        vbox.pack_start(self.info_box, False, False, 10)
 
         return align
 
@@ -213,26 +226,38 @@ class MenuScreen(Gtk.Alignment):
         '''
 
         num_of_chapters = len(chapters)
-        return self.create_menu(
+        menu = self.create_menu(
             "CHAPTERS",
             1,
             num_of_chapters,
             self.create_chapter_button,
             self.continue_story_or_select_chapter_menu
         )
+        menu.set_margin_top(10)
+        menu.set_margin_bottom(10)
+        menu.set_margin_left(100)
+        menu.set_margin_right(100)
+
+        return menu
 
     def create_challenge_menu(self, chapter_number):
 
         start_challenge = chapters[chapter_number]['start_challenge']
         end_challenge = chapters[chapter_number]['end_challenge']
 
-        return self.create_menu(
+        menu = self.create_menu(
             "CHALLENGES",
             start_challenge,
             end_challenge,
             self.create_challenge_button,
             self.show_chapter_menu_wrapper
         )
+        menu.set_margin_top(10)
+        menu.set_margin_bottom(10)
+        menu.set_margin_left(10)
+        menu.set_margin_right(10)
+
+        return menu
 
     def create_menu_button(self, title):
         width = 50
@@ -270,7 +295,7 @@ class MenuScreen(Gtk.Alignment):
         )
 
         # Get title, description from the yaml.
-        title = challenges[number]["title"]
+        title = "Challenge {}: {}".format(number, challenges[number]["title"])
         # description = challenges[number]["description"]
         description = ""
 
@@ -288,9 +313,11 @@ class MenuScreen(Gtk.Alignment):
         )
 
         # Get title, description from the yaml.
-        title = chapters[number]["title"]
-        # description = chapters[number]["description"]
-        description = ""
+        title = "Chapter {}: {}".format(number, chapters[number]["title"])
+        description = "Challenge {} to Challenge {}".format(
+            chapters[number]["start_challenge"],
+            chapters[number]["end_challenge"]
+        )
 
         button.connect(
             "focus-in-event", self.edit_info_box_focus_in_wrapper, title,
@@ -309,29 +336,19 @@ class MenuScreen(Gtk.Alignment):
         to select.
         '''
         background = Gtk.EventBox()
-
-        # width = 400
-        # height = 50
-        # background.set_size_request(width, height)
-
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        box.set_spacing(5)
 
         # These are the descriptions and titles for the menu
-        self.menu_title = Gtk.Label(title)
-        self.menu_title.get_style_context().add_class("menu_title")
+        self.info_title = Gtk.Label(title)
+        self.info_title.get_style_context().add_class("info_title")
+        box.pack_start(self.info_title, False, False, 0)
 
-        self.menu_description = Gtk.Label(description)
-        self.menu_description.get_style_context().add_class("menu_description")
-
-        box.pack_start(self.menu_title, False, False, 0)
-        box.pack_start(self.menu_description, False, False, 0)
+        self.info_description = Gtk.Label(description)
+        self.info_description.get_style_context().add_class("info_description")
+        box.pack_start(self.info_description, False, False, 0)
 
         background.add(box)
-
-        # align = Gtk.Alignment(xalign=0.5, yalign=0.5, xscale=0, yscale=0)
-        # align.add(box)
-        # background.add(align)
-
         return background
 
     def edit_info_box_focus_in_wrapper(self, widget, event, title,
@@ -339,36 +356,12 @@ class MenuScreen(Gtk.Alignment):
         self.edit_info_box(title, description)
 
     def edit_info_box(self, title, description):
-        self.menu_title.set_text(title)
-        self.menu_description.set_text(description)
+        self.info_title.set_text(title)
+        if description:
+            self.info_description.set_text(description)
+            self.info_description.show()
+        else:
+            self.info_description.hide()
 
     def launch_challenge(self, widget, challenge_number):
         self.emit('challenge_selected', challenge_number)
-
-
-if __name__ == "__main__":
-
-    from linux_story.common import css_dir
-    from kano.gtk3.apply_styles import apply_styling_to_screen
-
-    window = Gtk.Window()
-
-    # add styling
-    CSS_FILE = os.path.join(
-        css_dir,
-        "style.css"
-    )
-    COLOUR_CSS_FILE = os.path.join(
-        css_dir,
-        "colours.css"
-    )
-
-    apply_styling_to_screen(CSS_FILE)
-    apply_styling_to_screen(COLOUR_CSS_FILE)
-
-    menuscreen = MenuScreen()
-    window.add(menuscreen)
-    window.connect("delete-event", Gtk.main_quit)
-    window.show_all()
-
-    Gtk.main()

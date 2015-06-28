@@ -93,63 +93,63 @@ challenges = {
         'chapter': 2
     },
     17: {
-        'title': '',
+        'title': 'Find your voice',
         'chapter': 3
     },
     18: {
-        'title': '',
+        'title': 'Visit the farm',
         'chapter': 3
     },
     19: {
-        'title': '',
+        'title': 'Meet Ruth',
         'chapter': 3
     },
     20: {
-        'title': '',
+        'title': 'Learn to build',
         'chapter': 3
     },
     21: {
-        'title': '',
+        'title': 'Hide Ruth and her animals',
         'chapter': 3
     },
     22: {
-        'title': '',
+        'title': 'Did you hear that?',
         'chapter': 3
     },
     23: {
-        'title': '',
+        'title': 'Hello Eleanor',
         'chapter': 4
     },
     24: {
-        'title': '',
+        'title': 'Go east',
         'chapter': 4
     },
     25: {
-        'title': '',
+        'title': 'Meet Bernard',
         'chapter': 4
     },
     26: {
-        'title': '',
+        'title': 'Go into the library',
         'chapter': 4
     },
     27: {
-        'title': '',
+        'title': 'Help Bernard',
         'chapter': 4
     },
     28: {
-        'title': '',
+        'title': 'Find the librarian',
         'chapter': 4
     },
     29: {
-        'title': '',
+        'title': 'Talk to Clara',
         'chapter': 4
     },
     30: {
-        'title': '',
+        'title': 'Did you hear that?',
         'chapter': 4
     },
     31: {
-        'title': '',
+        'title': 'Explore the shed-shop',
         'chapter': 4
     }
 }

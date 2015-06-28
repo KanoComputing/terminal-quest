@@ -68,6 +68,11 @@ class MainWindow(GenericWindow):
         # This decides whether the spellbook and terminal are hidden
         # Should also write to logs.
         self.debug = debug
+        self.connect("map-event", self.set_cursor_invisible)
+
+    def set_cursor_invisible(self, *_):
+        blank_cursor = Gdk.Cursor(Gdk.CursorType.BLANK_CURSOR)
+        self.get_window().set_cursor(blank_cursor)
 
     def setup_application_widgets(self):
         screen = Gdk.Screen.get_default()
@@ -129,9 +134,10 @@ class MainWindow(GenericWindow):
     def close_window(self, widget=None, event=None):
         '''Shut the server down and close the window
         '''
-        self.server.socket.shutdown(socket.SHUT_RDWR)
-        self.server.socket.close()
-        self.server.shutdown()
+        if hasattr(self, "server"):
+            self.server.socket.shutdown(socket.SHUT_RDWR)
+            self.server.socket.close()
+            self.server.shutdown()
 
         # Do this AFTER the server shutdown, so if this goes wrong,
         # we can quickly relaunch TQ.

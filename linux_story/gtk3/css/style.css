@@ -58,9 +58,26 @@
 	font: Bariol Bold 20;
 }
 
+.menu_description {
+	color: #ffffff;
+	font: Bariol Bold 16;
+}
+
+.info_title {
+	/* Currently a repeat of the menu title styling */
+	color: #ffffff;
+	font: Bariol Bold 20;
+}
+
+.info_description {
+	/* Currently a repeat of the menu description styling */
+	color: #ffffff;
+	font: Bariol Bold 16;
+}
+
 .menu_button {
 	background: @spell_icon_background;
-	font: Bariol bold;
+	font: Bariol bold 14;
 	border-style: solid;
 	border-color: transparent;
 	border-width: 5px;
