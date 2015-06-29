@@ -70,19 +70,19 @@ class Step1(StepTemplateCd):
         else:
             if self.first_time:
                 hint = (
-                    "{{rb:Use}} {{lb:cat}} {{rb:to look at two of the "
+                    "\n{{rb:Use}} {{lb:cat}} {{rb:to look at two of the "
                     "objects around you.}}"
                 )
             else:
                 hint = (
-                    '{{rb:Use the command}} {{yb:' + self.allowed_commands[0] +
+                    '\n{{rb:Use the command}} {{yb:' + self.allowed_commands[0] +
                     '}} {{rb:to progress.}}'
                 )
 
         level_up = (self.counter >= 2)
 
         if not level_up:
-            self.send_hint(hint)
+            self.send_text(hint)
             self.first_time = False
         else:
             return level_up
@@ -128,14 +128,14 @@ class Step2(StepTemplateCd):
             if self.last_user_input == "cd .." or \
                     self.last_user_input == 'cd ../':
                 hint = (
-                    "{{gb:Good work!  Now replay the last command using "
+                    "\n{{gb:Good work!  Now replay the last command using "
                     "the UP arrow on your keyboard.}}"
                 )
 
             # Otherwise, give them a hint
             else:
                 hint = (
-                    '{{rb:Use}} {{yb:cd ../}} {{rb:to make your way to town.}}'
+                    '\n{{rb:Use}} {{yb:cd ../}} {{rb:to make your way to town.}}'
                 )
 
         elif self.current_path == '~':
@@ -143,13 +143,13 @@ class Step2(StepTemplateCd):
             # then they used an appropriate command
             if self.num_turns_in_home_dir == 0:
                 hint = (
-                    "{{gb:Good work! Now use}} {{yb:cd town/}} {{gb: "
+                    "\n{{gb:Good work! Now use}} {{yb:cd town/}} {{gb: "
                     "to head to town.}}"
                 )
 
             # Otherwise give them a hint
             else:
-                hint = '{{rb:Use}} {{yb:cd town/}} {{rb:to go into town.}}'
+                hint = '\n{{rb:Use}} {{yb:cd town/}} {{rb:to go into town.}}'
 
             # So we can keep track of the number of turns they've been in the
             # home directory
