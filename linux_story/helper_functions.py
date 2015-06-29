@@ -101,7 +101,7 @@ def get_preset_from_id(id):
     elif id == "y":
         return 220
     elif id == "b":
-        return 27
+        return 69
     elif id == "p":
         return 197
     elif id == "c":

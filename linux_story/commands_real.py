@@ -49,8 +49,6 @@ def ls(real_loc, line):
                          stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE)
     orig_output, err = p.communicate()
-    debugger("orig_output = {}".format(orig_output))
-    debugger("err = {}".format(err))
 
     # The error will need to be edited if it contains info about the edited
     # filename
