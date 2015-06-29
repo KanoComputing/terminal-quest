@@ -397,7 +397,9 @@ class Terminal(Cmd):
             # If we do ls ~/ we need to change the path to be absolute.
             if additional_path.startswith('~'):
                 # Needs to be moved to helper_functions
-                additional_path = additional_path.replace('~', '~/.linux-story')
+                additional_path = additional_path.replace(
+                    '~', '~/.linux-story'
+                )
                 # should actually be the hidden-directory
                 path = os.path.expanduser(additional_path)
             else:
@@ -451,7 +453,10 @@ class Terminal(Cmd):
             return completions
 
         except Exception as e:
-            logger.debug("hit exception {}".format(str(e)))
+            logger.debug(
+                "Hit Exception in the autocomplete_files "
+                "function {}".format(str(e))
+            )
 
     # Overwrite this to check for shell scripts instead.
     def completedefault(self, *ignored):

@@ -5,12 +5,12 @@
 #
 # A chapter of the story
 
-from linux_story.story.terminals.terminal_eleanor import TerminalNanoEleanor
+from linux_story.story.terminals.terminal_bernard import TerminalNanoBernard
 from linux_story.story.challenges.challenge_29 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
 
 
-class StepTemplateNano(TerminalNanoEleanor):
+class StepTemplateNano(TerminalNanoBernard):
     challenge_number = 28
 
 
@@ -50,14 +50,14 @@ class Step1(StepTemplateNano):
 class Step2(StepTemplateNano):
     story = [
         "We haven't checked out the restaurant yet.",
-        "Let's {{lb:go into the restaurant}}."
+        "Let's {{lb:go}} into the {{lb:restaurant}}."
     ]
 
     start_dir = "~/town/east"
     end_dir = "~/town/east/restaurant"
 
     hints = [
-        "{{rb:Use}} {{yb:cd restaurant}} {{rb:to look in the restaurant}}"
+        "{{rb:Use}} {{yb:cd restaurant}} {{rb:to go into the restaurant.}}"
     ]
 
     eleanors_speech = (
@@ -73,6 +73,7 @@ class Step2(StepTemplateNano):
 
 class Step3(StepTemplateNano):
     story = [
+        "You and Eleanor walk into the restaurant.",
         "Look around {{lb:closely}}."
     ]
 
@@ -105,15 +106,15 @@ class Step3(StepTemplateNano):
 
 class Step4(StepTemplateNano):
     story = [
-        "Do you see the .cellar?",
-        "Let's {{lb:go in the .cellar}}."
+        "Do you see the {{bb:.cellar}}?",
+        "Let's {{lb:go}} into the {{lb:.cellar}}."
     ]
 
     start_dir = "~/town/east/restaurant"
     end_dir = "~/town/east/restaurant/.cellar"
 
     hints = [
-        "{{rb:Go in the wine cellar using}} {{yb:cd .cellar}}"
+        "{{rb:Go in the wine cellar using}} {{yb:cd .cellar}}{{rb:.}}"
     ]
 
     eleanors_speech = (
@@ -129,14 +130,15 @@ class Step4(StepTemplateNano):
 
 class Step5(StepTemplateNano):
     story = [
-        "Look around."
+        "Eleanor grabs your hand, and the two of you walk into the cellar.",
+        "{{lb:Look around.}}"
     ]
 
     start_dir = "~/town/east/restaurant/.cellar"
     end_dir = "~/town/east/restaurant/.cellar"
 
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}"
+        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
     ]
 
     deleted_items = ["~/town/east/restaurant/Eleanor"]
@@ -176,7 +178,7 @@ class Step6(StepTemplateNano):
         "cat Clara"
     ]
     eleanors_speech = (
-        "Eleanor: {{Bb:...oh! I think I recognise you!}}"
+        "Eleanor: {{Bb:...oh! I think I recognise that woman!}}"
     )
 
     last_step = True

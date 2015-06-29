@@ -6,12 +6,12 @@
 # A chapter of the story
 
 
-from linux_story.story.terminals.terminal_eleanor import TerminalMkdirEleanor
+from linux_story.story.terminals.terminal_bernard import TerminalMkdirBernard
 from linux_story.story.challenges.challenge_27 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
 
 
-class StepTemplateMkdir(TerminalMkdirEleanor):
+class StepTemplateMkdir(TerminalMkdirBernard):
     challenge_number = 26
 
 
@@ -46,7 +46,10 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateMkdir):
     story = [
-        "You see the {{lb:library}} ahead.  Go inside."
+        "You see the {{lb:library}} ahead.",
+
+        "Eleanor: {{Bb:There it is! The}} {{bb:library}} "
+        "{{Bb:is right there! Let's}} {{lb:go inside.}}"
     ]
 
     start_dir = "~/town/east"
@@ -55,7 +58,7 @@ class Step2(StepTemplateMkdir):
     hints = [
         "{{rb:Use}} {{yb:cd library/}} {{rb:to go inside the library.}}"
     ]
-    eleanors_speech = "Eleanor: {{Bb:Let's go in!}}"
+    eleanors_speech = "Eleanor: {{Bb:I love the library! Let's go inside!}}"
 
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)
@@ -66,7 +69,8 @@ class Step2(StepTemplateMkdir):
 
 class Step3(StepTemplateMkdir):
     story = [
-        "{{lb:Look around.}}"
+        "Eleanor skips into the library, while you follow her.",
+        "{{lb:Look around}} the library."
     ]
 
     start_dir = "~/town/east/library"
@@ -93,16 +97,17 @@ class Step3(StepTemplateMkdir):
 
 class Step4(StepTemplateMkdir):
     story = [
-        "Eleanor: {{Bb:Wow, this place is a lot more empty than I "
-        "remembered.",
+        "You're in a large open space, with two clearly sections, "
+        "one labelled}} {{bb:public-section}}{{lb:, one labelled}} "
+        "{{bb:private-section}}{{lb:.}}",
 
-        "There used to be a librarian here...",
+        "Eleanor: {{Bb:There used to be a librarian here.",
 
-        "She used to tell me off for trying to look in the}} "
-        "{{lb:private-section}}.",
+        "She would tell me off for trying to look in the}} "
+        "{{bb:private-section}}.",
 
-        "{{Bb:What do you think is in there?  Let's}} {{lb:look inside}}"
-        "{{Bb:.}}"
+        "{{Bb:What do you think is in there?  Let's try and}} "
+        "{{lb:look inside}}{{Bb:.}}"
     ]
 
     start_dir = "~/town/east/library"
@@ -128,7 +133,8 @@ class Step5(StepTemplateMkdir):
     story = [
         "Eleanor: {{Bb:I guess the private-section is locked to outsiders...",
 
-        "Let's see if we can find something useful in the public section.}}",
+        "Let's see if we can find something useful in the}} "
+        "{{bb:public section.}}",
 
         "\nUse {{lb:ls}} to look in the {{lb:public-section}}."
     ]
