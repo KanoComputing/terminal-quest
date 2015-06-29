@@ -315,7 +315,9 @@ class TerminalNano(TerminalEcho):
         display a hint telling the user what to write and how to exit.
         '''
         # Check that the opened filename matches the goal_filename
-        if not self.last_user_input == "nano {}".format(self.goal_nano_save_name):
+        correct_user_cmd = "nano {}".format(self.goal_nano_save_name)
+
+        if not self.last_user_input == correct_user_cmd:
             hint = (
                 "\n{{rb:Oops, you opened the wrong file! Press}} " +
                 "{{yb:Ctrl X}} {{rb:to exit.}}"
@@ -348,8 +350,6 @@ class TerminalNano(TerminalEcho):
     def check_nano_input(self):
         '''This is not called anywhere by default. The intention is that is
         this is called after nano has been closed in check_command.
-
-        This is to check that the nano input after
         '''
 
         end_path = self.generate_real_path(self.goal_nano_filepath)
@@ -366,11 +366,7 @@ class TerminalNano(TerminalEcho):
                 error_text = (
                     "\n{{rb:The contents of the file}} " +
                     "{{yb:" + self.goal_nano_save_name + "}} "
-                    "{{rb:is not correct. "
-                    "You have}} {{lb:" + text.strip() +
-                    "}} {{rb:when we expected}} {{lb:" +
-                    self.goal_nano_end_content +
-                    "}}{{rb:. Try again!}}"
+                    "{{rb:is not correct. Try again!}}"
                 )
                 self.send_text(error_text)
 
@@ -434,10 +430,16 @@ class TerminalNano(TerminalEcho):
             )
 
         elif self.get_save_prompt_showing():
-            self.send_text(
-                "\n{{gb:Press}} {{yb:Y}} {{gb:to confirm that you want to "
-                "save.}}"
-            )
+            if self.get_nano_content().strip() == self.goal_nano_end_content:
+                self.send_text(
+                    "\n{{gb:Press}} {{yb:Y}} {{gb:to confirm that you want to "
+                    "save.}}"
+                )
+            else:
+                self.send_text(
+                    "\n{{rb:Your text is not correct! Press}} {{yb:N}} "
+                    "{{rb:to exit nano.}}"
+                )
 
         elif self.get_nano_content().strip() == self.goal_nano_end_content:
             hint = (
