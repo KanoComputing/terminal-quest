@@ -115,13 +115,13 @@ class MenuScreen(Gtk.Alignment):
 
     def create_menu_header(self, title, description=""):
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        menu_title = self.create_menu_title(title)
+        self.menu_title = self.create_menu_title(title)
         vbox.set_spacing(10)
-        vbox.pack_start(menu_title, False, False, 0)
+        vbox.pack_start(self.menu_title, False, False, 0)
 
         if description:
-            menu_description = self.create_menu_description(description)
-            vbox.pack_start(menu_description, False, False, 0)
+            self.menu_description = self.create_menu_description(description)
+            vbox.pack_start(self.menu_description, False, False, 0)
 
         return vbox
 
@@ -181,14 +181,19 @@ class MenuScreen(Gtk.Alignment):
 
         # Include back button
         self.back_btn = self.create_back_button()
+        # self.button_grid.attach(self.back_btn, 0, 0, 1, 1)
 
         hbox = Gtk.Box(spacing=20)
         hbox.pack_start(self.back_btn, False, False, 0)
         hbox.pack_start(self.button_grid, False, False, 0)
 
+        # Align the grid
+        grid_align = Gtk.Alignment(xalign=0.5, yalign=0.5, xscale=0, yscale=0)
+        grid_align.add(hbox)
+
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         vbox.pack_start(header, False, False, 0)
-        vbox.pack_start(hbox, False, False, 0)
+        vbox.pack_start(grid_align, False, False, 0)
 
         # Pack into an alignment to centre the menu
         align = Gtk.Alignment(xalign=0.5, yalign=0.5, xscale=0, yscale=0)
@@ -275,8 +280,15 @@ class MenuScreen(Gtk.Alignment):
         description = ""
 
         button.connect(
-            "focus-in-event", self.edit_info_box_focus_in_wrapper,
-            title, description
+            "focus-in-event", self.edit_info_box_wrapper, title,
+            description
+        )
+        button.connect(
+            "enter-notify-event", self.edit_info_box_wrapper, title,
+            description
+        )
+        button.connect(
+            "leave-notify-event", self.show_focused_button_info
         )
         return button
 
@@ -295,17 +307,39 @@ class MenuScreen(Gtk.Alignment):
         )
 
         # Get title, description from the yaml.
-        title = "Challenge {}: {}".format(number, challenges[number]["title"])
-        # description = challenges[number]["description"]
+        title = self.create_challenge_title(number)
         description = ""
 
         button.connect(
-            "focus-in-event", self.edit_info_box_focus_in_wrapper, title,
+            "focus-in-event", self.edit_info_box_wrapper, title,
             description
+        )
+        button.connect(
+            "enter-notify-event", self.edit_info_box_wrapper, title,
+            description
+        )
+
+        button.connect(
+            "leave-notify-event", self.show_focused_button_info
         )
 
         button.connect("clicked", self.launch_challenge, number)
         return button
+
+    def create_challenge_title(self, number):
+        return "Challenge {}: {}".format(number, challenges[number]["title"])
+
+    def create_challenge_description(self, number):
+        return
+
+    def create_chapter_title(self, number):
+        return "Chapter {}: {}".format(number, chapters[number]["title"])
+
+    def create_chapter_description(self, number):
+        return "Challenge {} to Challenge {}".format(
+            chapters[number]["start_challenge"],
+            chapters[number]["end_challenge"]
+        )
 
     def create_chapter_button(self, number):
         button = self.create_menu_number_button(
@@ -313,15 +347,21 @@ class MenuScreen(Gtk.Alignment):
         )
 
         # Get title, description from the yaml.
-        title = "Chapter {}: {}".format(number, chapters[number]["title"])
-        description = "Challenge {} to Challenge {}".format(
-            chapters[number]["start_challenge"],
-            chapters[number]["end_challenge"]
+        title = self.create_chapter_title(number)
+        description = self.create_chapter_description(number)
+
+        button.connect(
+            "focus-in-event", self.edit_info_box_wrapper, title,
+            description
         )
 
         button.connect(
-            "focus-in-event", self.edit_info_box_focus_in_wrapper, title,
+            "enter-notify-event", self.edit_info_box_wrapper, title,
             description
+        )
+
+        button.connect(
+            "leave-notify-event", self.show_focused_button_info
         )
 
         button.connect(
@@ -336,6 +376,7 @@ class MenuScreen(Gtk.Alignment):
         to select.
         '''
         background = Gtk.EventBox()
+        background.set_size_request(450, 65)
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.set_spacing(5)
 
@@ -351,8 +392,7 @@ class MenuScreen(Gtk.Alignment):
         background.add(box)
         return background
 
-    def edit_info_box_focus_in_wrapper(self, widget, event, title,
-                                       description):
+    def edit_info_box_wrapper(self, widget, event, title, description):
         self.edit_info_box(title, description)
 
     def edit_info_box(self, title, description):
@@ -362,6 +402,24 @@ class MenuScreen(Gtk.Alignment):
             self.info_description.show()
         else:
             self.info_description.hide()
+
+    def show_focused_button_info(self, *_):
+        # Get the focused button in the button_grid
+        for child in self.button_grid.get_children():
+            if child.has_focus():
+
+                # Get the label in button
+                number = int(child.get_label())
+
+                # Decide if we're showing the chapters or the challenges
+                if self.menu_title.get_text() == "CHAPTERS":
+                    title = self.create_chapter_title(number)
+                    description = self.create_chapter_description(number)
+                else:
+                    title = self.create_challenge_title(number)
+                    description = self.create_challenge_description(number)
+
+                self.edit_info_box(title, description)
 
     def launch_challenge(self, widget, challenge_number):
         self.emit('challenge_selected', challenge_number)

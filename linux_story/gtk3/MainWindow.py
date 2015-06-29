@@ -68,7 +68,9 @@ class MainWindow(GenericWindow):
         # This decides whether the spellbook and terminal are hidden
         # Should also write to logs.
         self.debug = debug
-        self.connect("map-event", self.set_cursor_invisible)
+
+        # Set the cursor invisible
+        # self.connect("map-event", self.set_cursor_invisible)
 
     def set_cursor_invisible(self, *_):
         blank_cursor = Gdk.Cursor(Gdk.CursorType.BLANK_CURSOR)
