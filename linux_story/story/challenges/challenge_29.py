@@ -53,15 +53,16 @@ story_replies = {
             "clara": (
                 "Clara: {{Bb:I heard a bell ring, and saw the "
                 "lead librarian disappear in front of me. I was "
-                "so scared I ran away, and found this .cellar.}}"
+                "so scared I ran away, and found this}} {{bb:.cellar}}"
+                "{{Bb:.}}"
             )
         },
         {
             "user": "Do you have any relatives in town?",
             "clara": (
                 "Clara: {{Bb:I have a couple of children, a}} "
-                "{{lb:young-boy}} {{Bb:and a}} "
-                "{{lb:little-girl}}{{Bb:. I hope they are alright.}}"
+                "{{lb:little-boy}} {{Bb:and a}} "
+                "{{lb:young-girl}}{{Bb:. I hope they are alright.}}"
             )
         },
         {
@@ -77,8 +78,8 @@ story_replies = {
         {
             "user": "Do you know any other people in town?",
             "clara": (
-                "Clara: {{Bb:There's a man I don't trust that runs the "
-                "shed-shop. I think his name is Bernard.}}"
+                "Clara: {{Bb:There's a man I don't trust that runs the}} "
+                "{{bb:shed-shop}}{{Bb:. I think his name is Bernard.}}"
             )
         },
         {
@@ -172,6 +173,11 @@ class StepNanoStory(StepNano):
                     self.echo_hit[self.last_user_input] = False
                     reply = pop_story(self.last_user_input)["clara"]
                     self.send_text("\n\n" + reply)
+                else:
+                    self.send_text(
+                        "\n{{rb:You've already asked Clara that. "
+                        "Ask her something else.}}"
+                    )
 
         else:
             return TerminalNanoEleanor.check_command(self)
