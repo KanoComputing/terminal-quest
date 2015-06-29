@@ -30,10 +30,10 @@ class StepTemplateCdBell(StepTemplateCd):
         time.sleep(3)
         play_sound('bell')
 
-    def run(self):
+    def __init__(self, xp=""):
         t = threading.Thread(target=self.play_bell_delay)
         t.start()
-        StepTemplateCd.run(self)
+        StepTemplateCd.__init__(self, xp)
 
 
 class Step1(StepTemplateCd):
@@ -50,7 +50,7 @@ class Step1(StepTemplateCd):
     deleted_items = ["~/town/grumpy-man"]
 
     def __init__(self, xp=""):
-        play_sound('bell')
+        play_sound("bell")
         StepTemplateCd.__init__(self, xp)
 
     def next(self):
@@ -75,9 +75,6 @@ class Step2(StepTemplateCdBell):
     hints = "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     deleted_items = ["~/town/little-boy"]
 
-    def run(self):
-        StepTemplateCdBell.run(self)
-
     def next(self):
         Step3()
 
@@ -97,9 +94,6 @@ class Step3(StepTemplateCdBell):
     commands = "ls"
     hints = "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     deleted_items = ["~/town/young-girl"]
-
-    def run(self):
-        StepTemplateCdBell.run(self)
 
     def next(self):
         Step4()
@@ -138,9 +132,6 @@ class Step5(StepTemplateCdBell):
             "path": "~/town"
         }
     }
-
-    def run(self):
-        StepTemplateCdBell.run(self)
 
     def next(self):
         Step6()
