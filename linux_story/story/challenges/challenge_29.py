@@ -6,7 +6,7 @@
 # A chapter of the story
 
 import os
-from linux_story.story.terminals.terminal_eleanor import TerminalNanoEleanor
+from linux_story.story.terminals.terminal_bernard import TerminalNanoBernard
 from linux_story.story.challenges.challenge_30 import Step1 as NextStep
 from linux_story.helper_functions import play_sound
 
@@ -132,7 +132,7 @@ def pop_story(user_input):
         return reply
 
 
-class StepNano(TerminalNanoEleanor):
+class StepNano(TerminalNanoBernard):
     challenge_number = 29
 
 
@@ -180,7 +180,7 @@ class StepNanoStory(StepNano):
                     )
 
         else:
-            return TerminalNanoEleanor.check_command(self)
+            return TerminalNanoBernard.check_command(self)
 
 
 class Step1(StepNanoStory):

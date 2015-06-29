@@ -388,10 +388,30 @@ Bernard:
           step: 1
           exists: False
 
-best-shed-maker-in-the-world.sh, best-horn-in-the-world.sh:
+best-shed-maker-in-the-world.sh:
     challenges:
         - challenge: 23
           step: 4
+          path: "~/town/east/shed-shop"
+          permissions: 0755
+
+best-horn-in-the-world-incorrect.sh:
+    name: "best-horn-in-the-world.sh"
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east/shed-shop"
+          permissions: 0755
+        - challenge: 27
+          step: 3
+          path: "~/town/east/shed-shop"
+          exists: False
+
+best-horn-in-the-world-correct.sh:
+    name: "best-horn-in-the-world.sh"
+    challenges:
+        - challenge: 27
+          step: 3
           path: "~/town/east/shed-shop"
           permissions: 0755
 

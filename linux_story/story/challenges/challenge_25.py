@@ -6,12 +6,12 @@
 # A chapter of the story
 
 
-from linux_story.story.terminals.terminal_eleanor import TerminalMkdirEleanor
+from linux_story.story.terminals.terminal_bernard import TerminalMkdirBernard
 from linux_story.story.challenges.challenge_26 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
 
 
-class StepTemplateMkdir(TerminalMkdirEleanor):
+class StepTemplateMkdir(TerminalMkdirBernard):
     challenge_number = 25
 
 
@@ -48,19 +48,30 @@ class Step1(StepTemplateMkdir):
         "Eleanor: {{Bb:Bernard scares me a bit...}}"
     )
 
+    def check_command(self):
+        if self.last_user_input == "cat best-horn-in-the-world.sh":
+            self.send_text(
+                "\n{{rb:You are reading the wrong file! "
+                "You want to read}} {{lb:best-shed-maker-in-the-world.sh}}"
+                "{{rb:.}}"
+            )
+        else:
+            return StepTemplateMkdir.check_command(self)
+
     def next(self):
         Step2()
 
 
 class Step2(StepTemplateMkdir):
     story = [
-        "Bernard: {{Bb:It's like magic! Just run the command, "
+        "The tool has an inscription that reads {{lb:mkdir shed}}.",
+        "You recognise the command {{lb:mkdir}}. It's what you used "
+        "to help Ruth in the farm.",
+
+        "\nBernard: {{Bb:It's like magic! Just run the command, "
         "and you get a new shed.}}",
 
-        "\nWe recognise the contents...it's just the command {{lb:mkdir}} "
-        "that we learnt before.",
-
-        "\nBernard: {{Bb:Try it out! Use it with}} "
+        "{{Bb:Try it out! Use it with}} "
         "{{yb:./best-shed-maker-in-the-world.sh}}",
 
         "\n{{gb:Use TAB to speed up your typing.}}"
@@ -81,6 +92,16 @@ class Step2(StepTemplateMkdir):
         "Eleanor: {{Bb:Isn't that just the same as running}} "
         "{{yb:mkdir shed}}{{Bb:?}}"
     )
+
+    def check_command(self):
+        if self.last_user_input == "./best-horn-in-the-world.sh":
+            self.send_text(
+                "\n{{rb:You're trying to run the wrong script. "
+                "You want to run}} "
+                "{{yb:./best-shed-maker-in-the-world.sh}}"
+            )
+        else:
+            return StepTemplateMkdir.check_command(self)
 
     def next(self):
         Step3()
@@ -143,7 +164,7 @@ class Step5(StepTemplateMkdir):
         "you already have a shed!",
 
         "I'm working on the next big thing,}} "
-        "{{lb:best-horn-in-the-world.sh}}.",
+        "{{lb:best-horn-in-the-world.sh}}{{Bb:.}}",
 
         "{{Bb:It can be used to alert anyone that you're coming. "
         "I'm having some teething problems, "
@@ -171,6 +192,16 @@ class Step5(StepTemplateMkdir):
         "Eleanor: {{Bb:I think this tool is a bit broken.}}"
     )
 
+    def check_command(self):
+        if self.last_user_input == "cat best-shed-maker-in-the-world.sh":
+            self.send_text(
+                "\n{{rb:You're examining the wrong tool. You want to look "
+                "at}} {{yb:best-horn-in-the-world.sh}}"
+            )
+
+        else:
+            return StepTemplateMkdir.check_command(self)
+
     def next(self):
         Step6()
 
@@ -178,7 +209,7 @@ class Step5(StepTemplateMkdir):
 class Step6(StepTemplateMkdir):
     story = [
         "The tool reads {{yb:eco \"Honk!\"}}",
-        "That looks a lot like {{lb:echo}}...we could probably fix this tool!",
+        "Maybe it should read {{yb:echo \"Honk!\"}} instead...",
         "How could we make changes to this tool?",
         "\nBernard: {{Bb:Ho ho, you look like you understand the problem.}}",
         "Eleanor: {{Bb:If we need extra help, we can go to the "
@@ -204,12 +235,6 @@ class Step6(StepTemplateMkdir):
     eleanors_speech = (
         "Eleanor: {{Bb:OooOOoh, are there sweets in there?}}"
     )
-
-    def block_command(self):
-        if self.last_user_input.startswith("ls basement") or \
-                self.last_user_input.startswith("cat basement"):
-            print "Bernard stopped you from looking in his basement!"
-            return True
 
     def next(self):
         Step7()

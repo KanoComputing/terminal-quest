@@ -6,6 +6,9 @@
 # A chapter of the story
 
 import os
+
+# At this point, Bernard disappears, so no need to keep blocking access to
+# his basement.
 from linux_story.story.terminals.terminal_eleanor import TerminalNanoEleanor
 from linux_story.story.challenges.challenge_31 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands

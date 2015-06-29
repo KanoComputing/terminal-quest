@@ -5,12 +5,12 @@
 #
 # A chapter of the story
 
-from linux_story.story.terminals.terminal_eleanor import TerminalNanoEleanor
+from linux_story.story.terminals.terminal_bernard import TerminalNanoBernard
 from linux_story.story.challenges.challenge_29 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
 
 
-class StepTemplateNano(TerminalNanoEleanor):
+class StepTemplateNano(TerminalNanoBernard):
     challenge_number = 28
 
 

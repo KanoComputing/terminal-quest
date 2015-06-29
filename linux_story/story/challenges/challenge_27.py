@@ -5,18 +5,18 @@
 #
 # A chapter of the story
 
-from linux_story.story.terminals.terminal_eleanor import (
-    TerminalMkdirEleanor, TerminalNanoEleanor
+from linux_story.story.terminals.terminal_bernard import (
+    TerminalMkdirBernard, TerminalNanoBernard
 )
 from linux_story.story.challenges.challenge_28 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
 
 
-class StepTemplateMkdir(TerminalMkdirEleanor):
+class StepTemplateMkdir(TerminalMkdirBernard):
     challenge_number = 27
 
 
-class StepTemplateNano(TerminalNanoEleanor):
+class StepTemplateNano(TerminalNanoBernard):
     challenge_number = 27
 
 
@@ -142,10 +142,14 @@ class Step4(StepTemplateNano):
 
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east/shed-shop"
+    hints = [
+        "{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}}{{rb:,}} "
+        "{{yb:echo 3}} {{rb:or}} {{yb:echo 1}}"
+    ]
 
     eleanors_speech = (
         "Eleanor: {{Bb:I have a question - does he have candy in his "
-        "secret-room?}}"
+        "basement?}}"
     )
 
     commands = [
@@ -184,8 +188,8 @@ class Step5(StepTemplateNano):
     story = [
         "Bernard: {{Bb:I want to know how the}} "
         "{{lb:private-section}} {{Bb:is locked "
-        "in the}} {{lb:library}}{{Bb:, and then make}} "
-        "{{lb:best-key-in-the-world.sh}}",
+        "in the}} {{lb:library}}{{Bb:, and then make "
+        "key to unlock it.}}",
 
         "\nEleanor: {{Bb:I guess the librarian would have locked the "
         "private section.}}",
@@ -196,6 +200,10 @@ class Step5(StepTemplateNano):
         "\n{{lb:Leave}} the shed-shop."
     ]
 
+    hints = [
+        "{{rb:Use}} {{lb:cd}} {{rb:to leave the shed-shop.}}",
+        "{{rb:Use}} {{yb:cd ../}} {{rb:to go}} {{lb:back}} {{rb:to town.}}",
+    ]
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east"
     eleanors_speech = (
