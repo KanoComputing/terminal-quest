@@ -28,6 +28,15 @@ class Step1(StepTemplateNano):
         "{{rb:Go into the basement with}} {{yb:cd basement/}}"
     ]
 
+    def check_command(self):
+        if self.last_user_input == "cat bernards-hat":
+            self.send_text(
+                "\nIs that Bernard\'s hat? "
+                "Strange he left it behind..."
+            )
+        else:
+            return TerminalNano.check_command(self)
+
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)
 
@@ -37,7 +46,7 @@ class Step1(StepTemplateNano):
 
 class Step2(StepTemplateNano):
     story = [
-        "{{lb:Look around.}}"
+        "You walked into Bernard's basement. {{lb:Look around.}}"
     ]
     start_dir = "~/town/east/shed-shop/basement"
     end_dir = "~/town/east/shed-shop/basement"
@@ -81,12 +90,15 @@ class Step3(StepTemplateNano):
 
             else:
                 text = (
-                    "\n{{gb:Well done! Look at the other object.}}"
+                    "\n{{gb:Well done! Look at the other objects.}}"
                 )
                 self.send_text(text)
 
         elif not self.last_user_input and not self.commands:
             return True
+
+        else:
+            return StepTemplateNano.check_command(self)
 
     def next(self):
         Step4()

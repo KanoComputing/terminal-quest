@@ -442,3 +442,9 @@ Clara:
         - challenge: 23
           step: 4
           path: "~/town/east/restaurant/.cellar"
+
+bernards-hat:
+    challenges:
+        - challenge: 30
+          step: 1
+          path: "~/town/east/shed-shop"

@@ -30,7 +30,14 @@ class Step1(StepNano):
     hints = [
         "{{rb:Use}} {{yb:ls}} {{rb:to check everyone is still present.}}"
     ]
-    deleted_items = ["~/town/east/shed-shop/Bernard"]
+    deleted_items = [
+        "~/town/east/shed-shop/Bernard"
+    ]
+    story_files = {
+        "bernards-hat": {
+            "path": "~/town/east/shed-shop"
+        }
+    }
     eleanors_speech = (
         "Eleanor: {{Bb:......}}"
     )
