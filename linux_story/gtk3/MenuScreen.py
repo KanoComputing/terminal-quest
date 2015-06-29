@@ -60,6 +60,11 @@ class MenuScreen(Gtk.Alignment):
             'linux-story', 'level'
         )
 
+        # If the last unlocked challenge is less than the max_challenge, then
+        # add one so the user can access the first locked-challenge.
+        if self.last_unlocked_challenge < self.max_challenge:
+            self.last_unlocked_challenge += 1
+
         if self.last_unlocked_challenge:
             # With this data, we need to decide which chapters are locked.
             self.last_unlocked_chapter = challenges[self.last_unlocked_challenge]['chapter']
