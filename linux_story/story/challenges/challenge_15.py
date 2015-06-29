@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
@@ -13,17 +13,13 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.Step import Step
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.challenges.challenge_16 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
-class StepTemplateMv(Step):
+class StepTemplateMv(TerminalMv):
     challenge_number = 15
-
-    def __init__(self, xp=""):
-        Step.__init__(self, TerminalMv, xp)
 
 
 class Step1(StepTemplateMv):
@@ -100,9 +96,11 @@ class Step4(StepTemplateMv):
     story = [
         "{{wb:Edward:}} {{Bb:\"Hey, that's our}} {{lb:.tiny-chest}}{{Bb:. We "
         "use it to keep our possessions safe. ",
-        "I learnt about how to move objects from that}} {{Bb:MV}} {{Bb:parchment.",
+        "I learnt about how to move objects from that}} {{Bb:MV}} "
+        "{{Bb:parchment.",
         "It's probably of more use to you, please take it with my thanks.}}",
-        "\nMaybe you should go back to {{lb:my-house}} to look for more hidden items.",
+        "\nMaybe you should go back to {{lb:my-house}} to look for more "
+        "hidden items.",
         "To quickly go back home, use {{yb:cd ~/my-house/}}\n"
     ]
 
@@ -117,8 +115,10 @@ class Step4(StepTemplateMv):
         '{{rb:to get back to your house in one step.}}'
     ]
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step5()

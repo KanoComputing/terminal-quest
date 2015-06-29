@@ -6,13 +6,21 @@
 #
 # The terminals for one of the challenges
 
+import os
+import sys
+
+if __name__ == '__main__' and __package__ is None:
+    dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    if dir_path != '/usr':
+        sys.path.insert(1, dir_path)
+
 from linux_story.Terminal import Terminal
 from linux_story.commands_real import ls
 
 
 # Terminal that is a template for the others in this level
 class TerminalLs(Terminal):
-    commands = ["ls"]
+    terminal_commands = ["ls"]
 
     def do_ls(self, line):
         # this is so we can read the output of the command for
@@ -21,37 +29,3 @@ class TerminalLs(Terminal):
 
     def complete_ls(self, text, line, begidx, endidx):
         return self.autocomplete_files(text, line, begidx, endidx)
-
-
-# For testing separately
-if __name__ == "__main__":
-
-    import os
-    import sys
-
-    if __name__ == '__main__' and __package__ is None:
-        dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-        if dir_path != '/usr':
-            sys.path.insert(1, dir_path)
-
-    start_path = '~'
-    end_path = '~/my-house'
-
-    def check_command(arg1=None, arg2=None):
-        pass
-
-    def block_command(arg1=None, arg2=None):
-        pass
-
-    def check_output(arg1=None, arg2=None):
-        pass
-
-    terminal = TerminalLs(
-        start_path,
-        end_path,
-        check_command,
-        block_command,
-        check_output
-    )
-
-    terminal.cmdloop()

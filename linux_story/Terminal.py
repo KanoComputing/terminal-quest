@@ -16,12 +16,20 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
+import threading
 from helper_functions import (
-    get_script_cmd, debugger, parse_string
+    get_script_cmd, debugger, parse_string, is_exe
 )
-from socket_functions import is_server_busy
+from kano_profile.apps import (
+    load_app_state_variable, get_app_xp_for_challenge
+)
+from kano_profile.badges import save_app_state_variable_with_dialog
+
+from socket_functions import is_server_busy, launch_client
 from kano.logging import logger
 from common import tq_file_system
+from load_defaults_into_filetree import delete_item, modify_file_tree
+from linux_story.commands_real import run_executable
 
 # If this is not imported, the escape characters used for the colour prompts
 # show up as special characters.
@@ -29,16 +37,48 @@ import readline
 
 
 class Terminal(Cmd):
-    commands = []
+    terminal_commands = []
+    print_text = [""]
+    story = [""]
+    start_dir = "~"
+    end_dir = "~"
+    commands = ""
+    hints = ""
+    last_step = False
+    challenge_number = ""
+    output_condition = lambda x, y: False
+    story_dict = {}
+    deleted_items = []
+    command_blocked = False
 
-    def __init__(
-        self,
-        start_path,
-        end_path,
-        check_command,
-        block_command,
-        check_output
-    ):
+    # Trying to merge Step and Terminal
+    def __init__(self, xp=""):
+
+        ##################################
+        # Initialise the Step stuff first
+        self.xp = xp
+        self.pipe_busy = False
+
+        # Currently this is passed to the Terminal class but NOT updated
+        # because we're making a copy.
+        self.last_cmd_output = ""
+
+        # Last command user tried to run.
+        self.last_user_input = ""
+
+        # self.current_path is the current path that the user sees
+        self.current_path = self.start_dir
+        # real_path is the actual filename.
+        self.real_path = self.generate_real_path(self.current_path)
+
+        self.modify_file_tree()
+        self.delete_items()
+
+        # if hints are a string
+        if isinstance(self.hints, basestring):
+            self.hints = [self.hints]
+
+        ##################################
 
         Cmd.__init__(self)
 
@@ -47,26 +87,26 @@ class Terminal(Cmd):
         old_delims = readline.get_completer_delims()
         readline.set_completer_delims(old_delims.replace('-', ''))
 
-        # this should be a complete path
-        self.fake_path = start_path
-        self.generate_real_path()
-        self.end_dir = end_path
-
-        # output from last command
-        self.last_cmd_output = None
-
-        # validation and check_output should be functions
-        self.check_command = check_command
-        self.block_command = block_command
-        self.check_output = check_output
-
         self.set_prompt()
+        self.send_start_challenge_data()
 
-    def generate_real_path(self):
-        self.real_path = self.fake_path.replace('~', tq_file_system)
+        # Need to call .cmdloop() to start terminal class.
+        # Maybe put a wrapper function around this if we frequently need to
+        # add extra stuff around this.
+        self.cmdloop()
 
-    def generate_fake_path(self):
-        self.fake_path = self.real_path.replace(tq_file_system, '~')
+        # Once the Terminal has finished, decide whether to add xp to profile
+        if self.last_step:
+            self.save_challenge()
+
+        # Tell storyline the step is finished
+        self.next()
+
+    def generate_real_path(self, fake_path):
+        return fake_path.replace('~', tq_file_system)
+
+    def generate_fake_path(self, real_path):
+        return real_path.replace(tq_file_system, '~')
 
     def set_prompt(self):
         home_dir = os.path.expanduser('~')
@@ -87,18 +127,18 @@ class Terminal(Cmd):
         coloured_prompt = parse_string(prompt, input=True)
         self.prompt = coloured_prompt
 
-    def do_help(self, line):
-        '''This is to overwrite the in built function in cmd
-        '''
-
-        pass
-
     def emptyline(self):
         '''To overwrite default behaviour in the cmd module.
         Do nothing if the user enters an empty line.
         '''
-
         pass
+
+    def do_shell(self, line):
+        '''This is run by default if the line starts with !.
+        '''
+        # We use this over os.system so that the command is run in the
+        # correct directory
+        run_executable(self.real_path, line)
 
     def precmd(self, line):
         '''Hook before the command is run
@@ -106,9 +146,13 @@ class Terminal(Cmd):
         Otherwise, it is run
         '''
 
-        if self.block_command(line):
+        self.last_user_input = line.strip()
+
+        if self.block_command():
+            self.set_command_blocked(True)
             return Cmd.precmd(self, "")
         else:
+            self.set_command_blocked(False)
             return Cmd.precmd(self, line)
 
     def onecmd(self, line):
@@ -127,7 +171,7 @@ class Terminal(Cmd):
         )
         if is_script:
             # TODO: what is this?
-            self.do_shell(script)
+            self.do_shell(line)
         else:
             self.last_cmd_output = Cmd.onecmd(self, line)
             return self.last_cmd_output
@@ -138,16 +182,8 @@ class Terminal(Cmd):
         Returning True exits the cmdloop() function
         '''
 
-        cmd_output_correct = self.check_output(self.last_cmd_output)
-
-        # TODO: Re-evaluate this logic.
-        # This logic depends on our emphasis - do we want to pass levels using
-        # self.check_output, or specifically block levels depending on the
-        # output
-        condition = cmd_output_correct or \
-            self.check_command(line, self.fake_path)
-
-        return self.finish_if_server_ready(condition)
+        finished = self.finished_challenge(line)
+        return self.finish_if_server_ready(finished)
 
     @staticmethod
     def finish_if_server_ready(other_condition):
@@ -159,9 +195,201 @@ class Terminal(Cmd):
         return will_finish
 
     #######################################################
+    # Step functions for levelling up
+
+    def next(self):
+        '''Defines what should happen next at the end of this step
+        Should be modified on inheritance
+        '''
+        pass
+
+    def block_command(self):
+        '''line is the user entered input from the terminal.
+        If this function returns True, input entered will be blocked
+        Otherwise, command will be run as normal.
+        Default behaviour is to block cd and mv
+        '''
+
+        if "cd" in self.last_user_input or \
+                "mkdir" in self.last_user_input or \
+                ("mv" in self.last_user_input and
+                    not self.last_user_input == 'mv --help'):
+
+            print ('Nice try! But you do not need that command for this '
+                   'challenge')
+
+            return True
+
+    def check_output(self, output):
+        '''Use output of the command to level up.
+        The argument is the output from the command printed in the terminal.
+        If the function return True, will break out of cmdloop and go to next
+        Step.
+        if the function returns False, whether the level passes depends on
+        the return value of self.check_command
+        '''
+        if not output:
+            return False
+
+        output = output.strip()
+        return self.output_condition(output)
+
+    def finished_challenge(self, line):
+        '''If this returns True, we exit the cmdloop.
+        If this return False, we stay in the cmdloop.
+
+        Depending on the challenge, we may want to either pass only
+        depending on the output, but not on the command.  So we may want
+        to change this in an instance of the Step class.
+        '''
+        finished = self.check_output(self.last_cmd_output) or \
+            self.check_command()
+
+        return finished
+
+    def check_command(self):
+        '''If self.commands is provided, checks the command entered
+        by the user matches self.commands.
+        '''
+
+        # check through list of commands
+        command_validated = True
+        end_dir_validated = True
+
+        # if the validation is included
+        if self.commands:
+            # if only one command can pass the level
+            if isinstance(self.commands, basestring):
+                command_validated = (self.last_user_input == self.commands)
+            # else there are multiple commands that can pass the level
+            else:
+                command_validated = self.last_user_input in self.commands
+
+        if self.end_dir:
+            end_dir_validated = self.current_path == self.end_dir
+
+        if not (command_validated and end_dir_validated):
+            self.show_hint()
+
+        condition = (command_validated and end_dir_validated)
+        return self.finish_if_server_ready(condition)
+
+    #######################################################
+    # Send text to the GUI.
+
+    def show_hint(self):
+        '''Customize the hint that is shown to the user
+        depending on their input.
+        Default behaviour, display normal hint.
+        '''
+        # Default behaviour
+        # if user does not pass challenge, show hints.
+        # Go through hints until we get to last hint
+        # then just keep showing last hint
+
+        # The last line the user typed is self.last_user_input
+
+        self.send_hint()
+
+    def send_hint(self, hint=None):
+        '''Sends a hint string through the pipe to the GUI
+        '''
+
+        if not is_server_busy():
+            if not hint:
+                hint = '\n' + self.hints[0]
+            else:
+                hint = '\n' + hint
+            data = {'hint': hint}
+            t = threading.Thread(target=launch_client, args=(data,))
+            t.daemon = True
+            t.start()
+
+        if len(self.hints) > 1:
+            self.hints.pop(0)
+
+    def send_text(self, string):
+        '''Sends a string through the pipe to the GUI
+        '''
+        if not is_server_busy():
+            data = {'hint': string}
+            t = threading.Thread(target=launch_client, args=(data,))
+            t.daemon = True
+            t.start()
+
+    def send_start_challenge_data(self):
+        '''Sends all the relevent information at the start of a new step
+        '''
+
+        data = {}
+
+        # Get data about any XP.
+        data['xp'] = self.xp
+        data["print_text"] = "\n".join(self.print_text)
+        data['story'] = "\n".join(self.story)
+        data['challenge'] = str(self.challenge_number)
+        data['spells'] = self.terminal_commands
+
+        t = threading.Thread(target=launch_client, args=(data,))
+        t.daemon = True
+        t.start()
+
+    def get_xp(self):
+        '''Look up XP earned after challenge
+        '''
+        # Look up XP earned
+        xp = get_app_xp_for_challenge("linux-story",
+                                      str(self.challenge_number)
+                                      )
+
+        if xp > 0:
+            self.xp = "{{gb:Congratulations, you earned " + str(xp) + " XP!}}\n\n"
+
+    def exit(self):
+        data = {'exit': '1'}
+        t = threading.Thread(target=launch_client, args=(data,))
+        t.daemon = True
+        t.start()
+
+    ######################################################
+    # Kano world integration
+
+    def save_challenge(self):
+        '''Integration with kano world
+        '''
+        level = load_app_state_variable("linux-story", "level")
+
+        if self.challenge_number > level:
+            save_app_state_variable_with_dialog("linux-story", "level",
+                                                self.challenge_number)
+            self.get_xp()
+
+    #######################################################
+    # File system functions
+
+    def delete_items(self):
+        '''self.deleted_items should be a list of fake_paths we want removed
+        '''
+        if self.deleted_items:
+            for path in self.deleted_items:
+
+                # TODO: move this to common
+                real_path = os.path.expanduser(
+                    path.replace('~', '~/.linux-story')
+                )
+                delete_item(real_path)
+
+    def modify_file_tree(self):
+        '''If self.story_dict is specified, add files to the filetree
+        '''
+        if self.story_dict:
+            modify_file_tree(self.story_dict)
+
+    #######################################################
     # Helper commands
 
-    def autocomplete_files(self, text, line, begidx, endidx, only_dirs=False):
+    def autocomplete_files(self, text, line, begidx, endidx, only_dirs=False,
+                           only_exe=False):
 
         try:
             additional_path = line[:int(begidx)].split(" ")[-1]
@@ -176,11 +404,22 @@ class Terminal(Cmd):
                 path = os.path.join(self.real_path, additional_path)
 
             # If the path doesn't exist, return early
+            # TODO: move this part to a separate function?
+            # Then we can have a list of all the functions that get called
             if not os.path.exists(path):
                 return []
 
             if text == "..":
                 completions = [text]
+            elif not text and line == "./":
+                # This is repeated
+                contents = os.listdir(path)
+                completions = [f
+                               for f in contents
+                               if f.startswith(text) and (
+                                   os.path.isdir(os.path.join(path, f)) or
+                                   is_exe(os.path.join(path, f)))
+                               ]
             elif not text:
                 completions = os.listdir(path)
             else:
@@ -191,6 +430,13 @@ class Terminal(Cmd):
                                    for f in contents
                                    if f.startswith(text) and
                                    os.path.isdir(os.path.join(path, f))
+                                   ]
+                elif only_exe:
+                    completions = [f
+                                   for f in contents
+                                   if f.startswith(text) and (
+                                       os.path.isdir(os.path.join(path, f)) or
+                                       is_exe(os.path.join(path, f)))
                                    ]
                 else:
                     completions = [f
@@ -206,3 +452,65 @@ class Terminal(Cmd):
 
         except Exception as e:
             logger.debug("hit exception {}".format(str(e)))
+
+    # Overwrite this to check for shell scripts instead.
+    def completedefault(self, *ignored):
+        '''ignored = [text, line, begidx, endidx]
+        text = (string I think?) ?
+        line = (string) line the user entered
+        begidx = (int) ?
+        endidx = (int) ?
+        '''
+        [text, line, begidx, endidx] = ignored
+        return self.autocomplete_files(
+            text, line, begidx, endidx, only_exe=True
+        )
+
+    def complete_executable(self, text, line, begidx, endidx):
+        # Asssuming the input is of the form.
+        return ["./"]
+
+    # The original text from the cmd module.
+    def complete(self, text, state):
+        """Return the next possible completion for 'text'.
+
+        If a command has not been entered, then complete against command list.
+        Otherwise try to call complete_<command> to get list of completions.
+        """
+
+        if state == 0:
+            import readline
+            origline = readline.get_line_buffer()
+            line = origline.lstrip()
+            stripped = len(origline) - len(line)
+            begidx = readline.get_begidx() - stripped
+            endidx = readline.get_endidx() - stripped
+            if begidx > 0:
+                cmd, args, foo = self.parseline(line)
+                if cmd == '':
+                    compfunc = self.completedefault
+                else:
+                    try:
+                        compfunc = getattr(self, 'complete_' + cmd)
+                    except AttributeError:
+                        compfunc = self.completedefault
+            else:
+                # Modified this so we check for executables sometimes
+                if line == ".":
+                    compfunc = self.complete_executable
+                else:
+                    compfunc = self.completenames
+            self.completion_matches = compfunc(text, line, begidx, endidx)
+        try:
+            return self.completion_matches[state]
+        except IndexError:
+            return None
+
+    #######################################################
+    # Set whether command has been blocked
+
+    def set_command_blocked(self, blocked):
+        self.command_blocked = blocked
+
+    def get_command_blocked(self):
+        return self.command_blocked

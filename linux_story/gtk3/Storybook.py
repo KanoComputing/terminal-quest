@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 
-# ColouredTextView.py
+# Storybook.py
 #
 # Copyright (C) 2014 Kano Computing Ltd
-# License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
+# License: GNU GPL v2 http://www.gnu.org/licenses/gpl-2.0.txt
 #
 # Author: Caroline Clark <caroline@kano.me>
 # Print text in a TextView with a typing effect
 
-import threading
-import os
 from gi.repository import Gtk, Pango, Gdk
 import time
 from kano.utils import is_model_2_b
@@ -27,6 +25,9 @@ class Storybook(Gtk.TextView):
     def __init__(self, width=None, height=None):
         Gtk.TextView.__init__(self)
         self.__generate_tags()
+
+        # Remove the right click pop up
+        self.connect("button-press-event", self.prevent_right_click)
 
         screen = Gdk.Screen.get_default()
 
@@ -76,6 +77,20 @@ class Storybook(Gtk.TextView):
             while Gtk.events_pending():
                 Gtk.main_iteration_do(False)
 
+    ##############################################################
+    def print_coloured_output(self, string):
+        # hacky function - same as above but removed the sleeps.
+        lines = self.__split_into_printable_chars(string)
+
+        for line in lines:
+            self.__style_char(
+                line['letter'],
+
+                # TODO: get size tag working
+                [line['colour'], line['bold']]
+            )
+    ##############################################################
+
     def __style_char(self, line, tag_names):
         '''Add styling (e.g. colours) to each character and puts it into the
         text buffer
@@ -104,16 +119,16 @@ class Storybook(Gtk.TextView):
         '''Print Challenge title from file at the top of the Story widget
         '''
 
-        fpath = os.path.join(
-            os.path.dirname(os.path.realpath(__file__)),
-            "../ascii_assets/titles/" + challenge_number
-        )
-        with open(fpath) as f:
-            for line in f.readlines():
-                self.__print(line.rstrip())
-        self.__print("")
+        if challenge_number == "0":
+            text = "INTRODUCTION\n"
+        else:
+            text = "CHALLENGE {}\n".format(challenge_number)
 
-    def __print(self, string):
+        border = "-------------------\n"
+        header = "\n" + border + "\n" + text + "\n" + border
+        self.print_text(header)
+
+    def print_text(self, string):
         '''Mimic for python print function
         '''
 
@@ -127,42 +142,22 @@ class Storybook(Gtk.TextView):
     def __generate_tags(self):
         '''Generate tags and adds them to the text buffer
         '''
-
-        green = Gdk.RGBA()
-        green.parse('#7DCF02')
-        lilac = Gdk.RGBA()
-        lilac.parse('#AAA7FA')
-        pink = Gdk.RGBA()
-        pink.parse("#EB98D2")
-        cyan = Gdk.RGBA()
-        cyan.parse('#00FFEE')
-        light_blue = Gdk.RGBA()
-        light_blue.parse('#a2eabf')
-        purple = Gdk.RGBA()
-        purple.parse('#c894f1')
-        red = Gdk.RGBA()
-        # red.parse('#F52F11')
-        red.parse('#D94C4A')
-        orange = Gdk.RGBA()
-        orange.parse('#EB6841')
-        yellow = Gdk.RGBA()
-        yellow.parse('#FFE229')
-
         textbuffer = self.get_buffer()
         textbuffer.create_tag('orange_bg', background='orange')
         textbuffer.create_tag('white', foreground='white')
         textbuffer.create_tag('yellow_bg', background='yellow')
-        textbuffer.create_tag('blue', foreground='blue')
 
-        textbuffer.create_tag('lilac', foreground_rgba=lilac)
-        textbuffer.create_tag('green', foreground_rgba=green)
-        textbuffer.create_tag('cyan', foreground_rgba=cyan)
-        textbuffer.create_tag('light_blue', foreground_rgba=light_blue)
-        textbuffer.create_tag('purple', foreground_rgba=purple)
-        textbuffer.create_tag('pink', foreground_rgba=pink)
-        textbuffer.create_tag('red', foreground_rgba=red)
-        textbuffer.create_tag('orange', foreground_rgba=orange)
-        textbuffer.create_tag('yellow', foreground_rgba=yellow)
+        textbuffer.create_tag('light_green', foreground="#D6FC49")
+        textbuffer.create_tag('blue', foreground='#559bea')
+        textbuffer.create_tag('lilac', foreground='#AAA7FA')
+        textbuffer.create_tag('green', foreground='#7DCF02')
+        textbuffer.create_tag('cyan', foreground='#00FFEE')
+        textbuffer.create_tag('light_blue', foreground='#a2eabf')
+        textbuffer.create_tag('purple', foreground='#c894f1')
+        textbuffer.create_tag('pink', foreground="#EB98D2")
+        textbuffer.create_tag('red', foreground='#D94C4A')
+        textbuffer.create_tag('orange', foreground='#EB6841')
+        textbuffer.create_tag('yellow', foreground='#FFE229')
 
         textbuffer.create_tag('bold', weight=Pango.Weight.BOLD)
         textbuffer.create_tag('not-bold', weight=Pango.Weight.NORMAL)
@@ -255,6 +250,7 @@ class Storybook(Gtk.TextView):
         pairs = {
             'r': 'red',
             'g': 'green',
+            'G': 'light_green',
             'b': 'blue',
             'y': 'yellow',
             'o': 'orange',
@@ -416,40 +412,9 @@ class Storybook(Gtk.TextView):
         width, height = layout.get_pixel_size()
         return width
 
+    def prevent_right_click(self, widget, event):
 
-# Test container for the Storybook widget
-class Window(Gtk.Window):
-
-    def __init__(self):
-            Gtk.Window.__init__(self)
-            self.set_size_request(500, 500)
-            self.connect('delete-event', Gtk.main_quit)
-            vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-            self.add(vbox)
-            button = Gtk.Button("Click meeee")
-            self.textview = Storybook()
-            vbox.pack_start(self.textview, False, False, 0)
-            vbox.pack_start(button, False, False, 0)
-            button.connect("clicked", self.on_button_clicked)
-            self.show_all()
-
-    def on_button_clicked(self, button):
-        array = [
-            "Alarm : Beep beep beep! Beep beep beep!",
-            "Radio : \"Good Morning, this is the 7am news.\"",
-            "\"There have been reports of strange activity occurring in the "
-            "town of Folderton today, as the number of reports of missing "
-            "people and damaged buildings continues to increase...\"",
-            "\"...nobody can explain what is causing the phenomenon, and "
-            "Mayor Hubert has called an emergency town meeting...\"",
-            "It's time to get up sleepy head!",
-            "\n{{wNew Spell:}} {{yls}} - lets you see what's around you."
-        ]
-        string = '\n'.join(array)
-        t = threading.Thread(target=self.textview.print_output, args=(string,))
-        t.start()
-
-
-if __name__ == "__main__":
-    Window()
-    Gtk.main()
+        # Detect if the event is a right click
+        if event.button == 3:
+            # If so, stop the event propagating to showing a right click menu
+            return True

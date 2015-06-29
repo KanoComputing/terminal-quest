@@ -13,24 +13,21 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.Step import Step
+# from linux_story.Step import Step
 from linux_story.story.terminals.terminal_cd import TerminalCd
 from linux_story.story.challenges.challenge_5 import Step1 as NextChallengeStep
 from linux_story.helper_functions import play_sound
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
-class StepTemplateCd(Step):
+class StepTemplateCd(TerminalCd):
     challenge_number = 4
-
-    def __init__(self, xp=""):
-        Step.__init__(self, TerminalCd, xp)
 
 
 class Step1(StepTemplateCd):
     story = [
         "That's weird. No time for that now though - lets find Mum.",
-        "\n{{wb:New Spell}}: {{lb:cd}} lets you move between places.",
+        "\n{{gb:New Spell}}: {{lb:cd}} lets you move between places.",
         "\nUse the command {{yb:cd ../}} to leave your room.\n"
     ]
     start_dir = "~/my-house/my-room"
@@ -48,8 +45,10 @@ class Step1(StepTemplateCd):
         "{{rb:Type}} {{yb:cd ../}} {{rb:to leave your room.}}"
     ]
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step2()
@@ -58,7 +57,7 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCd):
     story = [
         "You've left {{lb:my-room}} and are in the hall of {{lb:my-house}}.",
-        "Have a look at the different rooms around you using {{yb:ls}}\n"
+        "Have a {{lb:look}} at the different rooms around you using {{yb:ls}}\n"
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house"
@@ -90,8 +89,10 @@ class Step3(StepTemplateCd):
     commands = ["cd kitchen", "cd kitchen/"]
     hints = ["{{rb:Type}} {{yb:cd kitchen/}} {{rb:and press Enter.}}"]
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step4()

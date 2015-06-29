@@ -49,8 +49,6 @@ def ls(real_loc, line):
                          stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE)
     orig_output, err = p.communicate()
-    debugger("orig_output = {}".format(orig_output))
-    debugger("err = {}".format(err))
 
     # The error will need to be edited if it contains info about the edited
     # filename
@@ -131,7 +129,7 @@ def sudo(real_path, line):
     command = elements[0]
 
     if command in allowed_commands:
-        shell_command(current_dir, line, "sudo")
+        shell_command(real_path, line, "sudo")
 
 
 # TODO: change this so returns differently depending on whether
@@ -172,6 +170,48 @@ def launch_application(real_path, line, command_word=""):
     line = " ".join([command_word] + line.split(" "))
 
     p = subprocess.Popen(line, cwd=real_path, shell=True)
+    stdout, stderr = p.communicate()
+
+    if stdout:
+        print stdout.strip()
+
+    if stderr:
+        print stderr.strip()
+
+
+def nano(real_path, line):
+
+    # File path of the local nano
+    dir_path = os.path.abspath(os.path.dirname(__file__))
+    nano_filepath = os.path.join(dir_path, "..", "nano-2.2.6/src/nano")
+
+    if not os.path.exists(nano_filepath):
+        # File path of installed nano
+        nano_filepath = "/usr/share/linux-story/nano"
+
+    if not os.path.exists(nano_filepath):
+        raise Exception("Cannot find nano")
+
+    cmd = nano_filepath + " " + line
+    p = subprocess.Popen(cmd, cwd=real_path, shell=True)
+    stdout, stderr = p.communicate()
+
+    if stdout:
+        print stdout.strip()
+
+    if stderr:
+        print stderr.strip()
+
+
+def run_executable(real_path, line):
+
+    # print "line = {}".format(line)
+    line = line.strip()
+
+    if line.startswith("./"):
+        line = line[2:]
+
+    p = subprocess.Popen(["sh", line], cwd=real_path)
     stdout, stderr = p.communicate()
 
     if stdout:

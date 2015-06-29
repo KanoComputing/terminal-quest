@@ -13,23 +13,20 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.Step import Step
+# from linux_story.Step import Step
 from linux_story.story.terminals.terminal_cat import TerminalCat
 from linux_story.story.challenges.challenge_4 import Step1 as NextChallengeStep
 
 
-class StepTemplateCat(Step):
+class StepTemplateCat(TerminalCat):
     challenge_number = 3
-
-    def __init__(self, xp=""):
-        Step.__init__(self, TerminalCat, xp)
 
 
 class Step1(StepTemplateCat):
     story = [
         "Love it! Put it on quickly.",
         "There's loads more interesting stuff in your room.",
-        "Let's look in your {{lb:shelves}} using {{lb:ls}}.\n"
+        "Let's {{lb:look}} in your {{lb:shelves}} using {{lb:ls}}.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -68,7 +65,6 @@ class Step3(StepTemplateCat):
     hints = "{{rb:Type}} {{yb:cat shelves/note}} {{rb:to read the note.}}"
 
     last_step = True
-    challenge_number = 3
 
     def next(self):
         NextChallengeStep(self.xp)

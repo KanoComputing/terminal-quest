@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
@@ -13,8 +13,6 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.Step import Step
-
 # Change this import statement, need to decide how to group the terminals
 # together
 from linux_story.story.terminals.terminal_mv import TerminalMv
@@ -23,11 +21,8 @@ from linux_story.common import tq_file_system
 from linux_story.step_helper_functions import unblock_commands
 
 
-class StepTemplateMv(Step):
+class StepTemplateMv(TerminalMv):
     challenge_number = 12
-
-    def __init__(self, xp=""):
-        Step.__init__(self, TerminalMv, xp)
 
 
 # Thanks you for saving the little girl
@@ -55,8 +50,8 @@ class Step1(StepTemplateMv):
     ]
     dog_file = os.path.join(tq_file_system, 'town/.hidden-shelter/dog')
 
-    def block_command(self, line):
-        return unblock_commands(line, self.commands)
+    def block_command(self):
+        return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step2()
@@ -88,12 +83,13 @@ class Step2(StepTemplateMv):
     ]
     last_step = True
 
-    def show_hint(self, line, current_dir):
-        if line in self.all_commands.keys():
-            hint = self.all_commands[line]
+    def show_hint(self):
+        if self.last_user_input in self.all_commands.keys():
+            hint = self.all_commands[self.last_user_input]
             self.send_hint(hint)
         else:
-            StepTemplateMv.show_hint(self, line, current_dir)
+            # Show default hints.
+            self.send_hint()
 
     def next(self):
         NextStep(self.xp)

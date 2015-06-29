@@ -1,89 +1,28 @@
 #!/usr/bin/env python
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
-from linux_story.Step import Step
-from linux_story.step_helper_functions import (
-    unblock_commands
-)
+
+from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
-import time
+from linux_story.story.terminals.terminal_eleanor import TerminalMkdirEleanor
+from linux_story.story.challenges.challenge_24 import Step1 as NextStep
 
 
-class StepTemplateMkdir(Step):
+class StepMkdir(TerminalMkdir):
     challenge_number = 23
 
-    def __init__(self, xp=''):
-        Step.__init__(self, TerminalMkdir, xp)
+
+class StepMkdirEleanor(TerminalMkdirEleanor):
+    challenge_number = 23
 
 
-class Step1(StepTemplateMkdir):
+class Step1(StepMkdir):
     story = [
-        "There's no one here anymore....where did they all go?",
-        "That bell you heard earlier...could it have found this family?",
-        "You remember it only rang twice...",
-        "Have a closer look around."
-    ]
-    start_dir = "~/town/.hidden-shelter"
-    end_dir = "~/town/.hidden-shelter"
-
-    hints = [
-        "{{rb:Use}} {{yb:ls -a}} {{rb:to have a closer look around.}}"
-    ]
-
-    def next(self):
-        Step2()
-
-
-class Step2(StepTemplateMkdir):
-    story = [
-        "Do you see those footprints?  They seem to be leading to "
-        "{{yb:.tiny-chest}} in the corner.",
-        "Have a look in the {{yb:.tiny-chest}}"
-    ]
-    start_dir = "~/town/.hidden-shelter"
-    end_dir = "~/town/.hidden-shelter"
-    commands = [
-        "ls .tiny-chest",
-        "ls -a .tiny-chest",
-        "ls -a .tiny-chest/",
-        "ls .tiny-chest/"
-    ]
-
-    def next(self):
-        Step3()
-
-
-class Step3(StepTemplateMkdir):
-    story = [
-        "You see Eleanor curled up tightly inside the .tiny-chest.",
-        "Help her {{yb:move}} outside the .tiny-chest back into the ",
-        ".hidden-shelter"
-    ]
-    start_dir = "~/town/.hidden-shelter"
-    end_dir = "~/town/.hidden-shelter"
-    commands = [
-        "mv .tiny-chest/Eleanor .",
-        "mv .tiny-chest/Eleanor ./"
-    ]
-    hints = [
-        "{{rb:Move Eleanor from the}} {{yb:.tiny-chest}} {{rb:to "
-        "your current position using:}} {{yb:\nmv .tiny-chest/Eleanor .}}"
-    ]
-
-    def block_command(self, line):
-        return unblock_commands(line, self.commands)
-
-    def next(self):
-        Step4()
-
-
-class Step4(StepTemplateMkdir):
-    story = [
-        "Check on Eleanor using {{yb:cat}}"
+        "You see Eleanor. Listen to what she has to say."
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
@@ -91,26 +30,197 @@ class Step4(StepTemplateMkdir):
         "cat Eleanor"
     ]
     hints = [
-        "{{rb:Use}} {{yb:cat Eleanor}} {{to check on Eleanor}}"
+        "{{rb:Use}} {{yb:cat Eleanor}} {{rb:to see what she has to say.}}"
     ]
+
+    def next(self):
+        Step2()
+
+
+class Step2(StepMkdir):
+    story = [
+        "Eleanor: {{Bb:\"Oh, it's you!",
+        # "My parents went outside as we ran out of food."
+        "Have you seen my Mum and Dad?\"}}",
+        # TODO: change colour
+        "\n{{yb:1: \"I'm afraid not.  When did you last see them?\"}}",
+        "{{yb:2: \"Weren't they with you in the hidden-shelter?\"}}",
+        "{{yb:3: \"(lie) Yes, I saw them in town.\"}}",
+        "\nUse the {{lb:echo}} command to talk to Eleanor."
+    ]
+
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town/.hidden-shelter"
+    commands = [
+        "echo 1",
+        "echo 2",
+        "echo 3"
+    ]
+
+    def check_command(self):
+        if self.last_user_input in self.commands:
+            return True
+        elif self.last_user_input.startswith("echo"):
+            text = (
+                "\nEleanor: {{Bb:\"Pardon?  What did you say?\"}}"
+            )
+        else:
+            text = (
+                "\n{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} "
+                "{{rb:or}} {{yb:echo 3}} {{rb:to reply.}}"
+            )
+
+        self.send_text(text)
+
+    def next(self):
+        Step3(self.last_user_input)
+
+
+class Step3(StepMkdirEleanor):
+    start_dir = "~/town/.hidden-shelter"
+    end_dir = "~/town"
+
+    hints = [
+        "{{rb:Use}} {{yb:cd ../}} {{rb:to go into town.}}"
+    ]
+
+    eleanors_speech = (
+        "Eleanor: {{Bb:Yay, we're going on an adventure!}}"
+    )
+
+    def __init__(self, prev_command="echo 1"):
+        self.story = []
+
+        if prev_command == "echo 1":
+            self.print_text = [
+                "{{yb:\"I'm afraid not.  When did you last see them?\"}}"
+            ]
+            self.story += [
+                "Eleanor: {{Bb:\"Not long ago. The dog ran out again, "
+                "so they went outside to look for him. "
+                "I'm sure they're fine.\"}}"
+            ]
+
+        elif prev_command == "echo 2":
+            self.print_text = [
+                "{{yb:\"Weren't they with you in the hidden-shelter?\"}}"
+            ]
+            self.story += [
+                "Eleanor: {{Bb:No, they went outside. "
+                "The dog ran away again, so they went outside to look for "
+                "it. Maybe they got lost?\"}}"
+            ]
+
+        elif prev_command == "echo 3":
+            self.print_text = [
+                "{{yb:\"(lie) Yes, I saw them in town.\"}}"
+            ]
+            self.story += [
+                "Eleanor: {{Bb:\"Oh that's good! The dog ran away again, "
+                "and they went outside to look for him.",
+                "The bell scared me, but I'm pleased they're alright.\"}}"
+            ]
+
+        self.story += [
+            "{{Bb:\"Let's go to town together and find them. I'm sure I'll be "
+            "safe if I'm with you.\"}}",
+            "\n{{gb:Eleanor joined you as a companion!}}",
+            "\n{{lb:Leave}} the {{lb:.hidden-shelter.}} "
+            "Don't worry, Eleanor will follow!"
+        ]
+
+        StepMkdirEleanor.__init__(self)
+
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
+
+    def next(self):
+        Step4()
+
+
+class Step4(StepMkdirEleanor):
+    start_dir = "~/town"
+    end_dir = "~/town"
+    hints = [
+        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+    ]
+    commands = [
+        "ls",
+        "ls -a"
+    ]
+    deleted_items = ["~/town/.hidden-shelter/Eleanor"]
+
+    story = [
+        "Eleanor: {{Bb:Let's go to the}} {{lb:east}} "
+        "{{Bb:of town.}}",
+        "{{Bb:Haven't you noticed it before? It's over there! "
+        "Look over there.}}",
+        "\nUse {{yb:ls}} to see what Eleanor is trying to show you."
+    ]
+
+    story_dict = {
+        "Bernard": {
+            "path": "~/town/east/shed-shop"
+        },
+        "best-shed-maker-in-the-world.sh, best-horn-in-the-world.sh": {
+            "path": "~/town/east/shed-shop",
+            "permissions": 0755
+        },
+        "photocopier.sh, bernards-diary-1, bernards-diary-2": {
+            "path": "~/town/east/shed-shop/basement"
+        },
+        "NANO": {
+            "path": "~/town/east/library/public-section"
+        },
+        "private-section": {
+            "path": "~/town/east/library",
+            # Remove all read and write permissions
+            "permissions": 0000,
+            "directory": True
+        },
+        "Clara": {
+            "path": "~/town/east/restaurant/.cellar"
+        },
+        "Eleanor": {
+            "path": "~/town"
+        }
+    }
+
+    eleanors_speech = (
+        "\nEleanor: {{Bb:Why are you looking at me? "
+        "You should be looking over THERE.}}"
+    )
 
     def next(self):
         Step5()
 
 
-class Step5(StepTemplateMkdir):
+class Step5(StepMkdirEleanor):
     story = [
-        "Eleanor: {{Bb:Oh, it's you! Thank you for finding me!",
-        "I heard this bell, and was so scared I squeezed in the "
-        ".tiny-chest to hide.  Do you know where my Mum and Dad are?}}",
-        "\n{{gb:Press Enter to continue.}}"
+        "You look in the direction Eleanor is pointing.",
+        "There is a narrow road leading to another part of town.",
+        "This must take us to the east part.",
+        "Eleanor: {{Bb:Let's go there and see if we can find my "
+        "parents.}}",
+        "\n{{lb:Go}} into the {{lb:east}} of town."
     ]
-    start_dir = "~/town/.hidden-shelter"
-    end_dir = "~/town/.hidden-shelter"
+    start_dir = "~/town"
+    end_dir = "~/town/east"
+
+    hints = [
+        "{{rb:Use}} {{lb:cd}} {{rb:to go into the "
+        "east part of town}}",
+        "{{rb:Use}} {{yb:cd east/}} {{rb:}}"
+    ]
     last_step = True
 
-    def next(self):
-        self.exit()
+    eleanors_speech = (
+        "\nEleanor: {{Bb:Let's go to the}} {{lb:east}} "
+        "{{Bb:of town. Come on slow coach!}}"
+    )
 
-        # So that server has time to send message before it closes
-        time.sleep(3)
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
+
+    def next(self):
+        NextStep(self.xp)

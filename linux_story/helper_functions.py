@@ -50,7 +50,7 @@ def get_script_cmd(string, real_path):
 
 
 def is_exe(fpath):
-    return os.access(fpath, os.X_OK)
+    return (os.path.isfile(fpath) and os.access(fpath, os.X_OK))
 
 
 # TODO: tidy up
@@ -101,7 +101,7 @@ def get_preset_from_id(id):
     elif id == "y":
         return 220
     elif id == "b":
-        return 27
+        return 69
     elif id == "p":
         return 197
     elif id == "c":

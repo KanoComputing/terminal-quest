@@ -217,7 +217,7 @@ note_town:
 
 # .hidden-shelter folk
 # start off all in the same place
-Edith, Edward, Eleanor, dog, apple:
+Edith, Edward, apple:
     challenges:
         - challenge: 10
           step: 1
@@ -236,6 +236,9 @@ apple:
 # Eleanor and the dog run outside
 Eleanor, dog:
     challenges:
+        - challenge: 10
+          step: 1
+          path: "~/town/.hidden-shelter"
         - challenge: 11
           step: 6
           path: "~/town"
@@ -247,12 +250,53 @@ Eleanor:
           step: 1
           path: "~/town/.hidden-shelter"
 
+          # Chapter 4
+        - challenge: 23
+          step: 4
+          path: "~/town"
+
+        - challenge: 24
+          step: 1
+          path: "~/town/east"
+
+        - challenge: 24
+          step: 3
+          path: "~/town/east/shed-shop"
+
+        - challenge: 26
+          step: 1
+          path: "~/town"
+
+        - challenge: 26
+          step: 3
+          path: "~/town/east/library"
+
+        - challenge: 27
+          step: 1
+          path: "~/town/east/shed-shop"
+
+        - challenge: 28
+          step: 1
+          path: "~/town/east"
+
+        - challenge: 28
+          step: 3
+          path: "~/town/east/restaurant"
+
+        - challenge: 28
+          step: 5
+          path: "~/town/east/restaurant/.cellar"
+
 # Finally the dog is saved
 dog:
     challenges:
         - challenge: 12
           step: 2
           path: "~/town/.hidden-shelter"
+
+        - challenge: 22
+          step: 2
+          exists: False
 
 # Find the .tiny-chest in the .hidden-shelter
 MV:
@@ -287,6 +331,9 @@ Cobweb, Trotter, Daisy, Ruth:
         - challenge: 17
           step: 1
           path: "~/farm/barn"
+        - challenge: 21
+          step: 10
+          path: "~/farm/barn/.shelter"
 
 # Farmer's wife
 bed_farmhouse:
@@ -303,3 +350,101 @@ MKDIR, spanner, hammer, saw, tape-measure:
         - challenge: 17
           step: 1
           path: "~/farm/toolshed"
+
+igloo:
+    challenges:
+        - challenge: 20
+          step: 5
+          path: "~/farm/toolshed"
+          directory: True
+
+".shelter":
+    directory: True
+    challenges:
+        - challenge: 21
+          step: 7
+          path: "~/farm/barn"
+
+Edward:
+    challenges:
+        - challenge: 22
+          step: 3
+          path: "~/town/.hidden-shelter"
+          exists: False
+
+Edith:
+    challenges:
+        - challenge: 22
+          step: 4
+          path: "~/town/.hidden-shelter"
+          exists: False
+
+Bernard:
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east/shed-shop"
+        - challenge: 30
+          step: 1
+          exists: False
+
+best-shed-maker-in-the-world.sh, best-horn-in-the-world.sh:
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east/shed-shop"
+          permissions: 0755
+
+basement:
+    directory: True
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east/shed-shop"
+
+bernards-diary-1, bernards-diary-2:
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east/shed-shop/basement"
+
+photocopier.sh:
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east/shed-shop/basement"
+          permissions: 0755
+
+shed:
+    directory: True
+    challenges:
+        - challenge: 25
+          step: 5
+          path: "~/town/east/shed-shop"
+
+NANO:
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east/library/public-section"
+
+private-section:
+    directory: True
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east/library"
+          permissions: 0000
+
+# Hidden librarian
+Clara:
+    challenges:
+        - challenge: 23
+          step: 4
+          path: "~/town/east/restaurant/.cellar"
+
+bernards-hat:
+    challenges:
+        - challenge: 30
+          step: 1
+          path: "~/town/east/shed-shop"

@@ -3,6 +3,7 @@
 # This would contain all the common names across the OS
 
 import os
+import json
 from kano.logging import logger
 
 # setting up directories
@@ -31,6 +32,22 @@ tq_file_system = os.path.join(home_folder, '.linux-story')
 
 # The contents of this folder are backed up online
 tq_backup_folder = os.path.join(home_folder, 'Terminal-Quest-content')
+
+
+def get_max_challenge_number():
+    '''Returns the maximum challenge number encoded in kano-profile
+    '''
+
+    # Hardcoded path, perhapes change it later
+    path = "/usr/share/kano-profile/rules/app_profiles.json"
+    f = open(path)
+    str_data = f.read()
+    f.close()
+
+    dict_data = json.loads(str_data)
+    max_level = dict_data['linux-story']['max-level']
+
+    return max_level
 
 
 # This is the yaml file that we store the state of the current file system in

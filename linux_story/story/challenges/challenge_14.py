@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
@@ -13,18 +13,16 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.Step import Step
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.common import tq_file_system
 from linux_story.story.challenges.challenge_15 import Step1 as NextStep
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint, unblock_commands
+from linux_story.step_helper_functions import (
+    unblock_commands_with_cd_hint, unblock_commands
+)
 
 
-class StepTemplateMv(Step):
+class StepTemplateMv(TerminalMv):
     challenge_number = 14
-
-    def __init__(self, xp=""):
-        Step.__init__(self, TerminalMv, xp)
 
 
 class Step1(StepTemplateMv):
@@ -64,17 +62,19 @@ class Step2(StepTemplateMv):
         'sandwich'
     ]
     unmovable_items = {
-        "newspaper": "{{rb:They asked for food, they probably shouldn't eat the newspaper.}}",
+        "newspaper": "{{rb:They asked for food, they probably shouldn't "
+        "eat the newspaper.}}",
+
         "oven": "{{rb:This is a bit heavy for you to carry!}}",
+
         "table": "{{rb:This is a bit heavy for you to carry!}}"
     }
     moved_items = []
 
-    def block_command(self, line):
-        line = line.strip()
-        separate_words = line.split(' ')
+    def block_command(self):
+        separate_words = self.last_user_input.split(' ')
 
-        if "cd" in line:
+        if "cd" in self.last_user_input:
             return True
 
         if separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
@@ -86,8 +86,9 @@ class Step2(StepTemplateMv):
                         return True
                     else:
                         hint = (
-                            '{{rb:You\'re trying to move something that isn\'t in'
-                            ' the folder.\nTry using}} {{yb:mv %s basket/}}'
+                            "{{rb:You\'re trying to move something that "
+                            "isn\'t in the folder.\nTry using}} "
+                            "{{yb:mv %s basket/}}"
                             % self.passable_items[0]
                         )
                         self.send_hint(hint)
@@ -95,13 +96,17 @@ class Step2(StepTemplateMv):
 
             return False
 
-    def check_command(self, line, current_dir):
-        line = line.strip()
-        separate_words = line.split(' ')
+    def check_command(self):
+
+        separate_words = self.last_user_input.split(' ')
         all_items = []
 
-        if separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
-                                          separate_words[-1] == 'basket/'):
+        if self.get_command_blocked():
+            hint = '{{rb:Try using}} {{yb:mv %s basket/}}' \
+                % self.passable_items[0]
+
+        elif separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
+                                            separate_words[-1] == 'basket/'):
             for item in separate_words[1:-1]:
                 all_items.append(item)
 
@@ -117,7 +122,7 @@ class Step2(StepTemplateMv):
         self.send_hint(hint)
 
     # Check that the basket folder contains the correct number of files?
-    def check_output(self, line):
+    def check_output(self, output):
         basket_dir = os.path.join(tq_file_system, 'my-house/kitchen/basket')
         food_files = [
             f for f in os.listdir(basket_dir)
@@ -135,7 +140,7 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        "\nNow we want to head back to the .hidden-shelter with the "
+        "\nNow we want to head back to the {{bb:.hidden-shelter}} with the "
         "basket.",
         "Move the {{lb:basket}} back to {{lb:~}}.\n"
     ]
@@ -152,8 +157,8 @@ class Step3(StepTemplateMv):
         "{{rb:to move the basket to the windy road ~}}"
     ]
 
-    def block_command(self, line):
-        return unblock_commands(line, self.commands)
+    def block_command(self):
+        return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step4()
@@ -175,8 +180,10 @@ class Step4(StepTemplateMv):
         "to move yourself to the road ~}}"
     ]
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step5()
@@ -205,8 +212,8 @@ class Step5(StepTemplateMv):
         "{{rb:to move the basket to the family.}}"
     ]
 
-    def block_command(self, line):
-        return unblock_commands(line, self.commands)
+    def block_command(self):
+        return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step6()
@@ -231,8 +238,10 @@ class Step6(StepTemplateMv):
         "{{rb:to be reunited with the family.}}",
     ]
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step7()
@@ -270,16 +279,14 @@ class Step7(StepTemplateMv):
 
     last_step = True
 
-    def check_command(self, line, current_dir):
+    def check_command(self):
         if not self.allowed_commands:
             return True
 
-        line = line.strip()
+        if self.last_user_input in self.allowed_commands.keys():
 
-        if line in self.allowed_commands.keys():
-
-            hint = self.allowed_commands[line]
-            del self.allowed_commands[line]
+            hint = self.allowed_commands[self.last_user_input]
+            del self.allowed_commands[self.last_user_input]
             num_people = len(self.allowed_commands.keys())
 
             if num_people == 0:

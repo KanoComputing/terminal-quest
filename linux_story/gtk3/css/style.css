@@ -1,4 +1,9 @@
 
+ * {
+ 	/* Remove annoying focus borders around buttons */
+	-GtkWidget-focus-line-width: 0px;
+}
+
 .main_window {
 	background: @story_background;
 }
@@ -29,7 +34,7 @@
 
 .spell_label {
 	color: #cccccc;
-	font: monospace 13px;
+	font: Bariol 13px;
 }
 
 .spell_command {
@@ -39,4 +44,63 @@
 
 .spellbook_background {
 	background: @spellbook_background;
+}
+
+.menu_background {
+	background: @spellbook_background;
+	border-style: solid;
+	border-radius: 3px;
+	border-width: 5px;
+}
+
+.menu_title {
+	color: #ffffff;
+	font: Bariol Bold 20;
+}
+
+.menu_description {
+	color: #ffffff;
+	font: Bariol Bold 16;
+}
+
+.info_title {
+	/* Currently a repeat of the menu title styling */
+	color: #ffffff;
+	font: Bariol Bold 20;
+}
+
+.info_description {
+	/* Currently a repeat of the menu description styling */
+	color: #ffffff;
+	font: Bariol Bold 16;
+}
+
+.menu_button {
+	background: @spell_icon_background;
+	font: Bariol bold 14;
+	border-style: solid;
+	border-color: transparent;
+	border-width: 5px;
+	border-radius: 2px;
+}
+
+.menu_button GtkLabel {
+	color: #ffffff;
+}
+
+/*********** Focus styling *********/
+.menu_button:focus, .menu_button:hover  {
+	border-color: #B1B3C9;
+	border-width: 5px;
+	border-style: solid;
+	border-radius: 2px;
+}
+
+.menu_button:insensitive {
+	background: @spell_icon_background_locked;
+}
+
+.menu_button GtkLabel:insensitive {
+	color: @spell_label_background_locked;
+	background: transparent;
 }

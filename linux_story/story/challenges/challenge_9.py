@@ -13,32 +13,30 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.Step import Step
 from linux_story.story.terminals.terminal_cd import TerminalCd
 from linux_story.story.challenges.challenge_10 import Step1 as NextStep
 from linux_story.helper_functions import play_sound
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
-class StepTemplateCd(Step):
+class StepTemplateCd(TerminalCd):
     challenge_number = 9
-
-    def __init__(self, xp=""):
-        Step.__init__(self, TerminalCd, xp)
 
 
 class Step1(StepTemplateCd):
     story = [
         "Oh no! Check your Mum is alright.",
-        "Type {{yb:cd ../}} to leave town."
+        "Type {{yb:cd ../}} to leave {{bb:town}}."
     ]
     start_dir = "~/town"
     end_dir = "~"
     commands = ["cd ..", "cd ../", "cd"]
     hints = "{{rb:Use}} {{yb:cd ../}} {{rb:to start heading back home.}}"
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         play_sound('bell')
@@ -48,7 +46,7 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCd):
     story = [
         "{{pb:Ding. Dong.}}\n",
-        "Type {{yb:cd my-house/kitchen/}} to go straight to the kitchen.",
+        "Type {{yb:cd my-house/kitchen/}} to go straight to the {{bb:kitchen}}.",
         "{{gb:Press TAB to speed up your typing!}}"
     ]
     start_dir = "~"
@@ -64,8 +62,10 @@ class Step2(StepTemplateCd):
     # Remove the note as well.
     deleted_items = ['~/my-house/kitchen/Mum', '~/town/note']
 
-    def block_command(self, line):
-        return unblock_commands_with_cd_hint(line, self.commands)
+    def block_command(self):
+        return unblock_commands_with_cd_hint(
+            self.last_user_input, self.commands
+        )
 
     def next(self):
         Step3()

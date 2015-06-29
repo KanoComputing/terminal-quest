@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
@@ -13,24 +13,21 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.Step import Step
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.step_helper_functions import unblock_commands
-import time
+from linux_story.story.challenges.challenge_17 import Step1 as NextStep
+# import time
 
 
-class StepTemplateMv(Step):
+class StepTemplateMv(TerminalMv):
     challenge_number = 16
-
-    def __init__(self, xp=""):
-        Step.__init__(self, TerminalMv, xp)
 
 
 class Step1(StepTemplateMv):
     story = [
         "There is an old antique {{lb:.chest}} hidden under your bed, "
         "which you don't remember seeing before.",
-        "You walk into my-room to have a closer look.",
+        "You walk into {{bb:my-room}} to have a closer look.",
         "Peer inside the {{lb:.chest}} and see what it contains."
     ]
 
@@ -57,7 +54,7 @@ class Step1(StepTemplateMv):
 class Step2(StepTemplateMv):
     story = [
         "There are some rolls of parchment, similar to what you found in "
-        "the .hidden-shelter",
+        "the {{bb:.hidden-shelter}}",
         "Use {{lb:cat}} to read one of the scrolls.\n"
     ]
 
@@ -102,11 +99,12 @@ class Step3(StepTemplateMv):
     hints = [
         "{{rb:You want to use the command}} "
         "{{yb:mv ~/town/.hidden-shelter/.tiny-chest/MV .chest/}}\n"
-        "{{rb:Use the UP arrow to replay your last command if you were close!}}"
+        "{{rb:Use the UP arrow to replay your last command if you were "
+        "close!}}"
     ]
 
-    def block_command(self, line):
-        return unblock_commands(line, self.commands)
+    def block_command(self):
+        return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step4()
@@ -114,7 +112,7 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "I wonder if there's anything else hidden in this {{yb:.chest}}?",
+        "I wonder if there's anything else hidden in this {{lb:.chest}}?",
         "Have a closer look for some more items."
     ]
 
@@ -148,7 +146,8 @@ class Step5(StepTemplateMv):
     end_dir = "~/my-house/my-room"
 
     hints = [
-        "{{rb:Use}} {{yb:cat .chest/.note}} {{rb:to read the}} {{lb:.note}}{{rb:.}}"
+        "{{rb:Use}} {{yb:cat .chest/.note}} {{rb:to read the}} "
+        "{{lb:.note}}{{rb:.}}"
     ]
 
     commands = [
@@ -156,7 +155,7 @@ class Step5(StepTemplateMv):
     ]
 
     def next(self):
-        Step6()
+        NextStep(self.xp)
 
 
 class Step6(StepTemplateMv):
@@ -171,7 +170,4 @@ class Step6(StepTemplateMv):
     last_step = True
 
     def next(self):
-        self.exit()
-
-        # So that server has time to send message before it closes
-        time.sleep(3)
+        NextStep(self.xp)
