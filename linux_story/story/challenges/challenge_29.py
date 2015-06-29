@@ -15,7 +15,7 @@ from linux_story.helper_functions import play_sound
 story_replies = {
     "echo 1": [
         {
-            "user": "Why is the private section locked?",
+            "user": "Why is the private section in the library locked?",
             "clara": (
                 "Clara: {{Bb:It contains some dangerous information."
 
