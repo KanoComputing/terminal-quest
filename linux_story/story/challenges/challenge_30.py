@@ -89,8 +89,8 @@ class Step3(StepNano):
     start_dir = "~/town/east/restaurant/.cellar"
     end_dir = "~/town/east/restaurant/.cellar"
     hints = [
-        "{{rb:Use}} {{yb:echo 1}} {{rb:or}} {{yb:echo 2}} {{rb:to reply "
-        "to Clara.}}"
+        "{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} "
+        "{{yb:echo 3}} {{rb:to reply to Clara.}}"
     ]
     eleanors_speech = (
         "Eleanor: {{Bb:I'm happy to stay here. I like Clara.}}"
@@ -141,7 +141,7 @@ class Step4(StepNano):
 
 class Step5(StepNano):
     story = [
-        "{{lb:Look around.}}"
+        "You've arrived in the shed-shop. {{lb:Look around.}}"
     ]
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east/shed-shop"
