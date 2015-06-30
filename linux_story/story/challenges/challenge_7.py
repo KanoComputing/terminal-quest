@@ -68,8 +68,8 @@ class Step3(StepTemplateCd):
         "cat young-girl": "\n{{wb:Girl:}} {{Bb:\"Can you help me? I can't "
         "find my friend Amy anywhere. If you see her, will you let me"
         " know?\"}}",
-        "cat little-boy": "\n{{wb:Boy:}} {{Bb:\"Bernard? Bernard? Has "
-        "anyone seen my dog Bernard? He's never run away before...\"}}"
+        "cat little-boy": "\n{{wb:Boy:}} {{Bb:\"Pongo? Pongo? Has "
+        "anyone seen my dog Pongo? He's never run away before...\"}}"
     }
 
     last_step = True
