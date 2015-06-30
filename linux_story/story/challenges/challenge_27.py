@@ -111,6 +111,10 @@ class Step3(StepTemplateNano):
     eleanors_speech = (
         "Eleanor: {{Bb:Will it be loud?}}"
     )
+    hints = [
+        "{{rb:Use}} {{yb:./best-horn-in-the-world.sh}} "
+        "{{rb:to run the script.}}"
+    ]
 
     def next(self):
         Step4()
