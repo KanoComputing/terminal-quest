@@ -36,7 +36,7 @@ class Step1(StepNano):
     deleted_items = [
         "~/town/east/shed-shop/Bernard"
     ]
-    story_files = {
+    story_dict = {
         "bernards-hat": {
             "path": "~/town/east/shed-shop"
         }
