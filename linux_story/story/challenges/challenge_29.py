@@ -148,7 +148,7 @@ class StepNanoStory(StepNano):
         "{{yb:echo 2}} {{rb:or}} {{yb:echo 3}}{{rb:.}}"
     ]
 
-    def __init__(self, step_number=None):
+    def __init__(self, xp="", step_number=None):
         self.echo_hit = {
             "echo 2": True,
             "echo 3": True
@@ -207,7 +207,7 @@ class Step1(StepNanoStory):
     )
 
     def next(self):
-        Step2(2)
+        Step2(step_number=2)
 
 
 class Step2(StepNanoStory):
@@ -217,7 +217,7 @@ class Step2(StepNanoStory):
     )
 
     def next(self):
-        Step3(3)
+        Step3(step_number=3)
 
 
 class Step3(StepNanoStory):
