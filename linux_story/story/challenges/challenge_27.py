@@ -192,7 +192,7 @@ class Step5(StepTemplateNano):
     story = [
         "Bernard: {{Bb:I want to know how the}} "
         "{{lb:private-section}} {{Bb:is locked "
-        "in the}} {{lb:library}}{{Bb:, and then make "
+        "in the}} {{lb:library}}{{Bb:, and then make a "
         "key to unlock it.}}",
 
         "\nEleanor: {{Bb:I guess the librarian would have locked the "
