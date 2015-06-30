@@ -97,9 +97,10 @@ class Step3(StepTemplateMkdir):
 
 class Step4(StepTemplateMkdir):
     story = [
-        "You're in a large open space, with two clearly sections, "
-        "one labelled}} {{bb:public-section}}{{lb:, one labelled}} "
-        "{{bb:private-section}}{{lb:.}}",
+        "You're in a corridor leading to two clearly "
+        "labelled doors. "
+        "One has the sign {{bb:public-section}}, the other "
+        "{{bb:private-section}}.",
 
         "Eleanor: {{Bb:There used to be a librarian here.",
 
