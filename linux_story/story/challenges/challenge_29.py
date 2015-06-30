@@ -195,7 +195,7 @@ class Step1(StepNanoStory):
         "come in almost everyday.}}",
 
         # Options
-        "\n{{yb:1: Why is the private-section locked?}}",
+        "\n{{yb:1: Why is the private section in the library locked?}}",
         "{{yb:2: Why are you hiding down here?}}",
         "{{yb:3: Do you know about any other people in town?}}",
 
