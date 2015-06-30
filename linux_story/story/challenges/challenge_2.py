@@ -29,7 +29,7 @@ class Step1(StepCat):
         "Euuughh...turn that alarm off!",
         "\n{{gb:New Spell}}: to examine objects, type {{lb:cat}} and the "
         "object name.",
-        "\nUse {{yb:cat alarm}} to examine the alarm.\n",
+        "\nUse {{yb:cat alarm}} to {{lb:examine}} the alarm.\n",
 
     ]
     start_dir = "~/my-house/my-room"
@@ -44,12 +44,17 @@ class Step1(StepCat):
 class Step2(StepCat):
     story = [
         "Ok - it's switched off. Better get dressed...",
-        "Type {{yb:ls wardrobe/}} to look inside your wardrobe.\n"
+
+        "Type {{yb:ls wardrobe/}} to {{lb:look}} inside your "
+        "{{lb:wardrobe}}.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = ["ls wardrobe", "ls wardrobe/"]
-    hints = "{{rb:Type}} {{yb:ls wardrobe/}} {{rb:to look for something to wear.}}"
+    hints = (
+        "{{rb:Type}} {{yb:ls wardrobe/}} {{rb:to look for something "
+        "to wear.}}"
+    )
 
     def next(self):
         Step3()
@@ -75,7 +80,7 @@ class Step3(StepCat):
 class Step4(StepCat):
     story = [
         "Looking good!  Put that on and look for something else.",
-        "Examine the {{lb:skirt}} or the {{lb:trousers}}.\n"
+        "{{lb:Examine}} the {{lb:skirt}} or the {{lb:trousers}}.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"

@@ -165,7 +165,7 @@ class Step4(StepTemplateMv):
     story = [
         "{{gb:Nice work! The apple isn't in this directory anymore.}}\n",
         "{{wn:Now check the apple is in the}} {{lb:basket}} {{wn:using}} "
-        "{{lb:ls}}\n"
+        "{{lb:ls}}{{wn:.}}\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"

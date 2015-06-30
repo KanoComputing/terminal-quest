@@ -52,7 +52,7 @@ class Step2(StepTemplateCd):
     start_dir = "~/my-house"
     end_dir = "~/my-house"
     commands = "ls"
-    hints = "{{rb:Type}} {{yb:ls}} {{rb:to look around you}}"
+    hints = "{{rb:Type}} {{yb:ls}} {{rb:to look around you.}}"
 
     def next(self):
         Step3()
@@ -62,7 +62,7 @@ class Step3(StepTemplateCd):
     story = [
         "You see doors to the {{bb:garden}}, {{bb:kitchen}}, "
         "{{bb:my-room}} and {{bb:parents-room}}.",
-        "Head into your {{bb:garden}}.\n"
+        "{{lb:Go}} into your {{bb:garden}}.\n"
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house/garden"
@@ -80,7 +80,7 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "Use {{yb:ls}} to look in the garden for your Dad.\n"
+        "Use {{yb:ls}} to {{lb:look}} in the garden for your Dad.\n"
     ]
     start_dir = "~/my-house/garden"
     end_dir = "~/my-house/garden"
