@@ -93,14 +93,21 @@ class Step4(StepCat):
         "{{rb:Type}} {{yb:cat wardrobe/trousers}} {{rb:or}} "
         "{{yb:cat wardrobe/skirt}} {{rb:to dress yourself.}}"
     )
+    checked_outside_wardrobe = False
 
     def check_command(self):
         if self.last_user_input == self.commands[0]:
             save_app_state_variable('linux-story', 'outfit', 'skirt')
-            pass
         elif self.last_user_input == self.commands[1]:
             save_app_state_variable('linux-story', 'outfit', 'trousers')
-            pass
+        elif not self.checked_outside_wardrobe and \
+                (self.last_user_input == "cat trousers" or
+                 self.last_user_input == "cat skirt"):
+            self.send_text(
+                "\n{{rb:You need to look in your}} {{lb:wardrobe}} "
+                "{{rb:for that item.}}"
+            )
+            self.checked_outside_wardrobe = True
 
         return StepCat.check_command(self)
 
