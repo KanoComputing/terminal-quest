@@ -156,7 +156,7 @@ class Storybook(Gtk.TextView):
         textbuffer.create_tag('purple', foreground='#c894f1')
         textbuffer.create_tag('pink', foreground="#EB98D2")
         textbuffer.create_tag('red', foreground='#D94C4A')
-        textbuffer.create_tag('orange', foreground='#EB6841')
+        textbuffer.create_tag('orange', foreground='#ff842A')
         textbuffer.create_tag('yellow', foreground='#FFE229')
 
         textbuffer.create_tag('bold', weight=Pango.Weight.BOLD)
