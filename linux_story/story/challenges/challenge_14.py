@@ -27,7 +27,8 @@ class StepTemplateMv(TerminalMv):
 
 class Step1(StepTemplateMv):
     story = [
-        "Let's see what food is available in the kitchen.\n"
+        "Let's {{lb:look around}} to see what food is "
+        "available in the kitchen.\n"
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
@@ -36,7 +37,8 @@ class Step1(StepTemplateMv):
         "ls -a"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to have a look around the kitchen.}}"
+        "{{rb:Use}} {{yb:ls}} {{rb:to have a}} {{lb:look around}} "
+        "{{rb:the kitchen.}}"
     ]
 
     def next(self):
@@ -46,7 +48,7 @@ class Step1(StepTemplateMv):
 # Move three pieces of food into the basket
 class Step2(StepTemplateMv):
     story = [
-        "Move three pieces of food into your basket.",
+        "{{lb:Move}} three pieces of food into your basket.",
         "You can move multiple items using {{lb:mv <item1> <item2>"
         " <item3> basket/}}.\n"
     ]
@@ -142,7 +144,7 @@ class Step3(StepTemplateMv):
     story = [
         "\nNow we want to head back to the {{bb:.hidden-shelter}} with the "
         "basket.",
-        "Move the {{lb:basket}} back to {{lb:~}}.\n"
+        "{{lb:Move}} the {{lb:basket}} back to {{lb:~}}.\n"
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
@@ -192,7 +194,7 @@ class Step4(StepTemplateMv):
 class Step5(StepTemplateMv):
     story = [
         "Now get the food-filled basket to the family.",
-        "Move the {{lb:basket}} to {{lb:town/.hidden-shelter}}.",
+        "{{lb:Move}} the {{lb:basket}} to {{lb:town/.hidden-shelter}}.",
     ]
 
     start_dir = "~"
@@ -221,8 +223,8 @@ class Step5(StepTemplateMv):
 
 class Step6(StepTemplateMv):
     story = [
-        "{{gb:Nearly there!}} Finally go into {{lb:town/.hidden-shelter}} "
-        "using {{lb:cd}}.\n",
+        "{{gb:Nearly there!}} Finally {{lb:go}} into "
+        "{{lb:town/.hidden-shelter}} using {{lb:cd}}.\n",
     ]
 
     start_dir = "~"

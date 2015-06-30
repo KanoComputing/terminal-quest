@@ -95,7 +95,7 @@ class Step2(StepTemplateCd):
     story = [
         "There doesn't seem to be anything here but loads of food.",
         "See if you can find something back in {{bb:town}}.",
-        "First, use {{yb:cd ../}} to leave the kitchen.\n"
+        "First, use {{yb:cd ../}} to {{lb:leave}} the kitchen.\n"
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/town"
@@ -164,7 +164,7 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "Use {{yb:ls}} to look around.\n",
+        "Use {{yb:ls}} to {{lb:look around}}.\n",
     ]
     start_dir = "~/town"
     end_dir = "~/town"
@@ -225,7 +225,7 @@ class Step5(StepTemplateCd):
 
 class Step6(StepTemplateCd):
     story = [
-        "Is anyone there? Have a look around.\n"
+        "Is anyone there? Have a {{lb:look around}}.\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"

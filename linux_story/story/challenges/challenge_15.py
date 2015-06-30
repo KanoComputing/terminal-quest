@@ -26,7 +26,7 @@ class Step1(StepTemplateMv):
     story = [
         "You get the nagging feeling you're missing something.",
         "What was that spell that helped you find this place?",
-        "Use it to have a closer look around you.\n"
+        "Use it to have a {{lb:closer look around}}.\n"
     ]
     hints = [
         "{{rb:Use}} {{yb:ls -a}} {{rb:to look more closely around you.}}"
@@ -51,7 +51,7 @@ class Step1(StepTemplateMv):
 class Step2(StepTemplateMv):
     story = [
         "What's that! There's {{lb:.tiny-chest}} in the corner of the shelter",
-        "Have a look inside the {{lb:.tiny-chest}}."
+        "Have a {{lb:look inside}} the {{lb:.tiny-chest}}."
     ]
 
     hints = [
@@ -75,7 +75,7 @@ class Step3(StepTemplateMv):
     story = [
         "You see a scroll of parchment inside, with a stamp on it saying "
         "{{lb:MV}}.",
-        "Read what it says."
+        "{{lb:Read}} what it says."
     ]
 
     hints = [
@@ -128,7 +128,7 @@ class Step5(StepTemplateMv):
     story = [
         "Let's see if we can find anything hidden around here!",
         "Where do you think any hidden things could be?",
-        "Try looking in {{lb:my-room}} first."
+        "Try {{lb:looking closely}} in {{lb:my-room}} first."
     ]
 
     start_dir = '~/my-house'

@@ -28,7 +28,7 @@ class Step1(StepTemplateCd):
         " Can you go and grab your Dad?"
         " I think he's in the}} {{bb:garden}}{{Bb:.\"}}\n",
         "Let's look for your Dad in the {{bb:garden}}.",
-        "First we need to leave the kitchen using {{yb:cd ../}}\n"
+        "First we need to {{lb:leave}} the kitchen using {{yb:cd ../}}\n"
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house"
@@ -117,7 +117,7 @@ class Step5(StepTemplateCd):
 
 class Step6(StepTemplateCd):
     story = [
-        "Is he here? Type {{yb:ls}} to find out.\n"
+        "Is he here? {{lb:Look around}} with {{yb:ls}} to find out.\n"
     ]
     start_dir = "~/my-house/garden/greenhouse"
     end_dir = "~/my-house/garden/greenhouse"
@@ -132,8 +132,8 @@ class Step7(StepTemplateCd):
     story = [
         "Your dad has been busy, there are loads of vegetables here.",
         "Hmmmm. He's not here. But there is something odd.",
-        "You see a note on the ground.  Use {{yb:cat note}} to read what "
-        "it says.\n"
+        "You see a note on the ground.  Use {{yb:cat note}} to "
+        "{{lb:read}} what it says.\n"
     ]
     start_dir = "~/my-house/garden/greenhouse"
     end_dir = "~/my-house/garden/greenhouse"
@@ -185,7 +185,7 @@ class Step9(StepTemplateCd):
 
 class Step10(StepTemplateCd):
     story = [
-        "Now go back into the {{bb:kitchen}} and see Mum.\n"
+        "Now {{lb:go}} back into the {{bb:kitchen}} and see Mum.\n"
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house/kitchen"

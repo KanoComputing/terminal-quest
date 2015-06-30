@@ -28,7 +28,7 @@ class Step1(StepTemplateMv):
         "There is an old antique {{lb:.chest}} hidden under your bed, "
         "which you don't remember seeing before.",
         "You walk into {{bb:my-room}} to have a closer look.",
-        "Peer inside the {{lb:.chest}} and see what it contains."
+        "{{lb:Peer inside}} the {{lb:.chest}} and see what it contains."
     ]
 
     start_dir = "~/my-house/my-room"
@@ -55,7 +55,7 @@ class Step2(StepTemplateMv):
     story = [
         "There are some rolls of parchment, similar to what you found in "
         "the {{bb:.hidden-shelter}}",
-        "Use {{lb:cat}} to read one of the scrolls.\n"
+        "Use {{lb:cat}} to {{lb:read}} one of the scrolls.\n"
     ]
 
     start_dir = "~/my-house/my-room"
@@ -75,6 +75,7 @@ class Step2(StepTemplateMv):
         Step3()
 
 
+# Remove this step?
 class Step3(StepTemplateMv):
     story = [
         "You recognise these commands.",
@@ -113,7 +114,7 @@ class Step3(StepTemplateMv):
 class Step4(StepTemplateMv):
     story = [
         "I wonder if there's anything else hidden in this {{lb:.chest}}?",
-        "Have a closer look for some more items."
+        "Have a {{lb:closer look}} for some more items."
     ]
 
     start_dir = "~/my-house/my-room"

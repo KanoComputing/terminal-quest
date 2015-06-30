@@ -28,7 +28,7 @@ class Step1(StepTemplateCd):
     story = [
         "That's weird. No time for that now though - lets find Mum.",
         "\n{{gb:New Spell}}: {{lb:cd}} lets you move between places.",
-        "\nUse the command {{yb:cd ../}} to leave your room.\n"
+        "\nUse the command {{yb:cd ../}} to {{lb:leave}} your room.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house"
@@ -83,7 +83,7 @@ class Step3(StepTemplateCd):
         "You see the door to your {{bb:kitchen}}, and hear the sound of "
         "cooking.",
         "Sounds like someone is preparing breakfast!",
-        "To go inside the kitchen, use {{yb:cd kitchen/}}"
+        "To {{lb:go inside the kitchen}}, use {{yb:cd kitchen/}}"
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house/kitchen"

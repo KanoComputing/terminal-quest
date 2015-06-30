@@ -46,13 +46,19 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCd):
     story = [
         "{{pb:Ding. Dong.}}\n",
-        "Type {{yb:cd my-house/kitchen/}} to go straight to the {{bb:kitchen}}.",
+
+        "Type {{yb:cd my-house/kitchen/}} to go straight to the "
+        "{{bb:kitchen}}.",
+
         "{{gb:Press TAB to speed up your typing!}}"
     ]
     start_dir = "~"
     end_dir = "~/my-house/kitchen"
     commands = ["cd my-house/kitchen", "cd my-house/kitchen/"]
-    hints = "{{rb:Use}} {{yb:cd my-house/kitchen/}} {{rb:to go to the kitchen.}}"
+    hints = [
+        "{{rb:Use}} {{yb:cd my-house/kitchen/}} {{rb:to go to the "
+        "kitchen.}}"
+    ]
     story_dict = {
         "note_kitchen": {
             "name": "note",
@@ -91,7 +97,7 @@ class Step4(StepTemplateCd):
     story = [
         "Oh no - Mum's vanished too!",
         "Wait, there's another {{lb:note}}.",
-        "Use {{lb:cat}} to read the {{lb:note}}."
+        "Use {{lb:cat}} to {{lb:read}} the {{lb:note}}."
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"

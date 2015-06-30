@@ -27,8 +27,8 @@ class Step1(StepCat):
         "Awesome, now you can see the objects around you.",
         "There's your bed, an alarm...",
         "Euuughh...turn that alarm off!",
-        "\n{{gb:New Spell}}: to examine objects, type {{lb:cat}} and the "
-        "object name.",
+        "\n{{gb:New Spell}}: to {{lb:examine}} objects, type {{lb:cat}} "
+        "and the object name.",
         "\nUse {{yb:cat alarm}} to {{lb:examine}} the alarm.\n",
 
     ]
@@ -45,7 +45,7 @@ class Step2(StepCat):
     story = [
         "Ok - it's switched off. Better get dressed...",
 
-        "Type {{yb:ls wardrobe/}} to {{lb:look}} inside your "
+        "Type {{yb:ls wardrobe/}} to {{lb:look inside}} your "
         "{{lb:wardrobe}}.\n"
     ]
     start_dir = "~/my-house/my-room"
@@ -63,7 +63,8 @@ class Step2(StepCat):
 class Step3(StepCat):
     story = [
         "Check out that {{lb:t-shirt}}!",
-        "Type {{yb:cat wardrobe/t-shirt}} to see how it looks.\n"
+        "{{lb:Examine}} the t-shirt with {{yb:cat wardrobe/t-shirt}} "
+        "to see how it looks.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -79,7 +80,7 @@ class Step3(StepCat):
 
 class Step4(StepCat):
     story = [
-        "Looking good!  Put that on and look for something else.",
+        "Looking good! Put that on and look for something else.",
         "{{lb:Examine}} the {{lb:skirt}} or the {{lb:trousers}}.\n"
     ]
     start_dir = "~/my-house/my-room"
@@ -109,8 +110,8 @@ class Step4(StepCat):
 
 class Step5(StepCat):
     story = [
-        "Awesome, you're nearly done.",
-        "Finally, put on the {{lb:cap}} so we're ready to go.\n"
+        "Awesome, your outfit is nearly complete.",
+        "Finally, check out that {{lb:cap}}.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -118,8 +119,8 @@ class Step5(StepCat):
         "cat wardrobe/cap"
     ]
     hints = (
-        "{{rb:Type}} {{yb:cat wardrobe/cap}} {{rb:to finish "
-        "off your outfit.}}"
+        "{{rb:Type}} {{yb:cat wardrobe/cap}} {{rb:to}} "
+        "{{lb:examine}} {{rb:the cap.}}"
     )
 
     last_step = True

@@ -79,8 +79,8 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "You can see a {{bb:town}} in the distance! Let's go there using "
-        "{{lb:cd}}."
+        "You can see a {{bb:town}} in the distance! Let's {{lb:go}} "
+        "there using {{lb:cd}}."
     ]
     start_dir = "~"
     end_dir = "~/town"

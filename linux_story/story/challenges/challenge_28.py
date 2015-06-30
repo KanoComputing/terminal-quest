@@ -16,6 +16,7 @@ class StepTemplateNano(TerminalNanoBernard):
 
 class Step1(StepTemplateNano):
     story = [
+        "You're back in town. Eleanor look relieved to be outside.",
         "Where could the librarian be hiding?",
         "{{lb:Look around}} to decide where to go next."
     ]

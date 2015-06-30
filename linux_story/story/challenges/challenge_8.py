@@ -41,7 +41,7 @@ class Step1(StepTemplateCd):
     story = [
         "{{pb:Ding. Dong.}}\n",
         "It sounds like the bell you heard before.",
-        "Use {{yb:ls}} to look around again."
+        "Use {{yb:ls}} to {{lb:look around}} again."
     ]
     start_dir = "~/town"
     end_dir = "~/town"
@@ -67,7 +67,7 @@ class Step2(StepTemplateCdBell):
         "{{wb:Young-girl:}} {{Bb:I'm scared...}}",
         "\n{{pb:Ding. Dong.}}\n",
         "{{wb:Young-girl:}} {{Bb:Oh!  I heard it go again!}}",
-        "\nTake a look around you to check."
+        "\nTake a {{lb:look around}} you to check."
     ]
     start_dir = "~/town"
     end_dir = "~/town"
@@ -87,7 +87,7 @@ class Step3(StepTemplateCdBell):
         "Every time that bell goes, someone disappears!}}",
         "{{wb:Mayor:}} {{Bb:Maybe they just decided to go home...?}}",
         "\n{{pb:Ding. Dong.}}\n",
-        "Look around."
+        "{{lb:Look around.}}"
     ]
     start_dir = "~/town"
     end_dir = "~/town"
@@ -103,7 +103,7 @@ class Step4(StepTemplateCd):
 
     story = [
         "You are alone with the Mayor.",
-        "Talk to the Mayor."
+        "{{lb:Listen}} to what the Mayor has to say."
     ]
     start_dir = "~/town"
     end_dir = "~/town"

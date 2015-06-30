@@ -28,13 +28,16 @@ class Step1(StepTemplateMv):
     story = [
         "{{wb:Edward:}} {{Bb:\"Thank you so much for saving my little girl!",
         "I have another favour to ask...",
+
         "We haven't got any food. Could you gather some for us? "
-        "We didn't have "
-        "time to grab any before we went into hiding.\"",
+        "We didn't have time to grab any before we went into hiding.\"",
+
         "\"Do you remember seeing any food in your travels?\"}}",
+
         "\n...ah! You have all that food in your {{bb:kitchen}}! "
         "We could give that to this family.",
-        "\nStart by moving the {{lb:basket}} to {{lb:~}}. "
+
+        "\nStart by {{lb:moving}} the {{lb:basket}} to {{lb:~}}. "
         "Use the command {{yb:mv basket ~/}}\n"
     ]
     start_dir = "~/town/.hidden-shelter"
@@ -63,8 +66,8 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        "Now follow the basket.  Use {{yb:cd}} by itself "
-        "to go to the windy road Tilde ~.\n"
+        "Now follow the basket. Use {{yb:cd}} by itself "
+        "to {{lb:go}} to the windy road Tilde ~.\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~"
@@ -89,7 +92,7 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        "You are now back on the long windy road.  Look around you "
+        "You are now back on the long windy road. {{lb:Look around}} "
         "with {{yb:ls}} to check that you have your basket with you.\n"
     ]
 
@@ -141,7 +144,7 @@ class Step4(StepTemplateMv):
 
 class Step5(StepTemplateMv):
     story = [
-        "Now go into {{lb:my-house/kitchen}} using {{lb:cd}}.\n",
+        "Now {{lb:go}} into {{lb:my-house/kitchen}} using {{lb:cd}}.\n",
     ]
 
     start_dir = "~"

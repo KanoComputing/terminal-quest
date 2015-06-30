@@ -19,7 +19,7 @@ class Step1(StepTemplateMkdir):
     story = [
         "You are back in town. Eleanor waves her arms and points "
         "at a building in the distance.",
-        "\n{{lb:Look}} in the direction Eleanor is pointing."
+        "\n{{lb:Look around}} to see where Eleanor is pointing."
     ]
 
     start_dir = "~/town/east"
@@ -48,7 +48,7 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateMkdir):
     story = [
-        "You see the {{lb:library}} ahead.",
+        "You see the {{bb:library}} ahead.",
 
         "Eleanor: {{Bb:There it is! The}} {{bb:library}} "
         "{{Bb:is right there! Let's}} {{lb:go inside.}}"

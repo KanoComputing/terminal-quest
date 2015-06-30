@@ -35,7 +35,7 @@ class StepTemplateMv(TerminalMv):
 class Step1(StepTemplateCd):
     story = [
         "You see a group of scared looking people and a dog.",
-        "Try talking to them with {{lb:cat}}.\n"
+        "{{lb:Listen}} to what they have to say with {{lb:cat}}.\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
@@ -139,8 +139,8 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        "Check you've managed to move the apple.  Look around in this "
-        "directory.\n"
+        "Check you've managed to move the apple. {{lb:Look around}} "
+        "in this directory.\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
@@ -232,7 +232,7 @@ class Step6(StepTemplateMv):
         "{{wb:Edith:}} {{Bb:\"No, honey!  Don't go outside!\"}}",
         "\n{{lb:Eleanor}} follows her {{lb:dog}} and leaves the "
         "{{lb:.hidden-shelter}}.",
-        "Have a look around to check this.\n"
+        "{{lb:Look around}} to check this.\n"
     ]
     story_dict = {
         "Eleanor": {
@@ -263,9 +263,9 @@ class Step6(StepTemplateMv):
 
 class Step7(StepTemplateMv):
     story = [
-        "{{wb:Edith:}} {{Bb:\"No!!  Honey, come back!!\"}}",
+        "{{wb:Edith:}} {{Bb:\"No!! Honey, come back!!\"}}",
         "{{Bb:\"You there, save my little girl!\"}}\n",
-        "First, look for Eleanor outside with {{yb:ls ../}}",
+        "First, {{lb:look outside}} for Eleanor with {{yb:ls ../}}",
 
     ]
     start_dir = "~/town/.hidden-shelter"
@@ -287,7 +287,7 @@ class Step7(StepTemplateMv):
 
 class Step8(StepTemplateMv):
     story = [
-        "Now move {{lb:Eleanor}} from the town outside {{lb:..}} to "
+        "Now {{lb:move Eleanor}} from the town outside {{lb:..}} to "
         "your current position {{lb:.}}\n"
     ]
     start_dir = "~/town/.hidden-shelter"

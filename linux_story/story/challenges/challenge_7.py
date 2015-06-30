@@ -36,8 +36,8 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "Wow, there's so many people here. Find the {{lb:Mayor}} and see "
-        "what's going on!"
+        "Wow, there's so many people here. Find the {{lb:Mayor}} and "
+        "{{lb:listen}} to what he has to say."
     ]
     start_dir = "~/town"
     end_dir = "~/town"

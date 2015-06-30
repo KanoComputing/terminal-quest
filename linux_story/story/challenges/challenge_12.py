@@ -30,7 +30,7 @@ class Step1(StepTemplateMv):
     story = [
         "{{wb:Edith:}} {{Bb:Thank you for saving her!}}",
         "{{wb:Eleanor:}} {{Bb:Doggy!}}",
-        "{{wb:Edith:}} {{Bb:Can you save her dog too?  I'm worried something "
+        "{{wb:Edith:}} {{Bb:Can you save her dog too? I'm worried something "
         "will happen to it if it stays outside.}}\n"
     ]
     start_dir = "~/town/.hidden-shelter"
@@ -64,22 +64,25 @@ class Step2(StepTemplateMv):
         "{{wb:Dog:}} {{Bb:Ruff!}}",
         "{{wb:Edith:}} {{Bb:Thank you so much for getting them both back.",
         "I was wrong about you. You're a hero!}}\n",
-        "Talk to everyone and see if there's anything else you can do to "
-        "help.\n"
+        "{{lb:Listen to everyone}} and see if there's anything else you can "
+        "do to help.\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
     commands = "cat Edward"
     all_commands = {
         "cat Edith": "\n{{wb:Edith:}} {{Bb:\"Thank you so much! "
-        "Eleanor, don't wander outside again - you scared the life out of me!\"}}",
+        "Eleanor, don't wander outside again - you scared the life out "
+        "of me!\"}}",
+
         "cat Eleanor": "\n{{wb:Eleanor:}} {{Bb:\"Where do you think the "
         "bell would have taken us?\"}}",
+
         "cat dog": "\n{{wb:Dog:}} {{Bb:\"Woof! Woof woof!\"}}"
     }
     hints = [
         "{{gb:Edward looks like he has something he wants to say. "
-        "Talk to Edward with}} {{yb:cat Edward}}"
+        "Listen to Edward with}} {{yb:cat Edward}}"
     ]
     last_step = True
 
