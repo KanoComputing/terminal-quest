@@ -17,7 +17,10 @@ class StepTemplateMkdir(TerminalMkdirEleanor):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "{{lb:Look around.}}"
+        "You walk down the narrow road, with Eleanor dancing "
+        "alongside, until you reach an open space in the "
+        "{{bb:east}} part of town.",
+        "\n{{lb:Look around.}}"
     ]
     commands = [
         "ls",
@@ -74,7 +77,10 @@ class Step3(StepTemplateMkdir):
     # Have a sign with "the-best-shed-maker-in-town"
 
     story = [
-        "{{lb:Look around.}}"
+        "You both walk slowly into the shop.",
+        "It is dusty and significantly darker than outside.",
+        "Eleanor looks like she needs to sneeze.",
+        "\n{{lb:Look around.}}"
     ]
 
     start_dir = "~/town/east/shed-shop"

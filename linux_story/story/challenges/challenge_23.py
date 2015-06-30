@@ -142,6 +142,9 @@ class Step4(StepMkdirEleanor):
     start_dir = "~/town"
     end_dir = "~/town"
     hints = [
+        "Eleanor: {{Bb:Have you forgotten how to look around? "
+        "You need to use}} {{yb:ls}}{{Bb:.}}",
+
         "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
     ]
     commands = [
