@@ -10,6 +10,9 @@ from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_18 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
+from kano_profile.apps import (
+    save_app_state_variable, load_app_state_variable
+)
 
 
 # This is for the challenges that only need ls
@@ -134,7 +137,7 @@ class Step3(StepTemplateMv):
 class Step4(StepTemplateMv):
     story = [
         "There's a {{lb:.safe}}!",
-        "Maybe there's something useful in here.  {{lb:Look inside}} the "
+        "Maybe there's something useful in here. {{lb:Look inside}} the "
         "{{lb:.safe}}."
     ]
 
@@ -147,7 +150,7 @@ class Step4(StepTemplateMv):
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
     hints = [
-        "{{rb:Look into the}} {{lb:.safe}} {{rb:using}} {{lb:ls}}",
+        "{{rb:Look in the}} {{lb:.safe}} {{rb:using}} {{lb:ls}}{{rb:.}}",
         "{{rb:Use}} {{yb:ls .safe}} {{rb:to look into the .safe.}}"
     ]
 
@@ -163,14 +166,17 @@ class CheckDiaryStep(StepTemplateMv):
         StepTemplateMv.__init__(self)
 
     def check_command(self):
-
+        checked_diary = load_app_state_variable(
+            "linux-story", "checked_mums_diary"
+        )
         # Check to see if the kid reads his/her Mum's journal
         if self.last_user_input == 'cat .safe/mums-diary' and \
-                self.check_diary == 0:
+                not checked_diary:
             self.send_hint(
-                '\n{{rb:You read your Mum\'s diary! How could you??}}'
+                "\n{{rb:You read your Mum\'s diary!}} "
+                "{{ob:Your nosiness has been recorded.}}"
             )
-            self.check_diary += 1
+            save_app_state_variable("linux-story", "checked_mums_diary", True)
             return False
 
         return StepTemplateMv.check_command(self)
