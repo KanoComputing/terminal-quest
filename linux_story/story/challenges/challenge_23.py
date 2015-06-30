@@ -162,7 +162,12 @@ class Step4(StepMkdirEleanor):
         "Bernard": {
             "path": "~/town/east/shed-shop"
         },
-        "best-shed-maker-in-the-world.sh, best-horn-in-the-world.sh": {
+        "best-shed-maker-in-the-world.sh": {
+            "path": "~/town/east/shed-shop",
+            "permissions": 0755
+        },
+        "best-horn-in-the-world-incorrect.sh": {
+            "name": "best-horn-in-the-world.sh",
             "path": "~/town/east/shed-shop",
             "permissions": 0755
         },
