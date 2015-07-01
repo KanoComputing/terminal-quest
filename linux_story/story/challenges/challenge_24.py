@@ -78,7 +78,7 @@ class Step3(StepTemplateMkdir):
 
     story = [
         "You both walk slowly into the shop.",
-        "It is dusty and significantly darker than outside.",
+        "It is dusty and significantly darker in here than outside.",
         "Eleanor looks like she needs to sneeze.",
         "\n{{lb:Look around.}}"
     ]
@@ -99,7 +99,7 @@ class Step3(StepTemplateMkdir):
         }
     }
     eleanors_speech = (
-        "Eleanor: {{Bb::Achoo! It's dusty in here!}}"
+        "Eleanor: {{Bb:Ah..ah...achoo!! It's so dusty in here!}}"
     )
 
     def next(self):
