@@ -18,10 +18,8 @@ class StepTemplate(TerminalEcho):
 
 class Step1(StepTemplate):
     story = [
-        "{{gb:Congratulations, you learnt the new skill echo!}}",
-
-        "\nWoah! You spoke aloud into the empty room!",
-
+        "Woah! You spoke aloud into the empty room!",
+        "{{gb:You learnt the new skill echo!}}",
         "This command can probably be used to talk to people.",
 
         "\nNow let's head to ~ to find that farm!",
@@ -136,7 +134,8 @@ class Step5(StepTemplate):
                 )
             elif self.counter == 1:
                 self.send_text(
-                    "\n{{rb:There is no one here. You should look somewhere else.}}"
+                    "\n{{rb:There is no one here. You should look somewhere "
+                    "else.}}"
                 )
 
         else:
