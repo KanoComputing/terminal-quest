@@ -16,6 +16,24 @@ class StepTemplateNano(TerminalNano):
 
 class Step1(StepTemplateNano):
     story = [
+        "You've arrived in the shed-shop. {{lb:Look around.}}"
+    ]
+    start_dir = "~/town/east/shed-shop"
+    end_dir = "~/town/east/shed-shop"
+    commands = [
+        "ls",
+        "ls -a"
+    ]
+    hints = [
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+    ]
+
+    def next(self):
+        Step2()
+
+
+class Step2(StepTemplateNano):
+    story = [
         "Huh, you can't see Bernard anywhere.",
 
         "I wonder where he went.",
@@ -41,10 +59,10 @@ class Step1(StepTemplateNano):
         return unblock_cd_commands(self.last_user_input)
 
     def next(self):
-        Step2()
+        Step3()
 
 
-class Step2(StepTemplateNano):
+class Step3(StepTemplateNano):
     story = [
         "You walked into Bernard's basement. {{lb:Look around.}}"
     ]
@@ -59,10 +77,10 @@ class Step2(StepTemplateNano):
     ]
 
     def next(self):
-        Step3()
+        Step4()
 
 
-class Step3(StepTemplateNano):
+class Step4(StepTemplateNano):
     story = [
         "You see what looks like another tool and a couple of diaries.",
         "{{lb:Examine}} them."
@@ -101,10 +119,10 @@ class Step3(StepTemplateNano):
             return StepTemplateNano.check_command(self)
 
     def next(self):
-        Step4()
+        Step5()
 
 
-class Step4(StepTemplateNano):
+class Step5(StepTemplateNano):
     story = [
         "Enough wandering. Let's go and try and find the "
         "{{lb:masked swordsmaster}} near the woods, and see "

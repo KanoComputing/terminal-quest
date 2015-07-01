@@ -134,28 +134,10 @@ class Step4(StepNano):
     ]
     start_dir = "~/town/east/restaurant/.cellar"
     end_dir = "~/town/east/shed-shop"
+    last_step = True
 
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)
-
-    def next(self):
-        Step5()
-
-
-class Step5(StepNano):
-    story = [
-        "You've arrived in the shed-shop. {{lb:Look around.}}"
-    ]
-    start_dir = "~/town/east/shed-shop"
-    end_dir = "~/town/east/shed-shop"
-    commands = [
-        "ls",
-        "ls -a"
-    ]
-    hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
-    ]
-    last_step = True
 
     def next(self):
         NextStep(self.xp)
