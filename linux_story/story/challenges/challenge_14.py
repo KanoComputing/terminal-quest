@@ -301,7 +301,9 @@ class Step7(StepTemplateMv):
                     "}} {{gb:other}}"
                 )
                 if num_people > 1:
-                    hint += "{{gb:s}}"
+                    hint += "{{gb:s.}}"
+                else:
+                    hint += "{{gb:.}}"
         else:
             hint = (
                 "{{rb:Use}} {{yb:" + self.allowed_commands.keys()[0] +
