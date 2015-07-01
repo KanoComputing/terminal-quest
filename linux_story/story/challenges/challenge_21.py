@@ -94,6 +94,10 @@ class Step2(StepTemplateMkdir):
 
 # First fork - try making a hidden shelter
 class Step3(StepTemplateMkdir):
+    print_text = [
+        "{{yb:If we call it}} {{lb:hidden-shelter}}"
+        "{{yb:, that will make it hidden.}}"
+    ]
     story = [
         "Ruth: {{Bb:So creating one called}} {{lb:hidden-shelter}} "
         "{{Bb:should make it hidden?  Ok, let's try that.}}\n",

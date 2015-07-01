@@ -40,6 +40,26 @@ class Step1(StepTemplateEcho):
         " using}} {{yb:cd ../toolshed/}}"
     ]
 
+    path_hints = {
+        "~/farm/barn": {
+            "blocked": "\n{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
+        },
+        "~/farm": {
+            "not_blocked": "\n{{gb:Good work! Now go into the}} {{lb:toolshed}}{{gb:.}}",
+            "blocked": "\n{{rb:Use}} {{yb:cd toolshed/}} {{rb:to go in the toolshed.}}"
+        }
+    }
+
+    def check_command(self):
+        if self.current_path == self.end_dir:
+            return True
+        elif "cd" in self.last_user_input and not self.get_command_blocked():
+            hint = self.path_hints[self.current_path]["not_blocked"]
+        else:
+            hint = self.path_hints[self.current_path]["blocked"]
+
+        self.send_text(hint)
+
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)
 
