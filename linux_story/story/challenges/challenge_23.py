@@ -124,7 +124,10 @@ class Step3(StepMkdirEleanor):
         self.story += [
             "{{Bb:\"Let's go to town together and find them. I'm sure I'll be "
             "safe if I'm with you.\"}}",
-            "\n{{gb:Eleanor joined you as a companion!}}",
+
+            "\n{{gb:Eleanor joined you as a companion! You can check how "
+            "she is any time with}} {{yb:cat Eleanor}}{{gb:.}}",
+
             "\n{{lb:Leave}} the {{lb:.hidden-shelter.}} "
             "Don't worry, Eleanor will follow!"
         ]
