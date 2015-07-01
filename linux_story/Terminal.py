@@ -322,10 +322,12 @@ class Terminal(Cmd):
         '''
 
         data = {}
-
+        coloured_username = "{{yb:" + os.environ['LOGNAME'] + ":}} "
+        print_text = "\n".join(self.print_text)
         # Get data about any XP.
         data['xp'] = self.xp
-        data["print_text"] = "\n".join(self.print_text)
+        if print_text:
+            data["print_text"] = coloured_username + print_text
         data['story'] = "\n".join(self.story)
         data['challenge'] = str(self.challenge_number)
         data['spells'] = self.terminal_commands
