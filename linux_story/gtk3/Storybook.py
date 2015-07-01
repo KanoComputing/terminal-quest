@@ -226,9 +226,24 @@ class Storybook(Gtk.TextView):
                     total_width += 1
                     new_string = new_string + string[0]
                     string = string[1:]
+
             elif string[:2] == '{{':
-                new_string = new_string + string[:3]
-                string = string[3:]
+
+                # Normally the string is of the form
+                # "{{wb:blah blah}}"
+                # need to cut out the part from the {{ to the :
+                colon_index = string.find(":")
+
+                # This should always be satified.
+                if not colon_index == -1:
+                    # This is so we don't include the colon when we
+                    # are slicing the strings.
+                    colon_index += 1
+                    new_string = new_string + string[:colon_index]
+                    string = string[colon_index:]
+                else:
+                    new_string = new_string + string[:3]
+                    string = string[3:]
             elif string[:2] == '}}':
                 new_string = new_string + string[:2]
                 string = string[2:]
