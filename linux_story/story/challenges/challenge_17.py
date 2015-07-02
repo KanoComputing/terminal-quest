@@ -58,13 +58,6 @@ class Step2(StepTemplateMv):
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/parents-room"
 
-    # Want to check your parents room
-    hints = [
-        "{{rb:Use}} {{lb:cd}} {{rb:to go in}} {{lb:../parents-room}}.",
-        "{{rb:Use}} {{yb:cd ../parents-room}} {{rb:to go into "
-        "your parents' room.}}"
-    ]
-
     # This is for the people who are continuing to play from the
     # beginning.
     # At the start, add the farm directory to the file system
