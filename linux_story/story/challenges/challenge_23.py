@@ -97,8 +97,7 @@ class Step3(StepMkdirEleanor):
             ]
             self.story += [
                 "Eleanor: {{Bb:\"Not long ago. The dog ran out again, "
-                "so they went outside to look for him. "
-                "I'm sure they're fine.\"}}"
+                "so they went outside to look for him.\"}}"
             ]
 
         elif prev_command == "echo 2":
