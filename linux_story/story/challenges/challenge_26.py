@@ -203,6 +203,26 @@ class Step7(StepTemplateMkdir):
     )
     last_step = True
 
+    path_hints = {
+        "~/town/east/library": {
+            "blocked": "\n{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
+        },
+        "~/town/east": {
+            "not_blocked": "\n{{gb:Good work! Now go into the}} {{lb:shed-shop}}{{gb:.}}",
+            "blocked": "\n{{rb:Use}} {{yb:cd shed-shop/}} {{rb:to go into the shed-shop.}}"
+        }
+    }
+
+    def check_command(self):
+        if self.current_path == self.end_dir:
+            return True
+        elif "cd" in self.last_user_input and not self.get_command_blocked():
+            hint = self.path_hints[self.current_path]["not_blocked"]
+        else:
+            hint = self.path_hints[self.current_path]["blocked"]
+
+        self.send_text(hint)
+
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)
 
