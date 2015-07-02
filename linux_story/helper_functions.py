@@ -11,7 +11,10 @@ import os
 import subprocess
 
 from kano.colours import colourize256, decorate_string
-from kano_profile.apps import load_app_state_variable
+from kano_profile.apps import (
+    save_app_state_variable, load_app_state_variable,
+    increment_app_state_variable
+)
 from linux_story.common import common_media_dir
 
 
@@ -191,3 +194,30 @@ def print_gained_exp(challenge, fork):
         return "Fantastic! You gained {} experience points!".format(xp_gained)
     else:
         return None
+
+
+def record_user_interaction(instance, base_name):
+    '''This is to store commands the user does.
+
+    instance: the class instance.
+    base_name: a string for the identity of the command.
+    '''
+
+    class_instance = instance.__class__.__name__
+    challenge_number = instance.challenge_number
+    profile_var_name = "{} {} {}".format(
+        base_name, challenge_number, class_instance
+    )
+
+    # First, try loading the profile variable name
+    # If the value is None, then make it True and increment the total.
+    already_done = load_app_state_variable("linux-story", profile_var_name)
+
+    # If the command has not been done yet in this class, then increment the
+    # total
+    if not already_done:
+        save_app_state_variable("linux-story", profile_var_name, True)
+        total_name = "{} total".format(base_name)
+        increment_app_state_variable("linux-story", total_name, 1)
+
+        # If total reaches a certain amount, then can award XP.

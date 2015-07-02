@@ -8,7 +8,7 @@
 import os
 from linux_story.story.terminals.terminal_bernard import TerminalNanoBernard
 from linux_story.story.challenges.challenge_30 import Step1 as NextStep
-from linux_story.helper_functions import play_sound
+from linux_story.helper_functions import play_sound, record_user_interaction
 
 
 # Can't get all the information with this system unless you are interested.
@@ -173,6 +173,12 @@ class StepNanoStory(StepNano):
                     self.echo_hit[self.last_user_input] = False
                     reply = pop_story(self.last_user_input)["clara"]
                     self.send_text("\n\n" + reply)
+
+                    # Record that the user got optional info
+                    # Replace spaces with underscores
+                    user_input = "_".join(self.last_user_input.split(" "))
+                    state_name = "clara_{}".format(user_input)
+                    record_user_interaction(self, state_name)
                 else:
                     self.send_text(
                         "\n{{rb:You've already asked Clara that. "
