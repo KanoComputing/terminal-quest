@@ -76,6 +76,7 @@ class Step2(StepTemplateMv):
 
 
 # Remove this step?
+'''
 class Step3(StepTemplateMv):
     story = [
         "You recognise these commands.",
@@ -109,9 +110,10 @@ class Step3(StepTemplateMv):
 
     def next(self):
         Step4()
+'''
 
 
-class Step4(StepTemplateMv):
+class Step3(StepTemplateMv):
     story = [
         "I wonder if there's anything else hidden in this {{lb:.chest}}?",
         "Have a {{lb:closer look}} for some more items."
@@ -133,10 +135,10 @@ class Step4(StepTemplateMv):
     ]
 
     def next(self):
-        Step5()
+        Step4()
 
 
-class Step5(StepTemplateMv):
+class Step4(StepTemplateMv):
     story = [
         "You suddenly notice a tiny stained {{lb:.note}}, scrumpled in "
         "the corner of the {{lb:.chest}}.",
@@ -154,21 +156,6 @@ class Step5(StepTemplateMv):
     commands = [
         "cat .chest/.note"
     ]
-
-    def next(self):
-        NextStep(self.xp)
-
-
-class Step6(StepTemplateMv):
-    story = [
-        "So someone left these for you to find?",
-        "But who?",
-        "\n{{gb:Press Enter to continue.}}"
-    ]
-
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house/my-room"
-    last_step = True
 
     def next(self):
         NextStep(self.xp)
