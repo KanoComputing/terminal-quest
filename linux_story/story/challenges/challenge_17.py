@@ -87,25 +87,28 @@ class Step2(StepTemplateMv):
         }
     }
 
-    # Technically shouldn't be a static variable? But easier to initialise
-    # here.
-    counter = 0
+    path_hints = {
+        "~/my-house/my-room": {
+            "blocked": "\n{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
+        },
+        "~/my-house/parents-room": {
+            "not_blocked": "\n{{gb:Good work! Now go into your}} {{lb:parents-room}}{{gb:.}}",
+            "blocked": "\n{{rb:Use}} {{yb:cd parents-room/}} {{rb:to go in.}}"
+        }
+    }
+
+    def check_command(self):
+        if self.current_path == self.end_dir:
+            return True
+        elif "cd" in self.last_user_input and not self.get_command_blocked():
+            hint = self.path_hints[self.current_path]["not_blocked"]
+        else:
+            hint = self.path_hints[self.current_path]["blocked"]
+
+        self.send_text(hint)
 
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)
-
-    def check_command(self):
-        # Only show this hint once.
-        if self.last_user_input == "cd parents-room" and self.counter == 0:
-            self.counter += 1
-            text = (
-                "\n{{lb:cd parents-room}} {{rb:doesn't work as the "
-                "parents-room is not directly ahead of you. It is "
-                "in the hallway}} {{lb:behind you}}{{rb:,}} {{lb:..}}"
-            )
-            self.send_text(text)
-        else:
-            return StepTemplateMv.check_command(self)
 
     def next(self):
         Step3()
