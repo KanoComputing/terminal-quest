@@ -199,7 +199,7 @@ class Step7(StepTemplateMkdir):
     start_dir = "~/town/east/library"
     end_dir = "~/town/east/shed-shop"
     eleanors_speech = (
-        "Bernard: {{Bb:...do we have to go and see creepy Bernard again?}}"
+        "Eleanor: {{Bb:...do we have to go and see creepy Bernard again?}}"
     )
     last_step = True
 

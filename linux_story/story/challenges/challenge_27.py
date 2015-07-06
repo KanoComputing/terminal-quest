@@ -148,7 +148,7 @@ class Step4(StepTemplateNano):
     end_dir = "~/town/east/shed-shop"
     hints = [
         "{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}}{{rb:,}} "
-        "{{yb:echo 3}} {{rb:or}} {{yb:echo 1}}"
+        "{{yb:echo 3}} {{rb:or}} {{yb:echo 4}}"
     ]
 
     eleanors_speech = (
