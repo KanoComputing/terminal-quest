@@ -365,7 +365,7 @@ class TerminalNano(TerminalEcho):
             else:
                 error_text = (
                     "\n{{rb:Your text is not correct! " +
-                    "Type}} {{yb:" + self.goal_nano_save_name + "}} "
+                    "Type}} {{yb:nano " + self.goal_nano_save_name + "}} "
                     "{{rb:to try again.}}"
                 )
                 self.send_text(error_text)
