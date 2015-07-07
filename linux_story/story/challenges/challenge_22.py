@@ -110,9 +110,9 @@ class Step4(StepTemplateMkdir):
         "I wonder why it's ringing?}}",
         "\nPerhaps we should investigate that sound.  Who else do we "
         "know?",
-        "Maybe you could check back on the family in the "
-        "{{lb:.hidden-shelter}} ",
-        "and see if you can talk with your new found voice.",
+        "Maybe you should check back on the family in the "
+        "{{lb:.hidden-shelter}} and talk to them with your new found voice.",
+
         "\nStart heading back to the {{lb:.hidden-shelter}} using {{lb:cd}}."
     ]
 
