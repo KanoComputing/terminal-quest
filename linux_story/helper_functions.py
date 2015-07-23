@@ -3,7 +3,7 @@
 # helper_functions.py
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # Helper functions used across the system.
 
@@ -19,7 +19,8 @@ from linux_story.common import common_media_dir
 
 
 def debugger(text):
-    '''Change first line to "if True:" to show all the debugging lines
+    '''
+    Change first line to "if True:" to show all the debugging lines.
     '''
 
     if False:
@@ -27,10 +28,21 @@ def debugger(text):
 
 
 def get_script_cmd(string, real_path):
-    '''Checks whether the string (from the user's point of view)
-    is an executible.
-    So we convert the path entered into the real path (i.e. including the
-    .linux-story) and check it's a file and and executable
+    '''
+    Checks whether the path (from the user's point of view)
+    is an executable.
+
+    We convert the path entered into the real path (i.e. including the
+    .linux-story) and check it's a file and and executable.
+
+    Args:
+        string (str): command that the user has typed.
+        real_path (str): the path that the user is currently based at.
+
+    Returns:
+        tuple = (bool, str):
+            The first argument says if the script is a valid executable.
+            The second argument gives the full filepath of the executable.
     '''
 
     is_script = False
@@ -56,16 +68,25 @@ def is_exe(fpath):
     return (os.path.isfile(fpath) and os.access(fpath, os.X_OK))
 
 
-# TODO: tidy up
 def colour_file_dir(path, f):
-    '''Colourize the files and directories shown by ls
+    '''
+    Colourize the files and directories consistently
+
+    Args:
+        path (str): the full file path of the file
+        f (str): the name of the filename
+
+    Returns:
+        str: the filename with the appropriate appended substrings to
+            make it appear the correct colour in a terminal.
     '''
 
     if os.path.isfile(path) and is_exe(path):
-        f = colourize256(f, 118, None, True)
+        f = colour_string_with_preset(f, "green", False)
+
     elif os.path.isdir(path):
-        f = "{{b" + f + "}}"
-        f = parse_string(f)
+        f = colour_string_with_preset(f, "blue", False)
+
     elif os.path.islink(path):
         f = decorate_string(f, "cyan", None)
 
@@ -73,8 +94,11 @@ def colour_file_dir(path, f):
 
 
 def play_sound(object_name):
-    '''object is the string representing the object
-    the options are 'alarm' and 'bell'
+    '''
+    Args:
+        object_name (str): 'alarm' or 'bell'
+    Returns:
+        None
     '''
 
     sound_path = os.path.join(
@@ -89,89 +113,58 @@ def play_sound(object_name):
     )
 
 
-def get_preset_from_id(id):
-    '''Translate the letter IDs into the colour codes
-    r=red, g=green, y=yellow, b=blue, p=pink, c=cyan, w=white, l=lilac
-    The capital letters are different shades of the same colour
+def colour_string_with_preset(string, colour_name="white", input_fn=True):
+    '''
+    Args:
+        string (str): the string we want to colourise.
+        colour_name (str): takes the values "yellow", "white", "blue", "green"
+        input_fn (bool): determines which colourise function we use.
+
+    Returns:
+        str: string which will appear with specified colour in a terminal.
     '''
 
-    if id == "r":
-        return 160
-    elif id == "g":
-        return 28
-    elif id == "o":
-        return 202
-    elif id == "y":
-        return 220
-    elif id == "b":
-        return 69
-    elif id == "p":
-        return 197
-    elif id == "c":
-        return 123
-    elif id == "w":
-        return 231
-    elif id == "l":
-        return 147
-    elif id == "R":
-        return 9
-    elif id == "G":
-        return 46
-    elif id == "O":
-        return 208
-    elif id == "Y":
-        return 226
-    elif id == "B":
-        return 81
-    elif id == "P":
-        return 205
+    colours = {
+        "yellow": 226,
+        "white": 231,
+        "blue": 69,
+        "green": 118
+    }
+    if input_fn:
+        colour_fn = colourize_input256
     else:
-        # white
-        return 231
+        colour_fn = colourize256
+
+    colour_id = colours[colour_name]
+    bold = True
+
+    # For now, if colour is white, don't make it bold.
+    if colour_name == "white":
+        bold = False
+
+    return colour_fn(string, colour_id, None, bold)
 
 
-def parse_string(string, message_type="story", input=False):
-    '''Change a string of the form "{{bhello}}" to a the string "hello"
-    that appears blue in a terminal
-    '''
+def colourize_input256(string, fg_num=None, bg_num=None, bold=False):
+    """
+    Paint the text with foreground/background colours using the
+    newer 256 colour model.
 
-    default_preset = get_preset_from_id(message_type)
-    if input:
-        colour_function = colourizeInput256
-    else:
-        colour_function = colourize256
+    This is similar to colourize256, but it adds extra hidden characters to
+    each side of the strings due to a problem with weird characters appearing
+    in the terminal.
+    These extra characters need to be combined with importing the readline
+    library.
 
-    if string.find("{{") == -1:
-        string = colour_function(string, default_preset, bold=False)
-        return string
+    Args:
+        string (str): the string we want to colourize
+        fg_num (int): the foreground colour
+        bg_num (int): the background colour
+        bold (bool): should the text be shown as bold
 
-    # First part of the string
-    while string.find("{{") != -1:
-        pos1 = string.index("{{")
-        first_part = string[:pos1]
-        # Last part of the string
-        pos2 = string.index("}}")
-        last_part = string[pos2 + 2:]
-        # Preset id
-        preset_id = string[pos1 + 2]
-        preset = get_preset_from_id(preset_id)
-        # Colour part of the string
-        colour_part = string[pos1 + 3:pos2]
-
-        colour_part = colour_function(colour_part, preset, bold=True)
-        first_part = colour_function(first_part, default_preset, bold=False)
-
-        if string.find("{{") != -1:
-            last_part = colour_function(last_part, default_preset, bold=False)
-
-        string = first_part + colour_part + last_part
-
-    return string
-
-
-def colourizeInput256(string, fg_num=None, bg_num=None, bold=False):
-    """ Paint the text with foreground/background colours using the
-        newer 256 colour model. """
+    Returns:
+        str
+    """
 
     if fg_num is not None:
         string = "\001\033[38;5;%dm\002%s\001\033[0m\002" % (fg_num, string)
@@ -185,22 +178,14 @@ def colourizeInput256(string, fg_num=None, bg_num=None, bold=False):
     return string
 
 
-def print_gained_exp(challenge, fork):
-    old_xp = load_app_state_variable('linux_story', challenge + '_' + fork)
-    # Look up XP here
-    new_xp = 0
-    xp_gained = new_xp - old_xp
-    if xp_gained > 0:
-        return "Fantastic! You gained {} experience points!".format(xp_gained)
-    else:
-        return None
-
-
 def record_user_interaction(instance, base_name):
-    '''This is to store commands the user does.
+    '''
+    This is to store some of the user actions, so we can determine
+    if the user does the optional side quests.
 
-    instance: the class instance.
-    base_name: a string for the identity of the command.
+    Args:
+        The class instance.
+        base_name (str): a string for the identity of the command.
     '''
 
     class_instance = instance.__class__.__name__

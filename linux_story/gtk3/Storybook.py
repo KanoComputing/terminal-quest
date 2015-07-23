@@ -6,7 +6,7 @@
 # License: GNU GPL v2 http://www.gnu.org/licenses/gpl-2.0.txt
 #
 # Author: Caroline Clark <caroline@kano.me>
-# Print text in a TextView with a typing effect
+
 
 from gi.repository import Gtk, Pango, Gdk
 import time
@@ -21,6 +21,10 @@ else:
 
 
 class Storybook(Gtk.TextView):
+    '''
+    This class displays all the hints and description text for the user
+    on the left side of the application.
+    '''
 
     def __init__(self, width=None, height=None):
         Gtk.TextView.__init__(self)
@@ -55,11 +59,17 @@ class Storybook(Gtk.TextView):
         '''
         self.get_buffer().set_text('', 0)
 
-    def print_output(self, string):
-        '''Prints string with a typing effect
+    def type_coloured_print(self, string):
+        '''
+        Adds colour to the string and prints string with a typing effect.
+
+        Args:
+            string (str): Text we want to print with a typing effect
+        Returns:
+            None
         '''
 
-        lines = self.__split_into_printable_chars(string)
+        lines = self.__parse_string(string)
 
         for line in lines:
             self.__style_char(
@@ -77,10 +87,20 @@ class Storybook(Gtk.TextView):
             while Gtk.events_pending():
                 Gtk.main_iteration_do(False)
 
-    ##############################################################
-    def print_coloured_output(self, string):
-        # hacky function - same as above but removed the sleeps.
-        lines = self.__split_into_printable_chars(string)
+    def print_coloured_text(self, string):
+        '''
+        Adds colours to the string and prints the coloured output.
+        Same as self.type_coloured_text but without the sleeps between
+        printing individual letters.
+
+        Args:
+            string (str): Text we want to print to the TextView
+
+        Returns:
+            None
+
+        '''
+        lines = self.__parse_string(string)
 
         for line in lines:
             self.__style_char(
@@ -89,11 +109,15 @@ class Storybook(Gtk.TextView):
                 # TODO: get size tag working
                 [line['colour'], line['bold']]
             )
-    ##############################################################
 
     def __style_char(self, line, tag_names):
-        '''Add styling (e.g. colours) to each character and puts it into the
+        '''
+        Add styling (e.g. colours) to each character and puts it into the
         text buffer
+
+        Args:
+            line (str):
+            tag_names :
         '''
 
         textbuffer = self.get_buffer()
@@ -116,7 +140,14 @@ class Storybook(Gtk.TextView):
             textbuffer.apply_tag(tag, end_but_one_iter, end_iter)
 
     def print_challenge_title(self, challenge_number="1"):
-        '''Print Challenge title from file at the top of the Story widget
+        '''
+        Print Challenge title from file at the top of the Story widget
+
+        Args:
+            challenge_number (str): e.g. "1"
+
+        Returns:
+            None
         '''
 
         if challenge_number == "0":
@@ -129,7 +160,8 @@ class Storybook(Gtk.TextView):
         self.print_text(header)
 
     def print_text(self, string):
-        '''Mimic for python print function
+        '''
+        Mimic for python print function
         '''
 
         # To mimic print function
@@ -140,7 +172,8 @@ class Storybook(Gtk.TextView):
         textbuffer.insert_with_tags(end_iter, string, white_tag)
 
     def __generate_tags(self):
-        '''Generate tags and adds them to the text buffer
+        '''
+        Generate tags and adds them to the text buffer
         '''
         textbuffer = self.get_buffer()
         textbuffer.create_tag('orange_bg', background='orange')
@@ -166,7 +199,12 @@ class Storybook(Gtk.TextView):
         textbuffer.create_tag('large', size=10)
 
     def __get_tag(self, tag_name):
-        '''Gets tag from tag table
+        '''
+        Args:
+            tag_name (str): id for the tag wanted.
+
+        Returns:
+            Gtk.TextTag
         '''
 
         textbuffer = self.get_buffer()
@@ -174,17 +212,17 @@ class Storybook(Gtk.TextView):
         tag = tag_table.lookup(tag_name)
         return tag
 
-    def __split_into_printable_chars(self, string):
-        '''Try spliting the words up into an array of groups of characters,
-        that all need to get printed out one at a time
-        '''
-
-        char_array = self.__parse_string(string)
-        return char_array
-
     def __split_into_lines(self, string):
-        '''Adds new line characters appropriately so the text wraps around
-        correctly
+        '''Adds new line characters appropriately into the string
+        so the text wraps around correctly.
+        This takes into account when the string is of the form
+        "{{wb:hello}} {{rb:world}}", which means the curly brackets disappear
+        when the text is typed to the console.
+
+        Args:
+            string (str)
+        Returns:
+            str: with newline characters inserted.
         '''
 
         columns = self.width / self.char_width
@@ -259,7 +297,7 @@ class Storybook(Gtk.TextView):
         return new_string
 
     def __get_colour_from_id(self, colour_id='w'):
-        '''Look up letter of colour
+        '''Look up what letter corresponds to what colour
         '''
 
         pairs = {
@@ -289,7 +327,7 @@ class Storybook(Gtk.TextView):
         return pairs[bold_id]
 
     def __get_size_from_id(self, size_id='m'):
-        '''Look up bold status from ID
+        '''Look up size from ID
         '''
 
         pairs = {
@@ -300,10 +338,18 @@ class Storybook(Gtk.TextView):
         return pairs[size_id]
 
     def __string_to_tag_list(self, string, colour, bold, size):
-        '''Turns string into an array of the form
-        [{'letter': 'h', 'colour': 'white', 'bold': 'bold'},
-         {'letter': 'e', 'colour': 'white', 'bold': 'bold'}]
-        with the specified colours
+        '''
+        Args:
+            string (str): The text you want to appear in the Storybook
+                          e.g. "he"
+            colour (str): The colour the text should appear in
+                          out of the tag list
+            bold (str): Either 'bold' or 'not-bold'
+            size (int): Currently this functionality is not working
+
+        Returns:
+            list: of the form [{'letter': 'h', 'colour': 'white', 'bold': 'bold'},
+                               {'letter': 'e', 'colour': 'white', 'bold': 'bold'}]
         '''
 
         array = []
@@ -318,12 +364,14 @@ class Storybook(Gtk.TextView):
         return array
 
     def __parse_string(self, string):
-        '''Change string of the form
-        "{{wbs:hello this is a}} {{r:string}}"
-        into an array of the form
-        [{'letter': 'h', 'colour': 'white', 'bold': 'bold'},
-        {'letter': 'e', 'colour': 'white', 'bold': 'bold'},
-        ...]
+        '''
+        Args:
+            string (str): Of the form "{{wbs:hello this is a}} {{r:string}}"
+
+        Returns:
+            list: of the form [{'letter': 'h', 'colour': 'white', 'bold': 'bold'},
+                               {'letter': 'e', 'colour': 'white', 'bold': 'bold'},
+                               ...]
         '''
 
         # Get defaults
@@ -413,8 +461,9 @@ class Storybook(Gtk.TextView):
         return string_array
 
     def __get_char_width(self):
-        '''Get the character length in a monospaced font.
-        This is useful so we can judge when we need to add newline characters
+        '''
+        Returns:
+            int: the width of the letter in monospace font
         '''
 
         stringtomeasure = 'a'
@@ -428,8 +477,19 @@ class Storybook(Gtk.TextView):
         return width
 
     def prevent_right_click(self, widget, event):
+        '''
+        Args:
+            widget: Gtk.Widget
+            event: Gdk.EventButton
+
+        Returns:
+            bool: True if the button clicked is the right button,
+                  False otherwise
+        '''
 
         # Detect if the event is a right click
         if event.button == 3:
             # If so, stop the event propagating to showing a right click menu
             return True
+
+        return False

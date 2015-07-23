@@ -18,7 +18,7 @@ if __name__ == '__main__' and __package__ is None:
 
 import threading
 from helper_functions import (
-    get_script_cmd, debugger, parse_string, is_exe
+    get_script_cmd, debugger, is_exe, colour_string_with_preset
 )
 from kano_profile.apps import (
     load_app_state_variable, get_app_xp_for_challenge
@@ -117,15 +117,14 @@ class Terminal(Cmd):
         if fake_cwd[-1] == '/':
             fake_cwd = fake_cwd[:-1]
 
-        # In kano-toolset, but for now want to avoid dependencies
+        # Put together the terminal prompt.
         username = os.environ['LOGNAME']
-        prompt = fake_cwd + ' $ '
-        # for node in self.show_all_ancestors(fake_cwd):
-        #    prompt = node + "/" + prompt
-        prompt = "{{Y" + username + "@kano " + "}}" + "{{b" + prompt + "}}"
+        yellow_part = username + "@kano "
+        yellow_part = colour_string_with_preset(yellow_part, "yellow", True)
 
-        coloured_prompt = parse_string(prompt, input=True)
-        self.prompt = coloured_prompt
+        blue_part = fake_cwd + ' $ '
+        blue_part = colour_string_with_preset(blue_part, "blue", True)
+        self.prompt = yellow_part + blue_part
 
     def emptyline(self):
         '''To overwrite default behaviour in the cmd module.
@@ -277,6 +276,7 @@ class Terminal(Cmd):
     #######################################################
     # Send text to the GUI.
 
+    # TODO: Remove this
     def show_hint(self):
         '''Customize the hint that is shown to the user
         depending on their input.
@@ -305,6 +305,7 @@ class Terminal(Cmd):
             t.daemon = True
             t.start()
 
+        # TODO: This should only be run is a hint is not provided
         if len(self.hints) > 1:
             self.hints.pop(0)
 

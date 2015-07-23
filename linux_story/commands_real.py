@@ -3,7 +3,7 @@
 # commands_real.py
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # Terminal commands which end up running in the terminal.
 
@@ -13,10 +13,24 @@ import subprocess
 
 from helper_functions import colour_file_dir, debugger
 from linux_story.common import tq_file_system
-from kano.colours import colourize256
 
 
 def ls(real_loc, line):
+    '''
+    Prints out the coloured output of the ls command.
+
+    Args:
+        real_loc (str): the filepath of the real location of the
+            "current location" of the user.
+
+        line (str): line that the user entered in the terminal
+            excluding ls
+
+    Returns:
+        str of the output printed to the terminal
+        or
+        None if there is an error
+    '''
 
     new_loc = real_loc
     get_all_info = False
@@ -88,38 +102,15 @@ def ls(real_loc, line):
     return output
 
 
-def grep(current_dir, tree, line):
-    # find current_location
-    real_loc = tree[current_dir].real_path
-
-    # Don't print anything
-    if not real_loc:
-        return
-
-    line = "grep " + line
-    coloured_output = []
-    args = line.split(" ")
-    p = subprocess.Popen(args, cwd=real_loc,
-                         stdout=subprocess.PIPE,
-                         stderr=subprocess.PIPE)
-    stdout, stderr = p.communicate()
-
-    if stderr:
-        print stderr
-
-    if stdout:
-        results = stdout.split("/n")
-        for r in results:
-            [path, contents] = r.split(":")
-            path = colourize256(path, 29, None, True)
-            contents = colourize256(contents, 68, None, True)
-            colon = colourize256(":", 118, None, True)
-            coloured_output.append(colon.join([path, contents]))
-        coloured_results = "/n".join(coloured_output)
-        print coloured_results
-
-
 def sudo(real_path, line):
+    '''
+    Args:
+        real_path (str): filepath for the current location of the user.
+        line (str): the line the user entered following sudo.
+
+    Return:
+        None
+    '''
     allowed_commands = ["chmod", "touch", "mkdir"]
 
     # take the list of elements
@@ -132,9 +123,18 @@ def sudo(real_path, line):
         shell_command(real_path, line, "sudo")
 
 
-# TODO: change this so returns differently depending on whether
-# it is successful or not
 def shell_command(real_loc, line, command_word=""):
+    '''
+    Suitable for launching most commands.
+
+    Args:
+        real_loc (str): the current location of the user.
+        line (str): line user typed not including the command word.
+        command_word (str): command you want to run (e.g. ls).
+
+    Returns:
+        bool: False if error, True otherwise.
+    '''
 
     if command_word:
         line = command_word + " " + line
@@ -161,11 +161,18 @@ def shell_command(real_loc, line, command_word=""):
     return True
 
 
-def turn_abs_path_to_real_loc(path):
-    return path.replace('~', tq_file_system)
-
-
 def launch_application(real_path, line, command_word=""):
+    '''
+    This is appropriate for commands which use curses (e.g. less).
+
+    Args:
+        real_path (str): the current location of the user.
+        line (str): the line (not including the command word) the user entered.
+        command_word (str): the command that we want to launch.
+
+    Returns:
+        None.
+    '''
 
     line = " ".join([command_word] + line.split(" "))
 
@@ -179,7 +186,22 @@ def launch_application(real_path, line, command_word=""):
         print stderr.strip()
 
 
+def turn_abs_path_to_real_loc(path):
+    return path.replace('~', tq_file_system)
+
+
 def nano(real_path, line):
+    '''
+    Runs the linux-story version of nano as a separate process,
+    and prints out any resulting errors.
+
+    Args:
+        real_path (str): the current location of the user.
+        line (str): the command entered by the user.
+
+    Returns:
+        None
+    '''
 
     # File path of the local nano
     dir_path = os.path.abspath(os.path.dirname(__file__))
@@ -204,8 +226,6 @@ def nano(real_path, line):
 
 
 def run_executable(real_path, line):
-
-    # print "line = {}".format(line)
     line = line.strip()
 
     if line.startswith("./"):

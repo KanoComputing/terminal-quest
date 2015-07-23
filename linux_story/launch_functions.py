@@ -3,9 +3,10 @@
 # launch_functions.py
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
-# Launch the different processes which show in the terminal
+# The functions which starts off the game at the specified challenge and step.
+
 
 import os
 import sys
@@ -19,8 +20,17 @@ from linux_story.load_defaults_into_filetree import default_global_tree
 
 
 def launch_project(challenge_number=1, step_number=1):
+    '''
+    Start the game off form the specified challenge and step
 
-    # TODO: show saved file system if it is available.
+    Args:
+        challenge_number (int)
+        step_number (int)
+
+    Returns:
+        None
+    '''
+
     # For now, just show the default filesystem for that step.
     if challenge_number == 0:
         default_global_tree(1, 1)
@@ -32,6 +42,16 @@ def launch_project(challenge_number=1, step_number=1):
 
 
 def get_step_class(challenge_number, step_number):
+    '''
+    Gets the step class for the specified challenge and step
+
+    Args:
+        challenge_number (int)
+        step_number (int)
+
+    Returns:
+        class which starts the story at the correct point.
+    '''
 
     if challenge_number == 0:
         module_name = "story.challenges.introduction"
