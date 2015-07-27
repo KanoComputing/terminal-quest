@@ -15,7 +15,6 @@ Executable /usr/bin/linux-story-gui
 
 # Options
 
-"""
 linux-story-gui launches the application Terminal Quest at different points in the story.
 
 Usage:
@@ -25,4 +24,3 @@ Usage:
 Options:
    -h, --help       Show this message.
    -d, --debug      Debug mode, don't hide the terminal and spellbook by default at the start.
-"""
