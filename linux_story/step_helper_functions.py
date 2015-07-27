@@ -5,7 +5,7 @@
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
-# Functions specific for use in Step class
+# Functions specific for use in the challenges.
 
 import os
 
@@ -63,11 +63,26 @@ def unblock_cd_commands(line):
         return True
 
 
+###########################################################################
+# The following are used for cd commands in the story
+
+
 def find_common_parent(path1, path2):
-    # Assume they are in the same form,
-    # as absolute fake paths, e.g.
-    # ~/town/.hidden-shelter and
-    # ~/farm/barn/.shelter
+    '''
+    Find the largest common path between two paths.
+
+    Args:
+        path1 (str)
+        path2 (str)
+
+        Assume they are in the same form,
+        as absolute fake paths, e.g.
+        ~/town/.hidden-shelter and
+        ~/farm/barn/.shelter
+
+    Return:
+        str
+    '''
 
     dirs1 = path1.split("/")
     dirs2 = path2.split("/")
@@ -90,10 +105,20 @@ def find_common_parent(path1, path2):
 # TODO: this will break if we have two paths with directories with
 # the same name but in different places.
 def route_between_paths(start_path, end_path):
-    # Assume they are in the same form,
-    # as absolute fake paths, e.g.
-    # ~/town/.hidden-shelter and
-    # ~/farm/barn/.shelter
+    '''
+    Args:
+        start_path (str)
+        end_path (str)
+
+        Assume they are in the same form,
+        as absolute fake paths, e.g.
+        ~/town/.hidden-shelter and
+        ~/farm/barn/.shelter
+
+    Return:
+        list of strings: listing every path you could hit on
+        a direct route from start_path to end_path.
+    '''
 
     common_path = find_common_parent(start_path, end_path)
 

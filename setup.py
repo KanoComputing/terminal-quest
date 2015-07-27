@@ -10,8 +10,9 @@ from distutils.core import setup
 import os
 
 
-# gets all directories from a directory
 def recursively_get_dirs(package_name, start_dir):
+    '''Gets all directories from a directory'''
+
     start_path = os.path.join(package_name, start_dir)
     paths = []
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # load_defaults_into_filetree.py
 
@@ -16,7 +16,8 @@ from linux_story.common import tq_file_system
 
 
 def default_global_tree(challenge, step):
-    '''This creates the filetree from the yaml of challenge 1
+    '''
+    This creates the filetree from the yaml of challenge 1
     '''
 
     # If we are loading from the default file system, we
@@ -29,19 +30,13 @@ def default_global_tree(challenge, step):
     modify_file_tree(story_dict)
 
 
-def load_tree(challenge, step):
-    '''This uncompresses the file and copies it to the correct
-    directory
-    '''
-    pass
-
-
 def create_item(dest_path, item_type="file", src_path=""):
-    '''Create a file or directory
-    Parameters:
-    dest_path: a string of the destination path
-    item_type: "file" or "directory"
-    src_path: a string of the source path
+    '''
+    Create a file or directory
+    Args:
+        dest_path (str): the destination path
+        item_type (str): "file" or "directory"
+        src_path (str): the source path
     '''
 
     if not os.path.exists(dest_path):
@@ -52,8 +47,10 @@ def create_item(dest_path, item_type="file", src_path=""):
 
 
 def delete_item(path):
-    '''Delete the file or directory specified by path.
     '''
+    Delete the file or directory specified by path.
+    '''
+
     if os.path.exists(path):
         if os.path.isdir(path):
             shutil.rmtree(path)
@@ -63,10 +60,12 @@ def delete_item(path):
 
 # TODO: This could be done better.
 def split_path_and_add_dirs_to_tree(item_id, fake_path):
-    '''This breaks up the path of the item_id and adds all
+    '''
+    This breaks up the path of the item_id and adds all
     the containing directories to the tree, if they haven't been added
     already
     '''
+
     dirs = fake_path.split('/')
 
     for i in range(len(dirs) - 1):
@@ -79,12 +78,20 @@ def split_path_and_add_dirs_to_tree(item_id, fake_path):
         create_item(real_path, item_type="directory")
 
 
-# TODO this is a MONSTER function.
-# Break it up.
 def modify_file_tree(filesystem_dict):
-    '''This modifies the tree in memory and the filesystem the user
-    interacts with. It also stores the tree as a yaml, which is saved on
-    Kano World
+    '''
+    This modifies the game filesystem.
+
+    Args:
+        filesystem_dict (dict): a dictionary of the form:
+        {
+            file_id: {
+                "exists": bool,
+                "permissions": int,
+                "path": str
+            }
+        }
+
     '''
 
     if not os.path.exists(tq_file_system):
@@ -147,16 +154,17 @@ def modify_file_tree(filesystem_dict):
                 # If specified, change the permissions of the file
                 if "permissions" in item_dict.keys():
                     mode = item_dict["permissions"]
-                    # TODO: have a clean up of this afterwards
                     os.chmod(real_path, mode)
 
 
 # Call this on closing the application.
 # TODO: Also record what the permission was before overwriting.
 def revert_to_default_permissions():
-    '''This is the brute force way of cleaning up the permissions
+    '''
+    This is the brute force way of cleaning up the permissions
     We go through the tree and change ALL permissions to 666
     '''
+
     for root, dirs, files in os.walk(tq_file_system):
         for d in dirs:
             path = os.path.join(root, d)
@@ -164,12 +172,3 @@ def revert_to_default_permissions():
         for f in files:
             path = os.path.join(root, f)
             os.chmod(path, 0644)
-
-
-def save_tree(challenge, step):
-    '''This saves the filesystem as a yaml, which is then stored in
-    Terminal-Quest-content.
-    It needs to be a yaml so we can store meta information about the
-    filesystem, like whether the files are readable and writable
-    '''
-    pass

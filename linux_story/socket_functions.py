@@ -3,7 +3,7 @@
 # socket_functions.py
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # Create server so terminal and GUI can communicate with each other
 
@@ -40,7 +40,7 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
         self.server.queue.put(data_dict)
 
 
-def create_server(queue):  # text_cb, spell_cb, challenge_cb):
+def create_server(queue):
     HOST, PORT = "localhost", 9959
 
     # Create the server, binding to localhost on port 9999

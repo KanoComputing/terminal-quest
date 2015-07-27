@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-# TODO: store as a yaml?
-# This doesn't include the introduction as the introduction isn't a challenge
 chapters = {
     1: {
         'start_challenge': 1,

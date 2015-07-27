@@ -3,7 +3,7 @@
 # linux-story-gui
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd
-# License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
+# License: GNU GPL v2 http://www.gnu.org/licenses/gpl-2.0.txt
 #
 # Launches linux tutorial in a Gtk application
 
@@ -59,7 +59,7 @@ class GenericWindow(Gtk.Window):
 
 
 class MainWindow(GenericWindow):
-    '''Create application window
+    '''Window class that contains all the elements in the application
     '''
 
     def __init__(self, debug=False):
@@ -68,9 +68,6 @@ class MainWindow(GenericWindow):
         # This decides whether the spellbook and terminal are hidden
         # Should also write to logs.
         self.debug = debug
-
-        # Set the cursor invisible
-        # self.connect("map-event", self.set_cursor_invisible)
 
     def set_cursor_invisible(self, *_):
         blank_cursor = Gdk.Cursor(Gdk.CursorType.BLANK_CURSOR)
@@ -122,8 +119,7 @@ class MainWindow(GenericWindow):
         left_background.add(story_sw)
         right_background.add(self.terminal)
 
-        # Allow for margin on bottom
-        # TODO: this is hacky. Tidy up.
+        # Allow for margin on bottom and top bar.
         self.terminal.set_size_request(
             width / 2 - 20, height - self.spellbook.HEIGHT - 2 * 44 - 20
         )
@@ -134,8 +130,17 @@ class MainWindow(GenericWindow):
         self.run_server()
 
     def close_window(self, widget=None, event=None):
-        '''Shut the server down and close the window
         '''
+        Shut the server down and kills the application.
+
+        Args:
+            widget (Gtk.Widget)
+            event (Gdk.EventButton)
+
+        Returns:
+            None
+        '''
+
         if hasattr(self, "server"):
             self.server.socket.shutdown(socket.SHUT_RDWR)
             self.server.socket.close()
@@ -148,8 +153,16 @@ class MainWindow(GenericWindow):
         Gtk.main_quit()
 
     def finish_app(self, widget=None, event=None):
-        '''After user has finished running the application, show a dialog and
+        '''
+        After user has finished running the application, show a dialog and
         close the window
+
+        Args:
+            widget (Gtk.Widget)
+            event (Gdk.EventButton)
+
+        Returns:
+            None
         '''
 
         kdialog = FinishDialog()
@@ -160,11 +173,20 @@ class MainWindow(GenericWindow):
 
         self.close_window()
 
-    # TODO: this should be a private member function, and probably
-    # should have a different name
-    def create_terminal(self, challenge_number="", step_number=""):
-        '''This function currently creates the thread which delays showing the
-        spellbook and launches the script in the terminal
+    def start_script_in_terminal(self, challenge_number="", step_number=""):
+        '''
+        This function currently creates the thread that runs the
+        storyline in the TerminalUi class and attaches an event listener
+        to update the UI when the queue is updated.
+
+        Args:
+            challenge_number (str): The challenge number of the challenge that
+                                    we want to start from.
+            step_number (str): The step number of the challenge that
+                               we want to start from.
+
+        Returns:
+            None
         '''
 
         if os.path.dirname(__file__).startswith('/usr'):
@@ -186,11 +208,10 @@ class MainWindow(GenericWindow):
 
         self.terminal.launch_command(command)
 
-        # To give the terminal time to launch the step class
         GLib.idle_add(self.check_queue)
         self.show_all()
 
-        # this to hide the spellbook and terminal from view until the story has
+        # This to hide the spellbook and terminal from view until the story has
         # finished displaying.
         # In debug mode, we don't want to hide it.
         if not self.debug:
@@ -200,7 +221,7 @@ class MainWindow(GenericWindow):
     def type_text(self, text):
         '''Wrapper function for the story member variable
         '''
-        self.story.print_output(text)
+        self.story.type_coloured_text(text)
 
     def print_challenge_title(self, number):
         '''Prints the ascii art challenge title at the start
@@ -208,9 +229,8 @@ class MainWindow(GenericWindow):
 
         self.story.print_challenge_title(number)
 
-    def print_text(self, text):
-        # self.story.print_text(text)
-        self.story.print_coloured_output(text)
+    def print_coloured_text(self, text):
+        self.story.print_coloured_text(text)
 
     def repack_spells(self, spells):
         '''Wrapper function for repacking the spells
@@ -235,8 +255,10 @@ class MainWindow(GenericWindow):
         self.terminal.set_sensitive(False)
 
     def run_server(self):
-        '''Start the server
-        Create the queue which has length 1, and run it on a separate thread
+        '''
+        Start the server, and pass a Queue to it,
+        so the script running in the terminal can
+        send messages to the MainWindow class.
         '''
 
         self.queue = Queue.Queue(1)
@@ -245,23 +267,27 @@ class MainWindow(GenericWindow):
         t.daemon = True
         t.start()
 
-    def check_queue(self, widget=None, event=None, user_data=False):
-        '''Check the queue for any updates on what the current challenge is
+    def check_queue(self):
+        '''
+        This receives the messages sent from the script running in the
+        terminal. From these messages we can decide how to update the GUI.
         '''
 
         try:
             # Give it a timeout so it doesn't hang indefinitely
-            data_dict = self.queue.get(user_data, timeout=5.0)
+            # Don't block the queue - if a value is available, return
+            # immediately.
+            data_dict = self.queue.get(False, timeout=5.0)
 
             if 'exit' in data_dict.keys():
                 self.finish_app()
 
-            # Type out the hint
             elif 'hint' in data_dict.keys():
                 self.stop_typing_in_terminal()
                 self.type_text(data_dict['hint'])
                 self.show_terminal()
 
+            # This is for when we've started a new challenge.
             else:
                 self.story.clear()
 
@@ -273,11 +299,8 @@ class MainWindow(GenericWindow):
 
                     # Print the challenge title at the top of the screen
                     challenge = data_dict['challenge']
-
-                    # If challenge is passed, then print a title
                     self.print_challenge_title(challenge)
 
-                    # So the xp is not hardcoded in the story
                     if 'xp' in data_dict and data_dict['xp']:
                         self.type_text(data_dict['xp'])
 
@@ -286,12 +309,13 @@ class MainWindow(GenericWindow):
                     if "print_text" in data_dict and data_dict["print_text"]:
                         # Automatically stick a double newline at the end of
                         # the user text to save us having to do it ourselves.
-                        self.print_text(data_dict["print_text"] + "\n\n")
+                        self.print_coloured_text(
+                            data_dict["print_text"] + "\n\n"
+                        )
 
-                    # Type the story out
                     self.type_text(data_dict['story'])
 
-                    # Repack the spells into the spellbook
+                    # Repack the spells (commands) into the spellbook
                     spells = data_dict['spells']
                     self.repack_spells(spells)
 
@@ -306,6 +330,11 @@ class MainWindow(GenericWindow):
             return True
 
     def show_menu(self):
+        '''
+        Show the menu that allows the user to pick the challenge
+        they want to start from.
+        '''
+
         self.menu = MenuScreen()
         self.menu.connect(
             'challenge_selected', self.replace_menu_with_challenge
@@ -314,6 +343,14 @@ class MainWindow(GenericWindow):
         self.show_all()
 
     def replace_menu_with_challenge(self, widget, challenge_number):
+        '''
+        Remove the menu and launch the selected challenge.
+
+        Args:
+            widget (Gtk.Widget): The button that was clicked.
+            challenge_number (int)
+        '''
+
         self.remove(self.menu)
         self.setup_application_widgets()
-        self.create_terminal(str(challenge_number), "1")
+        self.start_script_in_terminal(str(challenge_number), "1")

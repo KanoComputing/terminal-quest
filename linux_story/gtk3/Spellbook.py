@@ -53,16 +53,44 @@ class Spellbook(Gtk.EventBox):
 
         self.__pack_locked_spells()
 
-    def repack_spells(self, spells):
-        '''Unpack the spellbook and recreates array of commands into
-        spells, and packs them up in the spellbook
+    def repack_spells(self, commands):
+        '''
+        Takes in the list of commands, and creates the spells and
+        packs them into a grid.
+
+        Args:
+            commands (list): List of strings of the commands we want to show
+
+        Returns:
+            None
         '''
 
-        self.__pack_spells(spells)
+        left = 0
+
+        if commands:
+            for command in commands:
+                if (left + 1) * (self.CMD_WIDTH + 20) < self.win_width:
+                    box = self.__create_spell(command)
+                    child = self.grid.get_child_at(left, 0)
+                    self.grid.remove(child)
+                    self.grid.attach(box, left, 0, 1, 1)
+                    left += 1
+
         self.show_all()
 
     def __create_spell(self, name, locked=False):
-        '''Create the individual GUI for a spell
+        '''
+        Create the individual GUI for a spell.
+        To create the icon, have the icon located at
+        media/images/name.png
+
+        Args:
+            name (str): Name to be shown in the widget
+            locked (bool): Whether we show the icon locked
+                           i.e. with a padlock
+
+        Returns:
+            Gtk.Box: container widget for an individual spell
         '''
 
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -101,24 +129,9 @@ class Spellbook(Gtk.EventBox):
 
         return box
 
-    def __pack_spells(self, commands):
-        '''Takes in the array of commands, and creates the spells and
-        packs them into a grid.
-        '''
-
-        left = 0
-
-        if commands:
-            for command in commands:
-                if (left + 1) * (self.CMD_WIDTH + 20) < self.win_width:
-                    box = self.__create_spell(command)
-                    child = self.grid.get_child_at(left, 0)
-                    self.grid.remove(child)
-                    self.grid.attach(box, left, 0, 1, 1)
-                    left += 1
-
     def __pack_locked_spells(self):
-        '''Fill up the rest of the spells with locked boxes
+        '''
+        Fill up the rest of the spellbook with locked boxes.
         '''
 
         left = 0
