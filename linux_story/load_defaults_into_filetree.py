@@ -16,7 +16,8 @@ from linux_story.common import tq_file_system
 
 
 def default_global_tree(challenge, step):
-    '''This creates the filetree from the yaml of challenge 1
+    '''
+    This creates the filetree from the yaml of challenge 1
     '''
 
     # If we are loading from the default file system, we
@@ -29,20 +30,13 @@ def default_global_tree(challenge, step):
     modify_file_tree(story_dict)
 
 
-def load_tree(challenge, step):
-    '''This uncompresses the file and copies it to the correct
-    directory
-    '''
-    pass
-
-
 def create_item(dest_path, item_type="file", src_path=""):
     '''
     Create a file or directory
-    Parameters:
-    dest_path: a string of the destination path
-    item_type: "file" or "directory"
-    src_path: a string of the source path
+    Args:
+        dest_path (str): the destination path
+        item_type (str): "file" or "directory"
+        src_path (str): the source path
     '''
 
     if not os.path.exists(dest_path):

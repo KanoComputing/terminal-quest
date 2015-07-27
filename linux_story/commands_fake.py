@@ -11,7 +11,6 @@ import os
 
 
 def cd(real_path, line):
-    # for now, avoid awkward import statements
     tq_file_system = os.path.join(os.path.expanduser('~'), '.linux-story')
 
     if not line:

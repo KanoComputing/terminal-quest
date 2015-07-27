@@ -20,16 +20,12 @@ def ls(real_loc, line):
     Prints out the coloured output of the ls command.
 
     Args:
-        real_loc (str): the filepath of the real location of the
-            "current location" of the user.
-
+        real_loc (str): the filepath of the current location of the user.
         line (str): line that the user entered in the terminal
-            excluding ls
+            excluding ls.
 
     Returns:
-        str of the output printed to the terminal
-        or
-        None if there is an error
+        str of the output printed to the terminal.
     '''
 
     new_loc = real_loc
@@ -69,7 +65,7 @@ def ls(real_loc, line):
     if err:
         err = err.replace(tq_file_system, '~')
         print err
-        return
+        return err
 
     # Need to filter output
     files = orig_output.split('\n')
@@ -125,7 +121,7 @@ def sudo(real_path, line):
 
 def shell_command(real_loc, line, command_word=""):
     '''
-    Suitable for launching most commands.
+    Suitable for launching commands which don't involve curses.
 
     Args:
         real_loc (str): the current location of the user.
@@ -226,6 +222,15 @@ def nano(real_path, line):
 
 
 def run_executable(real_path, line):
+    '''
+    Runs the executable.
+
+    Args:
+        real_path (str): the current location of the user
+        in the pseudo-terminal.
+        line (str): the line the user entered.
+    '''
+
     line = line.strip()
 
     if line.startswith("./"):

@@ -78,7 +78,7 @@ def get_default_tree_filename():
 
     current_dir = os.path.abspath(os.path.dirname(__file__))
     default_tree_config = os.path.join(current_dir,
-                                       "story/trees/default_trees.yml")
+                                       "story/trees/default_trees.yaml")
     return default_tree_config
 
 
@@ -117,7 +117,7 @@ def filter_later_challenges(data_dict, current_challenge, current_step):
         current_step (str)
         data_dict (dict): This is all the information about the file system
             across all the different challenges.
-            e.g. the trees/default_trees.yml is an example dictionary.
+            e.g. the story/trees/default_trees.yaml is an example dictionary.
 
     Returns:
         dict: Return a dictionary with the names separated
@@ -125,14 +125,12 @@ def filter_later_challenges(data_dict, current_challenge, current_step):
             challenges and steps which are greater than the one specified.
     '''
 
-    # TODO: be consistent with whether the challenge and step numbers
-    # are strings or integers
     current_challenge = int(current_challenge)
     current_step = int(current_step)
 
     draft_story_dict = {}
-    # Go through the config file
 
+    # Go through the config file
     for dict_id, data_dict in data_dict.iteritems():
 
         # Filter relevent challenges in data_dict

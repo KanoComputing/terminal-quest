@@ -59,7 +59,7 @@ class Storybook(Gtk.TextView):
         '''
         self.get_buffer().set_text('', 0)
 
-    def type_coloured_print(self, string):
+    def type_coloured_text(self, string):
         '''
         Adds colour to the string and prints string with a typing effect.
 

@@ -47,7 +47,7 @@ def main(debug=False, challenge=None, step=None):
     # specified
     if challenge and step:
         win.setup_application_widgets()
-        win.create_terminal(challenge, step)
+        win.start_script_in_terminal(challenge, step)
 
     else:
         # Show the selection menu for the unlocked challenges
@@ -63,7 +63,7 @@ def main(debug=False, challenge=None, step=None):
 
         else:
             win.setup_application_widgets()
-            win.create_terminal("0", "1")
+            win.start_script_in_terminal("0", "1")
 
     os.system("kano-stop-splash")
     Gtk.main()

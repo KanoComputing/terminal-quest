@@ -55,7 +55,7 @@ class Spellbook(Gtk.EventBox):
 
     def repack_spells(self, commands):
         '''
-        Takes in the array of commands, and creates the spells and
+        Takes in the list of commands, and creates the spells and
         packs them into a grid.
 
         Args:
@@ -80,7 +80,9 @@ class Spellbook(Gtk.EventBox):
 
     def __create_spell(self, name, locked=False):
         '''
-        Create the individual GUI for a spell
+        Create the individual GUI for a spell.
+        To create the icon, have the icon located at
+        media/images/name.png
 
         Args:
             name (str): Name to be shown in the widget

@@ -73,7 +73,7 @@ class MenuScreen(Gtk.Alignment):
 
     def continue_story_or_select_chapter_menu(self, widget=None):
         '''This gives the user a simple option of just continuing the story
-        from where they left off, or selecting the chapter manually
+        from where they left off, or selecting the chapter manually.
         '''
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
