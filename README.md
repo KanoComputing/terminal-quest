@@ -9,8 +9,8 @@ A note on the names - the repo, package name and game name are all different as 
 
 ## Kano OS
 linux-story is installed by default on Kano OS, and is provided as a debian package in our repositories. As it has a lot of dependencies from other packages in Kano OS, it is recommended you run it on Kano OS.
-Package name linux-story
-Executable /usr/bin/linux-story-gui
+ - Package name: linux-story
+ - Executable: /usr/bin/linux-story-gui
 
 # How Terminal Quest works
 For a more detailed breakdown, read the [development wiki page](https://github.com/KanoComputing/linux-tutorial/wiki/Development).
