@@ -1,9 +1,8 @@
 
-# linux-tutorial aka Terminal Quest
+# Terminal Quest
 
 This is the source code for the Terminal Quest app available for Kano OS.
 It is an introduction to terminal commands in the style of a text adventure game.
-A note on the names - the repo, package name and game name are all different as the game name was the last to be thought up.
 
 # How to install it
 
