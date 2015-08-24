@@ -153,6 +153,27 @@ class Step6(StepTemplate):
 
     story = [
         "In the barn, you see a woman tending some animals.",
+        "{{lb:Walk}} into the {{lb:barn}} so you can have a closer look."
+    ]
+
+    start_dir = "~/farm"
+    end_dir = "~/farm/barn"
+    hints = [
+        "{{rb:Use}} {{yb:cd barn/}} {{rb:to walk into the barn.}}"
+    ]
+
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
+
+    def next(self):
+        Step7()
+
+
+class Step7(StepTemplate):
+
+    story = [
+        # "In the barn, you see a woman tending some animals.",
+        # "You walk into the barn to have a closer look.",
         "{{lb:Examine}} everyone in the barn using "
         "the {{lb:cat}} command."
     ]
