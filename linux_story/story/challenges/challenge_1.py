@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# coding: utf-8
+
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
@@ -23,24 +25,23 @@ class StepLs(TerminalLs):
 
 class Step1(StepLs):
     story = [
-        "{{wb:Alarm}} : \"Beep beep beep! Beep beep beep!\"",
-        "{{wb:Radio}} : {{Bb:\"Good Morning, this is the 9am news.\"",
-        "\"The town of Folderton has awoken to strange news. "
-        "There have been reports of missing people and damaged"
-        " buildings across the town,"
-        " with more stories coming in as we speak.\"",
-        "\"Mayor Hubert has called an emergency town meeting and"
-        " we'll keep you posted as it happens...\"}}\n",
-        "It's time to get up sleepy head!",
-        "\n{{gb:New Spell:}} Type {{yb:ls}} and press {{wb:Enter}} to "
-        "{{lb:look around}}.\n"
+        "{{wb:Sveglia}} : \"Beep beep beep! Beep beep beep!\"",
+        "{{wb:Radio}} : {{Bb:\"Buongiorno, questo è il notiziario delle 9.\"",
+        "\"Strane voci di primo mattino a Strada in Chianti. "
+        "Si chiacchera di gente sparita e case danneggiate"
+        " in paese, a breve trasmetteremo nuove notizie.\"",
+        "\"Il sindaco ha indetto una riunione d'emergenza,"
+        " vi riferiremo appena avrà avuto luogo...\"}}\n",
+        "È l'ora di svegliarsi dormiglioni!",
+        "\n{{gb:Nuova magia:}} Scrivi {{yb:ls}} e premi {{wb:Invio}} per "
+        "{{lb:guardarti attorno}}.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "ls"
     hints = [
-        "{{rb:Type}} {{yb:ls}} {{rb:and press Enter to take a look around "
-        "your bedroom.}}"
+        "{{rb:Scrivi}} {{yb:ls}} {{rb:e premi Invio per guardarti intorno "
+        "in camera tua.}}"
     ]
 
     last_step = True

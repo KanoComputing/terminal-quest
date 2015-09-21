@@ -1,0 +1,117 @@
+2015-09-15 mar 03:50 
+
+Traduzione della storia di terminal-quest
+
+ssh Andreas@192.168.43.23 (o l'ip che è)
+in kano
+x11vnc
+
+in x220
+arf@arf-ThinkPad-X220:~/Didattica/Kano/TERMINAL-QUEST$ ./VNC-Viewer-5.2.3-Linux-x86
+passw: pippo1
+
+OK!
+
+###
+a caroline clarck avevo scritto:
+https://github.com/KanoComputing/terminal-quest/issues/15
+
+As far as I understood I should do the following:
+
+Translate...
+
+1) the file names of the objects in
+/usr/share/pyshared/linux-story/ascii_assets/story-files
+
+2) the explanations of commands in those files, such as CAT, for instance
+
+3) the names of those files, wherever they appear in all the appropriate *.py
+
+4) the story texts, in the 92 files:
+/usr/share/pyshared/linux-story/story/challenges/challenge_*.py
+
+5) all the appropriate names in
+/usr/share/pyshared/linux-story/story/trees/default_trees.yml
+
+###
+2015-09-17 gio 05:00 
+
+Bene lavoro con X220 collegato via wirelesse alla PB
+RPI collegato alla PB via ethernet
+
+ssh Andreas@192.168.1.X (o l'ip che è)
+in kano
+x11vnc
+
+in x220
+arf@arf-ThinkPad-X220:~/Didattica/Kano/TERMINAL-QUEST$ ./VNC-Viewer-5.2.3-Linux-x86
+passw: pippo1
+
+Una volta nel RPI in ~/terminal-quest
+
+giro il software modificato con 
+
+Una volta nel RPI in ~/terminal-quest
+
+giro il software modificato con 
+./bin/linux-story-gui -d challenge 1 1 
+
+invece il software residente, inalterato, gira con
+
+linux-story-gui -d challenge 1 1 
+
+Tradotto la storia del challenge 1 livello 1
+
+Ho tradotto i nomi delle cartelle (fake)
+my-house
+my-room
+ma andranno tradotti non solo nei file challenge_*.py
+
+Da fare:
+
+1) Non ho cambiato in 37 e 38 di
+   linux-story/story/challenges/challenge_1.py
+   ~/my-house/my-room
+   in
+   ~/la-mia-casa/la-mia-stanza
+   Ma questo andrà fatto di concerto in tutti i file interessati 
+   grep -r my-house * | wc -l
+   rivela 184 file
+   grep -r my-room * | wc -l
+   69
+   L'albero di file esiste e si trova in ~/.linux-story
+   ...devo capire come viene generato
+   Andrà fatto in modo automatico...
+
+2) deve digerire i caratteri accentati Unicode o ascii iso latin...
+   2015-09-17 gio 05:47 FATTO! Aggiungere in testa
+   #!/usr/bin/env python
+   # coding: utf-8
+
+3) In testa appare la scritta CHALLENGE
+   questa si trova in 
+   linux_story/gtk3/MenuScreen.pyc
+   binario derivato in qualche modo da 
+   linux_story/gtk3/Menuscreen.py
+   Da capire, chiedere come procedere e correggere...
+   By the way: come traduco qui "challenge"?
+
+Per ora ho tradotto
+
+./linux_story/story/challenges/challenge_1.py
+
+Funziona, a parte i fatti precedenti che vanno sistemati per bene.
+
+Per ora ho solo aggiunto il file fra quelli da tracciare
+
+git add linux_story/story/challenges/challenge_1.py
+
+senza committing - devo prima correggere my-house e my-room...?
+
+###
+19 settembre
+
+fatto allo stesso modo le variazioni in
+
+
+./linux_story/story/challenges/challenge_2.py

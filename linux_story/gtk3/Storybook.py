@@ -153,7 +153,7 @@ class Storybook(Gtk.TextView):
         if challenge_number == "0":
             text = "INTRODUCTION\n"
         else:
-            text = "CHALLENGE {}\n".format(challenge_number)
+            text = "LIVELLO {}\n".format(challenge_number)
 
         border = "-------------------\n"
         header = "\n" + border + "\n" + text + "\n" + border

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-#
+# coding: utf-8
+
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
@@ -24,18 +25,20 @@ class StepCat(TerminalCat):
 
 class Step1(StepCat):
     story = [
-        "Awesome, now you can see the objects around you.",
-        "There's your bed, an alarm...",
-        "Euuughh...turn that alarm off!",
-        "\n{{gb:New Spell}}: to {{lb:examine}} objects, type {{lb:cat}} "
-        "and the object name.",
-        "\nUse {{yb:cat alarm}} to {{lb:examine}} the alarm.\n",
+        "Ottimo, ora puoi vedere gli oggetti che ci sono attorno.",
+        "C'è il tuo letto, una sveglia...",
+        "Uffa...spengi quella sveglia!",
+        "\n{{gb:Nuova magia}}: per {{lb:vedere}} gli oggetti, scrivi {{lb:cat}} "
+#        "and the object name.",
+        "e poi il nome dell'oggetto.",
+#        "\nUse {{yb:cat alarm}} to {{lb:examine}} the alarm.\n",
+        "\nUsa {{yb:cat sveglia}} per {{lb:vedere}} la sveglia.\n",
 
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat alarm"
-    hints = "{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}"
+    hints = "{{rb:Scrivi}} {{yb:cat sveglia}} {{rb:per esaminare la sveglia.}}"
 
     def next(self):
         Step2()
@@ -43,17 +46,20 @@ class Step1(StepCat):
 
 class Step2(StepCat):
     story = [
-        "Ok - it's switched off. Better get dressed...",
+#        "Ok - it's switched off. Better get dressed...",
+        "Ovvia - tu l'hai spenta. Meglio vestirsi ora...",
 
-        "Type {{yb:ls wardrobe/}} to {{lb:look inside}} your "
-        "{{lb:wardrobe}}.\n"
+#        "Type {{yb:ls wardrobe/}} to {{lb:look inside}} your "
+        "Scrivi {{yb:ls armadio/}} per {{lb:guardare dentro}} il tuo "
+#        "{{lb:wardrobe}}.\n"
+        "{{lb:armadio}}.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = ["ls wardrobe", "ls wardrobe/"]
     hints = (
-        "{{rb:Type}} {{yb:ls wardrobe/}} {{rb:to look for something "
-        "to wear.}}"
+        "{{rb:Scrivi}} {{yb:ls armadio/}} {{rb:per cercare qualcosa "
+        "metterti.}}"
     )
 
     def next(self):
@@ -62,16 +68,21 @@ class Step2(StepCat):
 
 class Step3(StepCat):
     story = [
-        "Check out that {{lb:t-shirt}}!",
-        "{{lb:Examine}} the t-shirt with {{yb:cat wardrobe/t-shirt}} "
-        "to see how it looks.\n"
+#        "Check out that {{lb:t-shirt}}!",
+        " Prova un po' quella {{lb:maglietta}}!",
+#        "{{lb:Examine}} the t-shirt with {{yb:cat wardrobe/t-shirt}} "
+        "{{lb:Guarda}} la maglietta con {{yb:cat armadio/maglietta}} "
+#        "to see how it looks.\n"
+        "per vedere un po' com'è.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat wardrobe/t-shirt"
     hints = (
-        "{{rb:Type}} {{yb:cat wardrobe/t-shirt}} "
-        "{{rb:to investigate how it looks.}}"
+#        "{{rb:Type}} {{yb:cat wardrobe/t-shirt}} "
+        "{{rb:Scrivi}} {{yb:cat armadio/maglietta}} "
+#        "{{rb:to investigate how it looks.}}"
+        "{{rb:per vedere com'è."
     )
 
     def next(self):
@@ -80,8 +91,10 @@ class Step3(StepCat):
 
 class Step4(StepCat):
     story = [
-        "Looking good! Put that on and look for something else.",
-        "{{lb:Examine}} the {{lb:skirt}} or the {{lb:trousers}}.\n"
+#        "Looking good! Put that on and look for something else.",
+        "Bellina! Mettitela e cerca qualcos'altro.",
+#        "{{lb:Examine}} the {{lb:skirt}} or the {{lb:trousers}}.\n"
+        "{{lb:Guarda un po'}} la {{lb:gonna}} o i {{lb:pantaloni}}.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -90,8 +103,10 @@ class Step4(StepCat):
         "cat wardrobe/trousers"
     ]
     hints = (
-        "{{rb:Type}} {{yb:cat wardrobe/trousers}} {{rb:or}} "
-        "{{yb:cat wardrobe/skirt}} {{rb:to dress yourself.}}"
+#        "{{rb:Type}} {{yb:cat wardrobe/trousers}} {{rb:or}} "
+        "{{rb:Scrivi}} {{yb:cat armadio/pantaloni}} {{rb:o}} "
+#        "{{yb:cat wardrobe/skirt}} {{rb:to dress yourself.}}"
+        "{{yb:cat armadio/gonna}} {{rb:per vestirti.}}"
     )
     checked_outside_wardrobe = False
 
@@ -117,8 +132,10 @@ class Step4(StepCat):
 
 class Step5(StepCat):
     story = [
-        "Awesome, your outfit is nearly complete.",
-        "Finally, check out that {{lb:cap}}.\n"
+#        "Awesome, your outfit is nearly complete.",
+        "Benissimo, siamo quasi pronti.",
+#        "Finally, check out that {{lb:cap}}.\n"
+        "E ora guarda com'è il {{lb:berretto}}.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -126,8 +143,9 @@ class Step5(StepCat):
         "cat wardrobe/cap"
     ]
     hints = (
-        "{{rb:Type}} {{yb:cat wardrobe/cap}} {{rb:to}} "
-        "{{lb:examine}} {{rb:the cap.}}"
+#        "{{rb:Type}} {{yb:cat wardrobe/cap}} {{rb:to}} "
+        "{{rb:Scrivi}} {{yb:cat armadio/berretto}} {{rb:per}} "
+        "{{lb:vedere}} {{rb:il berretto.}}"
     )
 
     last_step = True
