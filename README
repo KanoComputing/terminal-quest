@@ -115,3 +115,181 @@ fatto allo stesso modo le variazioni in
 
 
 ./linux_story/story/challenges/challenge_2.py
+
+###
+20 settembre
+
+In treno, sull'X220
+
+arf@arf-ThinkPad-X220:~/Didattica/Kano/TERMINAL-QUEST/terminal-quest$ ls -l linux_story/ascii_assets/story_files/ | awk '{print $9}' > FOO
+
+
+
+
+
+cp alarm it/sveglia
+cp alice-and-wonderland it/alice-e-il-paese-delle-meraviglie   # tradurre "COLD"? Fatto ma bisogna vedere se è davvero COLD...
+cp apple it/mela
+cp banana it/banana
+cp bed_farmhouse it/letto_fattoria
+cp bed_my-room it/letto_camera-mia
+cp bed_parents-room it/letto_camera-genitori
+cp bench it/panchina
+cp Bernard it/Bernardo
+cp bernards-diary-1 it/diario-bernardo-1   # tradurre
+cp bernards-diary-2 it/diario-bernardo-2   # tradurre
+cp bernards-hat it/cappello-bernardo
+cp best-horn-in-the-world-correct.sh it/miglior-clackson-del-mondo-corretto.sh   # tradurre
+cp best-horn-in-the-world-incorrect.sh it/miglior-clackson-del-mondo-scorretto.sh   # tradurre
+cp best-shed-maker-in-the-world.sh it/miglior-fabbricatore-di-capanni-del-mondo.sh   # tradurre
+cp bull it/toro
+cp cake it/torta
+cp cap it/berretto
+cp carrots it/carote
+cp CAT it/CAT   # tradurre contenuto
+cp CD it/CD   # tradurre contenuto
+cp chair it/sedia
+cp chick it/pulcino
+cp chicken it/pollo
+cp Clara it/Clara
+cp Cobweb it/Gelsomino   # o altro nome proprio adatto a un cavallo
+cp comic-book it/fumetto
+cp computer it/computer
+cp country-boy it/garzone   # contadinello?
+cp croissant it/cornetto
+cp Dad it/babbo
+cp Daisy it/Violetta   # o altro noime da mucca
+cp dame it/signora   # ?
+cp desk it/scrivania
+cp dog it/cane
+cp dress it/vestito
+cp ECHO it/ECHO   # tradurre contenuto
+cp Edith it/Edith   # o altro nome (vedere storia)
+cp Edward it/Edoardo
+cp Eleanor it/Eleonora
+cp empty-bottle it/bottiglia-vuota
+cp farms it/fattorie
+cp fence it/recinto
+cp fighter it/combattente
+cp flowers it/fiori
+cp grapes it/grappoli
+cp grumpy-man it/brontolone
+cp hammer it/martello
+cp jumper it/felpa
+cp librarian it/bibliotecario
+cp little-boy it/ragazzino
+cp LS it/LS   # tradurre contenuto
+cp map it/mappa
+cp Mayor it/sindaco
+cp milk it/latte   # tradurre "MILK"
+cp MKDIR it/MKDIR   # tradurre contenuto
+cp Mum it/mamma
+cp mums-diary it/diario-mamma
+cp MV it/MV   # tradurre contenuto
+cp NANO it/NANO   # tradurre contenuto
+cp nerd it/smanettone
+cp newspaper it/giornale   # tradurre contenuto 
+cp note_greenhouse it/foglietto_serra
+cp note_kitchen it/foglietto_cucina
+cp note_my-room it/foglietto_camera-mia   # sistemare problema lettera ò
+cp note_town it/foglietto_paese
+cp onion it/cipolla
+cp oven it/stufa
+cp photocopier.sh it/fotocopiatrice.sh
+cp picture it/quadro   # ?
+cp pie it/tortina   # ?
+cp pumpkin it/zucca
+cp redwall it/pinocchio   # se redwall è effettivamente un racconto per bambini...
+cp Ruth it/Romina   # o nome adatto (vedere storia)
+cp sandwich it/panino
+cp saw it/sega
+cp screwdriver it/cacciavite
+cp shirt it/camicia
+cp skirt it/gonna
+cp spanner it/chiave-inglese
+cp table it/tavolo
+cp tape-measure it/metro
+cp tomato it/pomodoro
+cp Trotter it/Trogolo   # o altro nome da maiale...
+cp trousers it/pantaloni
+cp t-shirt it/maglietta
+cp tv it/televisione
+cp watership-down it/la-collina-dei-conigli
+cp wimpy-guy it/tipo-imbranato   # o deboluccio...?
+cp window it/finestra
+cp witch it/strega
+cp young-girl it/ragazzina
+
+Le traduzioni precedenti si riferiscono agli oggetti presenti
+sotto forma di ascii artwork in
+./linux_story/ascii_assets/story_files/ 
+
+ma ci sono altri termini, che compaiono tutti (credo) in
+linux_story/story/trees/default_trees.yaml
+che elenco qui sotto
+
+my-room camera-mia
+my-house casa-mia
+shelves scaffali
+parents-room camera-genitori
+garden giardino
+greenhouse serra
+.note .foglietto
+.hidden-shelter .riparo-nascosto
+town paese
+basket cestino
+kitchen cucina
+east est
+shed-shop negozio-capanni   # verificare 
+library biblioteca   # verificare
+restaurant ristorante
+cellar cantina
+.chest .scrigno   # verificare
+.tiny-chest .piccolo-scrigno   # verificare
+.safe .cassaforte   # verificare
+farm fattoria
+barn fienile   # verificare
+shelter riparo   # verificare
+farmhouse casa-della-fattoria
+toolshed capanno-degli-attrezzi
+basement seminterrato   # verificare
+public-section sezione-pubblica
+
+
+
+
+
+messo nello script transl-cp-file.sh che deve girare in
+./linux_story/ascii_assets/story_files/ e sempre qui ci deve essere la
+directory it, dove vengono copiati file in versione italiana - alcuni da
+tradurre anche dentro
+
+###
+2015-09-21 Mon 04:47 PM
+
+Portato tutto nel Kano e introdotte le modifiche relative alla creazione
+di nuovi file con nomi in italiano in un nuovo branch id nome "file-italiani"
+
+###
+2015-09-22 Tue 09:50 PM
+
+Tradotto quasi tutto l'albero
+
+./linux_story/story/trees/default_trees.yaml
+
+Per ogni challenge devo fare le sequenti cose:
+
+- :%s/my-room/camera-mia/
+- :%s/my-house/casa-mia/
+- tradurre story (lascio per ora la copia inglese commentata)
+- tradurre commands (lascio per ora la copia inglese commentata)
+- tradurre hints (lascio per ora la copia inglese commentata)
+
+Attenzione, in 
+
+./linux_story/story/trees/default_trees.yaml
+
+ho tradotto anche .note in .foglietto...
+
+Completato i primi 3 challenge.
+

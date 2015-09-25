@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-#
+# coding: utf-8
+
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
@@ -26,23 +27,29 @@ class StepTemplateCd(TerminalCd):
 
 class Step1(StepTemplateCd):
     story = [
-        "That's weird. No time for that now though - lets find Mum.",
-        "\n{{gb:New Spell}}: {{lb:cd}} lets you move between places.",
-        "\nUse the command {{yb:cd ../}} to {{lb:leave}} your room.\n"
+#arf         "That's weird. No time for that now though - lets find Mum.",
+        "Questo è molto strano. Ma non ho tempo di pensarci ora - vediamo dov'è la mamma.",
+#arf        "\n{{gb:New Spell}}: {{lb:cd}} lets you move between places.",
+        "\n{{gb:Nuova magia}}: con {{lb:cd}} ti puoi muovere da un posto all'altro.",
+#arf        "\nUse the command {{yb:cd ../}} to {{lb:leave}} your room.\n"
+        "\nUsa il comando {{yb:cd ../}} per {{lb:lasciare}} la tua camera.\n"
     ]
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house"
+    start_dir = "~/casa-mia/camera-mia"
+    end_dir = "~/casa-mia"
     commands = [
         "cd ..",
         "cd ../",
-        "cd ~/my-house",
-        "cd ~/my-house/"
+        "cd ~/casa-mia",
+        "cd ~/casa-mia/"
     ]
     hints = [
-        "{{rb:Type}} {{yb:cd ../}} {{rb:to leave your room. The}} "
+#arf        "{{rb:Type}} {{yb:cd ../}} {{rb:to leave your room. The}} "
+        "{{rb:Scrivi}} {{yb:cd ../}} {{rb:per lasciare la tua camera. I due puntini sono}} "
         "{{lb:..}} "
-        "{{rb:is the room behind you.}}",
-        "{{rb:Type}} {{yb:cd ../}} {{rb:to leave your room.}}"
+#arf        "{{rb:is the room behind you.}}",
+        "{{rb:la stanza che trovi uscendo.}}",
+#arf        "{{rb:Type}} {{yb:cd ../}} {{rb:to leave your room.}}"
+        "{{rb:Scrivi}} {{yb:cd ../}} {{rb:per lasciare la tua camera.}}"
     ]
 
     def block_command(self):
@@ -56,20 +63,23 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "You've left {{bb:my-room}} and are in the hall of {{bb:my-house}}.",
-        "{{lb:Look around}} at the different rooms using {{yb:ls}}.\n"
+#arf        "You've left {{bb:camera-mia}} and are in the hall of {{bb:casa-mia}}.",
+        "Hai lasciato {{bb:camera-mia}} e sei nell'ingresso di {{bb:casa-mia}}.",
+#arf        "{{lb:Look around}} at the different rooms using {{yb:ls}}.\n"
+        "{{lb:Guarda un po'}} che stanze ci sono, usa {{yb:ls}}.\n"
     ]
-    start_dir = "~/my-house"
-    end_dir = "~/my-house"
+    start_dir = "~/casa-mia"
+    end_dir = "~/casa-mia"
     commands = "ls"
-    hints = "{{rb:Type}} {{yb:ls}} {{rb:and press Enter.}}"
+#arf    hints = "{{rb:Type}} {{yb:ls}} {{rb:and press Enter.}}"
+    hints = "{{rb:Scrivi}} {{yb:ls}} {{rb:e premi Invio.}}"
     story_dict = {
-        "note_greenhouse": {
-            "name": "note",
-            "path": "~/my-house/garden/greenhouse"
+        "foglietto_serra": {
+            "name": "foglietto",
+            "path": "~/casa-mia/giardino/serra"
         }
     }
-    deleted_items = ['~/my-house/garden/greenhouse/Dad']
+    deleted_items = ['~/casa-mia/giardino/serra/babbo']
 
     def next(self):
         play_sound('bell')
@@ -79,16 +89,21 @@ class Step2(StepTemplateCd):
 class Step3(StepTemplateCd):
     story = [
         "{{pb:Ding. Dong.}}\n",
-        "What was that?  A bell?  That's a bit odd.",
-        "You see the door to your {{bb:kitchen}}, and hear the sound of "
-        "cooking.",
-        "Sounds like someone is preparing breakfast!",
-        "To {{lb:go inside the kitchen}}, use {{yb:cd kitchen/}}"
+#arf        "What was that?  A bell?  That's a bit odd.",
+        "O questa?  Un campanello?  Un po' strano.",
+#arf        "You see the door to your {{bb:cucina}}, and hear the sound of "
+        "Guardi verso la porta della {{bb:cucina}}, e senti rumori "
+#arf        "cooking.",
+        "di qualcuno che sta cucinando.",
+#arf        "Sounds like someone is preparing breakfast!",
+        "Sembra che qualcuno prepari la colazione!",
+#arf        "To {{lb:go inside the cucina}}, use {{yb:cd kitchen/}}"
+        "Per {{lb:andare in cucina}}, usa {{yb:cd cucina/}}"
     ]
-    start_dir = "~/my-house"
-    end_dir = "~/my-house/kitchen"
-    commands = ["cd kitchen", "cd kitchen/"]
-    hints = ["{{rb:Type}} {{yb:cd kitchen/}} {{rb:and press Enter.}}"]
+    start_dir = "~/casa-mia"
+    end_dir = "~/casa-mia/cucina"
+    commands = ["cd cucina", "cd cucina/"]
+    hints = ["{{rb:Scrivi}} {{yb:cd cucina/}} {{rb:e premi Invio.}}"]
 
     def block_command(self):
         return unblock_commands_with_cd_hint(
@@ -101,13 +116,16 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "Great, you're in the kitchen.",
-        "{{lb:Look}} for Mum using {{yb:ls}}."
+#arf        "Great, you're in the cucina.",
+        "Bravissimo, ora sei in cucina.",
+#arf        "{{lb:Look}} for Mum using {{yb:ls}}."
+        "{{lb:Cerca}} la mamma usando {{yb:ls}}."
     ]
-    start_dir = "~/my-house/kitchen"
-    end_dir = "~/my-house/kitchen"
+    start_dir = "~/casa-mia/cucina"
+    end_dir = "~/casa-mia/cucina"
     commands = "ls"
-    hints = "{{rb:Can't find her?  Type}} {{yb:ls}} {{rb:and press Enter.}}"
+#arf    hints = "{{rb:Can't find her?  Type}} {{yb:ls}} {{rb:and press Enter.}}"
+    hints = "{{rb:Non la trovi?  Scrivi}} {{yb:ls}} {{rb:e premi Invio.}}"
 
     def next(self):
         Step5()
@@ -115,17 +133,20 @@ class Step4(StepTemplateCd):
 
 class Step5(StepTemplateCd):
     story = [
-        "You see her busily working in a cloud of steam.",
-
-        "Let's {{lb:listen}} to what {{lb:Mum}} has to say by "
-        "using {{lb:cat}}."
+#arf        "You see her busily working in a cloud of steam.",
+        "Eccola che lavora in una nuvola di vapore.",
+#arf        "Let's {{lb:listen}} to what {{lb:Mum}} has to say by "
+        "{{lb:Sentiamo}} cos'ha da dire la {{lb:mamma}} "
+#arf        "using {{lb:cat}}."
+        "usando {{lb:cat}}."
     ]
-    start_dir = "~/my-house/kitchen"
-    end_dir = "~/my-house/kitchen"
-    commands = "cat Mum"
+    start_dir = "~/casa-mia/cucina"
+    end_dir = "~/casa-mia/cucina"
+    commands = "cat mamma"
     hints = (
-        "{{rb:Stuck? Type:}} {{yb:cat Mum}}. "
-        "{{rb:Don\'t forget the capital letter!}}"
+#arf        "{{rb:Stuck? Type:}} {{yb:cat Mum}}. "
+        "{{rb:Non sai che fare? Scrivi:}} {{yb:cat mamma}}. "
+#arf        "{{rb:Don\'t forget the capital letter!}}"
     )
 
     last_step = True

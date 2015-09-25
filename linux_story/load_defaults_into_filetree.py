@@ -101,7 +101,7 @@ def modify_file_tree(filesystem_dict):
 
     # Move this to the common.py?
     containing_dir_of_files = os.path.join(
-        containing_dir, "ascii_assets/story_files"
+        containing_dir, "ascii_assets/story_files/it"
     )
 
     for item_names, item_dict in filesystem_dict.iteritems():

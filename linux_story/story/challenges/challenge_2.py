@@ -35,9 +35,10 @@ class Step1(StepCat):
         "\nUsa {{yb:cat sveglia}} per {{lb:vedere}} la sveglia.\n",
 
     ]
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house/my-room"
-    commands = "cat alarm"
+    start_dir = "~/casa-mia/camera-mia"
+    end_dir = "~/casa-mia/camera-mia"
+#    commands = "cat alarm"
+    commands = "cat sveglia"
     hints = "{{rb:Scrivi}} {{yb:cat sveglia}} {{rb:per esaminare la sveglia.}}"
 
     def next(self):
@@ -54,9 +55,10 @@ class Step2(StepCat):
 #        "{{lb:wardrobe}}.\n"
         "{{lb:armadio}}.\n"
     ]
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house/my-room"
-    commands = ["ls wardrobe", "ls wardrobe/"]
+    start_dir = "~/casa-mia/camera-mia"
+    end_dir = "~/casa-mia/camera-mia"
+#    commands = ["ls wardrobe", "ls wardrobe/"]
+    commands = ["ls armadio", "ls armadio/"]
     hints = (
         "{{rb:Scrivi}} {{yb:ls armadio/}} {{rb:per cercare qualcosa "
         "metterti.}}"
@@ -75,14 +77,15 @@ class Step3(StepCat):
 #        "to see how it looks.\n"
         "per vedere un po' com'è.\n"
     ]
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house/my-room"
-    commands = "cat wardrobe/t-shirt"
+    start_dir = "~/casa-mia/camera-mia"
+    end_dir = "~/casa-mia/camera-mia"
+#    commands = "cat wardrobe/t-shirt"
+    commands = "cat armadio/maglietta"
     hints = (
 #        "{{rb:Type}} {{yb:cat wardrobe/t-shirt}} "
         "{{rb:Scrivi}} {{yb:cat armadio/maglietta}} "
 #        "{{rb:to investigate how it looks.}}"
-        "{{rb:per vedere com'è."
+        "{{rb:per vedere com'è}}."
     )
 
     def next(self):
@@ -96,11 +99,13 @@ class Step4(StepCat):
 #        "{{lb:Examine}} the {{lb:skirt}} or the {{lb:trousers}}.\n"
         "{{lb:Guarda un po'}} la {{lb:gonna}} o i {{lb:pantaloni}}.\n"
     ]
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house/my-room"
+    start_dir = "~/casa-mia/camera-mia"
+    end_dir = "~/casa-mia/camera-mia"
     commands = [
-        "cat wardrobe/skirt",
-        "cat wardrobe/trousers"
+#        "cat wardrobe/skirt",
+        "cat armadio/gonna",
+#        "cat wardrobe/trousers"
+        "cat armadio/pantaloni"
     ]
     hints = (
 #        "{{rb:Type}} {{yb:cat wardrobe/trousers}} {{rb:or}} "
@@ -137,10 +142,11 @@ class Step5(StepCat):
 #        "Finally, check out that {{lb:cap}}.\n"
         "E ora guarda com'è il {{lb:berretto}}.\n"
     ]
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house/my-room"
+    start_dir = "~/casa-mia/camera-mia"
+    end_dir = "~/casa-mia/camera-mia"
     commands = [
-        "cat wardrobe/cap"
+#        "cat wardrobe/cap"
+        "cat armadio/berretto"
     ]
     hints = (
 #        "{{rb:Type}} {{yb:cat wardrobe/cap}} {{rb:to}} "

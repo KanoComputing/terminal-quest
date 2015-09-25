@@ -33,9 +33,10 @@ class Step1(StepTemplateCat):
 #        "Let's {{lb:look}} in your {{lb:shelves}} using {{lb:ls}}.\n"
         "{{lb:Guarda}} nei tuoi {{lb:scaffali}} using {{lb:ls}}.\n"
     ]
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house/my-room"
-    commands = ["ls shelves", "ls shelves/"]
+    start_dir = "~/casa-mia/camera-mia"
+    end_dir = "~/casa-mia/camera-mia"
+#    commands = ["ls shelves", "ls shelves/"]
+    commands = ["ls scaffali", "ls scaffali/"]
 #    hints = "{{rb:Type}} {{yb:ls shelves/}} {{rb:to look at your books.}}"
     hints = "{{rb:Scrivi}} {{yb:ls scaffali/}} {{rb:per guardare i tuoi libri.}}"
 
@@ -52,11 +53,12 @@ class Step2(StepTemplateCat):
 #        "{{yb:cat shelves/comic-book}}",
         "{{yb:cat scaffali/fumetto}}",
 #        "Press the TAB key before you've finished typing!\n"
-        "Premi il tasto TAB primam di avere finito di scrivere il comando!\n"
+        "Premi il tasto TAB prima di avere finito di scrivere il comando!\n"
     ]
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house/my-room"
-    commands = "cat shelves/comic-book"
+    start_dir = "~/casa-mia/camera-mia"
+    end_dir = "~/casa-mia/camera-mia"
+#    commands = "cat shelves/comic-book"
+    commands = "cat scaffali/fumetto"
 #    hints = "{{rb:Type}} {{yb:cat shelves/comic-book}} {{rb:to read the comic.}}"
     hints = "{{rb:Scrivi}} {{yb:cat scaffali/fumetto}} {{rb:per leggerlo.}}"
 
@@ -73,9 +75,10 @@ class Step3(StepTemplateCat):
 #        "{{lb:Read}} the note using {{lb:cat}}.\n"
         "{{lb:Leggilo}} usando il comando {{lb:cat}}.\n"
     ]
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house/my-room"
-    commands = "cat shelves/note"
+    start_dir = "~/casa-mia/camera-mia"
+    end_dir = "~/casa-mia/camera-mia"
+#    commands = "cat shelves/note"
+    commands = "cat scaffali/foglietto"
 #    hints = "{{rb:Type}} {{yb:cat shelves/note}} {{rb:to read the note.}}"
     hints = "{{rb:Scrivi}} {{yb:cat scaffali/foglietto}} {{rb:per leggerlo.}}"
 

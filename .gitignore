@@ -1,3 +1,6 @@
 *.pyc
 *.DS_Store
 ._*
+.README.swp
+README
+*.swp

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-#
+# coding: utf-8
+
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
@@ -40,14 +41,17 @@ class Step1(StepTemplateCd):
 
     story = [
         "{{pb:Ding. Dong.}}\n",
-        "It sounds like the bell you heard before.",
-        "Use {{yb:ls}} to {{lb:look around}} again."
+#arf        "It sounds like the bell you heard before.",
+        "Sembra la campanella di prima.",
+#arf        "Use {{yb:ls}} to {{lb:look around}} again."
+        "Usa {{yb:ls}} per {{lb:guardarti attorno}} di nuovo."
     ]
-    start_dir = "~/town"
-    end_dir = "~/town"
+    start_dir = "~/paese"
+    end_dir = "~/paese"
     commands = "ls"
-    hints = "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
-    deleted_items = ["~/town/grumpy-man"]
+#arf    hints = "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+    hints = "{{rb:Usa}} {{yb:ls}} {{rb:per guardarti attorno.}}"
+    deleted_items = ["~/paese/brontolone"]
 
     def __init__(self, xp=""):
         play_sound("bell")
@@ -61,19 +65,24 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCdBell):
 
     story = [
-        "{{wb:Little-boy:}} {{Bb:Oh no! That}} {{lb:grumpy-man}} "
-        "{{Bb:with the funny legs has gone!}} "
-        "{{Bb:Did you hear the bell just before he vanished??}}",
-        "{{wb:Young-girl:}} {{Bb:I'm scared...}}",
+#arf        "{{wb:Little-boy:}} {{Bb:Oh no! That}} {{lb:brontolone}} "
+        "{{wb:Ragazzino:}} {{Bb:Oddio! Quel}} {{lb:brontolone}} "
+#arf        "{{Bb:with the funny legs has gone!}} "
+        "\n{{Bb:con le gambe buffe è sparito!}} "
+#arf        "{{wb:Young-girl:}} {{Bb:I'm scared...}}",
+        "\n{{wb:Ragazzina:}} {{Bb:Ho paura...}}",
         "\n{{pb:Ding. Dong.}}\n",
-        "{{wb:Young-girl:}} {{Bb:Oh!  I heard it go again!}}",
-        "\nTake a {{lb:look around}} you to check."
+#arf        "{{wb:Young-girl:}} {{Bb:Oh!  I heard it go again!}}",
+        "{{wb:Ragazzina:}} {{Bb:Oh! l'ho sentita di nuovo!}}",
+#arf        "\nTake a {{lb:look around}} you to check."
+        "\nDai {{lb:un'occhiata in giro}} per controllare."
     ]
-    start_dir = "~/town"
-    end_dir = "~/town"
+    start_dir = "~/paese"
+    end_dir = "~/paese"
     commands = "ls"
-    hints = "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
-    deleted_items = ["~/town/little-boy"]
+#arf    hints = "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+    hints = "{{rb:Usa}} {{yb:ls}} {{rb:per guardare attorno.}}"
+    deleted_items = ["~/paese/ragazzino"]
 
     def next(self):
         Step3()
@@ -82,18 +91,24 @@ class Step2(StepTemplateCdBell):
 class Step3(StepTemplateCdBell):
 
     story = [
-        "{{wb:Young-girl:}} {{Bb:Wait, there was a}} {{lb:little-boy}} "
-        "{{Bb:here...right?",
-        "Every time that bell goes, someone disappears!}}",
-        "{{wb:Mayor:}} {{Bb:Maybe they just decided to go home...?}}",
+#arf        "{{wb:Young-girl:}} {{Bb:Wait, there was a}} {{lb:ragazzino}} "
+"{{wb:Ragazzina:}} {{Bb:Aspetta, c'era un}} {{lb:ragazzo}} "
+#arf        "{{Bb:here...right?",
+        "{{Bb:qui...no?",
+#arf        "Every time that bell goes, someone disappears!}}",
+        "Ogni volta che la campanella suona, qualcuno sparisce!}}",
+#arf        "{{wb:sindaco:}} {{Bb:Maybe they just decided to go home...?}}",
+        "{{wb:Sindaco:}} {{Bb:Potrebbe essere appena andato a casa...?}}",
         "\n{{pb:Ding. Dong.}}\n",
-        "{{lb:Look around.}}"
+#arf        "{{lb:Look around.}}"
+        "{{lb:Guarda intorno.}}"
     ]
-    start_dir = "~/town"
-    end_dir = "~/town"
+    start_dir = "~/paese"
+    end_dir = "~/paese"
     commands = "ls"
-    hints = "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
-    deleted_items = ["~/town/young-girl"]
+#arf    hints = "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+    hints = "{{rb:Usa}} {{yb:ls}} {{rb:per guardare intorno.}}"
+    deleted_items = ["~/paese/ragazzina"]
 
     def next(self):
         Step4()
@@ -102,13 +117,15 @@ class Step3(StepTemplateCdBell):
 class Step4(StepTemplateCd):
 
     story = [
-        "You are alone with the Mayor.",
-        "{{lb:Listen}} to what the Mayor has to say."
+#arf        "You are alone with the sindaco.",
+        "Sei solo con il sindaco.",
+#arf        "{{lb:Listen}} to what the sindaco has to say."
+        "{{lb:Ascolta}} ciò che ha da dire il sindaco."
     ]
-    start_dir = "~/town"
-    end_dir = "~/town"
-    commands = "cat Mayor"
-    hints = "{{rb:Use}} {{yb:cat Mayor}} {{rb:to talk to the Mayor.}}"
+    start_dir = "~/paese"
+    end_dir = "~/paese"
+    commands = "cat sindaco"
+    hints = "{{rb:Use}} {{yb:cat sindaco}} {{rb:to talk to the sindaco.}}"
 
     def next(self):
         Step5()
@@ -117,19 +134,22 @@ class Step4(StepTemplateCd):
 class Step5(StepTemplateCdBell):
 
     story = [
-        "{{wb:Mayor:}} {{Bb:\"Everyone...has disappeared??\"",
-        "....I should head home now...}}",
+#arf        "{{wb:sindaco:}} {{Bb:\"Everyone...has disappeared??\"",
+        "{{wb:sindaco:}} {{Bb:\"Sono tutti...spariti??\"",
+#arf        "....I should head home now...}}",
+        "....Avrei da andare a casa ora...}}",
         "\n{{pb:Ding. Dong.}}\n"
     ]
-    start_dir = "~/town"
-    end_dir = "~/town"
+    start_dir = "~/paese"
+    end_dir = "~/paese"
     commands = "ls"
-    hints = "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
-    deleted_items = ["~/town/Mayor"]
+#arf    hints = "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+    hints = "{{rb:Usa}} {{yb:ls}} {{rb:per guardare intorno.}}"
+    deleted_items = ["~/paese/sindaco"]
     story_dict = {
-        "note_town": {
-            "name": "note",
-            "path": "~/town"
+        "foglietto_paese": {
+            "name": "foglietto",
+            "path": "~/paese"
         }
     }
 
@@ -139,14 +159,18 @@ class Step5(StepTemplateCdBell):
 
 class Step6(StepTemplateCd):
     story = [
-        "Everyone has gone.",
-        "Wait - there's a note on the floor.",
-        "Use {{lb:cat}} to read the note."
+#arf        "Everyone has gone.",
+        "Sono andati tutti via.",
+#arf        "Wait - there's a foglietto on the floor.",
+        "Aspetta - c'è un foglietto per terra.",
+#arf        "Use {{lb:cat}} to read the foglietto."
+        "Usa {{lb:cat}} per leggere il foglietto."
     ]
-    start_dir = "~/town"
-    end_dir = "~/town"
-    commands = "cat note"
-    hints = "{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}"
+    start_dir = "~/paese"
+    end_dir = "~/paese"
+    commands = "cat foglietto"
+#arf    hints = "{{rb:Use}} {{yb:cat foglietto}} {{rb:to read the note.}}"
+    hints = "{{rb:Usa}} {{yb:cat foglietto}} {{rb:per leggere il foglietto.}}"
     last_step = True
 
     def next(self):

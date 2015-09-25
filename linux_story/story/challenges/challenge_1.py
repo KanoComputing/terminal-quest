@@ -32,12 +32,12 @@ class Step1(StepLs):
         " in paese, a breve trasmetteremo nuove notizie.\"",
         "\"Il sindaco ha indetto una riunione d'emergenza,"
         " vi riferiremo appena avrà avuto luogo...\"}}\n",
-        "È l'ora di svegliarsi dormiglioni!",
-        "\n{{gb:Nuova magia:}} Scrivi {{yb:ls}} e premi {{wb:Invio}} per "
+        "È l'ora di svegliarsi dormiglione!",
+        "\n{{gb:Prima magia:}} Scrivi {{yb:ls}} e premi {{wb:Invio}} per "
         "{{lb:guardarti attorno}}.\n"
     ]
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house/my-room"
+    start_dir = "~/casa-mia/camera-mia"
+    end_dir = "~/casa-mia/camera-mia"
     commands = "ls"
     hints = [
         "{{rb:Scrivi}} {{yb:ls}} {{rb:e premi Invio per guardarti intorno "
