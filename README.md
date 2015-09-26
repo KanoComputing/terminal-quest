@@ -10,7 +10,7 @@ It is an introduction to terminal commands in the style of a text adventure game
 
 The first 10 challenges have been translated, so far.
 
-In CodeBook.md details about how the translation is done can be found.
+In [CodeBook.md](https://github.com/iamarf/terminal-quest/blob/master/CodeBook.md) details about how the translation is done can be found.
 
 # How to install it
 
