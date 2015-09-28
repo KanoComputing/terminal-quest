@@ -3,7 +3,7 @@
 
 Modifications that will be cleaned up at the end, are marked within #arf comments throughout the code.
 
-The following file have been modified so far:
+The following files have been modified so far:
 
 #### linux_story/story/challenges/challenge_X.py, with X=1,14
 
