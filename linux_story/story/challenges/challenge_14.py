@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-#
+# coding: utf-8
+
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
@@ -27,49 +28,49 @@ class StepTemplateMv(TerminalMv):
 
 class Step1(StepTemplateMv):
     story = [
-        "Let's {{lb:look around}} to see what food is "
-        "available in the kitchen.\n"
+        "{{lb:Guardiamo in giro}} per vedere che c'è "
+        "da mangiare in cucina.\n"
     ]
-    start_dir = "~/my-house/kitchen"
-    end_dir = "~/my-house/kitchen"
+    start_dir = "~/casa-mia/cucina"
+    end_dir = "~/casa-mia/cucina"
     commands = [
         "ls",
         "ls -a"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to have a}} {{lb:look around}} "
-        "{{rb:the kitchen.}}"
+		    "{{rb:Usa}} {{yb:ls}} {{rb:per guardare}} {{lb:intorno}} "
+        "{{rb:in cucina.}}"
     ]
 
     def next(self):
         Step2()
 
 
-# Move three pieces of food into the basket
+# Move three pieces of food into the cestino
 class Step2(StepTemplateMv):
     story = [
-        "{{lb:Move}} three pieces of food into your basket.",
-        "You can move multiple items using {{lb:mv <item1> <item2>"
-        " <item3> basket/}}.\n"
+        "{{lb:Sposta}} tre cibi nel tuo cestino",
+        "Puoi spostare più cose insieme usando {{lb:mv <una cosa> < altra cosa>"
+        " <altra cosa ancora> cestino/}}.\n"
     ]
-    start_dir = "~/my-house/kitchen"
-    end_dir = "~/my-house/kitchen"
+    start_dir = "~/casa-mia/cucina"
+    end_dir = "~/casa-mia/cucina"
     passable_items = [
         'banana',
-        'cake',
-        'croissant',
-        'pie',
-        'grapes',
-        'milk',
-        'sandwich'
+        'torta',
+        'cornetto',
+        'tortina',
+        'grappoli',
+        'latte',
+        'panino'
     ]
     unmovable_items = {
-        "newspaper": "{{rb:They asked for food, they probably shouldn't "
-        "eat the newspaper.}}",
+        "giornale": "{{rb:Hanno chiesto cibo, probabilmente "
+        "non mangiano giornali.}}",
 
-        "oven": "{{rb:This is a bit heavy for you to carry!}}",
+        "stufa": "{{rb:Sarà un po' pesa da trasportare, no?}}",
 
-        "table": "{{rb:This is a bit heavy for you to carry!}}"
+        "table": "{{rb:Sarà un po' pesa da trasportare, no?}}"
     }
     moved_items = []
 
@@ -79,8 +80,8 @@ class Step2(StepTemplateMv):
         if "cd" in self.last_user_input:
             return True
 
-        if separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
-                                          separate_words[-1] == 'basket/'):
+        if separate_words[0] == 'mv' and (separate_words[-1] == 'cestino' or
+                                          separate_words[-1] == 'cestino/'):
             for item in separate_words[1:-1]:
                 if item not in self.passable_items:
                     if item in self.unmovable_items:
@@ -88,9 +89,9 @@ class Step2(StepTemplateMv):
                         return True
                     else:
                         hint = (
-                            "{{rb:You\'re trying to move something that "
-                            "isn\'t in the folder.\nTry using}} "
-                            "{{yb:mv %s basket/}}"
+                            "{{rb:Stai cercando di spostare qualcosa che "
+                            "qui non c\'è.\nProva usando}} "
+                            "{{yb:mv %s cestino/}}"
                             % self.passable_items[0]
                         )
                         self.send_hint(hint)
@@ -104,31 +105,31 @@ class Step2(StepTemplateMv):
         all_items = []
 
         if self.get_command_blocked():
-            hint = '{{rb:Try using}} {{yb:mv %s basket/}}' \
+            hint = '{{rb:Prova usando}} {{yb:mv %s cestino/}}' \
                 % self.passable_items[0]
 
-        elif separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
-                                            separate_words[-1] == 'basket/'):
+        elif separate_words[0] == 'mv' and (separate_words[-1] == 'cestino' or
+                                            separate_words[-1] == 'cestino/'):
             for item in separate_words[1:-1]:
                 all_items.append(item)
 
             for item in all_items:
                 self.passable_items.remove(item)
 
-            hint = '\n{{gb:Well done!  Keep going.}}'
+            hint = '\n{{gb:Ottimo!  continua così.}}'
 
         else:
-            hint = '{{rb:Try using}} {{yb:mv %s basket/}}' \
+            hint = '{{rb:Prova usando}} {{yb:mv %s cestino/}}' \
                 % self.passable_items[0]
 
         self.send_hint(hint)
 
-    # Check that the basket folder contains the correct number of files?
+    # Check that the cestino folder contains the correct number of files?
     def check_output(self, output):
-        basket_dir = os.path.join(tq_file_system, 'my-house/kitchen/basket')
+        cestino_dir = os.path.join(tq_file_system, 'casa-mia/cucina/cestino')
         food_files = [
-            f for f in os.listdir(basket_dir)
-            if os.path.isfile(os.path.join(basket_dir, f))
+            f for f in os.listdir(cestino_dir)
+            if os.path.isfile(os.path.join(cestino_dir, f))
         ]
 
         if len(food_files) > 3:
@@ -142,21 +143,21 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        "\nNow we want to head back to the {{bb:.hidden-shelter}} with the "
-        "basket.",
-        "{{lb:Move}} the {{lb:basket}} back to {{lb:~}}.\n"
+        "\nOra bisogna tornare indietro nel {{bb:.riparo-nascosto}} con il "
+        "cestino.",
+        "{{lb:Sposta}} il {{lb:cestino}} di nuovo in {{lb:~}}.\n"
     ]
-    start_dir = "~/my-house/kitchen"
-    end_dir = "~/my-house/kitchen"
+    start_dir = "~/casa-mia/cucina"
+    end_dir = "~/casa-mia/cucina"
     commands = [
-        "mv basket ~",
-        "mv basket/ ~",
-        "mv basket ~/",
-        "mv basket/ ~/"
+        "mv cestino ~",
+        "mv cestino/ ~",
+        "mv cestino ~/",
+        "mv cestino/ ~/"
     ]
     hints = [
-        "{{rb:Use the command}} {{yb:mv basket ~/}} "
-        "{{rb:to move the basket to the windy road ~}}"
+        "{{rb:Usa il comando}} {{yb:mv cestino ~/}} "
+        "{{rb:per spostare il cestino nella strada ventosa ~}}"
     ]
 
     def block_command(self):
@@ -168,9 +169,9 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "Follow the basket by using {{yb:cd}}.\n"
+        "Torna nella strada con {{yb:cd}}.\n"
     ]
-    start_dir = "~/my-house/kitchen"
+    start_dir = "~/casa-mia/cucina"
     end_dir = "~"
     commands = [
         "cd",
@@ -178,8 +179,8 @@ class Step4(StepTemplateMv):
         "cd ~/"
     ]
     hints = [
-        "{{rb:Use the command}} {{yb:cd}} {{rb:by itself "
-        "to move yourself to the road ~}}"
+        "{{rb:Usa il comando}} {{yb:cd}} {{rb:da solo "
+        "per spostarti sulla strada ~}}"
     ]
 
     def block_command(self):
@@ -193,25 +194,25 @@ class Step4(StepTemplateMv):
 
 class Step5(StepTemplateMv):
     story = [
-        "Now get the food-filled basket to the family.",
-        "{{lb:Move}} the {{lb:basket}} to {{lb:town/.hidden-shelter}}.",
+        "Ora porta il cestino piena a quella famiglia.",
+        "{{lb:Sposta}} il {{lb:cestino}} nel {{lb:paese/.riparo-nascosto}}.",
     ]
 
     start_dir = "~"
     end_dir = "~"
     commands = [
-        "mv basket town/.hidden-shelter",
-        "mv basket/ town/.hidden-shelter",
-        "mv basket town/.hidden-shelter/",
-        "mv basket/ town/.hidden-shelter/",
-        "mv basket ~/town/.hidden-shelter",
-        "mv basket/ ~/town/.hidden-shelter",
-        "mv basket ~/town/.hidden-shelter/",
-        "mv basket/ ~/town/.hidden-shelter/"
+        "mv cestino paese/.riparo-nascosto",
+        "mv cestino/ paese/.riparo-nascosto",
+        "mv cestino paese/.riparo-nascosto/",
+        "mv cestino/ paese/.riparo-nascosto/",
+        "mv cestino ~/paese/.riparo-nascosto",
+        "mv cestino/ ~/paese/.riparo-nascosto",
+        "mv cestino ~/paese/.riparo-nascosto/",
+        "mv cestino/ ~/paese/.riparo-nascosto/"
     ]
     hints = [
-        "{{rb:Use}} {{yb:mv basket town/.hidden-shelter/}} "
-        "{{rb:to move the basket to the family.}}"
+        "{{rb:Usa}} {{yb:mv cestino paese/.riparo-nascosto/}} "
+        "{{rb:per portare il cestino alla famiglia nascosta.}}"
     ]
 
     def block_command(self):
@@ -223,21 +224,21 @@ class Step5(StepTemplateMv):
 
 class Step6(StepTemplateMv):
     story = [
-        "{{gb:Nearly there!}} Finally {{lb:go}} into "
-        "{{lb:town/.hidden-shelter}} using {{lb:cd}}.\n",
+        "{{gb:Ci siamo quasi!}} Ora {{lb:entra}} in "
+        "{{lb:paese/.riparo-nascosto}} usando {{lb:cd}}.\n",
     ]
 
     start_dir = "~"
-    end_dir = "~/town/.hidden-shelter"
+    end_dir = "~/paese/.riparo-nascosto"
     commands = [
-        "cd town/.hidden-shelter",
-        "cd town/.hidden-shelter/",
-        "cd ~/town/.hidden-shelter",
-        "cd ~/town/.hidden-shelter/"
+        "cd paese/.riparo-nascosto",
+        "cd paese/.riparo-nascosto/",
+        "cd ~/paese/.riparo-nascosto",
+        "cd ~/paese/.riparo-nascosto/"
     ]
     hints = [
-        "{{rb:Use}} {{yb:cd town/.hidden-shelter/}} "
-        "{{rb:to be reunited with the family.}}",
+        "{{rb:Usa}} {{yb:cd paese/.riparo-nascosto/}} "
+        "{{rb:per riunirti con la famiglia nascosta.}}",
     ]
 
     def block_command(self):
@@ -251,31 +252,31 @@ class Step6(StepTemplateMv):
 
 class Step7(StepTemplateMv):
     story = [
-        "{{wn:Check on everyone with}} {{lb:cat}} {{wn:to see if "
-        "they're happy with the food.}}\n"
+        "{{wn:Controlla tutti con}} {{lb:cat}} {{wn:per vedere se "
+        "sono contenti di poter mangiare.}}\n"
     ]
-    start_dir = "~/town/.hidden-shelter"
-    end_dir = "~/town/.hidden-shelter"
+    start_dir = "~/paese/.riparo-nascosto"
+    end_dir = "~/paese/.riparo-nascosto"
     hints = [
-        "{{rb:Check on everyone using}} {{yb:cat}}"
+        "{{rb:Controlla tutti usando}} {{yb:cat}}"
     ]
     allowed_commands = {
         "cat Edith": (
-            "\n{{wb:Edith:}} {{Bb:You saved my little girl and my dog, "
-            "and now you've saved us from starvation...how can I thank "
-            "you?}}\n"
+            "\n{{wb:Edith:}} {{Bb:Hai salvato la mia bambina e il cane, "
+            "e grazie a te ora non moriamo di fame...come ti posso "
+            "ringraziare?}}\n"
         ),
-        "cat Eleanor": (
-            "\n{{wb:Eleanor:}} {{Bb:Yummy! See, I told you doggy, "
-            "someone would help us.}}\n"
+        "cat Eleonora": (
+            "\n{{wb:Eleonora:}} {{Bb:Evviva! Visto, te l'avevo detto Pippo, "
+            "qualcuno ci avrebbe salvato.}}\n"
         ),
-        "cat Edward": (
-            "\n{{wb:Edward:}} {{Bb:Thank you!  I knew you would come "
-            "through for us. You really are a hero!}}\n"
+        "cat Edoardo": (
+            "\n{{wb:Edoardo:}} {{Bb:Grazie!  Lo sapevo che l'avresti "
+            "fatto per noi. Se veramente un eroe!}}\n"
         ),
-        "cat dog": (
-            "\n{{wb:Dog:}} {{Bb:\"Woof!\"}} {{wn:\nThe dog seems very "
-            "excited.\n}}"
+        "cat cane": (
+            "\n{{wb:Cane:}} {{Bb:\"Bau!\"}} {{wn:\nIl cane sembra parecchio "
+            "eccitato.\n}}"
         )
     }
 
@@ -292,25 +293,27 @@ class Step7(StepTemplateMv):
             num_people = len(self.allowed_commands.keys())
 
             if num_people == 0:
-                hint += '\n{{gb:Press Enter to continue.}}'
+                hint += '\n{{gb:Premi Invio per continuare.}}'
 
             # If the hint is not empty
             elif hint:
-                hint += (
-                    "\n{{gb:Check on}} {{yb:" + str(num_people) +
-                    "}} {{gb:other}}"
-                )
                 if num_people > 1:
-                    hint += "{{gb:s.}}"
+                    hint += (
+                        "\n{{gb:Controllane altri}} {{yb:" + str(num_people) +
+                        "}} {{gb:.}}"
+                    )
                 else:
-                    hint += "{{gb:.}}"
+                    hint += (
+                        "\n{{gb:Controllane un altro}}"
+                    )
         else:
             hint = (
-                "{{rb:Use}} {{yb:" + self.allowed_commands.keys()[0] +
-                "}} {{rb:to progress.}}"
+                "{{rb:Usa}} {{yb:" + self.allowed_commands.keys()[0] +
+                "}} {{rb:per andare avanti.}}"
             )
 
         self.send_hint(hint)
 
     def next(self):
-        NextStep(self.xp)
+        sys.exit("LAVORI IN CORSO! Traduzione in italiano arrivata fino a qui (25 settembre 2015)\n")
+        #arf NextStep(self.xp)

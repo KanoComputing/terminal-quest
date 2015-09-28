@@ -8,7 +8,7 @@ It is an introduction to terminal commands in the style of a text adventure game
 
 ## by Andreas Formiconi
 
-The first 10 challenges have been translated, so far.
+The first 14 challenges have been translated, so far.
 
 In [CodeBook.md](https://github.com/iamarf/terminal-quest/blob/master/CodeBook.md) details about how the translation is done can be found.
 

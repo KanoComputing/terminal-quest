@@ -321,5 +321,4 @@ class Step8(StepTemplateMv):
             return False
 
     def next(self):
-        sys.exit("LAVORI IN CORSO! Traduzione in italiano arrivata fino a qui (25 settembre 2015)\n")
-#arf NextStep(self.xp)
+        NextStep(self.xp)

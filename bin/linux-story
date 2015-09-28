@@ -33,7 +33,7 @@ if __name__ == "__main__":
     if len(sys.argv) == 3:
         if sys.argv[1].isdigit() and sys.argv[2].isdigit():
             #arf Message saying that beyond this point the italian translation has to be done
-	    if int(sys.argv[1]) > 11:
+	    if int(sys.argv[1]) > 14:
                 sys.exit("LAVORI IN CORSO! Traduzione in italiano arrivata fino a qui (25 settembre 2015)\n")
             #arf	
             launch_project(int(sys.argv[1]), int(sys.argv[2]))

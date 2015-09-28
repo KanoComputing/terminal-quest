@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-#
+# coding: utf-8
+
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
@@ -26,35 +27,35 @@ class StepTemplateMv(TerminalMv):
 
 class Step1(StepTemplateMv):
     story = [
-        "{{wb:Edward:}} {{Bb:\"Thank you so much for saving my little girl!",
-        "I have another favour to ask...",
+        "{{wb:Edoardo:}} {{Bb:\"Grazie grazie per aver salvato la mia bambina!",
+        "Ma avrei da chiedere un altro favore...",
 
-        "We haven't got any food. Could you gather some for us? "
-        "We didn't have time to grab any before we went into hiding.\"",
+        "Non abbiamo niente da mangiare. Ci potresti portare qualcosa? "
+        "Non abbiamo avuto tempo di prendere nulla quando ci siamo nascosti.\"",
 
-        "\"Do you remember seeing any food in your travels?\"}}",
+        "\"Ti ricordi di avere visto cibo recentemente?\"}}",
 
-        "\n...ah! You have all that food in your {{bb:kitchen}}! "
-        "We could give that to this family.",
+        "\n...ah! tutto quel cibo nella tua {{bb:cucina}}! "
+        "Potremmo dare qualcosa a questa famiglia.",
 
-        "\nStart by {{lb:moving}} the {{lb:basket}} to {{lb:~}}. "
-        "Use the command {{yb:mv basket ~/}}\n"
+        "\nCominciamo a {{lb:spostare}} il {{lb:cestino}} in {{lb:~}}. "
+        "Usa il comando {{yb:mv cestino ~/}}\n"
     ]
-    start_dir = "~/town/.hidden-shelter"
-    end_dir = "~/town/.hidden-shelter"
+    start_dir = "~/paese/.riparo-nascosto"
+    end_dir = "~/paese/.riparo-nascosto"
     commands = [
-        "mv basket ~",
-        "mv basket/ ~",
-        "mv basket ~/",
-        "mv basket/ ~/",
-        "mv basket ../..",
-        "mv basket/ ../..",
-        "mv basket ../../",
-        "mv basket/ ../../"
+        "mv cestino ~",
+        "mv cestino/ ~",
+        "mv cestino ~/",
+        "mv cestino/ ~/",
+        "mv cestino ../..",
+        "mv cestino/ ../..",
+        "mv cestino ../../",
+        "mv cestino/ ../../"
     ]
     hints = [
-        "{{rb:Use the command}} {{yb:mv basket ~/}} "
-        "{{rb:to move the}} {{lb:basket}} {{rb:to the windy road}} {{lb:~}}"
+        "{{rb:Usa il comando}} {{yb:mv cestino ~/}} "
+        "{{rb:per spostare}} {{lb:il cestino}} {{rb:to sulla strada ventos}} {{lb:~}}"
     ]
 
     def block_command(self):
@@ -66,10 +67,10 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        "Now follow the basket. Use {{yb:cd}} by itself "
-        "to {{lb:go}} to the windy road Tilde ~.\n"
+        "Ora segui il cestino. Usa {{yb:cd}} da solo "
+        "per {{lb:andare}} nella strada ventosa ~.\n"
     ]
-    start_dir = "~/town/.hidden-shelter"
+    start_dir = "~/paese/.riparo-nascosto"
     end_dir = "~"
     commands = [
         "cd",
@@ -77,8 +78,8 @@ class Step2(StepTemplateMv):
         "cd ~/"
     ]
     hints = [
-        "{{rb:Use the command}} {{yb:cd}} {{rb:by itself "
-        "to move yourself to the road ~}}"
+        "{{rb:Usa il comando}} {{yb:cd}} {{rb:da solo "
+        "per spostarti sulla strada ~}}"
     ]
 
     def block_command(self):
@@ -92,8 +93,8 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        "You are now back on the long windy road. {{lb:Look around}} "
-        "with {{yb:ls}} to check that you have your basket with you.\n"
+        "Ora sei di nuovo sulla lunga strada ventosa . {{lb:Guarda in giro}} "
+        "con {{yb:ls}} per vedere se hai il cestino con te.\n"
     ]
 
     start_dir = "~"
@@ -102,8 +103,8 @@ class Step3(StepTemplateMv):
         "ls"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:by itself "
-        "to look around.}}"
+        "{{rb:Usa}} {{yb:ls}} {{rb:da solo "
+        "per guardare in giro.}}"
     ]
 
     def next(self):
@@ -112,27 +113,27 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "You have your basket safely alongside you, and "
-        "you see {{bb:my-house}} close by.",
-        "Move the {{lb:basket}} to {{lb:my-house/kitchen}}.",
-        "Don't forget to use the TAB key to autocomplete your commands.\n"
+        "Tieni ben stretto il cestino, e "
+        "intanto ti avvicini a {{bb:casa-mia}}.",
+        "Sposta il {{lb:cestino}} in {{lb:casa-mia/cucina}}.",
+        "Non dimenticare di usare il tasto TAB per finire prima di scrivere i comandi.\n"
     ]
 
     start_dir = "~"
     end_dir = "~"
     commands = [
-        "mv basket my-house/kitchen",
-        "mv basket/ my-house/kitchen",
-        "mv basket my-house/kitchen/",
-        "mv basket/ my-house/kitchen/",
-        "mv basket ~/my-house/kitchen",
-        "mv basket/ ~/my-house/kitchen",
-        "mv basket ~/my-house/kitchen/",
-        "mv basket/ ~/my-house/kitchen/"
+        "mv cestino casa-mia/cucina",
+        "mv cestino/ casa-mia/cucina",
+        "mv cestino casa-mia/cucina/",
+        "mv cestino/ casa-mia/cucina/",
+        "mv cestino ~/casa-mia/cucina",
+        "mv cestino/ ~/casa-mia/cucina",
+        "mv cestino ~/casa-mia/cucina/",
+        "mv cestino/ ~/casa-mia/cucina/"
     ]
     hints = [
-        "{{rb:Use}} {{yb:mv basket my-house/kitchen/}} "
-        "{{rb:to move the basket to your kitchen.}}",
+        "{{rb:Usa}} {{yb:mv cestino casa-mia/cucina/}} "
+        "{{rb:per spostare il cestino nella tua cucina.}}",
     ]
 
     def block_command(self):
@@ -144,20 +145,20 @@ class Step4(StepTemplateMv):
 
 class Step5(StepTemplateMv):
     story = [
-        "Now {{lb:go}} into {{lb:my-house/kitchen}} using {{lb:cd}}.\n",
+        "Ora {{lb:vai}} in {{lb:casa-mia/cucina}} usando {{lb:cd}}.\n",
     ]
 
     start_dir = "~"
-    end_dir = "~/my-house/kitchen"
+    end_dir = "~/casa-mia/cucina"
     commands = [
-        "cd my-house/kitchen",
-        "cd my-house/kitchen/",
-        "cd ~/my-house/kitchen",
-        "cd ~/my-house/kitchen/"
+        "cd casa-mia/cucina",
+        "cd casa-mia/cucina/",
+        "cd ~/casa-mia/cucina",
+        "cd ~/casa-mia/cucina/"
     ]
     hints = [
-        "{{rb:Use}} {{yb:cd my-house/kitchen/}} "
-        "{{rb:to go to your kitchen.}}",
+        "{{rb:Usa}} {{yb:cd casa-mia/cucina/}} "
+        "{{rb:per andare nella tua cucina.}}",
     ]
     last_step = True
 
