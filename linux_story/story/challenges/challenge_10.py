@@ -25,9 +25,7 @@ class StepTemplateCd(TerminalCd):
 
 class Step1(StepTemplateCd):
     story = [
-#arf        "You're in your house.  You appear to be alone.",
         "Sei in casa tua.  Pare che tu sia solo.",
-#arf        "Use {{lb:cat}} to {{lb:examine}} some of the objects around you.\n"
         "Usa {{lb:cat}} per {{lb:esaminare}} qualche oggetto intorno a te.\n"
     ]
     allowed_commands = [
@@ -66,25 +64,19 @@ class Step1(StepTemplateCd):
             self.counter += 1
             self.allowed_commands.remove(self.last_user_input)
             hint = (
-#arf                "\n{{gb:Well done!  Just look at one "
                 "\n{{gb:Ottimo! Guarda giusto un altro "
-#arf                "more item.}}"
                 "oggetto.}}"
             )
 
         else:
             if self.first_time:
                 hint = (
-#arf                    "\n{{rb:Use}} {{lb:cat}} {{rb:to look at two of the "
                     "\n{{rb:Usa}} {{lb:cat}} {{rb:per guardare due degli "
-#arf                    "objects around you.}}"
                     "oggetti.}}"
                 )
             else:
                 hint = (
-#arf                    '\n{{rb:Use the command}} {{yb:' + self.allowed_commands[0] +
                     '\n{{rb:Usa il comando}} {{yb:' + self.allowed_commands[0] +
-#arf                    '}} {{rb:to progress.}}'
                     '}} {{rb:per andare avanti.}}'
                 )
 
@@ -102,11 +94,8 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-#arf        "There doesn't seem to be anything here but loads of food.",
         "Non sembra esserci nient'altro che cibo, un sacco di cibo.",
-#arf        "See if you can find something back in {{bb:paese}}.",
         "Guarda se trovi qualcos'altro in {{bb:paese}}.",
-#arf        "First, use {{yb:cd ../}} to {{lb:leave}} the cucina.\n"
         "Prima, usa {{yb:cd ../}} per {{lb:lasciare}} la cucina.\n"
     ]
     start_dir = "~/casa-mia/cucina"
@@ -140,16 +129,13 @@ class Step2(StepTemplateCd):
             if self.last_user_input == "cd .." or \
                     self.last_user_input == 'cd ../':
                 hint = (
-#arf                    "\n{{gb:Good work!  Now replay the last command using "
                     "\n{{gb:Buon lavoro! Ora ripeti l'ultimo comando "
-#arf                    "the UP arrow on your keyboard.}}"
                     "usando la freccia in sù della tastiera.}}"
                 )
 
             # Otherwise, give them a hint
             else:
                 hint = (
-#arf                    '\n{{rb:Use}} {{yb:cd ../}} {{rb:to make your way to paese.}}'
                     '\n{{rb:Usa}} {{yb:cd ../}} {{rb:per avviarti in paese.}}'
                 )
 
@@ -158,15 +144,12 @@ class Step2(StepTemplateCd):
             # then they used an appropriate command
             if self.num_turns_in_home_dir == 0:
                 hint = (
-#arf                    "\n{{gb:Good work! Now use}} {{yb:cd paese/}} {{gb: "
                     "\n{{gb:Molto bene! Ora usa}} {{yb:cd paese/}} {{gb: "
-#arf                    "to head to paese.}}"
                     "andare in paese.}}"
                 )
 
             # Otherwise give them a hint
             else:
-#arf                hint = '\n{{rb:Use}} {{yb:cd paese/}} {{rb:to go into paese.}}'
                 hint = '\n{{rb:Usa}} {{yb:cd paese/}} {{rb:per andare in paese.}}'
 
             # So we can keep track of the number of turns they've been in the
@@ -182,13 +165,11 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-#arf        "Use {{yb:ls}} to {{lb:look around}}.\n",
         "Usa {{yb:ls}} per {{lb:guardarti attorno}}.\n",
     ]
     start_dir = "~/paese"
     end_dir = "~/paese"
     commands = "ls"
-#arf    hints = "{{rb:Use}} {{yb:ls}} {{rb:to have a look around the paese.}}"
     hints = "{{rb:Usa}} {{yb:ls}} {{rb:per guardare quelle che c'è in paese.}}"
 
     def next(self):
@@ -197,23 +178,17 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-#arf        "The place appears to be deserted.",
         "Sembra essere deserto.",
-#arf        "However, you think you hear whispers.",
         "Ma ti sembra di sentire bisbigliare:",
         # TODO make this writing small
-#arf        "\n{{Bn:\".....if they use}} {{yb:ls -a}}{{Bn:, they'll see us...\"}}",
         "\n{{Bn:\".....se loro usano}} {{yb:ls -a}}{{Bn:, ci vedranno...\"}}",
-#arf        "{{Bn:\"..Shhh!  ...might hear....\"}}\n"
         "{{Bn:\"..Shhh!  ...ci potrebbero sentire....\"}}\n"
     ]
     start_dir = "~/paese"
     end_dir = "~/paese"
     commands = "ls -a"
     hints = [
-#arf        "{{rb:You heard whispers referring to}} {{yb:ls -a}}"
         "{{rb:Hai sentito bisbigliare qualcosa a proposito del comando}} {{yb:ls -a}}"
-#arf        "{{rb:, try using it!}}",
         "{{rb:, provalo!}}",
     ]
 
@@ -223,11 +198,8 @@ class Step4(StepTemplateCd):
 
 class Step5(StepTemplateCd):
     story = [
-#arf        "You see a {{bb:.riparo-nascosto}} that you didn't notice before.",
         "Hai trovato un {{bb:.riparo-nascosto}} che non avevi notato prima.",
-#arf        "{{gb:Something that starts with . is normally hidden from view.}}",
         "{{gb:Ciò che inizia con . non si vede normalmente.}}",
-#arf        "It sounds like the whispers are coming from there.  Try going in.\n"
         "Sembra che proprio da qui vengano i bisbigli.  Prova a entrare.\n"
     ]
     start_dir = "~/paese"
@@ -237,12 +209,9 @@ class Step5(StepTemplateCd):
         "cd .riparo-nascosto/"
     ]
     hints = [
-#arf        "{{rb:Try going inside the}} {{lb:.riparo-nascosto}} {{rb:using }}"
         "{{rb:Prova a entrare nel}} {{lb:.riparo-nascosto}} {{rb:usando }}"
         "{{lb:cd}}{{rb:.}}",
-#arf        "{{rb:Use the command}} {{yb:cd .riparo-nascosto/ }}"
         "{{rb:Usa il comando}} {{yb:cd .riparo-nascosto/ }}"
-#arf        "{{rb:to go inside.}}"
         "{{rb:per andare dentro.}}"
     ]
 
@@ -257,7 +226,6 @@ class Step5(StepTemplateCd):
 
 class Step6(StepTemplateCd):
     story = [
-#arf        "Is anyone there? Have a {{lb:look around}}.\n"
         "C'è nessuno qui? Dai {{lb:un'occhiata}}.\n"
     ]
     start_dir = "~/paese/.riparo-nascosto"
@@ -272,6 +240,4 @@ class Step6(StepTemplateCd):
     last_step = True
 
     def next(self):
-        #arf
-        sys.exit("LAVORI IN CORSO! Traduzione in italiano arrivata fin qui (25 settembre 2015)\n")
-        #arf NextStep(self.xp)
+        NextStep(self.xp)

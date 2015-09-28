@@ -33,7 +33,7 @@ class Step1(StepLs):
         "\"Il sindaco ha indetto una riunione d'emergenza,"
         " vi riferiremo appena avrà avuto luogo...\"}}\n",
         "È l'ora di svegliarsi dormiglione!",
-        "\n{{gb:Prima magia:}} Scrivi {{yb:ls}} e premi {{wb:Invio}} per "
+        "\n{{gb:Primo comando:}} Scrivi {{yb:ls}} e premi {{wb:Invio}} per "
         "{{lb:guardarti attorno}}.\n"
     ]
     start_dir = "~/casa-mia/camera-mia"

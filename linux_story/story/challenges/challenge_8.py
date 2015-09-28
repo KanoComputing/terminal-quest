@@ -41,15 +41,12 @@ class Step1(StepTemplateCd):
 
     story = [
         "{{pb:Ding. Dong.}}\n",
-#arf        "It sounds like the bell you heard before.",
         "Sembra la campanella di prima.",
-#arf        "Use {{yb:ls}} to {{lb:look around}} again."
         "Usa {{yb:ls}} per {{lb:guardarti attorno}} di nuovo."
     ]
     start_dir = "~/paese"
     end_dir = "~/paese"
     commands = "ls"
-#arf    hints = "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     hints = "{{rb:Usa}} {{yb:ls}} {{rb:per guardarti attorno.}}"
     deleted_items = ["~/paese/brontolone"]
 
@@ -65,22 +62,17 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCdBell):
 
     story = [
-#arf        "{{wb:Little-boy:}} {{Bb:Oh no! That}} {{lb:brontolone}} "
         "{{wb:Ragazzino:}} {{Bb:Oddio! Quel}} {{lb:brontolone}} "
-#arf        "{{Bb:with the funny legs has gone!}} "
         "\n{{Bb:con le gambe buffe è sparito!}} "
-#arf        "{{wb:Young-girl:}} {{Bb:I'm scared...}}",
+        "{{Bb:Avete sentito suonare la campanella prima che sparisse??}}",
         "\n{{wb:Ragazzina:}} {{Bb:Ho paura...}}",
         "\n{{pb:Ding. Dong.}}\n",
-#arf        "{{wb:Young-girl:}} {{Bb:Oh!  I heard it go again!}}",
         "{{wb:Ragazzina:}} {{Bb:Oh! l'ho sentita di nuovo!}}",
-#arf        "\nTake a {{lb:look around}} you to check."
         "\nDai {{lb:un'occhiata in giro}} per controllare."
     ]
     start_dir = "~/paese"
     end_dir = "~/paese"
     commands = "ls"
-#arf    hints = "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     hints = "{{rb:Usa}} {{yb:ls}} {{rb:per guardare attorno.}}"
     deleted_items = ["~/paese/ragazzino"]
 
@@ -91,22 +83,16 @@ class Step2(StepTemplateCdBell):
 class Step3(StepTemplateCdBell):
 
     story = [
-#arf        "{{wb:Young-girl:}} {{Bb:Wait, there was a}} {{lb:ragazzino}} "
 "{{wb:Ragazzina:}} {{Bb:Aspetta, c'era un}} {{lb:ragazzo}} "
-#arf        "{{Bb:here...right?",
         "{{Bb:qui...no?",
-#arf        "Every time that bell goes, someone disappears!}}",
         "Ogni volta che la campanella suona, qualcuno sparisce!}}",
-#arf        "{{wb:sindaco:}} {{Bb:Maybe they just decided to go home...?}}",
         "{{wb:Sindaco:}} {{Bb:Potrebbe essere appena andato a casa...?}}",
         "\n{{pb:Ding. Dong.}}\n",
-#arf        "{{lb:Look around.}}"
         "{{lb:Guarda intorno.}}"
     ]
     start_dir = "~/paese"
     end_dir = "~/paese"
     commands = "ls"
-#arf    hints = "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     hints = "{{rb:Usa}} {{yb:ls}} {{rb:per guardare intorno.}}"
     deleted_items = ["~/paese/ragazzina"]
 
@@ -117,9 +103,7 @@ class Step3(StepTemplateCdBell):
 class Step4(StepTemplateCd):
 
     story = [
-#arf        "You are alone with the sindaco.",
         "Sei solo con il sindaco.",
-#arf        "{{lb:Listen}} to what the sindaco has to say."
         "{{lb:Ascolta}} ciò che ha da dire il sindaco."
     ]
     start_dir = "~/paese"
@@ -134,16 +118,13 @@ class Step4(StepTemplateCd):
 class Step5(StepTemplateCdBell):
 
     story = [
-#arf        "{{wb:sindaco:}} {{Bb:\"Everyone...has disappeared??\"",
         "{{wb:sindaco:}} {{Bb:\"Sono tutti...spariti??\"",
-#arf        "....I should head home now...}}",
         "....Avrei da andare a casa ora...}}",
         "\n{{pb:Ding. Dong.}}\n"
     ]
     start_dir = "~/paese"
     end_dir = "~/paese"
     commands = "ls"
-#arf    hints = "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     hints = "{{rb:Usa}} {{yb:ls}} {{rb:per guardare intorno.}}"
     deleted_items = ["~/paese/sindaco"]
     story_dict = {
@@ -159,17 +140,13 @@ class Step5(StepTemplateCdBell):
 
 class Step6(StepTemplateCd):
     story = [
-#arf        "Everyone has gone.",
         "Sono andati tutti via.",
-#arf        "Wait - there's a foglietto on the floor.",
         "Aspetta - c'è un foglietto per terra.",
-#arf        "Use {{lb:cat}} to read the foglietto."
         "Usa {{lb:cat}} per leggere il foglietto."
     ]
     start_dir = "~/paese"
     end_dir = "~/paese"
     commands = "cat foglietto"
-#arf    hints = "{{rb:Use}} {{yb:cat foglietto}} {{rb:to read the note.}}"
     hints = "{{rb:Usa}} {{yb:cat foglietto}} {{rb:per leggere il foglietto.}}"
     last_step = True
 

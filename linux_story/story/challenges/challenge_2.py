@@ -28,7 +28,7 @@ class Step1(StepCat):
         "Ottimo, ora puoi vedere gli oggetti che ci sono attorno.",
         "C'è il tuo letto, una sveglia...",
         "Uffa...spengi quella sveglia!",
-        "\n{{gb:Nuova magia}}: per {{lb:vedere}} gli oggetti, scrivi {{lb:cat}} "
+        "\n{{gb:Nuovo comando}}: per {{lb:vedere}} gli oggetti, scrivi {{lb:cat}} "
 #        "and the object name.",
         "e poi il nome dell'oggetto.",
 #        "\nUse {{yb:cat alarm}} to {{lb:examine}} the alarm.\n",
@@ -71,7 +71,7 @@ class Step2(StepCat):
 class Step3(StepCat):
     story = [
 #        "Check out that {{lb:t-shirt}}!",
-        " Prova un po' quella {{lb:maglietta}}!",
+        "Prova un po' quella {{lb:maglietta}}!",
 #        "{{lb:Examine}} the t-shirt with {{yb:cat wardrobe/t-shirt}} "
         "{{lb:Guarda}} la maglietta con {{yb:cat armadio/maglietta}} "
 #        "to see how it looks.\n"

@@ -27,11 +27,8 @@ class StepTemplateCd(TerminalCd):
 
 class Step1(StepTemplateCd):
     story = [
-#arf         "That's weird. No time for that now though - lets find Mum.",
         "Questo è molto strano. Ma non ho tempo di pensarci ora - vediamo dov'è la mamma.",
-#arf        "\n{{gb:New Spell}}: {{lb:cd}} lets you move between places.",
-        "\n{{gb:Nuova magia}}: con {{lb:cd}} ti puoi muovere da un posto all'altro.",
-#arf        "\nUse the command {{yb:cd ../}} to {{lb:leave}} your room.\n"
+        "\n{{gb:Nuovo comando}}: con {{lb:cd}} ti puoi muovere da un posto all'altro.",
         "\nUsa il comando {{yb:cd ../}} per {{lb:lasciare}} la tua camera.\n"
     ]
     start_dir = "~/casa-mia/camera-mia"
@@ -43,12 +40,9 @@ class Step1(StepTemplateCd):
         "cd ~/casa-mia/"
     ]
     hints = [
-#arf        "{{rb:Type}} {{yb:cd ../}} {{rb:to leave your room. The}} "
         "{{rb:Scrivi}} {{yb:cd ../}} {{rb:per lasciare la tua camera. I due puntini sono}} "
         "{{lb:..}} "
-#arf        "{{rb:is the room behind you.}}",
         "{{rb:la stanza che trovi uscendo.}}",
-#arf        "{{rb:Type}} {{yb:cd ../}} {{rb:to leave your room.}}"
         "{{rb:Scrivi}} {{yb:cd ../}} {{rb:per lasciare la tua camera.}}"
     ]
 
@@ -63,15 +57,12 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-#arf        "You've left {{bb:camera-mia}} and are in the hall of {{bb:casa-mia}}.",
         "Hai lasciato {{bb:camera-mia}} e sei nell'ingresso di {{bb:casa-mia}}.",
-#arf        "{{lb:Look around}} at the different rooms using {{yb:ls}}.\n"
         "{{lb:Guarda un po'}} che stanze ci sono, usa {{yb:ls}}.\n"
     ]
     start_dir = "~/casa-mia"
     end_dir = "~/casa-mia"
     commands = "ls"
-#arf    hints = "{{rb:Type}} {{yb:ls}} {{rb:and press Enter.}}"
     hints = "{{rb:Scrivi}} {{yb:ls}} {{rb:e premi Invio.}}"
     story_dict = {
         "foglietto_serra": {
@@ -89,15 +80,10 @@ class Step2(StepTemplateCd):
 class Step3(StepTemplateCd):
     story = [
         "{{pb:Ding. Dong.}}\n",
-#arf        "What was that?  A bell?  That's a bit odd.",
         "O questa?  Un campanello?  Un po' strano.",
-#arf        "You see the door to your {{bb:cucina}}, and hear the sound of "
         "Guardi verso la porta della {{bb:cucina}}, e senti rumori "
-#arf        "cooking.",
         "di qualcuno che sta cucinando.",
-#arf        "Sounds like someone is preparing breakfast!",
         "Sembra che qualcuno prepari la colazione!",
-#arf        "To {{lb:go inside the cucina}}, use {{yb:cd kitchen/}}"
         "Per {{lb:andare in cucina}}, usa {{yb:cd cucina/}}"
     ]
     start_dir = "~/casa-mia"
@@ -116,15 +102,12 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-#arf        "Great, you're in the cucina.",
         "Bravissimo, ora sei in cucina.",
-#arf        "{{lb:Look}} for Mum using {{yb:ls}}."
         "{{lb:Cerca}} la mamma usando {{yb:ls}}."
     ]
     start_dir = "~/casa-mia/cucina"
     end_dir = "~/casa-mia/cucina"
     commands = "ls"
-#arf    hints = "{{rb:Can't find her?  Type}} {{yb:ls}} {{rb:and press Enter.}}"
     hints = "{{rb:Non la trovi?  Scrivi}} {{yb:ls}} {{rb:e premi Invio.}}"
 
     def next(self):
@@ -133,20 +116,15 @@ class Step4(StepTemplateCd):
 
 class Step5(StepTemplateCd):
     story = [
-#arf        "You see her busily working in a cloud of steam.",
         "Eccola che lavora in una nuvola di vapore.",
-#arf        "Let's {{lb:listen}} to what {{lb:Mum}} has to say by "
         "{{lb:Sentiamo}} cos'ha da dire la {{lb:mamma}} "
-#arf        "using {{lb:cat}}."
         "usando {{lb:cat}}."
     ]
     start_dir = "~/casa-mia/cucina"
     end_dir = "~/casa-mia/cucina"
     commands = "cat mamma"
     hints = (
-#arf        "{{rb:Stuck? Type:}} {{yb:cat Mum}}. "
         "{{rb:Non sai che fare? Scrivi:}} {{yb:cat mamma}}. "
-#arf        "{{rb:Don\'t forget the capital letter!}}"
     )
 
     last_step = True

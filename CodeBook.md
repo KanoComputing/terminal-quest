@@ -1,7 +1,7 @@
 
 # Terminal Quest
 
-The modifications are marked within #arf comments throughout the code.
+Modifications that will be cleaned up at the end, are marked within #arf comments throughout the code.
 
 The following file have been modified so far:
 
