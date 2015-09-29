@@ -169,7 +169,7 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "Torna nella strada con {{yb:cd}}.\n"
+        "Torna nella strada con {{yb:cd}}\n"
     ]
     start_dir = "~/casa-mia/cucina"
     end_dir = "~"
@@ -194,7 +194,7 @@ class Step4(StepTemplateMv):
 
 class Step5(StepTemplateMv):
     story = [
-        "Ora porta il cestino piena a quella famiglia.",
+        "Ora porta il cestino pieno a quella famiglia.",
         "{{lb:Sposta}} il {{lb:cestino}} nel {{lb:paese/.riparo-nascosto}}.",
     ]
 
@@ -315,5 +315,4 @@ class Step7(StepTemplateMv):
         self.send_hint(hint)
 
     def next(self):
-        sys.exit("LAVORI IN CORSO! Traduzione in italiano arrivata fino a qui (25 settembre 2015)\n")
-        #arf NextStep(self.xp)
+        NextStep(self.xp)

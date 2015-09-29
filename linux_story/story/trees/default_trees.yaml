@@ -349,7 +349,7 @@ CAT, CD, LS, .foglietto:
 
 # Mum's diary
 #arf mums-diary, ECHO, map:
-diario-mamma, ECHO, mappa:
+diario-della-mamma, ECHO, mappa:
     challenges:
         - challenge: 17
           step: 1

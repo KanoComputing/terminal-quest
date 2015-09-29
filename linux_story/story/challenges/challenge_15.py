@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-#
+# coding: utf-8
+
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
@@ -24,22 +25,22 @@ class StepTemplateMv(TerminalMv):
 
 class Step1(StepTemplateMv):
     story = [
-        "You get the nagging feeling you're missing something.",
-        "What was that spell that helped you find this place?",
-        "Use it to have a {{lb:closer look around}}.\n"
+        "Hai la sgradevole sensazione che ti manchi qualcosa.",
+        "Qual'era quel comando che serviva a trovare questo luogo nascosto?",
+        "Usalo per {{lb:guardare bene vicino}}.\n"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls -a}} {{rb:to look more closely around you.}}"
+        "{{rb:Usa}} {{yb:ls -a}} {{rb:per guardare bene attorno.}}"
     ]
 
     story_dict = {
-        "CAT, LS, CD, .note": {
-            "path": "~/my-house/my-room/.chest"
+        "CAT, LS, CD, .foglietto": {
+            "path": "~/casa-mia/camera-mia/.scrigno"
         }
     }
 
-    start_dir = "~/town/.hidden-shelter"
-    end_dir = "~/town/.hidden-shelter"
+    start_dir = "~/paese/.riparo-nascosto"
+    end_dir = "~/paese/.riparo-nascosto"
     commands = [
         "ls -a"
     ]
@@ -50,21 +51,21 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        "What's that! There's {{lb:.tiny-chest}} in the corner of the shelter",
-        "Have a {{lb:look inside}} the {{lb:.tiny-chest}}."
+        "O questo cos'è! C'è un {{lb:.piccolo-scrigno}} in quell'angolo",
+        "Dai un'{{lb:occhiata}} nel {{lb:.piccolo-scrigno}}."
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:ls .tiny-chest}} {{rb:to look inside}}"
+        "{{rb:Usa}} {{yb:ls .piccolo-scrigno}} {{rb:per guardare dentro}}"
     ]
 
-    start_dir = "~/town/.hidden-shelter"
-    end_dir = "~/town/.hidden-shelter"
+    start_dir = "~/paese/.riparo-nascosto"
+    end_dir = "~/paese/.riparo-nascosto"
     commands = [
-        "ls .tiny-chest",
-        "ls .tiny-chest/",
-        "ls -a .tiny-chest",
-        "ls -a .tiny-chest/"
+        "ls .piccolo-scrigno",
+        "ls .piccolo-scrigno/",
+        "ls -a .piccolo-scrigno",
+        "ls -a .piccolo-scrigno/"
     ]
 
     def next(self):
@@ -73,19 +74,19 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        "You see a scroll of parchment inside, with a stamp on it saying "
+        "C'è un frammento di pergamena dentro, con un timbro sopra: "
         "{{lb:MV}}.",
-        "{{lb:Read}} what it says."
+        "{{lb:Leggi}} cosa dice."
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:cat .tiny-chest/MV}} {{rb:to read the MV parchment}}"
+        "{{rb:Usa}} {{yb:cat .piccolo-scrigno/MV}} {{rb:per leggere la pergamena timbrata con MV}}"
     ]
 
-    start_dir = "~/town/.hidden-shelter"
-    end_dir = "~/town/.hidden-shelter"
+    start_dir = "~/paese/.riparo-nascosto"
+    end_dir = "~/paese/.riparo-nascosto"
     commands = [
-        "cat .tiny-chest/MV"
+        "cat .piccolo-scrigno/MV"
     ]
 
     def next(self):
@@ -94,25 +95,25 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "{{wb:Edward:}} {{Bb:\"Hey, that's our}} {{lb:.tiny-chest}}{{Bb:. We "
-        "use it to keep our possessions safe. ",
-        "I learnt about how to move objects from that}} {{Bb:MV}} "
-        "{{Bb:parchment.",
-        "It's probably of more use to you, please take it with my thanks.}}",
-        "\nMaybe you should go back to {{lb:my-house}} to look for more "
-        "hidden items.",
-        "To quickly go back home, use {{yb:cd ~/my-house/}}\n"
+        "{{wb:Edoardo:}} {{Bb:\"Ehi, quello è il nostro}} {{lb:.piccolo-scrigno}}"
+        "{{Bb:. Lo usiamo per tenere i nostri averi al sicuro. ",
+        "Ho imparato come muovere gli oggetti grazie alle istruzioni}} "
+        "{{Bb:su quella pergamena.",
+        "Probabilmente serve di più a te. Prendila come ringraziamento.}}",
+        "\nForse dovresti tornare a {{lb:casa-mia}} per cercare "
+        "altri oggetti nascosti.",
+        "Per tornare velocmente a casa, usa {{yb:cd ~/casa-mia/}}\n"
     ]
 
-    start_dir = "~/town/.hidden-shelter"
-    end_dir = "~/my-house"
+    start_dir = "~/paese/.riparo-nascosto"
+    end_dir = "~/casa-mia"
     commands = [
-        'cd ~/my-house/',
-        'cd ~/my-house'
+        'cd ~/casa-mia/',
+        'cd ~/casa-mia'
     ]
     hints = [
-        '{{rb:No shortcuts!  Use}} {{yb:cd ~/my-house}} '
-        '{{rb:to get back to your house in one step.}}'
+        '{{rb:Non ci sono scorciatoie!  Usa}} {{yb:cd ~/casa-mia}} '
+        '{{rb:per tornare a casa con un solo comando.}}'
     ]
 
     def block_command(self):
@@ -126,27 +127,27 @@ class Step4(StepTemplateMv):
 
 class Step5(StepTemplateMv):
     story = [
-        "Let's see if we can find anything hidden around here!",
-        "Where do you think any hidden things could be?",
-        "Try {{lb:looking closely}} in {{lb:my-room}} first."
+        "Vediamo se c'è qualcosa di nascosto anche qui!",
+        "Dove pensi che ci possa essere qualcosa di nascosto?",
+        "Proviamo a {{lb:guardare bene}} in {{lb:camera-mia}} prima."
     ]
 
-    start_dir = '~/my-house'
+    start_dir = '~/casa-mia'
 
     hints = [
-        "{{rb:Stuck?  Have a look in}} {{yb:my-room}}{{rb:.}}",
-        "{{rb:Use}} {{yb:ls -a my-room}} {{rb:to look for hidden files in}} "
-        "{{lb:my-room}}{{rb:.}}"
+        "{{rb:Bloccato?  Dai un'occhiata in}} {{yb:camera-mia}}{{rb:.}}",
+        "{{rb:Usa}} {{yb:ls -a camera-mia}} {{rb:per cercare oggetti nascosti in}} "
+        "{{lb:camera-mia}}{{rb:.}}"
     ]
 
     last_step = True
 
     def check_output(self, output):
-        # Need to check that .chest is shown in the output of the command
+        # Need to check that .scrigno is shown in the output of the command
         if not output:
             return False
 
-        if '.chest' in output:
+        if '.scrigno' in output:
             return True
 
         return False

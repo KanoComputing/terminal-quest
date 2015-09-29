@@ -6,13 +6,13 @@
  |_|  |_|   \/
 
 
-This spell gives you the power to move items and rename them
+Questo comando ti dà il potere di spostare le cose e di cambiare loro il nome
 
 
-Examples
+Esempio
 
-mv item chest/
-If chest exists and is a directory, this moves the item inside the chest
+mv cosa cestino/
+Se il cestino esiste e è una cartella, allora sposta la cosa nel cestino 
 
-mv item better-item
-If better-item does not exist, then this will rename the item to better-item
+mv cosa cosa-meglio
+Se cosa-meglio non esiste già, allora cambia il nome da cosa a cosa-meglio

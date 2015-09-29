@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding: utf-8
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
@@ -25,26 +26,26 @@ class StepTemplateMv(TerminalMv):
 
 class Step1(StepTemplateMv):
     story = [
-        "There is an old antique {{lb:.chest}} hidden under your bed, "
-        "which you don't remember seeing before.",
-        "You walk into {{bb:my-room}} to have a closer look.",
-        "{{lb:Peer inside}} the {{lb:.chest}} and see what it contains."
+        "C'è uno {{lb:.scrigno}} antico nascosto sotto il tuo letto, "
+        "che non ti ricordi d'avere mai visto.",
+        "Vai in {{bb:camera-mia}} per guardare un po'.",
+        "{{lb:Fruga}} nello {{lb:.scrigno}} e guarda se contiene qualcosa."
     ]
 
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house/my-room"
+    start_dir = "~/casa-mia/camera-mia"
+    end_dir = "~/casa-mia/camera-mia"
 
     commands = [
-        'ls .chest',
-        'ls .chest/',
-        'ls -a .chest',
-        'ls -a .chest/',
-        'ls .chest/ -a',
-        'ls .chest -a'
+        'ls .scrigno',
+        'ls .scrigno/',
+        'ls -a .scrigno',
+        'ls -a .scrigno/',
+        'ls .scrigno/ -a',
+        'ls .scrigno -a'
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:ls .chest}} {{rb:to look inside the .chest}}"
+        "{{rb:Usa}} {{yb:ls .scrigno}} {{rb:per guarddare in .scrigno}}"
     ]
 
     def next(self):
@@ -53,22 +54,22 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        "There are some rolls of parchment, similar to what you found in "
-        "the {{bb:.hidden-shelter}}",
-        "Use {{lb:cat}} to {{lb:read}} one of the scrolls.\n"
+        "Ci sono dei rotoli di pergamena, simili a quello che hai trovato nel "
+        " {{bb:.riparo-nascosto}}",
+        "Usa {{lb:cat}} per {{lb:leggere}} uno dei rotoli.\n"
     ]
 
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house/my-room"
+    start_dir = "~/casa-mia/camera-mia"
+    end_dir = "~/casa-mia/camera-mia"
 
     commands = [
-        'cat .chest/LS',
-        'cat .chest/CAT',
-        'cat .chest/CD'
+        'cat .scrigno/LS',
+        'cat .scrigno/CAT',
+        'cat .scrigno/CD'
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:cat .chest/LS}} {{rb:to read the LS scroll.}}"
+        "{{rb:Usa}} {{yb:cat .scrigno/LS}} {{rb:per leggere la pergamena marcata con LS.}}"
     ]
 
     def next(self):
@@ -79,30 +80,30 @@ class Step2(StepTemplateMv):
 '''
 class Step3(StepTemplateMv):
     story = [
-        "You recognise these commands.",
-        "Maybe you should {{lb:move}} the one you found in the "
-        "{{lb:~/town/.hidden-shelter/.tiny-chest}} to this {{lb:.chest}}, "
-        "so they're all safe and in the same place.",
-        "\n{{gb:Use the TAB key to complete the file paths - it will save you "
-        "typing!}}\n"
+        "Dovresti riconoscere questi comandi.",
+        "Forse dovresti {{lb:spostare}} quello che avevi trovato in"
+        "{{lb:~/paese/.riparo-nascosto/.piccolo-scrigno}} in questo {{lb:.scrigno}}, "
+        "così sono tutti al sicuro nello stesso posto.",
+        "\n{{gb:Usa il tasto TAB key per completare i percorsi dei file - risparmierai "
+        "fatica alla tastiera!}}\n"
     ]
 
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house/my-room"
+    start_dir = "~/casa-mia/camera-mia"
+    end_dir = "~/casa-mia/camera-mia"
 
     commands = [
-        "mv ~/town/.hidden-shelter/.tiny-chest/MV .chest/",
-        "mv ~/town/.hidden-shelter/.tiny-chest/MV .chest",
-        "mv ../../.hidden-shelter/.tiny-chest/MV .chest/",
-        "mv ../../.hidden-shelter/.tiny-chest/MV .chest",
-        "mv ~/town/.hidden-shelter/.tiny-chest/MV ~/my-house/my-room/.chest/",
-        "mv ~/town/.hidden-shelter/.tiny-chest/MV ~/my-house/my-room/.chest"
+        "mv ~/paese/.riparo-nascosto/.piccolo-scrigno/MV .scrigno/",
+        "mv ~/paese/.riparo-nascosto/.piccolo-scrigno/MV .scrigno",
+        "mv ../../.riparo-nascosto/.piccolo-scrigno/MV .scrigno/",
+        "mv ../../.riparo-nascosto/.piccolo-scrigno/MV .scrigno",
+        "mv ~/paese/.riparo-nascosto/.piccolo-scrigno/MV ~/casa-mia/camera-mia/.scrigno/",
+        "mv ~/paese/.riparo-nascosto/.piccolo-scrigno/MV ~/casa-mia/camera-mia/.scrigno"
     ]
     hints = [
-        "{{rb:You want to use the command}} "
-        "{{yb:mv ~/town/.hidden-shelter/.tiny-chest/MV .chest/}}\n"
-        "{{rb:Use the UP arrow to replay your last command if you were "
-        "close!}}"
+        "{{rb:Vuoi usare il comando}} "
+        "{{yb:mv ~/paese/.riparo-nascosto/.piccolo-scrigno/MV .scrigno/}}\n"
+        "{{rb:Usa il tasto freccia in SÙ per ripetere il tuo ultimo comando "
+        "se sei vicino!}}"
     ]
 
     def block_command(self):
@@ -115,23 +116,23 @@ class Step3(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        "I wonder if there's anything else hidden in this {{lb:.chest}}?",
-        "Have a {{lb:closer look}} for some more items."
+        "Mi domando se ci sia altra roba nascosta in questo {{lb:.scrigno}}?",
+        "cerca di nuovo {{lb:bene}} per vedere."
     ]
 
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house/my-room"
+    start_dir = "~/casa-mia/camera-mia"
+    end_dir = "~/casa-mia/camera-mia"
 
     hints = [
-        "{{rb:Use}} {{yb:ls -a .chest}} {{rb:to see if there are any "
-        "hidden items in the chest.}}"
+        "{{rb:Usa}} {{yb:ls -a .scrigno}} {{rb:per vedere se ci sono "
+        "altre cose nascoste nello scrigno.}}"
     ]
 
     commands = [
-        "ls -a .chest",
-        "ls -a .chest/",
-        'ls .chest/ -a',
-        'ls .chest -a'
+        "ls -a .scrigno",
+        "ls -a .scrigno/",
+        'ls .scrigno/ -a',
+        'ls .scrigno -a'
     ]
 
     def next(self):
@@ -140,21 +141,21 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "You suddenly notice a tiny stained {{lb:.note}}, scrumpled in "
-        "the corner of the {{lb:.chest}}.",
-        "What does it say?\n"
+        "All'improvviso ti accorgi di un piccolo  {{lb:.foglietto}}, appallottolato "
+        "in un angolo dello {{lb:.scrigno}}.",
+        "Che dice?\n"
     ]
 
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house/my-room"
+    start_dir = "~/casa-mia/camera-mia"
+    end_dir = "~/casa-mia/camera-mia"
 
     hints = [
-        "{{rb:Use}} {{yb:cat .chest/.note}} {{rb:to read the}} "
-        "{{lb:.note}}{{rb:.}}"
+        "{{rb:Usa}} {{yb:cat .scrigno/.foglietto}} {{rb:per leggere il}} "
+        "{{lb:.foglietto}}{{rb:.}}"
     ]
 
     commands = [
-        "cat .chest/.note"
+        "cat .scrigno/.foglietto"
     ]
 
     def next(self):
