@@ -6,8 +6,6 @@
 #
 # A chapter of the story
 
-#arf qThis import sys just for the momentaneous interruption at the end...
-import sys
 
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.terminals.terminal_echo import TerminalEcho
@@ -239,5 +237,4 @@ class Step7(StepTemplateEcho):
     last_step = True
 
     def next(self):
-        sys.exit("LAVORI IN CORSO! Traduzione in italiano arrivata fino a qui (25 settembre 2015)\n")
-        #arf NextStep(self.xp)
+        NextStep(self.xp)

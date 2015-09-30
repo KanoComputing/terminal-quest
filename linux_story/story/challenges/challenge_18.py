@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-#
+# coding: utf-8
+
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
@@ -18,19 +19,19 @@ class StepTemplate(TerminalEcho):
 
 class Step1(StepTemplate):
     story = [
-        "Woah! You spoke aloud into the empty room!",
-        "{{gb:You learnt the new skill echo!}}",
-        "This command can probably be used to talk to people.",
+        "Ti rendi conto! Hai parlato a voce alta in una stanza vuota!",
+        "{{gb:Ora hai la capacità di parlare!}}",
+        "Forse con questo comando puoi parlare alle persone.",
 
-        "\nNow let's head to ~ to find that farm!",
-        "Type {{yb:cd}} by itself to go to the Windy Road {{lb:~}}"
+        "\nAndiamo in ~ per trovare quella fattoria!",
+        "Scrivi {{yb:cd}} da solo per uscire subito sulla straada ventosa {{lb:~}}"
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:cd}} {{rb:by itself to go to}} {{lb:~}}"
+        "{{rb:Usa}} {{yb:cd}} {{rb:da solo per andare in}} {{lb:~}}"
     ]
 
-    start_dir = "~/my-house/parents-room"
+    start_dir = "~/casa-mia/camera-genitori"
     end_dir = "~"
 
     def block_command(self):
@@ -42,11 +43,11 @@ class Step1(StepTemplate):
 
 class Step2(StepTemplate):
     story = [
-        "You are back on the windy road, which stretches endlessly in both "
-        "directions. {{lb:Look around.}}"
+        "Eccoti di nuovo sulla strada ventosa, che si estende senza fine in ambedue "
+        "le direzioni. {{lb:Guarda attorno.}}"
     ]
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+        "{{rb:guarda attorno con}} {{yb:ls}}{{rb:.}}"
     ]
 
     commands = [
@@ -62,14 +63,14 @@ class Step2(StepTemplate):
 
 class Step3(StepTemplate):
     story = [
-        "You notice a small remote farm in the distance.",
-        "{{lb:Let's go}} to the {{lb:farm}}."
+        "Vedi laggiù lontano una piccola fattoria.",
+        "{{lb:Andiamoci}}."
     ]
 
     start_dir = "~"
-    end_dir = "~/farm"
+    end_dir = "~/fattoria"
     hints = [
-        "{{rb:Use}} {{yb:cd farm/}} {{rb:to head to the farm.}}"
+        "{{rb:Use}} {{yb:cd fattoria/}} {{rb:to head to the fattoria.}}"
     ]
 
     def block_command(self):
@@ -81,13 +82,13 @@ class Step3(StepTemplate):
 
 class Step4(StepTemplate):
     story = [
-        "{{lb:Look around.}}"
+        "{{lb:Guarda intorno.}}"
     ]
 
     commands = "ls"
-    start_dir = "~/farm"
-    end_dir = "~/farm"
-    hints = ["{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"]
+    start_dir = "~/fattoria"
+    end_dir = "~/fattoria"
+    hints = ["{{rb:Usa}} {{yb:ls}} {{rb:per guardare intorno.}}"]
 
     def next(self):
         Step5()
@@ -95,27 +96,27 @@ class Step4(StepTemplate):
 
 class Step5(StepTemplate):
     story = [
-        "You are in a farm, with a {{bb:barn}}, a {{bb:farmhouse}} and "
-        "a large {{bb:toolshed}} in sight.",
-        "The land is well tended and weed free, so there must "
-        "be people about here.",
-        "{{lb:Look around}} and see if you can "
-        "find someone to talk to."
+        "Sei alla fattoria, c'è un {{bb:fienile}}, la {{bb:casa}} e "
+        "un grande  {{bb:capanno per gli attrezzi}}.",
+        "La terra è tenuta bene e non ci sono erbacce, ci devono "
+        "essere delle persone qui in giro.",
+        "{{lb:Guarda attorno}} per vedere se trovi "
+        "qualcuno con cui parlare."
     ]
-    start_dir = "~/farm"
-    end_dir = "~/farm"
+    start_dir = "~/fattoria"
+    end_dir = "~/fattoria"
     counter = 0
 
     def finished_challenge(self, line):
         output = self.check_output(self.last_cmd_output)
         if not output:
-            # If Ruth not in output, check if command is ls
+            # If Romina not in output, check if command is ls
             self.check_command()
 
         return output
 
     def output_condition(self, output):
-        if 'Ruth' in output:
+        if 'Romina' in output:
             return True
 
         return False
@@ -126,20 +127,20 @@ class Step5(StepTemplate):
 
             if self.counter >= 3:
                 self.send_text(
-                    "\n{{rb:Use}} {{yb:ls barn}} {{rb:to look in the barn.}}"
+                    "\n{{rb:Usa}} {{yb:ls fienile}} {{rb:per cercare nel fienile.}}"
                 )
             if self.counter == 2:
                 self.send_text(
-                    "\n{{rb:Have you looked in the}} {{lb:barn}} {{rb:yet?}}"
+                    "\n{{rb:Hai già cercato nel}} {{lb:fienile}}?"
                 )
             elif self.counter == 1:
                 self.send_text(
-                    "\n{{rb:There is no one here. You should look somewhere "
-                    "else.}}"
+                    "\n{{rb:Non c'è nessuno qui. Dovresti guardare "
+                    "da qualche altra parte.}}"
                 )
 
         else:
-            self.send_text("\n{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
+            self.send_text("\n{{rb:Usa}} {{yb:ls}} {{rb:per guardare intorno.}}")
 
     def block_command(self):
         if "mv" in self.last_user_input:
@@ -152,14 +153,14 @@ class Step5(StepTemplate):
 class Step6(StepTemplate):
 
     story = [
-        "In the barn, you see a woman tending some animals.",
-        "{{lb:Walk}} into the {{lb:barn}} so you can have a closer look."
+        "Nel fienile c'è una donna che governa gli animali.",
+        "{{lb:Vai}} nel {{lb:fienile}} per vedere meglio."
     ]
 
-    start_dir = "~/farm"
-    end_dir = "~/farm/barn"
+    start_dir = "~/fattoria"
+    end_dir = "~/fattoria/fienile"
     hints = [
-        "{{rb:Use}} {{yb:cd barn/}} {{rb:to walk into the barn.}}"
+        "{{rb:Usa}} {{yb:cd fienile/}} {{rb:per andare nel fienile.}}"
     ]
 
     def block_command(self):
@@ -172,29 +173,29 @@ class Step6(StepTemplate):
 class Step7(StepTemplate):
 
     story = [
-        # "In the barn, you see a woman tending some animals.",
-        # "You walk into the barn to have a closer look.",
-        "{{lb:Examine}} everyone in the barn using "
-        "the {{lb:cat}} command."
+        # "In the fienile, you see a woman tending some animals.",
+        # "You walk into the fienile to have a closer look.",
+        "{{lb:Senti}} che dicono nel fienile, con "
+        "il comando {{lb:cat}}."
     ]
 
     # what is this?
     last_challenge = True
 
     all_commands = {
-        "cat Ruth": "Ruth: {{Bb:Ah! Who are you?!}}",
-        "cat Cobweb": "Cobweb: {{Bb:Neiiigh.}}",
-        "cat Trotter": "Trotter: {{Bb:Oink Oink.}}",
-        "cat Daisy": "Daisy: {{Bb:Mooooooooo.}}"
+        "cat Romina": "Romina: {{Bb:Ah! Chi sei?!}}",
+        "cat Gelsomino": "Gelsomino: {{Bb:Hiii.}}",
+        "cat Trogolo": "Trogolo: {{Bb:Oink Oink.}}",
+        "cat Violetta": "Violetta: {{Bb:Muuuuu.}}"
     }
 
-    start_dir = "~/farm/barn"
-    end_dir = "~/farm/barn"
+    start_dir = "~/fattoria/fienile"
+    end_dir = "~/fattoria/fienile"
     last_step = True
 
     hints = [
-        "{{rb:If you've forgotten who's in the barn, use}} "
-        "{{yb:ls}} {{rb:to remind yourself.}}"
+        "{{rb:Se hai dimenticato chi c'è nel fienile, usa}} "
+        "{{yb:ls}} {{rb:per ricordatelo.}}"
     ]
 
     # TODO: move this into step_helper_functions, used a few too
@@ -207,7 +208,7 @@ class Step7(StepTemplate):
 
         # If they enter ls, say Well Done
         if self.last_user_input == 'ls':
-            hint = "\n{{gb:Well done for looking around.}}"
+            hint = "\n{{gb:Ottimo.}}"
             self.send_text(hint)
             return False
 
@@ -226,22 +227,22 @@ class Step7(StepTemplate):
 
             if len(self.all_commands) == 1:
                 hint += (
-                    "\n{{gb:Well done! Have a look at one more.}}"
+                    "\n{{gb:Bene! controllane ancora un altro.}}"
                 )
             elif len(self.all_commands) > 0:
-                hint += "\n{{gb:Well done! Look at " + \
+                hint += "\n{{gb:Bene! Controllane altri " + \
                     str(len(self.all_commands)) + \
-                    " more.}}"
+                    ".}}"
             else:
-                hint += "\n{{gb:Press Enter to continue.}}"
+                hint += "\n{{gb:Premi invio per continuare.}}"
 
             self.send_text(hint)
 
         else:
             if not self.hints:
                 self.hints = [
-                    "{{rb:Use}} {{yb:" + self.all_commands.keys()[0] + "}} "
-                    "{{rb:to progress.}}"
+                    "{{rb:Usa}} {{yb:" + self.all_commands.keys()[0] + "}} "
+                    "{{rb:per andare avanti.}}"
                 ]
             self.send_hint()
             self.hints.pop()

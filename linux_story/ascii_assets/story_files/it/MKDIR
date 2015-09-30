@@ -6,6 +6,6 @@
  |_|  |_|_|\_\_____/_____|_|  \_\
 
 
- Make a shelter/building
+ Crea un riparo, un contenitore, (una cartella del computer)
 
- mkdir igloo: this will make an igloo in the directory you're currently in
+ mkdir igloo: crea un igloo nel posto dove di trovi (nella cartella del computer dove ti trovi)
