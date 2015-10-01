@@ -6,8 +6,6 @@
 #
 # A chapter of the story
 
-#arf This just for the momentaneous interruption
-import sys
 
 from linux_story.step_helper_functions import (
     unblock_commands_with_mkdir_hint, unblock_cd_commands
@@ -127,7 +125,7 @@ class Step3(StepTemplateEcho):
 
 class Step4(StepTemplateMkdir):
     story = [
-        "Romina: {{Bb:Questo dice che puoi fare qualcosa con qualcosa "
+        "Romina: {{Bb:Questo dice che puoi fare qualcosa con un'attrezzo "
         "che si chiama}} {{lb:mkdir}}{{Bb:?}}",
         "\n{{gb:Prova a fare un igloo usando}} {{yb:mkdir igloo}}"
     ]
@@ -174,5 +172,4 @@ class Step5(StepTemplateMkdir):
     last_step = True
 
     def next(self):
-        sys.exit("LAVORI IN CORSO! Traduzione in italiano arrivata fino a qui (25 settembre 2015)\n")
         NextStep(self.xp)

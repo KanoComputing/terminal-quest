@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-#
+# coding: utf-8
+
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
@@ -17,30 +18,31 @@ class StepTemplateMkdir(TerminalMkdir):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "{{gb:Well done, it looks like everyone is here!}}",
-        "\nRuth: {{Bb:Thank you so much!}}",
-        "{{Bb:We'll stay in here to keep safe.  I'm so grateful to everything "
-        "you've done.}}",
-        "\nUse {{lb:cat}} to check that the animals are happy in here."
+        "{{gb:Bravo, sembra che ci siano tutti!}}",
+        "\nRomina: {{Bb:Grazie davvero!}}",
+        "{{Bb:Staremo qui al sicuro.  Ti sono così grata per tutto quello "
+        "che hai fatto.}}",
+        "\nUsa {{lb:cat}} per controllare se gli animali stanno "
+        "bene qui dentro"
     ]
 
-    start_dir = "~/farm/barn/.shelter"
-    end_dir = "~/farm/barn/.shelter"
+    start_dir = "~/fattoria/fienile/.riparo"
+    end_dir = "~/fattoria/fienile/.riparo"
 
     commands = [
-        "cat Daisy",
-        "cat Trotter",
-        "cat Cobweb"
+        "cat Violetta",
+        "cat Trogolo",
+        "cat Gelsomino"
     ]
     hints = [
-        "{{rb:Use}} {{lb:cat}} {{rb:to examine an animal, e.g.}} "
-        "{{yb:cat Daisy}}{{rb:.}}"
+        "{{rb:Usa}} {{lb:cat}} {{rb:per controlare un animale, tipo}} "
+        "{{yb:cat Violetta}}{{rb:.}}"
     ]
 
     # Remove all the food
     deleted_items = [
-        "~/town/.hidden-shelter/basket",
-        "~/town/.hidden-shelter/apple"
+        "~/paese/.riparo-nascosto/basket",
+        "~/paese/.riparo-nascosto/apple"
     ]
 
     def next(self):
@@ -51,23 +53,23 @@ class Step1(StepTemplateMkdir):
 class Step2(StepTemplateMkdir):
     story = [
         "{{pb:Ding. Dong.}}",
-        "Ruth: {{Bb:What?? I heard a bell!  What does that mean?}}",
-        "\nQuick! {{lb:Look around}} and see if anyone is missing."
+        "Romina: {{Bb:Cosa?? Ho sentito la campanella!  Che significa?}}",
+        "\nSvelto! {{lb:Guarda attorno}} per controllare se manca qualcuno."
     ]
 
-    start_dir = "~/farm/barn/.shelter"
-    end_dir = "~/farm/barn/.shelter"
+    start_dir = "~/fattoria/fienile/.riparo"
+    end_dir = "~/fattoria/fienile/.riparo"
     commands = [
         "ls",
         "ls -a"
     ]
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+        "{{rb:guarda attorno con}} {{yb:ls}}{{rb:.}}"
     ]
 
     # Remove Edith
     deleted_items = [
-        "~/town/.hidden-shelter/Edith"
+        "~/paese/.riparo-nascosto/Edith"
     ]
 
     def next(self):
@@ -77,25 +79,25 @@ class Step2(StepTemplateMkdir):
 
 class Step3(StepTemplateMkdir):
     story = [
-        "It appears that everyone is still here...",
+        "Sembra che qui ci siano tutti...",
         "\n{{pb:Ding. Dong.}}",
-        "\nRuth: {{Bb:I heard it again!  Is that the sound you heard when "
-        "my husband went missing?}}",
-        "Have another quick {{lb:look around}}."
+        "\nRomina: {{Bb:Ancora! L'ho sentita! Ma è questa che hai sentito quando "
+        "è sparito il mio marito?}}",
+        "Dai un'altra {{lb:occhiata}} veloce."
     ]
 
-    start_dir = "~/farm/barn/.shelter"
-    end_dir = "~/farm/barn/.shelter"
+    start_dir = "~/fattoria/fienile/.riparo"
+    end_dir = "~/fattoria/fienile/.riparo"
     commands = [
         "ls",
         "ls -a"
     ]
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+        "{{rb:Guardati attorno con}} {{yb:ls}}{{rb:.}}"
     ]
-    # Remove Edward
+    # Remove Edoardo
     deleted_items = [
-        "~/town/.hidden-shelter/Edward"
+        "~/paese/.riparo-nascosto/Edoardo"
     ]
 
     def next(self):
@@ -106,27 +108,27 @@ class Step3(StepTemplateMkdir):
 # TODO: FIX THIS STEP
 class Step4(StepTemplateMkdir):
     story = [
-        "Ruth: {{Bb:It's alright. We're all safe, everyone's still here. "
-        "I wonder why it's ringing?}}",
-        "\nPerhaps we should investigate that sound.  Who else do we "
-        "know?",
-        "Maybe you should check back on the family in the "
-        "{{lb:.hidden-shelter}} and talk to them with your new found voice.",
+        "Romina: {{Bb:Meno male. Siamo al sicuro, qui ci sono tutti. "
+        "Ma perché suona?}}",
+        "\nForse dovremmo indagare su queste ultime suonate. Chi altro "
+        "si conosceva?",
+        "Si potrebbe rincontrollare quella famiglia rimpiattata nel "
+        "{{lb:.riparo-nascosto}} e parlare loro, ora che hai la voce.",
 
-        "\nStart heading back to the {{lb:.hidden-shelter}} using {{lb:cd}}."
+        "\nInizia a tornare indietro per andare al {{lb:.riparo-nascosto}} con {{lb:cd}}"
     ]
 
-    start_dir = "~/farm/barn/.shelter"
-    end_dir = "~/town/.hidden-shelter"
+    start_dir = "~/fattoria/fienile/.riparo"
+    end_dir = "~/paese/.riparo-nascosto"
 
     hints = [
-        "{{rb:We can go directly to the}} {{lb:.hidden-shelter}} "
-        "{{rb:using}} {{yb:cd ~/town/.hidden-shelter/}}"
+        "{{rb:Possiamo andare direttamente al}} {{lb:.riparo-nascosto}} "
+        "{{rb:usando}} {{yb:cd ~/paese/.riparo-nascosto/}}"
     ]
 
-    # Remove the dog
+    # Remove the cane
     deleted_items = [
-        "~/town/.hidden-shelter/dog"
+        "~/paese/.riparo-nascosto/cane"
     ]
 
     def block_command(self):
@@ -137,7 +139,7 @@ class Step4(StepTemplateMkdir):
         if self.last_user_input.startswith("cd") and \
                 not self.get_command_blocked() and \
                 not self.current_path == self.end_dir:
-            hint = "\n{{gb:Well done! Keep going!}}"
+            hint = "\n{{gb:Ottimo! Continua così!}}"
             self.send_text(hint)
         else:
             return StepTemplateMkdir.check_command(self)
@@ -148,17 +150,17 @@ class Step4(StepTemplateMkdir):
 
 class Step5(StepTemplateMkdir):
     story = [
-        "Have a {{lb:look around}}."
+        "Guarda {{lb:attorno}}."
     ]
 
-    start_dir = "~/town/.hidden-shelter"
-    end_dir = "~/town/.hidden-shelter"
+    start_dir = "~/paese/.riparo-nascosto"
+    end_dir = "~/paese/.riparo-nascosto"
     commands = [
         "ls",
         "ls -a"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+        "{{rb:Usa}} {{yb:ls}} {{rb:per guardare attorno.}}"
     ]
     last_step = True
 

@@ -5,7 +5,7 @@ Modifications that will be cleaned up at the end, are marked within #arf comment
 
 The following files have been modified so far:
 
-#### linux_story/story/challenges/challenge_X.py, with X=1,20
+#### linux_story/story/challenges/challenge_X.py, with X=1,23
 
 At the beginning of each script, the instruction **\# coding: utf-8** was added in order to treat the Italian accented vovels correctly.
 

@@ -290,7 +290,7 @@ Eleonora:
 
         - challenge: 24
           step: 3
-          path: "~/paese/est/negozio-capanni"
+          path: "~/paese/est/negozio-di-capanni"
 
         - challenge: 26
           step: 1
@@ -302,7 +302,7 @@ Eleonora:
 
         - challenge: 27
           step: 1
-          path: "~/paese/est/negozio-capanni"
+          path: "~/paese/est/negozio-di-capanni"
 
         - challenge: 28
           step: 1
@@ -420,7 +420,7 @@ Bernardo:
     challenges:
         - challenge: 23
           step: 4
-          path: "~/paese/est/negozio-capanni"
+          path: "~/paese/est/negozio-di-capanni"
         - challenge: 30
           step: 1
           exists: False
@@ -430,7 +430,7 @@ miglior-fabbricatore-di-capanni-del-mondo.sh:
     challenges:
         - challenge: 23
           step: 4
-          path: "~/paese/est/negozio-capanni"
+          path: "~/paese/est/negozio-di-capanni"
           permissions: 0755
 
 #arf best-horn-in-the-world-incorrect.sh:
@@ -439,11 +439,11 @@ miglior-clackson-del-mondo-scorretto.sh:
     challenges:
         - challenge: 23
           step: 4
-          path: "~/paese/est/negozio-capanni"
+          path: "~/paese/est/negozio-di-capanni"
           permissions: 0755
         - challenge: 27
           step: 3
-          path: "~/paese/est/negozio-capanni"
+          path: "~/paese/est/negozio-di-capanni"
           exists: False
 
 #arf best-horn-in-the-world-correct.sh:
@@ -452,7 +452,7 @@ miglior-clackson-del-mondo-corretto.sh:
     challenges:
         - challenge: 27
           step: 3
-          path: "~/paese/est/negozio-capanni"
+          path: "~/paese/est/negozio-di-capanni"
           permissions: 0755
 
 seminterrato:
@@ -460,21 +460,21 @@ seminterrato:
     challenges:
         - challenge: 23
           step: 4
-          path: "~/paese/est/negozio-capanni"
+          path: "~/paese/est/negozio-di-capanni"
 
 #arf bernards-diary-1, bernards-diary-2:
-diario-bernardo-1, diario-bernardo-2:
+diario-di-bernardo-1, diario-di-bernardo-2:
     challenges:
         - challenge: 23
           step: 4
-          path: "~/paese/est/negozio-capanni/seminterrato"
+          path: "~/paese/est/negozio-di-capanni/seminterrato"
 
 #arf photocopier.sh:
 fotocopiatrice.sh:
     challenges:
         - challenge: 23
           step: 4
-          path: "~/paese/est/negozio-capanni/seminterrato"
+          path: "~/paese/est/negozio-di-capanni/seminterrato"
           permissions: 0755
 
 shed:
@@ -482,7 +482,7 @@ shed:
     challenges:
         - challenge: 25
           step: 5
-          path: "~/paese/est/negozio-capanni"
+          path: "~/paese/est/negozio-di-capanni"
 
 NANO:
     challenges:
@@ -511,4 +511,4 @@ cappello-bernardo:
     challenges:
         - challenge: 30
           step: 1
-          path: "~/paese/est/negozio-capanni"
+          path: "~/paese/est/negozio-di-capanni"
