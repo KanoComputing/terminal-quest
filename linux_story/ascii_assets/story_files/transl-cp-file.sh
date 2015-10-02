@@ -50,7 +50,7 @@ cp grapes it/grappoli
 cp grumpy-man it/uomo-cattivo   # ?
 cp hammer it/martello
 cp jumper it/felpa
-cp librarian it/bibliotecario
+cp librarian it/libraio
 cp little-boy it/bambino
 cp LS it/LS   # tradurre contenuto
 cp map it/mappa

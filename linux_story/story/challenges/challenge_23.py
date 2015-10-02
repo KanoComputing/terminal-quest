@@ -6,8 +6,6 @@
 #
 # A chapter of the story
 
-#arf Just for the momentaneous interruption
-import sys
 
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
@@ -183,10 +181,10 @@ class Step4(StepMkdirEleanor):
             "path": "~/paese/est/negozio-di-capanni/seminterrato"
         },
         "NANO": {
-            "path": "~/paese/est/biblioteca/sezione-pubblica"
+            "path": "~/paese/est/libreria/sezione-pubblica"
         },
-        "private-section": {
-            "path": "~/paese/est/biblioteca",
+        "sezione-privata": {
+            "path": "~/paese/est/libreria",
             # Remove all read and write permissions
             "permissions": 0000,
             "directory": True
@@ -236,5 +234,4 @@ class Step5(StepMkdirEleanor):
         return unblock_cd_commands(self.last_user_input)
 
     def next(self):
-        sys.exit("LAVORI IN CORSO! Traduzione in italiano arrivata fino a qui (1 ottobre 2015)\n")
         NextStep(self.xp)

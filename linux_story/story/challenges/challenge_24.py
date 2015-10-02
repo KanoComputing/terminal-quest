@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-#
+# coding: utf-8
+
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
@@ -17,31 +18,31 @@ class StepTemplateMkdir(TerminalMkdirEleanor):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "You walk down the narrow road, with Eleanor dancing "
-        "alongside, until you reach an open space in the "
-        "{{bb:east}} part of town.",
-        "\n{{lb:Look around.}}"
+        "Ti sei incamminato lungo questa stradina, insieme a Eleonora "
+        "che ti saltella accanto, quando arrivate in uno spazio aperto "
+        "a {{bb:est}} del paese.",
+        "\n{{lb:Guarda attorno.}}"
     ]
     commands = [
         "ls",
         "ls -a"
     ]
 
-    start_dir = "~/town/east"
-    end_dir = "~/town/east"
+    start_dir = "~/paese/est"
+    end_dir = "~/paese/est"
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+        "{{rb:Guarda intorno con}} {{yb:ls}}{{rb:.}}"
     ]
-    deleted_items = ["~/town/Eleanor"]
+    deleted_items = ["~/paese/Eleonora"]
     story_dict = {
-        "Eleanor": {
-            "path": "~/town/east"
+        "Eleonora": {
+            "path": "~/paese/est"
         }
     }
 
     eleanors_speech = (
-        "Eleanor: {{Bb:I can't see my parents anywhere...but there's "
-        "a weird building there.}}"
+        "Eleonora: {{Bb:Non riesco a vedere i miei genitori da nessuna parte... "
+        "ma c'è uno strano edificio laggiù.}}"
     )
 
     def next(self):
@@ -50,19 +51,19 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateMkdir):
     story = [
-        "You see a {{bb:shed-shop}}, {{bb:library}} and {{bb:restaurant}}.",
-        "\nEleanor: {{Bb:Hey, what is that shed-shop?}}",
-        "{{Bb:Let's}} {{lb:go in}}{{Bb:!}}"
+        "Vedi un {{bb:negozio di capanni}}, una {{bb:libreria}} e un {{bb:ristorante}}.",
+        "\nEleonora: {{Bb:Guarda buffo, un negozio di capanni!}}",
+        "{{Bb:Andiamo}} {{lb:dentro}}{{Bb:!}}"
     ]
 
-    start_dir = "~/town/east"
-    end_dir = "~/town/east/shed-shop"
+    start_dir = "~/paese/est"
+    end_dir = "~/paese/est/negozio-di-capanni"
     hints = [
-        "{{rb:Use}} {{yb:cd shed-shop/}} {{rb:to go in the shed-shop.}}"
+        "{{rb:Usa}} {{yb:cd negozio-di-capanni/}} {{rb:per andare nel negozio di capanni.}}"
     ]
 
     eleanors_speech = (
-        "Eleanor: {{Bb:Do you think they sell candy?}}"
+        "Eleonora: {{Bb:Pensi che vendano caramelle?}}"
     )
 
     def block_command(self):
@@ -74,32 +75,32 @@ class Step2(StepTemplateMkdir):
 
 # Duplicate of Step1, except that self.next is changed
 class Step3(StepTemplateMkdir):
-    # Have a sign with "the-best-shed-maker-in-town"
+    # Have a sign with "the-best-shed-maker-in-paese"
 
     story = [
-        "You both walk slowly into the shop.",
-        "It is dusty and significantly darker in here than outside.",
-        "Eleanor looks like she needs to sneeze.",
-        "\n{{lb:Look around.}}"
+        "Entrate insieme lentamente nel negozio.",
+        "È buio e polveroso qui dentro.",
+        "Eleonora sta per starnutire.",
+        "\n{{lb:Guarda intorno.}}"
     ]
 
-    start_dir = "~/town/east/shed-shop"
-    end_dir = "~/town/east/shed-shop"
+    start_dir = "~/paese/est/negozio-di-capanni"
+    end_dir = "~/paese/est/negozio-di-capanni"
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+        "{{rb:Guarda intorno con}} {{yb:ls}}{{rb:.}}"
     ]
     commands = [
         "ls",
         "ls -a"
     ]
-    deleted_items = ["~/town/east/Eleanor"]
+    deleted_items = ["~/paese/est/Eleonora"]
     story_dict = {
-        "Eleanor": {
-            "path": "~/town/east/shed-shop"
+        "Eleonora": {
+            "path": "~/paese/est/negozio-di-capanni"
         }
     }
     eleanors_speech = (
-        "Eleanor: {{Bb:Ah..ah...achoo!! It's so dusty in here!}}"
+        "Eleonora: {{Bb:Eh..eh...etciuu!! Mamma com'è polveroso qui dentro!}}"
     )
 
     def next(self):
@@ -109,26 +110,27 @@ class Step3(StepTemplateMkdir):
 class Step4(StepTemplateMkdir):
 
     story = [
-        "You see a man called Bernard, a door and a "
-        "couple of tools.",
-        "\nThe tools show up as {{gb:green}} in the Terminal.",
-        "\n{{lb:Listen}} to what {{lb:Bernard}} has to say."
+        "C'è un uomo che si chiama Bernardo, una porta e "
+        "un paio di attrezzi.",
+        "\nI nomi degli attrezzi sono scritti in {{gb:verde}} nel Terminale.",
+        "\n{{lb:Ascolta}} cosa dice {{lb:Bernardo}}."
     ]
 
-    start_dir = "~/town/east/shed-shop"
-    end_dir = "~/town/east/shed-shop"
+    start_dir = "~/paese/est/negozio-di-capanni"
+    end_dir = "~/paese/est/negozio-di-capanni"
 
     hints = [
-        "{{rb:Use}} {{yb:cat Bernard}} {{rb:to see what Bernard has "
-        "to say.}}"
+        "{{rb:Usa}} {{yb:cat Bernardo}} {{rb:per ascoltarlo.}}"
     ]
 
     commands = [
-        "cat Bernard"
+        "cat Bernardo"
     ]
     eleanors_speech = (
-        "Eleanor: {{Bb:My}} {{lb:cat}} {{Bb:used to be a great "
-        "listener, I'd tell her everything.}}"
+        #arf This can't be translated in Italian    
+        #arf "Eleonora: {{Bb:My}} {{lb:cat}} {{Bb:used to be a great "
+        #arf "listener, I'd tell her everything.}}"
+        "Eleonora: {{Sentiamo...}}"
     )
 
     last_step = True

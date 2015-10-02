@@ -298,7 +298,7 @@ Eleonora:
 
         - challenge: 26
           step: 3
-          path: "~/paese/est/biblioteca"
+          path: "~/paese/est/libreria"
 
         - challenge: 27
           step: 1
@@ -488,14 +488,14 @@ NANO:
     challenges:
         - challenge: 23
           step: 4
-          path: "~/paese/est/biblioteca/sezione-pubblica"
+          path: "~/paese/est/libreria/sezione-pubblica"
 
 private-section:
     directory: True
     challenges:
         - challenge: 23
           step: 4
-          path: "~/paese/est/biblioteca"
+          path: "~/paese/est/libreria"
           permissions: 0000
 
 # Hidden librarian
