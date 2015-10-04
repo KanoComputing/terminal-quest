@@ -32,18 +32,10 @@ if __name__ == "__main__":
     # the Challenge and Step numbers
     if len(sys.argv) == 3:
         if sys.argv[1].isdigit() and sys.argv[2].isdigit():
-            #arf Message saying that beyond this point the italian translation has to be done
-	    if int(sys.argv[1]) > 26:
-                sys.exit("LAVORI IN CORSO! Traduzione in italiano arrivata fino a qui (2 ottobre 2015)\n")
-            #arf	
             launch_project(int(sys.argv[1]), int(sys.argv[2]))
 
     elif len(sys.argv) == 2:
         if sys.argv[1].isdigit():
-            #arf Message saying that beyond this point the italian translation has to be done
-            if int(sys.argv[1]) > 28:
-                sys.exit("LAVORI IN CORSO! Traduzione in italiano arrivata fino a qui (2 ottobre 2015)\n")
-             #arf	
             launch_project(int(sys.argv[1]), 1)
 
     elif len(sys.argv) == 1:

@@ -298,7 +298,7 @@ Eleonora:
 
         - challenge: 26
           step: 3
-          path: "~/paese/est/libreria"
+          path: "~/paese/est/biblioteca"
 
         - challenge: 27
           step: 1
@@ -434,8 +434,8 @@ miglior-fabbricatore-di-capanni-del-mondo.sh:
           permissions: 0755
 
 #arf best-horn-in-the-world-incorrect.sh:
-miglior-clackson-del-mondo-scorretto.sh:
-    name: "miglior-clackson-del-mondo.sh"
+miglior-clacson-del-mondo-scorretto.sh:
+    name: "miglior-clacson-del-mondo.sh"
     challenges:
         - challenge: 23
           step: 4
@@ -447,8 +447,8 @@ miglior-clackson-del-mondo-scorretto.sh:
           exists: False
 
 #arf best-horn-in-the-world-correct.sh:
-miglior-clackson-del-mondo-corretto.sh:
-    name: "miglior-clackson-del-mondo.sh"
+miglior-clacson-del-mondo-corretto.sh:
+    name: "miglior-clacson-del-mondo.sh"
     challenges:
         - challenge: 27
           step: 3
@@ -488,14 +488,14 @@ NANO:
     challenges:
         - challenge: 23
           step: 4
-          path: "~/paese/est/libreria/sezione-pubblica"
+          path: "~/paese/est/biblioteca/sezione-pubblica"
 
-private-section:
+sezione-privata:
     directory: True
     challenges:
         - challenge: 23
           step: 4
-          path: "~/paese/est/libreria"
+          path: "~/paese/est/biblioteca"
           permissions: 0000
 
 # Hidden librarian
@@ -507,7 +507,7 @@ Clara:
           path: "~/paese/est/ristorante/.cantina"
 
 #arf bernards-hat:
-cappello-bernardo:
+cappello-di-bernardo:
     challenges:
         - challenge: 30
           step: 1

@@ -50,7 +50,7 @@ class Step1(StepTemplateMkdir):
     )
 
     def check_command(self):
-        if self.last_user_input == "cat miglior-clackson-del-mondo.sh":
+        if self.last_user_input == "cat miglior-clacson-del-mondo.sh":
             self.send_text(
                 "\n{{rb:Stai cercando di leggere il file sbagliato! "
                 "Tu vuoi leggere il}} {{lb:miglior-fabbricatore-di-capanni-del-mondo.sh}}"
@@ -95,7 +95,7 @@ class Step2(StepTemplateMkdir):
     )
 
     def check_command(self):
-        if self.last_user_input == "./miglior-clackson-del-mondo.sh":
+        if self.last_user_input == "./miglior-clacson-del-mondo.sh":
             self.send_text(
                 "\n{{rb:Stai cercando di girare lo script sbagliato . "
                 "Tu vuoi girare}} "
@@ -165,13 +165,13 @@ class Step5(StepTemplateMkdir):
         "ce l'avete già un capanno!",
 
         "Sto lavorando alla prossima grande invenzione, il}} "
-        "{{lb:miglior-clackson-del-mondo.sh}}{{Bb:.}}",
+        "{{lb:miglior-clacson-del-mondo.sh}}{{Bb:.}}",
 
         "{{Bb:Serve ad avvertire tutti che stai arrivando. "
         "Ho qualche problema iniziale, "
         "ma sono sicuro che li risolverò presto.}}",
 
-        "\n{{lb:Guarda il miglior-clackson-del-mondo.sh}} e vedi se "
+        "\n{{lb:Guarda il miglior-clacson-del-mondo.sh}} e vedi se "
         "trovi il problema.",
 
         "{{gb:Ricordati di usare il tasto TAB!}}"
@@ -180,12 +180,12 @@ class Step5(StepTemplateMkdir):
     start_dir = "~/paese/est/negozio-di-capanni"
     end_dir = "~/paese/est/negozio-di-capanni"
     commands = [
-        "cat miglior-clackson-del-mondo.sh"
+        "cat miglior-clacson-del-mondo.sh"
     ]
 
     hints = [
         "{{rb:Usa}} {{lb:cat}} {{rb:per esaminare l'attrezzo.}}",
-        "{{rb:Usa}} {{yb:cat miglior-clackson-del-mondo.sh}} {{rb:per esaminare "
+        "{{rb:Usa}} {{yb:cat miglior-clacson-del-mondo.sh}} {{rb:per esaminare "
         "l'attrezzo.}}"
     ]
 
@@ -197,7 +197,7 @@ class Step5(StepTemplateMkdir):
         if self.last_user_input == "cat miglior-fabbricatore-di-capanni-del-mondo.sh":
             self.send_text(
                 "\n{{rb:stai esaminando l'attrezzo sbagliato. Tu vuoi guardare "
-                "il}} {{yb:miglior-clackson-del-mondo.sh}}"
+                "il}} {{yb:miglior-clacson-del-mondo.sh}}"
             )
 
         else:
@@ -214,7 +214,7 @@ class Step6(StepTemplateMkdir):
         "Come facciamo a aggiustare questo attrezzo?",
         "\nBernardo: {{Bb:Boia, ma voi ci chiappate.}}",
         "Eleonora: {{Bb:Se abbiamo bisogno di aiuto c'è la "
-        "libreria, è giusto qui fuori.}}",
+        "biblioteca, è giusto qui fuori.}}",
         "\nPrima di andare diamo un'{{lb:occhiata}} nel {{lb:seminterrato}}."
     ]
 
@@ -253,7 +253,7 @@ class Step7(StepTemplateMkdir):
         "{{rb:Esci dal negozio di capanni usando}} {{yb:cd ../}}"
     ]
     eleanors_speech = (
-        "Eleonora: {{Bb:Wow, mi piace la libreria. torniamo in paese!}}"
+        "Eleonora: {{Bb:Wow, mi piace la biblioteca. Torniamo in paese!}}"
     )
 
     last_step = True

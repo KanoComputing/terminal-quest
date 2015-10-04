@@ -15,7 +15,7 @@ class TerminalMkdirEleanor(TerminalMkdir):
     eleanors_speech = ""
 
     def check_command(self):
-        if self.last_user_input == "cat Eleanor":
+        if self.last_user_input == "cat Eleonora":
             self.eleanor_speaks()
             record_user_interaction(self, "cat_eleanor")
 
@@ -33,7 +33,7 @@ class TerminalNanoEleanor(TerminalNano):
     eleanors_speech = ""
 
     def check_command(self):
-        if self.last_user_input == "cat Eleanor":
+        if self.last_user_input == "cat Eleonora":
             self.eleanor_speaks()
             record_user_interaction(self, "cat_eleanor")
 

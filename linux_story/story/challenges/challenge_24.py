@@ -51,7 +51,7 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateMkdir):
     story = [
-        "Vedi un {{bb:negozio di capanni}}, una {{bb:libreria}} e un {{bb:ristorante}}.",
+        "Vedi un {{bb:negozio di capanni}}, una {{bb:biblioteca}} e un {{bb:ristorante}}.",
         "\nEleonora: {{Bb:Guarda buffo, un negozio di capanni!}}",
         "{{Bb:Andiamo}} {{lb:dentro}}{{Bb:!}}"
     ]

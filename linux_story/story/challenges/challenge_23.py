@@ -172,8 +172,8 @@ class Step4(StepMkdirEleanor):
             "path": "~/paese/est/negozio-di-capanni",
             "permissions": 0755
         },
-        "miglior-clackson-del-mondo-scorretto.sh": {
-            "name": "miglior-clackson-del-mondo.sh",
+        "miglior-clacson-del-mondo-scorretto.sh": {
+            "name": "miglior-clacson-del-mondo.sh",
             "path": "~/paese/est/negozio-di-capanni",
             "permissions": 0755
         },
@@ -181,10 +181,10 @@ class Step4(StepMkdirEleanor):
             "path": "~/paese/est/negozio-di-capanni/seminterrato"
         },
         "NANO": {
-            "path": "~/paese/est/libreria/sezione-pubblica"
+            "path": "~/paese/est/biblioteca/sezione-pubblica"
         },
         "sezione-privata": {
-            "path": "~/paese/est/libreria",
+            "path": "~/paese/est/biblioteca",
             # Remove all read and write permissions
             "permissions": 0000,
             "directory": True

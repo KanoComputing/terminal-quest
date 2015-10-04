@@ -12,9 +12,9 @@ cp bench it/panchina
 cp Bernard it/Bernardo
 cp bernards-diary-1 it/diario-bernardo-1   # tradurre
 cp bernards-diary-2 it/diario-bernardo-2   # tradurre
-cp bernards-hat it/cappello-bernardo
-cp best-horn-in-the-world-correct.sh it/meglio-clackson-del-mondo-corretto.sh   # tradurre
-cp best-horn-in-the-world-incorrect.sh it/meglio-clackson-del-mondo-scorretto.sh   # tradurre
+cp bernards-hat it/cappello-di-bernardo
+cp best-horn-in-the-world-correct.sh it/meglio-clacson-del-mondo-corretto.sh   # tradurre
+cp best-horn-in-the-world-incorrect.sh it/meglio-clacson-del-mondo-scorretto.sh   # tradurre
 cp best-shed-maker-in-the-world.sh it/meglio-fabbricatore-di-scaffali-del-mondo.sh   # tradurre
 cp bull it/toro
 cp cake it/torta
@@ -50,7 +50,7 @@ cp grapes it/grappoli
 cp grumpy-man it/uomo-cattivo   # ?
 cp hammer it/martello
 cp jumper it/felpa
-cp librarian it/libraio
+cp librarian it/bibliotecaria
 cp little-boy it/bambino
 cp LS it/LS   # tradurre contenuto
 cp map it/mappa

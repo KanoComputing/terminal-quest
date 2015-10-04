@@ -6,9 +6,6 @@
 #
 # A chapter of the story
 
-#arf Just to interrupt at the end of this chapter
-#arf The translation continues...
-import sys
 
 from linux_story.story.terminals.terminal_bernard import TerminalMkdirBernard
 from linux_story.story.challenges.challenge_27 import Step1 as NextStep
@@ -44,7 +41,7 @@ class Step1(StepTemplateMkdir):
             "path": "~/paese/est"
         }
     }
-    eleanors_speech = "Eleonora: {{Bb:Ecco la libreria laggiù!}}"
+    eleanors_speech = "Eleonora: {{Bb:Ecco la biblioteca laggiù!}}"
 
     def next(self):
         Step2()
@@ -52,19 +49,19 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateMkdir):
     story = [
-        "Ecco la  {{bb:libreria}}.",
+        "Ecco la  {{bb:biblioteca}}.",
 
-        "Eleonora: {{Bb:Eccola! La}} {{bb:libreria}} "
+        "Eleonora: {{Bb:Eccola! La}} {{bb:biblioteca}} "
         "{{Bb:è proprio qui!}} {{lb:Entriamo.}}"
     ]
 
     start_dir = "~/paese/est"
-    end_dir = "~/paese/est/libreria"
+    end_dir = "~/paese/est/biblioteca"
 
     hints = [
-        "{{rb:Usa}} {{yb:cd libreria/}} {{rb:per entrare nella libreria.}}"
+        "{{rb:Usa}} {{yb:cd biblioteca/}} {{rb:per entrare nella biblioteca.}}"
     ]
-    eleanors_speech = "Eleonora: {{Bb:Mi piace la libreria! Entriamo!}}"
+    eleanors_speech = "Eleonora: {{Bb:Mi piace la biblioteca! Entriamo!}}"
 
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)
@@ -75,12 +72,12 @@ class Step2(StepTemplateMkdir):
 
 class Step3(StepTemplateMkdir):
     story = [
-        "Eleonora si infila nella libreria e tu la segui.",
-        "{{lb:Guarda intorno}} nella libreria."
+        "Eleonora si infila nella biblioteca e tu la segui.",
+        "{{lb:Guarda intorno}} nella biblioteca."
     ]
 
-    start_dir = "~/paese/est/libreria"
-    end_dir = "~/paese/est/libreria"
+    start_dir = "~/paese/est/biblioteca"
+    end_dir = "~/paese/est/biblioteca"
 
     hints = [
         "{{rb:Usa}} {{yb:ls}} {{rb:per guardarti attorno.}}"
@@ -92,7 +89,7 @@ class Step3(StepTemplateMkdir):
     deleted_items = ["~/paese/est/Eleonora"]
     story_dict = {
         "Eleonora": {
-            "path": "~/paese/est/libreria"
+            "path": "~/paese/est/biblioteca"
         }
     }
     eleanors_speech = "Eleonora: {{Bb:È tutto echo-y-y-y-y..}}"
@@ -107,7 +104,7 @@ class Step4(StepTemplateMkdir):
         "Una ha l'iscrizione {{bb:sezione-pubblica}}, e l'altra "
         "{{bb:sezione-privata}}.",
 
-        "Eleonora: {{Bb:Di solito c'era un libraio.",
+        "Eleonora: {{Bb:Di solito c'era una bibliotecaria.",
 
         "Lei vorrebbe che io provassi a guardare nella}} "
         "{{bb:sezione-privata}}.",
@@ -116,8 +113,8 @@ class Step4(StepTemplateMkdir):
         "{{lb:guardare dentro}}{{Bb:.}}"
     ]
 
-    start_dir = "~/paese/est/libreria"
-    end_dir = "~/paese/est/libreria"
+    start_dir = "~/paese/est/biblioteca"
+    end_dir = "~/paese/est/biblioteca"
 
     commands = [
         "ls sezione-privata/",
@@ -126,7 +123,7 @@ class Step4(StepTemplateMkdir):
 
     hints = [
         "{{rb:Usa}} {{yb:ls sezione-privata/}} {{rb:per guardare nella "
-        "sezione-privata della libreria.}}"
+        "sezione-privata della biblioteca.}}"
     ]
     eleanors_speech = "Eleonora: {{Bb:Cosa c'è nella sezione-privata?}}"
 
@@ -146,8 +143,8 @@ class Step5(StepTemplateMkdir):
         "\nUsa {{lb:ls}} per cercare nella {{lb:sezione-pubblica}}."
     ]
 
-    start_dir = "~/paese/est/libreria"
-    end_dir = "~/paese/est/libreria"
+    start_dir = "~/paese/est/biblioteca"
+    end_dir = "~/paese/est/biblioteca"
     commands = [
         "ls sezione-pubblica",
         "ls sezione-pubblica/",
@@ -173,8 +170,8 @@ class Step6(StepTemplateMkdir):
         "{{Bb:C'è n'e uno solo:}} {{lb:NANO}} {{Bb:. Cos'è?}}",
         "{{lb:Leggiamolo}} {{Bb:.}}"
     ]
-    start_dir = "~/paese/est/libreria"
-    end_dir = "~/paese/est/libreria"
+    start_dir = "~/paese/est/biblioteca"
+    end_dir = "~/paese/est/biblioteca"
     commands = [
         "cat sezione-pubblica/NANO"
     ]
@@ -182,7 +179,8 @@ class Step6(StepTemplateMkdir):
         "{{rb:Esamina lo script NANO con}} {{yb:cat sezione-pubblica/NANO}}"
     ]
     eleanors_speech = (
-        "Eleonora: {{Bb:Forse la libreria ha introdotto dei costi.}}"
+        "Eleonora: {{Bb:Forse la biblioteca ha introdotto delle "
+        "multe per i ritardi.}}"
     )
 
     def next(self):
@@ -195,11 +193,11 @@ class Step7(StepTemplateMkdir):
         "scrivere nei file?}}",
 
         "{{Bb:Allora si potrebbe usare per aggiustare quello "
-        "script miglior-clackson-del-mondo.sh?}}",
+        "script miglior-clacson-del-mondo.sh?}}",
 
         "{{Bb:Torniamo}} {{lb:indietro}} {{Bb:al}} {{lb:negozio-di-capanni}}{{Bb:.}}"
     ]
-    start_dir = "~/paese/est/libreria"
+    start_dir = "~/paese/est/biblioteca"
     end_dir = "~/paese/est/negozio-di-capanni"
     eleanors_speech = (
         "Eleonora: {{Bb:...dobbiamo rivedere quel Bernardo antipatico?}}"
@@ -207,7 +205,7 @@ class Step7(StepTemplateMkdir):
     last_step = True
 
     path_hints = {
-        "~/paese/est/libreria": {
+        "~/paese/est/biblioteca": {
             "blocked": "\n{{rb:Usa}} {{yb:cd ../}} {{rb:per tornare indietro.}}"
         },
         "~/paese/est": {
@@ -230,5 +228,4 @@ class Step7(StepTemplateMkdir):
         return unblock_cd_commands(self.last_user_input)
 
     def next(self):
-        sys.exit("LAVORI IN CORSO! Traduzione in italiano arrivata fino a qui (2 ottobre 2015)\n")
         NextStep(self.xp)

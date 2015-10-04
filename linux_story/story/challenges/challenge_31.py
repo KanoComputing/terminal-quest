@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-#
+# coding: utf-8
+
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
@@ -16,16 +17,16 @@ class StepTemplateNano(TerminalNano):
 
 class Step1(StepTemplateNano):
     story = [
-        "You've arrived in the shed-shop. {{lb:Look around.}}"
+        "Sei arrivato nel negozio di capanni. {{lb:Garda attorno.}}"
     ]
-    start_dir = "~/town/east/shed-shop"
-    end_dir = "~/town/east/shed-shop"
+    start_dir = "~/paese/est/negozio-di-capanni"
+    end_dir = "~/paese/est/negozio-di-capanni"
     commands = [
         "ls",
         "ls -a"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+        "{{rb:Usa}} {{yb:ls}} {{rb:per guardare attorno.}}"
     ]
 
     def next(self):
@@ -34,23 +35,23 @@ class Step1(StepTemplateNano):
 
 class Step2(StepTemplateNano):
     story = [
-        "Huh, you can't see Bernard anywhere.",
+        "Huh, Bernardo non c'è.",
 
-        "I wonder where he went.",
+        "Mi domando dove sia andato.",
 
-        "Maybe he's in his {{lb:basement}}? Let's {{lb:go}} inside."
+        "Che sia nel suo {{lb:seminterrato}}? {{lb:Andiamo}} giù."
     ]
-    start_dir = "~/town/east/shed-shop"
-    end_dir = "~/town/east/shed-shop/basement"
+    start_dir = "~/paese/est/negozio-di-capanni"
+    end_dir = "~/paese/est/negozio-di-capanni/seminterrato"
     hints = [
-        "{{rb:Go into the basement with}} {{yb:cd basement/}}"
+        "{{rb:Vai nel seminterrato con}} {{yb:cd seminterrato/}}"
     ]
 
     def check_command(self):
-        if self.last_user_input == "cat bernards-hat":
+        if self.last_user_input == "cat cappello-di-bernardo":
             self.send_text(
-                "\nIs that Bernard\'s hat? "
-                "Strange he left it behind..."
+                "\nO non è il cappello di Bernardo questo? "
+                "Strano che l'abbia lasciato qui..."
             )
         else:
             return TerminalNano.check_command(self)
@@ -64,16 +65,16 @@ class Step2(StepTemplateNano):
 
 class Step3(StepTemplateNano):
     story = [
-        "You walked into Bernard's basement. {{lb:Look around.}}"
+        "Sei sceso nel seminterrato di Bernardo. {{lb:Guarda attorno.}}"
     ]
-    start_dir = "~/town/east/shed-shop/basement"
-    end_dir = "~/town/east/shed-shop/basement"
+    start_dir = "~/paese/est/negozio-di-capanni/seminterrato"
+    end_dir = "~/paese/est/negozio-di-capanni/seminterrato"
     commands = [
         "ls",
         "ls -a"
     ]
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+        "{{rb:Guarda attorno con}} {{yb:ls}}{{rb:.}}"
     ]
 
     def next(self):
@@ -82,18 +83,19 @@ class Step3(StepTemplateNano):
 
 class Step4(StepTemplateNano):
     story = [
-        "You see what looks like another tool and a couple of diaries.",
-        "{{lb:Examine}} them."
+        "C'è qualcosa che sembra un altro attrezzo e due diari.",
+        "{{lb:Vediamoli}}."
     ]
-    start_dir = "~/town/east/shed-shop/basement"
-    end_dir = "~/town/east/shed-shop/basement"
+    start_dir = "~/paese/est/negozio-di-capanni/seminterrato"
+    end_dir = "~/paese/est/negozio-di-capanni/seminterrato"
     commands = [
-        "cat bernards-diary-1",
-        "cat bernards-diary-2",
-        "cat photocopier.sh"
+        "cat diario-di-bernardo-1",
+        "cat diario-di-bernardo-2",
+        "cat fotocopiatrice.sh"
     ]
     hints = [
-        "{{rb:Use}} {{lb:cat}} {{rb:to examine the objects around you.}}"
+        "{{rb:Usa}} {{lb:cat}} {{rb:per esaminare gli oggetti "
+        "che ci sono intorno.}}"
     ]
 
     def check_command(self):
@@ -102,13 +104,13 @@ class Step4(StepTemplateNano):
 
             if not self.commands:
                 text = (
-                    "\n{{gb:Press Enter to continue.}}"
+                    "\n{{gb:Premi Invio per continuare.}}"
                 )
                 self.send_text(text)
 
             else:
                 text = (
-                    "\n{{gb:Well done! Look at the other objects.}}"
+                    "\n{{gb:Ottimo! Guarda gli altri oggetti.}}"
                 )
                 self.send_text(text)
 
@@ -124,13 +126,13 @@ class Step4(StepTemplateNano):
 
 class Step5(StepTemplateNano):
     story = [
-        "Enough wandering. Let's go and try and find the "
-        "{{lb:masked swordsmaster}} near the woods, and see "
-        "what information he can tell us.",
-        "\n{{gb:Press Enter to continue.}}"
+        "Girato abbastanza. Andiamo a vedere se si trova lo "
+        "{{lb:spadaccino maascherato}} nel bosco, e vediamo "
+        "cosa ci può dire.",
+        "\n{{gb:Premi Invio per continuare.}}"
     ]
-    start_dir = "~/town/east/shed-shop/basement"
-    end_dir = "~/town/east/shed-shop/basement"
+    start_dir = "~/paese/est/negozio-di-capanni/seminterrato"
+    end_dir = "~/paese/est/negozio-di-capanni/seminterrato"
     last_step = True
 
     def next(self):

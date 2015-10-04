@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-#
+# coding: utf-8
+
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
@@ -16,32 +17,32 @@ class StepTemplateNano(TerminalNanoBernard):
 
 class Step1(StepTemplateNano):
     story = [
-        "You're back in town. Eleanor looked relieved to be outside.",
-        "Where could the librarian be hiding?",
-        "{{lb:Look around}} to decide where to go next."
+        "Siamo di nuovo in paese. Eleonora è sollevata di essere "
+        "uscita.",
+        "Dove si potrà essere nascosta la bibliotecaria?",
+        "{{lb:Guarda intorno}} per decidere dove andare."
     ]
 
-    start_dir = "~/town/east"
-    end_dir = "~/town/east"
+    start_dir = "~/paese/est"
+    end_dir = "~/paese/est"
 
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+        "{{rb:Usa}} {{yb:ls}} {{rb:per guardare intorno.}}"
     ]
 
-    deleted_items = ["~/town/east/shed-shop/Eleanor"]
+    deleted_items = ["~/paese/est/negozio-di-capanni/Eleonora"]
     story_dict = {
-        "Eleanor": {
-            "path": "~/town/east"
+        "Eleonora": {
+            "path": "~/paese/est"
         }
     }
-
     commands = [
         "ls",
         "ls -a"
     ]
 
     eleanors_speech = (
-        "Eleanor: {{Bb:I'm hungry. Can you see anywhere we could eat?}}"
+        "Eleonora: {{Bb:Ho fame. Vedi un posto dove si possa mangiare?}}"
     )
 
     def next(self):
@@ -50,19 +51,19 @@ class Step1(StepTemplateNano):
 
 class Step2(StepTemplateNano):
     story = [
-        "We haven't checked out the restaurant yet.",
-        "Let's {{lb:go}} into the {{lb:restaurant}}."
+        "Non abbiamo controllato il ristorante ancora.",
+        "Sì, {{lb:andiamo}} nel {{lb:ristorante}}."
     ]
 
-    start_dir = "~/town/east"
-    end_dir = "~/town/east/restaurant"
+    start_dir = "~/paese/est"
+    end_dir = "~/paese/est/ristorante"
 
     hints = [
-        "{{rb:Use}} {{yb:cd restaurant}} {{rb:to go into the restaurant.}}"
+        "{{rb:Usa}} {{yb:cd ristorante}} {{rb:per andare nel ristorante.}}"
     ]
 
     eleanors_speech = (
-        "Eleanor: {{Bb:Ooh, do you think they'll have a sandwich anywhere?}}"
+        "Eleonora: {{Bb:Ooh, pensi che abbiano dei panini?}}"
     )
 
     def block_command(self):
@@ -74,31 +75,31 @@ class Step2(StepTemplateNano):
 
 class Step3(StepTemplateNano):
     story = [
-        "You and Eleanor walk into the restaurant.",
-        "Look around {{lb:closely}}."
+        "Tu e Eleonora entrate nel ristorante.",
+        "Guarda intorno {{lb:attentamente}}."
     ]
 
-    start_dir = "~/town/east/restaurant"
-    end_dir = "~/town/east/restaurant"
+    start_dir = "~/paese/est/ristorante"
+    end_dir = "~/paese/est/ristorante"
 
     hints = [
-        "Eleanor: {{Bb:Do you remember how you found me?"
-        " You used}} {{yb:ls -a}} {{Bb:right?}}"
+        "Eleonora: {{Bb:Ti ricordi come mi avevi trovato?"
+        " Avevi usato}} {{yb:ls -a}} {{Bb:giusto?}}"
     ]
 
     commands = [
         "ls -a"
     ]
 
-    deleted_items = ["~/town/east/Eleanor"]
+    deleted_items = ["~/paese/est/Eleonora"]
     story_dict = {
-        "Eleanor": {
-            "path": "~/town/east/restaurant"
+        "Eleonora": {
+            "path": "~/paese/est/ristorante"
         }
     }
 
     eleanors_speech = (
-        "Eleanor: {{Bb:It seems really empty here...}}"
+        "Eleonora: {{Bb:Sembra tutto vuoto qui...}}"
     )
 
     def next(self):
@@ -107,19 +108,19 @@ class Step3(StepTemplateNano):
 
 class Step4(StepTemplateNano):
     story = [
-        "Do you see the {{bb:.cellar}}?",
-        "Let's {{lb:go}} into the {{lb:.cellar}}."
+        "La vedi la {{bb:.cantina}}?",
+        "{{lb:Andiamo}} nella {{lb:.cantina}}."
     ]
 
-    start_dir = "~/town/east/restaurant"
-    end_dir = "~/town/east/restaurant/.cellar"
+    start_dir = "~/paese/est/ristorante"
+    end_dir = "~/paese/est/ristorante/.cantina"
 
     hints = [
-        "{{rb:Go in the wine cellar using}} {{yb:cd .cellar}}{{rb:.}}"
+        "{{rb:Vai nella cantina dei vini usando}} {{yb:cd .cantina}}{{rb:.}}"
     ]
 
     eleanors_speech = (
-        "Eleanor: {{Bb:I'm scared...can you hold my hand?}}"
+        "Eleonora: {{Bb:Ho paura...mi dai la mano?}}"
     )
 
     def block_command(self):
@@ -131,21 +132,21 @@ class Step4(StepTemplateNano):
 
 class Step5(StepTemplateNano):
     story = [
-        "Eleanor grabs your hand, and the two of you walk into the cellar.",
-        "{{lb:Look around.}}"
+        "Eleonora afferra la tua mano, e scendete insieme nella .cantina.",
+        "{{lb:Guarda attorno.}}"
     ]
 
-    start_dir = "~/town/east/restaurant/.cellar"
-    end_dir = "~/town/east/restaurant/.cellar"
+    start_dir = "~/paese/est/ristorante/.cantina"
+    end_dir = "~/paese/est/ristorante/.cantina"
 
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+        "{{rb:Guarda attorno con}} {{yb:ls}}{{rb:.}}"
     ]
 
-    deleted_items = ["~/town/east/restaurant/Eleanor"]
+    deleted_items = ["~/paese/est/ristorante/Eleonora"]
     story_dict = {
-        "Eleanor": {
-            "path": "~/town/east/restaurant/.cellar"
+        "Eleonora": {
+            "path": "~/paese/est/ristorante/.cantina"
         }
     }
     commands = [
@@ -154,7 +155,7 @@ class Step5(StepTemplateNano):
     ]
 
     eleanors_speech = (
-        "Eleanor: {{Bb:...is there someone there?}}"
+        "Eleonora: {{Bb:...c'è qualcuno qui?}}"
     )
 
     def next(self):
@@ -163,23 +164,23 @@ class Step5(StepTemplateNano):
 
 class Step6(StepTemplateNano):
     story = [
-        "You see a woman {{lb:Clara}} in the cellar.",
-        "{{lb:Listen}} to what she has to say."
+        "C'è una donna, {{lb:Clara}}, in cantina.",
+        "{{lb:Ascolta}} quello che dice."
     ]
 
-    start_dir = "~/town/east/restaurant/.cellar"
-    end_dir = "~/town/east/restaurant/.cellar"
+    start_dir = "~/paese/est/ristorante/.cantina"
+    end_dir = "~/paese/est/ristorante/.cantina"
 
     hints = [
-        "{{rb:Use}} {{lb:cat}} {{rb:to listen what she has to say.}}",
-        "{{rb:Use}} {{yb:cat Clara}} {{rb:to listen to Clara.}}"
+        "{{rb:Usa}} {{lb:cat}} {{rb:per ascoltare cosa dice.}}",
+        "{{rb:Usa}} {{yb:cat Clara}} {{rb:per ascoltare Clara.}}"
     ]
 
     commands = [
         "cat Clara"
     ]
     eleanors_speech = (
-        "Eleanor: {{Bb:...oh! I think I recognise that woman!}}"
+        "Eleonora: {{Bb:...oh! Ma io riconosco questa donna!}}"
     )
 
     last_step = True

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-#
+# coding: utf-8
+
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
@@ -7,7 +8,7 @@
 
 import os
 
-# At this point, Bernard disappears, so no need to keep blocking access to
+# At this point, Bernardo disappears, so no need to keep blocking access to
 # his basement.
 from linux_story.story.terminals.terminal_eleanor import TerminalNanoEleanor
 from linux_story.story.challenges.challenge_31 import Step1 as NextStep
@@ -21,28 +22,28 @@ class StepNano(TerminalNanoEleanor):
 class Step1(StepNano):
     story = [
         "{{pb:Ding. Dong.}}",
-        "\nEleanor: {{Bb:...what was that?}}",
-        "{{lb:Look around.}}"
+        "\nEleonora: {{Bb:...questo cos'è?}}",
+        "{{lb:Guarda attorno.}}"
     ]
-    start_dir = "~/town/east/restaurant/.cellar"
-    end_dir = "~/town/east/restaurant/.cellar"
+    start_dir = "~/paese/est/ristorante/.cantina"
+    end_dir = "~/paese/est/ristorante/.cantina"
     commands = [
         "ls",
         "ls -a"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to check everyone is still present.}}"
+        "{{rb:Usa}} {{yb:ls}} {{rb:per controllare che ci siano tutti.}}"
     ]
     deleted_items = [
-        "~/town/east/shed-shop/Bernard"
+        "~/paese/est/negozio-di-capanni/Bernardo"
     ]
     story_dict = {
-        "bernards-hat": {
-            "path": "~/town/east/shed-shop"
+        "cappello-di-bernardo": {
+            "path": "~/paese/est/negozio-di-capanni"
         }
     }
     eleanors_speech = (
-        "Eleanor: {{Bb:......}}"
+        "Eleonora: {{Bb:......}}"
     )
 
     def next(self):
@@ -51,20 +52,20 @@ class Step1(StepNano):
 
 class Step2(StepNano):
     story = [
-        "Everyone seems to be here. What was that bell?",
-        "\nClara looks like she has something to say. {{lb:Listen to her.}}"
+        "Sembra che ci siano tutti. O cos'era allora quella campanella?",
+        "\nSembra che Clara voglia dire qualcosa. {{lb:Ascoltala.}}"
     ]
     commands = [
         "cat Clara"
     ]
-    start_dir = "~/town/east/restaurant/.cellar"
-    end_dir = "~/town/east/restaurant/.cellar"
+    start_dir = "~/paese/est/ristorante/.cantina"
+    end_dir = "~/paese/est/ristorante/.cantina"
     hints = [
-        "{{rb:Use}} {{yb:cat Clara}} {{rb:to see what Clara has to say.}}"
+        "{{rb:Usa}} {{yb:cat Clara}} {{rb:per vedere cosa dice Clara.}}"
     ]
     eleanors_speech = (
-        "Eleanor: {{Bb:....I was so scared. I don't think I want to go "
-        "outside now.}}"
+        "Eleonora: {{Bb:....Ho avuto coì paura. Non credo di aver voglia "
+        "di uscire ora.}}"
     )
 
     def next(self):
@@ -73,41 +74,42 @@ class Step2(StepNano):
 
 class Step3(StepNano):
     story = [
-        "Clara: {{Bb:Are you two going back out there?}}",
+        "Clara: {{Bb:State andando fuori voi due?}}",
         "{{gb:" + os.environ['LOGNAME'] + "}}"
-        "{{Bb:, you look like you can take care of yourself, but "
-        "I don't feel happy with Eleanor going outside.}}",
+        "{{Bb:, sembra che tu sappia quello che fai, ma "
+        "non mi piace l'idea che Elenora esca.}}",
         "\n" + "{{gb:" + os.environ['LOGNAME'] + "}}"
-        "{{Bb:, will you leave Eleanor with me? "
-        "I'll look after her.}}",
-        "\n{{yb:1: That's a good idea, take good care of her.}}",
-        "{{yb:2: No I don't trust you, she's safer with me.}}",
-        "{{yb:3: (Ask Eleanor.) Are you happy to stay here?}}",
+        "{{Bb:, vuoi lasciare Eleonora con me? "
+        "le farò compagnia.}}",
+        "\n{{yb:1: Questa è una buona idea, occupati di lei allora.}}",
+        "{{yb:2: No non mi fido, è più sicura con me.}}",
+        "{{yb:3: (Chiedi a Eleonora.) Sei contenta di stare qui?}}",
         # "{{yb:4: Do you have enough food here?}}",
-        "\n{{lb:Reply to Clara.}}"
+        "\n{{lb:Rispondi a Clara.}}"
     ]
     commands = [
         "echo 1"
     ]
-    start_dir = "~/town/east/restaurant/.cellar"
-    end_dir = "~/town/east/restaurant/.cellar"
+    start_dir = "~/paese/est/ristorante/.cantina"
+    end_dir = "~/paese/est/ristorante/.cantina"
     hints = [
-        "{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} "
-        "{{yb:echo 3}} {{rb:to reply to Clara.}}"
+        "{{rb:Usa}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:o}} "
+        "{{yb:echo 3}} {{rb:per rispondere a Clara.}}"
     ]
     eleanors_speech = (
-        "Eleanor: {{Bb:I'm happy to stay here. I like Clara.}}"
+        "Eleonora: {{Bb:Sì, sono contenta di stare qui. Clara mi piace.}}"
     )
 
     def check_command(self):
         if self.last_user_input == "echo 2":
             text = (
-                "\nClara: {{Bb:Please let me look after her. "
-                "I don't think it's safe for her to go outside.}}"
+                "\nClara: {{Bb:Per favore, lasciala con me. "
+                "Non penso che sia sicuro per lei andare fuori.}}"
             )
             self.send_text(text)
         elif self.last_user_input == "echo 3":
-            text = "\nEleanor: {{Bb:I'm happy to stay here. I like Clara.}}"
+            text = "\nEleonora: {{Bb:Sono contenta di stare qui. Clara "
+            "mi piace.}}"
             self.send_text(text)
         # elif self.last_user_input == "echo 4":
         #    text = (
@@ -124,29 +126,29 @@ class Step3(StepNano):
 
 class Step4(StepNano):
     story = [
-        "Clara: {{Bb:Thank you!}}",
-        "Eleanor: {{Bb:When you find my parents, can you tell them I'm "
-        "here?}}",
-        "Clara: {{Bb:Where are you going to go now?}}",
-        "\nLet's head back to see {{lb:Bernard}} and see if he's heard of "
-        "the {{lb:masked swordsmaster}}.",
-        "{{lb:Head to the shed-shop.}}"
+        "Clara: {{Bb:Grazie!}}",
+        "Eleonora: {{Bb:Se trovi i miei genitori, puoi dire loro "
+        "che sono qui?}}",
+        "Clara: {{Bb:E dove vuoi andare ora?}}",
+        "\nTorna a vedere {{lb:Bernardo}} per saapere se ha sentito dire "
+        "qualcosa dello {{lb:spadaccino mascherato}}.",
+        "{{lb:Vai al negozio di capanni.}}"
     ]
-    start_dir = "~/town/east/restaurant/.cellar"
-    end_dir = "~/town/east/shed-shop"
+    start_dir = "~/paese/est/ristorante/.cantina"
+    end_dir = "~/paese/est/negozio-di-capanni"
     last_step = True
 
     path_hints = {
-        "~/town/east/restaurant/.cellar": {
-            "blocked": "\n{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
+        "~/paese/est/ristorante/.cantina": {
+            "blocked": "\n{{rb:Usa}} {{yb:cd ../}} {{rb:per tornare indietro.}}"
         },
         "~/town/east/restaurant": {
-            "not_blocked": "\n{{gb:Good work! Keep going!}}",
-            "blocked": "\n{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
+            "not_blocked": "\n{{gb:Ottimo! Continua così!}}",
+            "blocked": "\n{{rb:Usa}} {{yb:cd ../}} {{rb:per tornare indietro.}}"
         },
         "~/town/east": {
-            "not_blocked": "\n{{gb:Now go into the}} {{lb:shed-shop}}{{gb:.}}",
-            "blocked": "\n{{rb:Use}} {{yb:cd shed-shop/}}{{rb:.}}"
+            "not_blocked": "\n{{gb:Ora entra nel}} {{lb:negozio di capanni}}{{gb:.}}",
+            "blocked": "\n{{rb:Usa}} {{yb:cd negozio-di-capanni/}}{{rb:.}}"
         }
     }
 
