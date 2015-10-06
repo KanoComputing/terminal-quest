@@ -45,9 +45,9 @@ class Step1(StepTemplate):
     commands = [
         "echo sì",
         "echo Sì",
-        "echo SÌ"
-        "echo si"
-        "echo Si"
+        "echo SÌ",
+        "echo si",
+        "echo Si",
         "echo SI"
     ]
 

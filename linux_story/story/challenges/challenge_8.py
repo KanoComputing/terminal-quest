@@ -109,7 +109,7 @@ class Step4(StepTemplateCd):
     start_dir = "~/paese"
     end_dir = "~/paese"
     commands = "cat sindaco"
-    hints = "{{rb:Use}} {{yb:cat sindaco}} {{rb:to talk to the sindaco.}}"
+    hints = "{{rb:Usa}} {{yb:cat sindaco}} {{rb:per parlare al sindaco.}}"
 
     def next(self):
         Step5()

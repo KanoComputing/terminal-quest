@@ -6,33 +6,36 @@
  |______|_____/
 
 
- This spell shows you your surroundings.
+ Questo comando ti mostra cosa c'è nei dintorni
 
 
-Examples
+Esempi
 
  ls
- Shows you what is around your current position
+ Ti mostra cosa c'è nella posizione in cui ti trovi (vale a dire nella cartella in cui ti trovi)
 
- ls kitchen
- Shows you what is in the directory kitchen, assuming you are in my-house
+ ls cucina
+ Ti mostra cosa c'è nella cartella cucina, ammesso che tu sia in casa-mia
 
  ls ../
- Shows you what is in the directory behind you
+ Ti mostra cosa c'è nella cartella che contiene la tua (quella dove ti trovi)
 
- ls ~/my-house/kitchen
- Regardless of your current position, this will show you what is in your kitchen
+ ls ~/casa-mia/cucina
+ Così ti fa vedere cosa c'è in cucina, ovunque tu sia 
 
-
-Flags
+Opzioni
 
  -a
-This shows all the files in your current directory, including the hidden files starting with .
-This includes your current position . and the containing directory ..
+
+ Se aggiungi questa opzione a ls allora ti mostra anche i file nascosti, quelli che 
+ iniziano con il punto .
+ Inoltre ti fa vedere la tua posizione corrente, che è indicata dal punto solo .
+ e la cartella che la contiene che è indicata due punti ..
 
 
-Example
+Esempio
 
-ls -a ../
-Will show you everything in the directory behind you
+ ls -a ../
+ Ti mostra tutti i file, compresi qiuelii nascosti, che si trovano nella cartella
+ che contiene la tua
 

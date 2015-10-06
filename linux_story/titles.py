@@ -1,25 +1,26 @@
 #!/usr/bin/env python
+# coding: utf-8
 
 chapters = {
     1: {
         'start_challenge': 1,
         'end_challenge': 9,
-        'title': 'Start exploring'
+        'title': 'Inizia a esplorare'
     },
     2: {
         'start_challenge': 10,
         'end_challenge': 16,
-        'title': 'Save a family'
+        'title': 'Salva una famiglia'
     },
     3: {
         'start_challenge': 17,
         'end_challenge': 22,
-        'title': 'Go to the farm'
+        'title': 'Vai alla fattoria'
     },
     4: {
         'start_challenge': 23,
         'end_challenge': 31,
-        'title': 'Save Eleanor'
+        'title': 'Salva Eleonora'
     }
 }
 
@@ -27,127 +28,127 @@ chapters = {
 # Contains the text describing the challenges
 challenges = {
     1: {
-        'title': 'Wake up!',
+        'title': 'Sveglia!',
         'chapter': 1
     },
     2: {
-        'title': 'Look in your wardrobe',
+        'title': 'Cerca nell\'armadio',
         'chapter': 1
     },
     3: {
-        'title': 'Look on your shelves',
+        'title': 'Cerca negli scaffali',
         'chapter': 1
     },
     4: {
-        'title': 'Find Mum',
+        'title': 'Trova la mamma',
         'chapter': 1
     },
     5: {
-        'title': 'Where\'s Dad?',
+        'title': 'Dov\'è il babbo?',
         'chapter': 1
     },
     6: {
-        'title': 'Visit the town',
+        'title': 'Il giro in paese',
         'chapter': 1
     },
     7: {
-        'title': 'Town meeting',
+        'title': 'La riunione in paese',
         'chapter': 1
     },
     8: {
-        'title': 'The bell strikes',
+        'title': 'La campanella suona',
         'chapter': 1
     },
     9: {
-        'title': 'Where\'s Mum?',
+        'title': 'Dov\'è la mamma?',
         'chapter': 1
     },
     10: {
-        'title': 'See more clearly',
+        'title': 'Guardare meglio',
         'chapter': 2
     },
     11: {
-        'title': 'Save the girl',
+        'title': 'Salva la bambina',
         'chapter': 2
     },
     12: {
-        'title': 'Save the dog',
+        'title': 'Salva il cane',
         'chapter': 2
     },
     13: {
-        'title': 'Food hunt',
+        'title': 'Alla ricerca del cane',
         'chapter': 2
     },
     14: {
-        'title': 'Folderton Hero',
+        'title': 'L\'eroe di Strada in Chianti',
         'chapter': 2
     },
     15: {
-        'title': 'Have a closer look',
+        'title': 'Cerchiamo con più attenzione ',
         'chapter': 2
     },
     16: {
-        'title': 'A gift',
+        'title': 'Un regalo',
         'chapter': 2
     },
     17: {
-        'title': 'Find your voice',
+        'title': 'Trova la tua voce',
         'chapter': 3
     },
     18: {
-        'title': 'Visit the farm',
+        'title': 'Visita la fattoria',
         'chapter': 3
     },
     19: {
-        'title': 'Meet Ruth',
+        'title': 'Incontra Romina',
         'chapter': 3
     },
     20: {
-        'title': 'Learn to build',
+        'title': 'Impara a fabbricare qualcosa',
         'chapter': 3
     },
     21: {
-        'title': 'Hide Ruth and her animals',
+        'title': 'Nascondi Romina e i suoi animali',
         'chapter': 3
     },
     22: {
-        'title': 'Did you hear that?',
+        'title': 'Hai sentito anche te?',
         'chapter': 3
     },
     23: {
-        'title': 'Hello Eleanor',
+        'title': 'Ciao Elenora',
         'chapter': 4
     },
     24: {
-        'title': 'Go east',
+        'title': 'Andiamo a est',
         'chapter': 4
     },
     25: {
-        'title': 'Meet Bernard',
+        'title': 'Incontro con Bernardo',
         'chapter': 4
     },
     26: {
-        'title': 'Go into the library',
+        'title': 'Andiamo in biblioteca',
         'chapter': 4
     },
     27: {
-        'title': 'Help Bernard',
+        'title': 'Aiutiamo Bernardo',
         'chapter': 4
     },
     28: {
-        'title': 'Find the librarian',
+        'title': 'Cerchiamo la bibliotecaria',
         'chapter': 4
     },
     29: {
-        'title': 'Talk to Clara',
+        'title': 'Parliamo con Clara',
         'chapter': 4
     },
     30: {
-        'title': 'Did you hear that?',
+        'title': 'Hai sentito anche te?',
         'chapter': 4
     },
     31: {
-        'title': 'Explore the shed-shop',
+        'title': 'Exploriamo il negozio di capanni',
         'chapter': 4
     }
 }

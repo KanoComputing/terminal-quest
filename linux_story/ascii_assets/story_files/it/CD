@@ -6,22 +6,22 @@
   \_____|_____/
 
 
-This spell gives you the power to move.
+Questo comando ti consente di muoverti
 
 
-Examples
+Esempi
 
 cd
-This takes you the home directory
+Con questo vai nella tua cartella principale, che si indica con il simbolo ~
 
 cd ~
-Identical to the spell above
+Con questo ottieni lo stesso risultato precedente
 
 cd ../
-This moves you back a directory
+Questo ti porta indietro, nella cartella che contiene quella dove ti stati trovando
 
-cd hidy-hole
-This will move you inside hidey-hole, assuming you are next to it
+cd altro-posto
+Così ti sposti nella cartella altro-posto, se questa esiste dove ti trovi
 
-cd ~/wood/treehouse
-This will move you to the directory ~/wood/treehouse regardless of your current position
+cd ~/bosco/casa-nel-bosco
+Questo ti porta nella casa-nel-bosco, ovunque ti trovi

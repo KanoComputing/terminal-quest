@@ -70,7 +70,7 @@ class Step3(StepTemplate):
     start_dir = "~"
     end_dir = "~/fattoria"
     hints = [
-        "{{rb:Use}} {{yb:cd fattoria/}} {{rb:to head to the fattoria.}}"
+        "{{rb:Usa}} {{yb:cd fattoria/}} {{rb:per avviarti verso la fattoria.}}"
     ]
 
     def block_command(self):

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding: utf-8
 
 # step_helper_functions.py
 #
@@ -20,7 +21,7 @@ def unblock_commands(line, list_of_commands):
             line not in list_of_commands and \
             not line.strip() == 'mv --help':
 
-        print 'Nice try! But you do not need that command for this challenge'
+        print 'Non male! Ma non è questo il comando che ti serve qui'
         return True
 
 
@@ -29,13 +30,13 @@ def unblock_commands_with_cd_hint(line, list_of_commands):
     '''
     line = line.strip()
     if ("cd" in line and line not in list_of_commands):
-        print "You're close, but you entered an unexpected destination path. Try going somewhere else."
+        print "Ci sei vicino, ma hai scritto un percorso inaspettato. Prova qualcosa'altro."
         return True
 
     elif ("mv" in line) and \
             not line.strip() == 'mv --help':
 
-        print 'Nice try! But you do not need that command for this challenge'
+        print 'Non male! Ma non è questo il comando che ti serve qui'
         return True
 
 
@@ -44,7 +45,9 @@ def unblock_commands_with_mkdir_hint(line, list_of_commands):
     if ("mkdir" in line and line not in list_of_commands):
         print (
             "Nearly there!  But you're trying to build something "
+            "Ci siamo quasi!  Ma stai cercando di fabbricare qualcosa di "
             "different from what was expected.  Try building something else."
+            "diverso da quello che ci si aspettava.  Prova a fare qualcosa di diverso."
         )
 
         return True
@@ -52,14 +55,14 @@ def unblock_commands_with_mkdir_hint(line, list_of_commands):
     elif ("mv" in line or "cd" in line) and \
             not line.strip() == 'mv --help':
 
-        print 'Nice try! But you do not need that command for this challenge'
+        print 'Non male! Ma non è questo il comando che ti serve qui'
         return True
 
 
 def unblock_cd_commands(line):
     if line.startswith("mkdir") or \
             (line.startswith("mv") and not line.strip() == 'mv --help'):
-        print 'Nice try! But you do not need that command for this challenge'
+        print 'Non male! Ma non è questo il comando che ti serve qui'
         return True
 
 

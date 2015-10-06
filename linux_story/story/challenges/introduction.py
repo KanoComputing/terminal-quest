@@ -16,14 +16,14 @@ class StepTemplateLs(Terminal):
 
 class Step1(StepTemplateLs):
     story = [
-        "Hello {}.".format("{{yb:" + os.environ['LOGNAME'] + "}}"),
-        "Welcome to the dark side of your Kano.",
-        "You've entered a perilous world where words "
-        "wield power.",
-        "Ready?  Press {{gb:Enter}} to begin."
+        "Ciao {}.".format("{{yb:" + os.environ['LOGNAME'] + "}}"),
+        "Benvenuto nel lato oscuro di  Kano.",
+        "Sei entrato in un mondo pericoloso dove le parole "
+        "danno poteri speciali.",
+        "Pronto?  Premi {{gb:Invio}} per iniziare."
     ]
-    start_dir = "~/my-house/my-room"
-    end_dir = "~/my-house/my-room"
+    start_dir = "~/casa-mia/camera-mia"
+    end_dir = "~/casa-mia/camera-mia"
 
     def next(self):
         NextChallengeStep()

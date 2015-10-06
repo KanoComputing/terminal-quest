@@ -33,7 +33,7 @@ class TerminalCd(TerminalCat):
         else:
             self.set_command_blocked(True)
             print (
-                "Nice try! But you entered an unexpected destination path."
+                "Non male! Ma hai scritto un percorso inaspettato."
             )
 
     def complete_cd(self, text, line, begidx, endidx):

@@ -130,7 +130,7 @@ class Step4(StepTemplateMkdir):
         #arf This can't be translated in Italian    
         #arf "Eleonora: {{Bb:My}} {{lb:cat}} {{Bb:used to be a great "
         #arf "listener, I'd tell her everything.}}"
-        "Eleonora: {{Sentiamo...}}"
+        "Eleonora: {{Bb:Sentiamo...}}"
     )
 
     last_step = True

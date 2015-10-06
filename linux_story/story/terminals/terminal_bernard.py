@@ -12,14 +12,14 @@ from linux_story.story.terminals.terminal_eleanor import (
 
 # Ideally put in the class, but otherwise have to repeat this across the
 # different classes.
-bernard_text = "Bernard stopped you looking in the basement!"
+bernard_text = "Bernardo ti ha impedito di guardare nel seminterrato!"
 
 
 class TerminalMkdirBernard(TerminalMkdirEleanor):
 
     # These functions are repeated across the two classes.
     def block_command(self):
-        if "basement" in self.last_user_input and \
+        if "seminterrato" in self.last_user_input and \
                 (
                     "ls" in self.last_user_input or
                     "cat" in self.last_user_input
@@ -38,7 +38,7 @@ class TerminalMkdirBernard(TerminalMkdirEleanor):
             self, text, line, begidx, endidx, only_dirs,
             only_exe
         )
-        if "photocopier.sh" in completions:
+        if "fotocopiatrice.sh" in completions:
             print "\n" + bernard_text
             return []
         else:
@@ -48,7 +48,7 @@ class TerminalMkdirBernard(TerminalMkdirEleanor):
 class TerminalNanoBernard(TerminalNanoEleanor):
 
     def block_command(self):
-        if "basement" in self.last_user_input and \
+        if "seminterrato" in self.last_user_input and \
                 (
                     "ls" in self.last_user_input or
                     "cat" in self.last_user_input
@@ -64,7 +64,7 @@ class TerminalNanoBernard(TerminalNanoEleanor):
             self, text, line, begidx, endidx, only_dirs,
             only_exe
         )
-        if "photocopier.sh" in completions:
+        if "fotocopiatrice.sh" in completions:
             print "\n" + bernard_text
             return []
         else:

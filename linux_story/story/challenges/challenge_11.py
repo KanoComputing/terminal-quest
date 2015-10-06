@@ -204,7 +204,7 @@ class Step5(StepTemplateMv):
     ]
     hints = [
         "{{rb:Usa il comando}} {{yb:mv cestino/mela ./}} {{rb:per}} "
-        "{{lb:s}}{{rb:p}}{{lb:o}}{{lb:s}}{{rb:t}}{{lb:a}}{{rb:r}}{{lb:e}}{{rb: la mela dal cestino nella "
+        "{{rb: spostare la mela dal cestino nella "
 	"tua posizione attuale}} {{lb:./}}"
 	]
 

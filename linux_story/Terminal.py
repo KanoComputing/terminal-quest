@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding: utf-8
 
 # Terminal.py
 #
@@ -214,8 +215,7 @@ class Terminal(Cmd):
                 ("mv" in self.last_user_input and
                     not self.last_user_input == 'mv --help'):
 
-            print ('Nice try! But you do not need that command for this '
-                   'challenge')
+            print ('Non male! Ma non è questo il comando che ti serve qui ')
 
             return True
 
@@ -346,7 +346,7 @@ class Terminal(Cmd):
                                       )
 
         if xp > 0:
-            self.xp = "{{gb:Congratulations, you earned " + str(xp) + " XP!}}\n\n"
+            self.xp = "{{gb:Congratulazione, hai guadagnato " + str(xp) + " Experience Points!}}\n\n"
 
     def exit(self):
         data = {'exit': '1'}

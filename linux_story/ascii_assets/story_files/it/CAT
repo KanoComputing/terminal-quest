@@ -6,13 +6,14 @@
   \_____/_/    \_\_|
 
 
-This spell gives you the power to read the contents of files
+Questo comando ti dà la possibilità di leggere il contenuto di un file
 
 
-Examples
+Esempi
 
-cat wardrobe/cap
-This will print out the contents of cap if you are in ~/my-house/my-room
+cat armadio/berretto
+Questo mostra il contenuto del file berretto, se ti stai
+trovando in ~/casa-mia/camera-mia
 
 cat ~/my-house/my-room/wardrobe/cap
-This will print out the contents of cap regardless of where you are.
+Questo invece mostril contenuto del file berretto, ovunque tu sia

@@ -77,7 +77,7 @@ class Step3(StepNano):
         "Clara: {{Bb:State andando fuori voi due?}}",
         "{{gb:" + os.environ['LOGNAME'] + "}}"
         "{{Bb:, sembra che tu sappia quello che fai, ma "
-        "non mi piace l'idea che Elenora esca.}}",
+        "non mi piace l'idea che Eleonora esca.}}",
         "\n" + "{{gb:" + os.environ['LOGNAME'] + "}}"
         "{{Bb:, vuoi lasciare Eleonora con me? "
         "le farò compagnia.}}",
@@ -108,8 +108,10 @@ class Step3(StepNano):
             )
             self.send_text(text)
         elif self.last_user_input == "echo 3":
-            text = "\nEleonora: {{Bb:Sono contenta di stare qui. Clara "
-            "mi piace.}}"
+            text = (
+                "\nEleonora: {{Bb:Sono contenta di stare qui. Clara "
+                "mi piace.}}"
+            )
             self.send_text(text)
         # elif self.last_user_input == "echo 4":
         #    text = (
@@ -142,11 +144,11 @@ class Step4(StepNano):
         "~/paese/est/ristorante/.cantina": {
             "blocked": "\n{{rb:Usa}} {{yb:cd ../}} {{rb:per tornare indietro.}}"
         },
-        "~/town/east/restaurant": {
+        "~/paese/est/ristorante": {
             "not_blocked": "\n{{gb:Ottimo! Continua così!}}",
             "blocked": "\n{{rb:Usa}} {{yb:cd ../}} {{rb:per tornare indietro.}}"
         },
-        "~/town/east": {
+        "~/paese/est": {
             "not_blocked": "\n{{gb:Ora entra nel}} {{lb:negozio di capanni}}{{gb:.}}",
             "blocked": "\n{{rb:Usa}} {{yb:cd negozio-di-capanni/}}{{rb:.}}"
         }

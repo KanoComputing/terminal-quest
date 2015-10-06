@@ -189,7 +189,7 @@ class Step5(CheckDiaryStep):
     end_dir = "~/casa-mia/camera-genitori"
     hints = [
         "{{rb:Usa}} {{lb:cat}} {{rb:per leggere la}} {{lb:mappa}}{{rb:.}}",
-        "{{rb:Usa}} {{yb:cat .cassaforte/map}} {{rb:per leggere la mappa.}}"
+        "{{rb:Usa}} {{yb:cat .cassaforte/mapppa}} {{rb:per leggere la mappa.}}"
     ]
 
     commands = "cat .cassaforte/mappa"

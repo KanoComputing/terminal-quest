@@ -84,7 +84,7 @@ class Step4(StepTemplateCd):
     start_dir = "~"
     end_dir = "~/paese"
     commands = ["cd paese", "cd paese/"]
-    hints = "{{rb:Type}} {{yb:cd paese/}} {{rb:to walk into paese.}}"
+    hints = "{{rb:Type}} {{yb:cd paese/}} {{rb:per andare in paese.}}"
 
     last_step = True
 

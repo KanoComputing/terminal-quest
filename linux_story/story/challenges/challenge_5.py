@@ -34,7 +34,7 @@ class Step1(StepTemplateCd):
     start_dir = "~/casa-mia/cucina"
     end_dir = "~/casa-mia"
     commands = ["cd ..", "cd ../"]
-    hints = "{{rb:To leave the cucina, type}} {{yb:cd ../}}"
+    hints = "{{rb:Per uscire dalla cucina, scrivi}} {{yb:cd ../}}"
 
     def block_command(self):
         return unblock_commands_with_cd_hint(

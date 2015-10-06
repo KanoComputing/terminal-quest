@@ -78,12 +78,12 @@ class MenuScreen(Gtk.Alignment):
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         header = self.create_menu_header(
-            "TERMINAL QUEST MENU",
-            "Use arrow keys to select the button"
+            "MENU DI TERMINAL QUEST",
+            "Usa le frecce per selezionare un tasto"
         )
 
         # This takes the user to the latest point in the story
-        continue_btn = self.create_menu_button("CONTINUE STORY")
+        continue_btn = self.create_menu_button("CONTINUA LA STORIA")
 
         # For now, remove the launching functionality.
         continue_btn.connect(
@@ -91,7 +91,7 @@ class MenuScreen(Gtk.Alignment):
         )
 
         # This takes the user to the chapter menu
-        select_chapter_btn = self.create_menu_button("SELECT CHAPTER")
+        select_chapter_btn = self.create_menu_button("SELEZIONA IL CAPITOLO")
         select_chapter_btn.connect("clicked", self.show_chapter_menu_wrapper)
 
         vbox.pack_start(header, False, False, 15)
@@ -238,7 +238,7 @@ class MenuScreen(Gtk.Alignment):
 
         num_of_chapters = len(chapters)
         menu = self.create_menu(
-            "CHAPTERS",
+            "CAPITOLI",
             1,
             num_of_chapters,
             self.create_chapter_button,
@@ -257,7 +257,7 @@ class MenuScreen(Gtk.Alignment):
         end_challenge = chapters[chapter_number]['end_challenge']
 
         menu = self.create_menu(
-            "CHALLENGES",
+                "LIVELLI",
             start_challenge,
             end_challenge,
             self.create_challenge_button,
@@ -280,9 +280,9 @@ class MenuScreen(Gtk.Alignment):
         return button
 
     def create_back_button(self):
-        button = self.create_menu_button("<- BACK")
+        button = self.create_menu_button("<- INDIETRO")
         # Get title, description.
-        title = "Press ENTER to go to the previous screen"
+        title = "Premi INVIO per tornare allo schermo precedente"
         description = ""
 
         button.connect(
@@ -342,7 +342,7 @@ class MenuScreen(Gtk.Alignment):
         return "Chapter {}: {}".format(number, chapters[number]["title"])
 
     def create_chapter_description(self, number):
-        return "Challenge {} to Challenge {}".format(
+        return "Dal livello {} al livello {}".format(
             chapters[number]["start_challenge"],
             chapters[number]["end_challenge"]
         )
@@ -418,7 +418,7 @@ class MenuScreen(Gtk.Alignment):
                 number = int(child.get_label())
 
                 # Decide if we're showing the chapters or the challenges
-                if self.menu_title.get_text() == "CHAPTERS":
+                if self.menu_title.get_text() == "CAPITOLI":
                     title = self.create_chapter_title(number)
                     description = self.create_chapter_description(number)
                 else:

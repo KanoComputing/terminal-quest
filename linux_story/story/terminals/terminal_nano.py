@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding: utf-8
 
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
@@ -18,9 +19,9 @@ from kano.logging import logger
 class TerminalNano(TerminalEcho):
     terminal_commands = ["ls", "cat", "cd", "mv", "echo", "mkdir", "nano"]
     SAVING_NANO_PROMPT = (
-        "Save modified buffer (ANSWERING \"No\" WILL DESTROY CHANGES) ? "
+        "Salva il documento modificato (SE RISPONDI \"No\" PERDI I CAMBIAMENTI) ? "
     )
-    SAVE_FILENAME = "File Name to Write"
+    SAVE_FILENAME = "Nome del file da scrivere"
 
     # This is the content we want to end up with in the file.
     goal_nano_end_content = ""
@@ -190,12 +191,12 @@ class TerminalNano(TerminalEcho):
             self.get_pipe_contents()
         except Exception as e:
             logger.error(
-                "\nFailed to get nano contents, exception {}".format(str(e))
+                "\nNon sono riiuscito a recuperare i dati da nano, eccezione {}".format(str(e))
             )
 
             # TODO: Remove this when shipping
-            print "\nFailed to get nano contents, {}".format(str(e))
-            self.send_text("\nFailed to get nano contents, {}".format(str(e)))
+            print "\nNon sono riuscito a recuperare i dati da nano, {}".format(str(e))
+            self.send_text("\nNon sono riuscito a recuperare i dati da nano, {}".format(str(e)))
 
     def get_pipe_contents(self):
 
@@ -319,16 +320,16 @@ class TerminalNano(TerminalEcho):
 
         if not self.last_user_input == correct_user_cmd:
             hint = (
-                "\n{{rb:Oops, you opened the wrong file! Press}} " +
-                "{{yb:Ctrl X}} {{rb:to exit.}}"
+                "\n{{rb:Oops, hai aperto il file sbagliato! Premi}} " +
+                "{{yb:Ctrl X}} {{rb:per uscire.}}"
             )
             self.send_text(hint)
 
         elif self.goal_nano_end_content:
             hint = (
-                "\n{{gb:You've opened nano! Now make sure the file says}} "
+                "\n{{gb:Hai aperto nano! Ora accertati che il file dica}} "
                 "{{yb:" + self.goal_nano_end_content +
-                "}}{{gb:. If you want to exit, press Ctrl X.}}"
+                "}}{{gb:. Se vuoi uscire, premi Ctrl X.}}"
             )
             self.send_text(hint)
 
@@ -364,17 +365,17 @@ class TerminalNano(TerminalEcho):
                 return self.finish_if_server_ready(True)
             else:
                 error_text = (
-                    "\n{{rb:Your text is not correct! " +
-                    "Type}} {{yb:nano " + self.goal_nano_save_name + "}} "
-                    "{{rb:to try again.}}"
+                    "\n{{rb:Il testo che hai scritto non è corretto! " +
+                    "Scrivi}} {{yb:nano " + self.goal_nano_save_name + "}} "
+                    "{{rb:per riprovare.}}"
                 )
                 self.send_text(error_text)
 
         else:
             error_text = (
-                "\n{{rb:The file path}} {{lb:" +
+                "\n{{rb:Il percorso del file}} {{lb:" +
                 end_path +
-                "}} {{rb:does not exists - did you save your file correctly?}}"
+                "}} {{rb:non esiste - hai salvato per bene il file?}}"
             )
             self.send_text(error_text)
 
@@ -401,8 +402,8 @@ class TerminalNano(TerminalEcho):
             '''
             else:
                 self.send_text(
-                    "\n{{ob:Your filename is wrong. Try starting again by "
-                    "typing}} {{yb:nano}} {{ob:and press Enter}} " +
+                    "\n{{ob:Il tuo file è sbagliato. Prova a ricominciare "
+                    "scrivendo}} {{yb:nano}} {{ob:e premendo Invio}} " +
                     self.get_last_nano_filename() + " " +
                     self.goal_nano_save_name
                 )
@@ -413,39 +414,39 @@ class TerminalNano(TerminalEcho):
 
             if self.get_editable() == self.goal_nano_save_name:
                 hint = (
-                    "\n{{gb:Press}} {{yb:Enter}} {{gb:to confirm the "
-                    "filename.}}"
+                    "\n{{gb:Premi}} {{yb:Invio}} {{gb:per confermare il "
+                    "nome del file.}}"
                 )
             else:
                 hint = (
-                    "\n{{gb:Type}} {{yb:" + self.goal_nano_save_name + "}} "
-                    "{{gb:and press}} {{yb:Enter}}"
+                    "\n{{gb:Scrivi}} {{yb:" + self.goal_nano_save_name + "}} "
+                    "{{gb:e premi}} {{yb:Invio}}"
                 )
             self.send_text(hint)
 
         elif self.get_on_filename_screen():
             self.send_text(
-                "\n{{ob:Oops, your text isn't correct. Press}} "
-                "{{yb:Ctrl C}} {{ob:to cancel.}}"
+                "\n{{ob:Oops, il tuo testo non è corretto. Premi}} "
+                "{{yb:Ctrl C}} {{ob:per annullare questa operazione.}}"
             )
 
         elif self.get_save_prompt_showing():
             if self.get_nano_content().strip() == self.goal_nano_end_content:
                 self.send_text(
-                    "\n{{gb:Press}} {{yb:Y}} {{gb:to confirm that you want to "
-                    "save.}}"
+                    "\n{{gb:Premi}} {{yb:Y}} {{gb:per confermare che vuoi "
+                    "salvare.}}"
                 )
             else:
                 self.send_text(
-                    "\n{{rb:Your text is not correct! Press}} {{yb:N}} "
-                    "{{rb:to exit nano.}}"
+                    "\n{{rb:Il tuo testo non è corretto! Premi}} {{yb:N}} "
+                    "{{rb:per uscire da nano.}}"
                 )
 
         elif self.get_nano_content().strip() == self.goal_nano_end_content:
             hint = (
-                "\n{{gb:Excellent, you typed}} {{lb:" +
+                "\n{{gb:Ottimo, hai scritto}} {{lb:" +
                 self.goal_nano_end_content +
-                "}}{{gb:. Now press}} {{yb:Ctrl X}} {{gb:to exit.}}"
+                "}}{{gb:. Ora premi}} {{yb:Ctrl X}} {{gb:per uscire.}}"
             )
             self.send_text(hint)
 

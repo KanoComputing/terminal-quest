@@ -14,10 +14,10 @@ class FinishDialog(KanoDialog):
 
     def __init__(self):
 
-        title_text = 'You\'ve completed Terminal Quest!'
+        title_text = 'Hai completato Terminal Quest!'
         description_text = (
-            'We are working on the next Chapter. '
-            'In the meantime, would you like to send us any feedback?'
+            'Stiamo lavorando al prossimo Capitolo. '
+            'Nel frattempo, vuoi mandarci qualche suggerimento?'
         )
 
         KanoDialog.__init__(
@@ -36,4 +36,4 @@ class FinishDialog(KanoDialog):
                     'return_value': 'close'
                 }
             }
-        )
+            )
