@@ -6,7 +6,7 @@ It is an introduction to terminal commands in the style of a text adventure game
 
 # Translation in Italian going on
 
-by Andreas Formiconi
+*by Andreas Formiconi*
 
 The translation is complete. Now, a refinement work will take place, based on feedback of users that will experiment this game in the classroom. 
 
