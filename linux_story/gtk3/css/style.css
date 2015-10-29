@@ -82,6 +82,7 @@
 	border-color: transparent;
 	border-width: 5px;
 	border-radius: 2px;
+    box-shadow: none;
 }
 
 .menu_button GtkLabel {
