@@ -3,6 +3,7 @@ import sys
 import pygame
 from pygame.locals import *
 import string
+import time
 
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 if __name__ == '__main__' and __package__ is None:
@@ -54,6 +55,7 @@ class TerminalController():
         (cursorx, cursory) = self._view.cursor
 
         while self._running:
+            time.sleep(0.001)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self._running = False
@@ -64,31 +66,44 @@ class TerminalController():
                     if key == "backspace":
                         text = text[:-1]
                         tab_pressed = 0
+
                     elif key == "tab":
                         tab_pressed += 1
-                        autocomplete = self._model.autocomplete(text)
-                        text += "\n"
-                        self._view.set_cursor(cursorx, cursory)
-                        self._view.write_text(text + " ")
-                        self._view.write_text(autocomplete)
-                        self.update_view_prompt()
-                        text = ""
+
+                        if tab_pressed == 1:
+                            new_text = self._model.tab_once(text)
+                            if not new_text == text:
+                                tab_pressed = 0
+                                text = new_text
+
+                        elif tab_pressed > 1:
+                            autocomplete = self._model.tab_many(text)
+                            self._view.write_text("\n" + autocomplete + " \n")
+                            cursory += 2
+                            self.update_view_prompt()
+
                         # Run the right autocomplete command.
                     elif key == "return":
                         cursory += 1
                         self._view.set_cursor(0, cursory)
+                        self._model.add_to_history(text)
                         self.give_model_input(text)
                         (cursorx, cursory) = self._view.cursor
                         text = ""
                         tab_pressed = 0
+
+                    elif key == "up":
+                        self._view.clear_line(cursorx, cursory)
+                        text = self._model.go_back_in_history()
+
+                    elif key == "down":
+                        self._view.clear_line(cursorx, cursory)
+                        text = self._model.go_forward_in_history()
                     else:
                         text += event.unicode
                         tab_pressed = 0
-                        print "{} pressed".format(key)
 
-                    print "text = {}".format(text)
-                    # This forces the cursor to where it was, so undoes the automatic
-                    # work.
+                    # This forces the cursor to where it was
                     # Might want to revert this
                     self._view.set_cursor(cursorx, cursory)
                     self._view.write_text(text + " ")

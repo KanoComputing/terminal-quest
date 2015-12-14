@@ -145,6 +145,47 @@ class LsInFileSystem(SetUpUser):
             "ls: blahblah: No such file or directory"
         )
 
+    def test_ls_tab_once_empty(self):
+        user = self._create_user("~/parent_directory")
+        ls = Ls(user)
+        self.assertEquals(
+            ls.tab_once(""),
+            "ls "
+        )
+
+    def test_ls_tab_many_empty(self):
+        user = self._create_user("~/parent_directory")
+        ls = Ls(user)
+        self.assertEquals(
+            ls.tab_many(""),
+            "dir1 dir2 dir3 file1 file2 file3"
+        )
+
+    def test_ls_tab_many_dirs(self):
+        user = self._create_user("~/parent_directory")
+        ls = Ls(user)
+        self.assertEquals(
+            ls.tab_many("d"),
+            "dir1 dir2 dir3"
+        )
+
+    def test_ls_autocomplete_files(self):
+        user = self._create_user("~/parent_directory")
+        ls = Ls(user)
+        self.assertEquals(
+            ls.tab_many("f"),
+            "file1 file2 file3"
+        )
+
+    def test_ls_tab_once_single(self):
+        user = self._create_user("~")
+        ls = Ls(user)
+        self.assertEquals(
+            ls.tab_once("parent_direct"),
+            "ls parent_directory"
+        )
+
+    '''
     def test_ls_autocomplete_empty(self):
         user = self._create_user("~/parent_directory")
         ls = Ls(user)
@@ -176,6 +217,7 @@ class LsInFileSystem(SetUpUser):
             ls.autocomplete("parent_direct"),
             ["parent_directory"]
         )
+    '''
 
 
 # If filesystem tests don't work, these tests won't work
@@ -205,6 +247,22 @@ class CdInFileSystem(SetUpUser):
         cd = Cd(user)
         self.assertEquals(cd.do("file1"), "bash: cd: file1: Not a directory")
 
+    def test_cd_tab_once(self):
+        user = self._create_user("~")
+        cd = Cd(user)
+        self.assertEquals(cd.tab_once("pare"), "cd parent_directory")
+
+    def test_cd_tab_many(self):
+        user = self._create_user("~/parent_directory")
+        cd = Cd(user)
+        self.assertEquals(cd.tab_many("d"), "dir1 dir2 dir3")
+
+    def test_cd_tab_many_nested(self):
+        user = self._create_user("~")
+        cd = Cd(user)
+        self.assertEquals(cd.tab_many("parent_directory/d"), "dir1 dir2 dir3")
+
+    '''
     def test_cd_autocomplete_dirs(self):
         user = self._create_user("~/parent_directory")
         cd = Cd(user)
@@ -214,6 +272,7 @@ class CdInFileSystem(SetUpUser):
         user = self._create_user("~/parent_directory")
         cd = Cd(user)
         self.assertEquals(cd.autocomplete("f"), [])
+    '''
 
 
 if __name__ == "__main__":
