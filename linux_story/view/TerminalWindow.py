@@ -17,7 +17,7 @@ class TerminalWindow():
     def __init__(self):
         self._width = 100
         self._height = 100
-        self._win = pygcurse.PygcurseWindow(100, 100)
+        self._win = pygcurse.PygcurseWindow(self._width, self._height)
         self._location = ""
         self.set_fgcolor("white")
 
