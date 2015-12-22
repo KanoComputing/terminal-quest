@@ -109,9 +109,19 @@ class FileSystem():
             tree["type"] = "directory"
 
     # Fighting the data structure?
-    def get_nodes_from_path(self, path):
-        tree = self._navigate_to_path()
-        return tree["children"]
+    def get_all_at_path(self, path):
+        tree = self._navigate_to_path(path)
+        return sorted(tree["children"])
+
+    def get_files_at_path(self, path):
+        all_files = self.get_all_at_path(path)
+        files = [f for f in all_files if f["type"] == "file"]
+        return files
+
+    def get_dirs_at_path(self, path):
+        all_files = self.get_all_at_path(path)
+        dirs = [f for f in all_files if f["type"] == "directory"]
+        return dirs
 
     def _navigate_to_path(self, path):
         levels = path.split("/")
@@ -130,6 +140,11 @@ class FileSystem():
 
         return tree
 
+
+# These work as functions as they are stored on system.
+# However if we have the filesystem in memory, maybe it should be a class.
+############################################################################
+# Linux Filesystem:
 
 import os
 
