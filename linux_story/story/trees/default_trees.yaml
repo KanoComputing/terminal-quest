@@ -455,6 +455,10 @@ private-section:
           step: 4
           path: "~/town/east/library"
           permissions: 0000
+        - challenge: 35
+          step: 26
+          path: "~/town/east/library"
+          permissions: 0755
 
 # Hidden librarian
 Clara:
@@ -468,3 +472,152 @@ bernards-hat:
         - challenge: 30
           step: 1
           path: "~/town/east/shed-shop"
+
+signpost, weed:
+    challenges:
+        - challenge: 32
+          step: 1
+          path: "~/woods/clearing"
+
+doorbell.sh:
+    challenges:
+        - challenge: 32
+          step: 1
+          path: "~/woods/clearing"
+          permissions: 0755
+
+gemstone:
+    challenges:
+        - challenge: 32
+          step: 1
+          path: "~/woods/clearing/chest"
+
+
+chest:
+    directory: True
+    challenges:
+        - challenge: 32
+          step: 1
+          path: "~/woods/clearing"
+          permissions: 0000
+        - challenge: 40
+          step: 2
+          path: "~/woods/clearing"
+          permissions: 0755
+
+
+# This needs to be marked in some way as immovable.
+# Maybe just lock it conventionally
+#sword:
+#    challenges:
+#        - challenge: 32
+#          step: 1
+#          path: "~/woods/clearing/chest"
+#          permissions: 0444
+
+house:
+    directory: True
+    challenges:
+        - challenge: 32
+          step: 1
+          path: "~/woods/clearing"
+          permissions: 0000
+        - challenge: 34
+          step: 1
+          path: "~/woods/clearing"
+          permissions: 0755
+
+swordsmaster:
+    challenges:
+        - challenge: 34
+          step: 1
+          path: "~/woods/clearing/house"
+
+
+sandwich_basement:
+    name: "sandwich"
+    challenges:
+        - challenge: 34
+          step: 1
+          path: "~/woods/clearing/house/basement"
+
+        - challenge: 34
+          step: 11
+          exists: False
+
+basement:
+    directory: True
+    challenges:
+        - challenge: 34
+          step: 1
+          path: "~/woods/clearing/house"
+          permissions: 0100
+        - challenge: 34
+          step: 7
+          path: "~/woods/clearing/house"
+          permissions: 0500
+        - challenge: 34
+          step: 10
+          path: "~/woods/clearing/house"
+          permissions: 0700
+
+note_swordsmaster-house:
+    name: "note"
+    challenges:
+        - challenge: 34
+          step: 11
+          path: "~/woods/clearing/house"
+
+
+note_swordsmaster-garden:
+    name: "note"
+    challenges:
+        - challenge: 34
+          step: 11
+          path: "~/woods/clearing"
+
+
+note_woods:
+    name: "note"
+    challenges:
+        - challenge: 34
+          step: 11
+          path: "~/woods"
+
+
+note_thicket:
+    name: "note"
+    challenges:
+        - challenge: 34
+          step: 11
+          path: "~/woods/thicket"
+
+
+note_rabbithole:
+    name: "note"
+    challenges:
+        - challenge: 34
+          step: 11
+          path: "~/woods/thicket/.rabbithole"
+
+
+Rabbit:
+    challenges:
+        - challenge: 34
+          step: 11
+          path: "~/woods/thicket/.rabbithole"
+
+
+# Copy into the challenge folder when the permissions allow it.
+SUDO:
+    challenges:
+        - challenge: 35
+          step: 27
+          path: "~/town/east/library/private-section"
+
+
+RM:
+    challenges:
+        - challenge: 35
+          step: 41
+          path: "~/woods/clearing"

@@ -3,7 +3,7 @@
 # Terminal.py
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # The template of the terminal classes.
 
@@ -50,6 +50,7 @@ class Terminal(Cmd):
     story_dict = {}
     deleted_items = []
     command_blocked = False
+    needs_sudo = False
 
     # Trying to merge Step and Terminal
     def __init__(self, xp=""):
@@ -203,10 +204,11 @@ class Terminal(Cmd):
         pass
 
     def block_command(self):
-        '''line is the user entered input from the terminal.
-        If this function returns True, input entered will be blocked
+        '''
+        If this function returns True, the last input (self.last_user_input)
+        will be blocked.
         Otherwise, command will be run as normal.
-        Default behaviour is to block cd and mv
+        Default behaviour is to block cd, mv and mkdir.
         '''
 
         if "cd" in self.last_user_input or \

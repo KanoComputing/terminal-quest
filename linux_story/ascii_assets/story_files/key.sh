@@ -1,0 +1,3 @@
+# key
+
+chmod -rwx basement

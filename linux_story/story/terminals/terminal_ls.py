@@ -22,7 +22,7 @@ from linux_story.commands_real import ls
 class TerminalLs(Terminal):
     terminal_commands = ["ls"]
 
-    def do_ls(self, line):
+    def do_ls(self, line, has_access=True):
         # this is so we can read the output of the command for
         # self.output_command
         return ls(self.real_path, line)

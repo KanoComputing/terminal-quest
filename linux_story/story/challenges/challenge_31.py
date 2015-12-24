@@ -5,9 +5,9 @@
 #
 # A chapter of the story
 
-import time
 from linux_story.story.terminals.terminal_nano import TerminalNano
 from linux_story.step_helper_functions import unblock_cd_commands
+from linux_story.story.challenges.challenge_32 import Step1 as NextStep
 
 
 class StepTemplateNano(TerminalNano):
@@ -131,9 +131,9 @@ class Step5(StepTemplateNano):
     ]
     start_dir = "~/town/east/shed-shop/basement"
     end_dir = "~/town/east/shed-shop/basement"
-    last_step = True
+    # last_step = True
+
+    # Add all the new files here.
 
     def next(self):
-        self.exit()
-
-        time.sleep(3)
+        NextStep(self.xp)

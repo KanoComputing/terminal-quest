@@ -159,6 +159,7 @@ def modify_file_tree(filesystem_dict):
 
 # Call this on closing the application.
 # TODO: Also record what the permission was before overwriting.
+# TODO: abstract away from changing the permissions directly.
 def revert_to_default_permissions():
     '''
     This is the brute force way of cleaning up the permissions

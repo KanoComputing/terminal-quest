@@ -10,12 +10,12 @@ import os
 import threading
 import time
 import ast
-from linux_story.story.terminals.terminal_echo import TerminalEcho
+from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
 from linux_story.commands_real import nano
 from kano.logging import logger
 
 
-class TerminalNano(TerminalEcho):
+class TerminalNano(TerminalMkdir):
     terminal_commands = ["ls", "cat", "cd", "mv", "echo", "mkdir", "nano"]
     SAVING_NANO_PROMPT = (
         "Save modified buffer (ANSWERING \"No\" WILL DESTROY CHANGES) ? "
@@ -51,9 +51,9 @@ class TerminalNano(TerminalEcho):
         self.editable = ""
         ################################################
 
-        TerminalEcho.__init__(self, xp)
+        TerminalMkdir.__init__(self, xp)
 
-    def do_nano(self, line):
+    def do_nano(self, line, has_access=True):
         # line = the filepath of the nano file
 
         self.set_nano_running(True)

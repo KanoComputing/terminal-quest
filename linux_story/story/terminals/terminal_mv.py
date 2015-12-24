@@ -13,7 +13,11 @@ from linux_story.commands_real import shell_command
 class TerminalMv(TerminalCd):
     terminal_commands = ["ls", "cat", "cd", "mv"]
 
-    def do_mv(self, line):
+    def do_mv(self, line, has_access=True):
+        if not has_access:
+            print ("mkdir: cannot create directory '{}': Permission "
+                   "denied".format(line))
+            return
         shell_command(self.real_path, line, "mv")
 
     def complete_mv(self, text, line, begidx, endidx):

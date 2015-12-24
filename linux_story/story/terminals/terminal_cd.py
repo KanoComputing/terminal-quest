@@ -21,7 +21,7 @@ from linux_story.step_helper_functions import route_between_paths
 class TerminalCd(TerminalCat):
     terminal_commands = ["ls", "cat", "cd"]
 
-    def do_cd(self, line):
+    def do_cd(self, line, has_access=True):
         if self.check_cd():
             self.set_command_blocked(False)
             new_path = cd(self.real_path, line)

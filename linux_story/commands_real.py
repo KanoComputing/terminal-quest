@@ -15,7 +15,7 @@ from helper_functions import colour_file_dir, debugger
 from linux_story.common import tq_file_system
 
 
-def ls(real_loc, line):
+def ls(real_loc, line, has_access=True):
     '''
     Prints out the coloured output of the ls command.
 
@@ -27,6 +27,10 @@ def ls(real_loc, line):
     Returns:
         str of the output printed to the terminal.
     '''
+
+    if not has_access:
+        print "ls: cannot open directory {}: Permission denied".format(line)
+        return
 
     new_loc = real_loc
     get_all_info = False
@@ -96,27 +100,6 @@ def ls(real_loc, line):
 
     print coloured_output
     return output
-
-
-def sudo(real_path, line):
-    '''
-    Args:
-        real_path (str): filepath for the current location of the user.
-        line (str): the line the user entered following sudo.
-
-    Return:
-        None
-    '''
-    allowed_commands = ["chmod", "touch", "mkdir"]
-
-    # take the list of elements
-    elements = line.split(" ")
-
-    # take the command we're sudo-ing
-    command = elements[0]
-
-    if command in allowed_commands:
-        shell_command(real_path, line, "sudo")
 
 
 def shell_command(real_loc, line, command_word=""):

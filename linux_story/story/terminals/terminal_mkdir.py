@@ -2,7 +2,7 @@
 
 #
 # Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A terminal for one of the challenges
 
@@ -13,5 +13,9 @@ from linux_story.commands_real import shell_command
 class TerminalMkdir(TerminalEcho):
     terminal_commands = ["ls", "cat", "cd", "mv", "echo", "mkdir"]
 
-    def do_mkdir(self, line):
+    def do_mkdir(self, line, has_access=True):
+        if not has_access:
+            print ("mkdir: cannot create directory '{}': Permission "
+                   "denied".format(line))
+
         shell_command(self.real_path, line, "mkdir")

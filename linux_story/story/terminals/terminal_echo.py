@@ -13,5 +13,5 @@ from linux_story.commands_real import launch_application
 class TerminalEcho(TerminalMv):
     terminal_commands = ["ls", "cat", "cd", "mv", "echo"]
 
-    def do_echo(self, line):
+    def do_echo(self, line, has_access=True):
         launch_application(self.real_path, line, "echo")

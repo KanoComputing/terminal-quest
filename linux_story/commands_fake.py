@@ -8,9 +8,16 @@
 # Terminal commands which are emulated
 
 import os
+import getpass
+from kano.logging import logger
 
 
-def cd(real_path, line):
+def cd(real_path, line, has_access=True):
+    if not has_access:
+        # Could simplify this to "Permission denied"
+        print "-bash: cd: {}: Permission denied".format(line)
+        return
+
     tq_file_system = os.path.join(os.path.expanduser('~'), '.linux-story')
 
     if not line:
@@ -32,3 +39,28 @@ def cd(real_path, line):
     if new_path[-1] == '/':
         new_path = new_path[:-1]
     return new_path
+
+
+def sudo(real_path, line, counter=0, success_cb=None, *cb_args):
+    '''
+    Ask the user for their password, and do not show answer.
+    If the user is successful, execute success_cb with success_args passed
+    '''
+
+    if counter == 3:
+        print "sudo: 3 incorrect password attempts"
+        return
+
+    user = getpass.getuser()
+    pswd = getpass.getpass('[sudo] password for {}:'.format(user))
+
+    # For now hardcode the password?
+    if pswd != "kano":
+        print "Sorry, try again."
+        counter += 1
+        return sudo(real_path, line, counter)
+
+    logger.debug("successfully entered pswd = {}".format(pswd))
+    logger.debug("calling success cb = {}".format(cb_args))
+    if success_cb:
+        success_cb(*cb_args)
