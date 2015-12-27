@@ -7,8 +7,6 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from new_linux_story.models.filesystem import filter_tilde
-
 
 class PathDoesNotExist(Exception):
     pass
@@ -19,7 +17,8 @@ class PathIsNotDir(Exception):
 
 
 class User(object):
-    def __init__(self, position):
+    def __init__(self, filesystem, position):
+        self._filesystem = filesystem
         position = self._test_path(position)
         self._position = position
 
@@ -31,14 +30,16 @@ class User(object):
         position = self._test_path(position)
         self._position = position
 
-    def _test_path(self, fake_path):
-        real_path = filter_tilde(fake_path)
-        if not os.path.exists(real_path):
+    def _test_path(self, path):
+        # Check path against the filesystem
+        (exists, f) = self._filesystem.path_exists(path)
+        if not exists:
+            # This should be covered in the path_exists function
             raise PathDoesNotExist
-        if not os.path.isdir(real_path):
+        if not f.type == "directory":
             raise PathIsNotDir
 
-        if fake_path.endswith("/"):
-            fake_path = fake_path[:-1]
+        if path.endswith("/"):
+            path = path[:-1]
 
-        return fake_path
+        return path

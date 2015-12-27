@@ -130,6 +130,8 @@ class FilesystemTests(unittest.TestCase):
         '''
         self._remove_old_and_set_up_filesystem(self.one_file_no_content)
         path_that_should_exist = os.path.join(containing_dir, "test2")
+
+        # This should be abstracted away from os.path.exists
         is_file = os.path.isfile(path_that_should_exist)
         self.assertEquals(is_file, True)
 
@@ -139,6 +141,8 @@ class FilesystemTests(unittest.TestCase):
         '''
         self._remove_old_and_set_up_filesystem(self.one_dir)
         path_that_should_exist = os.path.join(containing_dir, "test2")
+
+        # This should be abstracted away from os.path.isdir
         is_dir = os.path.isdir(path_that_should_exist)
         self.assertEquals(is_dir, True)
 

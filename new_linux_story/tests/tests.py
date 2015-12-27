@@ -185,40 +185,6 @@ class LsInFileSystem(SetUpUser):
             "ls parent_directory"
         )
 
-    '''
-    def test_ls_autocomplete_empty(self):
-        user = self._create_user("~/parent_directory")
-        ls = Ls(user)
-        self.assertEquals(
-            ls.autocomplete(""),
-            ["dir1", "dir2", "dir3", "file1", "file2", "file3"]
-        )
-
-    def test_ls_autocomplete_dirs(self):
-        user = self._create_user("~/parent_directory")
-        ls = Ls(user)
-        self.assertEquals(
-            ls.autocomplete("d"),
-            ["dir1", "dir2", "dir3"]
-        )
-
-    def test_ls_autocomplete_files(self):
-        user = self._create_user("~/parent_directory")
-        ls = Ls(user)
-        self.assertEquals(
-            ls.autocomplete("f"),
-            ["file1", "file2", "file3"]
-        )
-
-    def test_ls_autocomplete_single(self):
-        user = self._create_user("~")
-        ls = Ls(user)
-        self.assertEquals(
-            ls.autocomplete("parent_direct"),
-            ["parent_directory"]
-        )
-    '''
-
 
 # If filesystem tests don't work, these tests won't work
 class CdInFileSystem(SetUpUser):
@@ -261,18 +227,6 @@ class CdInFileSystem(SetUpUser):
         user = self._create_user("~")
         cd = Cd(user)
         self.assertEquals(cd.tab_many("parent_directory/d"), "dir1 dir2 dir3")
-
-    '''
-    def test_cd_autocomplete_dirs(self):
-        user = self._create_user("~/parent_directory")
-        cd = Cd(user)
-        self.assertEquals(cd.autocomplete("d"), ["dir1", "dir2", "dir3"])
-
-    def test_cd_autocomplete_none(self):
-        user = self._create_user("~/parent_directory")
-        cd = Cd(user)
-        self.assertEquals(cd.autocomplete("f"), [])
-    '''
 
 
 if __name__ == "__main__":

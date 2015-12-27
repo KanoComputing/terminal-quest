@@ -9,9 +9,7 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from new_linux_story.constants import command_not_found
-from new_linux_story.models.filesystem import (
-    get_all_at_path, join_path, filter_tilde, get_dirs_at_path
-)
+from new_linux_story.models.filesystem import FileSystem
 from new_linux_story.models.User import User
 
 
@@ -21,29 +19,6 @@ class CommandMissingDoFunction(Exception):
 
 class CommandMissingAutocompleteFunction(Exception):
     pass
-
-
-class AutocompletionTypeMissing(Exception):
-    pass
-
-
-class CmdSingle(object):
-    def __init__(self):
-        self._stdin = ""
-        self._stdout = ""
-        self._stderr = ""
-
-    @property
-    def stdin(self):
-        return self._stdin
-
-    @property
-    def stdout(self):
-        return self._stdout
-
-    @property
-    def stderr(self):
-        return self._stderr
 
 
 class CmdList(object):
@@ -106,12 +81,12 @@ class CmdList(object):
         return parsed_input
 
 
-class CmdBase(object):
-    def __init__(self, user=None):
-        # This isn't used at all
-        self._ctrl = CmdSingle()
+class CmdSingle(object):
+
+    def __init__(self, filesystem=None, user=None):
         # This is initialised elsewhere
         self._user = user
+        self._filesystem = filesystem
 
     @property
     def position(self):
@@ -128,19 +103,19 @@ class CmdBase(object):
 
 
 # This is not
-class Echo(CmdBase):
+class Echo(CmdSingle):
 
     def do(self, line):
         return line
 
 
-class Pwd(CmdBase):
+class Pwd(CmdSingle):
 
     def do(self, line):
         return self.position
 
 
-class Ls(CmdBase):
+class Ls(CmdSingle):
 
     def do(self, line):
         if not line:
@@ -151,29 +126,29 @@ class Ls(CmdBase):
         return "ls: {}: No such file or directory".format(name)
 
     def _no_args(self):
-        return get_all_at_path(self.position)
+        return self._filesystem.get_all_names_at_path(self.position)
 
     def _no_flags(self, name):
-        path = join_path(self.position, name)
-
-        if not os.path.exists(path):
+        path = os.path.join(self.position, name)
+        (exists, f) = self._filesystem.path_exists(path)
+        if not exists:
             return self._no_such_file_message(name)
-        return get_all_at_path(path)
+        return self._filesystem.get_all_names_at_path(path)
 
     def tab_once(self, line):
         '''
         This returns the text the terminal outputs on one tab
         '''
-        return tab_once("ls", line, self.position, "all")
+        return tab_once("ls", line, self.position, self._filesystem, "all")
 
     def tab_many(self, line):
         '''
         This returns the text the terminal outputs on two tabs
         '''
-        return tab_many("ls", line, self.position, "all")
+        return tab_many("ls", line, self.position, self._filesystem, "all")
 
 
-class Cd(CmdBase):
+class Cd(CmdSingle):
 
     def do(self, line):
         if not line:
@@ -191,14 +166,11 @@ class Cd(CmdBase):
         self.set_position("~")
 
     def _no_flags(self, line):
-        real_path = join_path(self.position, line)
-
-        # TODO: add wrappers to all these "real" file functions
-        if os.path.exists(real_path):
-            real_path = os.path.normpath(real_path)
-            if os.path.isdir(real_path):
-                fake_path = os.path.join(self.position, line)
-                self._user.set_position(fake_path)
+        path = os.path.join(self.position, line)
+        (exists, f) = self._filesystem.path_exists(path)
+        if exists:
+            if f.type == "directory":
+                self._user.set_position(path)
             else:
                 return self._cd_into_file(line)
         else:
@@ -208,81 +180,54 @@ class Cd(CmdBase):
         '''
         This returns the text the terminal outputs on one tab
         '''
-        return tab_once("cd", line, self.position, "dirs")
+        return tab_once("cd", line, self.position, self._filesystem, "dirs")
 
     def tab_many(self, line):
         '''
         This returns the text the terminal outputs on two tabs
         '''
-        return tab_many("cd", line, self.position, "dirs")
+        return tab_many("cd", line, self.position, self._filesystem, "dirs")
 
 
-# Very repetitive code here
-def autocomplete_all(line, current_position):
+def autocomplete(line, position, filesystem, config):
     '''
     :params line: the line typed on the command line so far
     :type line: str
+    :params position: path
+    :type position: str
+    :params filesystem: FileSystem object
+    :params config: "all", "files", "dirs"
     '''
     completions = []
     if not line:
-        real_path = filter_tilde(current_position)
-        completions = get_all_at_path(real_path)
+        completions = filesystem.get_names_at_path(position, config)
     else:
         final_text = line.split("/")[-1]
         complete_path = "/".join(line.split("/")[:-1])
-        real_path = filter_tilde(
-            os.path.join(
-                current_position, complete_path
-            )
+        path = os.path.join(
+            position, complete_path
         )
-        if os.path.exists(real_path):
-            files = get_all_at_path(real_path)
-            for f in files:
-                if f.startswith(final_text):
-                    completions.append(f)
+        exists, f = filesystem.path_exists(path)
+        if exists and f.type == "directory":
+            for child in f.children:
+                if child.name.startswith(final_text):
+                    completions.append(child.name)
 
     return sorted(completions)
 
 
-def autocomplete_dirs(line, current_position):
-    completions = []
-    if not line:
-        real_path = filter_tilde(current_position)
-        completions = get_dirs_at_path(real_path)
-    else:
-        final_text = line.split("/")[-1]
-        complete_path = "/".join(line.split("/")[:-1])
-        real_path = filter_tilde(
-            os.path.join(
-                current_position, complete_path
-            )
-        )
-        if os.path.exists(real_path) and os.path.isdir(real_path):
-            dirs = get_dirs_at_path(real_path)
-            for d in dirs:
-                if d.startswith(final_text):
-                    completions.append(d)
-
-    return sorted(completions)
-
-
-def tab_once(command, line, position, config):
+def tab_once(command, line, position, filesystem, config):
     '''
     This returns the text the terminal outputs on one tab
     '''
-    if config == "dirs":
-        autocomplete = autocomplete_dirs(line, position)
-    elif config == "all":
-        autocomplete = autocomplete_all(line, position)
-    else:
-        raise AutocompletionTypeMissing
+    completions = autocomplete(line, position, filesystem, config)
 
-    if len(autocomplete) == 1:
+    if len(completions) == 1:
         if "/" in line:
             path = "/".join(line.split("/")[:-1])
-            path += "/" + autocomplete[0]
+            path += "/" + completions[0]
         else:
-            path = autocomplete[0]
+            path = completions[0]
 
         text = command + " " + path
     else:
@@ -291,24 +236,19 @@ def tab_once(command, line, position, config):
     return text
 
 
-def tab_many(command, line, position, config):
+def tab_many(command, line, position, filesystem, config):
     '''
     This returns the text the terminal outputs on one tab
     '''
-    if config == "dirs":
-        autocomplete = autocomplete_dirs(line, position)
-    elif config == "all":
-        autocomplete = autocomplete_all(line, position)
-    else:
-        raise AutocompletionTypeMissing
+    completions = autocomplete(line, position, filesystem, config)
 
-    if len(autocomplete) > 1:
-        return " ".join(autocomplete)
+    if len(completions) > 1:
+        return " ".join(completions)
     else:
         return ""
 
 
-class Cat(CmdBase):
+class Cat(CmdSingle):
 
     def do(self, line):
         if not line:
@@ -321,13 +261,11 @@ class Cat(CmdBase):
         return "cat: {}:no such file or directory".format(name)
 
     def _no_flags(self, line):
-        real_path = join_path(self.position, line)
+        path = os.path.join(self.position, line)
 
-        if os.path.exists(real_path):
-            f = open(real_path, 'r')
-            contents = f.read()
-            f.close()
-            return contents
+        (exists, f) = self._filesystem.path_exists(path)
+        if exists:
+            return f.content
         else:
             return self._no_such_file_message(line)
 
