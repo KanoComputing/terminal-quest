@@ -164,6 +164,9 @@ class FileSystem(object):
         '''
         if not path:
             raise NoPathException
+
+        # Remove .. and redundant slashes
+        path = os.path.normpath(path)
         # Strip the empty elements
         levels = path.split("/")
         levels = filter(None, levels)

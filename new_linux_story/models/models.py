@@ -11,6 +11,7 @@ if __name__ == '__main__' and __package__ is None:
 from new_linux_story.constants import command_not_found
 from new_linux_story.models.filesystem import FileSystem
 from new_linux_story.models.User import User
+from linux_story.helper_functions import colour_string_with_preset
 
 
 class CommandMissingDoFunction(Exception):
@@ -166,7 +167,7 @@ class Cd(CmdSingle):
         self.set_position("~")
 
     def _no_flags(self, line):
-        path = os.path.join(self.position, line)
+        path = os.path.normpath(os.path.join(self.position, line))
         (exists, f) = self._filesystem.path_exists(path)
         if exists:
             if f.type == "directory":
@@ -343,3 +344,74 @@ class TerminalAll(TerminalBase):
         self.add_command("cd", Cd(self._filesystem, self._user))
         self.add_command("pwd", Pwd(self._filesystem, self._user))
         self.add_command("echo", Echo())
+
+
+from cmd import Cmd
+
+
+class TerminalCmd(Cmd):
+
+    def __init__(self, config, position):
+        Cmd.__init__(self)
+        self._terminal = TerminalAll(config, position)
+
+        # location of the user.
+        self._prompt = ""
+        self._set_prompt("~")
+
+    @property
+    def _position(self):
+        return self._terminal._user.position
+
+    def _set_prompt(self, location):
+
+        # if prompt ends with / strip it off
+        if location[-1] == '/':
+            location = location[:-1]
+
+        # Put together the terminal prompt.
+        username = os.environ['LOGNAME']
+        yellow_part = username + "@kano "
+        yellow_part = colour_string_with_preset(yellow_part, "yellow", True)
+
+        blue_part = location + ' $ '
+        blue_part = colour_string_with_preset(blue_part, "blue", True)
+        self.prompt = yellow_part + blue_part
+
+    def do_ls(self, line):
+        print self._terminal.receive_command("ls " + line)
+
+    def do_cd(self, line):
+        output = self._terminal.receive_command("cd " + line)
+        if output:
+            print output
+        self._set_prompt(self._position)
+
+
+if __name__ == '__main__':
+    config = [
+        {
+            "name": "dir1",
+            "type": "directory",
+            "children": [
+                {
+                    "name": "file1",
+                    "type": "file"
+                },
+                {
+                    "name": "file2",
+                    "type": "file"
+                },
+                {
+                    "name": "dir1",
+                    "type": "directory"
+                },
+                {
+                    "name": "dir2",
+                    "type": "directory"
+                }
+            ]
+        }
+    ]
+    position = "~"
+    TerminalCmd(config, position).cmdloop()

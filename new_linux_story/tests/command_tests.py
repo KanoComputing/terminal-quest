@@ -205,6 +205,28 @@ class CdInFileSystem(SetUpUser):
         cd = Cd(filesystem, user)
         self.assertEquals(cd.tab_many("parent_directory/d"), "dir1 dir2 dir3")
 
+    def test_cd_go_back_output(self):
+        (filesystem, user) = self._create_user("~/parent_directory")
+        cd = Cd(filesystem, user)
+        self.assertEquals(cd.do(".."), None)
+
+    def test_cd_go_back_end_location(self):
+        (filesystem, user) = self._create_user("~/parent_directory")
+        cd = Cd(filesystem, user)
+        cd.do("..")
+        self.assertEquals(cd.position, "~")
+
+    def test_cd_go_back_twice_output(self):
+        (filesystem, user) = self._create_user("~/parent_directory/dir1")
+        cd = Cd(filesystem, user)
+        self.assertEquals(cd.do("../../"), None)
+
+    def test_cd_go_back_twice_location(self):
+        (filesystem, user) = self._create_user("~/parent_directory/dir1")
+        cd = Cd(filesystem, user)
+        cd.do("../../")
+        self.assertEquals(cd.position, "~")
+
 
 if __name__ == "__main__":
     unittest.main()

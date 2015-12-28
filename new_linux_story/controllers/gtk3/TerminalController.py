@@ -10,7 +10,6 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from new_linux_story.models.models import TerminalAll
-from new_linux_story.models.filesystem import FileSystem
 from new_linux_story.view.pygame.TerminalWindow import TerminalWindow
 
 
