@@ -23,6 +23,10 @@ class User(object):
         self._position = position
 
     @property
+    def filesystem(self):
+        return self._filesystem
+
+    @property
     def position(self):
         return self._position
 

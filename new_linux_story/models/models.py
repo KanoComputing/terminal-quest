@@ -84,10 +84,13 @@ class CmdList(object):
 
 class CmdSingle(object):
 
-    def __init__(self, filesystem=None, user=None):
+    def __init__(self, user=None):
         # This is initialised elsewhere
         self._user = user
-        self._filesystem = filesystem
+
+    @property
+    def filesystem(self):
+        return self._user.filesystem
 
     @property
     def position(self):
@@ -127,26 +130,26 @@ class Ls(CmdSingle):
         return "ls: {}: No such file or directory".format(name)
 
     def _no_args(self):
-        return self._filesystem.get_all_names_at_path(self.position)
+        return self.filesystem.get_all_names_at_path(self.position)
 
     def _no_flags(self, name):
         path = os.path.join(self.position, name)
-        (exists, f) = self._filesystem.path_exists(path)
+        (exists, f) = self.filesystem.path_exists(path)
         if not exists:
             return self._no_such_file_message(name)
-        return self._filesystem.get_all_names_at_path(path)
+        return self.filesystem.get_all_names_at_path(path)
 
     def tab_once(self, line):
         '''
         This returns the text the terminal outputs on one tab
         '''
-        return tab_once("ls", line, self.position, self._filesystem, "all")
+        return tab_once("ls", line, self.position, self.filesystem, "all")
 
     def tab_many(self, line):
         '''
         This returns the text the terminal outputs on two tabs
         '''
-        return tab_many("ls", line, self.position, self._filesystem, "all")
+        return tab_many("ls", line, self.position, self.filesystem, "all")
 
 
 class Cd(CmdSingle):
@@ -168,7 +171,7 @@ class Cd(CmdSingle):
 
     def _no_flags(self, line):
         path = os.path.normpath(os.path.join(self.position, line))
-        (exists, f) = self._filesystem.path_exists(path)
+        (exists, f) = self.filesystem.path_exists(path)
         if exists:
             if f.type == "directory":
                 self._user.set_position(path)
@@ -181,13 +184,13 @@ class Cd(CmdSingle):
         '''
         This returns the text the terminal outputs on one tab
         '''
-        return tab_once("cd", line, self.position, self._filesystem, "dirs")
+        return tab_once("cd", line, self.position, self.filesystem, "dirs")
 
     def tab_many(self, line):
         '''
         This returns the text the terminal outputs on two tabs
         '''
-        return tab_many("cd", line, self.position, self._filesystem, "dirs")
+        return tab_many("cd", line, self.position, self.filesystem, "dirs")
 
 
 def autocomplete(line, position, filesystem, config):
@@ -271,7 +274,7 @@ class Cat(CmdSingle):
     def _no_flags(self, line):
         path = os.path.join(self.position, line)
 
-        (exists, f) = self._filesystem.path_exists(path)
+        (exists, f) = self.filesystem.path_exists(path)
         if exists:
             return f.content
         else:
@@ -283,14 +286,17 @@ class TerminalBase(object):
         self._ctrl = CmdList()
 
         # TODO: move this into User
-        self._filesystem = FileSystem(config)
-        self._user = User(self._filesystem, position)
+        self._user = User(FileSystem(config), position)
 
         # Current text shown in terminal. Not used
         self._text = ""
 
         self._history = []
         self._last_history = 0
+
+    @property
+    def filesystem(self):
+        return self._user.filesystem
 
     @property
     def position(self):
@@ -340,9 +346,9 @@ class Terminal1(TerminalBase):
 class TerminalAll(TerminalBase):
     def __init__(self, config, position):
         super(TerminalAll, self).__init__(config, position)
-        self.add_command("ls", Ls(self._filesystem, self._user))
-        self.add_command("cd", Cd(self._filesystem, self._user))
-        self.add_command("pwd", Pwd(self._filesystem, self._user))
+        self.add_command("ls", Ls(self._user))
+        self.add_command("cd", Cd(self._user))
+        self.add_command("pwd", Pwd(self._user))
         self.add_command("echo", Echo())
 
 

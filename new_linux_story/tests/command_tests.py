@@ -48,8 +48,7 @@ class SetUpUser(unittest.TestCase):
     ]
 
     def _create_user(self, position):
-        filesystem = FileSystem(self._config)
-        return (filesystem, User(filesystem, position))
+        return User(FileSystem(self._config), position)
 
 
 class CheckUser(SetUpUser):
@@ -70,7 +69,7 @@ class CheckUser(SetUpUser):
                           "~/parent_directory/file1")
 
     def test_trailing_slash(self):
-        (filesystem, user) = self._create_user("~/parent_directory/")
+        user = self._create_user("~/parent_directory/")
         self.assertEquals(user.position, "~/parent_directory")
 
 
@@ -78,85 +77,85 @@ class CheckUser(SetUpUser):
 class LsInFileSystem(SetUpUser):
 
     def test_ls_only_1(self):
-        (filesystem, user) = self._create_user("~/parent_directory")
-        ls = Ls(filesystem, user)
+        user = self._create_user("~/parent_directory")
+        ls = Ls(user)
         self.assertEquals(
             ls.do(""),
             ["dir1", "dir2", "dir3", "file1", "file2", "file3"]
         )
 
     def test_ls_only_2(self):
-        (filesystem, user) = self._create_user("~/parent_directory/dir1")
-        ls = Ls(filesystem, user)
+        user = self._create_user("~/parent_directory/dir1")
+        ls = Ls(user)
         self.assertEquals(ls.do(""), [])
 
     def test_ls_with_argument_1(self):
-        (filesystem, user) = self._create_user("~")
-        ls = Ls(filesystem, user)
+        user = self._create_user("~")
+        ls = Ls(user)
         self.assertEquals(
             ls.do("parent_directory"),
             ["dir1", "dir2", "dir3", "file1", "file2", "file3"]
         )
 
     def test_strip_trailing_slash(self):
-        (filesystem, user) = self._create_user("~")
-        ls = Ls(filesystem, user)
+        user = self._create_user("~")
+        ls = Ls(user)
         self.assertEquals(
             ls.do("parent_directory/"),
             ["dir1", "dir2", "dir3", "file1", "file2", "file3"]
         )
 
     def test_ls_with_argument_2(self):
-        (filesystem, user) = self._create_user("~/parent_directory")
-        ls = Ls(filesystem, user)
+        user = self._create_user("~/parent_directory")
+        ls = Ls(user)
         self.assertEquals(
             ls.do("dir1"),
             []
         )
 
     def test_ls_with_non_existant_path(self):
-        (filesystem, user) = self._create_user("~/parent_directory")
-        ls = Ls(filesystem, user)
+        user = self._create_user("~/parent_directory")
+        ls = Ls(user)
         self.assertEquals(
             ls.do("blahblah"),
             "ls: blahblah: No such file or directory"
         )
 
     def test_ls_tab_once_empty(self):
-        (filesystem, user) = self._create_user("~/parent_directory")
-        ls = Ls(filesystem, user)
+        user = self._create_user("~/parent_directory")
+        ls = Ls(user)
         self.assertEquals(
             ls.tab_once(""),
             "ls "
         )
 
     def test_ls_tab_many_empty(self):
-        (filesystem, user) = self._create_user("~/parent_directory")
-        ls = Ls(filesystem, user)
+        user = self._create_user("~/parent_directory")
+        ls = Ls(user)
         self.assertEquals(
             ls.tab_many(""),
             "dir1 dir2 dir3 file1 file2 file3"
         )
 
     def test_ls_tab_many_dirs(self):
-        (filesystem, user) = self._create_user("~/parent_directory")
-        ls = Ls(filesystem, user)
+        user = self._create_user("~/parent_directory")
+        ls = Ls(user)
         self.assertEquals(
             ls.tab_many("d"),
             "dir1 dir2 dir3"
         )
 
     def test_ls_autocomplete_files(self):
-        (filesystem, user) = self._create_user("~/parent_directory")
-        ls = Ls(filesystem, user)
+        user = self._create_user("~/parent_directory")
+        ls = Ls(user)
         self.assertEquals(
             ls.tab_many("f"),
             "file1 file2 file3"
         )
 
     def test_ls_tab_once_single(self):
-        (filesystem, user) = self._create_user("~")
-        ls = Ls(filesystem, user)
+        user = self._create_user("~")
+        ls = Ls(user)
         self.assertEquals(
             ls.tab_once("parent_direct"),
             "ls parent_directory/"
@@ -167,63 +166,63 @@ class LsInFileSystem(SetUpUser):
 class CdInFileSystem(SetUpUser):
 
     def test_cd_no_args(self):
-        (filesystem, user) = self._create_user("~/parent_directory")
-        cd = Cd(filesystem, user)
+        user = self._create_user("~/parent_directory")
+        cd = Cd(user)
         cd.do("")
         self.assertEquals(cd.position, "~")
 
     def test_cd_nonexistant_path_arg(self):
-        (filesystem, user) = self._create_user("~/parent_directory")
-        cd = Cd(filesystem, user)
+        user = self._create_user("~/parent_directory")
+        cd = Cd(user)
         self.assertEquals(
             cd.do("blah"),
             "cd: no such file or directory: blah"
         )
 
     def test_cd_no_output(self):
-        (filesystem, user) = self._create_user("~/parent_directory")
-        cd = Cd(filesystem, user)
+        user = self._create_user("~/parent_directory")
+        cd = Cd(user)
         self.assertEquals(cd.do("dir1"), None)
 
     def test_cd_into_file(self):
-        (filesystem, user) = self._create_user("~/parent_directory")
-        cd = Cd(filesystem, user)
+        user = self._create_user("~/parent_directory")
+        cd = Cd(user)
         self.assertEquals(cd.do("file1"), "bash: cd: file1: Not a directory")
 
     def test_cd_tab_once(self):
-        (filesystem, user) = self._create_user("~")
-        cd = Cd(filesystem, user)
+        user = self._create_user("~")
+        cd = Cd(user)
         self.assertEquals(cd.tab_once("pare"), "cd parent_directory/")
 
     def test_cd_tab_many(self):
-        (filesystem, user) = self._create_user("~/parent_directory")
-        cd = Cd(filesystem, user)
+        user = self._create_user("~/parent_directory")
+        cd = Cd(user)
         self.assertEquals(cd.tab_many("d"), "dir1 dir2 dir3")
 
     def test_cd_tab_many_nested(self):
-        (filesystem, user) = self._create_user("~")
-        cd = Cd(filesystem, user)
+        user = self._create_user("~")
+        cd = Cd(user)
         self.assertEquals(cd.tab_many("parent_directory/d"), "dir1 dir2 dir3")
 
     def test_cd_go_back_output(self):
-        (filesystem, user) = self._create_user("~/parent_directory")
-        cd = Cd(filesystem, user)
+        user = self._create_user("~/parent_directory")
+        cd = Cd(user)
         self.assertEquals(cd.do(".."), None)
 
     def test_cd_go_back_end_location(self):
-        (filesystem, user) = self._create_user("~/parent_directory")
-        cd = Cd(filesystem, user)
+        user = self._create_user("~/parent_directory")
+        cd = Cd(user)
         cd.do("..")
         self.assertEquals(cd.position, "~")
 
     def test_cd_go_back_twice_output(self):
-        (filesystem, user) = self._create_user("~/parent_directory/dir1")
-        cd = Cd(filesystem, user)
+        user = self._create_user("~/parent_directory/dir1")
+        cd = Cd(user)
         self.assertEquals(cd.do("../../"), None)
 
     def test_cd_go_back_twice_location(self):
-        (filesystem, user) = self._create_user("~/parent_directory/dir1")
-        cd = Cd(filesystem, user)
+        user = self._create_user("~/parent_directory/dir1")
+        cd = Cd(user)
         cd.do("../../")
         self.assertEquals(cd.position, "~")
 
