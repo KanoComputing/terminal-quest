@@ -220,18 +220,25 @@ def tab_once(command, line, position, filesystem, config):
     '''
     This returns the text the terminal outputs on one tab
     '''
+    completion = ""
     completions = autocomplete(line, position, filesystem, config)
 
     if len(completions) == 1:
         if "/" in line:
-            path = "/".join(line.split("/")[:-1])
-            path += "/" + completions[0]
+            completion = "/".join(line.split("/")[:-1])
+            completion += "/" + completions[0]
         else:
-            path = completions[0]
+            completion = completions[0]
 
-        text = command + " " + path
+        path = os.path.join(position, completion)
+        (exists, f) = filesystem.path_exists(path)
+
+        if f.type == "directory":
+            completion = completion + "/"
+
+        text = command + " " + completion
     else:
-        text = command + " " + line
+        text = command + " " + completion
 
     return text
 
@@ -271,9 +278,12 @@ class Cat(CmdSingle):
 
 
 class TerminalBase(object):
-    def __init__(self, position):
+    def __init__(self, config, position):
         self._ctrl = CmdList()
-        self._user = User(position)
+
+        # TODO: move this into User
+        self._filesystem = FileSystem(config)
+        self._user = User(self._filesystem, position)
 
         # Current text shown in terminal. Not used
         self._text = ""
@@ -321,15 +331,15 @@ class TerminalBase(object):
 
 
 class Terminal1(TerminalBase):
-    def __init__(self, position):
-        super(Terminal1, self).__init_(position)
+    def __init__(self, config, position):
+        super(Terminal1, self).__init_(config, position)
         self.add_command("ls", Ls(self._user))
 
 
 class TerminalAll(TerminalBase):
-    def __init__(self, position):
-        super(TerminalAll, self).__init__(position)
-        self.add_command("ls", Ls(self._user))
-        self.add_command("cd", Cd(self._user))
-        self.add_command("pwd", Pwd(self._user))
-        self.add_command("echo", Echo(None))
+    def __init__(self, config, position):
+        super(TerminalAll, self).__init__(config, position)
+        self.add_command("ls", Ls(self._filesystem, self._user))
+        self.add_command("cd", Cd(self._filesystem, self._user))
+        self.add_command("pwd", Pwd(self._filesystem, self._user))
+        self.add_command("echo", Echo())

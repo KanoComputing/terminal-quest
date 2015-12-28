@@ -10,10 +10,8 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from new_linux_story.models.models import TerminalAll
-from new_linux_story.models.filesystem import (
-    make_filesystem_from_config, remove_file_system
-)
-from new_linux_story.view.TerminalWindow import TerminalWindow
+from new_linux_story.models.filesystem import FileSystem
+from new_linux_story.view.pygame.TerminalWindow import TerminalWindow
 
 
 class TerminalController():
@@ -109,8 +107,7 @@ class TerminalController():
 
 
 if __name__ == "__main__":
-    remove_file_system()
-    filesystem = [
+    config = [
         {
             "name": "~",
             "type": "directory",
@@ -148,7 +145,6 @@ if __name__ == "__main__":
             ]
         }
     ]
-    make_filesystem_from_config(filesystem)
-    terminal = TerminalAll("~")
+    terminal = TerminalAll(config, "~")
     tc = TerminalController(terminal)
     tc.start()

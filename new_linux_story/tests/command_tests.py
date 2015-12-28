@@ -8,9 +8,9 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 
-from new_linux_story.models.filesystem import FileSystem, ChildInFileException
+from new_linux_story.models.filesystem import FileSystem
 from new_linux_story.models.User import User, PathDoesNotExist, PathIsNotDir
-from new_linux_story.models.models import Ls
+from new_linux_story.models.models import Ls, Cd
 
 
 class SetUpUser(unittest.TestCase):
@@ -159,8 +159,51 @@ class LsInFileSystem(SetUpUser):
         ls = Ls(filesystem, user)
         self.assertEquals(
             ls.tab_once("parent_direct"),
-            "ls parent_directory"
+            "ls parent_directory/"
         )
+
+
+# If filesystem tests don't work, these tests won't work
+class CdInFileSystem(SetUpUser):
+
+    def test_cd_no_args(self):
+        (filesystem, user) = self._create_user("~/parent_directory")
+        cd = Cd(filesystem, user)
+        cd.do("")
+        self.assertEquals(cd.position, "~")
+
+    def test_cd_nonexistant_path_arg(self):
+        (filesystem, user) = self._create_user("~/parent_directory")
+        cd = Cd(filesystem, user)
+        self.assertEquals(
+            cd.do("blah"),
+            "cd: no such file or directory: blah"
+        )
+
+    def test_cd_no_output(self):
+        (filesystem, user) = self._create_user("~/parent_directory")
+        cd = Cd(filesystem, user)
+        self.assertEquals(cd.do("dir1"), None)
+
+    def test_cd_into_file(self):
+        (filesystem, user) = self._create_user("~/parent_directory")
+        cd = Cd(filesystem, user)
+        self.assertEquals(cd.do("file1"), "bash: cd: file1: Not a directory")
+
+    def test_cd_tab_once(self):
+        (filesystem, user) = self._create_user("~")
+        cd = Cd(filesystem, user)
+        self.assertEquals(cd.tab_once("pare"), "cd parent_directory/")
+
+    def test_cd_tab_many(self):
+        (filesystem, user) = self._create_user("~/parent_directory")
+        cd = Cd(filesystem, user)
+        self.assertEquals(cd.tab_many("d"), "dir1 dir2 dir3")
+
+    def test_cd_tab_many_nested(self):
+        (filesystem, user) = self._create_user("~")
+        cd = Cd(filesystem, user)
+        self.assertEquals(cd.tab_many("parent_directory/d"), "dir1 dir2 dir3")
 
 
 if __name__ == "__main__":
