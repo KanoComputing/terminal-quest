@@ -17,6 +17,8 @@ class PathIsNotDir(Exception):
 
 
 class User(object):
+    name = os.environ["USER"]
+
     def __init__(self, filesystem, position):
         self._filesystem = filesystem
         position = self._test_path(position)

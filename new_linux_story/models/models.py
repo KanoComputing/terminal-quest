@@ -137,6 +137,10 @@ class Ls(CmdSingle):
         (exists, f) = self.filesystem.path_exists(path)
         if not exists:
             return self._no_such_file_message(name)
+
+        if not f.has_read_permission(self._user.name):
+            return "ls: {}: Permission denied".format(name)
+
         return self.filesystem.get_all_names_at_path(path)
 
     def tab_once(self, line):

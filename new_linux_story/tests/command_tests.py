@@ -161,6 +161,28 @@ class LsInFileSystem(SetUpUser):
             "ls parent_directory/"
         )
 
+    def test_ls_without_read_permission(self):
+        config = [
+            {
+                "name": "parent_directory",
+                "type": "directory",
+                "owner": "root",
+                "permissions": 0440,
+                "children": [
+                    {
+                        "name": "file1",
+                        "type": "file"
+                    }
+                ]
+            }
+        ]
+        user = User(FileSystem(config), "~")
+        ls = Ls(user)
+        self.assertEquals(
+            ls.do("parent_directory"),
+            "ls: parent_directory: Permission denied"
+        )
+
 
 # If filesystem tests don't work, these tests won't work
 class CdInFileSystem(SetUpUser):
