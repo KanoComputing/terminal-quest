@@ -175,15 +175,19 @@ class PermissionsChecks(unittest.TestCase):
             }
         ]
         filesystem = FileSystem(single_directory)
+        (exists, f) = filesystem.path_exists("~/dir1")
+        self.assertEquals(f.permissions, 0755)
 
     def test_default_file_permissions(self):
         single_file = [
             {
-                "name": "dir1",
-                "type": "directory",
+                "name": "file1",
+                "type": "file",
             }
         ]
         filesystem = FileSystem(single_file)
+        (exists, f) = filesystem.path_exists("~/file1")
+        self.assertEquals(f.permissions, 0644)
 
     def test_locked_dir(self):
         single_locked_directory = [
@@ -194,6 +198,8 @@ class PermissionsChecks(unittest.TestCase):
             }
         ]
         filesystem = FileSystem(single_locked_directory)
+        (exists, f) = filesystem.path_exists("~/dir1")
+        self.assertEquals(f.permissions, 0000)
 
     def test_locked_file(self):
         single_locked_file = [
@@ -204,6 +210,8 @@ class PermissionsChecks(unittest.TestCase):
             }
         ]
         filesystem = FileSystem(single_locked_file)
+        (exists, f) = filesystem.path_exists("~/file1")
+        self.assertEquals(f.permissions, 0000)
 
 if __name__ == "__main__":
     unittest.main()

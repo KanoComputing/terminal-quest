@@ -201,6 +201,42 @@ class FileSystem(object):
 
         return (True, f)
 
+    def _add_file_config_to_filesystem(self, path, f):
+        name = f["name"]
+
+        permissions = 0644
+        if "permissions" in f:
+            permissions = f["permissions"]
+
+        if "children" in f:
+            raise ChildInFileException
+
+        if "content_file" in f:
+            content_file = f["content_file"]
+            self.add_file_at_path_from_file(path,
+                                            name,
+                                            content_file,
+                                            permissions)
+        elif "content" in f:
+            content = f["content"]
+            self.add_file_at_path_with_content(path,
+                                               name,
+                                               content,
+                                               permissions)
+        else:
+            self.add_file_at_path_with_content(path,
+                                               name,
+                                               "",
+                                               permissions)
+
+    def _add_dir_config_to_filesystem(self, path, f):
+        name = f["name"]
+        permissions = 0755
+        if "permissions" in f:
+            permissions = f["permissions"]
+
+        self.add_dir_at_path(path, name, permissions)
+
     def make_filesystem_from_config(self, filesystem):
         '''
         Make the filesystem in memory
@@ -211,22 +247,10 @@ class FileSystem(object):
                 objtype = f["type"]
 
                 if objtype == "file":
-                    if "children" in f:
-                        raise ChildInFileException
-
-                    if "content_file" in f:
-                        content_file = f["content_file"]
-                        self.add_file_at_path_from_file(path,
-                                                        name,
-                                                        content_file)
-                    elif "content" in f:
-                        content = f["content"]
-                        self.add_file_at_path_with_content(path, name, content)
-                    else:
-                        self.add_file_at_path_with_content(path, name, "")
+                    self._add_file_config_to_filesystem(path, f)
 
                 elif objtype == "directory":
-                    self.add_dir_at_path(path, name)
+                    self._add_dir_config_to_filesystem(path, f)
 
                     if "children" in f:
                         children = f["children"]
@@ -234,98 +258,6 @@ class FileSystem(object):
                         recursive_bit(path, children)
 
         recursive_bit("~", filesystem)
-
-
-# These work as functions as they are stored on system.
-# However if we have the filesystem in memory, maybe it should be a class.
-############################################################################
-# Linux Filesystem:
-# Update both the info and the actual filesystem
-# However, do you then need this at all?
-# If we continue to use ls and other commands we way we are, then yes
-class LinuxFilesystem(object):
-    '''
-    This is how we currently actualise the filesystem on Kano OS
-    '''
-    containing_dir = os.path.expanduser("~/.linux-story")
-
-    def __init__(self):
-        self._filesystem = FileSystem()
-
-    @staticmethod
-    def remove_file_system():
-        if os.path.exists(LinuxFilesystem.containing_dir):
-            shutil.rmtree(LinuxFilesystem.containing_dir)
-
-    @staticmethod
-    def _join_path(path, name):
-        path = LinuxFilesystem._filter_tilde(path)
-        goal_path = os.path.join(path, name)
-        return goal_path
-
-    @staticmethod
-    def _filter_tilde(path):
-        if path.startswith("~"):
-            path = path.replace("~", containing_dir)
-            if not os.path.exists(containing_dir):
-                os.mkdir(containing_dir)
-
-        return path
-
-    def add_file_at_path_with_content(self, path, name, content):
-        self._filesystem.add_file_at_path_with_content(path, name, content)
-        goal_path = self._join_path(path, name)
-        f = open(goal_path, "w+")
-        f.write(content)
-        f.close()
-
-    def add_file_at_path_from_file(self, path, name, content_file):
-        f = open(content_file, "r")
-        content = f.read()
-        f.close()
-        self.add_file_at_path_with_content(path, name, content)
-
-    def add_dir_at_path(self, path, name):
-        self._filesystem.add_dir_at_path(path, name)
-        goal_path = self._join_path(path, name)
-        if not os.path.exists(goal_path):
-            os.mkdir(goal_path)
-
-    def make_filesystem_from_config(self):
-
-        def recursive_bit(path, filesystem):
-            for f in filesystem:
-                name = f["name"]
-                objtype = f["type"]
-
-                if objtype == "file":
-                    if "children" in f:
-                        raise ChildInFileException
-
-                    if "content_file" in f:
-                        content_file = f["content_file"]
-                        self.add_file_at_path_from_file(path,
-                                                        name,
-                                                        content_file)
-                    elif "content" in f:
-                        content = f["content"]
-                        self.add_file_at_path_with_content(path, name, content)
-                    else:
-                        self.add_file_at_path_with_content(path, name, "")
-
-                elif objtype == "directory":
-                    self.add_dir_at_path(path, name)
-
-                    if "children" in f:
-                        children = f["children"]
-                        path = os.path.join(path, name)
-                        recursive_bit(path, children)
-
-        recursive_bit("~", self._filesystem)
-
-
-##############################################################################
-# TODO: Include these later?
 
 
 class Node(object):
@@ -366,7 +298,7 @@ class Node(object):
 
 
 class FileObject(Node):
-    def __init__(self, path, name, permissions, content):
+    def __init__(self, path, name, content, permissions):
         super(FileObject, self).__init__(path, name, permissions)
 
         self._type = "file"
