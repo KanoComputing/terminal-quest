@@ -213,5 +213,54 @@ class PermissionsChecks(unittest.TestCase):
         (exists, f) = filesystem.path_exists("~/file1")
         self.assertEquals(f.permissions, 0000)
 
+
+class OwnerChecks(unittest.TestCase):
+    def test_default_file_owner(self):
+        single_file = [
+            {
+                "name": "file1",
+                "type": "file"
+            }
+        ]
+        filesystem = FileSystem(single_file)
+        (exists, f) = filesystem.path_exists("~/file1")
+        self.assertEquals(f.owner, os.environ["USER"])
+
+    def test_default_dir_owner(self):
+        single_dir = [
+            {
+                "name": "dir1",
+                "type": "directory"
+            }
+        ]
+        filesystem = FileSystem(single_dir)
+        (exists, f) = filesystem.path_exists("~/dir1")
+        self.assertEquals(f.owner, os.environ["USER"])
+
+    def test_changed_dir_owner(self):
+        single_dir = [
+            {
+                "name": "dir1",
+                "type": "directory",
+                "owner": "root"
+            }
+        ]
+        filesystem = FileSystem(single_dir)
+        (exists, f) = filesystem.path_exists("~/dir1")
+        self.assertEquals(f.owner, "root")
+
+    def test_changed_file_owner(self):
+        single_dir = [
+            {
+                "name": "file1",
+                "type": "file",
+                "owner": "root"
+            }
+        ]
+        filesystem = FileSystem(single_dir)
+        (exists, f) = filesystem.path_exists("~/file1")
+        self.assertEquals(f.owner, "root")
+
+
 if __name__ == "__main__":
     unittest.main()
