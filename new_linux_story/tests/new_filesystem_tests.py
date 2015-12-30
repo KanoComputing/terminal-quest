@@ -250,16 +250,174 @@ class OwnerChecks(unittest.TestCase):
         self.assertEquals(f.owner, "root")
 
     def test_changed_file_owner(self):
-        single_dir = [
+        single_file = [
             {
                 "name": "file1",
                 "type": "file",
                 "owner": "root"
             }
         ]
-        filesystem = FileSystem(single_dir)
+        filesystem = FileSystem(single_file)
         (exists, f) = filesystem.path_exists("~/file1")
         self.assertEquals(f.owner, "root")
+
+
+class ReadAccess(unittest.TestCase):
+    def test_read_access_file(self):
+        single_file = [
+            {
+                "name": "file1",
+                "type": "file",
+                "owner": "root",
+                "permissions": 0444
+            }
+        ]
+        filesystem = FileSystem(single_file)
+        (exists, f) = filesystem.path_exists("~/file1")
+        self.assertEquals(f.has_read_permission("caroline"), True)
+
+    def test_custom_owner_no_read_access_file(self):
+        single_file = [
+            {
+                "name": "file1",
+                "type": "file",
+                "owner": "root",
+                "permissions": 0440,
+            }
+        ]
+        filesystem = FileSystem(single_file)
+        (exists, f) = filesystem.path_exists("~/file1")
+        self.assertEquals(f.has_read_permission("caroline"), False)
+
+    def test_custom_owner_read_access_file(self):
+        single_file = [
+            {
+                "name": "file1",
+                "type": "file",
+                "owner": "caroline",
+                "permissions": 0432,
+            }
+        ]
+        filesystem = FileSystem(single_file)
+        (exists, f) = filesystem.path_exists("~/file1")
+        self.assertEquals(f.has_read_permission("caroline"), True)
+
+    def test_read_access_dir(self):
+        single_dir = [
+            {
+                "name": "dir1",
+                "type": "directory",
+                "owner": "root",
+                "permissions": 0444
+            }
+        ]
+        filesystem = FileSystem(single_dir)
+        (exists, f) = filesystem.path_exists("~/dir1")
+        self.assertEquals(f.has_read_permission("caroline"), True)
+
+    def test_custom_owner_no_read_access_dir(self):
+        single_file = [
+            {
+                "name": "dir1",
+                "type": "directory",
+                "owner": "root",
+                "permissions": 0440,
+            }
+        ]
+        filesystem = FileSystem(single_file)
+        (exists, f) = filesystem.path_exists("~/dir1")
+        self.assertEquals(f.has_read_permission("caroline"), False)
+
+    def test_custom_owner_read_access_dir(self):
+        single_file = [
+            {
+                "name": "dir1",
+                "type": "directory",
+                "owner": "caroline",
+                "permissions": 0432,
+            }
+        ]
+        filesystem = FileSystem(single_file)
+        (exists, f) = filesystem.path_exists("~/dir1")
+        self.assertEquals(f.has_read_permission("caroline"), True)
+
+    def test_execute_permissions_on_file(self):
+        single_file = [
+            {
+                "name": "file1",
+                "type": "file",
+                "owner": "root",
+                "permissions": 0443
+            }
+        ]
+        filesystem = FileSystem(single_file)
+        (exists, f) = filesystem.path_exists("~/file1")
+        self.assertEquals(f.has_execute_permission("caroline"), True)
+
+    def test_custom_owner_no_execute_access_file(self):
+        single_file = [
+            {
+                "name": "file1",
+                "type": "file",
+                "owner": "root",
+                "permissions": 0440,
+            }
+        ]
+        filesystem = FileSystem(single_file)
+        (exists, f) = filesystem.path_exists("~/file1")
+        self.assertEquals(f.has_execute_permission("caroline"), False)
+
+    def test_custom_owner_execute_access_file(self):
+        single_file = [
+            {
+                "name": "file1",
+                "type": "file",
+                "owner": "caroline",
+                "permissions": 0100,
+            }
+        ]
+        filesystem = FileSystem(single_file)
+        (exists, f) = filesystem.path_exists("~/file1")
+        self.assertEquals(f.has_execute_permission("caroline"), True)
+
+    def test_write_permissions_on_file(self):
+        single_file = [
+            {
+                "name": "file1",
+                "type": "file",
+                "owner": "root",
+                "permissions": 0666
+            }
+        ]
+        filesystem = FileSystem(single_file)
+        (exists, f) = filesystem.path_exists("~/file1")
+        self.assertEquals(f.has_write_permission("caroline"), True)
+
+    def test_custom_owner_no_write_permissions_file(self):
+        single_file = [
+            {
+                "name": "file1",
+                "type": "file",
+                "owner": "root",
+                "permissions": 0664,
+            }
+        ]
+        filesystem = FileSystem(single_file)
+        (exists, f) = filesystem.path_exists("~/file1")
+        self.assertEquals(f.has_write_permission("caroline"), False)
+
+    def test_custom_owner_write_permissions_file(self):
+        single_file = [
+            {
+                "name": "file1",
+                "type": "file",
+                "owner": "caroline",
+                "permissions": 0644,
+            }
+        ]
+        filesystem = FileSystem(single_file)
+        (exists, f) = filesystem.path_exists("~/file1")
+        self.assertEquals(f.has_write_permission("caroline"), True)
 
 
 if __name__ == "__main__":

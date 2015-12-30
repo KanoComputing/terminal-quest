@@ -60,6 +60,9 @@ class Node(object):
         # Owner for when the owner is root
         self._owner = owner
 
+        # For now, assume the group and owner are the same
+        self._group = owner
+
         self._type = ""
 
     # @property
@@ -85,6 +88,56 @@ class Node(object):
     @property
     def owner(self):
         return self._owner
+
+    @property
+    def group(self):
+        return self._group
+
+    def has_read_permission(self, user):
+        # first check permissions others who are not user or group have.
+        other_bit = int(oct(self._permissions)[-1])
+        if other_bit >= 4:
+            return True
+
+        group_bit = int(oct(self._permissions)[-3])
+        if self._group == user and group_bit >= 4:
+            return True
+
+        owner_bit = int(oct(self._permissions)[1])
+        if self._owner == user and owner_bit >= 4:
+            return True
+
+        return False
+
+    def has_execute_permission(self, user):
+        other_bit = int(oct(self._permissions)[-1])
+        if other_bit % 2 == 1:
+            return True
+
+        group_bit = int(oct(self._permissions)[-3])
+        if self._group == user and group_bit % 2 == 1:
+            return True
+
+        owner_bit = int(oct(self._permissions)[1])
+        if self._owner == user and owner_bit % 2 == 1:
+            return True
+
+        return False
+
+    def has_write_permission(self, user):
+        other_bit = int(oct(self._permissions)[-1])
+        if other_bit % 4 >= 2:
+            return True
+
+        group_bit = int(oct(self._permissions)[-3])
+        if self._group == user and group_bit % 4 >= 2:
+            return True
+
+        owner_bit = int(oct(self._permissions)[1])
+        if self._owner == user and owner_bit % 4 >= 2:
+            return True
+
+        return False
 
 
 class FileObject(Node):
