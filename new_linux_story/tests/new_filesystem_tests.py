@@ -276,7 +276,7 @@ class ReadAccess(unittest.TestCase):
         (exists, f) = filesystem.path_exists("~/file1")
         self.assertEquals(f.has_read_permission("caroline"), True)
 
-    def test_custom_owner_no_read_access_file(self):
+    def test_different_owner_no_read_access_file(self):
         single_file = [
             {
                 "name": "file1",
@@ -289,13 +289,26 @@ class ReadAccess(unittest.TestCase):
         (exists, f) = filesystem.path_exists("~/file1")
         self.assertEquals(f.has_read_permission("caroline"), False)
 
+    def test_same_owner_no_read_access_file(self):
+        single_file = [
+            {
+                "name": "file1",
+                "type": "file",
+                "owner": "caroline",
+                "permissions": 0000,
+            }
+        ]
+        filesystem = FileSystem(single_file)
+        (exists, f) = filesystem.path_exists("~/file1")
+        self.assertEquals(f.has_read_permission("caroline"), False)
+
     def test_custom_owner_read_access_file(self):
         single_file = [
             {
                 "name": "file1",
                 "type": "file",
                 "owner": "caroline",
-                "permissions": 0432,
+                "permissions": 0042,
             }
         ]
         filesystem = FileSystem(single_file)
@@ -315,7 +328,7 @@ class ReadAccess(unittest.TestCase):
         (exists, f) = filesystem.path_exists("~/dir1")
         self.assertEquals(f.has_read_permission("caroline"), True)
 
-    def test_custom_owner_no_read_access_dir(self):
+    def test_different_owner_no_read_access_dir(self):
         single_file = [
             {
                 "name": "dir1",
@@ -328,13 +341,26 @@ class ReadAccess(unittest.TestCase):
         (exists, f) = filesystem.path_exists("~/dir1")
         self.assertEquals(f.has_read_permission("caroline"), False)
 
+    def test_same_owner_no_read_access_dir(self):
+        single_file = [
+            {
+                "name": "dir1",
+                "type": "directory",
+                "owner": "caroline",
+                "permissions": 0000,
+            }
+        ]
+        filesystem = FileSystem(single_file)
+        (exists, f) = filesystem.path_exists("~/dir1")
+        self.assertEquals(f.has_read_permission("caroline"), False)
+
     def test_custom_owner_read_access_dir(self):
         single_file = [
             {
                 "name": "dir1",
                 "type": "directory",
                 "owner": "caroline",
-                "permissions": 0432,
+                "permissions": 0042,
             }
         ]
         filesystem = FileSystem(single_file)
@@ -418,6 +444,77 @@ class ReadAccess(unittest.TestCase):
         filesystem = FileSystem(single_file)
         (exists, f) = filesystem.path_exists("~/file1")
         self.assertEquals(f.has_write_permission("caroline"), True)
+
+    def test_multiple_dirs_custom_owner(self):
+        directories = [
+            {
+                "name": "dir1",
+                "type": "directory",
+                "owner": "caroline"
+            },
+            {
+                "name": "dir2",
+                "type": "directory",
+                "owner": "caroline"
+            },
+            {
+                "name": "dir3",
+                "type": "directory",
+                "owner": "caroline"
+            },
+            {
+                "name": "dir4",
+                "type": "directory",
+                "owner": "caroline"
+            }
+        ]
+        filesystem = FileSystem(directories)
+        names = filesystem.get_all_names_at_path("~")
+        self.assertEquals(names, ["dir1", "dir2", "dir3", "dir4"])
+
+    def test_content(self):
+        pass
+
+    def test_multiple_dirs_with_children(self):
+        config = [
+            {
+                "name": "dir1",
+                "type": "directory",
+                "children": [
+                    {
+                        "name": "file1",
+                        "type": "file"
+                    },
+                    {
+                        "name": "file2",
+                        "type": "file"
+                    },
+                    {
+                        "name": "dir1",
+                        "type": "directory",
+                        "children": [
+                            {
+                                "name": "file2",
+                                "type": "file"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "dir2",
+                        "type": "directory",
+                        "children": [
+                            {
+                                "name": "file1",
+                                "type": "file"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+        filesystem = FileSystem(config)
+        names = filesystem.get_all_names_at_path("~/dir1")
+        self.assertEquals(names, ["dir1", "dir2", "file1", "file2"])
 
 
 if __name__ == "__main__":

@@ -94,14 +94,21 @@ class Node(object):
         return self._group
 
     def has_read_permission(self, user):
+
         # first check permissions others who are not user or group have.
         other_bit = int(oct(self._permissions)[-1])
         if other_bit >= 4:
             return True
 
-        group_bit = int(oct(self._permissions)[-3])
+        if not len(oct(self._permissions)) >= 3:
+            return False
+
+        group_bit = int(oct(self._permissions)[-2])
         if self._group == user and group_bit >= 4:
             return True
+
+        if not len(oct(self._permissions)) == 4:
+            return False
 
         owner_bit = int(oct(self._permissions)[1])
         if self._owner == user and owner_bit >= 4:
@@ -114,9 +121,15 @@ class Node(object):
         if other_bit % 2 == 1:
             return True
 
+        if not len(oct(self._permissions)) >= 3:
+            return False
+
         group_bit = int(oct(self._permissions)[-3])
         if self._group == user and group_bit % 2 == 1:
             return True
+
+        if not len(oct(self._permissions)) == 4:
+            return False
 
         owner_bit = int(oct(self._permissions)[1])
         if self._owner == user and owner_bit % 2 == 1:
@@ -129,9 +142,15 @@ class Node(object):
         if other_bit % 4 >= 2:
             return True
 
+        if not len(oct(self._permissions)) >= 3:
+            return False
+
         group_bit = int(oct(self._permissions)[-3])
         if self._group == user and group_bit % 4 >= 2:
             return True
+
+        if not len(oct(self._permissions)) == 4:
+            return False
 
         owner_bit = int(oct(self._permissions)[1])
         if self._owner == user and owner_bit % 4 >= 2:
@@ -174,6 +193,9 @@ class Directory(Node):
     def add_child(self, child):
         self._children.append(child)
 
+    def get_children_names(self):
+        return [c.name for c in self._children]
+
 
 class FileSystem(object):
     '''
@@ -205,6 +227,7 @@ class FileSystem(object):
         '''
         Returns True if successfully added file to filesystem, False otherwise
         '''
+        print "content = {}".format(content)
         (exists, d) = self.path_exists(path)
 
         if exists and d.type == "directory":
@@ -347,8 +370,7 @@ class FileSystem(object):
 
                     if "children" in f:
                         children = f["children"]
-                        path = os.path.join(path, name)
-                        recursive_bit(path, children)
+                        recursive_bit(os.path.join(path, name), children)
 
         recursive_bit("~", filesystem)
 

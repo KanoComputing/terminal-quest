@@ -132,16 +132,19 @@ class Ls(CmdSingle):
     def _no_args(self):
         return self.filesystem.get_all_names_at_path(self.position)
 
-    def _no_flags(self, name):
-        path = os.path.join(self.position, name)
+    def _no_flags(self, line):
+        path = os.path.join(self.position, line)
         (exists, f) = self.filesystem.path_exists(path)
         if not exists:
-            return self._no_such_file_message(name)
+            return self._no_such_file_message(line)
 
         if not f.has_read_permission(self._user.name):
-            return "ls: {}: Permission denied".format(name)
+            return "ls: {}: Permission denied".format(line)
 
-        return self.filesystem.get_all_names_at_path(path)
+        if f.type == "file":
+            return line
+        elif f.type == "directory":
+            return f.get_children_names()
 
     def tab_once(self, line):
         '''
@@ -176,13 +179,14 @@ class Cd(CmdSingle):
     def _no_flags(self, line):
         path = os.path.normpath(os.path.join(self.position, line))
         (exists, f) = self.filesystem.path_exists(path)
-        if exists:
-            if f.type == "directory":
-                self._user.set_position(path)
-            else:
-                return self._cd_into_file(line)
-        else:
+        if not exists:
             return self._no_such_file_message(line)
+        elif not f.type == "directory":
+            return self._cd_into_file(line)
+        elif not f.has_execute_permission(self._user.name):
+            return "cd: permission denied: {}".format(line)
+        else:
+            self._user.set_position(path)
 
     def tab_once(self, line):
         '''
@@ -279,10 +283,12 @@ class Cat(CmdSingle):
         path = os.path.join(self.position, line)
 
         (exists, f) = self.filesystem.path_exists(path)
-        if exists:
-            return f.content
-        else:
+        if not exists:
             return self._no_such_file_message(line)
+        elif not f.has_read_permission(self._user.name):
+            return "cat: {}: Permission denied".format(line)
+        else:
+            return f.content
 
 
 class TerminalBase(object):
@@ -353,6 +359,7 @@ class TerminalAll(TerminalBase):
         self.add_command("ls", Ls(self._user))
         self.add_command("cd", Cd(self._user))
         self.add_command("pwd", Pwd(self._user))
+        self.add_command("cat", Cat(self._user))
         self.add_command("echo", Echo())
 
 
@@ -397,6 +404,9 @@ class TerminalCmd(Cmd):
             print output
         self._set_prompt(self._position)
 
+    def do_cat(self, line):
+        print self._terminal.receive_command("cat " + line)
+
 
 if __name__ == '__main__':
     config = [
@@ -413,12 +423,28 @@ if __name__ == '__main__':
                     "type": "file"
                 },
                 {
-                    "name": "dir1",
-                    "type": "directory"
+                    "name": "dir2",
+                    "type": "directory",
+                    "permissions": 0000,
+                    "children": [
+                        {
+                            "name": "file2",
+                            "type": "file",
+                            "content": "hello"
+                            "permissions": 0000
+                        }
+                    ]
                 },
                 {
-                    "name": "dir2",
-                    "type": "directory"
+                    "name": "dir3",
+                    "type": "directory",
+                    "children": [
+                        {
+                            "name": "file2",
+                            "type": "file",
+                            "content": "hello"
+                        }
+                    ]
                 }
             ]
         }
