@@ -6,6 +6,8 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
+from new_linux_story.common import content_dir
+
 
 class NoParentError(Exception):
     pass
@@ -172,11 +174,6 @@ class FileObject(Node):
     def content(self):
         return self._content
 
-    def _set_content_from_file(self, file):
-        f = open(file, 'r')
-        self._content = f
-        f.close()
-
 
 class Directory(Node):
     def __init__(self, path, name, children, permissions, owner):
@@ -208,15 +205,19 @@ class FileSystem(object):
         self._filesystem = filesystem
         self.make_filesystem_from_config(self._filesystem)
 
-    def add_file_at_path_with_content_file(self, path, name, content_file,
-                                           permissions, owner):
+    def add_file_at_path_from_file(self, path, name, content_file,
+                                   permissions, owner):
         '''
         Returns True if successfully added file to filesystem, False otherwise
         '''
         (exists, d) = self.path_exists(path)
 
         if exists and d.type == "directory":
-            d.add_child(FileObject(path, name, content_file, permissions,
+            content = ""
+            with open(content_file, 'r') as f:
+                content = f.read()
+
+            d.add_child(FileObject(path, name, content, permissions,
                                    owner))
             return True
 
@@ -390,6 +391,7 @@ class FileSystem(object):
 
         if "content_file" in f:
             content_file = f["content_file"]
+            content_file = os.path.join(content_dir, content_file)
             self.add_file_at_path_from_file(path,
                                             name,
                                             content_file,

@@ -484,6 +484,18 @@ class ReadAccess(unittest.TestCase):
         exists, f = filesystem.path_exists("~/file1")
         self.assertEquals(f.content, "hello")
 
+    def test_content_file(self):
+        config = [
+            {
+                "name": "file1",
+                "type": "file",
+                "content_file": "test_content"
+            }
+        ]
+        filesystem = FileSystem(config)
+        exists, f = filesystem.path_exists("~/file1")
+        self.assertEquals(f.content, "This is the contents of test_content")
+
     def test_multiple_dirs_with_children(self):
         config = [
             {
