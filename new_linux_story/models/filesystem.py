@@ -166,7 +166,7 @@ class FileObject(Node):
         self._type = "file"
 
         # Contents of file
-        self._content = ""
+        self._content = content
 
     @property
     def content(self):
@@ -227,7 +227,6 @@ class FileSystem(object):
         '''
         Returns True if successfully added file to filesystem, False otherwise
         '''
-        print "content = {}".format(content)
         (exists, d) = self.path_exists(path)
 
         if exists and d.type == "directory":

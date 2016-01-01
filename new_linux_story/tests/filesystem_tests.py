@@ -473,7 +473,16 @@ class ReadAccess(unittest.TestCase):
         self.assertEquals(names, ["dir1", "dir2", "dir3", "dir4"])
 
     def test_content(self):
-        pass
+        config = [
+            {
+                "name": "file1",
+                "type": "file",
+                "content": "hello"
+            }
+        ]
+        filesystem = FileSystem(config)
+        exists, f = filesystem.path_exists("~/file1")
+        self.assertEquals(f.content, "hello")
 
     def test_multiple_dirs_with_children(self):
         config = [
