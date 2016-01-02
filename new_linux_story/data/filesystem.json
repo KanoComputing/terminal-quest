@@ -1,0 +1,185 @@
+[
+    {
+        "name": "my-house",
+        "type": "directory",
+
+        "children": [
+            {
+                "name": "kitchen",
+                "type": "directory",
+                "children": [
+                    {
+                        "name": "banana",
+                        "type": "file",
+                        "content_file": "banana"
+                    },
+                    {
+                        "name": "cake",
+                        "type": "file",
+                        "content_file": "cake"
+                    },
+                    {
+                        "name": "croissant",
+                        "type": "file",
+                        "content_file": "croissant"
+                    },
+                    {
+                        "name": "milk",
+                        "type": "file",
+                        "content_file": "milk"
+                    },
+                    {
+                        "name": "pie",
+                        "type": "file",
+                        "content_file": "pie"
+                    },
+                    {
+                        "name": "sandwich",
+                        "type": "file",
+                        "content_file": "sandwich"
+                    },
+                    {
+                        "name": "oven",
+                        "type": "file",
+                        "content_file": "oven"
+                    },
+                    {
+                        "name": "note",
+                        "type": "file",
+                        "content_file": "note_my-room",
+                        "start_challenge": 1,
+                        "start_step": 1,
+                        "end_challenge": 2,
+                        "end_step": 1
+                    }
+                ]
+            },
+            {
+                "name": "my-room",
+                "type": "directory",
+                "children": [
+                    {
+                        "name": "bed",
+                        "type": "file",
+                        "content_file": "bed_my-room"
+                    },
+                    {
+                        "name": "desk",
+                        "type": "file",
+                        "content_file": "desk"
+                    },
+                    {
+                        "name": "wardrobe",
+                        "type": "directory",
+                        "children": [
+                            {
+                                "name": "shirt",
+                                "type": "file"
+                            },
+                            {
+                                "name": "dress",
+                                "type": "file"
+                            },
+                            {
+                                "name": "skirt",
+                                "type": "file"
+                            },
+                            {
+                                "name": "t-shirt",
+                                "type": "file"
+                            },
+                            {
+                                "name": "trousers",
+                                "type": "file"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "shelves",
+                        "type": "directory",
+                        "children": [
+                            {
+                                "name": "alice-and-wonderland",
+                                "type": "file"
+                            },
+                            {
+                                "name": "comic-book",
+                                "type": "file"
+                            },
+                            {
+                                "name": "note",
+                                "type": "file"
+                            },
+                            {
+                                "name": "watership-down",
+                                "type": "file"
+                            },
+                            {
+                                "name": "redwall",
+                                "type": "file"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "town",
+        "type": "directory",
+        "children": [
+            {
+                "name": "Mayor",
+                "type": "file"
+            },
+            {
+                "name": "grumpy-man",
+                "type": "file"
+            },
+            {
+                "name": "little-boy",
+                "type": "file"
+            },
+            {
+                "name": "young-girl",
+                "type": "file"
+            },
+            {
+                "name": ".hidden-shelter",
+                "type": "directory",
+                "children": [
+                    {
+                        "name": "Eleanor",
+                        "type": "file"
+                    },
+                    {
+                        "name": "Edith",
+                        "type": "file"
+                    },
+                    {
+                        "name": "Edward",
+                        "type": "file"
+                    },
+                    {
+                        "name": "dog",
+                        "type": "file"
+                    },
+                    {
+                        "name": "basket",
+                        "type": "directory",
+                        "start_challenge": 1,
+                        "start_step": 1,
+                        "end_challenge": 4,
+                        "end_step": 6,
+                        "children": [
+                            {
+                                "name": "apple",
+                                "type": "file"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
