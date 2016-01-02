@@ -189,6 +189,7 @@ class Directory(Node):
 
     def add_child(self, child):
         self._children.append(child)
+        self._children.sort(key=lambda x: x.name)
 
     def get_children_names(self):
         return [c.name for c in self._children]
