@@ -97,6 +97,9 @@ class TerminalAll(object):
     def cat(self, line):
         print self.receive_command("cat " + line)
 
+    def complete_cat(self, line):
+        return self.autocomplete(line)
+
 
 class TerminalCmdBase(Cmd):
     def __init__(self, config, position):
@@ -136,6 +139,12 @@ class Terminal3(TerminalCmdBase):
 
     def complete_cd(self, text, line, begidx, endidx):
         return self._terminal.complete_cd(line)
+
+    def do_cat(self, line):
+        return self._terminal.cat(line)
+
+    def complete_cat(self, text, line, begidx, endidx):
+        return self._terminal.complete_cat(line)
 
 
 if __name__ == '__main__':

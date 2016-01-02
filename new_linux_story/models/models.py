@@ -208,6 +208,43 @@ class Cd(CmdSingle):
         return autocomplete(line, self.position, self.filesystem, "dirs")
 
 
+class Cat(CmdSingle):
+
+    def do(self, line):
+        if not line:
+            self._no_arguments()
+            return
+
+        return self._no_flags(line)
+
+    def _no_arguments(self):
+        '''
+        cat without arguments just echos out what the user last
+        typed. Change this behaviour and pass message to the user.
+        '''
+        return ("Use the format \"cat filepath\" for a filepath of "
+                "your choice.")
+
+    def _no_such_file_message(self, name):
+        return "cat: {}:no such file or directory".format(name)
+
+    def _no_flags(self, line):
+        path = os.path.join(self.position, line)
+
+        (exists, f) = self.filesystem.path_exists(path)
+        if not exists:
+            return self._no_such_file_message(line)
+        elif not f.has_read_permission(self._user.name):
+            return "cat: {}: Permission denied".format(line)
+        else:
+            return f.content
+
+    def autocomplete(self, line):
+        # needed for Cmd module, which handles the tab_once/tab_many
+        # condition
+        return autocomplete(line, self.position, self.filesystem, "all")
+
+
 def autocomplete(line, position, filesystem, config):
     '''
     :params line: the line typed on the command line so far
@@ -245,35 +282,3 @@ def autocomplete(line, position, filesystem, config):
                         completions.append(child.name)
 
     return sorted(completions)
-
-
-class Cat(CmdSingle):
-
-    def do(self, line):
-        if not line:
-            self._no_arguments()
-            return
-
-        return self._no_flags(line)
-
-    def _no_arguments(self):
-        '''
-        cat without arguments just echos out what the user last
-        typed. Change this behaviour and pass message to the user.
-        '''
-        return ("Use the format \"cat filepath\" for a filepath of "
-                "your choice.")
-
-    def _no_such_file_message(self, name):
-        return "cat: {}:no such file or directory".format(name)
-
-    def _no_flags(self, line):
-        path = os.path.join(self.position, line)
-
-        (exists, f) = self.filesystem.path_exists(path)
-        if not exists:
-            return self._no_such_file_message(line)
-        elif not f.has_read_permission(self._user.name):
-            return "cat: {}: Permission denied".format(line)
-        else:
-            return f.content
