@@ -79,86 +79,52 @@ class LsInFileSystem(SetUpUser):
     def test_ls_only_1(self):
         user = self._create_user("~/parent_directory")
         ls = Ls(user)
+        files = ls.do("")["files"]
         self.assertEquals(
-            ls.do(""),
+            sorted(f.name for f in files),
             ["dir1", "dir2", "dir3", "file1", "file2", "file3"]
         )
 
     def test_ls_only_2(self):
         user = self._create_user("~/parent_directory/dir1")
         ls = Ls(user)
-        self.assertEquals(ls.do(""), [])
+        files = ls.do("")["files"]
+        self.assertEquals([f.name for f in files], [])
 
     def test_ls_with_argument_1(self):
         user = self._create_user("~")
         ls = Ls(user)
+        files = ls.do("parent_directory")["files"]
         self.assertEquals(
-            ls.do("parent_directory"),
+            sorted(f.name for f in files),
             ["dir1", "dir2", "dir3", "file1", "file2", "file3"]
         )
 
     def test_strip_trailing_slash(self):
         user = self._create_user("~")
         ls = Ls(user)
+        files = ls.do("parent_directory/")["files"]
         self.assertEquals(
-            ls.do("parent_directory/"),
+            sorted(f.name for f in files),
             ["dir1", "dir2", "dir3", "file1", "file2", "file3"]
         )
 
     def test_ls_with_argument_2(self):
         user = self._create_user("~/parent_directory")
         ls = Ls(user)
+        files = ls.do("dir1")["files"]
         self.assertEquals(
-            ls.do("dir1"),
+            files,
             []
         )
 
     def test_ls_with_non_existant_path(self):
         user = self._create_user("~/parent_directory")
         ls = Ls(user)
+        message = ls.do("blahblah")["message"]
         self.assertEquals(
-            ls.do("blahblah"),
+            message,
             "ls: blahblah: No such file or directory"
-        )
-
-    def test_ls_tab_once_empty(self):
-        user = self._create_user("~/parent_directory")
-        ls = Ls(user)
-        self.assertEquals(
-            ls.tab_once(""),
-            "ls "
-        )
-
-    def test_ls_tab_many_empty(self):
-        user = self._create_user("~/parent_directory")
-        ls = Ls(user)
-        self.assertEquals(
-            ls.tab_many(""),
-            "dir1 dir2 dir3 file1 file2 file3"
-        )
-
-    def test_ls_tab_many_dirs(self):
-        user = self._create_user("~/parent_directory")
-        ls = Ls(user)
-        self.assertEquals(
-            ls.tab_many("d"),
-            "dir1 dir2 dir3"
-        )
-
-    def test_ls_autocomplete_files(self):
-        user = self._create_user("~/parent_directory")
-        ls = Ls(user)
-        self.assertEquals(
-            ls.tab_many("f"),
-            "file1 file2 file3"
-        )
-
-    def test_ls_tab_once_single(self):
-        user = self._create_user("~")
-        ls = Ls(user)
-        self.assertEquals(
-            ls.tab_once("parent_direct"),
-            "ls parent_directory/"
         )
 
     def test_ls_without_read_permission(self):
@@ -178,8 +144,9 @@ class LsInFileSystem(SetUpUser):
         ]
         user = User(FileSystem(config), "~")
         ls = Ls(user)
+        message = ls.do("parent_directory")["message"]
         self.assertEquals(
-            ls.do("parent_directory"),
+            message,
             "ls: parent_directory: Permission denied"
         )
 
@@ -210,21 +177,6 @@ class CdInFileSystem(SetUpUser):
         user = self._create_user("~/parent_directory")
         cd = Cd(user)
         self.assertEquals(cd.do("file1"), "bash: cd: file1: Not a directory")
-
-    def test_cd_tab_once(self):
-        user = self._create_user("~")
-        cd = Cd(user)
-        self.assertEquals(cd.tab_once("pare"), "cd parent_directory/")
-
-    def test_cd_tab_many(self):
-        user = self._create_user("~/parent_directory")
-        cd = Cd(user)
-        self.assertEquals(cd.tab_many("d"), "dir1 dir2 dir3")
-
-    def test_cd_tab_many_nested(self):
-        user = self._create_user("~")
-        cd = Cd(user)
-        self.assertEquals(cd.tab_many("parent_directory/d"), "dir1 dir2 dir3")
 
     def test_cd_go_back_output(self):
         user = self._create_user("~/parent_directory")
