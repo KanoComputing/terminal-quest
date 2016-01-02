@@ -538,5 +538,81 @@ class ReadAccess(unittest.TestCase):
         self.assertEquals(names, ["dir1", "dir2", "file1", "file2"])
 
 
+class ChallengeFileSystems(unittest.TestCase):
+    def test_dir_outside_defined_challenge(self):
+        config = [
+            {
+                "name": "dir1",
+                "type": "directory",
+                "start_challenge": 1,
+                "start_step": 2,
+                "end_challenge": 2,
+                "end_step": 2
+            }
+        ]
+        filesystem = FileSystem(config)
+        exists, f = filesystem.path_exists("~/dir1", 1, 1)
+        self.assertEquals(exists, False)
+
+    def test_dir_inside_defined_challenge(self):
+        config = [
+            {
+                "name": "dir1",
+                "type": "directory",
+                "start_challenge": 1,
+                "start_step": 2,
+                "end_challenge": 2,
+                "end_step": 2
+            }
+        ]
+        filesystem = FileSystem(config)
+        exists, f = filesystem.path_exists("~/dir1", 1, 3)
+        self.assertEquals(exists, True)
+
+    def test_file_outside_defined_challenge(self):
+        config = [
+            {
+                "name": "file1",
+                "type": "file",
+                "start_challenge": 1,
+                "start_step": 2,
+                "end_challenge": 2,
+                "end_step": 2
+            }
+        ]
+        filesystem = FileSystem(config)
+        exists, f = filesystem.path_exists("~/file1", 1, 1)
+        self.assertEquals(exists, False)
+
+    def test_file_inside_defined_challenge(self):
+        config = [
+            {
+                "name": "file1",
+                "type": "file",
+                "start_challenge": 1,
+                "start_step": 2,
+                "end_challenge": 2,
+                "end_step": 2
+            }
+        ]
+        filesystem = FileSystem(config)
+        exists, f = filesystem.path_exists("~/file1", 1, 3)
+        self.assertEquals(exists, True)
+
+    def test_file_that_has_no_end_challenge(self):
+        config = [
+            {
+                "name": "file1",
+                "type": "file",
+                "start_challenge": 1,
+                "start_step": 2,
+                "end_challenge": -1,
+                "end_step": -1
+            }
+        ]
+        filesystem = FileSystem(config)
+        exists, f = filesystem.path_exists("~/file1", 2, 2)
+        self.assertEquals(exists, True)
+
 if __name__ == "__main__":
     unittest.main()

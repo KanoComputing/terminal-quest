@@ -46,7 +46,8 @@ class FileSystemTypeMissing(Exception):
 
 
 class Node(object):
-    def __init__(self, path, name, permissions, owner):
+    def __init__(self, path, name, permissions, owner, start_challenge,
+                 start_step, end_challenge, end_step):
         # Full path. Maybe calculate this from the tree?
         self._path = path
 
@@ -66,6 +67,12 @@ class Node(object):
         self._group = owner
 
         self._type = ""
+
+        # challenges the object should exists for
+        self._start_challenge = start_challenge
+        self._end_challenge = end_challenge
+        self._start_step = start_step
+        self._end_step = end_step
 
     # @property
     # def parent(self):
@@ -94,6 +101,22 @@ class Node(object):
     @property
     def group(self):
         return self._group
+
+    @property
+    def start_challenge(self):
+        return self._start_challenge
+
+    @property
+    def end_challenge(self):
+        return self._end_challenge
+
+    @property
+    def start_step(self):
+        return self._start_step
+
+    @property
+    def end_step(self):
+        return self._end_step
 
     def has_read_permission(self, user):
 
@@ -160,10 +183,26 @@ class Node(object):
 
         return False
 
+    def exists_in_challenge(self, challenge, step):
+        if challenge < self.start_challenge:
+            return False
+        elif challenge > self.end_challenge and self.end_challenge != -1:
+            return False
+        elif challenge == self.start_challenge and step < self.start_step:
+            return False
+        elif challenge == self.end_challenge and step > self.end_step \
+                and self.end_step != -1:
+            return False
+        else:
+            return True
+
 
 class FileObject(Node):
-    def __init__(self, path, name, content, permissions, owner):
-        super(FileObject, self).__init__(path, name, permissions, owner)
+    def __init__(self, path, name, content, permissions, owner,
+                 start_challenge, start_step, end_challenge, end_step):
+        super(FileObject, self).__init__(path, name, permissions, owner,
+                                         start_challenge, start_step,
+                                         end_challenge, end_step)
 
         self._type = "file"
 
@@ -176,8 +215,11 @@ class FileObject(Node):
 
 
 class Directory(Node):
-    def __init__(self, path, name, children, permissions, owner):
-        super(Directory, self).__init__(path, name, permissions, owner)
+    def __init__(self, path, name, children, permissions, owner,
+                 start_challenge, start_step, end_challenge, end_step):
+        super(Directory, self).__init__(path, name, permissions, owner,
+                                        start_challenge, start_step,
+                                        end_challenge, end_step)
 
         self._type = "directory"
 
@@ -200,14 +242,16 @@ class FileSystem(object):
     This is the filesystem in memory
     '''
 
-    def __init__(self, filesystem):
+    def __init__(self, config):
         # start off filesystem with ~
-        self._home = Directory("~", "~", [], 0755, os.environ["USER"])
-        self._filesystem = filesystem
-        self.make_filesystem_from_config(self._filesystem)
+        self._home = Directory("~", "~", [], 0755, os.environ["USER"],
+                               start_challenge=-1, start_step=-1,
+                               end_challenge=-1, end_step=-1)
+        self.make_filesystem_from_config(config)
 
     def add_file_at_path_from_file(self, path, name, content_file,
-                                   permissions, owner):
+                                   permissions, owner, start_c,
+                                   start_s, end_s, end_c):
         '''
         Returns True if successfully added file to filesystem, False otherwise
         '''
@@ -219,13 +263,14 @@ class FileSystem(object):
                 content = f.read()
 
             d.add_child(FileObject(path, name, content, permissions,
-                                   owner))
+                                   owner, start_c, start_s, end_s, end_c))
             return True
 
         return False
 
     def add_file_at_path_with_content(self, path, name, content,
-                                      permissions, owner):
+                                      permissions, owner, start_c,
+                                      start_s, end_s, end_c):
         '''
         Returns True if successfully added file to filesystem, False otherwise
         '''
@@ -233,19 +278,21 @@ class FileSystem(object):
 
         if exists and d.type == "directory":
             d.add_child(FileObject(path, name, content, permissions,
-                                   owner))
+                                   owner, start_c, start_s, end_s, end_c))
             return True
 
         return False
 
-    def add_dir_at_path(self, path, name, permissions, owner):
+    def add_dir_at_path(self, path, name, permissions, owner, start_c,
+                        start_s, end_s, end_c):
         '''
         Returns True if successfully added dir to filesystem, False otherwise
         '''
         (exists, d) = self.path_exists(path)
 
         if exists and d.type == "directory":
-            d.add_child(Directory(path, name, [], permissions, owner))
+            d.add_child(Directory(path, name, [], permissions, owner,
+                                  start_c, start_s, end_s, end_c))
             return True
 
         return False
@@ -307,7 +354,7 @@ class FileSystem(object):
             return d.permissions
 
     # Fighting the data structure?
-    def path_exists(self, path):
+    def path_exists(self, path, challenge=None, step=None):
         '''
         :param path: file path
         :type path: string
@@ -337,7 +384,6 @@ class FileSystem(object):
         for n in range(len(levels)):
             matching_elements = [child for child in f.children
                                  if child.name == levels[n]]
-            # filesystem has not been written correctly
             # TODO: Does this check need to be here?
             if len(matching_elements) > 1:
                 raise NonUniqueFileException
@@ -352,12 +398,26 @@ class FileSystem(object):
                     if not f.type == "directory":
                         raise ChildInFileException
 
+        if challenge and step:
+            if f.exists_in_challenge(challenge, step):
+                return (True, f)
+            else:
+                return (False, None)
+
         return (True, f)
+
+    def _get_challenge_value(self, f, key):
+        if key in f:
+            return f[key]
+        else:
+            return -1
 
     def make_filesystem_from_config(self, filesystem):
         '''
         Make the filesystem in memory
         '''
+        # challenge and step do not change as the filesystem is changed,
+        # so do not need to passinto the function as arguments
         def recursive_bit(path, filesystem):
             for f in filesystem:
                 name = f["name"]
@@ -379,6 +439,10 @@ class FileSystem(object):
         name = f["name"]
         permissions = 0644
         owner = os.environ["USER"]
+        start_challenge = -1
+        end_challenge = -1
+        start_step = -1
+        end_step = -1
 
         # TODO: repeated owner logic for dir and file
         if "permissions" in f:
@@ -390,6 +454,18 @@ class FileSystem(object):
         if "children" in f:
             raise ChildInFileException
 
+        if "start_challenge" in f:
+            start_challenge = f["start_challenge"]
+
+        if "end_challenge" in f:
+            end_challenge = f["end_challenge"]
+
+        if "start_step" in f:
+            start_step = f["start_step"]
+
+        if "end_step" in f:
+            end_step = f["end_step"]
+
         if "content_file" in f:
             content_file = f["content_file"]
             content_file = os.path.join(content_dir, content_file)
@@ -397,25 +473,41 @@ class FileSystem(object):
                                             name,
                                             content_file,
                                             permissions,
-                                            owner)
+                                            owner,
+                                            start_challenge,
+                                            start_step,
+                                            end_challenge,
+                                            end_step)
         elif "content" in f:
             content = f["content"]
             self.add_file_at_path_with_content(path,
                                                name,
                                                content,
                                                permissions,
-                                               owner)
+                                               owner,
+                                               start_challenge,
+                                               start_step,
+                                               end_challenge,
+                                               end_step)
         else:
             self.add_file_at_path_with_content(path,
                                                name,
                                                "",
                                                permissions,
-                                               owner)
+                                               owner,
+                                               start_challenge,
+                                               start_step,
+                                               end_challenge,
+                                               end_step)
 
     def _add_dir_config_to_filesystem(self, path, f):
         name = f["name"]
         permissions = 0755
         owner = os.environ["USER"]
+        start_challenge = -1
+        end_challenge = -1
+        start_step = -1
+        end_step = -1
 
         if "permissions" in f:
             permissions = f["permissions"]
@@ -423,4 +515,18 @@ class FileSystem(object):
         if "owner" in f:
             owner = f["owner"]
 
-        self.add_dir_at_path(path, name, permissions, owner)
+        if "start_challenge" in f:
+            start_challenge = f["start_challenge"]
+
+        if "end_challenge" in f:
+            end_challenge = f["end_challenge"]
+
+        if "start_step" in f:
+            start_step = f["start_step"]
+
+        if "end_step" in f:
+            end_step = f["end_step"]
+
+        self.add_dir_at_path(path, name, permissions, owner,
+                             start_challenge, start_step, end_challenge,
+                             end_step)
