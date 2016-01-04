@@ -23,7 +23,7 @@ if __name__ == '__main__' and __package__ is None:
 
 from new_linux_story.models.filesystem import FileSystem
 from new_linux_story.models.User import User, PathDoesNotExist, PathIsNotDir
-from new_linux_story.models.models import Ls, Cd
+from new_linux_story.models.commands import Ls, Cd
 
 
 class SetUpUser(unittest.TestCase):
