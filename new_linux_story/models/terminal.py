@@ -13,7 +13,7 @@ from new_linux_story.models.User import User
 from linux_story.helper_functions import colour_string_with_preset
 
 
-class TerminalAll(object):
+class TerminalBase(object):
     def __init__(self, config, position, cmd):
         self._ctrl = CmdList()
         self._user = User(FileSystem(config), position)
@@ -101,14 +101,14 @@ class TerminalAll(object):
         return self.autocomplete(line)
 
 
-class TerminalCmdBase(Cmd):
+class CmdBase(Cmd):
     def __init__(self, config, position):
         Cmd.__init__(self)
-        self._terminal = TerminalAll(config, position, self)
+        self._terminal = TerminalBase(config, position, self)
         self.prompt = self._terminal.create_prompt(position)
 
 
-class Terminal1(TerminalCmdBase):
+class Terminal1(CmdBase):
 
     def do_ls(self, line):
         return self._terminal.ls(line)
@@ -117,7 +117,7 @@ class Terminal1(TerminalCmdBase):
         return self._terminal.complete_ls(line)
 
 
-class Terminal2(TerminalCmdBase):
+class Terminal2(CmdBase):
 
     def do_cd(self, line):
         return self._terminal.cd(line)
@@ -126,7 +126,7 @@ class Terminal2(TerminalCmdBase):
         return self._terminal.complete_cd(line)
 
 
-class Terminal3(TerminalCmdBase):
+class Terminal3(CmdBase):
 
     def do_ls(self, line):
         return self._terminal.ls(line)

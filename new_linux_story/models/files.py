@@ -6,8 +6,6 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from new_linux_story.common import content_dir
-
 
 class NoParentError(Exception):
     pass
