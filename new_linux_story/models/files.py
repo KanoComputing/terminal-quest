@@ -1,10 +1,11 @@
-import os
-import sys
+#!/usr/bin/env python
 
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
+# files.py
+#
+# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# The following classes emulate files and directories
 
 
 class NoParentError(Exception):
@@ -24,6 +25,9 @@ class FirstPathElementMismatchException(Exception):
 
 
 class Node(object):
+    '''
+    This contains common elements between the FileObject and Directory classes
+    '''
     def __init__(self, path, name, permissions, owner, start_challenge,
                  start_step, end_challenge, end_step):
         # Full path. Maybe calculate this from the tree?
@@ -31,9 +35,6 @@ class Node(object):
 
         # this is the filename
         self._name = name
-
-        # Parent directory
-        # self._parent = parent
 
         # Permissions. Useful for "ls -l" and chmod.
         self._permissions = permissions
@@ -51,10 +52,6 @@ class Node(object):
         self._end_challenge = end_challenge
         self._start_step = start_step
         self._end_step = end_step
-
-    # @property
-    # def parent(self):
-    #   return self._parent
 
     @property
     def name(self):
@@ -96,8 +93,17 @@ class Node(object):
     def end_step(self):
         return self._end_step
 
+    # TODO: has_read_permission, has_execute_permission and
+    # has_write_permission are fairly similar. Combine in one function.
     def has_read_permission(self, user):
+        '''
+        Check whether the user has read permissions.
 
+        :param user: name of user trying to read the contents
+        :type user: string
+        :returns: whether user has read permission
+        :rtype: bool
+        '''
         # first check permissions others who are not user or group have.
         other_bit = int(oct(self._permissions)[-1])
         if other_bit >= 4:
@@ -120,6 +126,14 @@ class Node(object):
         return False
 
     def has_execute_permission(self, user):
+        '''
+        Check whether the user has execute permissions.
+
+        :param user: name of user
+        :type user: string
+        :returns: whether user has execute permission.
+        :rtype: bool
+        '''
         other_bit = int(oct(self._permissions)[-1])
         if other_bit % 2 == 1:
             return True
@@ -141,6 +155,14 @@ class Node(object):
         return False
 
     def has_write_permission(self, user):
+        '''
+        Check whether the user has write permissions.
+
+        :param user: name of user
+        :type user: string
+        :returns: whether user has write permission.
+        :rtype: bool
+        '''
         other_bit = int(oct(self._permissions)[-1])
         if other_bit % 4 >= 2:
             return True
@@ -162,6 +184,16 @@ class Node(object):
         return False
 
     def exists_in_challenge(self, challenge, step):
+        '''
+        Check the node object exists in the file system for the challenge/step.
+
+        :param challenge: challenge number
+        :type challenge: int
+        :param step: step number
+        :type challenge: int
+        :returns: whether the node object exists
+        :rtype: bool
+        '''
         if challenge < self.start_challenge:
             return False
         elif challenge > self.end_challenge and self.end_challenge != -1:
@@ -176,6 +208,9 @@ class Node(object):
 
 
 class FileObject(Node):
+    '''
+    This class represents a file in a linux filesystem
+    '''
     def __init__(self, path, name, content, permissions, owner,
                  start_challenge, start_step, end_challenge, end_step):
         super(FileObject, self).__init__(path, name, permissions, owner,
@@ -193,6 +228,9 @@ class FileObject(Node):
 
 
 class Directory(Node):
+    '''
+    This class represents a directory in a linux filesystem
+    '''
     def __init__(self, path, name, children, permissions, owner,
                  start_challenge, start_step, end_challenge, end_step):
         super(Directory, self).__init__(path, name, permissions, owner,

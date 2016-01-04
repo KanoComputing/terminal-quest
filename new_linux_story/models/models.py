@@ -1,12 +1,5 @@
 import os
-import sys
-
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
-from new_linux_story.constants import command_not_found
+from new_linux_story.common import command_not_found
 
 
 class CommandMissingDoFunction(Exception):
