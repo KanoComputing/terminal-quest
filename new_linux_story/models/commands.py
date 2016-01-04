@@ -1,5 +1,14 @@
+#!/usr/bin/env python
+
+# commands.py
+#
+# Copyright (C) 2014, 2015, 2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# Classes with Linux command functionality
+
+
 import os
-from new_linux_story.common import command_not_found
 
 
 class CommandMissingDoFunction(Exception):
@@ -10,77 +19,15 @@ class CommandMissingAutocompleteFunction(Exception):
     pass
 
 
-class CmdList(object):
-    def __init__(self):
-        # Merge these into one data structure?
-        self._commands = {}
-
-    def add_command(self, command_str, cls):
-        self._commands[command_str] = cls
-
-        # Check this has a "do" method, otherwise raise an exception
-        # Possibly also check it has an autocomplete option, otherwise have
-        # a default option of returning empty.
-        do = getattr(cls, "do")
-        autocomplete = getattr(cls, "autocomplete")
-        if not (do and callable(do)):
-            raise CommandMissingDoFunction
-        elif not (autocomplete and callable(autocomplete)):
-            raise CommandMissingAutocompleteFunction
-
-    def receive_command(self, line):
-        '''
-        Take the line from the terminal and return the output the terminal
-        would show.
-        '''
-        [command, string] = self._parse_input(line)
-        if command in self._commands:
-            return self._commands[command].do(string)
-        else:
-            return {"message": command_not_found, "files": []}
-
-    def tab_once(self, line):
-        '''
-        If autocomplete returns a string, then there was only one option.
-        If autocomplete returns an array, then there are many options.
-        '''
-        [command, string] = self._parse_input(line)
-        if command in self._commands:
-            return self._commands[command].tab_once(string)
-        else:
-            return ""
-
-    def tab_many(self, line):
-        '''
-        If autocomplete returns a string, then there was only one option.
-        If autocomplete returns an array, then there are many options.
-        '''
-        [command, string] = self._parse_input(line)
-        if command in self._commands:
-            return self._commands[command].tab_many(string)
-        else:
-            return ""
-
-    def autocomplete(self, line):
-        [command, string] = self._parse_input(line)
-        if command in self._commands:
-            return self._commands[command].autocomplete(string)
-        else:
-            return []
-
-    def _parse_input(self, line):
-        '''
-        Returns the command word and the rest of the line.
-        '''
-        words = line.split(" ")
-        parsed_input = [words[0], line.replace(words[0], "").strip()]
-        return parsed_input
-
-
-class CmdSingle(object):
+class Command(object):
+    '''
+    This is a template for the other linux commands.
+    '''
 
     def __init__(self, user=None):
-        # This is initialised elsewhere
+        # This is an instance of the User class
+        # it is initialised elsewhere so the user data is consistent between
+        # commands
         self._user = user
 
     @property
@@ -95,26 +42,46 @@ class CmdSingle(object):
         return self._user.set_position(position)
 
     def do(self):
+        '''
+        This is where the main functionality for the command should be put
+        '''
         pass
 
     def autocomplete(self, line):
+        '''
+        If user presses tab after this command, this funciton should return
+        a list of suggested completions.
+        '''
         return []
 
+    def _parse_input(self, line):
+        '''
+        If the user input contains the command word, this strips that command
+        word off. Useful for autocomplete functions.
 
-# This is not
-class Echo(CmdSingle):
+        :param line: user input, e.g. cd dir/
+        :type line: string
+        :returns: line with command word stripped off, e.g. dir1/
+        :rtype: string
+        '''
+        words = line.split(" ")
+        parsed_input = " ".join(words[1:]).strip()
+        return parsed_input
+
+
+class Echo(Command):
 
     def do(self, line):
         return line
 
 
-class Pwd(CmdSingle):
+class Pwd(Command):
 
     def do(self, line):
         return self.position
 
 
-class Ls(CmdSingle):
+class Ls(Command):
 
     def __init__(self, user):
         self._rv = {
@@ -125,8 +92,18 @@ class Ls(CmdSingle):
 
     def do(self, line):
         '''
-        Returns a dictionary of the form
-        {"files": [], "directories": [], "message": ""}
+        This should be called if the user does `ls line` in the terminal.
+        Returns information about any error messages, and details about the
+        list of iles that the user should see.
+        It is done this way so the view can then colour the output
+        appropriately.
+
+        :param line: line that the user enters after using the ls
+        :type line: string
+        :returns: information about any error messages and the FileObjects
+                  and Dictionary objects located
+        :rtype: a dictionary of the form {"files": list of FileObjects,
+                                           "message": string}
         '''
         if not line:
             return self._no_args()
@@ -143,9 +120,15 @@ class Ls(CmdSingle):
         return self._rv
 
     def _no_args(self):
+        '''
+        Behaviour of ls when it is alone
+        '''
         return self._show_ls_at_position(self.position)
 
     def _no_flags(self, line):
+        '''
+        Behaviour of ls without any of the flags like -l -a
+        '''
         path = os.path.join(self.position, line)
         (exists, f) = self.filesystem.path_exists(path)
         if not exists:
@@ -163,10 +146,11 @@ class Ls(CmdSingle):
             return self._rv
 
     def autocomplete(self, line):
+        line = self._parse_input(line)
         return autocomplete(line, self.position, self.filesystem, "all")
 
 
-class Cd(CmdSingle):
+class Cd(Command):
 
     def do(self, line):
         if not line:
@@ -198,10 +182,11 @@ class Cd(CmdSingle):
     def autocomplete(self, line):
         # needed for Cmd module, which handles the tab_once/tab_many
         # condition
+        line = self._parse_input(line)
         return autocomplete(line, self.position, self.filesystem, "dirs")
 
 
-class Cat(CmdSingle):
+class Cat(Command):
 
     def do(self, line):
         if not line:
@@ -219,7 +204,7 @@ class Cat(CmdSingle):
                 "your choice.")
 
     def _no_such_file_message(self, name):
-        return "cat: {}:no such file or directory".format(name)
+        return "cat: {}: no such file or directory".format(name)
 
     def _no_flags(self, line):
         path = os.path.join(self.position, line)
@@ -233,8 +218,7 @@ class Cat(CmdSingle):
             return f.content
 
     def autocomplete(self, line):
-        # needed for Cmd module, which handles the tab_once/tab_many
-        # condition
+        line = self._parse_input(line)
         return autocomplete(line, self.position, self.filesystem, "all")
 
 
@@ -244,7 +228,8 @@ def autocomplete(line, position, filesystem, config):
     :type line: str
     :params position: path
     :type position: str
-    :params filesystem: FileSystem object
+    :params filesystem: set of object you want returned - FileObjects,
+                        Directory objects or both
     :params config: "all", "files", "dirs"
     '''
     completions = []

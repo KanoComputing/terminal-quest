@@ -1,21 +1,30 @@
+#!/usr/bin/env python
+
+# terminal.py
+#
+# Copyright (C) 2014, 2015, 2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# Contains classes that model a terminal.
+
+
 from cmd import Cmd
 import os
 from new_linux_story.models.filesystem import FileSystem
-from new_linux_story.models.models import CmdList, Ls, Cd, Cat, Pwd, Echo
+from new_linux_story.models.commands import Ls, Cd, Cat, Pwd, Echo
 from new_linux_story.models.User import User
 from linux_story.helper_functions import colour_string_with_preset
 
 
 class TerminalBase(object):
     def __init__(self, config, position, cmd):
-        self._ctrl = CmdList()
         self._user = User(FileSystem(config), position)
         self._cmd = cmd
-        self.add_command("ls", Ls(self._user)),
-        self.add_command("cd", Cd(self._user))
-        self.add_command("cat", Cat(self._user))
-        self.add_command("pwd", Pwd(self._user))
-        self.add_command("echo", Echo())
+        self._ls = Ls(self._user)
+        self._cd = Cd(self._user)
+        self._cat = Cat(self._user)
+        self._pwd = Pwd(self._user)
+        self._echo = Echo()
 
     @property
     def filesystem(self):
@@ -40,23 +49,8 @@ class TerminalBase(object):
         blue_part = colour_string_with_preset(blue_part, "blue", True)
         return yellow_part + blue_part
 
-    def add_command(self, command_str, line):
-        return self._ctrl.add_command(command_str, line)
-
-    def receive_command(self, line):
-        return self._ctrl.receive_command(line)
-
-    def tab_once(self, line):
-        return self._ctrl.tab_once(line)
-
-    def tab_many(self, line):
-        return self._ctrl.tab_many(line)
-
-    def autocomplete(self, line):
-        return self._ctrl.autocomplete(line)
-
-    def ls(self, line):
-        output = self.receive_command("ls " + line)
+    def do_ls(self, line):
+        output = self._ls.do(line)
         message = output["message"]
         files = output["files"]
 
@@ -76,19 +70,19 @@ class TerminalBase(object):
             print " ".join(coloured)
 
     def complete_ls(self, line):
-        return self.autocomplete(line)
+        return self._ls.autocomplete(line)
 
-    def cd(self, line):
-        output = self.receive_command("cd " + line)
+    def do_cd(self, line):
+        output = self._cd.do(line)
         if output:
             print output
         self._cmd.prompt = self.create_prompt(self.position)
 
     def complete_cd(self, line):
-        return self.autocomplete(line)
+        return self._cd.autocomplete(line)
 
     def cat(self, line):
-        print self.receive_command("cat " + line)
+        print self._cat.do(line)
 
     def complete_cat(self, line):
         return self.autocomplete(line)
@@ -113,7 +107,7 @@ class Terminal1(CmdBase):
 class Terminal2(CmdBase):
 
     def do_cd(self, line):
-        return self._terminal.cd(line)
+        return self._terminal.do_cd(line)
 
     def complete_cd(self, text, line, begidx, endidx):
         return self._terminal.complete_cd(line)
@@ -122,64 +116,19 @@ class Terminal2(CmdBase):
 class Terminal3(CmdBase):
 
     def do_ls(self, line):
-        return self._terminal.ls(line)
+        return self._terminal.do_ls(line)
 
     def complete_ls(self, text, line, begidx, endidx):
         return self._terminal.complete_ls(line)
 
     def do_cd(self, line):
-        return self._terminal.cd(line)
+        return self._terminal.do_cd(line)
 
     def complete_cd(self, text, line, begidx, endidx):
         return self._terminal.complete_cd(line)
 
     def do_cat(self, line):
-        return self._terminal.cat(line)
+        return self._terminal.do_cat(line)
 
     def complete_cat(self, text, line, begidx, endidx):
         return self._terminal.complete_cat(line)
-
-
-if __name__ == '__main__':
-    config = [
-        {
-            "name": "dir1",
-            "type": "directory",
-            "children": [
-                {
-                    "name": "file1",
-                    "type": "file"
-                },
-                {
-                    "name": "file2",
-                    "type": "file"
-                },
-                {
-                    "name": "dir2",
-                    "type": "directory",
-                    "permissions": 0000,
-                    "children": [
-                        {
-                            "name": "file2",
-                            "type": "file",
-                            "content": "hello",
-                            "permissions": 0000
-                        }
-                    ]
-                },
-                {
-                    "name": "dir3",
-                    "type": "directory",
-                    "children": [
-                        {
-                            "name": "file2",
-                            "type": "file",
-                            "content": "hello"
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
-    position = "~"
-    Terminal3(config, position).cmdloop()

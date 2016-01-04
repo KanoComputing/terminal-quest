@@ -1,4 +1,14 @@
-# User class to keep track of current position
+#!/usr/bin/env python
+
+# User.py
+#
+# Copyright (C) 2014, 2015, 2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# Simple model to represent the user, mainly to track the position of the User
+# in the filesystem.
+
+
 import os
 
 

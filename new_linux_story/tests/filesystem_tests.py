@@ -1,3 +1,16 @@
+#!/usr/bin/env python
+
+# filesystem_tests.py
+#
+# Copyright (C) 2014, 2015, 2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# Tests to check the FileSystem class
+#
+# This should be run first out of all the tests. If this is broken, all the
+# others will be too.
+
+
 import unittest
 import os
 import sys

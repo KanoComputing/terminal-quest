@@ -1,4 +1,11 @@
-# Tests for the content
+#!/usr/bin/env python
+
+# story_filesystem_tests.py
+#
+# Copyright (C) 2014, 2015, 2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# Tests to check the filesystems made for the challenges.
 
 import unittest
 import os

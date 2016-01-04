@@ -1,3 +1,13 @@
+#!/usr/bin/env python
+
+# filesystem.py
+#
+# Copyright (C) 2014, 2015, 2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# Contains classes that model a Linux filesystem.
+
+
 import os
 from new_linux_story.common import content_dir, username
 from new_linux_story.models.files import Directory, FileObject

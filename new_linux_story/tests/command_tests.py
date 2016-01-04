@@ -1,3 +1,16 @@
+#!/usr/bin/env python
+
+# command_tests.py
+#
+# Copyright (C) 2014, 2015, 2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# Tests to check the different commands
+
+# Make sure the filesystem_tests work before running this.
+# TODO: write tests to test autocompletion
+
+
 import unittest
 import os
 import sys
