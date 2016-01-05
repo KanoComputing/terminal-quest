@@ -7,9 +7,7 @@
 
 from linux_story.story.terminals.terminal_nano import TerminalNano
 from linux_story.story.terminals.terminal_chmod import TerminalChmod
-from linux_story.step_helper_functions import (
-    unblock_cd_commands, unblock_commands, unblock_commands_with_cd_hint
-)
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 from linux_story.story.challenges.challenge_35 import Step1 as NextStep
 
 
@@ -22,53 +20,6 @@ class StepTemplateChmod(TerminalChmod):
 
 
 class Step1(StepTemplateNano):
-    story = [
-        "{{wb:Cluck.}} {{yb:It sounds like the door unlocked.}}",
-        "Go inside."
-    ]
-
-    # Change permissions of the house directory here.
-    start_dir = "~/woods/clearing"
-
-    # This should be an array of allowed directories you can end up in.
-    # Perhaps an empty array means it doesn't matter where you end up.
-    end_dir = "~/woods/clearing/house"
-
-    # Level up based on the output of the command.
-
-    hints = [
-        "{{rb:Use}} {{yb:cd house/}} {{rb:to go into the house.}}"
-    ]
-
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
-
-    # Perhaps a nice data structure could be if the list of commands were
-    # paired with appropriate hints?
-
-    def next(self):
-        Step2()
-
-
-class Step2(StepTemplateNano):
-    story = [
-        "Look around."
-    ]
-    start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house"
-    hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
-    ]
-    commands = [
-        "ls",
-        "ls -a"
-    ]
-
-    def next(self):
-        Step3()
-
-
-class Step3(StepTemplateNano):
     story = [
         "You see a masked swordsmaster watching you.",
         "Listen to what he has to say."
@@ -84,17 +35,19 @@ class Step3(StepTemplateNano):
     ]
 
     def next(self):
-        Step4()
+        Step2()
 
 
-class Step4(StepTemplateNano):
+# TODO: fill in the extra responses to the other questions
+class Step2(StepTemplateNano):
     story = [
         "{{wb:Swordsmaster:}} {{Bb:Child, why do you seek me?}}",
+        "",
         "{{yb:1: How did you lock your front door?}}",
         "{{yb:2: Who are you?}}",
         "{{yb:3: Have you been leaving me the strange notes?}}",
         "",
-        "Respond with {{yb:echo 1}} {{yb:echo 2}} or {{yb:echo 3}}."
+        "Respond with {{yb:echo 1}}, {{yb:echo 2}}, or {{yb:echo 3}}."
     ]
     commands = [
         "echo 1"
@@ -119,10 +72,10 @@ class Step4(StepTemplateNano):
         return StepTemplateNano.check_command(self)
 
     def next(self):
-        Step5()
+        Step3()
 
 
-class Step5(StepTemplateNano):
+class Step3(StepTemplateNano):
     print_text = [
         "{{yb:How did you lock your front door?}}"
     ]
@@ -132,10 +85,9 @@ class Step5(StepTemplateNano):
         # How does he know your name? Initially thought of ls -l.
         "I know of your name...it is written all over this world for those "
         "who know where to look.",
-        # ...but are you who you say you are? I want to see what you know!
+        # ...but are you who you say you are? (Give user a test?)
         "...Ok. I will teach how I lock my door and protect myself.",
-        # "First, try and {{lb:look inside}} my basement."
-        "First, try and}} {{lb:go inside}} {{Bb:my basement.}}"
+        "First, try and}} {{lb:go inside my basement.}}"
     ]
     # This logic for commands doesn't work
     commands = [
@@ -159,99 +111,33 @@ class Step5(StepTemplateNano):
             return True
 
     def next(self):
-        Step6()
+        Step4()
 
 
 # Make directory executable
-class Step6(StepTemplateChmod):
+class Step4(StepTemplateChmod):
     story = [
         "Swordsmaster: {{Bb:You got the error}} {{yb:-bash: cd: basement: Permission denied}}",
-        "{{Bb:This directory is missing all its permissions.}}",
-        "{{Bb:They normally have three.}}",
-        "{{Bb:To go inside, you need the make the directory eXecutable.}}",
+        "{{Bb:Normally you can do 3 things to a directory.}}",
+        "",
+        "{{Bb:See what is inside -}} {{lb:read}}",
+        "{{Bb:Create something inside -}} {{lb:write}}",
+        "{{Bb:Go inside with cd -}} {{lb:execute}}",
+        "",
+        "{{Bb:This directory is missing all three.}}"
+        "",
+        "{{Bb:To go inside, you need to activate the execute one.}}",
         "{{Bb:Use}} {{yb:chmod +x basement}} {{Bb:to unlock the basement.}}"
     ]
     commands = [
         "chmod +x basement",
         "chmod +x basement/"
     ]
+    hints = [
+        "{{rb:Use}} {{yb:chmod +x basement/}} {{rb:to unlock the basement.}}"
+    ]
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
 
     def next(self):
-        Step7()
-
-
-class Step7(StepTemplateChmod):
-    story = [
-        "Swordsmaster: {{Bb:Well done. Now go inside the basement.}}"
-    ]
-    start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house/basement"
-    commands = [
-        "cd basement",
-        "cd basement/"
-    ]
-
-    def block_command(self):
-        return unblock_commands_with_cd_hint(self.last_user_input,
-                                             self.commands)
-
-    def next(self):
-        Step8()
-
-
-class Step8(StepTemplateChmod):
-    story = [
-        "Swordsmaster: {{Bb:Look around.}}"
-    ]
-    start_dir = "~/woods/clearing/house/basement"
-    end_dir = "~/woods/clearing/house/basement"
-    commands = [
-        "ls", "ls -a"
-    ]
-
-    def next(self):
-        Step9()
-
-
-# Readable
-class Step9(StepTemplateChmod):
-    story = [
-        "Swordsmaster: {{Bb:You got the error}} {{yb:ls: cannot open directory .: Permission denied}}",
-        "{{Bb:This is because you do not have Read Access to this directory.",
-        "You need to force the Read permissions using the +r flag.}} "
-        "{{Bb:Try the command}} {{yb:chmod +r ./}} {{Bb:to add the "
-        "ability to Read.}}"
-    ]
-    commands = [
-        "chmod +r .",
-        "chmod +r ./"
-    ]
-    hints = [
-        "{{rb:Use}} {{yb:chmod +r ./}} {{rb:to change the permissions on the basement.}}"
-    ]
-    start_dir = "~/woods/clearing/house/basement"
-    end_dir = "~/woods/clearing/house/basement"
-
-    def next(self):
-        Step10()
-
-
-class Step10(StepTemplateChmod):
-    story = [
-        "Swordsmaster: {{Bb:Now try and}} {{lb:look around}} {{Bb:}}"
-    ]
-    commands = [
-        "ls",
-        "ls -a"
-    ]
-    start_dir = "~/woods/clearing/house/basement"
-    end_dir = "~/woods/clearing/house/basement"
-
-    hints = [
-        "{{rb:Look in the basement using}} {{yb:ls}}"
-    ]
-
-    def next(self):
-        NextStep(self.xp)
+        NextStep()

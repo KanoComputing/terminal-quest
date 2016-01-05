@@ -19,8 +19,8 @@ class Step1(StepTemplateNano):
     story = [
         "Time to find the swordsmaster.",
         "Ruth said that he was in the woods just off the "
-        "{{lb:Windy Road}}? Presumably she meant {{yb:~}}. Maybe "
-        "we should head there now."
+        "{{lb:Windy Road}} {{yb:~}}.",
+        "Use {{yb:cd}} to head there now."
     ]
     start_dir = "~/town/east/shed-shop"
     end_dir = "~"
@@ -40,7 +40,7 @@ class Step1(StepTemplateNano):
 
 class Step2(StepTemplateNano):
     story = [
-        "Look around and see if we can see where these woods are."
+        "Look around to see where the woods are."
     ]
     start_dir = "~"
     end_dir = "~"
@@ -58,14 +58,14 @@ class Step2(StepTemplateNano):
 
 class Step3(StepTemplateNano):
     story = [
-        "You see a series of trees in the distance. They seem very dark and "
-        "inhospitable, which is probably why you didn't notice them before.",
-        "Go to the {{yb:woods}}."
+        "You see a set of trees in the distance. They seem very dark and "
+        "inhospitable, which is why you didn't notice them before.",
+        "{{lb:Go into the woods}}."
     ]
     start_dir = "~"
     end_dir = "~/woods"
     hints = [
-        "{{rb:Use}} {{yb:cd woods}} {{rb: to go to the woods.}}"
+        "{{rb:Use}} {{yb:cd woods/}} {{rb:to go to the woods.}}"
     ]
 
     def block_command(self):
@@ -101,9 +101,8 @@ class Step4(StepTemplateNano):
 
 class Step5(StepTemplateNano):
     story = [
-        "You see a {{lb:clearing}} in the distance, which reminds you of "
-        "a garden.",
-        "Try and go into the clearing."
+        "You see a {{bb:clearing}} which reminds you of a garden.",
+        "Try and {{lb:go into the clearing.}}"
     ]
     start_dir = "~/woods"
     end_dir = "~/woods/clearing"
@@ -141,7 +140,7 @@ class Step6(StepTemplateNano):
 
 class Step7(StepTemplateNano):
     story = [
-        "There's a house in the clearing. Have a {{lb:look}} in the house.",
+        "There's a house in the clearing. Have a {{lb:look}} in the {{lb:house}}.",
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing"

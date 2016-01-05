@@ -20,6 +20,11 @@ chapters = {
         'start_challenge': 23,
         'end_challenge': 31,
         'title': 'Save Eleanor'
+    },
+    5: {
+        'start_challenge': 32,
+        'end_challenge': 41,
+        'title': 'Meet the swordsmaster'
     }
 }
 
@@ -149,5 +154,45 @@ challenges = {
     31: {
         'title': 'Explore the shed-shop',
         'chapter': 4
+    },
+    32: {
+        'title': 'Follow Ruth\'s hint',
+        'chapter': 5
+    },
+    33: {
+        'title': 'Another locked door',
+        'chapter': 5
+    },
+    34: {
+        'title': 'Meet the swordsmaster',
+        'chapter': 5
+    },
+    35: {
+        'title': 'The swordsmaster\'s test',
+        'chapter': 5
+    },
+    36: {
+        'title': 'The swordsmaster\'s test',
+        'chapter': 5
+    },
+    37: {
+        'title': 'The swordsmaster\'s test',
+        'chapter': 5
+    },
+    38: {
+        'title': 'Another note',
+        'chapter': 5
+    },
+    39: {
+        'title': 'Explore the woods',
+        'chapter': 5
+    },
+    40: {
+        'title': 'Time to meet the note giver',
+        'chapter': 5
+    },
+    41: {
+        'title': 'Unlock the library',
+        'chapter': 5
     }
 }

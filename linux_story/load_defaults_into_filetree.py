@@ -10,6 +10,7 @@
 
 import os
 import shutil
+import stat
 
 from linux_story.get_defaults import get_default_file_dict
 from linux_story.common import tq_file_system
@@ -40,10 +41,26 @@ def create_item(dest_path, item_type="file", src_path=""):
     '''
 
     if not os.path.exists(dest_path):
+        permissions_changed = False
+
+        # Check permissions of the parent directory
+        parent_dir = os.path.normpath(os.path.join(dest_path, ".."))
+        mode = os.stat(parent_dir).st_mode
+        permissions = oct(stat.S_IMODE(mode))
+
+        # Lazy - just checking owner bit
+        if int(permissions[1]) % 4 < 2:
+            os.chmod(parent_dir, 0755)
+            permissions_changed = True
+
         if item_type == 'file':
             shutil.copyfile(src_path, dest_path)
         elif item_type == 'directory':
             os.mkdir(dest_path)
+
+        if permissions_changed:
+            # change permissions of the parent directory back
+            os.chmod(parent_dir, int(permissions, 8))
 
 
 def delete_item(path):

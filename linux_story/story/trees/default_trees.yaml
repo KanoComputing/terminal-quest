@@ -522,102 +522,109 @@ house:
           step: 1
           path: "~/woods/clearing"
           permissions: 0000
-        - challenge: 34
-          step: 1
+        - challenge: 33
+          step: 4
           path: "~/woods/clearing"
           permissions: 0755
 
 swordsmaster:
     challenges:
-        - challenge: 34
-          step: 1
+        - challenge: 33
+          step: 4
           path: "~/woods/clearing/house"
 
 
-sandwich_basement:
-    name: "sandwich"
+key.sh:
     challenges:
         - challenge: 34
           step: 1
           path: "~/woods/clearing/house/basement"
+          permissions: 0000
 
-        - challenge: 34
-          step: 11
-          exists: False
+        - challenge: 36
+          step: 3
+          path: "~/woods/clearing/house/basement"
+          permissions: 0400
 
-basement:
+        - challenge: 37
+          step: 2
+          path: "~/woods/clearing/house"
+          permissions: 0400
+
+        - challenge: 37
+          step: 4
+          path: "~/woods/clearing/house"
+          permissions: 0544
+
+
+# basement used in Bernard's houses
+basement_swordsmaster:
     directory: True
+    name: basement
     challenges:
         - challenge: 34
           step: 1
           path: "~/woods/clearing/house"
           permissions: 0100
-        - challenge: 34
-          step: 7
+        - challenge: 35
+          step: 4
           path: "~/woods/clearing/house"
           permissions: 0500
-        - challenge: 34
-          step: 10
+        - challenge: 37
+          step: 1
           path: "~/woods/clearing/house"
           permissions: 0700
 
 note_swordsmaster-house:
     name: "note"
     challenges:
-        - challenge: 34
-          step: 11
+        - challenge: 37
+          step: 6
           path: "~/woods/clearing/house"
 
 
-note_swordsmaster-garden:
+note_swordsmaster-clearing:
     name: "note"
     challenges:
-        - challenge: 34
-          step: 11
+        - challenge: 37
+          step: 6
           path: "~/woods/clearing"
 
 
 note_woods:
     name: "note"
     challenges:
-        - challenge: 34
-          step: 11
+        - challenge: 37
+          step: 6
           path: "~/woods"
 
 
 note_thicket:
     name: "note"
     challenges:
-        - challenge: 34
-          step: 11
+        - challenge: 37
+          step: 6
           path: "~/woods/thicket"
 
 
 note_rabbithole:
     name: "note"
     challenges:
-        - challenge: 34
-          step: 11
+        - challenge: 37
+          step: 6
           path: "~/woods/thicket/.rabbithole"
 
 
 Rabbit:
     challenges:
-        - challenge: 34
-          step: 11
+        - challenge: 37
+          step: 6
           path: "~/woods/thicket/.rabbithole"
 
 
 # Copy into the challenge folder when the permissions allow it.
 SUDO:
     challenges:
-        - challenge: 35
-          step: 27
+        - challenge: 32
+          step: 1
           path: "~/town/east/library/private-section"
-
-
-RM:
-    challenges:
-        - challenge: 35
-          step: 41
-          path: "~/woods/clearing"
