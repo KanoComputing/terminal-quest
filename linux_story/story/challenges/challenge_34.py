@@ -105,6 +105,9 @@ class Step3(StepTemplateNano):
         if self.last_user_input.strip() in self.commands:
             print "-bash: cd: basement: Permission denied"
             return True
+        else:
+            self.send_hint("{{rb:Use}} {{yb:cd basement/}} {{rb:to look in the basement.}}")
+            return False
 
     def block_command(self):
         if self.last_user_input.startswith("cd"):

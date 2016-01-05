@@ -533,10 +533,27 @@ swordsmaster:
           step: 4
           path: "~/woods/clearing/house"
 
+# basement used in Bernard's houses
+basement_swordsmaster:
+    directory: True
+    name: basement
+    challenges:
+        - challenge: 32
+          step: 1
+          path: "~/woods/clearing/house"
+          permissions: 0100
+        - challenge: 35
+          step: 4
+          path: "~/woods/clearing/house"
+          permissions: 0500
+        - challenge: 37
+          step: 1
+          path: "~/woods/clearing/house"
+          permissions: 0700
 
 key.sh:
     challenges:
-        - challenge: 34
+        - challenge: 32
           step: 1
           path: "~/woods/clearing/house/basement"
           permissions: 0000
@@ -555,25 +572,6 @@ key.sh:
           step: 4
           path: "~/woods/clearing/house"
           permissions: 0544
-
-
-# basement used in Bernard's houses
-basement_swordsmaster:
-    directory: True
-    name: basement
-    challenges:
-        - challenge: 34
-          step: 1
-          path: "~/woods/clearing/house"
-          permissions: 0100
-        - challenge: 35
-          step: 4
-          path: "~/woods/clearing/house"
-          permissions: 0500
-        - challenge: 37
-          step: 1
-          path: "~/woods/clearing/house"
-          permissions: 0700
 
 note_swordsmaster-house:
     name: "note"
