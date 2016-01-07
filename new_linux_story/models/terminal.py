@@ -81,11 +81,11 @@ class TerminalBase(object):
     def complete_cd(self, line):
         return self._cd.autocomplete(line)
 
-    def cat(self, line):
+    def do_cat(self, line):
         print self._cat.do(line)
 
     def complete_cat(self, line):
-        return self.autocomplete(line)
+        return self._cat.autocomplete(line)
 
 
 class CmdBase(Cmd):
