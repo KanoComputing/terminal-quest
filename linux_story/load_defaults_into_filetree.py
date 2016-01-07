@@ -48,10 +48,12 @@ def create_item(dest_path, item_type="file", src_path=""):
         mode = os.stat(parent_dir).st_mode
         permissions = oct(stat.S_IMODE(mode))
 
-        # Lazy - just checking owner bit
-        if int(permissions[1]) % 4 < 2:
+        # Lazy - just checking owner has write permissions
+        if len(permissions) < 3 or int(permissions[-3]) % 4 < 2:
             os.chmod(parent_dir, 0755)
             permissions_changed = True
+            mode = os.stat(parent_dir).st_mode
+            permissions = oct(stat.S_IMODE(mode))
 
         if item_type == 'file':
             shutil.copyfile(src_path, dest_path)
@@ -170,8 +172,8 @@ def modify_file_tree(filesystem_dict):
 
                 # If specified, change the permissions of the file
                 if "permissions" in item_dict.keys():
-                    mode = item_dict["permissions"]
-                    os.chmod(real_path, mode)
+                    permissions = item_dict["permissions"]
+                    os.chmod(real_path, permissions)
 
 
 # Call this on closing the application.
