@@ -1,20 +1,19 @@
-#!/usr/bin/env python
-
 # helper_functions.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # Helper functions used across the system.
+
 
 import os
 import subprocess
 
 from kano.colours import colourize256, decorate_string
-from kano_profile.apps import (
-    save_app_state_variable, load_app_state_variable,
+from kano_profile.apps import \
+    save_app_state_variable, load_app_state_variable, \
     increment_app_state_variable
-)
+
 from linux_story.common import common_media_dir
 
 

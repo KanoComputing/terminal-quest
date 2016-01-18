@@ -1,11 +1,10 @@
-#!/usr/bin/env python
-
 # Terminal.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # The template of the terminal classes.
+
 
 import os
 import sys

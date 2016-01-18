@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+# challenge_21.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
+
 
 from linux_story.step_helper_functions import (
     unblock_cd_commands, unblock_commands_with_mkdir_hint,

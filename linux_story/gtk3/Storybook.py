@@ -1,16 +1,17 @@
-#!/usr/bin/env python
-
 # Storybook.py
 #
-# Copyright (C) 2014 Kano Computing Ltd
-# License: GNU GPL v2 http://www.gnu.org/licenses/gpl-2.0.txt
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # Author: Caroline Clark <caroline@kano.me>
 
 
-from gi.repository import Gtk, Pango, Gdk
 import time
+
+from gi.repository import Gtk, Pango, Gdk
+
 from kano.utils import is_model_2_b
+
 
 if is_model_2_b():
     NEWLINE_SLEEP = 0.15

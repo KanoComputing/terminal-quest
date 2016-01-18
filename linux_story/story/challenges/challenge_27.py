@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+# challenge_27.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
+
 
 from linux_story.story.terminals.terminal_bernard import (
     TerminalMkdirBernard, TerminalNanoBernard

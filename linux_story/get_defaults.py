@@ -1,8 +1,6 @@
-#!/usr/bin/env python
-
 # get_defaults.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # Get filesystem information for the specified challenge/step
@@ -30,11 +28,11 @@
 # We take only the relevent challenge, which can then be
 # processed by the StoryFileTree class.
 
-import os
-import yaml
-import sys
-from copy import deepcopy
 
+import os
+import sys
+import yaml
+from copy import deepcopy
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))

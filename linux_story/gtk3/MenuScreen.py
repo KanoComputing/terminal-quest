@@ -1,11 +1,10 @@
-#!/usr/bin/env python
-
-# menu_screen.py
+# MenuScreen.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # Shows the menu for selecting the appropriate challenge
+
 
 import os
 import sys
@@ -21,8 +20,10 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from gi.repository import Gtk, GObject
-from linux_story.common import get_max_challenge_number
+
 from kano_profile.apps import load_app_state_variable
+
+from linux_story.common import get_max_challenge_number
 from linux_story.titles import challenges, chapters
 
 

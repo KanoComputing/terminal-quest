@@ -1,25 +1,27 @@
-#!/usr/bin/env python
+# MainWindow.py
+#
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
 
-# linux-story-gui
-#
-# Copyright (C) 2014, 2015 Kano Computing Ltd
-# License: GNU GPL v2 http://www.gnu.org/licenses/gpl-2.0.txt
-#
-# Launches linux tutorial in a Gtk application
 
 import os
 import sys
-import threading
-import socket
-import Queue
-from gi.repository import Gtk, Gdk, GLib
 import time
+import Queue
+import socket
+import threading
 import subprocess
+
+from gi.repository import Gtk, Gdk, GLib
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
+
+from kano.gtk3.apply_styles import apply_styling_to_screen
+from kano.gtk3.scrolled_window import ScrolledWindow
 
 from linux_story.socket_functions import create_server
 from linux_story.gtk3.TerminalUi import TerminalUi
@@ -28,12 +30,8 @@ from linux_story.gtk3.Storybook import Storybook
 from linux_story.gtk3.FinishDialog import FinishDialog
 from linux_story.common import css_dir
 from linux_story.gtk3.MenuScreen import MenuScreen
-from linux_story.load_defaults_into_filetree import (
+from linux_story.load_defaults_into_filetree import \
     revert_to_default_permissions
-)
-
-from kano.gtk3.apply_styles import apply_styling_to_screen
-from kano.gtk3.scrolled_window import ScrolledWindow
 
 
 class GenericWindow(Gtk.Window):

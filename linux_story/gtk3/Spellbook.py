@@ -1,15 +1,14 @@
-#!/usr/bin/env python
-
 # Spellbook.py
 #
-# Copyright (C) 2014 Kano Computing Ltd
-# License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # Author: Caroline Clark <caroline@kano.me>
 
 
 import os
 import sys
+
 from gi.repository import Gtk, Gdk
 
 if __name__ == '__main__' and __package__ is None:

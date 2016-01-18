@@ -1,9 +1,7 @@
-#!/usr/bin/env python
-
 # Terminals.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # The main terminal class.
 
@@ -52,7 +50,7 @@ class Complete_Terminal(Terminal):
     def complete_cd(self, text, line, begidx, endidx):
         return self.autocomplete_desc(text, line, "dirs")
 
-     # modified like ls to show colours
+    # modified like ls to show colours
     def do_grep(self, line):
         grep(self.current_dir, self.filetree, line)
 
