@@ -11,27 +11,27 @@ This spell shows you your surroundings.
 
 Examples
 
-ls
+<span foreground="yellow">ls</span>
 Shows you what is around your current position
 
-ls kitchen
+<span foreground="yellow">ls kitchen</span>
 Shows you what is in the directory kitchen, assuming you are in my-house
 
-ls ../
+<span foreground="yellow">ls ../</span>
 Shows you what is in the directory behind you
 
-ls ~/my-house/kitchen
+<span foreground="yellow">ls ~/my-house/kitchen</span>
 Regardless of your current position, this will show you what is in your kitchen
 
 
 Flags
 
--a
+<span foreground="yellow">-a</span>
 This shows all the files in your current directory, including the hidden files starting with .
 This includes your current position . and the containing directory ..
 
 
 Example
 
-ls -a ../
+<span foreground="yellow">ls -a ../</span>
 Will show you everything in the directory behind you

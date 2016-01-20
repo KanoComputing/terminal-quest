@@ -17,6 +17,7 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.common import common_media_dir
+from linux_story.helper_functions import get_ascii_art
 
 
 class Spellbook(Gtk.EventBox):
@@ -66,18 +67,17 @@ class Spellbook(Gtk.EventBox):
 
         left = 0
 
-        if commands:
-            for command in commands:
-                if (left + 1) * (self.CMD_WIDTH + 20) < self.win_width:
-                    box = self.__create_spell(command)
-                    child = self.grid.get_child_at(left, 0)
-                    self.grid.remove(child)
-                    self.grid.attach(box, left, 0, 1, 1)
-                    left += 1
+        for command in commands:
+            if (left + 1) * (self.CMD_WIDTH + 20) < self.win_width:
+                box = self.__create_spell(command)
+                child = self.grid.get_child_at(left, 0)
+                self.grid.remove(child)
+                self.grid.attach(box, left, 0, 1, 1)
+                left += 1
 
         self.show_all()
 
-    def __create_spell(self, name, locked=False):
+    def __create_spell(self, name, locked=False, highlight=True):
         '''
         Create the individual GUI for a spell.
         To create the icon, have the icon located at
@@ -99,12 +99,19 @@ class Spellbook(Gtk.EventBox):
         box.set_margin_right(10)
         box.set_margin_bottom(10)
 
+        icon_overlay = Gtk.Overlay()
+        icon_overlay.set_opacity(0.99)
+        if name != '...':
+            icon_overlay.set_tooltip_markup(get_ascii_art(name + '_tooltip'))
+        box.pack_start(icon_overlay, False, False, 0)
+
         icon_background = Gtk.EventBox()
         icon_background.get_style_context().add_class("spell_icon_background")
-        box.pack_start(icon_background, False, False, 0)
+        icon_overlay.add(icon_background)
 
         label_background = Gtk.EventBox()
         label_background.get_style_context().add_class("spell_label_background")
+        box.pack_start(label_background, False, False, 0)
 
         images_dir = os.path.join(common_media_dir, 'images')
 
@@ -116,10 +123,15 @@ class Spellbook(Gtk.EventBox):
         else:
             filename = os.path.join(images_dir, name + ".png")
 
+            if highlight and (name == 'nano' or name == 'ls'):
+                highlight_box = Gtk.EventBox()
+                highlight_box.add(Gtk.Image.new_from_file(
+                    os.path.join(images_dir, "overlay.gif")
+                ))
+                icon_overlay.add_overlay(highlight_box)
+
         icon = Gtk.Image.new_from_file(filename)
         icon_background.add(icon)
-
-        box.pack_start(label_background, False, False, 0)
 
         label = Gtk.Label(name)
         label.get_style_context().add_class("spell_command")

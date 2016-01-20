@@ -41,6 +41,15 @@
 	background: @spell_label_background_locked;
 }
 
+.tooltip {
+    background: @spell_tooltip_background;
+    border-color: @spell_tooltip_border;
+    border-width: 3px;
+    border-radius: 0px;
+    color: #ffffff;
+    font: monospace 10px;
+}
+
 .spell_label {
 	color: #cccccc;
 	font: Bariol 13px;

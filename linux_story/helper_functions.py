@@ -13,8 +13,9 @@ from kano.colours import colourize256, decorate_string
 from kano_profile.apps import \
     save_app_state_variable, load_app_state_variable, \
     increment_app_state_variable
+from kano.logging import logger
 
-from linux_story.common import common_media_dir
+from linux_story.common import common_media_dir, story_files_dir
 
 
 def debugger(text):
@@ -205,3 +206,30 @@ def record_user_interaction(instance, base_name):
         increment_app_state_variable("linux-story", total_name, 1)
 
         # If total reaches a certain amount, then can award XP.
+
+
+def get_ascii_art(name):
+    """
+    Load and ASCII art file.
+
+    Args:
+        name (str) - the name of the asset file
+
+    Returns:
+        ascii_art (str) - the ASCII art asset as a block of text
+    """
+
+    ascii_art = name
+    asset_path = os.path.join(story_files_dir, name)
+
+    try:
+        with open(asset_path) as f:
+            ascii_art = f.read()
+
+    except (IOError, OSError) as e:
+            logger.error('Could not load file {} - [{}]'.format(asset_path, e))
+    except Exception as e:
+            logger.warn('Unexpected error while loading the ascii art'
+                        ' - [{}]'.format(e))
+
+    return ascii_art

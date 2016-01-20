@@ -11,5 +11,5 @@ This spell gives you the power to speak.
 
 Example
 
-echo hello
+<span foreground="yellow">echo hello</span>
 This will make you say hello

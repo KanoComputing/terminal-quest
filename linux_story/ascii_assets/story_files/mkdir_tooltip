@@ -11,5 +11,5 @@ Make a shelter/building
 
 Example
 
-mkdir igloo
+<span foreground="yellow">mkdir igloo</span>
 This will make an igloo in the directory you're currently in
