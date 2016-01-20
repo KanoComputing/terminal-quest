@@ -13,11 +13,11 @@ from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_19 import Step1 as NextStep
 
 
-class StepTemplate(TerminalEcho):
+class StepTemplateEcho(TerminalEcho):
     challenge_number = 18
 
 
-class Step1(StepTemplate):
+class Step1(StepTemplateEcho):
     story = [
         "Woah! You spoke aloud into the empty room!",
         "{{gb:You learnt the new skill echo!}}",
@@ -41,7 +41,7 @@ class Step1(StepTemplate):
         Step2()
 
 
-class Step2(StepTemplate):
+class Step2(StepTemplateEcho):
     story = [
         "You are back on the windy road, which stretches endlessly in both "
         "directions. {{lb:Look around.}}"
@@ -61,7 +61,7 @@ class Step2(StepTemplate):
         Step3()
 
 
-class Step3(StepTemplate):
+class Step3(StepTemplateEcho):
     story = [
         "You notice a small remote farm in the distance.",
         "{{lb:Let's go}} to the {{lb:farm}}."
@@ -80,7 +80,7 @@ class Step3(StepTemplate):
         Step4()
 
 
-class Step4(StepTemplate):
+class Step4(StepTemplateEcho):
     story = [
         "{{lb:Look around.}}"
     ]
@@ -94,7 +94,7 @@ class Step4(StepTemplate):
         Step5()
 
 
-class Step5(StepTemplate):
+class Step5(StepTemplateEcho):
     story = [
         "You are in a farm, with a {{bb:barn}}, a {{bb:farmhouse}} and "
         "a large {{bb:toolshed}} in sight.",
@@ -150,7 +150,7 @@ class Step5(StepTemplate):
         Step6()
 
 
-class Step6(StepTemplate):
+class Step6(StepTemplateEcho):
 
     story = [
         "In the barn, you see a woman tending some animals.",
@@ -170,7 +170,7 @@ class Step6(StepTemplate):
         Step7()
 
 
-class Step7(StepTemplate):
+class Step7(StepTemplateEcho):
 
     story = [
         # "In the barn, you see a woman tending some animals.",

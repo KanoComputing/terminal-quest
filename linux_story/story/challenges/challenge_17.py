@@ -231,6 +231,7 @@ class Step7(StepTemplateEcho):
         "echo HELLO",
         "echo Hello"
     ]
+    highlighted_commands = ['echo']
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
     last_step = True

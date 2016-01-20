@@ -37,6 +37,7 @@ import readline
 
 class Terminal(Cmd):
     terminal_commands = []
+    highlighted_commands = []
     print_text = [""]
     story = [""]
     start_dir = "~"
@@ -331,6 +332,7 @@ class Terminal(Cmd):
         data['story'] = "\n".join(self.story)
         data['challenge'] = str(self.challenge_number)
         data['spells'] = self.terminal_commands
+        data['highlighted_spells'] = self.highlighted_commands
 
         t = threading.Thread(target=launch_client, args=(data,))
         t.daemon = True

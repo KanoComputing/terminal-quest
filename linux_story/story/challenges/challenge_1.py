@@ -39,6 +39,7 @@ class Step1(StepLs):
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "ls"
+    highlighted_commands = ['ls']
     hints = [
         "{{rb:Type}} {{yb:ls}} {{rb:and press Enter to take a look around "
         "your bedroom.}}"

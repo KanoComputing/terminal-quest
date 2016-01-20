@@ -123,6 +123,7 @@ class Step2(StepTemplateMv):
         "mv apple basket",
         "mv apple basket/"
     ]
+    highlighted_commands = ['mv']
     hints = [
         "{{rb:Use the command}} {{yb:mv apple basket/}} {{rb:to "
         "move the apple into the basket.}}"
@@ -204,9 +205,8 @@ class Step5(StepTemplateMv):
         "mv basket/apple ./"
     ]
     hints = [
-        "{{rb:Use the command}} {{yb:mv basket/apple ./}} {{rb:to}} "
-        "{{lb:m}}{{rb:o}}{{lb:v}}{{rb:e the apple from the basket to your "
-        "current position}} {{lb:./}}"
+        "{{rb:Use the command}} {{yb:mv basket/apple ./}} {{rb:to move "
+        "the apple from the basket to your current position}} {{lb:./}}"
     ]
 
     def block_command(self):

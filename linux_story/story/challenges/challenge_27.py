@@ -66,6 +66,7 @@ class Step2(StepTemplateNano):
     commands = [
         "nano best-horn-in-the-world.sh"
     ]
+    highlighted_commands = ['nano']
 
     hints = [
         "{{rb:Use}} {{yb:nano best-horn-in-the-world}} "

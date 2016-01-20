@@ -230,11 +230,11 @@ class MainWindow(GenericWindow):
     def print_coloured_text(self, text):
         self.story.print_coloured_text(text)
 
-    def repack_spells(self, spells):
+    def repack_spells(self, spells, highlighted_spells):
         '''Wrapper function for repacking the spells
         '''
 
-        self.spellbook.repack_spells(spells)
+        self.spellbook.repack_spells(spells, highlighted_spells)
 
     def show_terminal(self):
         '''Wrapper function for showing terminal
@@ -280,7 +280,7 @@ class MainWindow(GenericWindow):
             if 'exit' in data_dict.keys():
                 self.finish_app()
 
-            elif 'hint' in data_dict.keys():
+            elif 'hint' in data_dict.keys():  # TODO: get the command and highlight it
                 self.stop_typing_in_terminal()
                 self.type_text(data_dict['hint'])
                 self.show_terminal()
@@ -315,7 +315,8 @@ class MainWindow(GenericWindow):
 
                     # Repack the spells (commands) into the spellbook
                     spells = data_dict['spells']
-                    self.repack_spells(spells)
+                    highlighted_spells = data_dict['highlighted_spells']
+                    self.repack_spells(spells, highlighted_spells)
 
                     # Refresh terminal - useful for the first challenge
                     self.show_terminal()

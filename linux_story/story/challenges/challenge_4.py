@@ -39,6 +39,7 @@ class Step1(StepTemplateCd):
         "cd ~/my-house",
         "cd ~/my-house/"
     ]
+    highlighted_commands = ['cd']
     hints = [
         "{{rb:Type}} {{yb:cd ../}} {{rb:to leave your room. The}} "
         "{{lb:..}} "

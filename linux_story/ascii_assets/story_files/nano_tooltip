@@ -8,10 +8,12 @@
 
 A command for modifying files.
 
+
 Examples
 
 <span foreground="yellow">nano filename.sh/</span>
 Opens filename.sh for editing
+
 
 Key Commands
 

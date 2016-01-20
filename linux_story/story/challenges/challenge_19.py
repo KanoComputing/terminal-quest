@@ -18,11 +18,11 @@ from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_20 import Step1 as NextStep
 
 
-class StepTemplate(TerminalEcho):
+class StepTemplateEcho(TerminalEcho):
     challenge_number = 19
 
 
-class Step1(StepTemplate):
+class Step1(StepTemplateEcho):
     username = os.environ['LOGNAME']
     story = [
         "Ruth: {{Bb:You startled me!",
@@ -62,13 +62,13 @@ class Step1(StepTemplate):
             )
             self.send_hint(hint)
 
-        return StepTemplate.check_command(self)
+        return StepTemplateEcho.check_command(self)
 
     def next(self):
         Step2()
 
 
-class Step2(StepTemplate):
+class Step2(StepTemplateEcho):
     print_text = ["{{yb:Yes}}"]
 
     story = [
@@ -109,7 +109,7 @@ class Step2(StepTemplate):
             ]
             self.send_text(hint)
         else:
-            return StepTemplate.check_command(self)
+            return StepTemplateEcho.check_command(self)
 
     def next(self):
         Step3(self.last_user_input)
@@ -118,7 +118,7 @@ class Step2(StepTemplate):
 # Option here to add a little exerpt where she mentions her dog was
 # chasing a rabbit, and that we have to find the dog.
 # We could go to the woods here, but not enter them.
-class Step3(StepTemplate):
+class Step3(StepTemplateEcho):
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
 
@@ -158,12 +158,12 @@ class Step3(StepTemplate):
             "\nRespond with one of the following options using the "
             "{{lb:echo}} command and option number.\n"
         ]
-        StepTemplate.__init__(self)
+        StepTemplateEcho.__init__(self)
 
     def check_command(self):
         if self.last_user_input == "echo 1":  # Disappeared in front of me
             # go to next step
-            return StepTemplate.check_command(self)
+            return StepTemplateEcho.check_command(self)
 
         elif self.last_user_input == "echo 2":  # I didn't see him
             hint = (
@@ -190,7 +190,7 @@ class Step3(StepTemplate):
         Step4()
 
 
-class Step4(StepTemplate):
+class Step4(StepTemplateEcho):
     print_text = [
         "{{yb:\"I'm sorry, he disappeared in front of me.\"}}"
     ]

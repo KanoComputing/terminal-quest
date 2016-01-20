@@ -36,6 +36,7 @@ class Step1(StepCat):
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat alarm"
+    highlighted_commands = ['cat']
     hints = "{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}"
 
     def next(self):

@@ -136,6 +136,7 @@ class Step4(StepTemplateMkdir):
     commands = [
         "mkdir igloo"
     ]
+    highlighted_commands = ['mkdir']
 
     def block_command(self):
         return unblock_commands_with_mkdir_hint(

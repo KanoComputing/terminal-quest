@@ -53,7 +53,7 @@ class Spellbook(Gtk.EventBox):
 
         self.__pack_locked_spells()
 
-    def repack_spells(self, commands):
+    def repack_spells(self, commands, highlighted):
         '''
         Takes in the list of commands, and creates the spells and
         packs them into a grid.
@@ -69,7 +69,7 @@ class Spellbook(Gtk.EventBox):
 
         for command in commands:
             if (left + 1) * (self.CMD_WIDTH + 20) < self.win_width:
-                box = self.__create_spell(command)
+                box = self.__create_spell(command, highlighted=command in highlighted)
                 child = self.grid.get_child_at(left, 0)
                 self.grid.remove(child)
                 self.grid.attach(box, left, 0, 1, 1)
@@ -77,7 +77,7 @@ class Spellbook(Gtk.EventBox):
 
         self.show_all()
 
-    def __create_spell(self, name, locked=False, highlight=True):
+    def __create_spell(self, name, locked=False, highlighted=False):
         '''
         Create the individual GUI for a spell.
         To create the icon, have the icon located at
@@ -100,6 +100,7 @@ class Spellbook(Gtk.EventBox):
         box.set_margin_bottom(10)
 
         icon_overlay = Gtk.Overlay()
+        icon_overlay.set_size_request(80, 50)
         icon_overlay.set_opacity(0.99)
         if name != '...':
             icon_overlay.set_tooltip_markup(get_ascii_art(name + '_tooltip'))
@@ -123,15 +124,16 @@ class Spellbook(Gtk.EventBox):
         else:
             filename = os.path.join(images_dir, name + ".png")
 
-            if highlight and (name == 'nano' or name == 'ls'):
+            if highlighted:
                 highlight_box = Gtk.EventBox()
                 highlight_box.add(Gtk.Image.new_from_file(
                     os.path.join(images_dir, "overlay.gif")
                 ))
-                icon_overlay.add_overlay(highlight_box)
+                icon_background.add(highlight_box)
 
-        icon = Gtk.Image.new_from_file(filename)
-        icon_background.add(icon)
+        icon_box = Gtk.EventBox()
+        icon_box.add(Gtk.Image.new_from_file(filename))
+        icon_overlay.add_overlay(icon_box)
 
         label = Gtk.Label(name)
         label.get_style_context().add_class("spell_command")
