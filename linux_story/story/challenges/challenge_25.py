@@ -27,14 +27,14 @@ class Step1(StepTemplateMkdir):
         "\nHe seems pretty enthusiastic about it. {{lb:Examine}} the tool "
         "{{lb:best-shed-maker-in-the-world.sh}}",
 
-        "\n{{gb:Use {{ob:TAB}} to speed up your typing.}}"
+        "\n{{gb:Use}} {{ob:TAB}} {{gb:to speed up your typing.}}"
     ]
 
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east/shed-shop"
 
     hints = [
-        "{{rb:Use}} {{lb:cat}} {{rb:to examine the}} "
+        "{{rb:Use}} {{yb:cat}} {{rb:to examine the}} "
         "{{lb:best-shed-maker-in-the-world.sh}}",
 
         "{{rb:Use}} {{yb:cat best-shed-maker-in-the-world.sh}} "
@@ -74,7 +74,7 @@ class Step2(StepTemplateMkdir):
         "{{Bb:Try it out! Use it with}} "
         "{{yb:./best-shed-maker-in-the-world.sh}}",
 
-        "\n{{gb:Use {{ob:TAB}} to speed up your typing.}}"
+        "\n{{gb:Use}} {{ob:TAB}} {{gb:to speed up your typing.}}"
     ]
 
     start_dir = "~/town/east/shed-shop"
@@ -173,7 +173,7 @@ class Step5(StepTemplateMkdir):
         "\n{{lb:Examine best-horn-in-the-world.sh}} and see if you "
         "can identify the problem.",
 
-        "{{gb:Remember to use {{ob:TAB}}!}}"
+        "{{gb:Remember to use}} {{ob:TAB}}{{gb:!}}"
     ]
 
     start_dir = "~/town/east/shed-shop"
@@ -183,7 +183,7 @@ class Step5(StepTemplateMkdir):
     ]
 
     hints = [
-        "{{rb:Use}} {{lb:cat}} {{rb:to examine the tool.}}",
+        "{{rb:Use}} {{yb:cat}} {{rb:to examine the tool.}}",
         "{{rb:Use}} {{yb:cat best-horn-in-the-world.sh}} {{rb:to examine the "
         "tool.}}"
     ]

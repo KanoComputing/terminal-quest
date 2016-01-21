@@ -29,7 +29,7 @@ class Step1(StepCat):
         "There's your {{bb:bed}}, an {{bb:alarm}}... ",
         "Euuughh...turn that {{bb:alarm}} off! ",
         "+--------------------------------------------------------------+",
-        "| {{gb:New Spell}}: to {{lb:examine}} objects, type {{yb:cat}} and the object name. | " \
+        "| {{gb:New Spell}}: to {{lb:examine}} objects, type {{yb:cat and the object name. | " \
         "+--------------------------------------------------------------+ ",
         "\nUse {{yb:cat alarm}} to {{lb:examine}} the {{bb:alarm}}."
     ] 

@@ -19,16 +19,16 @@ class StepTemplateEcho(TerminalEcho):
 
 class Step1(StepTemplateEcho):
     story = [
-        "Woah! You spoke aloud into the empty room!",
-        "{{gb:You learnt the new skill echo!}}",
+        "Woah! You spoke aloud into the empty room!\n",
+        "{{gb:You learnt the new skill echo!}}\n",
         "This command can probably be used to talk to people.",
 
-        "\nNow let's head to ~ to find that farm!",
-        "Type {{yb:cd}} by itself to go to the Windy Road {{lb:~}}"
+        "\nNow let's head to {{bb:~}} to find that farm!",
+        "Type {{yb:cd}} by itself to go to the Windy Road {{bb:~}}"
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:cd}} {{rb:by itself to go to}} {{lb:~}}"
+        "{{rb:Use}} {{yb:cd}} {{rb:by itself to go to}} {{bb:~}}"
     ]
 
     start_dir = "~/my-house/parents-room"
@@ -44,7 +44,7 @@ class Step1(StepTemplateEcho):
 class Step2(StepTemplateEcho):
     story = [
         "You are back on the windy road, which stretches endlessly in both "
-        "directions. {{lb:Look around.}}"
+        "directions. \n{{lb:Look around.}}"
     ]
     hints = [
         "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
@@ -64,7 +64,7 @@ class Step2(StepTemplateEcho):
 class Step3(StepTemplateEcho):
     story = [
         "You notice a small remote farm in the distance.",
-        "{{lb:Let's go}} to the {{lb:farm}}."
+        "{{lb:Let's go}} to the {{bb:farm}}."
     ]
 
     start_dir = "~"
@@ -99,7 +99,7 @@ class Step5(StepTemplateEcho):
         "You are in a farm, with a {{bb:barn}}, a {{bb:farmhouse}} and "
         "a large {{bb:toolshed}} in sight.",
         "The land is well tended and weed free, so there must "
-        "be people about here.",
+        "be people about here.\n",
         "{{lb:Look around}} and see if you can "
         "find someone to talk to."
     ]
@@ -131,7 +131,7 @@ class Step5(StepTemplateEcho):
                 )
             if self.counter == 2:
                 self.send_text(
-                    "\n{{rb:Have you looked in the}} {{lb:barn}} {{rb:yet?}}"
+                    "\n{{rb:Have you looked in the}} {{bb:barn}} {{rb:yet?}}"
                 )
             elif self.counter == 1:
                 self.send_text(
@@ -153,8 +153,8 @@ class Step5(StepTemplateEcho):
 class Step6(StepTemplateEcho):
 
     story = [
-        "In the barn, you see a woman tending some animals.",
-        "{{lb:Walk}} into the {{lb:barn}} so you can have a closer look."
+        "In the {{bb:barn}}, you see a woman tending some animals.",
+        "{{lb:Walk}} into the {{bb:barn}} so you can have a closer look."
     ]
 
     start_dir = "~/farm"
@@ -175,8 +175,8 @@ class Step7(StepTemplateEcho):
     story = [
         # "In the barn, you see a woman tending some animals.",
         # "You walk into the barn to have a closer look.",
-        "{{lb:Examine}} everyone in the barn using "
-        "the {{lb:cat}} command."
+        "{{lb:Examine}} everyone in the {{bb:barn}} using "
+        "the {{yb:cat}} command."
     ]
 
     # what is this?

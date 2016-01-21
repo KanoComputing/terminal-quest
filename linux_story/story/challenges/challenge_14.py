@@ -145,7 +145,7 @@ class Step3(StepTemplateMv):
     story = [
         "\nNow we want to head back to the {{bb:.hidden-shelter}} with the "
         "basket.",
-        "{{lb:Move}} the {{lb:basket}} back to {{lb:~}}.\n"
+        "{{lb:Move}} the {{lb:basket}} back to {{bb:~}}.\n"
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
@@ -224,8 +224,7 @@ class Step5(StepTemplateMv):
 
 class Step6(StepTemplateMv):
     story = [
-        "{{gb:Nearly there!}} Finally {{lb:go}} into "
-        "{{lb:town/.hidden-shelter}} using {{lb:cd}}.\n",
+        "{{lb:Enter}} the {{bb:town/.hidden-shelter}} using {{yb:cd}}.\n",
     ]
 
     start_dir = "~"
@@ -252,13 +251,13 @@ class Step6(StepTemplateMv):
 
 class Step7(StepTemplateMv):
     story = [
-        "{{wn:Check on everyone with}} {{lb:cat}} {{wn:to see if "
+        "{{wn:Check on everyone with}} {{yb:cat {{wn:to see if "
         "they're happy with the food.}}\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
     hints = [
-        "{{rb:Check on everyone using}} {{yb:cat}}"
+        "{{rb:Check on everyone using}} {{yb:cat"
     ]
     allowed_commands = {
         "cat Edith": (
@@ -293,7 +292,7 @@ class Step7(StepTemplateMv):
             num_people = len(self.allowed_commands.keys())
 
             if num_people == 0:
-                hint += '\n{{gb:Press {{ob:Enter}} to continue.}}'
+                hint += '\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}'
 
             # If the hint is not empty
             elif hint:

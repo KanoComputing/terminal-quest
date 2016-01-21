@@ -27,7 +27,7 @@ class StepTemplateCd(TerminalCd):
 
 class Step1(StepTemplateCd):
     story = [
-        "That's weird. No time for that now though - lets find {{lb:Mum}}.\n ",
+        "That's weird. No time for that now though - lets find {{bb:Mum}}.\n ",
         "+---------------------------------------------+",
         "| {{gb:New Spell}}: {{yb:cd}} lets you {{lb:move}} between places. | " \
         "+---------------------------------------------+ ",
@@ -86,7 +86,7 @@ class Step3(StepTemplateCd):
         "What was that?  A bell?  That's a bit odd.",
         "You see the door to your {{bb:kitchen}}, and hear the sound of "
         "cooking.",
-        "Sounds like someone is preparing breakfast!",
+        "Sounds like someone is preparing breakfast!\n",
         "To {{lb:go inside the kitchen}}, use {{yb:cd kitchen}}"
     ]
     start_dir = "~/my-house"
@@ -106,7 +106,7 @@ class Step3(StepTemplateCd):
 class Step4(StepTemplateCd):
     story = [
         "Great, you're in the kitchen.",
-        "{{lb:Look}} for {{lb:Mum}} using {{yb:ls}}."
+        "{{lb:Look}} for {{bb:Mum}} using {{yb:ls}}."
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
@@ -121,8 +121,8 @@ class Step5(StepTemplateCd):
     story = [
         "You see her busily working in a cloud of steam.",
 
-        "Let's {{lb:listen}} to what {{lb:Mum}} has to say by "
-        "using {{lb:cat}}."
+        "Let's {{lb:listen}} to what {{bb:Mum}} has to say by "
+        "using {{yb:cat}}."
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"

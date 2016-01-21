@@ -27,7 +27,7 @@ class Step1(StepTemplateEcho):
     story = [
         "Ruth: {{Bb:You startled me!",
         "Do I know you?  You look familiar...",
-        "Wait, you're}} {{lb:Mum}}{{Bb:'s kid, aren't you!",
+        "Wait, you're}} {{bb:Mum}}{{Bb:'s kid, aren't you!",
         "..."
         "Yes?  Do you have a tongue?",
         "Is your name not}} {{yb:" + username + "}}{{Bb:?}}",

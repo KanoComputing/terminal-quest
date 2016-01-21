@@ -95,7 +95,7 @@ class Step4(StepTemplateNano):
         "cat photocopier.sh"
     ]
     hints = [
-        "{{rb:Use}} {{lb:cat}} {{rb:to examine the objects around you.}}"
+        "{{rb:Use}} {{yb:cat}} {{rb:to examine the objects around you.}}"
     ]
 
     def check_command(self):

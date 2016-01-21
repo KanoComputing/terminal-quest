@@ -58,7 +58,7 @@ class Step3(StepTemplateCat):
     story = [
         "Why is it covered in pawprints?",
         "Hang on, can you see that? There's a {{lb:note}} amongst your books.",
-        "{{lb:Read}} the note using {{lb:cat}}.\n"
+        "{{lb:Read}} the note using {{yb:cat}}.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"

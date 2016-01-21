@@ -22,7 +22,7 @@ class Step1(StepTemplateMkdir):
         "\nRuth: {{Bb:Thank you so much!}}",
         "{{Bb:We'll stay in here to keep safe. I'm so grateful to everything "
         "you've done.}}",
-        "\nUse {{lb:cat}} to check that the animals are happy in here."
+        "\nUse {{yb:cat}} to check that the animals are happy in here."
     ]
 
     start_dir = "~/farm/barn/.shelter"
@@ -34,7 +34,7 @@ class Step1(StepTemplateMkdir):
         "cat Cobweb"
     ]
     hints = [
-        "{{rb:Use}} {{lb:cat}} {{rb:to examine an animal, e.g.}} "
+        "{{rb:Use}} {{yb:cat}} {{rb:to examine an animal, e.g.}} "
         "{{yb:cat Daisy}}{{rb:.}}"
     ]
 

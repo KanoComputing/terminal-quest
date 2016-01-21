@@ -172,7 +172,7 @@ class Step6(StepTemplateNano):
     end_dir = "~/town/east/restaurant/.cellar"
 
     hints = [
-        "{{rb:Use}} {{lb:cat}} {{rb:to listen what she has to say.}}",
+        "{{rb:Use}} {{yb:cat}} {{rb:to listen what she has to say.}}",
         "{{rb:Use}} {{yb:cat Clara}} {{rb:to listen to Clara.}}"
     ]
 

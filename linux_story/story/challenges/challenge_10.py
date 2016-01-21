@@ -26,7 +26,7 @@ class StepTemplateCd(TerminalCd):
 class Step1(StepTemplateCd):
     story = [
         "You're in your house. You appear to be alone.",
-        "Use {{lb:cat}} to {{lb:examine}} some of the objects around you.\n"
+        "Use {{yb:cat}} to {{lb:examine}} some of the objects around you.\n"
     ]
     allowed_commands = [
         "cat banana",
@@ -71,7 +71,7 @@ class Step1(StepTemplateCd):
         else:
             if self.first_time:
                 hint = (
-                    "\n{{rb:Use}} {{lb:cat}} {{rb:to look at two of the "
+                    "\n{{rb:Use}} {{yb:cat}} {{rb:to look at two of the "
                     "objects around you.}}"
                 )
             else:
@@ -181,8 +181,8 @@ class Step4(StepTemplateCd):
         "The place appears to be deserted.",
         "However, you think you hear whispers.",
         # TODO make this writing small
-        "\n{{Bn:\".....if they use}} {{yb:ls -a}}{{Bn:, they'll see us...\"}}",
-        "{{Bn:\"..Shhh! ...might hear....\"}}\n"
+        "\n{{wb:?:}} {{Bn:\".....if they use}} {{yb:ls -a}}{{Bn:, they'll see us...\"}}",
+        "{{wb:?:}} {{Bn:\"..Shhh! ...might hear....\"}}\n"
     ]
     start_dir = "~/town"
     end_dir = "~/town"

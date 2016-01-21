@@ -36,7 +36,7 @@ class StepTemplateMv(TerminalMv):
 class Step1(StepTemplateCd):
     story = [
         "You see a group of scared looking people and a dog.",
-        "{{lb:Listen}} to what they have to say with {{lb:cat}}.\n"
+        "{{lb:Listen}} to what they have to say with {{yb:cat}}.\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
@@ -85,7 +85,7 @@ class Step1(StepTemplateCd):
                     str(len(self.all_commands)) + \
                     " more.}}\n"
             else:
-                hint += "\n{{gb:Press {{ob:Enter}} to continue.}}"
+                hint += "\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}"
 
             self.send_text(hint)
 

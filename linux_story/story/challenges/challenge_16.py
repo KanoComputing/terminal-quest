@@ -55,7 +55,7 @@ class Step2(StepTemplateMv):
     story = [
         "There are some rolls of parchment, similar to what you found in "
         "the {{bb:.hidden-shelter}}",
-        "Use {{lb:cat}} to {{lb:read}} one of the scrolls.\n"
+        "Use {{yb:cat}} to {{lb:read}} one of the scrolls.\n"
     ]
 
     start_dir = "~/my-house/my-room"
@@ -83,7 +83,7 @@ class Step3(StepTemplateMv):
         "Maybe you should {{lb:move}} the one you found in the "
         "{{lb:~/town/.hidden-shelter/.tiny-chest}} to this {{lb:.chest}}, "
         "so they're all safe and in the same place.",
-        "\n{{gb:Use the {{ob:TAB}} key to complete the file paths - it will save you "
+        "\n{{gb:Use the}} {{ob:TAB}} {{gb:key to complete the file paths - it will save you "
         "typing!}}\n"
     ]
 

@@ -55,7 +55,7 @@ class Step3(StepTemplateCd):
         "people looking into the disappearances, and we're hoping to "
         "have an explanation soon.\"}}\n",
         "Something strange is happening. Better check everyone is ok.",
-        "Type {{lb:cat}} to check on the people."
+        "Type {{yb:cat}} to check on the people."
     ]
     start_dir = "~/town"
     end_dir = "~/town"

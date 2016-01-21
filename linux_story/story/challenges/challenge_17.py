@@ -28,10 +28,10 @@ class StepTemplateEcho(TerminalEcho):
 class Step1(StepTemplateMv):
     story = [
         "You are in your room, standing in front of the {{bb:.chest}} "
-        "containing all the commands you've learned so far.",
-        "Maybe something else is hidden in the house?",
+        "containing all the commands you've learned so far.\n",
+        "Maybe something else is hidden in the house?\n",
         "{{lb:Look}} in the hallway {{lb:behind you}}. Remember, "
-        "behind you is {{lb:..}} or {{lb:../}}"
+        "behind you is {{lb:..}}"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -132,9 +132,9 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "There's a {{lb:.safe}}!",
+        "There's a {{bb:.safe}}!",
         "Maybe there's something useful in here. {{lb:Look inside}} the "
-        "{{lb:.safe}}."
+        "{{bb:.safe}}."
     ]
 
     commands = [
@@ -180,14 +180,14 @@ class CheckDiaryStep(StepTemplateMv):
 
 class Step5(CheckDiaryStep):
     story = [
-        "So you found your {{lb:Mum's}} diary?",
-        "You probably shouldn't read it...",
-        "What else is here?  Let's {{lb:examine}} that {{lb:map}}."
+        "So you found your {{bb:Mum's diary}}?",
+        "You probably shouldn't read it...\n",
+        "What else is here?  Let's {{lb:examine}} that {{bb:map}}."
     ]
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
     hints = [
-        "{{rb:Use}} {{lb:cat}} {{rb:to read the}} {{lb:map}}{{rb:.}}",
+        "{{rb:Use}} {{yb:cat}} {{rb:to read the}} {{lb:map}}{{rb:.}}",
         "{{rb:Use}} {{yb:cat .safe/map}} {{rb:to read the map.}}"
     ]
 
@@ -208,7 +208,7 @@ class Step6(CheckDiaryStep):
     end_dir = "~/my-house/parents-room"
     commands = "cat .safe/ECHO"
     hints = [
-        "{{rb:Use the}} {{lb:cat}} {{rb:command to read the}} {{lb:ECHO}} "
+        "{{rb:Use the}} {{yb:cat}} {{rb:command to read the}} {{lb:ECHO}} "
         "{{rb:note.}}",
         "{{rb:Use}} {{yb:cat .safe/ECHO}} {{rb:to read the note.}}"
     ]

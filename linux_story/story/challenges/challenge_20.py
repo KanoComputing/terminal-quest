@@ -108,7 +108,7 @@ class Step3(StepTemplateEcho):
         "\n{{lb:Examine}} the {{lb:MKDIR}} instructions."
     ]
     hints = [
-        "Ruth: {{Bb:\"...you are able to read, yes? You use}} {{lb:cat}} "
+        "Ruth: {{Bb:\"...you are able to read, yes? You use}} {{yb:cat}} "
         "{{Bb:to read things.\"}}",
         "Ruth: {{Bb:\"What do you kids learn in schools nowadays...\""
         "\n\"Just use}} {{yb:cat MKDIR}} {{Bb:to read the paper.\"}}",
