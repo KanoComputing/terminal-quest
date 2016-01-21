@@ -26,10 +26,10 @@ class StepTemplateCd(TerminalCd):
 class Step1(StepTemplateCd):
     story = [
         "{{wb:Mum:}} {{Bb:\"Hi sleepyhead, breakfast is nearly ready. "
-        " Can you go and grab your {{bb:Dad}}?"
+        "Can you go and grab your Dad?"
         " I think he's in the}} {{bb:garden}}{{Bb:.\"}}\n",
-        "Let's look for your {{bb:Dad}} in the {{bb:garden}}.",
-        "First we need to {{lb:leave}} the kitchen using {{yb:cd ..}}\n"
+        "Let's look for your {{bb:Dad}} in the {{bb:garden}}.\n",
+        "First we need to {{lb:leave}} the {{bb:kitchen}} using {{yb:cd ..}}\n"
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house"
@@ -81,7 +81,7 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "Use {{yb:ls}} to {{lb:look}} in the garden for your {{bb:Dad}}.\n"
+        "Use {{yb:ls}} to {{lb:look}} in the {{bb:garden}} for your {{bb:Dad}}.\n"
     ]
     start_dir = "~/my-house/garden"
     end_dir = "~/my-house/garden"
@@ -99,7 +99,7 @@ class Step5(StepTemplateCd):
         "The {{bb:garden}} looks beautiful at this time of year.",
         "Hmmm...but you can't see him anywhere.",
         "Maybe he's in the {{bb:greenhouse}}.",
-        "\n{{lb:Go}} inside the {{lb:greenhouse}}.\n"
+        "\n{{lb:Go}} inside the {{bb:greenhouse}}.\n"
     ]
     start_dir = "~/my-house/garden"
     end_dir = "~/my-house/garden/greenhouse"
@@ -131,8 +131,8 @@ class Step6(StepTemplateCd):
 class Step7(StepTemplateCd):
     story = [
         "Your {{bb:Dad}} has been busy, there are loads of vegetables here.",
-        "Hmmmm. He's not here. But there is something odd.",
-        "You see a note on the ground. Use {{yb:cat note}} to "
+        "Hmmmm. He's not here. But there is something odd.\n",
+        "You see a {{bb:note}} on the ground. Use {{yb:cat note}} to "
         "{{lb:read}} what it says.\n"
     ]
     start_dir = "~/my-house/garden/greenhouse"
@@ -166,8 +166,8 @@ class Step8(StepTemplateCd):
 class Step9(StepTemplateCd):
     story = [
         "You're back in the garden. Use {{yb:cd ..}} again to"
-        " {{lb:go back}} to the house.",
-        "{{gb:Top tip: Press the UP arrow key to replay your previous command.}}\n"
+        " {{lb:go back}} to the house.\n",
+        "{{gb:Top tip: Press the}} {{ob:UP}} {{gb:arrow key to replay your previous command.}}\n"
     ]
     start_dir = "~/my-house/garden"
     end_dir = "~/my-house"

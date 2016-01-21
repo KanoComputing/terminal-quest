@@ -60,7 +60,7 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "You've left {{bb:my-room}} and are in the hall of {{bb:my-house}}.",
+        "You've left {{bb:my-room}} and are in the hall of {{bb:my-house}}.\n",
         "{{lb:Look around}} at the different rooms using {{yb:ls}}.\n"
     ]
     start_dir = "~/my-house"
@@ -87,7 +87,7 @@ class Step3(StepTemplateCd):
         "You see the door to your {{bb:kitchen}}, and hear the sound of "
         "cooking.",
         "Sounds like someone is preparing breakfast!\n",
-        "To {{lb:go inside the kitchen}}, use {{yb:cd kitchen}}"
+        "To {{lb:go inside the}} {{bb:kitchen}}, use {{yb:cd kitchen}}"
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house/kitchen"
@@ -105,7 +105,7 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "Great, you're in the kitchen.",
+        "Great, you're in the {{bb:kitchen}}.\n",
         "{{lb:Look}} for {{bb:Mum}} using {{yb:ls}}."
     ]
     start_dir = "~/my-house/kitchen"

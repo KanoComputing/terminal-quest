@@ -26,8 +26,8 @@ class StepTemplateCat(TerminalCat):
 class Step1(StepTemplateCat):
     story = [
         "Love it! Put it on quickly.",
-        "There's loads more interesting stuff in your room.",
-        "Let's {{lb:look}} in your {{lb:shelves}} using {{lb:ls}}.\n"
+        "There's loads more interesting stuff in your room.\n",
+        "Let's {{lb:look}} in your {{bb:shelves}} using {{yb:ls}}.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -57,8 +57,8 @@ class Step2(StepTemplateCat):
 class Step3(StepTemplateCat):
     story = [
         "Why is it covered in pawprints?",
-        "Hang on, can you see that? There's a {{lb:note}} amongst your books.",
-        "{{lb:Read}} the note using {{yb:cat}}.\n"
+        "Hang on, can you see that? There's a {{bb:note}} amongst your books.\n",
+        "{{lb:Read}} the {{bb:note}} using {{yb:cat}}.\n"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"

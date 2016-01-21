@@ -26,7 +26,7 @@ class StepTemplateCd(TerminalCd):
 
 class Step1(StepTemplateCd):
     story = [
-        "Oh no! Check your {{bb:Mum}} is alright.",
+        "Oh no! Check your {{bb:Mum}} is alright.\n",
         "Type {{yb:cd ..}} to leave {{bb:town}}."
     ]
     start_dir = "~/town"
@@ -49,7 +49,7 @@ class Step2(StepTemplateCd):
         "{{pb:Ding. Dong.}}\n",
 
         "Type {{yb:cd my-house/kitchen}} to go straight to the "
-        "{{bb:kitchen}}.",
+        "{{bb:kitchen}}.\n",
 
         "{{gb:Press}} {{ob:TAB}} {{gb:to speed up your typing!}}"
     ]
@@ -80,7 +80,7 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "Take a look around to make sure everything is OK."
+        "Take a {{lb:look around}} to make sure everything is OK."
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
@@ -96,9 +96,9 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "Oh no - {{bb:Mum's}} vanished too!",
-        "Wait, there's another {{lb:note}}.",
-        "Use {{yb:cat}} to {{lb:read}} the {{lb:note}}."
+        "Oh no - {{bb:Mum}} has vanished too!",
+        "Wait, there's another {{bb:note}}.\n",
+        "Use {{yb:cat}} to {{lb:read}} the {{bb:note}}."
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"

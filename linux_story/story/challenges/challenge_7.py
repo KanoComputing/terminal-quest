@@ -37,7 +37,7 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "Wow, there's so many people here. Find the {{lb:Mayor}} and "
+        "Wow, there's so many people here. Find the {{bb:Mayor}} and "
         "{{lb:listen}} to what he has to say."
     ]
     start_dir = "~/town"
@@ -111,7 +111,7 @@ class Step3(StepTemplateCd):
                     str(len(self.all_commands)) + \
                     " more people.}}\n"
             else:
-                hint += "\n{{gb:Press {{ob:Enter}} to continue.}}"
+                hint += "\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}"
 
             self.send_text(hint)
 

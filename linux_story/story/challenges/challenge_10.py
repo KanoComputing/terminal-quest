@@ -95,8 +95,8 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCd):
     story = [
         "There doesn't seem to be anything here but loads of food.",
-        "See if you can find something back in {{bb:town}}.",
-        "First, use {{yb:cd ..}} to {{lb:leave}} the kitchen.\n"
+        "See if you can find something back in {{bb:town}}.\n",
+        "First, use {{yb:cd ..}} to {{lb:leave}} the {{bb:kitchen}}.\n"
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/town"
@@ -130,7 +130,7 @@ class Step2(StepTemplateCd):
                     self.last_user_input == 'cd ../':
                 hint = (
                     "\n{{gb:Good work! Now replay the last command using "
-                    "the UP arrow on your keyboard.}}"
+                    "the}} {{ob:UP}} {{gb:arrow on your keyboard.}}"
                 )
 
             # Otherwise, give them a hint
@@ -144,7 +144,7 @@ class Step2(StepTemplateCd):
             # then they used an appropriate command
             if self.num_turns_in_home_dir == 0:
                 hint = (
-                    "\n{{gb:Good work! Now use}} {{yb:cd town}} {{gb: "
+                    "\n{{gb:Good work! Now use}} {{yb:cd town}} {{gb:"
                     "to head to town.}}"
                 )
 
@@ -198,8 +198,8 @@ class Step4(StepTemplateCd):
 
 class Step5(StepTemplateCd):
     story = [
-        "You see a {{bb:.hidden-shelter}} that you didn't notice before.",
-        "{{gb:Something that starts with . is normally hidden from view.}}",
+        "You see a {{bb:.hidden-shelter}} that you didn't notice before.\n",
+        "{{gb:Something that starts with . is normally hidden from view.\n}}",
         "It sounds like the whispers are coming from there. Try going in.\n"
     ]
     start_dir = "~/town"

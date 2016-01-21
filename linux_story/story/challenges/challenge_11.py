@@ -35,7 +35,7 @@ class StepTemplateMv(TerminalMv):
 # The next few steps should be like the disappearing of people in the town
 class Step1(StepTemplateCd):
     story = [
-        "You see a group of scared looking people and a dog.",
+        "You see a group of scared looking people and a {{bb:dog}}.\n",
         "{{lb:Listen}} to what they have to say with {{yb:cat}}.\n"
     ]
     start_dir = "~/town/.hidden-shelter"
