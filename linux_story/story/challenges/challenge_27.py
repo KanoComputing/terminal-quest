@@ -54,10 +54,12 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateNano):
     story = [
-        "Bernard: {{Bb:Hellooooo. You came back to fix my script!}}",
-
-        "Let's try and use {{yb:nano best-horn-in-the-world.sh}} to "
-        "edit it."
+        "Bernard: {{Bb:Hellooooo. You came back to fix my script!}}\n ",
+        "+--------------------------------------------------------+",
+        "| {{gb:New Spell}}: {{yb:nano}} followed by an object lets you {{lb:edit}} it | " \
+        "+--------------------------------------------------------+ ",
+        "\nLet's try and use {{yb:nano best-horn-in-the-world.sh}} to edit it.",
+        
     ]
 
     start_dir = "~/town/east/shed-shop"
@@ -208,7 +210,7 @@ class Step5(StepTemplateNano):
 
     hints = [
         "{{rb:Use}} {{lb:cd}} {{rb:to leave the shed-shop.}}",
-        "{{rb:Use}} {{yb:cd ../}} {{rb:to go}} {{lb:back}} {{rb:to town.}}",
+        "{{rb:Use}} {{yb:cd ..}} {{rb:to go}} {{lb:back}} {{rb:to town.}}",
     ]
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east"

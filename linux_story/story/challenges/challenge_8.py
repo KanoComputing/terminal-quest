@@ -55,7 +55,7 @@ class Step1(StepTemplateCd):
         StepTemplateCd.__init__(self, xp)
 
     def next(self):
-        # This was the code we had originally.  Did the bell ring properly?
+        # This was the code we had originally. Did the bell ring properly?
         Step2()
 
 
@@ -67,7 +67,7 @@ class Step2(StepTemplateCdBell):
         "{{Bb:Did you hear the bell just before he vanished??}}",
         "{{wb:Young-girl:}} {{Bb:I'm scared...}}",
         "\n{{pb:Ding. Dong.}}\n",
-        "{{wb:Young-girl:}} {{Bb:Oh!  I heard it go again!}}",
+        "{{wb:Young-girl:}} {{Bb:Oh! I heard it go again!}}",
         "\nTake a {{lb:look around}} you to check."
     ]
     start_dir = "~/town"

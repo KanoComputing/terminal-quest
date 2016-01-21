@@ -224,7 +224,7 @@ class Step4(StepTemplateEcho):
             response = (
                 "Ruth: {{Bb:\"I would, but I'm scared of going missing myself."
                 "\nHe might come back, so I should stay "
-                "here in case he does.  Can you think of anything "
+                "here in case he does. Can you think of anything "
                 "else?\"}}"
             )
             self.send_hint(response)

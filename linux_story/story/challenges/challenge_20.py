@@ -38,16 +38,16 @@ class Step1(StepTemplateEcho):
     end_dir = "~/farm/toolshed"
     hints = [
         "{{rb:Go to the toolshed in one step"
-        " using}} {{yb:cd ../toolshed/}}"
+        " using}} {{yb:cd ../toolshed}}"
     ]
 
     path_hints = {
         "~/farm/barn": {
-            "blocked": "\n{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
+            "blocked": "\n{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}"
         },
         "~/farm": {
             "not_blocked": "\n{{gb:Good work! Now go into the}} {{lb:toolshed}}{{gb:.}}",
-            "blocked": "\n{{rb:Use}} {{yb:cd toolshed/}} {{rb:to go in the toolshed.}}"
+            "blocked": "\n{{rb:Use}} {{yb:cd toolshed}} {{rb:to go in the toolshed.}}"
         }
     }
 
@@ -125,8 +125,12 @@ class Step3(StepTemplateEcho):
 class Step4(StepTemplateMkdir):
     story = [
         "Ruth: {{Bb:This says you can make something using something "
-        "called}} {{lb:mkdir}}{{Bb:?}}",
-        "\n{{gb:Try making an igloo using}} {{yb:mkdir igloo}}"
+        "called}} {{yb:mkdir}}{{Bb:?}}",
+        "\nTry making an igloo using {{yb:mkdir igloo}}\n ",
+        "+---------------------------------------------------------------+",
+        "| {{gb:New Spell}}: {{yb:mkdir}} followed by a word lets you {{lb:create}} a shelter | " \
+        "+---------------------------------------------------------------+ "
+        
     ]
     hints = [
         "{{rb:Create an igloo structure by using}} {{yb:mkdir igloo}}\n"

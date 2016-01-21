@@ -116,7 +116,7 @@ class Step4(StepTemplateMv):
         "You have your basket safely alongside you, and "
         "you see {{bb:my-house}} close by.",
         "Move the {{lb:basket}} to {{lb:my-house/kitchen}}.",
-        "Don't forget to use the TAB key to autocomplete your commands.\n"
+        "Don't forget to use the {{ob:TAB}} key to autocomplete your commands.\n"
     ]
 
     start_dir = "~"
@@ -157,7 +157,7 @@ class Step5(StepTemplateMv):
         "cd ~/my-house/kitchen/"
     ]
     hints = [
-        "{{rb:Use}} {{yb:cd my-house/kitchen/}} "
+        "{{rb:Use}} {{yb:cd my-house/kitchen}} "
         "{{rb:to go to your kitchen.}}",
     ]
     last_step = True

@@ -101,7 +101,7 @@ story_replies = {
                 "It was "
                 "assumed he had died. I saw him leave the library the day "
                 "he went missing, "
-                "he left in a hurry.  He looked absolutely terrified.}}"
+                "he left in a hurry. He looked absolutely terrified.}}"
             )
         }
     ]
@@ -197,7 +197,7 @@ class Step1(StepNanoStory):
 
         "\nEleanor: {{Bb:Hello! I'm Eleanor, and this is}} {{gb:" +
         os.environ["LOGNAME"] + "}}{{Bb:.}}",
-        "{{Bb:I recognise you!  You used to work in the library!}}",
+        "{{Bb:I recognise you! You used to work in the library!}}",
 
         "\nClara: {{Bb:...ah, Eleanor! Yes, I remember you, you used to "
         "come in almost everyday.}}",
@@ -250,7 +250,7 @@ class Step4(StepNanoStory):
         "{{lb:Windy Road}}{{Bb:? The one "
         "near the farm and that funny lonely house outside town.}}",
 
-        "\n{{gb:Press ENTER to continue.}}"
+        "\n{{gb:Press {{ob:Enter}} to continue.}}"
     ]
 
     eleanors_speech = (

@@ -83,7 +83,7 @@ class Step3(StepTemplateMv):
         "Maybe you should {{lb:move}} the one you found in the "
         "{{lb:~/town/.hidden-shelter/.tiny-chest}} to this {{lb:.chest}}, "
         "so they're all safe and in the same place.",
-        "\n{{gb:Use the TAB key to complete the file paths - it will save you "
+        "\n{{gb:Use the {{ob:TAB}} key to complete the file paths - it will save you "
         "typing!}}\n"
     ]
 

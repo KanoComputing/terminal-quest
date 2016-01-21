@@ -116,7 +116,7 @@ class Step2(StepTemplateMv):
             for item in all_items:
                 self.passable_items.remove(item)
 
-            hint = '\n{{gb:Well done!  Keep going.}}'
+            hint = '\n{{gb:Well done! Keep going.}}'
 
         else:
             hint = '{{rb:Try using}} {{yb:mv %s basket/}}' \
@@ -237,7 +237,7 @@ class Step6(StepTemplateMv):
         "cd ~/town/.hidden-shelter/"
     ]
     hints = [
-        "{{rb:Use}} {{yb:cd town/.hidden-shelter/}} "
+        "{{rb:Use}} {{yb:cd town/.hidden-shelter}} "
         "{{rb:to be reunited with the family.}}",
     ]
 
@@ -271,7 +271,7 @@ class Step7(StepTemplateMv):
             "someone would help us.}}\n"
         ),
         "cat Edward": (
-            "\n{{wb:Edward:}} {{Bb:Thank you!  I knew you would come "
+            "\n{{wb:Edward:}} {{Bb:Thank you! I knew you would come "
             "through for us. You really are a hero!}}\n"
         ),
         "cat dog": (
@@ -293,7 +293,7 @@ class Step7(StepTemplateMv):
             num_people = len(self.allowed_commands.keys())
 
             if num_people == 0:
-                hint += '\n{{gb:Press Enter to continue.}}'
+                hint += '\n{{gb:Press {{ob:Enter}} to continue.}}'
 
             # If the hint is not empty
             elif hint:

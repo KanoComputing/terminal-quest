@@ -30,7 +30,7 @@ class Step1(StepTemplateMv):
         "You are in your room, standing in front of the {{bb:.chest}} "
         "containing all the commands you've learned so far.",
         "Maybe something else is hidden in the house?",
-        "{{lb:Look}} in the hallway {{lb:behind you}}.  Remember, "
+        "{{lb:Look}} in the hallway {{lb:behind you}}. Remember, "
         "behind you is {{lb:..}} or {{lb:../}}"
     ]
     start_dir = "~/my-house/my-room"
@@ -82,11 +82,11 @@ class Step2(StepTemplateMv):
 
     path_hints = {
         "~/my-house/my-room": {
-            "blocked": "\n{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
+            "blocked": "\n{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}"
         },
         "~/my-house": {
             "not_blocked": "\n{{gb:Good work! Now go into your}} {{lb:parents-room}}{{gb:.}}",
-            "blocked": "\n{{rb:Use}} {{yb:cd parents-room/}} {{rb:to go in.}}"
+            "blocked": "\n{{rb:Use}} {{yb:cd parents-room}} {{rb:to go in.}}"
         }
     }
 
@@ -180,7 +180,7 @@ class CheckDiaryStep(StepTemplateMv):
 
 class Step5(CheckDiaryStep):
     story = [
-        "So you found your mum's diary?",
+        "So you found your {{lb:Mum's}} diary?",
         "You probably shouldn't read it...",
         "What else is here?  Let's {{lb:examine}} that {{lb:map}}."
     ]
@@ -219,9 +219,11 @@ class Step6(CheckDiaryStep):
 
 class Step7(StepTemplateEcho):
     story = [
-        "So the note says {{lb:echo hello - will make you say hello}}",
-        "Let's test this out. "
-        "Use the command {{yb:echo hello}}"
+        "So the note says {{Bb:\"echo hello - will make you say hello\"}}",
+        "Let's test this out. \n",
+        "+--------------------------------------------------+",
+        "| {{gb:New Spell}}: {{yb:echo}} followed by words lets you {{lb:speak}} | " \
+        "+--------------------------------------------------+ "
     ]
     hints = [
         "{{rb:Use the command}} {{yb:echo hello}}"

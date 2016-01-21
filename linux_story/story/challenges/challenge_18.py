@@ -70,7 +70,7 @@ class Step3(StepTemplateEcho):
     start_dir = "~"
     end_dir = "~/farm"
     hints = [
-        "{{rb:Use}} {{yb:cd farm/}} {{rb:to head to the farm.}}"
+        "{{rb:Use}} {{yb:cd farm}} {{rb:to head to the farm.}}"
     ]
 
     def block_command(self):
@@ -160,7 +160,7 @@ class Step6(StepTemplateEcho):
     start_dir = "~/farm"
     end_dir = "~/farm/barn"
     hints = [
-        "{{rb:Use}} {{yb:cd barn/}} {{rb:to walk into the barn.}}"
+        "{{rb:Use}} {{yb:cd barn}} {{rb:to walk into the barn.}}"
     ]
 
     def block_command(self):
@@ -234,7 +234,7 @@ class Step7(StepTemplateEcho):
                     str(len(self.all_commands)) + \
                     " more.}}"
             else:
-                hint += "\n{{gb:Press Enter to continue.}}"
+                hint += "\n{{gb:Press {{ob:Enter}} to continue.}}"
 
             self.send_text(hint)
 

@@ -111,7 +111,7 @@ class Step3(StepTemplateCd):
                     str(len(self.all_commands)) + \
                     " more people.}}\n"
             else:
-                hint += "\n{{gb:Press Enter to continue.}}"
+                hint += "\n{{gb:Press {{ob:Enter}} to continue.}}"
 
             self.send_text(hint)
 

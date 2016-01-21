@@ -102,7 +102,7 @@ class Step4(StepTemplateMv):
         "It's probably of more use to you, please take it with my thanks.}}",
         "\nMaybe you should go back to {{lb:my-house}} to look for more "
         "hidden items.",
-        "To quickly go back home, use {{yb:cd ~/my-house/}}\n"
+        "To quickly go back home, use {{yb:cd ~/my-house}}\n"
     ]
 
     start_dir = "~/town/.hidden-shelter"
@@ -112,7 +112,7 @@ class Step4(StepTemplateMv):
         'cd ~/my-house'
     ]
     hints = [
-        '{{rb:No shortcuts!  Use}} {{yb:cd ~/my-house}} '
+        '{{rb:No shortcuts! Use}} {{yb:cd ~/my-house}} '
         '{{rb:to get back to your house in one step.}}'
     ]
 

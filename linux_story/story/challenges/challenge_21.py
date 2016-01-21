@@ -40,11 +40,11 @@ class Step1(StepTemplateMkdir):
 
     path_hints = {
         "~/farm/toolshed": {
-            "blocked": "\n{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
+            "blocked": "\n{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}"
         },
         "~/farm": {
             "not_blocked": "\n{{gb:Good work! Now go into the}} {{lb:barn}}{{gb:.}}",
-            "blocked": "\n{{rb:Use}} {{yb:cd barn/}} {{rb:to go in the barn.}}"
+            "blocked": "\n{{rb:Use}} {{yb:cd barn}} {{rb:to go in the barn.}}"
         }
     }
 
@@ -190,7 +190,7 @@ class Step4(StepTemplateMkdir):
 class Step5(StepTemplateMkdir):
     story = [
         "Ruth: {{Bb:You made}} {{lb:hidden-shelter}}{{Bb:!}}",
-        "{{Bb:...The problem is, I can see it too.  I don't think it worked.",
+        "{{Bb:...The problem is, I can see it too. I don't think it worked.",
         "How else could you make something hidden?}}",
         "\n{{yb:1: If you put a . in front of the name, it makes it hidden.}}",
         "{{yb:2: You're mistaken. You can't see the hidden-shelter, it's "
@@ -366,7 +366,7 @@ class Step9(StepTemplateMkdir):
                     str(len(self.all_commands) / 2) + \
                     " more.}}"
             else:
-                hint = "\n{{gb:Press Enter to continue}}"
+                hint = "\n{{gb:Press {{ob:Enter}} to continue}}"
 
             self.send_text(hint)
 
@@ -389,7 +389,7 @@ class Step10(StepTemplateMkdir):
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn/.shelter"
     hints = [
-        "{{rb:Type}} {{yb:cd .shelter/}} {{rb:to go into the}} "
+        "{{rb:Type}} {{yb:cd .shelter}} {{rb:to go into the}} "
         "{{lb:.shelter}}{{rb:.}}"
     ]
 

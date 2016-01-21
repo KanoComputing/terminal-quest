@@ -26,13 +26,13 @@ class StepCat(TerminalCat):
 class Step1(StepCat):
     story = [
         "Awesome, now you can see the objects around you.",
-        "There's your bed, an alarm...",
-        "Euuughh...turn that alarm off!",
-        "\n{{gb:New Spell}}: to {{lb:examine}} objects, type {{lb:cat}} "
-        "and the object name.",
-        "\nUse {{yb:cat alarm}} to {{lb:examine}} the alarm.\n",
-
-    ]
+        "There's your {{bb:bed}}, an {{bb:alarm}}... ",
+        "Euuughh...turn that {{bb:alarm}} off! ",
+        "+--------------------------------------------------------------+",
+        "| {{gb:New Spell}}: to {{lb:examine}} objects, type {{yb:cat}} and the object name. | " \
+        "+--------------------------------------------------------------+ ",
+        "\nUse {{yb:cat alarm}} to {{lb:examine}} the {{bb:alarm}}."
+    ] 
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat alarm"

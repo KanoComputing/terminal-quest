@@ -25,7 +25,7 @@ class StepTemplateCd(TerminalCd):
 
 class Step1(StepTemplateCd):
     story = [
-        "You're in your house.  You appear to be alone.",
+        "You're in your house. You appear to be alone.",
         "Use {{lb:cat}} to {{lb:examine}} some of the objects around you.\n"
     ]
     allowed_commands = [
@@ -64,7 +64,7 @@ class Step1(StepTemplateCd):
             self.counter += 1
             self.allowed_commands.remove(self.last_user_input)
             hint = (
-                "\n{{gb:Well done!  Just look at one "
+                "\n{{gb:Well done! Just look at one "
                 "more item.}}"
             )
 
@@ -96,7 +96,7 @@ class Step2(StepTemplateCd):
     story = [
         "There doesn't seem to be anything here but loads of food.",
         "See if you can find something back in {{bb:town}}.",
-        "First, use {{yb:cd ../}} to {{lb:leave}} the kitchen.\n"
+        "First, use {{yb:cd ..}} to {{lb:leave}} the kitchen.\n"
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/town"
@@ -129,14 +129,14 @@ class Step2(StepTemplateCd):
             if self.last_user_input == "cd .." or \
                     self.last_user_input == 'cd ../':
                 hint = (
-                    "\n{{gb:Good work!  Now replay the last command using "
+                    "\n{{gb:Good work! Now replay the last command using "
                     "the UP arrow on your keyboard.}}"
                 )
 
             # Otherwise, give them a hint
             else:
                 hint = (
-                    '\n{{rb:Use}} {{yb:cd ../}} {{rb:to make your way to town.}}'
+                    '\n{{rb:Use}} {{yb:cd ..}} {{rb:to make your way to town.}}'
                 )
 
         elif self.current_path == '~':
@@ -144,13 +144,13 @@ class Step2(StepTemplateCd):
             # then they used an appropriate command
             if self.num_turns_in_home_dir == 0:
                 hint = (
-                    "\n{{gb:Good work! Now use}} {{yb:cd town/}} {{gb: "
+                    "\n{{gb:Good work! Now use}} {{yb:cd town}} {{gb: "
                     "to head to town.}}"
                 )
 
             # Otherwise give them a hint
             else:
-                hint = '\n{{rb:Use}} {{yb:cd town/}} {{rb:to go into town.}}'
+                hint = '\n{{rb:Use}} {{yb:cd town}} {{rb:to go into town.}}'
 
             # So we can keep track of the number of turns they've been in the
             # home directory
@@ -182,7 +182,7 @@ class Step4(StepTemplateCd):
         "However, you think you hear whispers.",
         # TODO make this writing small
         "\n{{Bn:\".....if they use}} {{yb:ls -a}}{{Bn:, they'll see us...\"}}",
-        "{{Bn:\"..Shhh!  ...might hear....\"}}\n"
+        "{{Bn:\"..Shhh! ...might hear....\"}}\n"
     ]
     start_dir = "~/town"
     end_dir = "~/town"
@@ -200,7 +200,7 @@ class Step5(StepTemplateCd):
     story = [
         "You see a {{bb:.hidden-shelter}} that you didn't notice before.",
         "{{gb:Something that starts with . is normally hidden from view.}}",
-        "It sounds like the whispers are coming from there.  Try going in.\n"
+        "It sounds like the whispers are coming from there. Try going in.\n"
     ]
     start_dir = "~/town"
     end_dir = "~/town/.hidden-shelter"
@@ -211,7 +211,7 @@ class Step5(StepTemplateCd):
     hints = [
         "{{rb:Try going inside the}} {{lb:.hidden-shelter}} {{rb:using }}"
         "{{lb:cd}}{{rb:.}}",
-        "{{rb:Use the command}} {{yb:cd .hidden-shelter/ }}"
+        "{{rb:Use the command}} {{yb:cd .hidden-shelter }}"
         "{{rb:to go inside.}}"
     ]
 

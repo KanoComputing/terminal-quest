@@ -45,7 +45,7 @@ class Step2(StepTemplateNano):
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east/shed-shop/basement"
     hints = [
-        "{{rb:Go into the basement with}} {{yb:cd basement/}}"
+        "{{rb:Go into the basement with}} {{yb:cd basement}}"
     ]
 
     def check_command(self):
@@ -104,7 +104,7 @@ class Step4(StepTemplateNano):
 
             if not self.commands:
                 text = (
-                    "\n{{gb:Press Enter to continue.}}"
+                    "\n{{gb:Press {{ob:Enter}} to continue.}}"
                 )
                 self.send_text(text)
 
@@ -129,7 +129,7 @@ class Step5(StepTemplateNano):
         "Enough wandering. Let's go and try and find the "
         "{{lb:masked swordsmaster}} near the woods, and see "
         "what information he can tell us.",
-        "\n{{gb:Press Enter to continue.}}"
+        "\n{{gb:Press {{ob:Enter}} to continue.}}"
     ]
     start_dir = "~/town/east/shed-shop/basement"
     end_dir = "~/town/east/shed-shop/basement"

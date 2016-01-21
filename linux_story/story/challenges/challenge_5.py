@@ -26,15 +26,15 @@ class StepTemplateCd(TerminalCd):
 class Step1(StepTemplateCd):
     story = [
         "{{wb:Mum:}} {{Bb:\"Hi sleepyhead, breakfast is nearly ready. "
-        " Can you go and grab your Dad?"
+        " Can you go and grab your {{lb:Dad}}?"
         " I think he's in the}} {{bb:garden}}{{Bb:.\"}}\n",
-        "Let's look for your Dad in the {{bb:garden}}.",
-        "First we need to {{lb:leave}} the kitchen using {{yb:cd ../}}\n"
+        "Let's look for your {{lb:Dad}} in the {{bb:garden}}.",
+        "First we need to {{lb:leave}} the kitchen using {{yb:cd ..}}\n"
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house"
     commands = ["cd ..", "cd ../"]
-    hints = "{{rb:To leave the kitchen, type}} {{yb:cd ../}}"
+    hints = "{{rb:To leave the kitchen, type}} {{yb:cd ..}}"
 
     def block_command(self):
         return unblock_commands_with_cd_hint(
@@ -68,7 +68,7 @@ class Step3(StepTemplateCd):
     start_dir = "~/my-house"
     end_dir = "~/my-house/garden"
     commands = ["cd garden", "cd garden/"]
-    hints = "{{rb:Type}} {{yb:cd garden/}} {{rb:to go into the garden.}}"
+    hints = "{{rb:Type}} {{yb:cd garden}} {{rb:to go into the garden.}}"
 
     def block_command(self):
         return unblock_commands_with_cd_hint(
@@ -81,14 +81,13 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "Use {{yb:ls}} to {{lb:look}} in the garden for your Dad.\n"
+        "Use {{yb:ls}} to {{lb:look}} in the garden for your {{lb:Dad}}.\n"
     ]
     start_dir = "~/my-house/garden"
     end_dir = "~/my-house/garden"
     commands = "ls"
     hints = (
-        "{{rb:To look for your Dad, type}} {{yb:ls}} {{rb:and press "
-        "Enter.}}"
+        "{{rb:To look for your Dad, type}} {{yb:ls}} {{rb:and press {{ob:Enter}}.}}"
     )
 
     def next(self):
@@ -105,7 +104,7 @@ class Step5(StepTemplateCd):
     start_dir = "~/my-house/garden"
     end_dir = "~/my-house/garden/greenhouse"
     commands = ["cd greenhouse", "cd greenhouse/"]
-    hints = "{{rb:To go to the greenhouse, type}} {{yb:cd greenhouse/}}"
+    hints = "{{rb:To go to the greenhouse, type}} {{yb:cd greenhouse}}"
 
     def block_command(self):
         return unblock_commands_with_cd_hint(
@@ -131,9 +130,9 @@ class Step6(StepTemplateCd):
 
 class Step7(StepTemplateCd):
     story = [
-        "Your dad has been busy, there are loads of vegetables here.",
+        "Your {{lb:Dad}} has been busy, there are loads of vegetables here.",
         "Hmmmm. He's not here. But there is something odd.",
-        "You see a note on the ground.  Use {{yb:cat note}} to "
+        "You see a note on the ground. Use {{yb:cat note}} to "
         "{{lb:read}} what it says.\n"
     ]
     start_dir = "~/my-house/garden/greenhouse"
@@ -147,13 +146,13 @@ class Step7(StepTemplateCd):
 
 class Step8(StepTemplateCd):
     story = [
-        "Going back is super easy. Just type {{yb:cd ../}} to go back the way "
+        "Going back is super easy. Just type {{yb:cd ..}} to go back the way "
         "you came.\n"
     ]
     start_dir = "~/my-house/garden/greenhouse"
     end_dir = "~/my-house/garden"
     commands = ["cd ..", "cd ../"]
-    hints = "{{rb:Type}} {{yb:cd ../}} {{rb:to go back to the garden.}}"
+    hints = "{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the garden.}}"
 
     def block_command(self):
         return unblock_commands_with_cd_hint(
@@ -166,14 +165,14 @@ class Step8(StepTemplateCd):
 
 class Step9(StepTemplateCd):
     story = [
-        "You're back in the garden. Use {{yb:cd ../}} again to"
+        "You're back in the garden. Use {{yb:cd ..}} again to"
         " {{lb:go back}} to the house.",
         "{{gb:Top tip: Press the UP arrow key to replay your previous command.}}\n"
     ]
     start_dir = "~/my-house/garden"
     end_dir = "~/my-house"
     commands = ["cd ..", "cd ../"]
-    hints = "{{rb:Type}} {{yb:cd ../}} {{rb:to go back to the house.}}"
+    hints = "{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the house.}}"
 
     def block_command(self):
         return unblock_commands_with_cd_hint(
@@ -186,12 +185,12 @@ class Step9(StepTemplateCd):
 
 class Step10(StepTemplateCd):
     story = [
-        "Now {{lb:go}} back into the {{bb:kitchen}} and see Mum.\n"
+        "Now {{lb:go}} back into the {{bb:kitchen}} and see {{lb:Mum}}.\n"
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house/kitchen"
     commands = ["cd kitchen", "cd kitchen/"]
-    hints = "{{rb:Type}} {{yb:cd kitchen/}} {{rb:to go back to the kitchen.}}"
+    hints = "{{rb:Type}} {{yb:cd kitchen}} {{rb:to go back to the kitchen.}}"
 
     last_step = True
 

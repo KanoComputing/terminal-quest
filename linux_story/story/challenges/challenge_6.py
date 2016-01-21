@@ -25,14 +25,13 @@ class StepTemplateCd(TerminalCd):
 
 class Step1(StepTemplateCd):
     story = [
-        "Let Mum know about Dad. Type {{yb:cat Mum}}"
+        "Let {{lb:Mum}} know about {{lb:Dad}}. Type {{yb:cat Mum}}"
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "cat Mum"
     hints = (
-        "{{rb:To talk to your Mum, type}} {{yb:cat Mum}} {{rb:and press "
-        "Enter.}}"
+        "{{rb:To talk to your Mum, type}} {{yb:cat Mum}} {{rb:and press {{ob:Enter}}.}}"
     )
 
     def next(self):
@@ -86,7 +85,7 @@ class Step4(StepTemplateCd):
     start_dir = "~"
     end_dir = "~/town"
     commands = ["cd town", "cd town/"]
-    hints = "{{rb:Type}} {{yb:cd town/}} {{rb:to walk into town.}}"
+    hints = "{{rb:Type}} {{yb:cd town}} {{rb:to walk into town.}}"
 
     last_step = True
 

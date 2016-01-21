@@ -58,7 +58,7 @@ class Step2(StepTemplateMkdir):
     end_dir = "~/town/east/library"
 
     hints = [
-        "{{rb:Use}} {{yb:cd library/}} {{rb:to go inside the library.}}"
+        "{{rb:Use}} {{yb:cd library}} {{rb:to go inside the library.}}"
     ]
     eleanors_speech = "Eleanor: {{Bb:I love the library! Let's go inside!}}"
 

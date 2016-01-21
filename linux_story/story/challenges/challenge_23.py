@@ -43,7 +43,7 @@ class Step2(StepMkdir):
         # "My parents went outside as we ran out of food."
         "Have you seen my Mum and Dad?\"}}",
         # TODO: change colour
-        "\n{{yb:1: \"I'm afraid not.  When did you last see them?\"}}",
+        "\n{{yb:1: \"I'm afraid not. When did you last see them?\"}}",
         "{{yb:2: \"Weren't they with you in the hidden-shelter?\"}}",
         "{{yb:3: \"(lie) Yes, I saw them in town.\"}}",
         "\nUse the {{lb:echo}} command to talk to Eleanor."
@@ -81,7 +81,7 @@ class Step3(StepMkdirEleanor):
     end_dir = "~/town"
 
     hints = [
-        "{{rb:Use}} {{yb:cd ../}} {{rb:to go into town.}}"
+        "{{rb:Use}} {{yb:cd ..}} {{rb:to go into town.}}"
     ]
 
     eleanors_speech = (
@@ -93,7 +93,7 @@ class Step3(StepMkdirEleanor):
 
         if prev_command == "echo 1":
             self.print_text = [
-                "{{yb:\"I'm afraid not.  When did you last see them?\"}}"
+                "{{yb:\"I'm afraid not. When did you last see them?\"}}"
             ]
             self.story += [
                 "Eleanor: {{Bb:\"Not long ago. The dog ran out again, "
@@ -220,7 +220,7 @@ class Step5(StepMkdirEleanor):
     hints = [
         "{{rb:Use}} {{lb:cd}} {{rb:to go into the "
         "east part of town}}",
-        "{{rb:Use}} {{yb:cd east/}} {{rb:}}"
+        "{{rb:Use}} {{yb:cd east}} {{rb:}}"
     ]
     last_step = True
 

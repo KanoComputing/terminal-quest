@@ -21,7 +21,7 @@ class StepNano(TerminalNanoEleanor):
 
 class Step1(StepNano):
     story = [
-        "{{pb:Ding. Dong.}}",
+        "{{pb:Ding. Dong.}}\n",
         "\nEleanor: {{Bb:...what was that?}}",
         "{{lb:Look around.}}"
     ]
