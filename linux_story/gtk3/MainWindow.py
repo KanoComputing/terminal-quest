@@ -22,12 +22,12 @@ if __name__ == '__main__' and __package__ is None:
 
 from kano.gtk3.apply_styles import apply_styling_to_screen
 from kano.gtk3.scrolled_window import ScrolledWindow
+from kano.logging import logger
 
 from linux_story.socket_functions import create_server
 from linux_story.gtk3.TerminalUi import TerminalUi
 from linux_story.gtk3.Spellbook import Spellbook
 from linux_story.gtk3.Storybook import Storybook
-from linux_story.gtk3.FinishDialog import FinishDialog
 from linux_story.common import css_dir
 from linux_story.gtk3.MenuScreen import MenuScreen
 from linux_story.load_defaults_into_filetree import \
@@ -150,27 +150,6 @@ class MainWindow(GenericWindow):
 
         Gtk.main_quit()
 
-    def finish_app(self, widget=None, event=None):
-        '''
-        After user has finished running the application, show a dialog and
-        close the window
-
-        Args:
-            widget (Gtk.Widget)
-            event (Gdk.EventButton)
-
-        Returns:
-            None
-        '''
-
-        kdialog = FinishDialog()
-        response = kdialog.run()
-
-        if response == 'feedback':
-            subprocess.Popen('/usr/bin/kano-feedback')
-
-        self.close_window()
-
     def start_script_in_terminal(self, challenge_number="", step_number=""):
         '''
         This function currently creates the thread that runs the
@@ -233,7 +212,6 @@ class MainWindow(GenericWindow):
     def repack_spells(self, spells, highlighted_spells):
         '''Wrapper function for repacking the spells
         '''
-
         self.spellbook.repack_spells(spells, highlighted_spells)
 
     def show_terminal(self):
@@ -278,7 +256,14 @@ class MainWindow(GenericWindow):
             data_dict = self.queue.get(False, timeout=5.0)
 
             if 'exit' in data_dict.keys():
-                self.finish_app()
+                # TODO: remove this when we finish the last chapter
+                self.stop_typing_in_terminal()
+                self.story.print_coming_soon(self, self.terminal)
+
+                time.sleep(5)
+                self.close_window()
+
+                subprocess.Popen('/usr/bin/kano-feedback')
 
             elif 'hint' in data_dict.keys():  # TODO: get the command and highlight it
                 self.stop_typing_in_terminal()
@@ -324,6 +309,9 @@ class MainWindow(GenericWindow):
 
         except Queue.Empty:
             pass
+        except Exception as e:
+            logger.error('Unexpected error in MainWindow: check_queue:'
+                         ' - [{}]'.format(e))
         finally:
             time.sleep(0.02)
             return True

@@ -21,10 +21,11 @@ Options:
 """
 
 
-from gi.repository import Gtk
 import os
 import sys
 import docopt
+
+from gi.repository import Gtk
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -74,12 +75,32 @@ def handle_cleanup():
     pass
 
 
+def tracefunc(frame, event, arg, indent=[0]):
+    text = ''
+    if event == "call":
+        indent[0] += 2
+        text = "-" * indent[0] + "> call function", frame.f_code.co_name
+    elif event == "return":
+        text = "<" + "-" * indent[0], "exit function", frame.f_code.co_name
+        indent[0] -= 2
+    with open(os.path.join(os.path.expanduser('~'), 'debug.txt'), 'a') as f:
+        if text:
+            if '__getattr__' not in text:
+                f.write(str(text) + '\n')
+    return tracefunc
+
+
 if __name__ == "__main__":
     args = docopt.docopt(__doc__)
 
     debug = args['--debug']
     challenge = args['<challenge>']
     step = args['<step>']
+
+    if debug:
+        if os.path.isfile(os.path.join(os.path.expanduser('~'), 'debug.txt')):
+            os.remove(os.path.join(os.path.expanduser('~'), 'debug.txt'))
+        sys.settrace(tracefunc)
 
     try:
         main(debug, challenge, step)

@@ -229,7 +229,7 @@ def get_ascii_art(name):
     except (IOError, OSError) as e:
             logger.error('Could not load file {} - [{}]'.format(asset_path, e))
     except Exception as e:
-            logger.warn('Unexpected error while loading the ascii art'
-                        ' - [{}]'.format(e))
+            logger.error('Unexpected error while loading the ascii art'
+                         ' - [{}]'.format(e))
 
     return ascii_art
