@@ -28,10 +28,10 @@ class StepTemplateEcho(TerminalEcho):
 class Step1(StepTemplateMv):
     story = [
         "You are in your room, standing in front of the {{bb:.chest}} "
-        "containing all the commands you've learned so far.",
-        "Maybe something else is hidden in the house?",
-        "{{lb:Look}} in the hallway {{lb:behind you}}.  Remember, "
-        "behind you is {{lb:..}} or {{lb:../}}"
+        "containing all the commands you've learned so far.\n",
+        "Maybe something else is hidden in the house?\n",
+        "{{lb:Look}} in the hallway {{lb:behind you}}. Remember, "
+        "behind you is {{bb:..}}"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -51,8 +51,8 @@ class Step2(StepTemplateMv):
     story = [
         "You see doors to your {{bb:garden}}, {{bb:kitchen}}, "
         "{{bb:my-room}} and {{bb:parents-room}}.",
-        "We haven't checked out your parents' room properly yet.",
-        "{{lb:Go into your parents-room}}."
+        "We haven't checked out your parents' room properly yet.\n",
+        "{{lb:Go into your}} {{bb:parents-room}}."
     ]
 
     start_dir = "~/my-house/my-room"
@@ -82,11 +82,11 @@ class Step2(StepTemplateMv):
 
     path_hints = {
         "~/my-house/my-room": {
-            "blocked": "\n{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
+            "blocked": "\n{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}"
         },
         "~/my-house": {
             "not_blocked": "\n{{gb:Good work! Now go into your}} {{lb:parents-room}}{{gb:.}}",
-            "blocked": "\n{{rb:Use}} {{yb:cd parents-room/}} {{rb:to go in.}}"
+            "blocked": "\n{{rb:Use}} {{yb:cd parents-room}} {{rb:to go in.}}"
         }
     }
 
@@ -132,9 +132,9 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "There's a {{lb:.safe}}!",
+        "There's a {{bb:.safe}}!\n",
         "Maybe there's something useful in here. {{lb:Look inside}} the "
-        "{{lb:.safe}}."
+        "{{bb:.safe}}."
     ]
 
     commands = [
@@ -180,14 +180,14 @@ class CheckDiaryStep(StepTemplateMv):
 
 class Step5(CheckDiaryStep):
     story = [
-        "So you found your mum's diary?",
-        "You probably shouldn't read it...",
-        "What else is here?  Let's {{lb:examine}} that {{lb:map}}."
+        "So you found your {{bb:Mum's diary}}?",
+        "You probably shouldn't read it...\n",
+        "What else is here?  Let's {{lb:examine}} that {{bb:map}}."
     ]
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
     hints = [
-        "{{rb:Use}} {{lb:cat}} {{rb:to read the}} {{lb:map}}{{rb:.}}",
+        "{{rb:Use}} {{yb:cat}} {{rb:to read the}} {{lb:map}}{{rb:.}}",
         "{{rb:Use}} {{yb:cat .safe/map}} {{rb:to read the map.}}"
     ]
 
@@ -200,15 +200,15 @@ class Step5(CheckDiaryStep):
 class Step6(CheckDiaryStep):
     story = [
         "So there's a farm around here?",
-        "Apparently it's not far from our house, just off the windy road...",
-        "What is this {{lb:ECHO}} note? {{lb:Examine}} the ECHO note."
+        "Apparently it's not far from our house, just off the windy road...\n",
+        "What is this {{bb:ECHO}} note? {{lb:Examine}} the {{bb:ECHO}} note."
     ]
 
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
     commands = "cat .safe/ECHO"
     hints = [
-        "{{rb:Use the}} {{lb:cat}} {{rb:command to read the}} {{lb:ECHO}} "
+        "{{rb:Use the}} {{yb:cat}} {{rb:command to read the}} {{lb:ECHO}} "
         "{{rb:note.}}",
         "{{rb:Use}} {{yb:cat .safe/ECHO}} {{rb:to read the note.}}"
     ]
@@ -219,9 +219,11 @@ class Step6(CheckDiaryStep):
 
 class Step7(StepTemplateEcho):
     story = [
-        "So the note says {{lb:echo hello - will make you say hello}}",
-        "Let's test this out. "
-        "Use the command {{yb:echo hello}}"
+        "So the note says {{Bb:\"echo hello - will make you say hello\"}}",
+        "Let's test this out. \n",
+        "+--------------------------------------------------+",
+        "| {{gb:New Spell}}: {{yb:echo}} followed by words lets you {{lb:speak}} | " \
+        "+--------------------------------------------------+ "
     ]
     hints = [
         "{{rb:Use the command}} {{yb:echo hello}}"

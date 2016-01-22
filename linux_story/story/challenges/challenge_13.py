@@ -38,7 +38,7 @@ class Step1(StepTemplateMv):
         "\n...ah! You have all that food in your {{bb:kitchen}}! "
         "We could give that to this family.",
 
-        "\nStart by {{lb:moving}} the {{lb:basket}} to {{lb:~}}. "
+        "\nStart by {{lb:moving}} the {{bb:basket}} to {{bb:~}}. "
         "Use the command {{yb:mv basket ~/}}\n"
     ]
     start_dir = "~/town/.hidden-shelter"
@@ -55,7 +55,7 @@ class Step1(StepTemplateMv):
     ]
     hints = [
         "{{rb:Use the command}} {{yb:mv basket ~/}} "
-        "{{rb:to move the}} {{lb:basket}} {{rb:to the windy road}} {{lb:~}}"
+        "{{rb:to move the}} {{bb:basket}} {{rb:to the windy road}} {{bb:~}}"
     ]
 
     def block_command(self):
@@ -67,8 +67,8 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        "Now follow the basket. Use {{yb:cd}} by itself "
-        "to {{lb:go}} to the windy road Tilde ~.\n"
+        "Now follow the {{bb:basket}}. Use {{yb:cd}} by itself "
+        "to {{lb:go}} to the windy road Tilde {{bb:~}}.\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~"
@@ -94,7 +94,7 @@ class Step2(StepTemplateMv):
 class Step3(StepTemplateMv):
     story = [
         "You are now back on the long windy road. {{lb:Look around}} "
-        "with {{yb:ls}} to check that you have your basket with you.\n"
+        "with {{yb:ls}} to check that you have your {{bb:basket}} with you.\n"
     ]
 
     start_dir = "~"
@@ -113,10 +113,10 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "You have your basket safely alongside you, and "
+        "You have your {{bb:basket}} safely alongside you, and "
         "you see {{bb:my-house}} close by.",
-        "Move the {{lb:basket}} to {{lb:my-house/kitchen}}.",
-        "Don't forget to use the TAB key to autocomplete your commands.\n"
+        "Move the {{bb:basket}} to {{bb:my-house/kitchen}}.",
+        "Don't forget to use the {{ob:TAB}} key to autocomplete your commands.\n"
     ]
 
     start_dir = "~"
@@ -145,7 +145,7 @@ class Step4(StepTemplateMv):
 
 class Step5(StepTemplateMv):
     story = [
-        "Now {{lb:go}} into {{lb:my-house/kitchen}} using {{lb:cd}}.\n",
+        "Now {{lb:go}} into {{bb:my-house/kitchen}} using {{yb:cd}}.\n",
     ]
 
     start_dir = "~"
@@ -157,7 +157,7 @@ class Step5(StepTemplateMv):
         "cd ~/my-house/kitchen/"
     ]
     hints = [
-        "{{rb:Use}} {{yb:cd my-house/kitchen/}} "
+        "{{rb:Use}} {{yb:cd my-house/kitchen}} "
         "{{rb:to go to your kitchen.}}",
     ]
     last_step = True

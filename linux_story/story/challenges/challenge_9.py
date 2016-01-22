@@ -26,13 +26,13 @@ class StepTemplateCd(TerminalCd):
 
 class Step1(StepTemplateCd):
     story = [
-        "Oh no! Check your Mum is alright.",
-        "Type {{yb:cd ../}} to leave {{bb:town}}."
+        "Oh no! Check your {{bb:Mum}} is alright.\n",
+        "Type {{yb:cd ..}} to leave {{bb:town}}."
     ]
     start_dir = "~/town"
     end_dir = "~"
     commands = ["cd ..", "cd ../", "cd"]
-    hints = "{{rb:Use}} {{yb:cd ../}} {{rb:to start heading back home.}}"
+    hints = "{{rb:Use}} {{yb:cd ..}} {{rb:to start heading back home.}}"
 
     def block_command(self):
         return unblock_commands_with_cd_hint(
@@ -48,16 +48,16 @@ class Step2(StepTemplateCd):
     story = [
         "{{pb:Ding. Dong.}}\n",
 
-        "Type {{yb:cd my-house/kitchen/}} to go straight to the "
-        "{{bb:kitchen}}.",
+        "Type {{yb:cd my-house/kitchen}} to go straight to the "
+        "{{bb:kitchen}}.\n",
 
-        "{{gb:Press TAB to speed up your typing!}}"
+        "{{gb:Press}} {{ob:TAB}} {{gb:to speed up your typing!}}"
     ]
     start_dir = "~"
     end_dir = "~/my-house/kitchen"
     commands = ["cd my-house/kitchen", "cd my-house/kitchen/"]
     hints = [
-        "{{rb:Use}} {{yb:cd my-house/kitchen/}} {{rb:to go to the "
+        "{{rb:Use}} {{yb:cd my-house/kitchen}} {{rb:to go to the "
         "kitchen.}}"
     ]
     story_dict = {
@@ -80,7 +80,7 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "Take a look around to make sure everything is OK."
+        "Take a {{lb:look around}} to make sure everything is OK."
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
@@ -96,9 +96,9 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "Oh no - Mum's vanished too!",
-        "Wait, there's another {{lb:note}}.",
-        "Use {{lb:cat}} to {{lb:read}} the {{lb:note}}."
+        "Oh no - {{bb:Mum}} has vanished too!",
+        "Wait, there's another {{bb:note}}.\n",
+        "Use {{yb:cat}} to {{lb:read}} the {{bb:note}}."
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"

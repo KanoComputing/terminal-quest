@@ -37,7 +37,7 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "Wow, there's so many people here. Find the {{lb:Mayor}} and "
+        "Wow, there's so many people here. Find the {{bb:Mayor}} and "
         "{{lb:listen}} to what he has to say."
     ]
     start_dir = "~/town"
@@ -55,7 +55,7 @@ class Step3(StepTemplateCd):
         "people looking into the disappearances, and we're hoping to "
         "have an explanation soon.\"}}\n",
         "Something strange is happening. Better check everyone is ok.",
-        "Type {{lb:cat}} to check on the people."
+        "Type {{yb:cat}} to check on the people."
     ]
     start_dir = "~/town"
     end_dir = "~/town"
@@ -83,7 +83,7 @@ class Step3(StepTemplateCd):
 
         # If they enter ls, say Well Done
         if self.last_user_input == 'ls':
-            hint = "\n{{gb:Well done for looking around.}}"
+            hint = "\n{{gb:You look around.}}"
             self.send_text(hint)
             return False
 
@@ -111,7 +111,7 @@ class Step3(StepTemplateCd):
                     str(len(self.all_commands)) + \
                     " more people.}}\n"
             else:
-                hint += "\n{{gb:Press Enter to continue.}}"
+                hint += "\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}"
 
             self.send_text(hint)
 

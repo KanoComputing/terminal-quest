@@ -51,8 +51,8 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        "What's that! There's {{lb:.tiny-chest}} in the corner of the shelter",
-        "Have a {{lb:look inside}} the {{lb:.tiny-chest}}."
+        "What's that! There's {{bb:.tiny-chest}} in the corner of the shelter",
+        "Have a {{lb:look inside}} the {{bb:.tiny-chest}}."
     ]
 
     hints = [
@@ -75,7 +75,7 @@ class Step2(StepTemplateMv):
 class Step3(StepTemplateMv):
     story = [
         "You see a scroll of parchment inside, with a stamp on it saying "
-        "{{lb:MV}}.",
+        "{{bb:MV}}.",
         "{{lb:Read}} what it says."
     ]
 
@@ -95,14 +95,14 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "{{wb:Edward:}} {{Bb:\"Hey, that's our}} {{lb:.tiny-chest}}{{Bb:. We "
+        "{{wb:Edward:}} {{Bb:\"Hey, that's our .tiny-chest We "
         "use it to keep our possessions safe. ",
         "I learnt about how to move objects from that}} {{Bb:MV}} "
         "{{Bb:parchment.",
-        "It's probably of more use to you, please take it with my thanks.}}",
-        "\nMaybe you should go back to {{lb:my-house}} to look for more "
+        "It's probably of more use to you, please take it with my thanks.\"}}",
+        "\nMaybe you should go back to {{bb:my-house}} to look for more "
         "hidden items.",
-        "To quickly go back home, use {{yb:cd ~/my-house/}}\n"
+        "To quickly go back home, use {{yb:cd ~/my-house}}\n"
     ]
 
     start_dir = "~/town/.hidden-shelter"
@@ -112,7 +112,7 @@ class Step4(StepTemplateMv):
         'cd ~/my-house'
     ]
     hints = [
-        '{{rb:No shortcuts!  Use}} {{yb:cd ~/my-house}} '
+        '{{rb:No shortcuts! Use}} {{yb:cd ~/my-house}} '
         '{{rb:to get back to your house in one step.}}'
     ]
 
@@ -128,8 +128,8 @@ class Step4(StepTemplateMv):
 class Step5(StepTemplateMv):
     story = [
         "Let's see if we can find anything hidden around here!",
-        "Where do you think any hidden things could be?",
-        "Try {{lb:looking closely}} in {{lb:my-room}} first."
+        "Where do you think any hidden things could be?\n",
+        "Try {{lb:looking closely}} in {{bb:my-room}} first."
     ]
 
     start_dir = '~/my-house'

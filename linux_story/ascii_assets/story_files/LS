@@ -1,37 +1,33 @@
-  _       _____
- | |     / ____|
- | |    | (___
- | |     \___ \
- | |____ ____) |
- |______|_____/
-
-
-This spell shows you your surroundings.
-
-
-Examples
-
-ls
-Shows you what is around your current position
-
-ls kitchen
-Shows you what is in the directory kitchen, assuming you are in my-house
-
-ls ../
-Shows you what is in the directory behind you
-
-ls ~/my-house/kitchen
-Regardless of your current position, this will show you what is in your kitchen
-
-
-Flags
-
--a
-This shows all the files in your current directory, including the hidden files starting with .
-This includes your current position . and the containing directory ..
-
-
-Example
-
-ls -a ../
-Will show you everything in the directory behind you
+ ,---------------------------------------------------------------,==.
+/                                                               /__  \
+|   _       _____                                               |(_\ /
+|  | |     / ____|                                              \-`-'
+|  | |    | (___                                                |
+|  | |     \___ \                                               |
+|  | |____ ____) |                                              |
+|  |______|_____/                                               |
+|                                                               |
+|                                                               |
+|  This spell shows you your surroundings.                      |
+|                                                               |
+|  Examples                                                     |
+|                                                               |
+|  ls                                                           |
+|  Shows you what is around your current position               |
+|                                                               |
+|  ls -a                                                        |
+|  Will show you hidden things in the current directory         |
+|                                                               |
+|  ls kitchen                                                   |
+|  Shows you what is in the directory kitchen,                  |
+|  assuming you are in my-house                                 |
+|                                                               |
+|  ls ../                                                       |
+|  Shows you what is in the directory behind you                |
+|                                                               |
+|  ls ~/my-house/kitchen                                        |
+|  Regardless of your current position, this will               |
+|  show you what is in your kitchen                             |____
+|                                                               |__( \
+\                                                               \    /
+ `---------------------------------------------------------------`=='

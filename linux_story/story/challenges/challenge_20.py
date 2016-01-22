@@ -27,27 +27,27 @@ class Step1(StepTemplateEcho):
         "{{yb:\"Some people survived by going into hiding.\"}}"
     ]
     story = [
-        "Ruth: {{Bb:Oh! That reminds me, my husband used "
+        "Ruth: {{Bb:\"Oh! That reminds me, my husband used "
         "to build special shelters to store crops in over winter. "
         "I think he used a specific tool. "
-        "We should take a look in his toolshed to see if we can find it.}}",
-        "\nUse the {{lb:cd}} command to go into the toolshed.\n"
+        "We should take a look in his toolshed to see if we can find it.\"}}",
+        "\nUse the {{lb:cd}} command to go into the {{bb:toolshed}}.\n"
     ]
 
     start_dir = "~/farm/barn"
     end_dir = "~/farm/toolshed"
     hints = [
         "{{rb:Go to the toolshed in one step"
-        " using}} {{yb:cd ../toolshed/}}"
+        " using}} {{yb:cd ../toolshed}}"
     ]
 
     path_hints = {
         "~/farm/barn": {
-            "blocked": "\n{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
+            "blocked": "\n{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}"
         },
         "~/farm": {
             "not_blocked": "\n{{gb:Good work! Now go into the}} {{lb:toolshed}}{{gb:.}}",
-            "blocked": "\n{{rb:Use}} {{yb:cd toolshed/}} {{rb:to go in the toolshed.}}"
+            "blocked": "\n{{rb:Use}} {{yb:cd toolshed}} {{rb:to go in the toolshed.}}"
         }
     }
 
@@ -70,10 +70,10 @@ class Step1(StepTemplateEcho):
 
 class Step2(StepTemplateEcho):
     story = [
-        "Ruth follows you into the {{bb:toolshed}}. It's a very large "
-        "space with tools lining the walls.",
-        "Ruth: {{Bb:Let's}} {{lb:look around}} {{Bb:for "
-        "anything that could be useful.}}\n"
+        "{{bb:Ruth}} follows you into the {{bb:toolshed}}. It's a very large "
+        "space with tools lining the walls.\n",
+        "Ruth: {{Bb:\"Let's}} {{lb:look around}} {{Bb:for "
+        "anything that could be useful.\"}}\n"
     ]
     start_dir = "~/farm/toolshed"
     end_dir = "~/farm/toolshed"
@@ -102,13 +102,13 @@ class Step2(StepTemplateEcho):
 
 class Step3(StepTemplateEcho):
     story = [
-        "Ruth: {{Bb:Ah, look! There are some instructions "
-        "under}} {{lb:MKDIR}}{{Bb:.}}",
-        "{{Bb:What does it say?}}",
-        "\n{{lb:Examine}} the {{lb:MKDIR}} instructions."
+        "Ruth: {{Bb:\"Ah, look! There are some instructions "
+        "under}} {{bb:MKDIR}}{{Bb:.\"}}",
+        "{{Bb:\"What does it say?\"}}",
+        "\n{{lb:Examine}} the {{bb:MKDIR}} instructions."
     ]
     hints = [
-        "Ruth: {{Bb:\"...you are able to read, yes? You use}} {{lb:cat}} "
+        "Ruth: {{Bb:\"...you are able to read, yes? You use}} {{yb:cat}} "
         "{{Bb:to read things.\"}}",
         "Ruth: {{Bb:\"What do you kids learn in schools nowadays...\""
         "\n\"Just use}} {{yb:cat MKDIR}} {{Bb:to read the paper.\"}}",
@@ -124,9 +124,13 @@ class Step3(StepTemplateEcho):
 
 class Step4(StepTemplateMkdir):
     story = [
-        "Ruth: {{Bb:This says you can make something using something "
-        "called}} {{lb:mkdir}}{{Bb:?}}",
-        "\n{{gb:Try making an igloo using}} {{yb:mkdir igloo}}"
+        "Ruth: {{Bb:\"This says you can make something using something "
+        "called}} {{yb:mkdir}}{{Bb:?\"}}",
+        "\nTry making an igloo using {{yb:mkdir igloo}}\n ",
+        "+---------------------------------------------------------------+",
+        "| {{gb:New Spell}}: {{yb:mkdir}} followed by a word lets you {{lb:create}} a shelter | " \
+        "+---------------------------------------------------------------+ "
+        
     ]
     hints = [
         "{{rb:Create an igloo structure by using}} {{yb:mkdir igloo}}\n"
