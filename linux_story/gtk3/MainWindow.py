@@ -107,12 +107,12 @@ class MainWindow(GenericWindow):
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.add(vbox)
 
-        hbox = Gtk.Box()
+        self.hbox = Gtk.Box()
 
-        vbox.pack_start(hbox, False, False, 0)
+        vbox.pack_start(self.hbox, False, False, 0)
         vbox.pack_start(self.spellbook, False, False, 0)
-        hbox.pack_start(left_background, False, False, 0)
-        hbox.pack_start(right_background, False, False, 0)
+        self.hbox.pack_start(left_background, False, False, 0)
+        self.hbox.pack_start(right_background, False, False, 0)
 
         left_background.add(story_sw)
         right_background.add(self.terminal)
@@ -203,7 +203,6 @@ class MainWindow(GenericWindow):
     def print_challenge_title(self, number):
         '''Prints the ascii art challenge title at the start
         '''
-
         self.story.print_challenge_title(number)
 
     def print_coloured_text(self, text):
@@ -227,7 +226,6 @@ class MainWindow(GenericWindow):
         '''Wrapper function to stop people typing in terminal
         while story or hint is being shown
         '''
-
         self.terminal.set_sensitive(False)
 
     def run_server(self):
@@ -242,6 +240,13 @@ class MainWindow(GenericWindow):
         t = threading.Thread(target=self.server.serve_forever)
         t.daemon = True
         t.start()
+
+    def center_storybook(self):
+        """
+        Centers the StoryBook in the window by hiding the Terminal.
+        """
+        self.terminal.hide()
+        self.hbox.set_halign(Gtk.Align.CENTER)
 
     def check_queue(self):
         '''
@@ -258,6 +263,7 @@ class MainWindow(GenericWindow):
             if 'exit' in data_dict.keys():
                 # TODO: remove this when we finish the last chapter
                 self.stop_typing_in_terminal()
+                self.center_storybook()
                 self.story.print_coming_soon(self, self.terminal)
 
                 time.sleep(5)
