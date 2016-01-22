@@ -20,7 +20,7 @@ class Step1(StepTemplateMkdir):
     story = [
         "{{gb:Well done, it looks like everyone is here!}}",
         "\nRuth: {{Bb:\"Thank you so much!\"}}",
-        "{{Bb:\"We'll stay in here to keep safe. I'm so grateful to everything "
+        "{{Bb:\"We'll stay in here to keep safe. I'm so grateful for everything "
         "you've done.\"}}",
         "\nUse {{yb:cat}} to check that the animals are happy in here."
     ]
