@@ -21,6 +21,9 @@ class StepLs(TerminalLs):
     challenge_number = 1
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepLs):
     story = [
         "{{wb:Alarm}}: {{Bb:\"Beep beep beep! Beep beep beep!\"}}",

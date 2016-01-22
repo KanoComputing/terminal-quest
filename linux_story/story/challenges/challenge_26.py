@@ -15,6 +15,9 @@ class StepTemplateMkdir(TerminalMkdirBernard):
     challenge_number = 26
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateMkdir):
     story = [
         "You are back in town. {{bb:Eleanor}} waves her arms and points "

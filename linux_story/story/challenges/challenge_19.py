@@ -22,6 +22,9 @@ class StepTemplateEcho(TerminalEcho):
     challenge_number = 19
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateEcho):
     username = os.environ['LOGNAME']
     story = [

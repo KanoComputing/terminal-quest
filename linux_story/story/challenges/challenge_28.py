@@ -15,6 +15,9 @@ class StepTemplateNano(TerminalNanoBernard):
     challenge_number = 28
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateNano):
     story = [
         "You're back in town. {{bb:Eleanor}} looked relieved to be outside.",

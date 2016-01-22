@@ -23,6 +23,9 @@ class StepTemplateCd(TerminalCd):
     challenge_number = 6
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateCd):
     story = [
         "Let {{bb:Mum}} know about {{bb:Dad}}. Type {{yb:cat Mum}}"

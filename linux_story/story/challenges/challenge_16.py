@@ -23,6 +23,9 @@ class StepTemplateMv(TerminalMv):
     challenge_number = 16
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateMv):
     story = [
         "There is an old antique {{bb:.chest}} hidden under your bed, "

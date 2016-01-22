@@ -27,6 +27,7 @@ css_dir = os.path.join(current_dir, 'gtk3', 'css')
 
 ascii_assets_dir = os.path.join(current_dir, 'ascii_assets')
 story_files_dir = os.path.join(ascii_assets_dir, 'story_files')
+sounds_dir = os.path.join(common_media_dir, 'sounds')
 
 # Constants
 

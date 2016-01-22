@@ -32,6 +32,9 @@ class StepTemplateMv(TerminalMv):
     challenge_number = 11
 
 
+# ----------------------------------------------------------------------------------------
+
+
 # The next few steps should be like the disappearing of people in the town
 class Step1(StepTemplateCd):
     story = [

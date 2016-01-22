@@ -23,6 +23,9 @@ class StepTemplateCd(TerminalCd):
     challenge_number = 10
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateCd):
     story = [
         "You're in your house. You appear to be alone.",

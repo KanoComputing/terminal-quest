@@ -20,6 +20,9 @@ class StepMkdirEleanor(TerminalMkdirEleanor):
     challenge_number = 23
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepMkdir):
     story = [
         "You see {{bb:Eleanor}}. Listen to what she has to say."

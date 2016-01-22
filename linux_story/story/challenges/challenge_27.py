@@ -21,6 +21,9 @@ class StepTemplateNano(TerminalNanoBernard):
     challenge_number = 27
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateMkdir):
     story = [
         "You are back in {{bb:Bernard}}'s place.\n",

@@ -18,6 +18,9 @@ class StepTemplateMkdir(TerminalMkdir):
     challenge_number = 21
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateMkdir):
     story = [
         "{{gb:Nice! You've built an igloo! You learned the new skill, "

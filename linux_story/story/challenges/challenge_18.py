@@ -17,6 +17,9 @@ class StepTemplateEcho(TerminalEcho):
     challenge_number = 18
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateEcho):
     story = [
         "Woah! You spoke aloud into the empty room!\n",
