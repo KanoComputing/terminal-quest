@@ -28,6 +28,7 @@ from linux_story.socket_functions import create_server
 from linux_story.gtk3.TerminalUi import TerminalUi
 from linux_story.gtk3.Spellbook import Spellbook
 from linux_story.gtk3.Storybook import Storybook
+from linux_story.gtk3.FinishDialog import FinishDialog
 from linux_story.common import css_dir
 from linux_story.gtk3.MenuScreen import MenuScreen
 from linux_story.load_defaults_into_filetree import \
@@ -127,29 +128,6 @@ class MainWindow(GenericWindow):
 
         self.run_server()
 
-    def close_window(self, widget=None, event=None):
-        '''
-        Shut the server down and kills the application.
-
-        Args:
-            widget (Gtk.Widget)
-            event (Gdk.EventButton)
-
-        Returns:
-            None
-        '''
-
-        if hasattr(self, "server"):
-            self.server.socket.shutdown(socket.SHUT_RDWR)
-            self.server.socket.close()
-            self.server.shutdown()
-
-        # Do this AFTER the server shutdown, so if this goes wrong,
-        # we can quickly relaunch TQ.
-        revert_to_default_permissions()
-
-        Gtk.main_quit()
-
     def start_script_in_terminal(self, challenge_number="", step_number=""):
         '''
         This function currently creates the thread that runs the
@@ -194,6 +172,72 @@ class MainWindow(GenericWindow):
         if not self.debug:
             self.terminal.hide()
             self.spellbook.hide()
+
+    def check_queue(self):
+        '''
+        This receives the messages sent from the script running in the
+        terminal. From these messages we can decide how to update the GUI.
+        '''
+
+        try:
+            # Give it a timeout so it doesn't hang indefinitely
+            # Don't block the queue - if a value is available, return
+            # immediately.
+            data_dict = self.queue.get(False, timeout=5.0)
+
+            if 'exit' in data_dict.keys():
+                self.finish_app()
+
+            elif 'hint' in data_dict.keys():  # TODO: get the command and highlight it
+                self.stop_typing_in_terminal()
+                self.type_text(data_dict['hint'])
+                self.show_terminal()
+
+            # This is for when we've started a new challenge.
+            else:
+                self.story.clear()
+
+                if 'challenge' in data_dict.keys() and \
+                   'story' in data_dict.keys() and \
+                   'spells' in data_dict.keys():
+
+                    self.stop_typing_in_terminal()
+
+                    # Print the challenge title at the top of the screen
+                    challenge = data_dict['challenge']
+                    self.print_challenge_title(challenge)
+
+                    if 'xp' in data_dict and data_dict['xp']:
+                        self.type_text(data_dict['xp'])
+
+                    # If we have have just used echo in the previous
+                    # challenge, we should print out the user's choice
+                    if "print_text" in data_dict and data_dict["print_text"]:
+                        # Automatically stick a double newline at the end of
+                        # the user text to save us having to do it ourselves.
+                        self.print_coloured_text(
+                            data_dict["print_text"] + "\n\n"
+                        )
+
+                    self.type_text(data_dict['story'])
+
+                    # Repack the spells (commands) into the spellbook
+                    spells = data_dict['spells']
+                    highlighted_spells = data_dict['highlighted_spells']
+                    self.repack_spells(spells, highlighted_spells)
+
+                    # Refresh terminal - useful for the first challenge
+                    self.show_terminal()
+                    self.show_all()
+
+        except Queue.Empty:
+            pass
+        except Exception as e:
+            logger.error('Unexpected error in MainWindow: check_queue:'
+                         ' - [{}]'.format(e))
+        finally:
+            time.sleep(0.02)
+            return True
 
     def type_text(self, text):
         '''Wrapper function for the story member variable
@@ -248,80 +292,6 @@ class MainWindow(GenericWindow):
         self.terminal.hide()
         self.hbox.set_halign(Gtk.Align.CENTER)
 
-    def check_queue(self):
-        '''
-        This receives the messages sent from the script running in the
-        terminal. From these messages we can decide how to update the GUI.
-        '''
-
-        try:
-            # Give it a timeout so it doesn't hang indefinitely
-            # Don't block the queue - if a value is available, return
-            # immediately.
-            data_dict = self.queue.get(False, timeout=5.0)
-
-            if 'exit' in data_dict.keys():
-                # TODO: remove this when we finish the last chapter
-                self.stop_typing_in_terminal()
-                self.center_storybook()
-                self.story.print_coming_soon(self, self.terminal)
-
-                time.sleep(5)
-                self.close_window()
-
-                subprocess.Popen('/usr/bin/kano-feedback')
-
-            elif 'hint' in data_dict.keys():  # TODO: get the command and highlight it
-                self.stop_typing_in_terminal()
-                self.type_text(data_dict['hint'])
-                self.show_terminal()
-
-            # This is for when we've started a new challenge.
-            else:
-                self.story.clear()
-
-                if 'challenge' in data_dict.keys() and \
-                   'story' in data_dict.keys() and \
-                   'spells' in data_dict.keys():
-
-                    self.stop_typing_in_terminal()
-
-                    # Print the challenge title at the top of the screen
-                    challenge = data_dict['challenge']
-                    self.print_challenge_title(challenge)
-
-                    if 'xp' in data_dict and data_dict['xp']:
-                        self.type_text(data_dict['xp'])
-
-                    # If we have have just used echo in the previous
-                    # challenge, we should print out the user's choice
-                    if "print_text" in data_dict and data_dict["print_text"]:
-                        # Automatically stick a double newline at the end of
-                        # the user text to save us having to do it ourselves.
-                        self.print_coloured_text(
-                            data_dict["print_text"] + "\n\n"
-                        )
-
-                    self.type_text(data_dict['story'])
-
-                    # Repack the spells (commands) into the spellbook
-                    spells = data_dict['spells']
-                    highlighted_spells = data_dict['highlighted_spells']
-                    self.repack_spells(spells, highlighted_spells)
-
-                    # Refresh terminal - useful for the first challenge
-                    self.show_terminal()
-                    self.show_all()
-
-        except Queue.Empty:
-            pass
-        except Exception as e:
-            logger.error('Unexpected error in MainWindow: check_queue:'
-                         ' - [{}]'.format(e))
-        finally:
-            time.sleep(0.02)
-            return True
-
     def show_menu(self):
         '''
         Show the menu that allows the user to pick the challenge
@@ -347,3 +317,48 @@ class MainWindow(GenericWindow):
         self.remove(self.menu)
         self.setup_application_widgets()
         self.start_script_in_terminal(str(challenge_number), "1")
+
+    def finish_app(self):
+        '''
+        After the user has finished the storyline, show a animation.
+
+        NOTE: Commented code below pops-up a dialog to ask for feedback.
+              Uncomment to enable the feature.
+        '''
+
+        self.stop_typing_in_terminal()
+        self.center_storybook()
+        # TODO: update asset when we finish the last chapter in the storyline
+        self.story.print_coming_soon(self, self.terminal)
+
+        time.sleep(5)
+        self.close_window()
+
+        # kdialog = FinishDialog()
+        # response = kdialog.run()
+
+        # if response == 'feedback':
+        #     subprocess.Popen('/usr/bin/kano-feedback')
+
+    def close_window(self, widget=None, event=None):
+        '''
+        Shut the server down and kills the application.
+
+        Args:
+            widget (Gtk.Widget)
+            event (Gdk.EventButton)
+
+        Returns:
+            None
+        '''
+
+        if hasattr(self, "server"):
+            self.server.socket.shutdown(socket.SHUT_RDWR)
+            self.server.socket.close()
+            self.server.shutdown()
+
+        # Do this AFTER the server shutdown, so if this goes wrong,
+        # we can quickly relaunch TQ.
+        revert_to_default_permissions()
+
+        Gtk.main_quit()
