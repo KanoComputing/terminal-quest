@@ -17,15 +17,15 @@ class StepTemplateMkdir(TerminalMkdirBernard):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "Bernard: {{Bb:Hello! Shush, don't say a word.}}",
+        "Bernard: {{Bb:\"Hello! Shush, don't say a word.\"}}",
 
-        "{{Bb:I know why you're here. You want a shed!",
+        "{{Bb:\"I know why you're here. You want a shed!\"",
 
-        "I have just the thing for you. I have the}} "
-        "{{lb:best-shed-maker-in-the-world.sh}}",
+        "\"I have just the thing for you. I have the}} "
+        "{{bb:best-shed-maker-in-the-world.sh}}{{Bb:\"}}",
 
         "\nHe seems pretty enthusiastic about it. {{lb:Examine}} the tool "
-        "{{lb:best-shed-maker-in-the-world.sh}}",
+        "{{bb:best-shed-maker-in-the-world.sh}}",
 
         "\n{{gb:Use}} {{ob:TAB}} {{gb:to speed up your typing.}}"
     ]
@@ -35,7 +35,7 @@ class Step1(StepTemplateMkdir):
 
     hints = [
         "{{rb:Use}} {{yb:cat}} {{rb:to examine the}} "
-        "{{lb:best-shed-maker-in-the-world.sh}}",
+        "{{bb:best-shed-maker-in-the-world.sh}}",
 
         "{{rb:Use}} {{yb:cat best-shed-maker-in-the-world.sh}} "
         "{{rb:to examine the tool.}}"
@@ -52,7 +52,7 @@ class Step1(StepTemplateMkdir):
         if self.last_user_input == "cat best-horn-in-the-world.sh":
             self.send_text(
                 "\n{{rb:You are reading the wrong file! "
-                "You want to read}} {{lb:best-shed-maker-in-the-world.sh}}"
+                "You want to read}} {{bb:best-shed-maker-in-the-world.sh}}"
                 "{{rb:.}}"
             )
         else:
@@ -64,9 +64,9 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateMkdir):
     story = [
-        "The tool has an inscription that reads {{lb:mkdir shed}}.",
-        "You recognise the command {{lb:mkdir}}. It's what you used "
-        "to help Ruth in the farm.",
+        "The tool has an inscription that reads \"mkdir shed\".",
+        "You recognise the command {{yb:mkdir}}. It's what you used "
+        "to help {{bb:Ruth}} in the farm.",
 
         "\nBernard: {{Bb:It's like magic! Just run the command, "
         "and you get a new shed.}}",
@@ -109,7 +109,7 @@ class Step2(StepTemplateMkdir):
 
 class Step3(StepTemplateMkdir):
     story = [
-        "{{lb:Look around}} to see if it created a shed."
+        "{{lb:Look around}} to see if it created a {{bb:shed}}."
     ]
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east/shed-shop"
@@ -130,9 +130,9 @@ class Step3(StepTemplateMkdir):
 
 class Step4(StepTemplateMkdir):
     story = [
-        "It worked! You can see a new shed in the room.",
-        "What happens if you run it again?",
-        "{{gb:Press UP twice to replay the command.}}"
+        "It worked! You can see a new {{bb:shed}} in the room.\n",
+        "What happens if you run it again?\n",
+        "{{gb:Press}} {{ob:UP}} {{gb:twice to replay the command.}}"
     ]
 
     start_dir = "~/town/east/shed-shop"
@@ -160,18 +160,18 @@ class Step5(StepTemplateMkdir):
     story = [
         "You get the error {{yb:mkdir: cannot create directory `shed': "
         "File exists}}",
-        "\nBernard: {{Bb:Of course it won't work second time - "
-        "you already have a shed!",
+        "\nBernard: {{Bb:\"Of course it won't work second time - "
+        "you already have a shed!\"",
 
-        "I'm working on the next big thing,}} "
-        "{{lb:best-horn-in-the-world.sh}}{{Bb:.}}",
+        "\"I'm working on the next big thing,}} "
+        "{{bb:best-horn-in-the-world.sh}}{{Bb:.\"}}",
 
-        "{{Bb:It can be used to alert anyone that you're coming. "
+        "{{Bb:\"It can be used to alert anyone that you're coming. "
         "I'm having some teething problems, "
-        "but I'm sure I'll fix them soon.}}",
+        "but I'm sure I'll fix them soon.\"}}",
 
-        "\n{{lb:Examine best-horn-in-the-world.sh}} and see if you "
-        "can identify the problem.",
+        "\n{{lb:Examine}} {{bb:best-horn-in-the-world.sh}} and see if you "
+        "can identify the problem.\n",
 
         "{{gb:Remember to use}} {{ob:TAB}}{{gb:!}}"
     ]
@@ -211,10 +211,10 @@ class Step6(StepTemplateMkdir):
         "The tool reads {{yb:eco \"Honk!\"}}",
         "Maybe it should read {{yb:echo \"Honk!\"}} instead...",
         "How could we make changes to this tool?",
-        "\nBernard: {{Bb:Ho ho, you look like you understand the problem.}}",
-        "Eleanor: {{Bb:If we need extra help, we can go to the "
-        "library, it was just outside.}}",
-        "\nBefore we go, have a {{lb:look}} in the {{lb:basement}}."
+        "\nBernard: {{Bb:\"Ho ho, you look like you understand the problem.\"}}",
+        "Eleanor: {{Bb:\"If we need extra help, we can go to the "
+        "library, it was just outside.\"}}",
+        "\nBefore we go, have a {{lb:look}} in the {{bb:basement}}."
     ]
 
     start_dir = "~/town/east/shed-shop"
@@ -242,8 +242,8 @@ class Step6(StepTemplateMkdir):
 
 class Step7(StepTemplateMkdir):
     story = [
-        "Bernard: {{Bb:Oooh naughty, you can't look in there.}}",
-        "\nLet's {{lb:leave}} the shed shop and go back to town."
+        "Bernard: {{Bb:\"Oooh naughty, you can't look in there.\"}}",
+        "\nLet's {{lb:leave}} the shed shop and go back to {{bb:east}} of town."
     ]
 
     start_dir = "~/town/east/shed-shop"
@@ -252,7 +252,7 @@ class Step7(StepTemplateMkdir):
         "{{rb:Leave the shed-shop using}} {{yb:cd ..}}"
     ]
     eleanors_speech = (
-        "Eleanor: {{Bb:Yay, I like the library. Let's go back to town!}}"
+        "Eleanor: {{Bb:\"Yay, I like the library. Let's go back to town!\"}}"
     )
 
     last_step = True

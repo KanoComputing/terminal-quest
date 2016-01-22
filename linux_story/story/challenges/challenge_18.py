@@ -63,7 +63,7 @@ class Step2(StepTemplateEcho):
 
 class Step3(StepTemplateEcho):
     story = [
-        "You notice a small remote farm in the distance.",
+        "You notice a small remote farm in the distance.\n",
         "{{lb:Let's go}} to the {{bb:farm}}."
     ]
 
@@ -183,10 +183,10 @@ class Step7(StepTemplateEcho):
     last_challenge = True
 
     all_commands = {
-        "cat Ruth": "Ruth: {{Bb:Ah! Who are you?!}}",
-        "cat Cobweb": "Cobweb: {{Bb:Neiiigh.}}",
-        "cat Trotter": "Trotter: {{Bb:Oink Oink.}}",
-        "cat Daisy": "Daisy: {{Bb:Mooooooooo.}}"
+        "cat Ruth": "Ruth: {{Bb:\"Ah! Who are you?!\"}}",
+        "cat Cobweb": "Cobweb: {{Bb:\"Neiiigh.\"}}",
+        "cat Trotter": "Trotter: {{Bb:\"Oink Oink.\"}}",
+        "cat Daisy": "Daisy: {{Bb:\"Mooooooooo.\"}}"
     }
 
     start_dir = "~/farm/barn"
@@ -208,7 +208,7 @@ class Step7(StepTemplateEcho):
 
         # If they enter ls, say Well Done
         if self.last_user_input == 'ls':
-            hint = "\n{{gb:Well done for looking around.}}"
+            hint = "\n{{gb:You look around.}}"
             self.send_text(hint)
             return False
 
@@ -234,7 +234,7 @@ class Step7(StepTemplateEcho):
                     str(len(self.all_commands)) + \
                     " more.}}"
             else:
-                hint += "\n{{gb:Press {{ob:Enter}} to continue.}}"
+                hint += "\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}"
 
             self.send_text(hint)
 

@@ -59,7 +59,7 @@ class Step1(StepTemplateCd):
 
         # If they enter ls, say Well Done
         if self.last_user_input == 'ls':
-            hint = "\n{{gb:Well done for looking around.}}"
+            hint = "\n{{gb:You look around.}}"
             self.send_text(hint)
             return False
 
@@ -108,8 +108,8 @@ class Step2(StepTemplateMv):
         "\"I learnt this spell for moving items from"
         " one place to another. But I can't seem to make it work.\"",
 
-        "\"I've been trying to move this}} {{lb:apple}} {{Bb:into the}} "
-        "{{lb:basket}}{{Bb:\"}}",
+        "\"I've been trying to move this}} {{bb:apple}} {{Bb:into the}} "
+        "{{bb:basket}}{{Bb:\"}}",
 
         "{{Bb:\"I was told the command was}} {{yb:mv apple basket/}}{{Bb:\"}}",
 
@@ -145,7 +145,7 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        "Check you've managed to move the apple. {{lb:Look around}} "
+        "Check you've managed to move the {{bb:apple}}. {{lb:Look around}} "
         "in this directory.\n"
     ]
     start_dir = "~/town/.hidden-shelter"
@@ -170,8 +170,8 @@ class Step3(StepTemplateMv):
 class Step4(StepTemplateMv):
     story = [
         "{{gb:Nice work! The apple isn't in this directory anymore.}}\n",
-        "{{wn:Now check the apple is in the}} {{lb:basket}} {{wn:using}} "
-        "{{lb:ls}}{{wn:.}}\n"
+        "{{wn:Now check the apple is in the}} {{bb:basket}} {{wn:using}} "
+        "{{yb:ls}}{{wn:.}}\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
@@ -197,10 +197,10 @@ class Step5(StepTemplateMv):
         "\n{{wb:Edward:}} {{Bb:\"Hey, you did it! What was I doing "
         "wrong?\"}}",
         "{{Bb:\"Can you move the apple from the basket back here?\"}}\n",
-        "{{lb:Move}} the {{lb:apple}} from the {{lb:basket}} "
-        "to your current position. This is represented by {{lb:./}}",
+        "{{lb:Move}} the {{bb:apple}} from the {{bb:basket}} "
+        "to your current position. This is represented by {{bb:./}} \n",
         "So {{yb:mv basket/apple ./}} is the full command. "
-        "You need the {{lb:./}} !\n"
+        "You need the {{bb:./}} !\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
@@ -235,8 +235,8 @@ class Step6(StepTemplateMv):
         "{{Bb:\"Ah! The dog ran outside!\"}}",
         "{{wb:Eleanor:}} {{Bb:\"Doggy!\"}}",
         "{{wb:Edith:}} {{Bb:\"No, honey! Don't go outside!\"}}",
-        "\n{{lb:Eleanor}} follows her {{lb:dog}} and leaves the "
-        "{{lb:.hidden-shelter}}.",
+        "\n{{bb:Eleanor}} follows her {{bb:dog}} and leaves the "
+        "{{bb:.hidden-shelter}}.",
         "{{lb:Look around}} to check this.\n"
     ]
     story_dict = {
@@ -270,7 +270,7 @@ class Step7(StepTemplateMv):
     story = [
         "{{wb:Edith:}} {{Bb:\"No!! Honey, come back!!\"}}",
         "{{Bb:\"You there, save my little girl!\"}}\n",
-        "First, {{lb:look outside}} for Eleanor with {{yb:ls ../}}",
+        "First, {{lb:look outside}} for {{bb:Eleanor}} with {{yb:ls ../}}",
 
     ]
     start_dir = "~/town/.hidden-shelter"
@@ -292,8 +292,8 @@ class Step7(StepTemplateMv):
 
 class Step8(StepTemplateMv):
     story = [
-        "Now {{lb:move Eleanor}} from the town outside {{lb:..}} to "
-        "your current position {{lb:.}}\n"
+        "Now {{lb:move}} {{bb:Eleanor}} from the {{bb:town}} outside {{bb:..}} to "
+        "your current position {{bb:.}}\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"

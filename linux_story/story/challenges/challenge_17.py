@@ -31,7 +31,7 @@ class Step1(StepTemplateMv):
         "containing all the commands you've learned so far.\n",
         "Maybe something else is hidden in the house?\n",
         "{{lb:Look}} in the hallway {{lb:behind you}}. Remember, "
-        "behind you is {{lb:..}}"
+        "behind you is {{bb:..}}"
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -51,8 +51,8 @@ class Step2(StepTemplateMv):
     story = [
         "You see doors to your {{bb:garden}}, {{bb:kitchen}}, "
         "{{bb:my-room}} and {{bb:parents-room}}.",
-        "We haven't checked out your parents' room properly yet.",
-        "{{lb:Go into your parents-room}}."
+        "We haven't checked out your parents' room properly yet.\n",
+        "{{lb:Go into your}} {{bb:parents-room}}."
     ]
 
     start_dir = "~/my-house/my-room"
@@ -132,7 +132,7 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "There's a {{bb:.safe}}!",
+        "There's a {{bb:.safe}}!\n",
         "Maybe there's something useful in here. {{lb:Look inside}} the "
         "{{bb:.safe}}."
     ]
@@ -200,8 +200,8 @@ class Step5(CheckDiaryStep):
 class Step6(CheckDiaryStep):
     story = [
         "So there's a farm around here?",
-        "Apparently it's not far from our house, just off the windy road...",
-        "What is this {{lb:ECHO}} note? {{lb:Examine}} the ECHO note."
+        "Apparently it's not far from our house, just off the windy road...\n",
+        "What is this {{bb:ECHO}} note? {{lb:Examine}} the {{bb:ECHO}} note."
     ]
 
     start_dir = "~/my-house/parents-room"

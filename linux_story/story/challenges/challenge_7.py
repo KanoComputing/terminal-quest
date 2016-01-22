@@ -83,7 +83,7 @@ class Step3(StepTemplateCd):
 
         # If they enter ls, say Well Done
         if self.last_user_input == 'ls':
-            hint = "\n{{gb:Well done for looking around.}}"
+            hint = "\n{{gb:You look around.}}"
             self.send_text(hint)
             return False
 

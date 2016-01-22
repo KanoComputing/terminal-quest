@@ -250,7 +250,7 @@ class Step4(StepNanoStory):
         "{{lb:Windy Road}}{{Bb:? The one "
         "near the farm and that funny lonely house outside town.}}",
 
-        "\n{{gb:Press {{ob:Enter}} to continue.}}"
+        "\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}"
     ]
 
     eleanors_speech = (

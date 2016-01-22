@@ -25,12 +25,12 @@ class StepTemplateEcho(TerminalEcho):
 class Step1(StepTemplateEcho):
     username = os.environ['LOGNAME']
     story = [
-        "Ruth: {{Bb:You startled me!",
-        "Do I know you?  You look familiar...",
-        "Wait, you're}} {{bb:Mum}}{{Bb:'s kid, aren't you!",
-        "..."
-        "Yes?  Do you have a tongue?",
-        "Is your name not}} {{yb:" + username + "}}{{Bb:?}}",
+        "Ruth: {{Bb:\"You startled me!\"",
+        "\"Do I know you?  You look familiar...\"",
+        "\"Wait, you're}} {{bb:Mum}}{{Bb:'s kid, aren't you!\"",
+        "\"..."
+        "Yes?  Do you have a tongue?\"",
+        "\"Is your name not}} {{yb:" + username + "}}{{Bb:?\"}}",
         "\n{{gb:Reply with}} {{yb:echo yes}} "
         "{{gb:or}} {{yb:echo no}}."
     ]
@@ -73,7 +73,7 @@ class Step2(StepTemplateEcho):
 
     story = [
         "Ruth: {{Bb:\"Ah, I knew it!\"}}",
-        "{{Bb:\"So you live in that little house outside town?}}",
+        "{{Bb:\"So you live in that little house outside town?\"}}",
         # TODO: see if this can appear as a block
         # TODO: change the colour of this.
         "{{yb:1: Yes}}",
@@ -140,23 +140,23 @@ class Step3(StepTemplateEcho):
             self.story = ["Ruth: {{Bb:\"I thought so!\"}}"]
         elif prev_command == "echo 2":  # no
             self.print_text = ["{{yb:No}}"]
-            self.story = ["Ruth: {{Bb:Stop lying, I know you do.}}"]
+            self.story = ["Ruth: {{Bb:\"Stop lying, I know you do.\"}}"]
         elif prev_command == "echo 3":  # I don't know
             self.print_text = ["{{yb:I don't know}}"]
-            self.story = ["Ruth: {{Bb:You don't know?  That's worrying...}}"]
+            self.story = ["Ruth: {{Bb:\"You don't know?  That's worrying...\"}}"]
 
         self.story = self.story + [
-            "\n{{Bb:Did you walk all the way from town? "
+            "\n{{Bb:\"Did you walk all the way from town? "
             "Did you see my husband there?",
-            "He's a pretty}} {{lb:grumpy-man}}{{Bb:, he was travelling "
+            "He's a pretty}} {{bb:grumpy-man}}{{Bb:, he was travelling "
             "to town because of that big "
-            "meeting with the Mayor.}}",
+            "meeting with the Mayor.\"}}",
             "\n{{yb:1: \"I'm sorry, he disappeared in front of me.\"}}",
             "{{yb:2: \"I didn't see your husband, but people have been "
             "disappearing in town.\"}}",
             "{{yb:3: \"I don't know anything.\"}}",
             "\nRespond with one of the following options using the "
-            "{{lb:echo}} command and option number.\n"
+            "{{yb:echo}} command and option number.\n"
         ]
         StepTemplateEcho.__init__(self)
 
@@ -175,8 +175,8 @@ class Step3(StepTemplateEcho):
 
         elif self.last_user_input == "echo 3":  # I don't know anything
             hint = (
-                "Ruth: {{Bb:Really?  Are you sure you didn't see a}} "
-                "{{lb:grumpy-man}}{{Bb: in town?}}"
+                "Ruth: {{Bb:\"Really?  Are you sure you didn't see a}} "
+                "{{lb:grumpy-man}}{{Bb: in town?\"}}"
             )
             self.send_hint(hint)
             return False
@@ -222,8 +222,8 @@ class Step4(StepTemplateEcho):
             return True
         elif self.last_user_input == "echo 2":
             response = (
-                "Ruth: {{Bb:\"I would, but I'm scared of going missing myself."
-                "\nHe might come back, so I should stay "
+                "Ruth: {{Bb:\"I would, but I'm scared of going missing myself.\""
+                "\n\"He might come back, so I should stay "
                 "here in case he does. Can you think of anything "
                 "else?\"}}"
             )

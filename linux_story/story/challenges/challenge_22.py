@@ -19,9 +19,9 @@ class StepTemplateMkdir(TerminalMkdir):
 class Step1(StepTemplateMkdir):
     story = [
         "{{gb:Well done, it looks like everyone is here!}}",
-        "\nRuth: {{Bb:Thank you so much!}}",
-        "{{Bb:We'll stay in here to keep safe. I'm so grateful to everything "
-        "you've done.}}",
+        "\nRuth: {{Bb:\"Thank you so much!\"}}",
+        "{{Bb:\"We'll stay in here to keep safe. I'm so grateful to everything "
+        "you've done.\"}}",
         "\nUse {{yb:cat}} to check that the animals are happy in here."
     ]
 
@@ -52,7 +52,7 @@ class Step1(StepTemplateMkdir):
 class Step2(StepTemplateMkdir):
     story = [
         "{{pb:Ding. Dong.}}\n",
-        "Ruth: {{Bb:What?? I heard a bell! What does that mean?}}",
+        "Ruth: {{Bb:\"What?? I heard a bell! What does that mean?\"}}",
         "\nQuick! {{lb:Look around}} and see if anyone is missing."
     ]
 
@@ -80,8 +80,8 @@ class Step3(StepTemplateMkdir):
     story = [
         "It appears that everyone is still here...",
         "\n{{pb:Ding. Dong.}}\n",
-        "\nRuth: {{Bb:I heard it again! Is that the sound you heard when "
-        "my husband went missing?}}",
+        "\nRuth: {{Bb:\"I heard it again! Is that the sound you heard when "
+        "my husband went missing?\"\n}}",
         "Have another quick {{lb:look around}}."
     ]
 
@@ -107,14 +107,14 @@ class Step3(StepTemplateMkdir):
 # TODO: FIX THIS STEP
 class Step4(StepTemplateMkdir):
     story = [
-        "Ruth: {{Bb:It's alright. We're all safe, everyone's still here. "
-        "I wonder why it's ringing?}}",
+        "Ruth: {{Bb:\"It's alright. We're all safe, everyone's still here. "
+        "I wonder why it's ringing?\"}}",
         "\nPerhaps we should investigate that sound. Who else do we "
         "know?",
         "Maybe you should check back on the family in the "
-        "{{lb:.hidden-shelter}} and talk to them with your new found voice.",
+        "{{bb:.hidden-shelter}} and talk to them with your new found voice.",
 
-        "\nStart heading back to the {{lb:.hidden-shelter}} using {{lb:cd}}."
+        "\nStart heading back to the {{bb:.hidden-shelter}} using {{yb:cd}}."
     ]
 
     start_dir = "~/farm/barn/.shelter"
@@ -138,7 +138,7 @@ class Step4(StepTemplateMkdir):
         if self.last_user_input.startswith("cd") and \
                 not self.get_command_blocked() and \
                 not self.current_path == self.end_dir:
-            hint = "\n{{gb:Well done! Keep going!}}"
+            hint = "\n{{gb:You travel back to tilde}}"
             self.send_text(hint)
         else:
             return StepTemplateMkdir.check_command(self)

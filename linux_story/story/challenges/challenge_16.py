@@ -25,10 +25,10 @@ class StepTemplateMv(TerminalMv):
 
 class Step1(StepTemplateMv):
     story = [
-        "There is an old antique {{lb:.chest}} hidden under your bed, "
-        "which you don't remember seeing before.",
-        "You walk into {{bb:my-room}} to have a closer look.",
-        "{{lb:Peer inside}} the {{lb:.chest}} and see what it contains."
+        "There is an old antique {{bb:.chest}} hidden under your bed, "
+        "which you don't remember seeing before.\n",
+        "You walk into {{bb:my-room}} to have a closer look.\n",
+        "{{lb:Peer inside}} the {{bb:.chest}} and see what it contains."
     ]
 
     start_dir = "~/my-house/my-room"
@@ -54,7 +54,7 @@ class Step1(StepTemplateMv):
 class Step2(StepTemplateMv):
     story = [
         "There are some rolls of parchment, similar to what you found in "
-        "the {{bb:.hidden-shelter}}",
+        "the {{bb:.hidden-shelter}}\n",
         "Use {{yb:cat}} to {{lb:read}} one of the scrolls.\n"
     ]
 

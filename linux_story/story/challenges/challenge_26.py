@@ -17,9 +17,9 @@ class StepTemplateMkdir(TerminalMkdirBernard):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "You are back in town. Eleanor waves her arms and points "
+        "You are back in town. {{bb:Eleanor}} waves her arms and points "
         "at a building in the distance.",
-        "\n{{lb:Look around}} to see where Eleanor is pointing."
+        "\n{{lb:Look around}} to see where {{bb:Eleanor}} is pointing."
     ]
 
     start_dir = "~/town/east"
