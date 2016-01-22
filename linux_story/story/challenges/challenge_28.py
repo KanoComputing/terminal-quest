@@ -17,8 +17,8 @@ class StepTemplateNano(TerminalNanoBernard):
 
 class Step1(StepTemplateNano):
     story = [
-        "You're back in town. Eleanor looked relieved to be outside.",
-        "Where could the librarian be hiding?",
+        "You're back in town. {{bb:Eleanor}} looked relieved to be outside.",
+        "Where could the {{bb:librarian}} be hiding?\n",
         "{{lb:Look around}} to decide where to go next."
     ]
 
@@ -42,7 +42,7 @@ class Step1(StepTemplateNano):
     ]
 
     eleanors_speech = (
-        "Eleanor: {{Bb:I'm hungry. Can you see anywhere we could eat?}}"
+        "Eleanor: {{Bb:\"I'm hungry. Can you see anywhere we could eat?\"}}"
     )
 
     def next(self):
@@ -51,8 +51,8 @@ class Step1(StepTemplateNano):
 
 class Step2(StepTemplateNano):
     story = [
-        "We haven't checked out the restaurant yet.",
-        "Let's {{lb:go}} into the {{lb:restaurant}}."
+        "We haven't checked out the {{bb:restaurant}} yet.\n",
+        "Let's {{lb:go}} into the {{bb:restaurant}}."
     ]
 
     start_dir = "~/town/east"
@@ -75,7 +75,7 @@ class Step2(StepTemplateNano):
 
 class Step3(StepTemplateNano):
     story = [
-        "You and Eleanor walk into the restaurant.",
+        "You and {{bb:Eleanor}} walk into the {{bb:restaurant}}.\n",
         "Look around {{lb:closely}}."
     ]
 
@@ -108,8 +108,8 @@ class Step3(StepTemplateNano):
 
 class Step4(StepTemplateNano):
     story = [
-        "Do you see the {{bb:.cellar}}?",
-        "Let's {{lb:go}} into the {{lb:.cellar}}."
+        "Do you see the {{bb:.cellar}}?\n",
+        "Let's {{lb:go}} into the {{bb:.cellar}}."
     ]
 
     start_dir = "~/town/east/restaurant"
@@ -132,7 +132,7 @@ class Step4(StepTemplateNano):
 
 class Step5(StepTemplateNano):
     story = [
-        "Eleanor grabs your hand, and the two of you walk into the cellar.",
+        "{{bb:Eleanor}} grabs your hand, and the two of you walk into the {{bb:cellar}}.\n",
         "{{lb:Look around.}}"
     ]
 
@@ -155,7 +155,7 @@ class Step5(StepTemplateNano):
     ]
 
     eleanors_speech = (
-        "Eleanor: {{Bb:...is there someone there?}}"
+        "Eleanor: {{Bb:\"...is there someone there?\"}}"
     )
 
     def next(self):
@@ -164,7 +164,7 @@ class Step5(StepTemplateNano):
 
 class Step6(StepTemplateNano):
     story = [
-        "You see a woman {{lb:Clara}} in the cellar.",
+        "You see a woman {{bb:Clara}} in the {{bb:cellar}}.\n",
         "{{lb:Listen}} to what she has to say."
     ]
 
@@ -180,7 +180,7 @@ class Step6(StepTemplateNano):
         "cat Clara"
     ]
     eleanors_speech = (
-        "Eleanor: {{Bb:...oh! I think I recognise that woman!}}"
+        "Eleanor: {{Bb:\"...oh! I think I recognise that woman!\"}}"
     )
 
     last_step = True

@@ -330,7 +330,7 @@ class TerminalNano(TerminalEcho):
             hint = (
                 "\n{{gb:You've opened nano! Now make sure the file says}} "
                 "{{yb:" + self.goal_nano_end_content +
-                "}}{{gb:. If you want to exit, press Ctrl X.}}"
+                "}}{{gb:. If you want to exit, press}} {{yb:Ctrl X}}{{gb:.}}"
             )
             self.send_text(hint)
 
@@ -415,7 +415,7 @@ class TerminalNano(TerminalEcho):
 
             if self.get_editable() == self.goal_nano_save_name:
                 hint = (
-                    "\n{{gb:Press}} {{yb:Enter}} {{gb:to confirm the "
+                    "\n{{gb:Press}} {{ob:Enter}} {{gb:to confirm the "
                     "filename.}}"
                 )
             else:
@@ -434,7 +434,7 @@ class TerminalNano(TerminalEcho):
         elif self.get_save_prompt_showing():
             if self.get_nano_content().strip() == self.goal_nano_end_content:
                 self.send_text(
-                    "\n{{gb:Press}} {{yb:Y}} {{gb:to confirm that you want to "
+                    "\n{{gb:Press}} {{ob:Y}} {{gb:to confirm that you want to "
                     "save.}}"
                 )
             else:
@@ -445,7 +445,7 @@ class TerminalNano(TerminalEcho):
 
         elif self.get_nano_content().strip() == self.goal_nano_end_content:
             hint = (
-                "\n{{gb:Excellent, you typed}} {{lb:" +
+                "\n{{gb:Excellent, you typed}} {{yb:" +
                 self.goal_nano_end_content +
                 "}}{{gb:. Now press}} {{yb:Ctrl X}} {{gb:to exit.}}"
             )
