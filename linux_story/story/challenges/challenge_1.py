@@ -31,10 +31,11 @@ class Step1(StepLs):
         "+----------------------------------------------------+",
         "| {{gb:New Spell:}} Type {{yb:ls}} and press {{ob:Enter}} to {{lb:look around}}. | " \
         "+----------------------------------------------------+\n"
-    ]# TODO: " \ is a hack in this array to stop word wrap code screwing up and adding new lines in where it shouldn't
+    ]  # TODO: " \ is a hack in this array to stop word wrap code screwing up and adding new lines in where it shouldn't
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "ls"
+    highlighted_commands = ["ls"]
     hints = [
         "{{rb:Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}} {{rb:to take a look around "
         "your bedroom.}}"
