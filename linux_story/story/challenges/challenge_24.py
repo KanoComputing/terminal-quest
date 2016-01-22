@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+# challenge_24.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
@@ -17,7 +17,7 @@ class StepTemplateMkdir(TerminalMkdirEleanor):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "You walk down the narrow road, with Eleanor dancing "
+        "You walk down the narrow road, with {{bb:Eleanor}} dancing "
         "alongside, until you reach an open space in the "
         "{{bb:east}} part of town.",
         "\n{{lb:Look around.}}"
@@ -51,14 +51,14 @@ class Step1(StepTemplateMkdir):
 class Step2(StepTemplateMkdir):
     story = [
         "You see a {{bb:shed-shop}}, {{bb:library}} and {{bb:restaurant}}.",
-        "\nEleanor: {{Bb:Hey, what is that shed-shop?}}",
-        "{{Bb:Let's}} {{lb:go in}}{{Bb:!}}"
+        "\nEleanor: {{Bb:\"Hey, what is that shed-shop?\"}}\n",
+        "{{Bb:\"Let's}} {{lb:go in}}{{Bb:!\"}}"
     ]
 
     start_dir = "~/town/east"
     end_dir = "~/town/east/shed-shop"
     hints = [
-        "{{rb:Use}} {{yb:cd shed-shop/}} {{rb:to go in the shed-shop.}}"
+        "{{rb:Use}} {{yb:cd shed-shop}} {{rb:to go in the shed-shop.}}"
     ]
 
     eleanors_speech = (
@@ -79,7 +79,7 @@ class Step3(StepTemplateMkdir):
     story = [
         "You both walk slowly into the shop.",
         "It is dusty and significantly darker in here than outside.",
-        "Eleanor looks like she needs to sneeze.",
+        "{{bb:Eleanor}} looks like she needs to sneeze.",
         "\n{{lb:Look around.}}"
     ]
 
@@ -109,10 +109,10 @@ class Step3(StepTemplateMkdir):
 class Step4(StepTemplateMkdir):
 
     story = [
-        "You see a man called Bernard, a door and a "
+        "You see a man called {{bb:Bernard}}, a door and a "
         "couple of tools.",
         "\nThe tools show up as {{gb:green}} in the Terminal.",
-        "\n{{lb:Listen}} to what {{lb:Bernard}} has to say."
+        "\n{{lb:Listen}} to what {{bb:Bernard}} has to say."
     ]
 
     start_dir = "~/town/east/shed-shop"

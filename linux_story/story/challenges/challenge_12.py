@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+# challenge_12.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
+
 
 import os
 import sys
@@ -28,10 +29,10 @@ class StepTemplateMv(TerminalMv):
 # Thanks you for saving the little girl
 class Step1(StepTemplateMv):
     story = [
-        "{{wb:Edith:}} {{Bb:Thank you for saving her!}}",
-        "{{wb:Eleanor:}} {{Bb:Doggy!}}",
-        "{{wb:Edith:}} {{Bb:Can you save her dog too? I'm worried something "
-        "will happen to it if it stays outside.}}\n"
+        "{{wb:Edith:}} {{Bb:\"Thank you for saving her!\"}}",
+        "{{wb:Eleanor:}} {{Bb:\"Doggy!\"}}",
+        "{{wb:Edith:}} {{Bb:\"Can you save her dog too? I'm worried something "
+        "will happen to it if it stays outside.\"}}\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
@@ -60,10 +61,10 @@ class Step1(StepTemplateMv):
 # Save both the dog and the little girl
 class Step2(StepTemplateMv):
     story = [
-        "{{wb:Eleanor:}} {{Bb:Yay, Doggie!}}",
-        "{{wb:Dog:}} {{Bb:Ruff!}}",
-        "{{wb:Edith:}} {{Bb:Thank you so much for getting them both back.",
-        "I was wrong about you. You're a hero!}}\n",
+        "{{wb:Eleanor:}} {{Bb:\"Yay, Doggie!\"}}",
+        "{{wb:Dog:}} {{Bb:\"Ruff!\"}}",
+        "{{wb:Edith:}} {{Bb:\"Thank you so much for getting them both back.",
+        "I was wrong about you. You're a hero!\"}}\n",
         "{{lb:Listen to everyone}} and see if there's anything else you can "
         "do to help.\n"
     ]

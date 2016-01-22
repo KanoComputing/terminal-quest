@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+# challenge_30.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
+
 
 import os
 
@@ -20,8 +21,8 @@ class StepNano(TerminalNanoEleanor):
 
 class Step1(StepNano):
     story = [
-        "{{pb:Ding. Dong.}}",
-        "\nEleanor: {{Bb:...what was that?}}",
+        "{{pb:Ding. Dong.}}\n",
+        "\nEleanor: {{Bb:\"...what was that?\"}}\n",
         "{{lb:Look around.}}"
     ]
     start_dir = "~/town/east/restaurant/.cellar"
@@ -52,7 +53,7 @@ class Step1(StepNano):
 class Step2(StepNano):
     story = [
         "Everyone seems to be here. What was that bell?",
-        "\nClara looks like she has something to say. {{lb:Listen to her.}}"
+        "\n{{bb:Clara}} looks like she has something to say. {{lb:Listen to her.}}"
     ]
     commands = [
         "cat Clara"
@@ -63,8 +64,8 @@ class Step2(StepNano):
         "{{rb:Use}} {{yb:cat Clara}} {{rb:to see what Clara has to say.}}"
     ]
     eleanors_speech = (
-        "Eleanor: {{Bb:....I was so scared. I don't think I want to go "
-        "outside now.}}"
+        "Eleanor: {{Bb:\"....I was so scared. I don't think I want to go "
+        "outside now.\"}}"
     )
 
     def next(self):
@@ -73,16 +74,16 @@ class Step2(StepNano):
 
 class Step3(StepNano):
     story = [
-        "Clara: {{Bb:Are you two going back out there?}}",
-        "{{gb:" + os.environ['LOGNAME'] + "}}"
+        "Clara: {{Bb:\"Are you two going back out there?\"}}",
+        "{{Bb:\"}}{{gb:" + os.environ['LOGNAME'] + "}}"
         "{{Bb:, you look like you can take care of yourself, but "
-        "I don't feel happy with Eleanor going outside.}}",
-        "\n" + "{{gb:" + os.environ['LOGNAME'] + "}}"
+        "I don't feel happy with Eleanor going outside.\"}}",
+        "\n{{Bb:\"}}" + "{{gb:" + os.environ['LOGNAME'] + "}}"
         "{{Bb:, will you leave Eleanor with me? "
-        "I'll look after her.}}",
-        "\n{{yb:1: That's a good idea, take good care of her.}}",
-        "{{yb:2: No I don't trust you, she's safer with me.}}",
-        "{{yb:3: (Ask Eleanor.) Are you happy to stay here?}}",
+        "I'll look after her.\"}}",
+        "\n{{yb:1: \"That's a good idea, take good care of her.\"}}",
+        "{{yb:2: \"No I don't trust you, she's safer with me.\"}}",
+        "{{yb:3: \"(Ask Eleanor.) Are you happy to stay here?\"}}",
         # "{{yb:4: Do you have enough food here?}}",
         "\n{{lb:Reply to Clara.}}"
     ]
@@ -96,18 +97,18 @@ class Step3(StepNano):
         "{{yb:echo 3}} {{rb:to reply to Clara.}}"
     ]
     eleanors_speech = (
-        "Eleanor: {{Bb:I'm happy to stay here. I like Clara.}}"
+        "Eleanor: {{Bb:\"I'm happy to stay here. I like Clara.\"}}"
     )
 
     def check_command(self):
         if self.last_user_input == "echo 2":
             text = (
-                "\nClara: {{Bb:Please let me look after her. "
-                "I don't think it's safe for her to go outside.}}"
+                "\nClara: {{Bb:\"Please let me look after her. "
+                "I don't think it's safe for her to go outside.\"}}"
             )
             self.send_text(text)
         elif self.last_user_input == "echo 3":
-            text = "\nEleanor: {{Bb:I'm happy to stay here. I like Clara.}}"
+            text = "\nEleanor: {{Bb:\"I'm happy to stay here. I like Clara.\"}}"
             self.send_text(text)
         # elif self.last_user_input == "echo 4":
         #    text = (
@@ -124,13 +125,13 @@ class Step3(StepNano):
 
 class Step4(StepNano):
     story = [
-        "Clara: {{Bb:Thank you!}}",
-        "Eleanor: {{Bb:When you find my parents, can you tell them I'm "
-        "here?}}",
-        "Clara: {{Bb:Where are you going to go now?}}",
-        "\nLet's head back to see {{lb:Bernard}} and see if he's heard of "
-        "the {{lb:masked swordsmaster}}.",
-        "{{lb:Head to the shed-shop.}}"
+        "Clara: {{Bb:\"Thank you!\"}}",
+        "Eleanor: {{Bb:\"When you find my parents, can you tell them I'm "
+        "here?\"}}",
+        "Clara: {{Bb:\"Where are you going to go now?\"}}",
+        "\nLet's head back to see {{bb:Bernard}} and see if he's heard of "
+        "the {{bb:masked swordsmaster}}.\n",
+        "{{lb:Head to the}} {{bb:shed-shop.}}"
     ]
     start_dir = "~/town/east/restaurant/.cellar"
     end_dir = "~/town/east/shed-shop"
@@ -141,11 +142,11 @@ class Step4(StepNano):
             "blocked": "\n{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
         },
         "~/town/east/restaurant": {
-            "not_blocked": "\n{{gb:Good work! Keep going!}}",
+            "not_blocked": "\n{{gb:You head upstairs}}",
             "blocked": "\n{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
         },
         "~/town/east": {
-            "not_blocked": "\n{{gb:Now go into the}} {{lb:shed-shop}}{{gb:.}}",
+            "not_blocked": "\n{{gb:Now go into the}} {{bb:shed-shop}}{{gb:.}}",
             "blocked": "\n{{rb:Use}} {{yb:cd shed-shop/}}{{rb:.}}"
         }
     }

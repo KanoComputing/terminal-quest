@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+# challenge_8.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
+
 
 import os
 import sys
@@ -40,7 +41,7 @@ class Step1(StepTemplateCd):
 
     story = [
         "{{pb:Ding. Dong.}}\n",
-        "It sounds like the bell you heard before.",
+        "It sounds like the bell you heard before.\n",
         "Use {{yb:ls}} to {{lb:look around}} again."
     ]
     start_dir = "~/town"
@@ -54,19 +55,19 @@ class Step1(StepTemplateCd):
         StepTemplateCd.__init__(self, xp)
 
     def next(self):
-        # This was the code we had originally.  Did the bell ring properly?
+        # This was the code we had originally. Did the bell ring properly?
         Step2()
 
 
 class Step2(StepTemplateCdBell):
 
     story = [
-        "{{wb:Little-boy:}} {{Bb:Oh no! That}} {{lb:grumpy-man}} "
-        "{{Bb:with the funny legs has gone!}} "
-        "{{Bb:Did you hear the bell just before he vanished??}}",
-        "{{wb:Young-girl:}} {{Bb:I'm scared...}}",
+        "{{wb:Little-boy:}} {{Bb:\"Oh no! That grumpy-man "
+        "with the funny legs has gone!}} "
+        "{{Bb:Did you hear the bell just before he vanished??\"}}",
+        "{{wb:Young-girl:}} {{Bb:\"I'm scared...\"}}",
         "\n{{pb:Ding. Dong.}}\n",
-        "{{wb:Young-girl:}} {{Bb:Oh!  I heard it go again!}}",
+        "{{wb:Young-girl:}} {{Bb:\"Oh! I heard it go again!\"}}",
         "\nTake a {{lb:look around}} you to check."
     ]
     start_dir = "~/town"
@@ -82,10 +83,10 @@ class Step2(StepTemplateCdBell):
 class Step3(StepTemplateCdBell):
 
     story = [
-        "{{wb:Young-girl:}} {{Bb:Wait, there was a}} {{lb:little-boy}} "
-        "{{Bb:here...right?",
+        "{{wb:Young-girl:}} {{Bb:\"Wait, there was a}} {{bb:little-boy}} "
+        "{{Bb:here...right?\"",
         "Every time that bell goes, someone disappears!}}",
-        "{{wb:Mayor:}} {{Bb:Maybe they just decided to go home...?}}",
+        "{{wb:Mayor:}} {{Bb:\"Maybe they just decided to go home...?\"}}",
         "\n{{pb:Ding. Dong.}}\n",
         "{{lb:Look around.}}"
     ]
@@ -102,8 +103,8 @@ class Step3(StepTemplateCdBell):
 class Step4(StepTemplateCd):
 
     story = [
-        "You are alone with the Mayor.",
-        "{{lb:Listen}} to what the Mayor has to say."
+        "You are alone with the {{bb:Mayor}}.\n",
+        "{{lb:Listen}} to what the {{bb:Mayor}} has to say."
     ]
     start_dir = "~/town"
     end_dir = "~/town"
@@ -117,8 +118,8 @@ class Step4(StepTemplateCd):
 class Step5(StepTemplateCdBell):
 
     story = [
-        "{{wb:Mayor:}} {{Bb:\"Everyone...has disappeared??\"",
-        "....I should head home now...}}",
+        "{{wb:Mayor:}} {{Bb:\"Everyone...has disappeared??\"\n",
+        "\"....I should head home now...\"}}",
         "\n{{pb:Ding. Dong.}}\n"
     ]
     start_dir = "~/town"
@@ -140,8 +141,8 @@ class Step5(StepTemplateCdBell):
 class Step6(StepTemplateCd):
     story = [
         "Everyone has gone.",
-        "Wait - there's a note on the floor.",
-        "Use {{lb:cat}} to read the note."
+        "Wait - there's a {{bb:note}} on the floor.\n",
+        "Use {{yb:cat}} to read the {{bb:note}}."
     ]
     start_dir = "~/town"
     end_dir = "~/town"

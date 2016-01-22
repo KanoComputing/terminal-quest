@@ -1,16 +1,18 @@
-#!/usr/bin/env python
-
 # Storybook.py
 #
-# Copyright (C) 2014 Kano Computing Ltd
-# License: GNU GPL v2 http://www.gnu.org/licenses/gpl-2.0.txt
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
-# Author: Caroline Clark <caroline@kano.me>
 
+
+import time
 
 from gi.repository import Gtk, Pango, Gdk
-import time
+
 from kano.utils import is_model_2_b
+
+from linux_story.helper_functions import get_ascii_art
+
 
 if is_model_2_b():
     NEWLINE_SLEEP = 0.15
@@ -60,15 +62,15 @@ class Storybook(Gtk.TextView):
         self.get_buffer().set_text('', 0)
 
     def type_coloured_text(self, string):
-        '''
+        """
         Adds colour to the string and prints string with a typing effect.
 
         Args:
             string (str): Text we want to print with a typing effect
+
         Returns:
             None
-        '''
-
+        """
         lines = self.__parse_string(string)
 
         for line in lines:
@@ -78,12 +80,12 @@ class Storybook(Gtk.TextView):
                 # TODO: get size tag working
                 [line['colour'], line['bold']]
             )
-
             if line['letter'] == '\n':
                 time.sleep(NEWLINE_SLEEP)
             else:
                 time.sleep(OTHER_SLEEP)
 
+            # tell GTK to flush the textbuffer and refresh the textview
             while Gtk.events_pending():
                 Gtk.main_iteration_do(False)
 
@@ -98,8 +100,8 @@ class Storybook(Gtk.TextView):
 
         Returns:
             None
-
         '''
+
         lines = self.__parse_string(string)
 
         for line in lines:
@@ -170,6 +172,26 @@ class Storybook(Gtk.TextView):
         end_iter = textbuffer.get_end_iter()
         white_tag = self.__get_tag('white')
         textbuffer.insert_with_tags(end_iter, string, white_tag)
+
+    def print_coming_soon(self, window, terminal):
+        text = get_ascii_art('coming_soon')
+        text_lines = text.splitlines()
+        leading_newlines = len(text_lines)
+
+        for i in xrange(leading_newlines, -1, -1):
+            self.clear()
+
+            for j in xrange(i):
+                self.print_text('')
+
+            for j in xrange(leading_newlines - i):
+                self.print_text(text_lines[j])
+
+            time.sleep(0.2)
+
+            # tell GTK to flush the textbuffer and refresh the textview
+            while Gtk.events_pending():
+                Gtk.main_iteration_do(False)
 
     def __generate_tags(self):
         '''

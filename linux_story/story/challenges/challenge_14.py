@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+# challenge_14.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
+
 
 import os
 import sys
@@ -28,7 +29,7 @@ class StepTemplateMv(TerminalMv):
 class Step1(StepTemplateMv):
     story = [
         "Let's {{lb:look around}} to see what food is "
-        "available in the kitchen.\n"
+        "available in the {{bb:kitchen}}.\n"
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
@@ -48,9 +49,9 @@ class Step1(StepTemplateMv):
 # Move three pieces of food into the basket
 class Step2(StepTemplateMv):
     story = [
-        "{{lb:Move}} three pieces of food into your basket.",
-        "You can move multiple items using {{lb:mv <item1> <item2>"
-        " <item3> basket/}}.\n"
+        "{{lb:Move}} three pieces of food into your {{bb:basket}}.\n",
+        "You can move multiple items using {{yb:mv <item1> <item2>"
+        " <item3> basket/}}\n"
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
@@ -115,7 +116,7 @@ class Step2(StepTemplateMv):
             for item in all_items:
                 self.passable_items.remove(item)
 
-            hint = '\n{{gb:Well done!  Keep going.}}'
+            hint = '\n{{gb:Well done! Keep going.}}'
 
         else:
             hint = '{{rb:Try using}} {{yb:mv %s basket/}}' \
@@ -143,8 +144,8 @@ class Step2(StepTemplateMv):
 class Step3(StepTemplateMv):
     story = [
         "\nNow we want to head back to the {{bb:.hidden-shelter}} with the "
-        "basket.",
-        "{{lb:Move}} the {{lb:basket}} back to {{lb:~}}.\n"
+        "{{bb:basket}}.",
+        "{{lb:Move}} the {{bb:basket}} back to {{bb:~}}.\n"
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
@@ -168,7 +169,7 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "Follow the basket by using {{yb:cd}}.\n"
+        "Follow the {{bb:basket}} by using {{yb:cd}}.\n"
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~"
@@ -193,8 +194,8 @@ class Step4(StepTemplateMv):
 
 class Step5(StepTemplateMv):
     story = [
-        "Now get the food-filled basket to the family.",
-        "{{lb:Move}} the {{lb:basket}} to {{lb:town/.hidden-shelter}}.",
+        "Now get the food-filled {{bb:basket}} to the family.",
+        "{{lb:Move}} the {{bb:basket}} to {{bb:town/.hidden-shelter}}.",
     ]
 
     start_dir = "~"
@@ -223,8 +224,7 @@ class Step5(StepTemplateMv):
 
 class Step6(StepTemplateMv):
     story = [
-        "{{gb:Nearly there!}} Finally {{lb:go}} into "
-        "{{lb:town/.hidden-shelter}} using {{lb:cd}}.\n",
+        "{{lb:Enter}} the {{bb:town/.hidden-shelter}} using {{yb:cd}}.\n",
     ]
 
     start_dir = "~"
@@ -236,7 +236,7 @@ class Step6(StepTemplateMv):
         "cd ~/town/.hidden-shelter/"
     ]
     hints = [
-        "{{rb:Use}} {{yb:cd town/.hidden-shelter/}} "
+        "{{rb:Use}} {{yb:cd town/.hidden-shelter}} "
         "{{rb:to be reunited with the family.}}",
     ]
 
@@ -251,27 +251,27 @@ class Step6(StepTemplateMv):
 
 class Step7(StepTemplateMv):
     story = [
-        "{{wn:Check on everyone with}} {{lb:cat}} {{wn:to see if "
+        "{{wn:Check on everyone with}} {{yb:cat}} {{wn:to see if "
         "they're happy with the food.}}\n"
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
     hints = [
-        "{{rb:Check on everyone using}} {{yb:cat}}"
+        "{{rb:Check on everyone using}} {{yb:cat"
     ]
     allowed_commands = {
         "cat Edith": (
-            "\n{{wb:Edith:}} {{Bb:You saved my little girl and my dog, "
+            "\n{{wb:Edith:}} {{Bb:\"You saved my little girl and my dog, "
             "and now you've saved us from starvation...how can I thank "
-            "you?}}\n"
+            "you?\"}}\n"
         ),
         "cat Eleanor": (
-            "\n{{wb:Eleanor:}} {{Bb:Yummy! See, I told you doggy, "
-            "someone would help us.}}\n"
+            "\n{{wb:Eleanor:}} {{Bb:\"Yummy! See, I told you doggy, "
+            "someone would help us.\"}}\n"
         ),
         "cat Edward": (
-            "\n{{wb:Edward:}} {{Bb:Thank you!  I knew you would come "
-            "through for us. You really are a hero!}}\n"
+            "\n{{wb:Edward:}} {{Bb:\"Thank you! I knew you would come "
+            "through for us. You really are a hero!\"}}\n"
         ),
         "cat dog": (
             "\n{{wb:Dog:}} {{Bb:\"Woof!\"}} {{wn:\nThe dog seems very "
@@ -292,7 +292,7 @@ class Step7(StepTemplateMv):
             num_people = len(self.allowed_commands.keys())
 
             if num_people == 0:
-                hint += '\n{{gb:Press Enter to continue.}}'
+                hint += '\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}'
 
             # If the hint is not empty
             elif hint:

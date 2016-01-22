@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+# challenge_23.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
@@ -22,7 +22,7 @@ class StepMkdirEleanor(TerminalMkdirEleanor):
 
 class Step1(StepMkdir):
     story = [
-        "You see Eleanor. Listen to what she has to say."
+        "You see {{bb:Eleanor}}. Listen to what she has to say."
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
@@ -39,14 +39,12 @@ class Step1(StepMkdir):
 
 class Step2(StepMkdir):
     story = [
-        "Eleanor: {{Bb:\"Oh, it's you!",
-        # "My parents went outside as we ran out of food."
-        "Have you seen my Mum and Dad?\"}}",
+        "Eleanor: {{Bb:\"Oh, it's you! Have you seen my Mum and Dad?\"}}",
         # TODO: change colour
-        "\n{{yb:1: \"I'm afraid not.  When did you last see them?\"}}",
+        "\n{{yb:1: \"I'm afraid not. When did you last see them?\"}}",
         "{{yb:2: \"Weren't they with you in the hidden-shelter?\"}}",
         "{{yb:3: \"(lie) Yes, I saw them in town.\"}}",
-        "\nUse the {{lb:echo}} command to talk to Eleanor."
+        "\nUse the {{yb:echo}} command to talk to {{bb:Eleanor}}."
     ]
 
     start_dir = "~/town/.hidden-shelter"
@@ -81,7 +79,7 @@ class Step3(StepMkdirEleanor):
     end_dir = "~/town"
 
     hints = [
-        "{{rb:Use}} {{yb:cd ../}} {{rb:to go into town.}}"
+        "{{rb:Use}} {{yb:cd ..}} {{rb:to go into town.}}"
     ]
 
     eleanors_speech = (
@@ -93,7 +91,7 @@ class Step3(StepMkdirEleanor):
 
         if prev_command == "echo 1":
             self.print_text = [
-                "{{yb:\"I'm afraid not.  When did you last see them?\"}}"
+                "{{yb:\"I'm afraid not. When did you last see them?\"}}"
             ]
             self.story += [
                 "Eleanor: {{Bb:\"Not long ago. The dog ran out again, "
@@ -105,7 +103,7 @@ class Step3(StepMkdirEleanor):
                 "{{yb:\"Weren't they with you in the hidden-shelter?\"}}"
             ]
             self.story += [
-                "Eleanor: {{Bb:No, they went outside. "
+                "Eleanor: {{Bb:\"No, they went outside. "
                 "The dog ran away again, so they went outside to look for "
                 "it. Maybe they got lost?\"}}"
             ]
@@ -116,8 +114,8 @@ class Step3(StepMkdirEleanor):
             ]
             self.story += [
                 "Eleanor: {{Bb:\"Oh that's good! The dog ran away again, "
-                "and they went outside to look for him.",
-                "The bell scared me, but I'm pleased they're alright.\"}}"
+                "and they went outside to look for him.\"",
+                "\"The bell scared me, but I'm pleased they're alright.\"\n}}"
             ]
 
         self.story += [
@@ -127,8 +125,8 @@ class Step3(StepMkdirEleanor):
             "\n{{gb:Eleanor joined you as a companion! You can check how "
             "she is any time with}} {{yb:cat Eleanor}}{{gb:.}}",
 
-            "\n{{lb:Leave}} the {{lb:.hidden-shelter.}} "
-            "Don't worry, Eleanor will follow!"
+            "\n{{lb:Leave}} the {{bb:.hidden-shelter.}} "
+            "Don't worry, {{bb:Eleanor}} will follow!"
         ]
 
         StepMkdirEleanor.__init__(self)
@@ -156,11 +154,11 @@ class Step4(StepMkdirEleanor):
     deleted_items = ["~/town/.hidden-shelter/Eleanor"]
 
     story = [
-        "Eleanor: {{Bb:Let's go to the}} {{lb:east}} "
-        "{{Bb:of town.}}",
-        "{{Bb:Haven't you noticed it before? It's over there! "
-        "Look over there.}}",
-        "\nUse {{yb:ls}} to see what Eleanor is trying to show you."
+        "Eleanor: {{Bb:\"Let's go to the}} {{bb:east}} "
+        "{{Bb:of town.\"}}",
+        "{{Bb:\"Haven't you noticed it before? It's over there! "
+        "Look over there.\"}}",
+        "\nUse {{yb:ls}} to see what {{bb:Eleanor}} is trying to show you."
     ]
 
     story_dict = {
@@ -207,12 +205,12 @@ class Step4(StepMkdirEleanor):
 
 class Step5(StepMkdirEleanor):
     story = [
-        "You look in the direction Eleanor is pointing.",
+        "You look in the direction {{bb:Eleanor}} is pointing.",
         "There is a narrow road leading to another part of town.",
-        "This must take us to the east part.",
+        "This must take us to the {{bb:east}} part.\n",
         "Eleanor: {{Bb:Let's go there and see if we can find my "
         "parents.}}",
-        "\n{{lb:Go}} into the {{lb:east}} of town."
+        "\n{{lb:Go}} into the {{bb:east}} of town."
     ]
     start_dir = "~/town"
     end_dir = "~/town/east"
@@ -220,7 +218,7 @@ class Step5(StepMkdirEleanor):
     hints = [
         "{{rb:Use}} {{lb:cd}} {{rb:to go into the "
         "east part of town}}",
-        "{{rb:Use}} {{yb:cd east/}} {{rb:}}"
+        "{{rb:Use}} {{yb:cd east}} {{rb:}}"
     ]
     last_step = True
 

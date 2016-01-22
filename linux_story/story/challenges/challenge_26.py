@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+# challenge_26.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
@@ -17,9 +17,9 @@ class StepTemplateMkdir(TerminalMkdirBernard):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "You are back in town. Eleanor waves her arms and points "
+        "You are back in town. {{bb:Eleanor}} waves her arms and points "
         "at a building in the distance.",
-        "\n{{lb:Look around}} to see where Eleanor is pointing."
+        "\n{{lb:Look around}} to see where {{bb:Eleanor}} is pointing."
     ]
 
     start_dir = "~/town/east"
@@ -50,15 +50,15 @@ class Step2(StepTemplateMkdir):
     story = [
         "You see the {{bb:library}} ahead.",
 
-        "Eleanor: {{Bb:There it is! The}} {{bb:library}} "
-        "{{Bb:is right there! Let's}} {{lb:go inside.}}"
+        "Eleanor: {{Bb:\"There it is! The}} {{bb:library}} "
+        "{{Bb:is right there! Let's}} {{lb:go inside.}}{{Bb:\"}}"
     ]
 
     start_dir = "~/town/east"
     end_dir = "~/town/east/library"
 
     hints = [
-        "{{rb:Use}} {{yb:cd library/}} {{rb:to go inside the library.}}"
+        "{{rb:Use}} {{yb:cd library}} {{rb:to go inside the library.}}"
     ]
     eleanors_speech = "Eleanor: {{Bb:I love the library! Let's go inside!}}"
 
@@ -71,8 +71,8 @@ class Step2(StepTemplateMkdir):
 
 class Step3(StepTemplateMkdir):
     story = [
-        "Eleanor skips into the library, while you follow her.",
-        "{{lb:Look around}} the library."
+        "{{bb:Eleanor}} skips into the {{bb:library}}, while you follow her.\n",
+        "{{lb:Look around}} the {{bb:library}}."
     ]
 
     start_dir = "~/town/east/library"
@@ -102,15 +102,15 @@ class Step4(StepTemplateMkdir):
         "You're in a corridor leading to two clearly "
         "labelled doors. "
         "One has the sign {{bb:public-section}}, the other "
-        "{{bb:private-section}}.",
+        "{{bb:private-section}}.\n",
 
-        "Eleanor: {{Bb:There used to be a librarian here.",
+        "Eleanor: {{Bb:\"There used to be a librarian here.",
 
         "She would tell me off for trying to look in the}} "
         "{{bb:private-section}}.",
 
         "{{Bb:What do you think is in there?  Let's try and}} "
-        "{{lb:look inside}}{{Bb:.}}"
+        "{{lb:look inside}}{{Bb:.\"}}"
     ]
 
     start_dir = "~/town/east/library"
@@ -134,12 +134,12 @@ class Step4(StepTemplateMkdir):
 class Step5(StepTemplateMkdir):
 
     story = [
-        "Eleanor: {{Bb:I guess the private-section is locked to outsiders...",
+        "Eleanor: {{Bb:\"I guess the private-section is locked to outsiders...\"",
 
-        "Let's see if we can find something useful in the}} "
-        "{{bb:public section.}}",
+        "\"Let's see if we can find something useful in the}} "
+        "{{bb:public section.}}{{Bb:\"}}",
 
-        "\nUse {{lb:ls}} to look in the {{lb:public-section}}."
+        "\nUse {{yb:ls}} to look in the {{bb:public-section}}."
     ]
 
     start_dir = "~/town/east/library"
@@ -163,11 +163,11 @@ class Step5(StepTemplateMkdir):
 
 class Step6(StepTemplateMkdir):
     story = [
-        "Eleanor: {{Bb:Wow, all the commands have disappeared.",
-        "I wonder if people have been stealing them?}}",
+        "Eleanor: {{Bb:\"Wow, all the commands have disappeared.",
+        "I wonder if people have been stealing them?\"\n}}",
 
-        "{{Bb:What is that}} {{lb:NANO}} {{Bb:paper?}}",
-        "{{Bb:Let's}} {{lb:examine}} {{Bb:it.}}"
+        "{{Bb:\"What is that}} {{yb:NANO}} {{Bb:paper?\"}}\n",
+        "{{Bb:\"Let's}} {{lb:examine}} {{Bb:it.\"}}"
     ]
     start_dir = "~/town/east/library"
     end_dir = "~/town/east/library"
@@ -191,10 +191,10 @@ class Step7(StepTemplateMkdir):
         "Eleanor: {{Bb:So nano allows you to "
         "edit files?}}",
 
-        "{{Bb:Maybe we could use this to fix that "
-        "best-horn-in-the-world.sh script?}}",
+        "{{Bb:\"Maybe we could use this to fix that}} "
+        "{{yb:best-horn-in-the-world.sh}} {{Bb:script?\"}}\n",
 
-        "{{Bb:Let's}} {{lb:head back}} {{Bb:to the}} {{lb:shed-shop}}{{Bb:.}}"
+        "{{Bb:\"Let's}} {{lb:head back}} {{Bb:to the}} {{bb:shed-shop}}{{Bb:.\"}}"
     ]
     start_dir = "~/town/east/library"
     end_dir = "~/town/east/shed-shop"
@@ -208,7 +208,7 @@ class Step7(StepTemplateMkdir):
             "blocked": "\n{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
         },
         "~/town/east": {
-            "not_blocked": "\n{{gb:Good work! Now go into the}} {{lb:shed-shop}}{{gb:.}}",
+            "not_blocked": "\n{{gb:Now go into the}} {{bb:shed-shop}}{{gb:.}}",
             "blocked": "\n{{rb:Use}} {{yb:cd shed-shop/}} {{rb:to go into the shed-shop.}}"
         }
     }

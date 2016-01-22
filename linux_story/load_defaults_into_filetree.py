@@ -1,10 +1,8 @@
-#!/usr/bin/env python
+# load_defaults_into_filetree.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
-# load_defaults_into_filetree.py
-
 # This takes the file tree from the yaml and creates it.
 
 

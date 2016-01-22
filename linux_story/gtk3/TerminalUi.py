@@ -1,18 +1,18 @@
-#!/usr/bin/env python
-
 # TerminalUi.py
 #
-# Copyright (C) 2014 Kano Computing Ltd
-# License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
-# Author: Caroline Clark <caroline@kano.me>
 # Terminal Gtk emulator
 
-from gi.repository import Vte, GLib
+
 import os
+
+from gi.repository import Vte, GLib
 
 
 class TerminalUi(Vte.Terminal):
+
     def __init__(self):
         Vte.Terminal.__init__(self)
         self.fork_command_full(
@@ -22,7 +22,8 @@ class TerminalUi(Vte.Terminal):
             [],
             GLib.SpawnFlags.DO_NOT_REAP_CHILD,
             None,
-            None)
+            None
+        )
 
         # This prevents the user scrolling back through the history
         # self.set_scrollback_lines(0)
