@@ -26,6 +26,9 @@ class StepTemplateMv(TerminalMv):
     challenge_number = 14
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateMv):
     story = [
         "Let's {{lb:look around}} to see what food is "

@@ -16,6 +16,7 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
+from linux_story.gtk3.Storybook import OTHER_SLEEP
 from linux_story.story.terminals.terminal_cd import TerminalCd
 from linux_story.story.challenges.challenge_9 import Step1 as NextChallengeStep
 from linux_story.helper_functions import play_sound
@@ -27,14 +28,28 @@ class StepTemplateCd(TerminalCd):
 
 class StepTemplateCdBell(StepTemplateCd):
 
-    def play_bell_delay(self):
-        time.sleep(3)
-        play_sound('bell')
+    def __init__(self, story, xp=""):
+        self.story = story
 
-    def __init__(self, xp=""):
         t = threading.Thread(target=self.play_bell_delay)
         t.start()
         StepTemplateCd.__init__(self, xp)
+
+    def play_bell_delay(self):
+        delay = 0
+
+        for text in self.story:
+            if 'ding' in text.lower():
+                break
+            delay += len(text)
+
+        delay *= OTHER_SLEEP * 1.3
+
+        time.sleep(delay)
+        play_sound('bell')
+
+
+# ----------------------------------------------------------------------------------------
 
 
 class Step1(StepTemplateCd):
@@ -76,6 +91,9 @@ class Step2(StepTemplateCdBell):
     hints = "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     deleted_items = ["~/town/little-boy"]
 
+    def __init__(self):
+        StepTemplateCdBell.__init__(self, self.story)
+
     def next(self):
         Step3()
 
@@ -95,6 +113,9 @@ class Step3(StepTemplateCdBell):
     commands = "ls"
     hints = "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     deleted_items = ["~/town/young-girl"]
+
+    def __init__(self):
+        StepTemplateCdBell.__init__(self, self.story)
 
     def next(self):
         Step4()
@@ -133,6 +154,9 @@ class Step5(StepTemplateCdBell):
             "path": "~/town"
         }
     }
+
+    def __init__(self):
+        StepTemplateCdBell.__init__(self, self.story)
 
     def next(self):
         Step6()

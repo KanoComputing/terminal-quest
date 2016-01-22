@@ -22,6 +22,9 @@ class StepTemplateMkdir(TerminalMkdir):
     challenge_number = 20
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateEcho):
     print_text = [
         "{{yb:\"Some people survived by going into hiding.\"}}"

@@ -7,12 +7,16 @@
 
 
 import os
+
 from linux_story.Terminal import Terminal
 from linux_story.story.challenges.challenge_1 import Step1 as NextChallengeStep
 
 
 class StepTemplateLs(Terminal):
     challenge_number = 0
+
+
+# ----------------------------------------------------------------------------------------
 
 
 class Step1(StepTemplateLs):

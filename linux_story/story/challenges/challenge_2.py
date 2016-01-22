@@ -23,6 +23,9 @@ class StepCat(TerminalCat):
     challenge_number = 2
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepCat):
     story = [
         "Awesome, now you can see the objects around you.",

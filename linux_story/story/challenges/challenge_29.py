@@ -191,6 +191,9 @@ class StepNanoStory(StepNano):
             return TerminalNanoBernard.check_command(self)
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepNanoStory):
     story = [
         "Clara: {{Bb:\"What? Who are you?\"}}",

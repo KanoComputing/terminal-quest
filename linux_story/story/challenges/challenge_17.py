@@ -25,6 +25,9 @@ class StepTemplateEcho(TerminalEcho):
     challenge_number = 17
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateMv):
     story = [
         "You are in your room, standing in front of the {{bb:.chest}} "
