@@ -28,6 +28,7 @@ from linux_story.socket_functions import create_server
 from linux_story.gtk3.TerminalUi import TerminalUi
 from linux_story.gtk3.Spellbook import Spellbook
 from linux_story.gtk3.Storybook import Storybook
+from linux_story.gtk3.FinishDialog import FinishDialog
 from linux_story.common import css_dir
 from linux_story.gtk3.MenuScreen import MenuScreen
 from linux_story.load_defaults_into_filetree import \
@@ -107,12 +108,12 @@ class MainWindow(GenericWindow):
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.add(vbox)
 
-        hbox = Gtk.Box()
+        self.hbox = Gtk.Box()
 
-        vbox.pack_start(hbox, False, False, 0)
+        vbox.pack_start(self.hbox, False, False, 0)
         vbox.pack_start(self.spellbook, False, False, 0)
-        hbox.pack_start(left_background, False, False, 0)
-        hbox.pack_start(right_background, False, False, 0)
+        self.hbox.pack_start(left_background, False, False, 0)
+        self.hbox.pack_start(right_background, False, False, 0)
 
         left_background.add(story_sw)
         right_background.add(self.terminal)
@@ -126,29 +127,6 @@ class MainWindow(GenericWindow):
         )
 
         self.run_server()
-
-    def close_window(self, widget=None, event=None):
-        '''
-        Shut the server down and kills the application.
-
-        Args:
-            widget (Gtk.Widget)
-            event (Gdk.EventButton)
-
-        Returns:
-            None
-        '''
-
-        if hasattr(self, "server"):
-            self.server.socket.shutdown(socket.SHUT_RDWR)
-            self.server.socket.close()
-            self.server.shutdown()
-
-        # Do this AFTER the server shutdown, so if this goes wrong,
-        # we can quickly relaunch TQ.
-        revert_to_default_permissions()
-
-        Gtk.main_quit()
 
     def start_script_in_terminal(self, challenge_number="", step_number=""):
         '''
@@ -195,54 +173,6 @@ class MainWindow(GenericWindow):
             self.terminal.hide()
             self.spellbook.hide()
 
-    def type_text(self, text):
-        '''Wrapper function for the story member variable
-        '''
-        self.story.type_coloured_text(text)
-
-    def print_challenge_title(self, number):
-        '''Prints the ascii art challenge title at the start
-        '''
-
-        self.story.print_challenge_title(number)
-
-    def print_coloured_text(self, text):
-        self.story.print_coloured_text(text)
-
-    def repack_spells(self, spells, highlighted_spells):
-        '''Wrapper function for repacking the spells
-        '''
-        self.spellbook.repack_spells(spells, highlighted_spells)
-
-    def show_terminal(self):
-        '''Wrapper function for showing terminal
-        Only used at the beginning after story has loaded
-        '''
-
-        self.terminal.show_all()
-        self.terminal.set_sensitive(True)
-        self.terminal.grab_focus()
-
-    def stop_typing_in_terminal(self):
-        '''Wrapper function to stop people typing in terminal
-        while story or hint is being shown
-        '''
-
-        self.terminal.set_sensitive(False)
-
-    def run_server(self):
-        '''
-        Start the server, and pass a Queue to it,
-        so the script running in the terminal can
-        send messages to the MainWindow class.
-        '''
-
-        self.queue = Queue.Queue(1)
-        self.server = create_server(self.queue)
-        t = threading.Thread(target=self.server.serve_forever)
-        t.daemon = True
-        t.start()
-
     def check_queue(self):
         '''
         This receives the messages sent from the script running in the
@@ -256,14 +186,7 @@ class MainWindow(GenericWindow):
             data_dict = self.queue.get(False, timeout=5.0)
 
             if 'exit' in data_dict.keys():
-                # TODO: remove this when we finish the last chapter
-                self.stop_typing_in_terminal()
-                self.story.print_coming_soon(self, self.terminal)
-
-                time.sleep(5)
-                self.close_window()
-
-                subprocess.Popen('/usr/bin/kano-feedback')
+                self.finish_app()
 
             elif 'hint' in data_dict.keys():  # TODO: get the command and highlight it
                 self.stop_typing_in_terminal()
@@ -316,6 +239,59 @@ class MainWindow(GenericWindow):
             time.sleep(0.02)
             return True
 
+    def type_text(self, text):
+        '''Wrapper function for the story member variable
+        '''
+        self.story.type_coloured_text(text)
+
+    def print_challenge_title(self, number):
+        '''Prints the ascii art challenge title at the start
+        '''
+        self.story.print_challenge_title(number)
+
+    def print_coloured_text(self, text):
+        self.story.print_coloured_text(text)
+
+    def repack_spells(self, spells, highlighted_spells):
+        '''Wrapper function for repacking the spells
+        '''
+        self.spellbook.repack_spells(spells, highlighted_spells)
+
+    def show_terminal(self):
+        '''Wrapper function for showing terminal
+        Only used at the beginning after story has loaded
+        '''
+
+        self.terminal.show_all()
+        self.terminal.set_sensitive(True)
+        self.terminal.grab_focus()
+
+    def stop_typing_in_terminal(self):
+        '''Wrapper function to stop people typing in terminal
+        while story or hint is being shown
+        '''
+        self.terminal.set_sensitive(False)
+
+    def run_server(self):
+        '''
+        Start the server, and pass a Queue to it,
+        so the script running in the terminal can
+        send messages to the MainWindow class.
+        '''
+
+        self.queue = Queue.Queue(1)
+        self.server = create_server(self.queue)
+        t = threading.Thread(target=self.server.serve_forever)
+        t.daemon = True
+        t.start()
+
+    def center_storybook(self):
+        """
+        Centers the StoryBook in the window by hiding the Terminal.
+        """
+        self.terminal.hide()
+        self.hbox.set_halign(Gtk.Align.CENTER)
+
     def show_menu(self):
         '''
         Show the menu that allows the user to pick the challenge
@@ -341,3 +317,48 @@ class MainWindow(GenericWindow):
         self.remove(self.menu)
         self.setup_application_widgets()
         self.start_script_in_terminal(str(challenge_number), "1")
+
+    def finish_app(self):
+        '''
+        After the user has finished the storyline, show a animation.
+
+        NOTE: Commented code below pops-up a dialog to ask for feedback.
+              Uncomment to enable the feature.
+        '''
+
+        self.stop_typing_in_terminal()
+        self.center_storybook()
+        # TODO: update asset when we finish the last chapter in the storyline
+        self.story.print_coming_soon(self, self.terminal)
+
+        time.sleep(5)
+        self.close_window()
+
+        # kdialog = FinishDialog()
+        # response = kdialog.run()
+
+        # if response == 'feedback':
+        #     subprocess.Popen('/usr/bin/kano-feedback')
+
+    def close_window(self, widget=None, event=None):
+        '''
+        Shut the server down and kills the application.
+
+        Args:
+            widget (Gtk.Widget)
+            event (Gdk.EventButton)
+
+        Returns:
+            None
+        '''
+
+        if hasattr(self, "server"):
+            self.server.socket.shutdown(socket.SHUT_RDWR)
+            self.server.socket.close()
+            self.server.shutdown()
+
+        # Do this AFTER the server shutdown, so if this goes wrong,
+        # we can quickly relaunch TQ.
+        revert_to_default_permissions()
+
+        Gtk.main_quit()
