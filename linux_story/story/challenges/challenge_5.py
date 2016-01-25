@@ -90,7 +90,7 @@ class Step4(StepTemplateCd):
     end_dir = "~/my-house/garden"
     commands = "ls"
     hints = (
-        "{{rb:To look for your Dad, type}} {{yb:ls}} {{rb:and press {{ob:Enter}}.}}"
+        "{{rb:To look for your Dad, type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}"
     )
 
     def next(self):

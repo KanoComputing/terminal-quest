@@ -69,7 +69,7 @@ class Step2(StepTemplateCd):
     start_dir = "~/my-house"
     end_dir = "~/my-house"
     commands = "ls"
-    hints = "{{rb:Type}} {{yb:ls}} {{rb:and press {{ob:Enter}}.}}"
+    hints = "{{rb:Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}"
     story_dict = {
         "note_greenhouse": {
             "name": "note",
@@ -95,7 +95,7 @@ class Step3(StepTemplateCd):
     start_dir = "~/my-house"
     end_dir = "~/my-house/kitchen"
     commands = ["cd kitchen", "cd kitchen/"]
-    hints = ["{{rb:Type}} {{yb:cd kitchen}} {{rb:and press {{ob:Enter}}.}}"]
+    hints = ["{{rb:Type}} {{yb:cd kitchen}} {{rb:and press}} {{ob:Enter}}{{rb:.}}"]
 
     def block_command(self):
         return unblock_commands_with_cd_hint(
@@ -114,7 +114,7 @@ class Step4(StepTemplateCd):
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "ls"
-    hints = "{{rb:Can't find her?  Type}} {{yb:ls}} {{rb:and press {{ob:Enter}}.}}"
+    hints = "{{rb:Can't find her?  Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}"
 
     def next(self):
         Step5()
