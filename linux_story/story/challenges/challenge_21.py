@@ -124,7 +124,7 @@ class Step3(StepTemplateMkdir):
     ]
     story = [
         "Ruth: {{Bb:\"So creating one called}} {{bb:hidden-shelter}} "
-        "{{Bb:should make it hidden?  Ok, let's try that.\"}}\n",
+        "{{Bb:should make it hidden? Ok, let's try that.\"}}\n",
         "Try {{lb:building}} a shelter called {{bb:hidden-shelter}}."
     ]
     start_dir = "~/farm/barn"
@@ -238,7 +238,7 @@ class Step6(StepTemplateMkdir):
     ]
     story = [
         "Ruth: {{Bb:\"So if we called the shelter}} {{bb:.shelter}}"
-        "{{Bb:, it would be hidden?  Let's try it!\"}}\n",
+        "{{Bb:, it would be hidden? Let's try it!\"}}\n",
         "{{lb:Build}} a shelter called {{bb:.shelter}}"
     ]
     start_dir = "~/farm/barn"

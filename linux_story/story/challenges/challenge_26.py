@@ -112,7 +112,7 @@ class Step4(StepTemplateMkdir):
         "She would tell me off for trying to look in the}} "
         "{{bb:private-section}}.",
 
-        "{{Bb:What do you think is in there?  Let's try and}} "
+        "{{Bb:What do you think is in there? Let's try and}} "
         "{{lb:look inside}}{{Bb:.\"}}"
     ]
 

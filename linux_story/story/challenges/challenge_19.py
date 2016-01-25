@@ -29,10 +29,10 @@ class Step1(StepTemplateEcho):
     username = os.environ['LOGNAME']
     story = [
         "Ruth: {{Bb:\"You startled me!\"",
-        "\"Do I know you?  You look familiar...\"",
+        "\"Do I know you? You look familiar...\"",
         "\"Wait, you're}} {{bb:Mum}}{{Bb:'s kid, aren't you!\"",
         "\"..."
-        "Yes?  Do you have a tongue?\"",
+        "Yes? Do you have a tongue?\"",
         "\"Is your name not}} {{yb:" + username + "}}{{Bb:?\"}}",
         "\n{{gb:Reply with}} {{yb:echo yes}} "
         "{{gb:or}} {{yb:echo no}}."
@@ -40,7 +40,7 @@ class Step1(StepTemplateEcho):
 
     # Story has been moved to
     hints = [
-        "{{rb:Use}} {{lb:echo}} {{rb:to reply to her "
+        "{{rb:Use}} {{yb:echo}} {{rb:to reply to her "
         "question.}}",
         "{{rb:Reply with yes by using}} {{yb:echo yes}}{{rb:.}}"
     ]
@@ -72,16 +72,16 @@ class Step1(StepTemplateEcho):
 
 
 class Step2(StepTemplateEcho):
-    print_text = ["{{yb:Yes}}"]
+    print_text = ["{{yb:\"Yes\"}}"]
 
     story = [
         "Ruth: {{Bb:\"Ah, I knew it!\"}}",
         "{{Bb:\"So you live in that little house outside town?\"}}",
         # TODO: see if this can appear as a block
         # TODO: change the colour of this.
-        "{{yb:1: Yes}}",
-        "{{yb:2: No}}",
-        "{{yb:3: I don't know}}",
+        "{{yb:1: \"Yes\"}}",
+        "{{yb:2: \"No\"}}",
+        "{{yb:3: \"I don't know\"}}",
         "\n{{gb:Use}} {{yb:echo 1}}{{gb:,}} {{yb:echo 2}} {{gb:or}} "
         "{{yb:echo 3}} {{gb:to reply with either option 1, 2 or 3.}}\n"
     ]
@@ -139,14 +139,14 @@ class Step3(StepTemplateEcho):
 
     def __init__(self, prev_command='echo 1'):
         if prev_command == "echo 1":  # yes
-            self.print_text = ["{{yb:Yes}}"]
+            self.print_text = ["{{yb:\"Yes\"}}"]
             self.story = ["Ruth: {{Bb:\"I thought so!\"}}"]
         elif prev_command == "echo 2":  # no
-            self.print_text = ["{{yb:No}}"]
+            self.print_text = ["{{yb:\"No\"}}"]
             self.story = ["Ruth: {{Bb:\"Stop lying, I know you do.\"}}"]
         elif prev_command == "echo 3":  # I don't know
-            self.print_text = ["{{yb:I don't know}}"]
-            self.story = ["Ruth: {{Bb:\"You don't know?  That's worrying...\"}}"]
+            self.print_text = ["{{yb:\"I don't know\"}}"]
+            self.story = ["Ruth: {{Bb:\"You don't know? That's worrying...\"}}"]
 
         self.story = self.story + [
             "\n{{Bb:\"Did you walk all the way from town? "
@@ -178,7 +178,7 @@ class Step3(StepTemplateEcho):
 
         elif self.last_user_input == "echo 3":  # I don't know anything
             hint = (
-                "Ruth: {{Bb:\"Really?  Are you sure you didn't see a}} "
+                "Ruth: {{Bb:\"Really? Are you sure you didn't see a}} "
                 "{{lb:grumpy-man}}{{Bb: in town?\"}}"
             )
             self.send_hint(hint)
@@ -215,7 +215,7 @@ class Step4(StepTemplateEcho):
     ]
 
     hints = [
-        "Ruth: {{Bb:What did you say?  I didn't catch that.}}",
+        "Ruth: {{Bb:What did you say? I didn't catch that.}}",
         "{{rb:Use}} {{yb:echo 1}} {{rb:or}} {{yb:echo 2}} {{rb:to reply.}}"
     ]
 

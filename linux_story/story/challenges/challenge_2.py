@@ -67,7 +67,7 @@ class Step2(StepCat):
 
 class Step3(StepCat):
     story = [
-        "Check out that {{bb:t-shirt}}!",
+        "Check out that {{bb:t-shirt}}!\n",
         "{{lb:Examine}} the {{bb:t-shirt}} with {{yb:cat wardrobe/t-shirt}} "
         "to see how it looks.\n"
     ]
@@ -85,7 +85,7 @@ class Step3(StepCat):
 
 class Step4(StepCat):
     story = [
-        "Looking good! Put that on and look for something else.",
+        "Looking good! Put that on and look for something else.\n",
         "{{lb:Examine}} the {{bb:skirt}} or the {{bb:trousers}}.\n"
     ]
     start_dir = "~/my-house/my-room"
@@ -122,7 +122,7 @@ class Step4(StepCat):
 
 class Step5(StepCat):
     story = [
-        "Awesome, your outfit is nearly complete.",
+        "Awesome, your outfit is nearly complete.\n",
         "Finally, check out that {{bb:cap}}.\n"
     ]
     start_dir = "~/my-house/my-room"
