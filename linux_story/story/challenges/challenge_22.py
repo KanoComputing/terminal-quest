@@ -153,7 +153,7 @@ class Step4(StepTemplateMkdir):
     end_dir = "~/town/.hidden-shelter"
 
     hints = [
-        "{{rb:We can go directly to the}} {{lb:.hidden-shelter}} "
+        "{{rb:We can go directly to the}} {{bb:.hidden-shelter}} "
         "{{rb:using}} {{yb:cd ~/town/.hidden-shelter}}"
     ]
 

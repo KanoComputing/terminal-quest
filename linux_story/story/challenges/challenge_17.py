@@ -88,7 +88,7 @@ class Step2(StepTemplateMv):
             "blocked": "\n{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}"
         },
         "~/my-house": {
-            "not_blocked": "\n{{gb:Good work! Now go into your}} {{lb:parents-room}}{{gb:.}}",
+            "not_blocked": "\n{{gb:Now go into your}} {{lb:parents-room}}{{gb:.}}",
             "blocked": "\n{{rb:Use}} {{yb:cd parents-room}} {{rb:to go in.}}"
         }
     }

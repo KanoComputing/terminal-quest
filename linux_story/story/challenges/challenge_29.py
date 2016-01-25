@@ -63,8 +63,8 @@ story_replies = {
             "user": "\"Do you have any relatives in town?\"",
             "clara": (
                 "Clara: {{Bb:\"I have a couple of children, a}} "
-                "{{lb:little-boy}} {{Bb:and a}} "
-                "{{lb:young-girl}}{{Bb:. I hope they are alright.\"}}"
+                "{{bb:little-boy}} {{Bb:and a}} "
+                "{{bb:young-girl}}{{Bb:. I hope they are alright.\"}}"
             )
         },
         {

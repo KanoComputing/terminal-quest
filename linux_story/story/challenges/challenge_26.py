@@ -154,7 +154,7 @@ class Step5(StepTemplateMkdir):
         "ls -a public-section/"
     ]
     hints = [
-        "{{rb:Use}} {{lb:ls}} {{rb:to look in the public section.}}",
+        "{{rb:Use}} {{yb:ls}} {{rb:to look in the public section.}}",
         "{{rb:Use}} {{yb:ls public-section}} {{rb:to look in the public-"
         "section.}}"
     ]

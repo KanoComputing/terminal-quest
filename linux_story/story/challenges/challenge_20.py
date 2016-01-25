@@ -49,7 +49,7 @@ class Step1(StepTemplateEcho):
             "blocked": "\n{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}"
         },
         "~/farm": {
-            "not_blocked": "\n{{gb:Good work! Now go into the}} {{lb:toolshed}}{{gb:.}}",
+            "not_blocked": "\n{{gb:You walk outside. Now go into the}} {{bb:toolshed}}{{gb:.}}",
             "blocked": "\n{{rb:Use}} {{yb:cd toolshed}} {{rb:to go in the toolshed.}}"
         }
     }

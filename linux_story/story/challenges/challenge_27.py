@@ -212,7 +212,7 @@ class Step5(StepTemplateNano):
     ]
 
     hints = [
-        "{{rb:Use}} {{lb:cd}} {{rb:to leave the shed-shop.}}",
+        "{{rb:Use}} {{yb:cd}} {{rb:to leave the shed-shop.}}",
         "{{rb:Use}} {{yb:cd ..}} {{rb:to go}} {{lb:back}} {{rb:to town.}}",
     ]
     start_dir = "~/town/east/shed-shop"
