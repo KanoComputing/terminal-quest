@@ -237,7 +237,7 @@ class Step6(StepTemplateMkdir):
     ]
 
     hints = [
-        "{{rb:Use}} {{lb:ls}} {{rb:to look through.}}",
+        "{{rb:Use}} {{yb:ls}} {{rb:to look through.}}",
         "{{rb:Use}} {{yb:ls basement/}} {{rb:to look inside.}}"
     ]
 
