@@ -213,7 +213,7 @@ class Step5(StepTemplateMv):
     ]
     hints = [
         "{{rb:Use the command}} {{yb:mv basket/apple ./}} {{rb:to move "
-        "the apple from the basket to your current position}} {{lb:./}}"
+        "the apple from the basket to your current position}} {{bb:./}}"
     ]
 
     def block_command(self):

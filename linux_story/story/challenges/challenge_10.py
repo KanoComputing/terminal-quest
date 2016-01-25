@@ -213,7 +213,7 @@ class Step5(StepTemplateCd):
     ]
     hints = [
         "{{rb:Try going inside the}} {{lb:.hidden-shelter}} {{rb:using }}"
-        "{{lb:cd}}{{rb:.}}",
+        "{{yb:cd}}{{rb:.}}",
         "{{rb:Use the command}} {{yb:cd .hidden-shelter }}"
         "{{rb:to go inside.}}"
     ]

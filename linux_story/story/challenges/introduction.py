@@ -25,7 +25,7 @@ class Step1(StepTemplateLs):
         "Welcome to the dark side of your Kano.",
         "You've entered a perilous world where words "
         "wield power.",
-        "Ready?  Press {{gb:Enter}} to begin."
+        "Ready? Press {{gb:Enter}} to begin."
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"

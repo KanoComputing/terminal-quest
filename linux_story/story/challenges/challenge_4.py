@@ -86,7 +86,7 @@ class Step2(StepTemplateCd):
 class Step3(StepTemplateCd):
     story = [
         "{{pb:Ding. Dong.}}\n",
-        "What was that?  A bell?  That's a bit odd.",
+        "What was that? A bell? That's a bit odd.",
         "You see the door to your {{bb:kitchen}}, and hear the sound of "
         "cooking.",
         "Sounds like someone is preparing breakfast!\n",
@@ -114,7 +114,7 @@ class Step4(StepTemplateCd):
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "ls"
-    hints = "{{rb:Can't find her?  Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}"
+    hints = "{{rb:Can't find her? Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}"
 
     def next(self):
         Step5()

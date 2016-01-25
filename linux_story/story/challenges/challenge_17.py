@@ -149,7 +149,7 @@ class Step4(StepTemplateMv):
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
     hints = [
-        "{{rb:Look in the}} {{lb:.safe}} {{rb:using}} {{lb:ls}}{{rb:.}}",
+        "{{rb:Look in the}} {{bb:.safe}} {{rb:using}} {{lb:ls}}{{rb:.}}",
         "{{rb:Use}} {{yb:ls .safe}} {{rb:to look into the .safe.}}"
     ]
 
@@ -185,12 +185,12 @@ class Step5(CheckDiaryStep):
     story = [
         "So you found your {{bb:Mum's diary}}?",
         "You probably shouldn't read it...\n",
-        "What else is here?  Let's {{lb:examine}} that {{bb:map}}."
+        "What else is here? Let's {{lb:examine}} that {{bb:map}}."
     ]
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
     hints = [
-        "{{rb:Use}} {{yb:cat}} {{rb:to read the}} {{lb:map}}{{rb:.}}",
+        "{{rb:Use}} {{yb:cat}} {{rb:to read the}} {{bb:map}}{{rb:.}}",
         "{{rb:Use}} {{yb:cat .safe/map}} {{rb:to read the map.}}"
     ]
 
@@ -211,7 +211,7 @@ class Step6(CheckDiaryStep):
     end_dir = "~/my-house/parents-room"
     commands = "cat .safe/ECHO"
     hints = [
-        "{{rb:Use the}} {{yb:cat}} {{rb:command to read the}} {{lb:ECHO}} "
+        "{{rb:Use the}} {{yb:cat}} {{rb:command to read the}} {{bb:ECHO}} "
         "{{rb:note.}}",
         "{{rb:Use}} {{yb:cat .safe/ECHO}} {{rb:to read the note.}}"
     ]

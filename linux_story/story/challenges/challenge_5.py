@@ -50,8 +50,8 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "You are back in the main hall of your house.",
-        "Can you see your {{bb:garden}}?  Have a {{lb:look around}} you.\n"
+        "You are back in the main hall of your house.\n",
+        "Can you see your {{bb:garden}}? Have a {{lb:look around}} you.\n"
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house"

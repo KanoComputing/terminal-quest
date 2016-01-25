@@ -63,7 +63,7 @@ class Step2(StepMkdir):
             return True
         elif self.last_user_input.startswith("echo"):
             text = (
-                "\nEleanor: {{Bb:\"Pardon?  What did you say?\"}}"
+                "\nEleanor: {{Bb:\"Pardon? What did you say?\"}}"
             )
         else:
             text = (
