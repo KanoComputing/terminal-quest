@@ -7,14 +7,13 @@
 
 
 import os
-import subprocess
 
 from kano.colours import colourize256, decorate_string
+from kano.utils import play_sound as play_sound_toolset
+from kano.logging import logger
 from kano_profile.apps import \
     save_app_state_variable, load_app_state_variable, \
     increment_app_state_variable
-from kano.utils import play_sound as play_sound_toolset
-from kano.logging import logger
 
 from linux_story.common import sounds_dir, story_files_dir
 
@@ -94,7 +93,7 @@ def colour_file_dir(path, f):
     return f
 
 
-def play_sound(sound_name):
+def play_sound(sound_name, background=True):
     '''
     Args:
         object_name (str): 'alarm' or 'bell'
@@ -103,7 +102,7 @@ def play_sound(sound_name):
     '''
 
     sound_path = os.path.join(sounds_dir, sound_name + '.wav')
-    play_sound_toolset(sound_path, background=True)
+    play_sound_toolset(sound_path, background=background)
 
 
 def colour_string_with_preset(string, colour_name="white", input_fn=True):

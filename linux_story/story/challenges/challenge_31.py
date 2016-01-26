@@ -10,6 +10,7 @@ import time
 
 from linux_story.story.terminals.terminal_nano import TerminalNano
 from linux_story.step_helper_functions import unblock_cd_commands
+from linux_story.helper_functions import play_sound
 
 
 class StepTemplateNano(TerminalNano):
@@ -80,6 +81,10 @@ class Step3(StepTemplateNano):
     hints = [
         "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
     ]
+
+    def __init__(self, xp=""):
+        play_sound('steps')
+        StepTemplateNano.__init__(self, xp)
 
     def next(self):
         Step4()

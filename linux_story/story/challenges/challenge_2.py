@@ -14,9 +14,11 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
+from kano_profile.apps import save_app_state_variable
+
 from linux_story.story.terminals.terminal_cat import TerminalCat
 from linux_story.story.challenges.challenge_3 import Step1 as NextChallengeStep
-from kano_profile.apps import save_app_state_variable
+from linux_story.helper_functions import play_sound
 
 
 class StepCat(TerminalCat):
@@ -35,12 +37,16 @@ class Step1(StepCat):
         "| {{gb:New Spell}}: to {{lb:examine}} objects, type {{yb:cat}} and the object name. | " \
         "+--------------------------------------------------------------+ ",
         "\nUse {{yb:cat alarm}} to {{lb:examine}} the {{bb:alarm}}."
-    ] 
+    ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat alarm"
     highlighted_commands = ['cat']
     hints = "{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}"
+
+    def __init__(self, xp=""):
+        play_sound('alarm')
+        StepCat.__init__(self, xp)
 
     def next(self):
         Step2()

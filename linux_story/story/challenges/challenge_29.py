@@ -10,7 +10,7 @@ import os
 
 from linux_story.story.terminals.terminal_bernard import TerminalNanoBernard
 from linux_story.story.challenges.challenge_30 import Step1 as NextStep
-from linux_story.helper_functions import play_sound, record_user_interaction
+from linux_story.helper_functions import record_user_interaction
 
 
 # Can't get all the information with this system unless you are interested.
@@ -264,5 +264,4 @@ class Step4(StepNanoStory):
         return True
 
     def next(self):
-        play_sound("bell")
         NextStep(self.xp)

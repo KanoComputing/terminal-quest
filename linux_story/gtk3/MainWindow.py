@@ -12,6 +12,7 @@ import Queue
 import socket
 import threading
 import subprocess
+import traceback
 
 from gi.repository import Gtk, Gdk, GLib
 
@@ -232,9 +233,9 @@ class MainWindow(GenericWindow):
 
         except Queue.Empty:
             pass
-        except Exception as e:
+        except Exception:
             logger.error('Unexpected error in MainWindow: check_queue:'
-                         ' - [{}]'.format(e))
+                         ' - [{}]'.format(traceback.format_exc()))
         finally:
             time.sleep(0.02)
             return True

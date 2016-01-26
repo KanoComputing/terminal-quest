@@ -6,13 +6,13 @@
 # A chapter of the story
 
 
+from kano_profile.apps import \
+    save_app_state_variable, load_app_state_variable
+
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_18 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
-from kano_profile.apps import (
-    save_app_state_variable, load_app_state_variable
-)
 
 
 # This is for the challenges that only need ls

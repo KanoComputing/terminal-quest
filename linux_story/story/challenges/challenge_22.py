@@ -6,41 +6,13 @@
 # A chapter of the story
 
 
-import time
-import threading
-
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
-from linux_story.helper_functions import play_sound
 from linux_story.story.challenges.challenge_23 import Step1 as NextStep
-from linux_story.gtk3.Storybook import OTHER_SLEEP
 
 
 class StepTemplateMkdir(TerminalMkdir):
     challenge_number = 22
-
-
-class StepTemplateMkdirBell(StepTemplateMkdir):
-
-    def __init__(self, story, xp=""):
-        self.story = story
-
-        t = threading.Thread(target=self.play_bell_delay)
-        t.start()
-        StepTemplateMkdir.__init__(self, xp)
-
-    def play_bell_delay(self):
-        delay = 0
-
-        for text in self.story:
-            if 'ding' in text.lower():
-                break
-            delay += len(text)
-
-        delay *= OTHER_SLEEP * 1.4
-
-        time.sleep(delay)
-        play_sound('bell')
 
 
 # ----------------------------------------------------------------------------------------
@@ -75,7 +47,6 @@ class Step1(StepTemplateMkdir):
     ]
 
     def next(self):
-        play_sound("bell")
         Step2()
 
 
@@ -105,7 +76,7 @@ class Step2(StepTemplateMkdir):
         Step3()
 
 
-class Step3(StepTemplateMkdirBell):
+class Step3(StepTemplateMkdir):
 
     story = [
         "It appears that everyone is still here...",
@@ -128,9 +99,6 @@ class Step3(StepTemplateMkdirBell):
     deleted_items = [
         "~/town/.hidden-shelter/Edward"
     ]
-
-    def __init__(self):
-        StepTemplateMkdirBell.__init__(self, self.story)
 
     def next(self):
         Step4()

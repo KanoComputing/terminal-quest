@@ -6,12 +6,11 @@
 # A chapter of the story
 
 
-from linux_story.step_helper_functions import (
-    unblock_commands_with_mkdir_hint, unblock_cd_commands
-)
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
 from linux_story.story.challenges.challenge_21 import Step1 as NextStep
+from linux_story.step_helper_functions import \
+    unblock_commands_with_mkdir_hint, unblock_cd_commands
 
 
 class StepTemplateEcho(TerminalEcho):
@@ -133,7 +132,7 @@ class Step4(StepTemplateMkdir):
         "+---------------------------------------------------------------+",
         "| {{gb:New Spell}}: {{yb:mkdir}} followed by a word lets you {{lb:create}} a shelter | " \
         "+---------------------------------------------------------------+ "
-        
+
     ]
     hints = [
         "{{rb:Create an igloo structure by using}} {{yb:mkdir igloo}}\n"

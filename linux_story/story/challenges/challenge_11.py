@@ -118,7 +118,7 @@ class Step2(StepTemplateMv):
 
         "{{Bb:\"But I don't understand what that means. Do I say it? "
         "Or write it?\"}}\n",
-        
+
         "+----------------------------------------------------------+",
         "| {{gb:New Spell}}: to {{lb:move}} objects, type {{yb:mv}} and the object name. | " \
         "+----------------------------------------------------------+ "

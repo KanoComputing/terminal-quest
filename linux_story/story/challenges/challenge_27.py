@@ -6,11 +6,10 @@
 # A chapter of the story
 
 
-from linux_story.story.terminals.terminal_bernard import (
-    TerminalMkdirBernard, TerminalNanoBernard
-)
 from linux_story.story.challenges.challenge_28 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
+from linux_story.story.terminals.terminal_bernard import \
+    TerminalMkdirBernard, TerminalNanoBernard
 
 
 class StepTemplateMkdir(TerminalMkdirBernard):
@@ -62,7 +61,6 @@ class Step2(StepTemplateNano):
         "| {{gb:New Spell}}: {{yb:nano}} followed by an object lets you {{lb:edit}} it | " \
         "+--------------------------------------------------------+ ",
         "\nLet's try and use {{yb:nano best-horn-in-the-world.sh}} to edit it.",
-        
     ]
 
     start_dir = "~/town/east/shed-shop"
