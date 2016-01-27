@@ -10,7 +10,7 @@ import time
 
 from linux_story.story.terminals.terminal_nano import TerminalNano
 from linux_story.step_helper_functions import unblock_cd_commands
-from linux_story.helper_functions import play_sound
+from linux_story.sound_manager import SoundManager
 
 
 class StepTemplateNano(TerminalNano):
@@ -83,7 +83,8 @@ class Step3(StepTemplateNano):
     ]
 
     def __init__(self, xp=""):
-        play_sound('steps')
+        sound_manager = SoundManager()
+        sound_manager.play_sound('steps')
         StepTemplateNano.__init__(self, xp)
 
     def next(self):

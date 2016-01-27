@@ -12,7 +12,7 @@ from gi.repository import Gtk, Pango, Gdk
 
 from kano.utils import is_model_2_b
 
-from linux_story.object_sound_manager import ObjectSoundManager
+from linux_story.sound_manager import SoundManager
 from linux_story.helper_functions import get_ascii_art
 
 
@@ -58,7 +58,7 @@ class Storybook(Gtk.TextView):
         self.char_width = self.__get_char_width()
         self.set_can_focus(False)
 
-        self.sounds_manager = ObjectSoundManager()
+        self.sounds_manager = SoundManager()
 
     def clear(self):
         '''Clear all text in spellbook
@@ -83,12 +83,12 @@ class Storybook(Gtk.TextView):
 
             # if we are printing a new word, notify the sound manager
             if i == 0:
-                self.sounds_manager.play_story(unstyled_string)
+                self.sounds_manager.on_typing_story_text(unstyled_string)
             else:
                 if unstyled_string[i - 1] in s.whitespace and \
                    unstyled_string[i] in s.letters:
 
-                    self.sounds_manager.play_story(unstyled_string[i:])
+                    self.sounds_manager.on_typing_story_text(unstyled_string[i:])
 
             self.__style_char(
                 line['letter'],

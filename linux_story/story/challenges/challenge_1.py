@@ -16,7 +16,7 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.story.terminals.terminal_ls import TerminalLs
 from linux_story.story.challenges.challenge_2 import Step1 as NextChallengeStep
-from linux_story.helper_functions import play_sound
+from linux_story.sound_manager import SoundManager
 
 
 class StepLs(TerminalLs):
@@ -50,7 +50,8 @@ class Step1(StepLs):
     last_step = True
 
     def __init__(self, xp=""):
-        play_sound('alarm')
+        sound_manager = SoundManager()
+        sound_manager.play_sound('alarm')
         StepLs.__init__(self, xp)
 
     def next(self):

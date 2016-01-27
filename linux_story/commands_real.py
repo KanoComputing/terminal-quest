@@ -14,10 +14,10 @@ from kano.logging import logger
 
 from helper_functions import colour_file_dir, debugger
 from linux_story.common import tq_file_system
-from linux_story.object_sound_manager import ObjectSoundManager
+from linux_story.sound_manager import SoundManager
 
 
-sounds_manager = ObjectSoundManager()
+sounds_manager = SoundManager()
 
 
 def ls(real_loc, line):
@@ -161,21 +161,7 @@ def shell_command(real_loc, line, command_word=""):
             print stdout.strip()
 
     # notifying the SoundManager about the command that was run
-    try:
-        if command_word == 'cat':
-            last_object_name = args[-1].rsplit(os.sep, 1)[-1]
-            sounds_manager.play_cat(last_object_name)
-
-        elif command_word == 'mv':
-            first_object_name = args[1].rsplit(os.sep, 1)[-1]
-            sounds_manager.play_mv(first_object_name)
-
-        elif command_word == 'mkdir':
-            sounds_manager.play_mkdir()
-
-    except Exception:
-        logger.error('Unexpected error notifying SoundManager. args is {}. {}'
-                     .format(args, traceback.format_exc()))
+    sounds_manager.on_command_run(args)
 
     # should this return stdout?
     return True
@@ -234,12 +220,7 @@ def nano(real_path, line):
         raise Exception("Cannot find nano")
 
     # notifying the SoundManager about the command that is about run
-    try:
-        sounds_manager.play_nano()
-
-    except Exception:
-        logger.error('Unexpected error notifying SoundManager. line is {}. {}'
-                     .format(line, traceback.format_exc()))
+    sounds_manager.on_command_run(['nano'] + line.split())
 
     cmd = nano_filepath + " " + line
     p = subprocess.Popen(cmd, cwd=real_path, shell=True)
@@ -271,13 +252,8 @@ def run_executable(real_path, line):
     stdout, stderr = p.communicate()
 
     # notifying the SoundManager about the script that was just run
-    try:
-        script_name = line.split()[0]
-        sounds_manager.play_run(script_name)
-
-    except Exception:
-        logger.error('Unexpected error notifying SoundManager. line is {}. {}'
-                     .format(line, traceback.format_exc()))
+    script_name = line.split()[0]
+    sounds_manager.on_command_run([script_name])
 
     if stdout:
         print stdout.strip()
