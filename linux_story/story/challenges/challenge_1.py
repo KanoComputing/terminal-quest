@@ -33,9 +33,10 @@ class Step1(StepLs):
         "\"The town of Folderton has awoken to strange news. There have been reports of missing people and damaged buildings across the town, with more stories coming in as we speak.\"",
         "\n\"Mayor Hubert has called an emergency town meeting and we'll keep you posted as it happens...\"}}\n",
         "It's time to get up sleepy head!\n ",
-        "+----------------------------------------------------+",
-        "| {{gb:New Spell:}} Type {{yb:ls}} and press {{ob:Enter}} to {{lb:look around}}. | " \
-        "+----------------------------------------------------+\n"
+        " ------------------------------------- ",
+        "| {{gb:New Spell:}} Type {{yb:ls}} and press        |",
+        "| {{ob:Enter}} to {{lb:look around}}.               |",
+        " ------------------------------------- \n"
     ]  # TODO: " \ is a hack in this array to stop word wrap code screwing up and adding new lines in where it shouldn't
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"

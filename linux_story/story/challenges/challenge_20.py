@@ -129,10 +129,10 @@ class Step4(StepTemplateMkdir):
         "Ruth: {{Bb:\"This says you can make something using something "
         "called}} {{yb:mkdir}}{{Bb:?\"}}",
         "\nTry making an igloo using {{yb:mkdir igloo}}\n ",
-        "+---------------------------------------------------------------+",
-        "| {{gb:New Spell}}: {{yb:mkdir}} followed by a word lets you {{lb:create}} a shelter | " \
-        "+---------------------------------------------------------------+ "
-
+        " ------------------------------------- ",
+        "| {{gb:New Spell}}: {{yb:mkdir}} followed by a word |",
+        "| lets you {{lb:create}} a shelter           | ",
+        " ------------------------------------- "
     ]
     hints = [
         "{{rb:Create an igloo structure by using}} {{yb:mkdir igloo}}\n"

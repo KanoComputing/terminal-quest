@@ -57,9 +57,10 @@ class Step1(StepTemplateMkdir):
 class Step2(StepTemplateNano):
     story = [
         "Bernard: {{Bb:\"Hellooooo. You came back to fix my script!\"}}\n ",
-        "+--------------------------------------------------------+",
-        "| {{gb:New Spell}}: {{yb:nano}} followed by an object lets you {{lb:edit}} it | " \
-        "+--------------------------------------------------------+ ",
+        " -------------------------------------- ",
+        "| {{gb:New Spell}}: {{yb:nano}} followed by an       |",
+        "| object lets you {{lb:edit}} it              |",
+        " -------------------------------------- ",
         "\nLet's try and use {{yb:nano best-horn-in-the-world.sh}} to edit it.",
     ]
 

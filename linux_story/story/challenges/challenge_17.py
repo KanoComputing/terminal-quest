@@ -224,9 +224,10 @@ class Step7(StepTemplateEcho):
     story = [
         "So the note says {{Bb:\"echo hello - will make you say hello\"}}",
         "Let's test this out. \n",
-        "+--------------------------------------------------+",
-        "| {{gb:New Spell}}: {{yb:echo}} followed by words lets you {{lb:speak}} | " \
-        "+--------------------------------------------------+ "
+        " ------------------------------------- ",
+        "| {{gb:New Spell}}: {{yb:echo}} followed by words   |",
+        "| lets you {{lb:speak}}                      | ",
+        " -------------------------------------  "
     ]
     hints = [
         "{{rb:Use the command}} {{yb:echo hello}}"
