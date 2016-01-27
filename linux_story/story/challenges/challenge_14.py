@@ -14,12 +14,13 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
+from kano.logging import logger
+
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.common import tq_file_system
 from linux_story.story.challenges.challenge_15 import Step1 as NextStep
-from linux_story.step_helper_functions import (
+from linux_story.step_helper_functions import \
     unblock_commands_with_cd_hint, unblock_commands
-)
 
 
 class StepTemplateMv(TerminalMv):
@@ -79,9 +80,12 @@ class Step2(StepTemplateMv):
 
     def block_command(self):
         separate_words = self.last_user_input.split(' ')
+        should_block = True
 
         if "cd" in self.last_user_input:
-            return True
+            return True   # block the CD command here
+        elif "ls" in self.last_user_input:
+            return False  # do not block the LS command
 
         if separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
                                           separate_words[-1] == 'basket/'):
@@ -89,7 +93,7 @@ class Step2(StepTemplateMv):
                 if item not in self.passable_items:
                     if item in self.unmovable_items:
                         self.send_hint(self.unmovable_items[item])
-                        return True
+                        break
                     else:
                         hint = (
                             "{{rb:You\'re trying to move something that "
@@ -98,13 +102,19 @@ class Step2(StepTemplateMv):
                             % self.passable_items[0]
                         )
                         self.send_hint(hint)
-                        return True
+                        break
 
-            return False
+            should_block = False
+
+        else:
+            # print a message in the terminal to show that it failed
+            print 'If you do not add the basket at the end of the command,' \
+                  ' you will rename the items!'
+
+        return should_block
 
     def check_command(self):
-
-        separate_words = self.last_user_input.split(' ')
+        separate_words = self.last_user_input.split()
         all_items = []
 
         if self.get_command_blocked():
@@ -116,10 +126,19 @@ class Step2(StepTemplateMv):
             for item in separate_words[1:-1]:
                 all_items.append(item)
 
-            for item in all_items:
-                self.passable_items.remove(item)
+            items_moved = 0
+            hint = ''
 
-            hint = '\n{{gb:Well done! Keep going.}}'
+            for item in all_items:
+                try:
+                    self.passable_items.remove(item)
+                    items_moved += 1
+                except ValueError as e:
+                    logger.debug("Tried removing item {} from list. User might have"
+                                 " made a typo - [{}]".format(item, e))
+
+            if items_moved:
+                hint = '\n{{gb:Well done! Keep going.}}'
 
         else:
             hint = '{{rb:Try using}} {{yb:mv %s basket/}}' \
