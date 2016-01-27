@@ -6,13 +6,13 @@
 # A chapter of the story
 
 
+from kano_profile.apps import \
+    save_app_state_variable, load_app_state_variable
+
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_18 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
-from kano_profile.apps import (
-    save_app_state_variable, load_app_state_variable
-)
 
 
 # This is for the challenges that only need ls
@@ -23,6 +23,9 @@ class StepTemplateMv(TerminalMv):
 # This is for that challenges that need echo
 class StepTemplateEcho(TerminalEcho):
     challenge_number = 17
+
+
+# ----------------------------------------------------------------------------------------
 
 
 class Step1(StepTemplateMv):
@@ -85,7 +88,7 @@ class Step2(StepTemplateMv):
             "blocked": "\n{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}"
         },
         "~/my-house": {
-            "not_blocked": "\n{{gb:Good work! Now go into your}} {{lb:parents-room}}{{gb:.}}",
+            "not_blocked": "\n{{gb:Now go into your}} {{lb:parents-room}}{{gb:.}}",
             "blocked": "\n{{rb:Use}} {{yb:cd parents-room}} {{rb:to go in.}}"
         }
     }
@@ -146,7 +149,7 @@ class Step4(StepTemplateMv):
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
     hints = [
-        "{{rb:Look in the}} {{lb:.safe}} {{rb:using}} {{lb:ls}}{{rb:.}}",
+        "{{rb:Look in the}} {{bb:.safe}} {{rb:using}} {{lb:ls}}{{rb:.}}",
         "{{rb:Use}} {{yb:ls .safe}} {{rb:to look into the .safe.}}"
     ]
 
@@ -182,12 +185,12 @@ class Step5(CheckDiaryStep):
     story = [
         "So you found your {{bb:Mum's diary}}?",
         "You probably shouldn't read it...\n",
-        "What else is here?  Let's {{lb:examine}} that {{bb:map}}."
+        "What else is here? Let's {{lb:examine}} that {{bb:map}}."
     ]
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
     hints = [
-        "{{rb:Use}} {{yb:cat}} {{rb:to read the}} {{lb:map}}{{rb:.}}",
+        "{{rb:Use}} {{yb:cat}} {{rb:to read the}} {{bb:map}}{{rb:.}}",
         "{{rb:Use}} {{yb:cat .safe/map}} {{rb:to read the map.}}"
     ]
 
@@ -208,7 +211,7 @@ class Step6(CheckDiaryStep):
     end_dir = "~/my-house/parents-room"
     commands = "cat .safe/ECHO"
     hints = [
-        "{{rb:Use the}} {{yb:cat}} {{rb:command to read the}} {{lb:ECHO}} "
+        "{{rb:Use the}} {{yb:cat}} {{rb:command to read the}} {{bb:ECHO}} "
         "{{rb:note.}}",
         "{{rb:Use}} {{yb:cat .safe/ECHO}} {{rb:to read the note.}}"
     ]
@@ -221,9 +224,10 @@ class Step7(StepTemplateEcho):
     story = [
         "So the note says {{Bb:\"echo hello - will make you say hello\"}}",
         "Let's test this out. \n",
-        "+--------------------------------------------------+",
-        "| {{gb:New Spell}}: {{yb:echo}} followed by words lets you {{lb:speak}} | " \
-        "+--------------------------------------------------+ "
+        " ------------------------------------- ",
+        "| {{gb:New Spell}}: {{yb:echo}} followed by words   |",
+        "| lets you {{lb:speak}}                      | ",
+        " -------------------------------------  "
     ]
     hints = [
         "{{rb:Use the command}} {{yb:echo hello}}"

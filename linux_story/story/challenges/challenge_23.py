@@ -20,6 +20,9 @@ class StepMkdirEleanor(TerminalMkdirEleanor):
     challenge_number = 23
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepMkdir):
     story = [
         "You see {{bb:Eleanor}}. Listen to what she has to say."
@@ -60,7 +63,7 @@ class Step2(StepMkdir):
             return True
         elif self.last_user_input.startswith("echo"):
             text = (
-                "\nEleanor: {{Bb:\"Pardon?  What did you say?\"}}"
+                "\nEleanor: {{Bb:\"Pardon? What did you say?\"}}"
             )
         else:
             text = (

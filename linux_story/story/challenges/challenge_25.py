@@ -15,6 +15,9 @@ class StepTemplateMkdir(TerminalMkdirBernard):
     challenge_number = 25
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateMkdir):
     story = [
         "Bernard: {{Bb:\"Hello! Shush, don't say a word.\"}}",
@@ -42,14 +45,17 @@ class Step1(StepTemplateMkdir):
     ]
 
     commands = [
-        "cat best-shed-maker-in-the-world.sh"
+        "cat best-shed-maker-in-the-world.sh",
+        "cat ./best-shed-maker-in-the-world.sh"
     ]
     eleanors_speech = (
         "Eleanor: {{Bb:Bernard scares me a bit...}}"
     )
 
     def check_command(self):
-        if self.last_user_input == "cat best-horn-in-the-world.sh":
+        if self.last_user_input == "cat best-horn-in-the-world.sh" or \
+           self.last_user_input == "cat ./best-horn-in-the-world.sh":
+
             self.send_text(
                 "\n{{rb:You are reading the wrong file! "
                 "You want to read}} {{bb:best-shed-maker-in-the-world.sh}}"
@@ -179,7 +185,8 @@ class Step5(StepTemplateMkdir):
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east/shed-shop"
     commands = [
-        "cat best-horn-in-the-world.sh"
+        "cat best-horn-in-the-world.sh",
+        "cat ./best-horn-in-the-world.sh"
     ]
 
     hints = [
@@ -193,7 +200,9 @@ class Step5(StepTemplateMkdir):
     )
 
     def check_command(self):
-        if self.last_user_input == "cat best-shed-maker-in-the-world.sh":
+        if self.last_user_input == "cat best-shed-maker-in-the-world.sh" or \
+           self.last_user_input == "cat ./best-shed-maker-in-the-world.sh":
+
             self.send_text(
                 "\n{{rb:You're examining the wrong tool. You want to look "
                 "at}} {{yb:best-horn-in-the-world.sh}}"
@@ -228,7 +237,7 @@ class Step6(StepTemplateMkdir):
     ]
 
     hints = [
-        "{{rb:Use}} {{lb:ls}} {{rb:to look through.}}",
+        "{{rb:Use}} {{yb:ls}} {{rb:to look through.}}",
         "{{rb:Use}} {{yb:ls basement/}} {{rb:to look inside.}}"
     ]
 

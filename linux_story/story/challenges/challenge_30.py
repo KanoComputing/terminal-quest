@@ -19,6 +19,9 @@ class StepNano(TerminalNanoEleanor):
     challenge_number = 30
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepNano):
     story = [
         "{{pb:Ding. Dong.}}\n",

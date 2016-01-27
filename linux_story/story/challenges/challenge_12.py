@@ -26,6 +26,9 @@ class StepTemplateMv(TerminalMv):
     challenge_number = 12
 
 
+# ----------------------------------------------------------------------------------------
+
+
 # Thanks you for saving the little girl
 class Step1(StepTemplateMv):
     story = [

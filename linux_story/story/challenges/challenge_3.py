@@ -23,6 +23,9 @@ class StepTemplateCat(TerminalCat):
     challenge_number = 3
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateCat):
     story = [
         "Love it! Put it on quickly.",

@@ -32,6 +32,9 @@ class StepTemplateMv(TerminalMv):
     challenge_number = 11
 
 
+# ----------------------------------------------------------------------------------------
+
+
 # The next few steps should be like the disappearing of people in the town
 class Step1(StepTemplateCd):
     story = [
@@ -115,10 +118,11 @@ class Step2(StepTemplateMv):
 
         "{{Bb:\"But I don't understand what that means. Do I say it? "
         "Or write it?\"}}\n",
-        
-        "+----------------------------------------------------------+",
-        "| {{gb:New Spell}}: to {{lb:move}} objects, type {{yb:mv}} and the object name. | " \
-        "+----------------------------------------------------------+ "
+
+        " ------------------------------------- ",
+        "| {{gb:New Spell}}: to {{lb:move}} objects, type {{yb:mv}} |",
+        "| and the object name.                |",
+        " ------------------------------------- "
     ]
 
     start_dir = "~/town/.hidden-shelter"
@@ -210,7 +214,7 @@ class Step5(StepTemplateMv):
     ]
     hints = [
         "{{rb:Use the command}} {{yb:mv basket/apple ./}} {{rb:to move "
-        "the apple from the basket to your current position}} {{lb:./}}"
+        "the apple from the basket to your current position}} {{bb:./}}"
     ]
 
     def block_command(self):

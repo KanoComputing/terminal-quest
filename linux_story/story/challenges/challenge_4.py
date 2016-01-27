@@ -17,7 +17,6 @@ if __name__ == '__main__' and __package__ is None:
 # from linux_story.Step import Step
 from linux_story.story.terminals.terminal_cd import TerminalCd
 from linux_story.story.challenges.challenge_5 import Step1 as NextChallengeStep
-from linux_story.helper_functions import play_sound
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
@@ -25,12 +24,16 @@ class StepTemplateCd(TerminalCd):
     challenge_number = 4
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateCd):
     story = [
         "That's weird. No time for that now though - lets find {{bb:Mum}}.\n ",
-        "+---------------------------------------------+",
-        "| {{gb:New Spell}}: {{yb:cd}} lets you {{lb:move}} between places. | " \
-        "+---------------------------------------------+ ",
+        " ------------------------------------- ",
+        "| {{gb:New Spell}}: {{yb:cd}} lets you {{lb:move}}         |",
+        "| between places.                     | ",
+        " ------------------------------------- ",
         "\nUse the command {{yb:cd ..}} to {{lb:leave}} your room.\n"
     ]
     start_dir = "~/my-house/my-room"
@@ -66,7 +69,7 @@ class Step2(StepTemplateCd):
     start_dir = "~/my-house"
     end_dir = "~/my-house"
     commands = "ls"
-    hints = "{{rb:Type}} {{yb:ls}} {{rb:and press {{ob:Enter}}.}}"
+    hints = "{{rb:Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}"
     story_dict = {
         "note_greenhouse": {
             "name": "note",
@@ -76,14 +79,13 @@ class Step2(StepTemplateCd):
     deleted_items = ['~/my-house/garden/greenhouse/Dad']
 
     def next(self):
-        play_sound('bell')
         Step3()
 
 
 class Step3(StepTemplateCd):
     story = [
         "{{pb:Ding. Dong.}}\n",
-        "What was that?  A bell?  That's a bit odd.",
+        "What was that? A bell? That's a bit odd.",
         "You see the door to your {{bb:kitchen}}, and hear the sound of "
         "cooking.",
         "Sounds like someone is preparing breakfast!\n",
@@ -92,7 +94,7 @@ class Step3(StepTemplateCd):
     start_dir = "~/my-house"
     end_dir = "~/my-house/kitchen"
     commands = ["cd kitchen", "cd kitchen/"]
-    hints = ["{{rb:Type}} {{yb:cd kitchen}} {{rb:and press {{ob:Enter}}.}}"]
+    hints = ["{{rb:Type}} {{yb:cd kitchen}} {{rb:and press}} {{ob:Enter}}{{rb:.}}"]
 
     def block_command(self):
         return unblock_commands_with_cd_hint(
@@ -111,7 +113,7 @@ class Step4(StepTemplateCd):
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "ls"
-    hints = "{{rb:Can't find her?  Type}} {{yb:ls}} {{rb:and press {{ob:Enter}}.}}"
+    hints = "{{rb:Can't find her? Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}"
 
     def next(self):
         Step5()

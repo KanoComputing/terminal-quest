@@ -10,7 +10,7 @@ import os
 
 from linux_story.story.terminals.terminal_bernard import TerminalNanoBernard
 from linux_story.story.challenges.challenge_30 import Step1 as NextStep
-from linux_story.helper_functions import play_sound, record_user_interaction
+from linux_story.helper_functions import record_user_interaction
 
 
 # Can't get all the information with this system unless you are interested.
@@ -63,8 +63,8 @@ story_replies = {
             "user": "\"Do you have any relatives in town?\"",
             "clara": (
                 "Clara: {{Bb:\"I have a couple of children, a}} "
-                "{{lb:little-boy}} {{Bb:and a}} "
-                "{{lb:young-girl}}{{Bb:. I hope they are alright.\"}}"
+                "{{bb:little-boy}} {{Bb:and a}} "
+                "{{bb:young-girl}}{{Bb:. I hope they are alright.\"}}"
             )
         },
         {
@@ -191,6 +191,9 @@ class StepNanoStory(StepNano):
             return TerminalNanoBernard.check_command(self)
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepNanoStory):
     story = [
         "Clara: {{Bb:\"What? Who are you?\"}}",
@@ -261,5 +264,4 @@ class Step4(StepNanoStory):
         return True
 
     def next(self):
-        play_sound("bell")
         NextStep(self.xp)

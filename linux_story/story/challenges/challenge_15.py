@@ -23,6 +23,9 @@ class StepTemplateMv(TerminalMv):
     challenge_number = 15
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateMv):
     story = [
         "You get the nagging feeling you're missing something.",
@@ -135,7 +138,7 @@ class Step5(StepTemplateMv):
     start_dir = '~/my-house'
 
     hints = [
-        "{{rb:Stuck?  Have a look in}} {{yb:my-room}}{{rb:.}}",
+        "{{rb:Stuck? Have a look in}} {{yb:my-room}}{{rb:.}}",
         "{{rb:Use}} {{yb:ls -a my-room}} {{rb:to look for hidden files in}} "
         "{{lb:my-room}}{{rb:.}}"
     ]

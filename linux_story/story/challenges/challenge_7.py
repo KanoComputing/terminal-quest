@@ -22,6 +22,9 @@ class StepTemplateCd(TerminalCd):
     challenge_number = 7
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateCd):
     story = [
         "Have a {{lb:look around}} to see what's going on!"

@@ -17,6 +17,9 @@ class StepTemplateEcho(TerminalEcho):
     challenge_number = 18
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateEcho):
     story = [
         "Woah! You spoke aloud into the empty room!\n",
@@ -82,7 +85,7 @@ class Step3(StepTemplateEcho):
 
 class Step4(StepTemplateEcho):
     story = [
-        "{{lb:Look around.}}"
+        "You walk up the path to the farm, {{lb:Look around.}}"
     ]
 
     commands = "ls"

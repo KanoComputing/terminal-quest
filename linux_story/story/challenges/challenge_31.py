@@ -10,10 +10,14 @@ import time
 
 from linux_story.story.terminals.terminal_nano import TerminalNano
 from linux_story.step_helper_functions import unblock_cd_commands
+from linux_story.sound_manager import SoundManager
 
 
 class StepTemplateNano(TerminalNano):
     challenge_number = 31
+
+
+# ----------------------------------------------------------------------------------------
 
 
 class Step1(StepTemplateNano):
@@ -77,6 +81,11 @@ class Step3(StepTemplateNano):
     hints = [
         "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
     ]
+
+    def __init__(self, xp=""):
+        sound_manager = SoundManager()
+        sound_manager.play_sound('steps')
+        StepTemplateNano.__init__(self, xp)
 
     def next(self):
         Step4()

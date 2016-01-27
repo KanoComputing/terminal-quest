@@ -15,6 +15,9 @@ class StepTemplateMkdir(TerminalMkdirBernard):
     challenge_number = 26
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateMkdir):
     story = [
         "You are back in town. {{bb:Eleanor}} waves her arms and points "
@@ -109,7 +112,7 @@ class Step4(StepTemplateMkdir):
         "She would tell me off for trying to look in the}} "
         "{{bb:private-section}}.",
 
-        "{{Bb:What do you think is in there?  Let's try and}} "
+        "{{Bb:What do you think is in there? Let's try and}} "
         "{{lb:look inside}}{{Bb:.\"}}"
     ]
 
@@ -151,7 +154,7 @@ class Step5(StepTemplateMkdir):
         "ls -a public-section/"
     ]
     hints = [
-        "{{rb:Use}} {{lb:ls}} {{rb:to look in the public section.}}",
+        "{{rb:Use}} {{yb:ls}} {{rb:to look in the public section.}}",
         "{{rb:Use}} {{yb:ls public-section}} {{rb:to look in the public-"
         "section.}}"
     ]

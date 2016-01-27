@@ -7,10 +7,17 @@
 
 
 import os
+import traceback
 import subprocess
+
+from kano.logging import logger
 
 from helper_functions import colour_file_dir, debugger
 from linux_story.common import tq_file_system
+from linux_story.sound_manager import SoundManager
+
+
+sounds_manager = SoundManager()
 
 
 def ls(real_loc, line):
@@ -134,8 +141,9 @@ def shell_command(real_loc, line, command_word=""):
         line = command_word + " " + line
 
     line = line.replace('~', tq_file_system)
-
     args = line.split(" ")
+
+    # run the command
     p = subprocess.Popen(args, cwd=real_loc,
                          stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE)
@@ -148,8 +156,12 @@ def shell_command(real_loc, line, command_word=""):
     if stdout:
         if command_word == "cat":
             print stdout
+
         else:
             print stdout.strip()
+
+    # notifying the SoundManager about the command that was run
+    sounds_manager.on_command_run(args)
 
     # should this return stdout?
     return True
@@ -167,7 +179,6 @@ def launch_application(real_path, line, command_word=""):
     Returns:
         None.
     '''
-
     line = " ".join([command_word] + line.split(" "))
 
     p = subprocess.Popen(line, cwd=real_path, shell=True)
@@ -208,6 +219,9 @@ def nano(real_path, line):
     if not os.path.exists(nano_filepath):
         raise Exception("Cannot find nano")
 
+    # notifying the SoundManager about the command that is about run
+    sounds_manager.on_command_run(['nano'] + line.split())
+
     cmd = nano_filepath + " " + line
     p = subprocess.Popen(cmd, cwd=real_path, shell=True)
     stdout, stderr = p.communicate()
@@ -236,6 +250,10 @@ def run_executable(real_path, line):
 
     p = subprocess.Popen(["sh", line], cwd=real_path)
     stdout, stderr = p.communicate()
+
+    # notifying the SoundManager about the script that was just run
+    script_name = line.split()[0]
+    sounds_manager.on_command_run([script_name])
 
     if stdout:
         print stdout.strip()

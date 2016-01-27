@@ -14,30 +14,41 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
+from kano_profile.apps import save_app_state_variable
+
 from linux_story.story.terminals.terminal_cat import TerminalCat
 from linux_story.story.challenges.challenge_3 import Step1 as NextChallengeStep
-from kano_profile.apps import save_app_state_variable
+from linux_story.sound_manager import SoundManager
 
 
 class StepCat(TerminalCat):
     challenge_number = 2
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepCat):
     story = [
         "Awesome, now you can see the objects around you.",
         "There's your {{bb:bed}}, an {{bb:alarm}}... ",
-        "Euuughh...turn that {{bb:alarm}} off! ",
-        "+--------------------------------------------------------------+",
-        "| {{gb:New Spell}}: to {{lb:examine}} objects, type {{yb:cat}} and the object name. | " \
-        "+--------------------------------------------------------------+ ",
+        "Euuughh...turn that {{bb:alarm}} off! \n",
+        " ------------------------------------- ",
+        "| {{gb:New Spell}}: to {{lb:examine}} objects, type |",
+        "| {{yb:cat}} and the object name.            | ",
+        " ------------------------------------- ",
         "\nUse {{yb:cat alarm}} to {{lb:examine}} the {{bb:alarm}}."
-    ] 
+    ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat alarm"
     highlighted_commands = ['cat']
     hints = "{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}"
+
+    def __init__(self, xp=""):
+        sound_manager = SoundManager()
+        sound_manager.play_sound('alarm')
+        StepCat.__init__(self, xp)
 
     def next(self):
         Step2()
@@ -64,7 +75,7 @@ class Step2(StepCat):
 
 class Step3(StepCat):
     story = [
-        "Check out that {{bb:t-shirt}}!",
+        "Check out that {{bb:t-shirt}}!\n",
         "{{lb:Examine}} the {{bb:t-shirt}} with {{yb:cat wardrobe/t-shirt}} "
         "to see how it looks.\n"
     ]
@@ -82,7 +93,7 @@ class Step3(StepCat):
 
 class Step4(StepCat):
     story = [
-        "Looking good! Put that on and look for something else.",
+        "Looking good! Put that on and look for something else.\n",
         "{{lb:Examine}} the {{bb:skirt}} or the {{bb:trousers}}.\n"
     ]
     start_dir = "~/my-house/my-room"
@@ -119,7 +130,7 @@ class Step4(StepCat):
 
 class Step5(StepCat):
     story = [
-        "Awesome, your outfit is nearly complete.",
+        "Awesome, your outfit is nearly complete.\n",
         "Finally, check out that {{bb:cap}}.\n"
     ]
     start_dir = "~/my-house/my-room"

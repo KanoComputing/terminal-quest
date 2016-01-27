@@ -6,11 +6,13 @@
 
 
 import time
+import string as s
 
 from gi.repository import Gtk, Pango, Gdk
 
 from kano.utils import is_model_2_b
 
+from linux_story.sound_manager import SoundManager
 from linux_story.helper_functions import get_ascii_art
 
 
@@ -56,6 +58,8 @@ class Storybook(Gtk.TextView):
         self.char_width = self.__get_char_width()
         self.set_can_focus(False)
 
+        self.sounds_manager = SoundManager()
+
     def clear(self):
         '''Clear all text in spellbook
         '''
@@ -72,8 +76,20 @@ class Storybook(Gtk.TextView):
             None
         """
         lines = self.__parse_string(string)
+        unstyled_string = self.__compose_string(lines)
 
-        for line in lines:
+        for i in xrange(len(lines)):
+            line = lines[i]
+
+            # if we are printing a new word, notify the sound manager
+            if i == 0:
+                self.sounds_manager.on_typing_story_text(unstyled_string)
+            else:
+                if unstyled_string[i - 1] in s.whitespace and \
+                   unstyled_string[i] in s.letters:
+
+                    self.sounds_manager.on_typing_story_text(unstyled_string[i:])
+
             self.__style_char(
                 line['letter'],
 
@@ -481,6 +497,20 @@ class Storybook(Gtk.TextView):
                 string = last_part
 
         return string_array
+
+    def __compose_string(self, lines):
+        """
+        Composes a parsed string from the string_array back together.
+
+        Returns:
+            unstyled_string (str): a single string without the custom markup symbols
+        """
+        unstyled_string = ''
+
+        for line in lines:
+            unstyled_string += line['letter']
+
+        return unstyled_string
 
     def __get_char_width(self):
         '''

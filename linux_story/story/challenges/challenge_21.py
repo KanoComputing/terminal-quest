@@ -18,6 +18,9 @@ class StepTemplateMkdir(TerminalMkdir):
     challenge_number = 21
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateMkdir):
     story = [
         "{{gb:Nice! You've built an igloo! You learned the new skill, "
@@ -43,7 +46,7 @@ class Step1(StepTemplateMkdir):
             "blocked": "\n{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}"
         },
         "~/farm": {
-            "not_blocked": "\n{{gb:Good work! Now go into the}} {{lb:barn}}{{gb:.}}",
+            "not_blocked": "\n{{gb:You walk outside. Now go into the}} {{bb:barn}}{{gb:.}}",
             "blocked": "\n{{rb:Use}} {{yb:cd barn}} {{rb:to go in the barn.}}"
         }
     }
@@ -70,11 +73,11 @@ class Step2(StepTemplateMkdir):
         "Ruth: {{Bb:\"Anyone would be able to find the igloo "
         "you just made.",
         "Is it possible to make something hidden?\"}}\n",
-        "{{yb:1: If we call it}} {{bb:hidden-shelter}}"
-        "{{yb:, that will make it hidden.}}",
-        "{{yb:2: Putting a . at the front makes things hidden.}}",
-        "{{yb:3: It's impossible to make a hidden shelter.}}\n",
-        "Use {{lb:echo}} to tell {{bb:Ruth}} how to make things hidden."
+        "{{yb:1: \"If we call it}} {{bb:hidden-shelter}}"
+        "{{yb:, that will make it hidden.\"}}",
+        "{{yb:2: \"Putting a . at the front makes things hidden.\"}}",
+        "{{yb:3: \"It's impossible to make a hidden shelter.\"}}\n",
+        "Use {{yb:echo}} to tell {{bb:Ruth}} how to make things hidden."
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
@@ -116,12 +119,12 @@ class Step2(StepTemplateMkdir):
 # First fork - try making a hidden shelter
 class Step3(StepTemplateMkdir):
     print_text = [
-        "{{yb:If we call it}} {{bb:hidden-shelter}}"
-        "{{yb:, that will make it hidden.}}"
+        "{{yb:\"If we call it}} {{bb:hidden-shelter}}"
+        "{{yb:, that will make it hidden.\"}}"
     ]
     story = [
         "Ruth: {{Bb:\"So creating one called}} {{bb:hidden-shelter}} "
-        "{{Bb:should make it hidden?  Ok, let's try that.\"}}\n",
+        "{{Bb:should make it hidden? Ok, let's try that.\"}}\n",
         "Try {{lb:building}} a shelter called {{bb:hidden-shelter}}."
     ]
     start_dir = "~/farm/barn"
@@ -192,10 +195,10 @@ class Step5(StepTemplateMkdir):
         "Ruth: {{Bb:\"You made}} {{bb:hidden-shelter}}{{Bb:!\"}}",
         "{{Bb:\"...The problem is, I can see it too. I don't think it worked.",
         "How else could you make something hidden?\"}}",
-        "\n{{yb:1: If you put a . in front of the name, it makes it hidden.}}",
-        "{{yb:2: You're mistaken. You can't see the hidden-shelter, it's "
-        "hidden.}}\n",
-        "Use {{lb:echo}} to talk to Ruth.",
+        "\n{{yb:1: \"If you put a . in front of the name, it makes it hidden.\"}}",
+        "{{yb:2: \"You're mistaken. You can't see the hidden-shelter, it's "
+        "hidden.\"}}\n",
+        "Use {{yb:echo}} to talk to {{bb:Ruth}}.",
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
@@ -231,11 +234,11 @@ class Step5(StepTemplateMkdir):
 
 class Step6(StepTemplateMkdir):
     print_text = [
-        "{{yb:If you put a . in front of the name, it makes it hidden.}}"
+        "{{yb:\"If you put a . in front of the name, it makes it hidden.\"}}"
     ]
     story = [
         "Ruth: {{Bb:\"So if we called the shelter}} {{bb:.shelter}}"
-        "{{Bb:, it would be hidden?  Let's try it!\"}}\n",
+        "{{Bb:, it would be hidden? Let's try it!\"}}\n",
         "{{lb:Build}} a shelter called {{bb:.shelter}}"
     ]
     start_dir = "~/farm/barn"

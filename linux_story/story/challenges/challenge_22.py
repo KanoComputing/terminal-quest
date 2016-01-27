@@ -8,12 +8,14 @@
 
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
-from linux_story.helper_functions import play_sound
 from linux_story.story.challenges.challenge_23 import Step1 as NextStep
 
 
 class StepTemplateMkdir(TerminalMkdir):
     challenge_number = 22
+
+
+# ----------------------------------------------------------------------------------------
 
 
 class Step1(StepTemplateMkdir):
@@ -45,7 +47,6 @@ class Step1(StepTemplateMkdir):
     ]
 
     def next(self):
-        play_sound("bell")
         Step2()
 
 
@@ -72,11 +73,11 @@ class Step2(StepTemplateMkdir):
     ]
 
     def next(self):
-        play_sound("bell")
         Step3()
 
 
 class Step3(StepTemplateMkdir):
+
     story = [
         "It appears that everyone is still here...",
         "\n{{pb:Ding. Dong.}}\n",
@@ -100,7 +101,6 @@ class Step3(StepTemplateMkdir):
     ]
 
     def next(self):
-        play_sound("bell")
         Step4()
 
 
@@ -121,7 +121,7 @@ class Step4(StepTemplateMkdir):
     end_dir = "~/town/.hidden-shelter"
 
     hints = [
-        "{{rb:We can go directly to the}} {{lb:.hidden-shelter}} "
+        "{{rb:We can go directly to the}} {{bb:.hidden-shelter}} "
         "{{rb:using}} {{yb:cd ~/town/.hidden-shelter}}"
     ]
 

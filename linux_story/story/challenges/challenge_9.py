@@ -16,12 +16,14 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.story.terminals.terminal_cd import TerminalCd
 from linux_story.story.challenges.challenge_10 import Step1 as NextStep
-from linux_story.helper_functions import play_sound
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
 class StepTemplateCd(TerminalCd):
     challenge_number = 9
+
+
+# ----------------------------------------------------------------------------------------
 
 
 class Step1(StepTemplateCd):
@@ -40,7 +42,6 @@ class Step1(StepTemplateCd):
         )
 
     def next(self):
-        play_sound('bell')
         Step2()
 
 

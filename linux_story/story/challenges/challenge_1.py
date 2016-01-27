@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+# challenge_1.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
+
 
 import os
 import sys
@@ -15,10 +16,14 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.story.terminals.terminal_ls import TerminalLs
 from linux_story.story.challenges.challenge_2 import Step1 as NextChallengeStep
+from linux_story.sound_manager import SoundManager
 
 
 class StepLs(TerminalLs):
     challenge_number = 1
+
+
+# ----------------------------------------------------------------------------------------
 
 
 class Step1(StepLs):
@@ -28,9 +33,10 @@ class Step1(StepLs):
         "\"The town of Folderton has awoken to strange news. There have been reports of missing people and damaged buildings across the town, with more stories coming in as we speak.\"",
         "\n\"Mayor Hubert has called an emergency town meeting and we'll keep you posted as it happens...\"}}\n",
         "It's time to get up sleepy head!\n ",
-        "+----------------------------------------------------+",
-        "| {{gb:New Spell:}} Type {{yb:ls}} and press {{ob:Enter}} to {{lb:look around}}. | " \
-        "+----------------------------------------------------+\n"
+        " ------------------------------------- ",
+        "| {{gb:New Spell:}} Type {{yb:ls}} and press        |",
+        "| {{ob:Enter}} to {{lb:look around}}.               |",
+        " ------------------------------------- \n"
     ]  # TODO: " \ is a hack in this array to stop word wrap code screwing up and adding new lines in where it shouldn't
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -42,6 +48,11 @@ class Step1(StepLs):
     ]
 
     last_step = True
+
+    def __init__(self, xp=""):
+        sound_manager = SoundManager()
+        sound_manager.play_sound('alarm')
+        StepLs.__init__(self, xp)
 
     def next(self):
         NextChallengeStep(self.xp)
