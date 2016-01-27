@@ -64,6 +64,12 @@
 	background: @spellbook_background;
 }
 
+.caps_lock_warning {
+    background: @caps_lock_warning_background;
+    color: #ffffff;
+    font: Bariol 14px;
+}
+
 .menu_background {
 	background: @spellbook_background;
 	border-style: solid;

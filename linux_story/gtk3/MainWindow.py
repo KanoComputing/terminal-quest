@@ -11,7 +11,7 @@ import time
 import Queue
 import socket
 import threading
-import subprocess
+# import subprocess
 import traceback
 
 from gi.repository import Gtk, Gdk, GLib
@@ -29,7 +29,7 @@ from linux_story.socket_functions import create_server
 from linux_story.gtk3.TerminalUi import TerminalUi
 from linux_story.gtk3.Spellbook import Spellbook
 from linux_story.gtk3.Storybook import Storybook
-from linux_story.gtk3.FinishDialog import FinishDialog
+# from linux_story.gtk3.FinishDialog import FinishDialog
 from linux_story.common import css_dir
 from linux_story.gtk3.MenuScreen import MenuScreen
 from linux_story.load_defaults_into_filetree import \
@@ -37,6 +37,7 @@ from linux_story.load_defaults_into_filetree import \
 
 
 class GenericWindow(Gtk.Window):
+
     CSS_FILE = os.path.join(
         css_dir,
         "style.css"
@@ -56,6 +57,19 @@ class GenericWindow(Gtk.Window):
         self.maximize()
         self.set_title("Terminal Quest")
         self.set_icon_name("linux-story")
+
+        self.is_caps_lock_on = False
+        self.connect('key-press-event', self._on_key_press)
+
+    def _on_key_press(self, widget, event):
+        is_caps_lock_on = event.state & Gdk.ModifierType.LOCK_MASK != 0
+
+        if self.is_caps_lock_on != is_caps_lock_on:
+            self.is_caps_lock_on = is_caps_lock_on
+            self.on_caps_lock_changed(is_caps_lock_on)
+
+    def on_caps_lock_changed(self, is_caps_lock_on):
+        pass
 
 
 class MainWindow(GenericWindow):
@@ -128,6 +142,10 @@ class MainWindow(GenericWindow):
         )
 
         self.run_server()
+
+    def on_caps_lock_changed(self, is_caps_lock_on):
+        if self.spellbook:
+            self.spellbook.caps_lock_changed(is_caps_lock_on)
 
     def start_script_in_terminal(self, challenge_number="", step_number=""):
         '''
