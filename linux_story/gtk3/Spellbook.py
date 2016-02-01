@@ -15,7 +15,7 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from linux_story.common import common_media_dir
+from linux_story.common import images_dir
 from linux_story.helper_functions import get_ascii_art
 
 
@@ -30,27 +30,100 @@ class Spellbook(Gtk.EventBox):
     HEIGHT = 100
     number_of_spells = 7
 
-    def __init__(self):
+    def __init__(self, is_caps_lock_on=False):
         self.stop = False
+        self.is_caps_lock_on = is_caps_lock_on
 
         Gtk.EventBox.__init__(self)
+        self.get_style_context().add_class("spellbook_background")
 
-        background = Gtk.EventBox()
-        background.get_style_context().add_class("spellbook_background")
-
+        self.box = Gtk.Box()
         self.grid = Gtk.Grid()
-        self.add(background)
-        background.add(self.grid)
+        self.caps_lock_warning = self.__create_caps_lock_warning()
+        self.box.pack_start(self.grid, True, True, 0)
+        self.box.pack_end(self.caps_lock_warning, False, False, 0)
+        self.add(self.box)
 
         screen = Gdk.Screen.get_default()
         self.win_width = screen.get_width()
         self.win_height = screen.get_height()
 
         self.WIDTH = self.win_width / 2
-
         self.set_size_request(self.WIDTH, self.HEIGHT)
 
         self.__pack_locked_spells()
+
+        # sigh.. this is basically to get showing and hiding right for the two widgets
+        self.connect('show', self.__on_show)
+        self.grid.connect('show', self.__on_show)
+        self.caps_lock_warning.connect('show', self.__on_show)
+
+    def __create_caps_lock_warning(self):
+        box = Gtk.Box()
+        box.get_style_context().add_class("caps_lock_warning")
+        box.set_margin_top(10)
+        box.set_margin_bottom(10)
+
+        title = '<span foreground="orange" font="15" weight="bold">' \
+                'Watch out, Caps Lock is activated on your keyboard' \
+                '</span>'
+        description = 'Terminal commands are \'case sensitive\' so have to be written' \
+                      ' with capital or lower\ncase letters exactly as the computer' \
+                      ' expects them, for example write' \
+                      ' <span foreground="yellow">ls</span> not' \
+                      ' <span foreground="yellow">LS</span>.'
+
+        left_box = Gtk.Box()
+        left_box.set_margin_left(10)
+        left_box.add(Gtk.Image.new_from_file(os.path.join(images_dir, 'caps_lock.png')))
+
+        right_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        right_box.set_hexpand(True)
+        right_box.set_margin_top(10)
+        right_box.set_margin_bottom(10)
+        right_box.set_margin_left(10)
+        right_box.set_margin_right(10)
+
+        title_label = Gtk.Label()
+        title_label.set_markup(title)
+        title_label.set_margin_bottom(3)
+        title_label.set_halign(Gtk.Align.START)
+        description_label = Gtk.Label()
+        description_label.set_markup(description)
+        right_box.add(title_label)
+        right_box.add(description_label)
+
+        box.add(left_box)
+        box.add(right_box)
+
+        return box
+
+    def __on_show(self, widget):
+        """
+        Event handler for this widget on the 'show' event.
+        """
+        self.__show_or_hide_caps_lock_warning()
+
+    def caps_lock_changed(self, is_caps_lock_on):
+        """
+        Update the CapsLock key status to show or hide the widget.
+
+        This method gets called by the main_window.
+        """
+        self.is_caps_lock_on = is_caps_lock_on
+        self.__show_or_hide_caps_lock_warning()
+
+    def __show_or_hide_caps_lock_warning(self):
+        """
+        Show or hide the CapsLock notification widget instead of the spells
+        depending on the key state.
+        """
+        if self.is_caps_lock_on:
+            self.grid.hide()
+            self.caps_lock_warning.show_all()
+        else:
+            self.grid.show_all()
+            self.caps_lock_warning.hide()
 
     def repack_spells(self, commands, highlighted):
         '''
@@ -74,7 +147,7 @@ class Spellbook(Gtk.EventBox):
                 self.grid.attach(box, left, 0, 1, 1)
                 left += 1
 
-        self.show_all()
+        self.__show_or_hide_caps_lock_warning()
 
     def __create_spell(self, name, locked=False, highlighted=False):
         '''
@@ -112,8 +185,6 @@ class Spellbook(Gtk.EventBox):
         label_background = Gtk.EventBox()
         label_background.get_style_context().add_class("spell_label_background")
         box.pack_start(label_background, False, False, 0)
-
-        images_dir = os.path.join(common_media_dir, 'images')
 
         if locked:
             filename = os.path.join(images_dir, "padlock.png")
