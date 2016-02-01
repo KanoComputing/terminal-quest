@@ -30,22 +30,19 @@ class Spellbook(Gtk.EventBox):
     HEIGHT = 100
     number_of_spells = 7
 
-    def __init__(self):
+    def __init__(self, is_caps_lock_on=False):
         self.stop = False
-        self.is_caps_lock_on = False
+        self.is_caps_lock_on = is_caps_lock_on
 
         Gtk.EventBox.__init__(self)
-
-        background = Gtk.EventBox()
-        background.get_style_context().add_class("spellbook_background")
+        self.get_style_context().add_class("spellbook_background")
 
         self.box = Gtk.Box()
         self.grid = Gtk.Grid()
         self.caps_lock_warning = self.__create_caps_lock_warning()
         self.box.pack_start(self.grid, True, True, 0)
         self.box.pack_end(self.caps_lock_warning, False, False, 0)
-        self.add(background)
-        background.add(self.box)
+        self.add(self.box)
 
         screen = Gdk.Screen.get_default()
         self.win_width = screen.get_width()
@@ -56,7 +53,10 @@ class Spellbook(Gtk.EventBox):
 
         self.__pack_locked_spells()
 
-        self.caps_lock_warning.connect('show', self.__on_caps_lock_show)
+        # sigh.. this is basically to get showing and hiding right for the two widgets
+        self.connect('show', self.__on_show)
+        self.grid.connect('show', self.__on_show)
+        self.caps_lock_warning.connect('show', self.__on_show)
 
     def __create_caps_lock_warning(self):
         box = Gtk.Box()
@@ -68,10 +68,10 @@ class Spellbook(Gtk.EventBox):
                 'Watch out, Caps Lock is activated on your keyboard' \
                 '</span>'
         description = 'Terminal commands are \'case sensitive\' so have to be written' \
-                      'with capital or lower\ncase letters exactly as the computer' \
-                      'expects them, for example write ' \
-                      '<span foreground="yellow">ls</span> not ' \
-                      '<span foreground="yellow">LS</span>.'
+                      ' with capital or lower\ncase letters exactly as the computer' \
+                      ' expects them, for example write' \
+                      ' <span foreground="yellow">ls</span> not' \
+                      ' <span foreground="yellow">LS</span>.'
 
         left_box = Gtk.Box()
         left_box.set_margin_left(10)
@@ -98,17 +98,26 @@ class Spellbook(Gtk.EventBox):
 
         return box
 
-    def __on_caps_lock_show(self, widget):
+    def __on_show(self, widget):
+        """
+        Event handler for this widget on the 'show' event.
+        """
         self.__show_or_hide_caps_lock_warning()
 
     def caps_lock_changed(self, is_caps_lock_on):
         """
         Update the CapsLock key status to show or hide the widget.
+
+        This method gets called by the main_window.
         """
         self.is_caps_lock_on = is_caps_lock_on
         self.__show_or_hide_caps_lock_warning()
 
     def __show_or_hide_caps_lock_warning(self):
+        """
+        Show or hide the CapsLock notification widget instead of the spells
+        depending on the key state.
+        """
         if self.is_caps_lock_on:
             self.grid.hide()
             self.caps_lock_warning.show_all()
@@ -138,7 +147,7 @@ class Spellbook(Gtk.EventBox):
                 self.grid.attach(box, left, 0, 1, 1)
                 left += 1
 
-        self.show_all()
+        self.__show_or_hide_caps_lock_warning()
 
     def __create_spell(self, name, locked=False, highlighted=False):
         '''

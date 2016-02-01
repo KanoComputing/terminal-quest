@@ -58,11 +58,13 @@ class GenericWindow(Gtk.Window):
         self.set_title("Terminal Quest")
         self.set_icon_name("linux-story")
 
-        self.is_caps_lock_on = False
-        self.connect('key-press-event', self._on_key_press)
+        # using the Gdk.Keymap to get events about the Caps Lock state
+        keymap = Gdk.Keymap.get_for_display(self.get_display())
+        keymap.connect('state-changed', self._on_keymap_state_changed)
+        self.is_caps_lock_on = keymap.get_caps_lock_state()
 
-    def _on_key_press(self, widget, event):
-        is_caps_lock_on = event.state & Gdk.ModifierType.LOCK_MASK != 0
+    def _on_keymap_state_changed(self, keymap=None):
+        is_caps_lock_on = keymap.get_caps_lock_state()
 
         if self.is_caps_lock_on != is_caps_lock_on:
             self.is_caps_lock_on = is_caps_lock_on
@@ -100,7 +102,7 @@ class MainWindow(GenericWindow):
         self.terminal.set_margin_left(10)
         self.terminal.set_margin_right(10)
 
-        self.spellbook = Spellbook()
+        self.spellbook = Spellbook(is_caps_lock_on=self.is_caps_lock_on)
 
         self.story = Storybook(
             width / 2 - 40,
