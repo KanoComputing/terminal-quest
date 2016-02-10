@@ -28,6 +28,13 @@ class TerminalUi(Vte.Terminal):
         # This prevents the user scrolling back through the history
         # self.set_scrollback_lines(0)
 
+        # OK. So, this is "required" as a quick fix to a bug where the terminal
+        # would wrap the line on itself. It is due to the MenuScreen and how the
+        # main window add/removes it. By setting the column and row count to large
+        # initial values, it will force to resize from large to smaller values as
+        # opposed from a default 80, 24.
+        self.set_size(1000, 1000)  # TODO: please fix this
+
     def feed_child(self, command):
         Vte.Terminal.feed_child(self, command, len(command))
 
