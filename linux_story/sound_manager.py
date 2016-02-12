@@ -25,7 +25,6 @@ class SoundManager(object):
 
     # for `cat <object>`
     cat_object_sound = {
-        'alarm': 'alarm',
         'Daisy': 'bull',
         'Cobweb': 'cobweb',
         'dog': 'dog',

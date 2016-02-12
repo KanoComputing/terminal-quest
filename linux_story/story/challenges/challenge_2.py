@@ -18,7 +18,6 @@ from kano_profile.apps import save_app_state_variable
 
 from linux_story.story.terminals.terminal_cat import TerminalCat
 from linux_story.story.challenges.challenge_3 import Step1 as NextChallengeStep
-from linux_story.sound_manager import SoundManager
 
 
 class StepCat(TerminalCat):
@@ -46,8 +45,6 @@ class Step1(StepCat):
     hints = "{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}"
 
     def __init__(self, xp=""):
-        sound_manager = SoundManager()
-        sound_manager.play_sound('alarm')
         StepCat.__init__(self, xp)
 
     def next(self):
