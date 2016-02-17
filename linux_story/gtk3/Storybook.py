@@ -10,13 +10,13 @@ import string as s
 
 from gi.repository import Gtk, Pango, Gdk
 
-from kano.utils import is_model_2_b
+from kano.utils import has_min_performance, RPI_2_B_SCORE
 
 from linux_story.sound_manager import SoundManager
 from linux_story.helper_functions import get_ascii_art
 
 
-if is_model_2_b():
+if has_min_performance(RPI_2_B_SCORE):
     NEWLINE_SLEEP = 0.15
     OTHER_SLEEP = 0.025
 else:
