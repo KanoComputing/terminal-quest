@@ -14,7 +14,7 @@ import threading
 # import subprocess
 import traceback
 
-from gi.repository import Gtk, Gdk, GLib
+from gi.repository import Gtk, Gdk, GLib, Pango
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -101,6 +101,14 @@ class MainWindow(GenericWindow):
         self.terminal.set_margin_top(10)
         self.terminal.set_margin_left(10)
         self.terminal.set_margin_right(10)
+        # Set the terminal font size. There is 
+        # probably a way of doing this with css to avoid hard coding
+        # But I have not found it yet.
+        font_desc = Pango.FontDescription()
+        font_desc.set_family("monospace")
+        font_desc.set_size(10*Pango.SCALE)
+        self.terminal.set_font(font_desc)
+
 
         self.spellbook = Spellbook(is_caps_lock_on=self.is_caps_lock_on)
 
