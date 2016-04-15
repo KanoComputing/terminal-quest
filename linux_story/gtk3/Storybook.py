@@ -51,6 +51,7 @@ class Storybook(Gtk.TextView):
         self.set_size_request(self.width, height)
         font_desc = Pango.FontDescription()
         font_desc.set_family("monospace")
+        font_desc.set_size(13*Pango.SCALE)
         self.override_font(font_desc)
         bg_colour = Gdk.RGBA()
         bg_colour.parse("#313131")

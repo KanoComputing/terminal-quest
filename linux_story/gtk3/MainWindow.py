@@ -106,7 +106,7 @@ class MainWindow(GenericWindow):
         # But I have not found it yet.
         font_desc = Pango.FontDescription()
         font_desc.set_family("monospace")
-        font_desc.set_size(10*Pango.SCALE)
+        font_desc.set_size(13*Pango.SCALE)
         self.terminal.set_font(font_desc)
 
 
