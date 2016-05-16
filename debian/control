@@ -3,7 +3,7 @@ Maintainer: Team Kano <dev@kano.me>
 Section: games
 Priority: optional
 Standards-Version: 3.9.4
-Build-Depends: debhelper (>=9.0.0)
+Build-Depends: debhelper (>=9.0.0), python-setuptools
 
 Package: linux-story-italian
 Architecture: all
