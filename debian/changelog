@@ -1,4 +1,10 @@
-linux-story (1.2-1) unstable; urgency=low
+linux-story-italian (2.0-1) unstable; urgency=low
+
+  * Italian Translation by Andreas R. Formiconi.
+
+ -- Team Kano <dev@kano.me>  Mon, 16 May 2016 10:30:00 +0001
+
+linux-story-italian (1.2-1) unstable; urgency=low
 
   * Initial release.
 
