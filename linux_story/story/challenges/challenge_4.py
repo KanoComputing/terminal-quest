@@ -26,9 +26,9 @@ class StepTemplateCd(TerminalCd):
 
 class Step1(StepTemplateCd):
     story = [
-        "That's weird. No time for that now though - lets find Mum.",
-        "\n{{gb:New Spell}}: {{lb:cd}} lets you move between places.",
-        "\nUse the command {{yb:cd ../}} to {{lb:leave}} your room.\n"
+        _("That's weird. No time for that now though - lets find Mum."),
+        _("\n{{gb:New Spell}}: {{lb:cd}} lets you move between places."),
+        _("\nUse the command {{yb:cd ../}} to {{lb:leave}} your room.\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house"
@@ -39,10 +39,10 @@ class Step1(StepTemplateCd):
         "cd ~/my-house/"
     ]
     hints = [
-        "{{rb:Type}} {{yb:cd ../}} {{rb:to leave your room. The}} "
-        "{{lb:..}} "
-        "{{rb:is the room behind you.}}",
-        "{{rb:Type}} {{yb:cd ../}} {{rb:to leave your room.}}"
+        _("{{rb:Type}} {{yb:cd ../}} {{rb:to leave your room. The}} "
+          "{{lb:..}} "
+          "{{rb:is the room behind you.}}"),
+        _("{{rb:Type}} {{yb:cd ../}} {{rb:to leave your room.}}")
     ]
 
     def block_command(self):
@@ -56,13 +56,13 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "You've left {{bb:my-room}} and are in the hall of {{bb:my-house}}.",
-        "{{lb:Look around}} at the different rooms using {{yb:ls}}.\n"
+        _("You've left {{bb:my-room}} and are in the hall of {{bb:my-house}}."),
+        _("{{lb:Look around}} at the different rooms using {{yb:ls}}.\n")
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house"
     commands = "ls"
-    hints = "{{rb:Type}} {{yb:ls}} {{rb:and press Enter.}}"
+    hints = _("{{rb:Type}} {{yb:ls}} {{rb:and press Enter.}}")
     story_dict = {
         "note_greenhouse": {
             "name": "note",
@@ -78,12 +78,12 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "{{pb:Ding. Dong.}}\n",
-        "What was that?  A bell?  That's a bit odd.",
-        "You see the door to your {{bb:kitchen}}, and hear the sound of "
-        "cooking.",
-        "Sounds like someone is preparing breakfast!",
-        "To {{lb:go inside the kitchen}}, use {{yb:cd kitchen/}}"
+        _("{{pb:Ding. Dong.}}\n"),
+        _("What was that?  A bell?  That's a bit odd."),
+        _("You see the door to your {{bb:kitchen}}, and hear the sound of "
+          "cooking."),
+        _("Sounds like someone is preparing breakfast!"),
+        _("To {{lb:go inside the kitchen}}, use {{yb:cd kitchen/}}")
     ]
     start_dir = "~/my-house"
     end_dir = "~/my-house/kitchen"
@@ -101,13 +101,13 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        "Great, you're in the kitchen.",
-        "{{lb:Look}} for Mum using {{yb:ls}}."
+        _("Great, you're in the kitchen."),
+        _("{{lb:Look}} for Mum using {{yb:ls}}.")
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "ls"
-    hints = "{{rb:Can't find her?  Type}} {{yb:ls}} {{rb:and press Enter.}}"
+    hints = _("{{rb:Can't find her?  Type}} {{yb:ls}} {{rb:and press Enter.}}")
 
     def next(self):
         Step5()
@@ -115,17 +115,17 @@ class Step4(StepTemplateCd):
 
 class Step5(StepTemplateCd):
     story = [
-        "You see her busily working in a cloud of steam.",
+        _("You see her busily working in a cloud of steam."),
 
-        "Let's {{lb:listen}} to what {{lb:Mum}} has to say by "
-        "using {{lb:cat}}."
+        _("Let's {{lb:listen}} to what {{lb:Mum}} has to say by "
+          "using {{lb:cat}}.")
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "cat Mum"
     hints = (
-        "{{rb:Stuck? Type:}} {{yb:cat Mum}}. "
-        "{{rb:Don\'t forget the capital letter!}}"
+        _("{{rb:Stuck? Type:}} {{yb:cat Mum}}. "
+          "{{rb:Don\'t forget the capital letter!}}")
     )
 
     last_step = True

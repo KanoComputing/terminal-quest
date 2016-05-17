@@ -24,18 +24,18 @@ class StepCat(TerminalCat):
 
 class Step1(StepCat):
     story = [
-        "Awesome, now you can see the objects around you.",
-        "There's your bed, an alarm...",
-        "Euuughh...turn that alarm off!",
-        "\n{{gb:New Spell}}: to {{lb:examine}} objects, type {{lb:cat}} "
-        "and the object name.",
-        "\nUse {{yb:cat alarm}} to {{lb:examine}} the alarm.\n",
+        _("Awesome, now you can see the objects around you."),
+        _("There's your bed, an alarm..."),
+        _("Euuughh...turn that alarm off!"),
+        _("\n{{gb:New Spell}}: to {{lb:examine}} objects, type {{lb:cat}} "
+        "and the object name."),
+        _("\nUse {{yb:cat alarm}} to {{lb:examine}} the alarm.\n"),
 
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat alarm"
-    hints = "{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}"
+    hints = _("{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}")
 
     def next(self):
         Step2()
@@ -43,17 +43,17 @@ class Step1(StepCat):
 
 class Step2(StepCat):
     story = [
-        "Ok - it's switched off. Better get dressed...",
+        _("Ok - it's switched off. Better get dressed..."),
 
-        "Type {{yb:ls wardrobe/}} to {{lb:look inside}} your "
-        "{{lb:wardrobe}}.\n"
+        _("Type {{yb:ls wardrobe/}} to {{lb:look inside}} your "
+        "{{lb:wardrobe}}.\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = ["ls wardrobe", "ls wardrobe/"]
     hints = (
-        "{{rb:Type}} {{yb:ls wardrobe/}} {{rb:to look for something "
-        "to wear.}}"
+        _("{{rb:Type}} {{yb:ls wardrobe/}} {{rb:to look for something "
+        "to wear.}}")
     )
 
     def next(self):
@@ -62,16 +62,16 @@ class Step2(StepCat):
 
 class Step3(StepCat):
     story = [
-        "Check out that {{lb:t-shirt}}!",
-        "{{lb:Examine}} the t-shirt with {{yb:cat wardrobe/t-shirt}} "
-        "to see how it looks.\n"
+        _("Check out that {{lb:t-shirt}}!"),
+        _("{{lb:Examine}} the t-shirt with {{yb:cat wardrobe/t-shirt}} "
+        "to see how it looks.\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat wardrobe/t-shirt"
     hints = (
-        "{{rb:Type}} {{yb:cat wardrobe/t-shirt}} "
-        "{{rb:to investigate how it looks.}}"
+        _("{{rb:Type}} {{yb:cat wardrobe/t-shirt}} "
+        "{{rb:to investigate how it looks.}}")
     )
 
     def next(self):
@@ -80,8 +80,8 @@ class Step3(StepCat):
 
 class Step4(StepCat):
     story = [
-        "Looking good! Put that on and look for something else.",
-        "{{lb:Examine}} the {{lb:skirt}} or the {{lb:trousers}}.\n"
+        _("Looking good! Put that on and look for something else."),
+        _("{{lb:Examine}} the {{lb:skirt}} or the {{lb:trousers}}.\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -90,8 +90,8 @@ class Step4(StepCat):
         "cat wardrobe/trousers"
     ]
     hints = (
-        "{{rb:Type}} {{yb:cat wardrobe/trousers}} {{rb:or}} "
-        "{{yb:cat wardrobe/skirt}} {{rb:to dress yourself.}}"
+        _("{{rb:Type}} {{yb:cat wardrobe/trousers}} {{rb:or}} "
+        "{{yb:cat wardrobe/skirt}} {{rb:to dress yourself.}}")
     )
     checked_outside_wardrobe = False
 
@@ -104,8 +104,8 @@ class Step4(StepCat):
                 (self.last_user_input == "cat trousers" or
                  self.last_user_input == "cat skirt"):
             self.send_text(
-                "\n{{rb:You need to look in your}} {{lb:wardrobe}} "
-                "{{rb:for that item.}}"
+                _("\n{{rb:You need to look in your}} {{lb:wardrobe}} "
+                "{{rb:for that item.}}")
             )
             self.checked_outside_wardrobe = True
 
@@ -117,8 +117,8 @@ class Step4(StepCat):
 
 class Step5(StepCat):
     story = [
-        "Awesome, your outfit is nearly complete.",
-        "Finally, check out that {{lb:cap}}.\n"
+        _("Awesome, your outfit is nearly complete."),
+        _("Finally, check out that {{lb:cap}}.\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -126,8 +126,8 @@ class Step5(StepCat):
         "cat wardrobe/cap"
     ]
     hints = (
-        "{{rb:Type}} {{yb:cat wardrobe/cap}} {{rb:to}} "
-        "{{lb:examine}} {{rb:the cap.}}"
+        _("{{rb:Type}} {{yb:cat wardrobe/cap}} {{rb:to}} "
+        "{{lb:examine}} {{rb:the cap.}}")
     )
 
     last_step = True

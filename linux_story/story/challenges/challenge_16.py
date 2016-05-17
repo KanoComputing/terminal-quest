@@ -25,10 +25,10 @@ class StepTemplateMv(TerminalMv):
 
 class Step1(StepTemplateMv):
     story = [
-        "There is an old antique {{lb:.chest}} hidden under your bed, "
-        "which you don't remember seeing before.",
-        "You walk into {{bb:my-room}} to have a closer look.",
-        "{{lb:Peer inside}} the {{lb:.chest}} and see what it contains."
+        _("There is an old antique {{lb:.chest}} hidden under your bed, "
+        "which you don't remember seeing before."),
+        _("You walk into {{bb:my-room}} to have a closer look."),
+        _("{{lb:Peer inside}} the {{lb:.chest}} and see what it contains.")
     ]
 
     start_dir = "~/my-house/my-room"
@@ -44,7 +44,7 @@ class Step1(StepTemplateMv):
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:ls .chest}} {{rb:to look inside the .chest}}"
+        _("{{rb:Use}} {{yb:ls .chest}} {{rb:to look inside the .chest}}")
     ]
 
     def next(self):
@@ -53,9 +53,9 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        "There are some rolls of parchment, similar to what you found in "
-        "the {{bb:.hidden-shelter}}",
-        "Use {{lb:cat}} to {{lb:read}} one of the scrolls.\n"
+        _("There are some rolls of parchment, similar to what you found in "
+          "the {{bb:.hidden-shelter}}"),
+        _("Use {{lb:cat}} to {{lb:read}} one of the scrolls.\n")
     ]
 
     start_dir = "~/my-house/my-room"
@@ -68,7 +68,7 @@ class Step2(StepTemplateMv):
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:cat .chest/LS}} {{rb:to read the LS scroll.}}"
+        _("{{rb:Use}} {{yb:cat .chest/LS}} {{rb:to read the LS scroll.}}")
     ]
 
     def next(self):
@@ -79,12 +79,12 @@ class Step2(StepTemplateMv):
 '''
 class Step3(StepTemplateMv):
     story = [
-        "You recognise these commands.",
-        "Maybe you should {{lb:move}} the one you found in the "
-        "{{lb:~/town/.hidden-shelter/.tiny-chest}} to this {{lb:.chest}}, "
-        "so they're all safe and in the same place.",
-        "\n{{gb:Use the TAB key to complete the file paths - it will save you "
-        "typing!}}\n"
+        _("You recognise these commands."),
+        _("Maybe you should {{lb:move}} the one you found in the "
+          "{{lb:~/town/.hidden-shelter/.tiny-chest}} to this {{lb:.chest}}, "
+          "so they're all safe and in the same place."),
+        _("\n{{gb:Use the TAB key to complete the file paths - it will save you "
+          "typing!}}\n")
     ]
 
     start_dir = "~/my-house/my-room"
@@ -99,10 +99,10 @@ class Step3(StepTemplateMv):
         "mv ~/town/.hidden-shelter/.tiny-chest/MV ~/my-house/my-room/.chest"
     ]
     hints = [
-        "{{rb:You want to use the command}} "
-        "{{yb:mv ~/town/.hidden-shelter/.tiny-chest/MV .chest/}}\n"
-        "{{rb:Use the UP arrow to replay your last command if you were "
-        "close!}}"
+        _("{{rb:You want to use the command}} "
+          "{{yb:mv ~/town/.hidden-shelter/.tiny-chest/MV .chest/}}\n"
+          "{{rb:Use the UP arrow to replay your last command if you were "
+          "close!}}")
     ]
 
     def block_command(self):
@@ -115,16 +115,16 @@ class Step3(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        "I wonder if there's anything else hidden in this {{lb:.chest}}?",
-        "Have a {{lb:closer look}} for some more items."
+        _("I wonder if there's anything else hidden in this {{lb:.chest}}?"),
+        _("Have a {{lb:closer look}} for some more items.")
     ]
 
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
 
     hints = [
-        "{{rb:Use}} {{yb:ls -a .chest}} {{rb:to see if there are any "
-        "hidden items in the chest.}}"
+        _("{{rb:Use}} {{yb:ls -a .chest}} {{rb:to see if there are any "
+          "hidden items in the chest.}}")
     ]
 
     commands = [
@@ -140,17 +140,17 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        "You suddenly notice a tiny stained {{lb:.note}}, scrumpled in "
-        "the corner of the {{lb:.chest}}.",
-        "What does it say?\n"
+        _("You suddenly notice a tiny stained {{lb:.note}}, scrumpled in "
+          "the corner of the {{lb:.chest}}."),
+        _("What does it say?\n")
     ]
 
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
 
     hints = [
-        "{{rb:Use}} {{yb:cat .chest/.note}} {{rb:to read the}} "
-        "{{lb:.note}}{{rb:.}}"
+        _("{{rb:Use}} {{yb:cat .chest/.note}} {{rb:to read the}} "
+          "{{lb:.note}}{{rb:.}}")
     ]
 
     commands = [

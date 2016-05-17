@@ -16,11 +16,10 @@ class StepTemplateLs(Terminal):
 
 class Step1(StepTemplateLs):
     story = [
-        "Hello {}.".format("{{yb:" + os.environ['LOGNAME'] + "}}"),
-        "Welcome to the dark side of your Kano.",
-        "You've entered a perilous world where words "
-        "wield power.",
-        "Ready?  Press {{gb:Enter}} to begin."
+        _("Hello {}.").format("{{yb:" + os.environ['LOGNAME'] + "}}"),
+        _("Welcome to the dark side of your Kano."),
+        _("You've entered a perilous world where words wield power."),
+        _("Ready?  Press {{gb:Enter}} to begin.")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"

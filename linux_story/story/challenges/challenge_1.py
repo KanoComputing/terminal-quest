@@ -23,24 +23,24 @@ class StepLs(TerminalLs):
 
 class Step1(StepLs):
     story = [
-        "{{wb:Alarm}} : \"Beep beep beep! Beep beep beep!\"",
-        "{{wb:Radio}} : {{Bb:\"Good Morning, this is the 9am news.\"",
-        "\"The town of Folderton has awoken to strange news. "
-        "There have been reports of missing people and damaged"
-        " buildings across the town,"
-        " with more stories coming in as we speak.\"",
-        "\"Mayor Hubert has called an emergency town meeting and"
-        " we'll keep you posted as it happens...\"}}\n",
-        "It's time to get up sleepy head!",
-        "\n{{gb:New Spell:}} Type {{yb:ls}} and press {{wb:Enter}} to "
-        "{{lb:look around}}.\n"
+        _("{{wb:Alarm}} : \"Beep beep beep! Beep beep beep!\""),
+        _("{{wb:Radio}} : {{Bb:\"Good Morning, this is the 9am news.\""),
+        _("\"The town of Folderton has awoken to strange news. "
+          "There have been reports of missing people and damaged"
+          " buildings across the town,"
+          " with more stories coming in as we speak.\""),
+        _("\"Mayor Hubert has called an emergency town meeting and"
+          " we'll keep you posted as it happens...\"}}\n"),
+        _("It's time to get up sleepy head!"),
+        _("\n{{gb:New Spell:}} Type {{yb:ls}} and press {{wb:Enter}} to "
+          "{{lb:look around}}.\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "ls"
     hints = [
-        "{{rb:Type}} {{yb:ls}} {{rb:and press Enter to take a look around "
-        "your bedroom.}}"
+        _("{{rb:Type}} {{yb:ls}} {{rb:and press Enter to take a look around "
+          "your bedroom.}}")
     ]
 
     last_step = True
