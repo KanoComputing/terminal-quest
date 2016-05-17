@@ -295,12 +295,12 @@ class Step7(StepTemplateMv):
             # If the hint is not empty
             elif hint:
                 if num_people > 1:
-                    hint += _("\n{{gb:Check on}} {{yb:{}}} {{gb:others}}")
+                    hint += _("\n{{gb:Check on}} {{yb:{}}} {{gb:others}}") \
                         .format(str(num_people))
                 else:
                     hint += _("\n{{gb:Check on}} {{yb:1}} {{gb:other}}")
         else:
-            hint = _("{{rb:Use}} {{yb:{}}} {{rb:to progress.}}")
+            hint = _("{{rb:Use}} {{yb:{}}} {{rb:to progress.}}") \
                     .format(self.allowed_commands.keys()[0])
 
         self.send_hint(hint)

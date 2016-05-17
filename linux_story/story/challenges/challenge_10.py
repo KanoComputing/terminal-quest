@@ -75,7 +75,7 @@ class Step1(StepTemplateCd):
                 )
             else:
                 hint = (
-                    _("\n{{rb:Use the command}} {{yb:{}}} {{rb:to progress.}}")
+                    _("\n{{rb:Use the command}} {{yb:{}}} {{rb:to progress.}}") \
                         .format(self.allowed_commands[0])
                 )
 

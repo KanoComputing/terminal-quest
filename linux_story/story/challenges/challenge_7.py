@@ -105,7 +105,7 @@ class Step3(StepTemplateCd):
             if len(self.all_commands) == 1:
                 hint += _("\n{{gb:Well done! Check on 1 more person.}}\n")
             elif len(self.all_commands) > 0:
-                hint += _("\n{{gb:Well done! Check on {} more people.}}\n")
+                hint += _("\n{{gb:Well done! Check on {} more people.}}\n") \
                     .format(str(len(self.all_commands)))
             else:
                 hint += _("\n{{gb:Press Enter to continue.}}")
