@@ -27,12 +27,12 @@ class StepTemplateCd(TerminalCd):
 
 class Step1(StepTemplateCd):
     story = [
-        "Have a {{lb:look around}} to see what's going on!"
+        _("Have a {{lb:look around}} to see what's going on!")
     ]
     start_dir = "~/town"
     end_dir = "~/town"
     commands = "ls"
-    hints = "{{rb:To look around, use}} {{yb:ls}}"
+    hints = _("{{rb:To look around, use}} {{yb:ls}}")
 
     def next(self):
         Step2()
@@ -40,13 +40,13 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        "Wow, there's so many people here. Find the {{bb:Mayor}} and "
-        "{{lb:listen}} to what he has to say."
+        _("Wow, there's so many people here. Find the {{bb:Mayor}} and "
+          "{{lb:listen}} to what he has to say.")
     ]
     start_dir = "~/town"
     end_dir = "~/town"
     commands = "cat Mayor"
-    hints = "{{rb:Stuck? Type:}} {{yb:cat Mayor}}"
+    hints = _("{{rb:Stuck? Type:}} {{yb:cat Mayor}}")
 
     def next(self):
         Step3()
@@ -54,11 +54,11 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        "{{wb:Mayor:}} {{Bb:\"Calm down please! We have our best "
-        "people looking into the disappearances, and we're hoping to "
-        "have an explanation soon.\"}}\n",
-        "Something strange is happening. Better check everyone is ok.",
-        "Type {{yb:cat}} to check on the people."
+        _("{{wb:Mayor:}} {{Bb:\"Calm down please! We have our best "
+          "people looking into the disappearances, and we're hoping to "
+          "have an explanation soon.\"}}\n"),
+        _("Something strange is happening. Better check everyone is ok."),
+        _("Type {{yb:cat}} to check on the people.")
     ]
     start_dir = "~/town"
     end_dir = "~/town"
@@ -66,14 +66,14 @@ class Step3(StepTemplateCd):
     # Use functions here
     command = ""
     all_commands = {
-        "cat grumpy-man": "\n{{wb:Man:}} {{Bb:\"Help! I don't know what's "
+        "cat grumpy-man": _("\n{{wb:Man:}} {{Bb:\"Help! I don't know what's "
         "happening to me. I heard this bell ring, and now my legs have "
-        "gone all strange.\"}}",
-        "cat young-girl": "\n{{wb:Girl:}} {{Bb:\"Can you help me? I can't "
+        "gone all strange.\"}}"),
+        "cat young-girl": _("\n{{wb:Girl:}} {{Bb:\"Can you help me? I can't "
         "find my friend Amy anywhere. If you see her, will you let me"
-        " know?\"}}",
-        "cat little-boy": "\n{{wb:Boy:}} {{Bb:\"Pongo? Pongo? Has "
-        "anyone seen my dog Pongo? He's never run away before...\"}}"
+        " know?\"}}"),
+        "cat little-boy": _("\n{{wb:Boy:}} {{Bb:\"Pongo? Pongo? Has "
+        "anyone seen my dog Pongo? He's never run away before...\"}}")
     }
 
     last_step = True
@@ -86,15 +86,14 @@ class Step3(StepTemplateCd):
 
         # If they enter ls, say Well Done
         if self.last_user_input == 'ls':
-            hint = "\n{{gb:You look around.}}"
+            hint = _("\n{{gb:You look around.}}")
             self.send_text(hint)
             return False
 
         # check through list of commands
         end_dir_validated = False
         self.hints = [
-            "{{rb:Use}} {{yb:" + self.all_commands.keys()[0] + "}} "
-            "{{rb:to progress.}}"
+            _("{{rb:Use}} {{yb:{}}} {{rb:to progress.}}").format(self.all_commands.keys()[0])
         ]
 
         end_dir_validated = self.current_path == self.end_dir
@@ -108,13 +107,12 @@ class Step3(StepTemplateCd):
             self.all_commands.pop(self.last_user_input, None)
 
             if len(self.all_commands) == 1:
-                hint += "\n{{gb:Well done! Check on 1 more person.}}\n"
+                hint += _("\n{{gb:Well done! Check on 1 more person.}}\n")
             elif len(self.all_commands) > 0:
-                hint += "\n{{gb:Well done! Check on " + \
-                    str(len(self.all_commands)) + \
-                    " more people.}}\n"
+                hint += _("\n{{gb:Well done! Check on {} more people.}}\n") \
+                    .format(str(len(self.all_commands)))
             else:
-                hint += "\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}"
+                hint += _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
 
             self.send_text(hint)
 

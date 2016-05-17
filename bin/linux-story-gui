@@ -31,6 +31,12 @@ if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
+        LOCALE_PATH = os.path.join(dir_path, 'locale')
+    else:
+        LOCALE_PATH = '/usr/share/locale'
+
+import kano_i18n.init
+kano_i18n.init.install('terminal-quest', LOCALE_PATH)
 
 from linux_story.gtk3.MainWindow import MainWindow
 from kano_profile.apps import load_app_state_variable

@@ -1,3 +1,6 @@
 *.pyc
 *.DS_Store
 ._*
+*~
+.mo
+po/messages.pot
