@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+# challenge_16.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
@@ -23,12 +23,15 @@ class StepTemplateMv(TerminalMv):
     challenge_number = 16
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateMv):
     story = [
-        _("There is an old antique {{lb:.chest}} hidden under your bed, "
-        "which you don't remember seeing before."),
-        _("You walk into {{bb:my-room}} to have a closer look."),
-        _("{{lb:Peer inside}} the {{lb:.chest}} and see what it contains.")
+        _("There is an old antique {{bb:.chest}} hidden under your bed, "
+          "which you don't remember seeing before.\n"),
+        _("You walk into {{bb:my-room}} to have a closer look.\n"),
+        _("{{lb:Peer inside}} the {{bb:.chest}} and see what it contains.")
     ]
 
     start_dir = "~/my-house/my-room"
@@ -54,8 +57,8 @@ class Step1(StepTemplateMv):
 class Step2(StepTemplateMv):
     story = [
         _("There are some rolls of parchment, similar to what you found in "
-          "the {{bb:.hidden-shelter}}"),
-        _("Use {{lb:cat}} to {{lb:read}} one of the scrolls.\n")
+          "the {{bb:.hidden-shelter}}\n"),
+        _("Use {{yb:cat}} to {{lb:read}} one of the scrolls.\n")
     ]
 
     start_dir = "~/my-house/my-room"
@@ -83,7 +86,7 @@ class Step3(StepTemplateMv):
         _("Maybe you should {{lb:move}} the one you found in the "
           "{{lb:~/town/.hidden-shelter/.tiny-chest}} to this {{lb:.chest}}, "
           "so they're all safe and in the same place."),
-        _("\n{{gb:Use the TAB key to complete the file paths - it will save you "
+        _("\n{{gb:Use the}} {{ob:TAB}} {{gb:key to complete the file paths - it will save you "
           "typing!}}\n")
     ]
 

@@ -1,21 +1,20 @@
-#!/usr/bin/env python
-
 # helper_functions.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # Helper functions used across the system.
 
+
 import os
-import subprocess
 
 from kano.colours import colourize256, decorate_string
-from kano_profile.apps import (
-    save_app_state_variable, load_app_state_variable,
+from kano.logging import logger
+from kano_profile.apps import \
+    save_app_state_variable, load_app_state_variable, \
     increment_app_state_variable
-)
-from linux_story.common import common_media_dir
+
+from linux_story.common import story_files_dir
 
 
 def debugger(text):
@@ -91,26 +90,6 @@ def colour_file_dir(path, f):
         f = decorate_string(f, "cyan", None)
 
     return f
-
-
-def play_sound(object_name):
-    '''
-    Args:
-        object_name (str): 'alarm' or 'bell'
-    Returns:
-        None
-    '''
-
-    sound_path = os.path.join(
-        common_media_dir,
-        "sounds",
-        object_name + '.wav'
-    )
-
-    subprocess.Popen(
-        ["/usr/bin/aplay", sound_path],
-        stderr=subprocess.STDOUT, stdout=subprocess.PIPE
-    )
 
 
 def colour_string_with_preset(string, colour_name="white", input_fn=True):
@@ -206,3 +185,30 @@ def record_user_interaction(instance, base_name):
         increment_app_state_variable("linux-story", total_name, 1)
 
         # If total reaches a certain amount, then can award XP.
+
+
+def get_ascii_art(name):
+    """
+    Load and ASCII art file.
+
+    Args:
+        name (str) - the name of the asset file
+
+    Returns:
+        ascii_art (str) - the ASCII art asset as a block of text
+    """
+
+    ascii_art = name
+    asset_path = os.path.join(story_files_dir, name)
+
+    try:
+        with open(asset_path) as f:
+            ascii_art = f.read()
+
+    except (IOError, OSError) as e:
+            logger.error('Could not load file {} - [{}]'.format(asset_path, e))
+    except Exception as e:
+            logger.error('Unexpected error while loading the ascii art'
+                         ' - [{}]'.format(e))
+
+    return ascii_art

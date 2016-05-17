@@ -1,22 +1,28 @@
-#!/usr/bin/env python
+# challenge_31.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
+
 import time
+
 from linux_story.story.terminals.terminal_nano import TerminalNano
 from linux_story.step_helper_functions import unblock_cd_commands
+from linux_story.sound_manager import SoundManager
 
 
 class StepTemplateNano(TerminalNano):
     challenge_number = 31
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateNano):
     story = [
-        "You've arrived in the shed-shop. {{lb:Look around.}}"
+        "You've arrived in the {{bb:shed-shop}}. {{lb:Look around.}}"
     ]
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east/shed-shop"
@@ -34,16 +40,16 @@ class Step1(StepTemplateNano):
 
 class Step2(StepTemplateNano):
     story = [
-        "Huh, you can't see Bernard anywhere.",
+        "Huh, you can't see {{bb:Bernard}} anywhere.",
 
-        "I wonder where he went.",
+        "I wonder where he went.\n",
 
-        "Maybe he's in his {{lb:basement}}? Let's {{lb:go}} inside."
+        "Maybe he's in his {{bb:basement}}? Let's {{lb:go}} down there."
     ]
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east/shed-shop/basement"
     hints = [
-        "{{rb:Go into the basement with}} {{yb:cd basement/}}"
+        "{{rb:Go into the basement with}} {{yb:cd basement}}"
     ]
 
     def check_command(self):
@@ -64,7 +70,7 @@ class Step2(StepTemplateNano):
 
 class Step3(StepTemplateNano):
     story = [
-        "You walked into Bernard's basement. {{lb:Look around.}}"
+        "You walked into {{bb:Bernard}}'s basement. {{lb:Look around.}}"
     ]
     start_dir = "~/town/east/shed-shop/basement"
     end_dir = "~/town/east/shed-shop/basement"
@@ -76,14 +82,19 @@ class Step3(StepTemplateNano):
         "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
     ]
 
+    def __init__(self, xp=""):
+        sound_manager = SoundManager()
+        sound_manager.play_sound('steps')
+        StepTemplateNano.__init__(self, xp)
+
     def next(self):
         Step4()
 
 
 class Step4(StepTemplateNano):
     story = [
-        "You see what looks like another tool and a couple of diaries.",
-        "{{lb:Examine}} them."
+        "You see what looks like another tool and a couple of diaries.\n",
+        "Shall we {{lb:examine}} them?"
     ]
     start_dir = "~/town/east/shed-shop/basement"
     end_dir = "~/town/east/shed-shop/basement"
@@ -93,7 +104,7 @@ class Step4(StepTemplateNano):
         "cat photocopier.sh"
     ]
     hints = [
-        "{{rb:Use}} {{lb:cat}} {{rb:to examine the objects around you.}}"
+        "{{rb:Use}} {{yb:cat}} {{rb:to examine the objects around you.}}"
     ]
 
     def check_command(self):
@@ -102,7 +113,7 @@ class Step4(StepTemplateNano):
 
             if not self.commands:
                 text = (
-                    "\n{{gb:Press Enter to continue.}}"
+                    "\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}"
                 )
                 self.send_text(text)
 
@@ -125,9 +136,9 @@ class Step4(StepTemplateNano):
 class Step5(StepTemplateNano):
     story = [
         "Enough wandering. Let's go and try and find the "
-        "{{lb:masked swordsmaster}} near the woods, and see "
+        "{{bb:masked swordsmaster}} near the woods, and see "
         "what information he can tell us.",
-        "\n{{gb:Press Enter to continue.}}"
+        "\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}"
     ]
     start_dir = "~/town/east/shed-shop/basement"
     end_dir = "~/town/east/shed-shop/basement"

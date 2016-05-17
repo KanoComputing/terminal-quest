@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+# challenge_2.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
+
 
 import os
 import sys
@@ -13,29 +14,38 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
+from kano_profile.apps import save_app_state_variable
+
 from linux_story.story.terminals.terminal_cat import TerminalCat
 from linux_story.story.challenges.challenge_3 import Step1 as NextChallengeStep
-from kano_profile.apps import save_app_state_variable
 
 
 class StepCat(TerminalCat):
     challenge_number = 2
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepCat):
     story = [
         _("Awesome, now you can see the objects around you."),
-        _("There's your bed, an alarm..."),
-        _("Euuughh...turn that alarm off!"),
-        _("\n{{gb:New Spell}}: to {{lb:examine}} objects, type {{lb:cat}} "
-        "and the object name."),
-        _("\nUse {{yb:cat alarm}} to {{lb:examine}} the alarm.\n"),
-
+        _("There's your {{bb:bed}}, an {{bb:alarm}}... "),
+        _("Euuughh...turn that {{bb:alarm}} off! \n"),
+        _(" ------------------------------------- "),
+        _("| {{gb:New Spell}}: to {{lb:examine}} objects, type |"),
+        _("| {{yb:cat}} and the object name.            | "),
+        _(" ------------------------------------- "),
+        _("\nUse {{yb:cat alarm}} to {{lb:examine}} the {{bb:alarm}}.")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat alarm"
+    highlighted_commands = ['cat']
     hints = _("{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}")
+
+    def __init__(self, xp=""):
+        StepCat.__init__(self, xp)
 
     def next(self):
         Step2()
@@ -43,17 +53,17 @@ class Step1(StepCat):
 
 class Step2(StepCat):
     story = [
-        _("Ok - it's switched off. Better get dressed..."),
+        _("Ok - it's switched off. Better get dressed...\n"),
 
         _("Type {{yb:ls wardrobe/}} to {{lb:look inside}} your "
-        "{{lb:wardrobe}}.\n")
+          "{{bb:wardrobe}}.\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = ["ls wardrobe", "ls wardrobe/"]
     hints = (
         _("{{rb:Type}} {{yb:ls wardrobe/}} {{rb:to look for something "
-        "to wear.}}")
+          "to wear.}}")
     )
 
     def next(self):
@@ -62,9 +72,9 @@ class Step2(StepCat):
 
 class Step3(StepCat):
     story = [
-        _("Check out that {{lb:t-shirt}}!"),
-        _("{{lb:Examine}} the t-shirt with {{yb:cat wardrobe/t-shirt}} "
-        "to see how it looks.\n")
+        _("Check out that {{bb:t-shirt}}!\n"),
+        _("{{lb:Examine}} the {{bb:t-shirt}} with {{yb:cat wardrobe/t-shirt}} "
+          "to see how it looks.\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -80,8 +90,8 @@ class Step3(StepCat):
 
 class Step4(StepCat):
     story = [
-        _("Looking good! Put that on and look for something else."),
-        _("{{lb:Examine}} the {{lb:skirt}} or the {{lb:trousers}}.\n")
+        _("Looking good! Put that on and look for something else.\n"),
+        _("{{lb:Examine}} the {{bb:skirt}} or the {{bb:trousers}}.\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -104,7 +114,7 @@ class Step4(StepCat):
                 (self.last_user_input == "cat trousers" or
                  self.last_user_input == "cat skirt"):
             self.send_text(
-                _("\n{{rb:You need to look in your}} {{lb:wardrobe}} "
+                _("\n{{rb:You need to look in your}} {{bb:wardrobe}} "
                 "{{rb:for that item.}}")
             )
             self.checked_outside_wardrobe = True
@@ -117,8 +127,8 @@ class Step4(StepCat):
 
 class Step5(StepCat):
     story = [
-        _("Awesome, your outfit is nearly complete."),
-        _("Finally, check out that {{lb:cap}}.\n")
+        _("Awesome, your outfit is nearly complete.\n"),
+        _("Finally, check out that {{bb:cap}}.\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"

@@ -1,6 +1,10 @@
 # common.py
-
+#
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
 # This contains all the common names across the OS.
+
 
 import os
 import json
@@ -20,6 +24,11 @@ else:
     raise Exception('Neither local nor usr media dir found!')
 
 css_dir = os.path.join(current_dir, 'gtk3', 'css')
+
+ascii_assets_dir = os.path.join(current_dir, 'ascii_assets')
+story_files_dir = os.path.join(ascii_assets_dir, 'story_files')
+sounds_dir = os.path.join(common_media_dir, 'sounds')
+images_dir = os.path.join(common_media_dir, 'images')
 
 # Constants
 

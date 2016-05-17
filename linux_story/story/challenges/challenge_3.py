@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+# challenge_3.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
+
 
 import os
 import sys
@@ -22,11 +23,14 @@ class StepTemplateCat(TerminalCat):
     challenge_number = 3
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateCat):
     story = [
         _("Love it! Put it on quickly."),
-        _("There's loads more interesting stuff in your room."),
-        _("Let's {{lb:look}} in your {{lb:shelves}} using {{lb:ls}}.\n")
+        _("There's loads more interesting stuff in your room.\n"),
+        _("Let's {{lb:look}} in your {{bb:shelves}} using {{yb:ls}}.\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -39,10 +43,10 @@ class Step1(StepTemplateCat):
 
 class Step2(StepTemplateCat):
     story = [
-        _("Did you know you can use the TAB key to speed up your typing?"),
-        _("Try it by checking out that comic book. {{lb:Examine}} it with "
-        "{{yb:cat shelves/comic-book}}"),
-        _("Press the TAB key before you've finished typing!\n")
+        _("Did you know you can use the {{ob:TAB}} key to speed up your typing?"),
+        _("Try it by checking out that {{bb:comic book}}.\n"),
+        _("{{lb:Examine}} it with {{yb:cat shelves/comic-book}}\n"),
+        _("Press the {{ob:TAB}} key before you've finished typing!\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -56,8 +60,8 @@ class Step2(StepTemplateCat):
 class Step3(StepTemplateCat):
     story = [
         _("Why is it covered in pawprints?"),
-        _("Hang on, can you see that? There's a {{lb:note}} amongst your books."),
-        _("{{lb:Read}} the note using {{lb:cat}}.\n")
+        _("Hang on, can you see that? There's a {{bb:note}} amongst your books.\n"),
+        _("{{lb:Read}} the {{bb:note}} using {{yb:cat}}.\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"

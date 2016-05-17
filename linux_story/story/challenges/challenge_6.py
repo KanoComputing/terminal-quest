@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+# challenge_6.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
+
 
 import os
 import sys
@@ -22,16 +23,18 @@ class StepTemplateCd(TerminalCd):
     challenge_number = 6
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateCd):
     story = [
-        _("Let Mum know about Dad. Type {{yb:cat Mum}}")
+        _("Let {{bb:Mum}} know about {{bb:Dad}}. Type {{yb:cat Mum}}")
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "cat Mum"
     hints = (
-        _("{{rb:To talk to your Mum, type}} {{yb:cat Mum}} {{rb:and press "
-        "Enter.}}")
+        _("{{rb:To talk to your Mum, type}} {{yb:cat Mum}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")
     )
 
     def next(self):
@@ -65,7 +68,7 @@ class Step2(StepTemplateCd):
 class Step3(StepTemplateCd):
     story = [
         _("You're out of the house and on the long windy road called Tilde, "
-          "or {{lb:~}}"),
+          "or {{bb:~}}"),
         _("{{lb:Look around}} again to see where to go next.")
     ]
     start_dir = "~"
@@ -85,7 +88,7 @@ class Step4(StepTemplateCd):
     start_dir = "~"
     end_dir = "~/town"
     commands = ["cd town", "cd town/"]
-    hints = _("{{rb:Type}} {{yb:cd town/}} {{rb:to walk into town.}}")
+    hints = _("{{rb:Type}} {{yb:cd town}} {{rb:to walk into town.}}")
 
     last_step = True
 
