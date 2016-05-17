@@ -1,0 +1,15 @@
+  ______ _____ _    _  ____
+ |  ____/ ____| |  | |/ __ \
+ | |__ | |    | |__| | |  | |
+ |  __|| |    |  __  | |  | |
+ | |___| |____| |  | | |__| |
+ |______\_____|_|  |_|\____/
+
+
+This spell gives you the power to speak.
+
+
+Example
+
+<span foreground="yellow">echo hello</span>
+This will make you say hello

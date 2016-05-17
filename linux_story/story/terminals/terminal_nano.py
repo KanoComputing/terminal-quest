@@ -1,18 +1,20 @@
-#!/usr/bin/env python
-
+# terminal_nano.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A terminal for one of the challenges
 
+
 import os
-import threading
-import time
 import ast
+import time
+import threading
+
+from kano.logging import logger
+
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.commands_real import nano
-from kano.logging import logger
 
 
 class TerminalNano(TerminalEcho):
@@ -328,7 +330,7 @@ class TerminalNano(TerminalEcho):
             hint = (
                 "\n{{gb:You've opened nano! Now make sure the file says}} "
                 "{{yb:" + self.goal_nano_end_content +
-                "}}{{gb:. If you want to exit, press Ctrl X.}}"
+                "}}{{gb:. If you want to exit, press}} {{yb:Ctrl X}}{{gb:.}}"
             )
             self.send_text(hint)
 
@@ -413,7 +415,7 @@ class TerminalNano(TerminalEcho):
 
             if self.get_editable() == self.goal_nano_save_name:
                 hint = (
-                    "\n{{gb:Press}} {{yb:Enter}} {{gb:to confirm the "
+                    "\n{{gb:Press}} {{ob:Enter}} {{gb:to confirm the "
                     "filename.}}"
                 )
             else:
@@ -432,7 +434,7 @@ class TerminalNano(TerminalEcho):
         elif self.get_save_prompt_showing():
             if self.get_nano_content().strip() == self.goal_nano_end_content:
                 self.send_text(
-                    "\n{{gb:Press}} {{yb:Y}} {{gb:to confirm that you want to "
+                    "\n{{gb:Press}} {{ob:Y}} {{gb:to confirm that you want to "
                     "save.}}"
                 )
             else:
@@ -443,7 +445,7 @@ class TerminalNano(TerminalEcho):
 
         elif self.get_nano_content().strip() == self.goal_nano_end_content:
             hint = (
-                "\n{{gb:Excellent, you typed}} {{lb:" +
+                "\n{{gb:Excellent, you typed}} {{yb:" +
                 self.goal_nano_end_content +
                 "}}{{gb:. Now press}} {{yb:Ctrl X}} {{gb:to exit.}}"
             )

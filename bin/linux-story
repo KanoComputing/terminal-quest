@@ -2,8 +2,8 @@
 
 # linux-story
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd
-# License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 
 
@@ -15,13 +15,17 @@ dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
-from linux_story.launch_functions import launch_project
-from linux_story.common import get_max_challenge_number
+
 from kano_profile.apps import load_app_state_variable, save_app_state_variable
 
+from linux_story.launch_functions import launch_project
+from linux_story.common import get_max_challenge_number
+
+# Reset the terminal. Not sure why this should be necessary,
+# but it seems to be:
+os.system('reset')
 
 # TODO: this should be moved so this logic is in linux-story-gui
-
 if __name__ == "__main__":
     def sigint_handler(signum, frame):
         pass

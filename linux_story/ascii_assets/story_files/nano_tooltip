@@ -1,0 +1,27 @@
+  _   _          _   _  ____
+ | \ | |   /\   | \ | |/ __ \
+ |  \| |  /  \  |  \| | |  | |
+ | . ` | / /\ \ | . ` | |  | |
+ | |\  |/ ____ \| |\  | |__| |
+ |_| \_/_/    \_\_| \_|\____/
+
+
+A command for modifying files.
+
+
+Examples
+
+<span foreground="yellow">nano filename.sh/</span>
+Opens filename.sh for editing
+
+
+Key Commands
+
+<span foreground="yellow">Arrow Keys/</span>
+Move Cursor
+
+<span foreground="yellow">Hold CTRL and Press O/</span>
+Save your changes
+
+<span foreground="yellow">Hold CTRL and Press X/</span>
+Exit nano, press Y after to save your changes

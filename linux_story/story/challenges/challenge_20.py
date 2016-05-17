@@ -1,16 +1,16 @@
-#!/usr/bin/env python
+# challenge_20.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU Gpl v2
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
-from linux_story.step_helper_functions import (
-    unblock_commands_with_mkdir_hint, unblock_cd_commands
-)
+
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
 from linux_story.story.challenges.challenge_21 import Step1 as NextStep
+from linux_story.step_helper_functions import \
+    unblock_commands_with_mkdir_hint, unblock_cd_commands
 
 
 class StepTemplateEcho(TerminalEcho):
@@ -21,32 +21,35 @@ class StepTemplateMkdir(TerminalMkdir):
     challenge_number = 20
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateEcho):
     print_text = [
         "{{yb:\"Some people survived by going into hiding.\"}}"
     ]
     story = [
-        "Ruth: {{Bb:Oh! That reminds me, my husband used "
+        "Ruth: {{Bb:\"Oh! That reminds me, my husband used "
         "to build special shelters to store crops in over winter. "
         "I think he used a specific tool. "
-        "We should take a look in his toolshed to see if we can find it.}}",
-        "\nUse the {{lb:cd}} command to go into the toolshed.\n"
+        "We should take a look in his toolshed to see if we can find it.\"}}",
+        "\nUse the {{lb:cd}} command to go into the {{bb:toolshed}}.\n"
     ]
 
     start_dir = "~/farm/barn"
     end_dir = "~/farm/toolshed"
     hints = [
         "{{rb:Go to the toolshed in one step"
-        " using}} {{yb:cd ../toolshed/}}"
+        " using}} {{yb:cd ../toolshed}}"
     ]
 
     path_hints = {
         "~/farm/barn": {
-            "blocked": "\n{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
+            "blocked": "\n{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}"
         },
         "~/farm": {
-            "not_blocked": "\n{{gb:Good work! Now go into the}} {{lb:toolshed}}{{gb:.}}",
-            "blocked": "\n{{rb:Use}} {{yb:cd toolshed/}} {{rb:to go in the toolshed.}}"
+            "not_blocked": "\n{{gb:You walk outside. Now go into the}} {{bb:toolshed}}{{gb:.}}",
+            "blocked": "\n{{rb:Use}} {{yb:cd toolshed}} {{rb:to go in the toolshed.}}"
         }
     }
 
@@ -69,10 +72,10 @@ class Step1(StepTemplateEcho):
 
 class Step2(StepTemplateEcho):
     story = [
-        "Ruth follows you into the {{bb:toolshed}}. It's a very large "
-        "space with tools lining the walls.",
-        "Ruth: {{Bb:Let's}} {{lb:look around}} {{Bb:for "
-        "anything that could be useful.}}\n"
+        "{{bb:Ruth}} follows you into the {{bb:toolshed}}. It's a very large "
+        "space with tools lining the walls.\n",
+        "Ruth: {{Bb:\"Let's}} {{lb:look around}} {{Bb:for "
+        "anything that could be useful.\"}}\n"
     ]
     start_dir = "~/farm/toolshed"
     end_dir = "~/farm/toolshed"
@@ -101,13 +104,13 @@ class Step2(StepTemplateEcho):
 
 class Step3(StepTemplateEcho):
     story = [
-        "Ruth: {{Bb:Ah, look! There are some instructions "
-        "under}} {{lb:MKDIR}}{{Bb:.}}",
-        "{{Bb:What does it say?}}",
-        "\n{{lb:Examine}} the {{lb:MKDIR}} instructions."
+        "Ruth: {{Bb:\"Ah, look! There are some instructions "
+        "under}} {{bb:MKDIR}}{{Bb:.\"}}",
+        "{{Bb:\"What does it say?\"}}",
+        "\n{{lb:Examine}} the {{bb:MKDIR}} instructions."
     ]
     hints = [
-        "Ruth: {{Bb:\"...you are able to read, yes? You use}} {{lb:cat}} "
+        "Ruth: {{Bb:\"...you are able to read, yes? You use}} {{yb:cat}} "
         "{{Bb:to read things.\"}}",
         "Ruth: {{Bb:\"What do you kids learn in schools nowadays...\""
         "\n\"Just use}} {{yb:cat MKDIR}} {{Bb:to read the paper.\"}}",
@@ -123,9 +126,13 @@ class Step3(StepTemplateEcho):
 
 class Step4(StepTemplateMkdir):
     story = [
-        "Ruth: {{Bb:This says you can make something using something "
-        "called}} {{lb:mkdir}}{{Bb:?}}",
-        "\n{{gb:Try making an igloo using}} {{yb:mkdir igloo}}"
+        "Ruth: {{Bb:\"This says you can make something using something "
+        "called}} {{yb:mkdir}}{{Bb:?\"}}",
+        "\nTry making an igloo using {{yb:mkdir igloo}}\n ",
+        " ------------------------------------- ",
+        "| {{gb:New Spell}}: {{yb:mkdir}} followed by a word |",
+        "| lets you {{lb:create}} a shelter           | ",
+        " ------------------------------------- "
     ]
     hints = [
         "{{rb:Create an igloo structure by using}} {{yb:mkdir igloo}}\n"
@@ -135,6 +142,7 @@ class Step4(StepTemplateMkdir):
     commands = [
         "mkdir igloo"
     ]
+    highlighted_commands = ['mkdir']
 
     def block_command(self):
         return unblock_commands_with_mkdir_hint(

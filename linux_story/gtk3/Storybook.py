@@ -1,18 +1,22 @@
-#!/usr/bin/env python
-
 # Storybook.py
 #
-# Copyright (C) 2014 Kano Computing Ltd
-# License: GNU GPL v2 http://www.gnu.org/licenses/gpl-2.0.txt
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
-# Author: Caroline Clark <caroline@kano.me>
 
+
+import time
+import string as s
 
 from gi.repository import Gtk, Pango, Gdk
-import time
-from kano.utils import is_model_2_b
 
-if is_model_2_b():
+from kano.utils import has_min_performance, RPI_2_B_SCORE
+
+from linux_story.sound_manager import SoundManager
+from linux_story.helper_functions import get_ascii_art
+
+
+if has_min_performance(RPI_2_B_SCORE):
     NEWLINE_SLEEP = 0.15
     OTHER_SLEEP = 0.025
 else:
@@ -47,6 +51,7 @@ class Storybook(Gtk.TextView):
         self.set_size_request(self.width, height)
         font_desc = Pango.FontDescription()
         font_desc.set_family("monospace")
+        font_desc.set_size(13*Pango.SCALE)
         self.override_font(font_desc)
         bg_colour = Gdk.RGBA()
         bg_colour.parse("#313131")
@@ -54,36 +59,50 @@ class Storybook(Gtk.TextView):
         self.char_width = self.__get_char_width()
         self.set_can_focus(False)
 
+        self.sounds_manager = SoundManager()
+
     def clear(self):
         '''Clear all text in spellbook
         '''
         self.get_buffer().set_text('', 0)
 
     def type_coloured_text(self, string):
-        '''
+        """
         Adds colour to the string and prints string with a typing effect.
 
         Args:
             string (str): Text we want to print with a typing effect
+
         Returns:
             None
-        '''
-
+        """
         lines = self.__parse_string(string)
+        unstyled_string = self.__compose_string(lines)
 
-        for line in lines:
+        for i in xrange(len(lines)):
+            line = lines[i]
+
+            # if we are printing a new word, notify the sound manager
+            if i == 0:
+                self.sounds_manager.on_typing_story_text(unstyled_string)
+            else:
+                if unstyled_string[i - 1] in s.whitespace and \
+                   unstyled_string[i] in s.letters:
+
+                    self.sounds_manager.on_typing_story_text(unstyled_string[i:])
+
             self.__style_char(
                 line['letter'],
 
                 # TODO: get size tag working
                 [line['colour'], line['bold']]
             )
-
             if line['letter'] == '\n':
                 time.sleep(NEWLINE_SLEEP)
             else:
                 time.sleep(OTHER_SLEEP)
 
+            # tell GTK to flush the textbuffer and refresh the textview
             while Gtk.events_pending():
                 Gtk.main_iteration_do(False)
 
@@ -98,8 +117,8 @@ class Storybook(Gtk.TextView):
 
         Returns:
             None
-
         '''
+
         lines = self.__parse_string(string)
 
         for line in lines:
@@ -170,6 +189,26 @@ class Storybook(Gtk.TextView):
         end_iter = textbuffer.get_end_iter()
         white_tag = self.__get_tag('white')
         textbuffer.insert_with_tags(end_iter, string, white_tag)
+
+    def print_coming_soon(self, window, terminal):
+        text = get_ascii_art('coming_soon')
+        text_lines = text.splitlines()
+        leading_newlines = len(text_lines)
+
+        for i in xrange(leading_newlines, -1, -1):
+            self.clear()
+
+            for j in xrange(i):
+                self.print_text('')
+
+            for j in xrange(leading_newlines - i):
+                self.print_text(text_lines[j])
+
+            time.sleep(0.2)
+
+            # tell GTK to flush the textbuffer and refresh the textview
+            while Gtk.events_pending():
+                Gtk.main_iteration_do(False)
 
     def __generate_tags(self):
         '''
@@ -459,6 +498,20 @@ class Storybook(Gtk.TextView):
                 string = last_part
 
         return string_array
+
+    def __compose_string(self, lines):
+        """
+        Composes a parsed string from the string_array back together.
+
+        Returns:
+            unstyled_string (str): a single string without the custom markup symbols
+        """
+        unstyled_string = ''
+
+        for line in lines:
+            unstyled_string += line['letter']
+
+        return unstyled_string
 
     def __get_char_width(self):
         '''

@@ -1,15 +1,15 @@
-#!/usr/bin/env python
+# challenge_27.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
-from linux_story.story.terminals.terminal_bernard import (
-    TerminalMkdirBernard, TerminalNanoBernard
-)
+
 from linux_story.story.challenges.challenge_28 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
+from linux_story.story.terminals.terminal_bernard import \
+    TerminalMkdirBernard, TerminalNanoBernard
 
 
 class StepTemplateMkdir(TerminalMkdirBernard):
@@ -20,10 +20,13 @@ class StepTemplateNano(TerminalNanoBernard):
     challenge_number = 27
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateMkdir):
     story = [
-        "You are back in Bernard's place.",
-        "{{lb:Listen}} to what {{lb:Bernard}} has to say."
+        "You are back in {{bb:Bernard}}'s place.\n",
+        "{{lb:Listen}} to what {{bb:Bernard}} has to say."
     ]
 
     start_dir = "~/town/east/shed-shop"
@@ -44,7 +47,7 @@ class Step1(StepTemplateMkdir):
         }
     }
     eleanors_speech = (
-        "Eleanor: {{Bb:Achoo! This place is really dusty...*sniff*}}"
+        "Eleanor: {{Bb:\"Achoo! This place is really dusty...*sniff*\"}}"
     )
 
     def next(self):
@@ -53,10 +56,12 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateNano):
     story = [
-        "Bernard: {{Bb:Hellooooo. You came back to fix my script!}}",
-
-        "Let's try and use {{yb:nano best-horn-in-the-world.sh}} to "
-        "edit it."
+        "Bernard: {{Bb:\"Hellooooo. You came back to fix my script!\"}}\n ",
+        " -------------------------------------- ",
+        "| {{gb:New Spell}}: {{yb:nano}} followed by an       |",
+        "| object lets you {{lb:edit}} it              |",
+        " -------------------------------------- ",
+        "\nLet's try and use {{yb:nano best-horn-in-the-world.sh}} to edit it.",
     ]
 
     start_dir = "~/town/east/shed-shop"
@@ -65,6 +70,7 @@ class Step2(StepTemplateNano):
     commands = [
         "nano best-horn-in-the-world.sh"
     ]
+    highlighted_commands = ['nano']
 
     hints = [
         "{{rb:Use}} {{yb:nano best-horn-in-the-world}} "
@@ -125,10 +131,10 @@ class Step4(StepTemplateNano):
     story = [
         "{{gb:Congratulations, the script now prints \"Honk!\"}}",
 
-        "\nBernard: {{Bb:The tool is working! Wonderful! "
-        "Thank you so much!}}",
+        "\nBernard: {{Bb:\"The tool is working! Wonderful! "
+        "Thank you so much!\"}}",
 
-        "\nIt occurs to you that you haven't asked Bernard much about "
+        "\nIt occurs to you that you haven't asked {{bb:Bernard}} much about "
         "himself.",
 
         "What would you like to ask him?",
@@ -141,7 +147,7 @@ class Step4(StepTemplateNano):
 
         "{{yb:4: \"What's in your basement?\"}}",
 
-        "\nUse {{lb:echo}} to ask him a question."
+        "\nUse {{yb:echo}} to ask him a question."
     ]
 
     start_dir = "~/town/east/shed-shop"
@@ -152,8 +158,8 @@ class Step4(StepTemplateNano):
     ]
 
     eleanors_speech = (
-        "Eleanor: {{Bb:I have a question - does he have candy in his "
-        "basement?}}"
+        "Eleanor: {{Bb:\"I have a question - does he have candy in his "
+        "basement?\"}}"
     )
 
     commands = [
@@ -163,7 +169,7 @@ class Step4(StepTemplateNano):
     def check_command(self):
         if self.last_user_input == "echo 1":
             text = (
-                "\nBernard: {{Bb:Ah, trade secret. *wink*}}"
+                "\nBernard: {{Bb:\"Ah, trade secret. *wink*\"}}"
             )
             self.send_text(text)
         elif self.last_user_input == "echo 3":
@@ -174,7 +180,7 @@ class Step4(StepTemplateNano):
             self.send_text(text)
         elif self.last_user_input == "echo 4":
             text = (
-                "\nBernard: {{Bb:Oh ho ho ho, that's none of your business.}}"
+                "\nBernard: {{Bb:\"Oh ho ho ho, that's none of your business.\"}}"
             )
             self.send_text(text)
         else:
@@ -190,29 +196,29 @@ class Step5(StepTemplateNano):
     ]
 
     story = [
-        "Bernard: {{Bb:I want to know how the}} "
-        "{{lb:private-section}} {{Bb:is locked "
-        "in the}} {{lb:library}}{{Bb:, and then make a "
-        "key to unlock it.}}",
+        "Bernard: {{Bb:\"I want to know how the}} "
+        "{{bb:private-section}} {{Bb:is locked "
+        "in the}} {{bb:library}}{{Bb:, and then make a "
+        "key to unlock it.\"}}",
 
-        "\nEleanor: {{Bb:I guess the librarian would have locked the "
-        "private section.}}",
+        "\nEleanor: {{Bb:\"I guess the}} {{bb:librarian}} {{Bb:would have locked the "
+        "private section.\"}}",
 
         "{{Bb:Maybe she can tell us how she did it? We should look for "
-        "her.}}",
+        "her.\"}}",
 
-        "\n{{lb:Leave}} the shed-shop."
+        "\n{{lb:Leave}} the {{bb:shed-shop}}."
     ]
 
     hints = [
-        "{{rb:Use}} {{lb:cd}} {{rb:to leave the shed-shop.}}",
-        "{{rb:Use}} {{yb:cd ../}} {{rb:to go}} {{lb:back}} {{rb:to town.}}",
+        "{{rb:Use}} {{yb:cd}} {{rb:to leave the shed-shop.}}",
+        "{{rb:Use}} {{yb:cd ..}} {{rb:to go}} {{lb:back}} {{rb:to town.}}",
     ]
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east"
     eleanors_speech = (
-        "Eleanor: {{Bb:What do you think is hidden in the private-section?}}"
-        "\n{{Bb:Maybe Bernard shouldn't see it...}}"
+        "Eleanor: {{Bb:\"What do you think is hidden in the private-section?}}"
+        "\n{{Bb:Maybe Bernard shouldn't see it...\"}}"
     )
     last_step = True
 
