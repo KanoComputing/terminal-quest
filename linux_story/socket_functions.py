@@ -34,7 +34,8 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
     def handle(self):
 
         # self.request is the TCP socket connected to the client
-        self.data = self.request.recv(1024).strip()
+        self.data = self.request.recv(4096).strip()
+        print self.data
         data_dict = json.loads(self.data)
         self.server.queue.put(data_dict)
 
@@ -72,9 +73,9 @@ def launch_client(data):
         sock.sendall(json_data)
 
         # Receive data from the server and shut down
-        received1 = sock.recv(1024)
+        received1 = sock.recv(4096)
         server_busy = (received1 == 'busy')
-        received2 = sock.recv(1024)
+        received2 = sock.recv(4096)
         server_busy = (received2 == 'busy')
     finally:
         sock.close()

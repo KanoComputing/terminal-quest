@@ -163,7 +163,7 @@ msgstr "君のKanoの暗黒面へようこそ。"
 
 #: ../linux_story/story/challenges/introduction.py:26
 msgid "You've entered a perilous world where words wield power."
-msgstr "危険な世界に入ってしまった。 ここは言葉が権力を持っている。"
+msgstr "危険な世界に入ってしまった。\nここは言葉が権力を持っている。"
 
 #: ../linux_story/story/challenges/introduction.py:27
 msgid "Ready? Press {{gb:Enter}} to begin."
@@ -183,9 +183,9 @@ msgid ""
 "of missing people and damaged buildings across the town, with more stories "
 "coming in as we speak.\""
 msgstr ""
-"\"今朝、フォルダタウン町で不思議なことが起きています。町中に人がいなくなった"
-"り、建物が壊れたりする報告が出ています。今でも他の事件が起き続けているようで"
-"す。\""
+"\"今朝、フォルダタウン町で不思議なことが起きています。\n"
+"町中に人がいなくなったり、\n建物が壊れたりする報告が出ています。\n"
+"今でも他の事件が起き続けているようです。\""
 
 #: ../linux_story/story/challenges/challenge_1.py:34
 msgid ""
@@ -194,14 +194,16 @@ msgid ""
 "posted as it happens...\"}}\n"
 msgstr ""
 "\n"
-"\"ユーバート町長が緊急な町内会議を開きました。これからも最新状況を伝えていき"
-"ます...\"}}\n"
+"\"ユーバート町長が緊急な町内会議を開きました。\n"
+"これからも最新状況を伝えていきます...\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_1.py:35
 msgid ""
 "It's time to get up sleepy head!\n"
 " "
-msgstr "眠そうな君よ、早く起きよう！ "
+msgstr ""
+"眠そうな君よ、早く起きよう！\n"
+" "
 
 #: ../linux_story/story/challenges/challenge_1.py:36
 #: ../linux_story/story/challenges/challenge_2.py:35
@@ -216,11 +218,11 @@ msgstr " ------------------------------------- "
 
 #: ../linux_story/story/challenges/challenge_1.py:37
 msgid "| {{gb:New Spell:}} Type {{yb:ls}} and press        |"
-msgstr "| {{gb:新しいお呪い:}} {{lb:周りを見る}}には、      |"
+msgstr "| {{gb:新しいお呪い:}} {{lb:周りを見る}}には、          |"
 
 #: ../linux_story/story/challenges/challenge_1.py:38
 msgid "| {{ob:Enter}} to {{lb:look around}}.               |"
-msgstr "| {{yb:ls}}をタイプし、{{ob:Enter}}キーを押して。   |"
+msgstr "| {{yb:ls}}をタイプし、{{ob:Enter}}キーを押して下さい。 |"
 
 #: ../linux_story/story/challenges/challenge_1.py:39
 msgid " ------------------------------------- \n"
