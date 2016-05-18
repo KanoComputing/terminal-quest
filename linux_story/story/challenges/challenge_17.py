@@ -30,11 +30,9 @@ class StepTemplateEcho(TerminalEcho):
 
 class Step1(StepTemplateMv):
     story = [
-        _("You are in your room, standing in front of the {{bb:.chest}} "
-          "containing all the commands you've learned so far.\n"),
+        _("You are in your room, standing in front of the {{bb:.chest}} containing all the commands you've learned so far.\n"),
         _("Maybe something else is hidden in the house?\n"),
-        _("{{lb:Look}} in the hallway {{lb:behind you}}. Remember, "
-          "behind you is {{bb:..}}")
+        _("{{lb:Look}} in the hallway {{lb:behind you}}. Remember, behind you is {{bb:..}}")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
@@ -52,8 +50,7 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        _("You see doors to your {{bb:garden}}, {{bb:kitchen}}, "
-          "{{bb:my-room}} and {{bb:parents-room}}."),
+        _("You see doors to your {{bb:garden}}, {{bb:kitchen}}, {{bb:my-room}} and {{bb:parents-room}}."),
         _("We haven't checked out your parents' room properly yet.\n"),
         _("{{lb:Go into your}} {{bb:parents-room}}.")
     ]
@@ -136,8 +133,7 @@ class Step3(StepTemplateMv):
 class Step4(StepTemplateMv):
     story = [
         _("There's a {{bb:.safe}}!\n"),
-        _("Maybe there's something useful in here. {{lb:Look inside}} the "
-          "{{bb:.safe}}.")
+        _("Maybe there's something useful in here. {{lb:Look inside}} the {{bb:.safe}}.")
     ]
 
     commands = [
@@ -172,8 +168,7 @@ class CheckDiaryStep(StepTemplateMv):
         if self.last_user_input == 'cat .safe/mums-diary' and \
                 not checked_diary:
             self.send_hint(
-                _("\n{{rb:You read your Mum\'s diary!}} "
-                  "{{ob:Your nosiness has been recorded.}}")
+                _("\n{{rb:You read your Mum\'s diary!}} {{ob:Your nosiness has been recorded.}}")
             )
             save_app_state_variable("linux-story", "checked_mums_diary", True)
             return False
@@ -211,8 +206,7 @@ class Step6(CheckDiaryStep):
     end_dir = "~/my-house/parents-room"
     commands = "cat .safe/ECHO"
     hints = [
-        _("{{rb:Use the}} {{yb:cat}} {{rb:command to read the}} {{bb:ECHO}} "
-          "{{rb:note.}}"),
+        _("{{rb:Use the}} {{yb:cat}} {{rb:command to read the}} {{bb:ECHO}} {{rb:note.}}"),
         _("{{rb:Use}} {{yb:cat .safe/ECHO}} {{rb:to read the note.}}")
     ]
 

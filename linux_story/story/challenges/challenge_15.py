@@ -77,8 +77,7 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        _("You see a scroll of parchment inside, with a stamp on it saying "
-          "{{bb:MV}}."),
+        _("You see a scroll of parchment inside, with a stamp on it saying {{bb:MV}}."),
         _("{{lb:Read}} what it says.")
     ]
 
@@ -98,13 +97,10 @@ class Step3(StepTemplateMv):
 
 class Step4(StepTemplateMv):
     story = [
-        _("{{wb:Edward:}} {{Bb:\"Hey, that's our .tiny-chest We "
-          "use it to keep our possessions safe. "),
-        _("I learnt about how to move objects from that}} {{Bb:MV}} "
-          "{{Bb:parchment."),
+        _("{{wb:Edward:}} {{Bb:\"Hey, that's our .tiny-chest We use it to keep our possessions safe. "),
+        _("I learnt about how to move objects from that}} {{Bb:MV}} {{Bb:parchment."),
         _("It's probably of more use to you, please take it with my thanks.\"}}"),
-        _("\nMaybe you should go back to {{bb:my-house}} to look for more "
-          "hidden items."),
+        _("\nMaybe you should go back to {{bb:my-house}} to look for more hidden items."),
         _("To quickly go back home, use {{yb:cd ~/my-house}}\n")
     ]
 
@@ -115,8 +111,7 @@ class Step4(StepTemplateMv):
         'cd ~/my-house'
     ]
     hints = [
-        _("{{rb:No shortcuts! Use}} {{yb:cd ~/my-house}} "
-          "{{rb:to get back to your house in one step.}}")
+        _("{{rb:No shortcuts! Use}} {{yb:cd ~/my-house}} {{rb:to get back to your house in one step.}}")
     ]
 
     def block_command(self):
@@ -139,8 +134,7 @@ class Step5(StepTemplateMv):
 
     hints = [
         _("{{rb:Stuck? Have a look in}} {{yb:my-room}}{{rb:.}}"),
-        _("{{rb:Use}} {{yb:ls -a my-room}} {{rb:to look for hidden files in}} "
-          "{{lb:my-room}}{{rb:.}}")
+        _("{{rb:Use}} {{yb:ls -a my-room}} {{rb:to look for hidden files in}} {{lb:my-room}}{{rb:.}}")
     ]
 
     last_step = True

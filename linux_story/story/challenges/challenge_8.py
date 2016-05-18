@@ -46,9 +46,7 @@ class Step1(StepTemplateCd):
 class Step2(StepTemplateCd):
 
     story = [
-        _("{{wb:Little-boy:}} {{Bb:\"Oh no! That grumpy-man "
-          "with the funny legs has gone!}} "
-          "{{Bb:Did you hear the bell just before he vanished??\"}}"),
+        _("{{wb:Little-boy:}} {{Bb:\"Oh no! That grumpy-man with the funny legs has gone!}} {{Bb:Did you hear the bell just before he vanished??\"}}"),
         _("{{wb:Young-girl:}} {{Bb:\"I'm scared...\"}}"),
         _("\n{{pb:Ding. Dong.}}\n"),
         _("{{wb:Young-girl:}} {{Bb:\"Oh! I heard it go again!\"}}"),
@@ -67,8 +65,7 @@ class Step2(StepTemplateCd):
 class Step3(StepTemplateCd):
 
     story = [
-        _("{{wb:Young-girl:}} {{Bb:\"Wait, there was a}} {{bb:little-boy}} "
-          "{{Bb:here...right?\""),
+        _("{{wb:Young-girl:}} {{Bb:\"Wait, there was a}} {{bb:little-boy}} {{Bb:here...right?\""),
         _("Every time that bell goes, someone disappears!}}"),
         _("{{wb:Mayor:}} {{Bb:\"Maybe they just decided to go home...?\"}}"),
         _("\n{{pb:Ding. Dong.}}\n"),

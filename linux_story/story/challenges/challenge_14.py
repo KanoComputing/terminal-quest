@@ -32,8 +32,7 @@ class StepTemplateMv(TerminalMv):
 
 class Step1(StepTemplateMv):
     story = [
-        _("Let's {{lb:look around}} to see what food is "
-          "available in the {{bb:kitchen}}.\n")
+        _("Let's {{lb:look around}} to see what food is available in the {{bb:kitchen}}.\n")
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
@@ -42,8 +41,7 @@ class Step1(StepTemplateMv):
         "ls -a"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:ls}} {{rb:to have a}} {{lb:look around}} "
-          "{{rb:the kitchen.}}")
+        _("{{rb:Use}} {{yb:ls}} {{rb:to have a}} {{lb:look around}} {{rb:the kitchen.}}")
     ]
 
     def next(self):
@@ -54,8 +52,7 @@ class Step1(StepTemplateMv):
 class Step2(StepTemplateMv):
     story = [
         _("{{lb:Move}} three pieces of food into your {{bb:basket}}.\n"),
-        _("You can move multiple items using {{yb:mv <item1> <item2>"
-          " <item3> basket/}}\n")
+        _("You can move multiple items using {{yb:mv <item1> <item2> <item3> basket/}}\n")
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
@@ -69,8 +66,7 @@ class Step2(StepTemplateMv):
         'sandwich'
     ]
     unmovable_items = {
-        "newspaper": _("{{rb:They asked for food, they probably shouldn't "
-        "eat the newspaper.}}"),
+        "newspaper": _("{{rb:They asked for food, they probably shouldn't eat the newspaper.}}"),
         "oven": _("{{rb:This is a bit heavy for you to carry!}}"),
         "table": _("{{rb:This is a bit heavy for you to carry!}}")
     }
@@ -93,12 +89,7 @@ class Step2(StepTemplateMv):
                         self.send_hint(self.unmovable_items[item])
                         break
                     else:
-                        hint = (
-                            _("{{rb:You\'re trying to move something that "
-                              "isn\'t in the folder.\nTry using}} "
-                              "{{yb:mv %s basket/}}")
-                            % self.passable_items[0]
-                        )
+                        hint = _("{{rb:You\'re trying to move something that isn\'t in the folder.\nTry using}} {{yb:mv %s basket/}}") % self.passable_items[0]
                         self.send_hint(hint)
                         break
 
@@ -106,8 +97,7 @@ class Step2(StepTemplateMv):
 
         else:
             # print a message in the terminal to show that it failed
-            print 'If you do not add the basket at the end of the command,' \
-                  ' you will rename the items!'
+            print _("If you do not add the basket at the end of the command, you will rename the items!")
 
         return should_block
 
@@ -116,8 +106,7 @@ class Step2(StepTemplateMv):
         all_items = []
 
         if self.get_command_blocked():
-            hint = _("{{rb:Try using}} {{yb:mv %s basket/}}") \
-                % self.passable_items[0]
+            hint = _("{{rb:Try using}} {{yb:mv %s basket/}}") % self.passable_items[0]
 
         elif separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
                                             separate_words[-1] == 'basket/'):
@@ -139,8 +128,7 @@ class Step2(StepTemplateMv):
                 hint = _("\n{{gb:Well done! Keep going.}}")
 
         else:
-            hint = _("{{rb:Try using}} {{yb:mv %s basket/}}") \
-                % self.passable_items[0]
+            hint = _("{{rb:Try using}} {{yb:mv %s basket/}}") % self.passable_items[0]
 
         self.send_hint(hint)
 
@@ -163,8 +151,7 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        _("\nNow we want to head back to the {{bb:.hidden-shelter}} with the "
-          "{{bb:basket}}."),
+        _("\nNow we want to head back to the {{bb:.hidden-shelter}} with the {{bb:basket}}."),
         _("{{lb:Move}} the {{bb:basket}} back to {{bb:~}}.\n")
     ]
     start_dir = "~/my-house/kitchen"
@@ -176,8 +163,7 @@ class Step3(StepTemplateMv):
         "mv basket/ ~/"
     ]
     hints = [
-        _("{{rb:Use the command}} {{yb:mv basket ~/}} "
-          "{{rb:to move the basket to the windy road ~}}")
+        _("{{rb:Use the command}} {{yb:mv basket ~/}} {{rb:to move the basket to the windy road ~}}")
     ]
 
     def block_command(self):
@@ -199,8 +185,7 @@ class Step4(StepTemplateMv):
         "cd ~/"
     ]
     hints = [
-        _("{{rb:Use the command}} {{yb:cd}} {{rb:by itself "
-          "to move yourself to the road ~}}")
+        _("{{rb:Use the command}} {{yb:cd}} {{rb:by itself to move yourself to the road ~}}")
     ]
 
     def block_command(self):
@@ -231,8 +216,7 @@ class Step5(StepTemplateMv):
         "mv basket/ ~/town/.hidden-shelter/"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:mv basket town/.hidden-shelter/}} "
-          "{{rb:to move the basket to the family.}}")
+        _("{{rb:Use}} {{yb:mv basket town/.hidden-shelter/}} {{rb:to move the basket to the family.}}")
     ]
 
     def block_command(self):
@@ -256,8 +240,7 @@ class Step6(StepTemplateMv):
         "cd ~/town/.hidden-shelter/"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:cd town/.hidden-shelter}} "
-          "{{rb:to be reunited with the family.}}"),
+        _("{{rb:Use}} {{yb:cd town/.hidden-shelter}} {{rb:to be reunited with the family.}}"),
     ]
 
     def block_command(self):
@@ -271,8 +254,7 @@ class Step6(StepTemplateMv):
 
 class Step7(StepTemplateMv):
     story = [
-        _("{{wn:Check on everyone with}} {{yb:cat}} {{wn:to see if "
-          "they're happy with the food.}}\n")
+        _("{{wn:Check on everyone with}} {{yb:cat}} {{wn:to see if they're happy with the food.}}\n")
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
@@ -280,23 +262,10 @@ class Step7(StepTemplateMv):
         _("{{rb:Check on everyone using}} {{yb:cat")
     ]
     allowed_commands = {
-        "cat Edith": (
-            _("\n{{wb:Edith:}} {{Bb:\"You saved my little girl and my dog, "
-              "and now you've saved us from starvation...how can I thank "
-              "you?\"}}\n")
-        ),
-        "cat Eleanor": (
-            _("\n{{wb:Eleanor:}} {{Bb:\"Yummy! See, I told you doggy, "
-              "someone would help us.\"}}\n")
-        ),
-        "cat Edward": (
-            _("\n{{wb:Edward:}} {{Bb:\"Thank you! I knew you would come "
-              "through for us. You really are a hero!\"}}\n")
-        ),
-        "cat dog": (
-            _("\n{{wb:Dog:}} {{Bb:\"Woof!\"}} {{wn:\nThe dog seems very "
-              "excited.\n}}")
-        )
+        "cat Edith": _("\n{{wb:Edith:}} {{Bb:\"You saved my little girl and my dog, and now you've saved us from starvation...how can I thank you?\"}}\n"),
+        "cat Eleanor": _("\n{{wb:Eleanor:}} {{Bb:\"Yummy! See, I told you doggy, someone would help us.\"}}\n"),
+        "cat Edward": _("\n{{wb:Edward:}} {{Bb:\"Thank you! I knew you would come through for us. You really are a hero!\"}}\n"),
+        "cat dog": _("\n{{wb:Dog:}} {{Bb:\"Woof!\"}} {{wn:\nThe dog seems very excited.\n}}")
     }
 
     last_step = True
@@ -317,13 +286,11 @@ class Step7(StepTemplateMv):
             # If the hint is not empty
             elif hint:
                 if num_people > 1:
-                    hint += _("\n{{gb:Check on}} {{yb:{}}} {{gb:others}}") \
-                        .format(str(num_people))
+                    hint += _("\n{{gb:Check on}} {{yb:{}}} {{gb:others}}").format(str(num_people))
                 else:
                     hint += _("\n{{gb:Check on}} {{yb:1}} {{gb:other}}")
         else:
-            hint = _("{{rb:Use}} {{yb:{}}} {{rb:to progress.}}") \
-                    .format(self.allowed_commands.keys()[0])
+            hint = _("{{rb:Use}} {{yb:{}}} {{rb:to progress.}}").format(self.allowed_commands.keys()[0])
 
         self.send_hint(hint)
 

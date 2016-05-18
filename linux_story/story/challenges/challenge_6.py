@@ -33,9 +33,7 @@ class Step1(StepTemplateCd):
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "cat Mum"
-    hints = (
-        _("{{rb:To talk to your Mum, type}} {{yb:cat Mum}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")
-    )
+    hints = _("{{rb:To talk to your Mum, type}} {{yb:cat Mum}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")
 
     def next(self):
         Step2()
@@ -43,12 +41,8 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        _("{{wb:Mum:}} {{Bb:\"You couldn't find him? That's strange, "
-          "he never leaves home without telling me first.\""),
-        _("\"Maybe he went to that town meeting with the Mayor,"
-          " the one they were talking about on the news. "
-          "Why don't you go and check? I'll stay here in case he comes "
-          "back.\"}}\n"),
+        _("{{wb:Mum:}} {{Bb:\"You couldn't find him? That's strange, he never leaves home without telling me first.\""),
+        _("\"Maybe he went to that town meeting with the Mayor, the one they were talking about on the news. Why don't you go and check? I'll stay here in case he comes back.\"}}\n"),
         _("Let's head to {{bb:town}}. To leave the house, use {{yb:cd}} by itself.")
     ]
     start_dir = "~/my-house/kitchen"
@@ -67,8 +61,7 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        _("You're out of the house and on the long windy road called Tilde, "
-          "or {{bb:~}}"),
+        _("You're out of the house and on the long windy road called Tilde, or {{bb:~}}"),
         _("{{lb:Look around}} again to see where to go next.")
     ]
     start_dir = "~"
@@ -82,8 +75,7 @@ class Step3(StepTemplateCd):
 
 class Step4(StepTemplateCd):
     story = [
-        _("You can see a {{bb:town}} in the distance! Let's {{lb:go}} "
-          "there using {{lb:cd}}.")
+        _("You can see a {{bb:town}} in the distance! Let's {{lb:go}} there using {{lb:cd}}.")
     ]
     start_dir = "~"
     end_dir = "~/town"

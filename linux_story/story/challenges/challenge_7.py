@@ -40,8 +40,7 @@ class Step1(StepTemplateCd):
 
 class Step2(StepTemplateCd):
     story = [
-        _("Wow, there's so many people here. Find the {{bb:Mayor}} and "
-          "{{lb:listen}} to what he has to say.")
+        _("Wow, there's so many people here. Find the {{bb:Mayor}} and {{lb:listen}} to what he has to say.")
     ]
     start_dir = "~/town"
     end_dir = "~/town"
@@ -54,9 +53,7 @@ class Step2(StepTemplateCd):
 
 class Step3(StepTemplateCd):
     story = [
-        _("{{wb:Mayor:}} {{Bb:\"Calm down please! We have our best "
-          "people looking into the disappearances, and we're hoping to "
-          "have an explanation soon.\"}}\n"),
+        _("{{wb:Mayor:}} {{Bb:\"Calm down please! We have our best people looking into the disappearances, and we're hoping to have an explanation soon.\"}}\n"),
         _("Something strange is happening. Better check everyone is ok."),
         _("Type {{yb:cat}} to check on the people.")
     ]
@@ -66,14 +63,9 @@ class Step3(StepTemplateCd):
     # Use functions here
     command = ""
     all_commands = {
-        "cat grumpy-man": _("\n{{wb:Man:}} {{Bb:\"Help! I don't know what's "
-        "happening to me. I heard this bell ring, and now my legs have "
-        "gone all strange.\"}}"),
-        "cat young-girl": _("\n{{wb:Girl:}} {{Bb:\"Can you help me? I can't "
-        "find my friend Amy anywhere. If you see her, will you let me"
-        " know?\"}}"),
-        "cat little-boy": _("\n{{wb:Boy:}} {{Bb:\"Pongo? Pongo? Has "
-        "anyone seen my dog Pongo? He's never run away before...\"}}")
+        "cat grumpy-man": _("\n{{wb:Man:}} {{Bb:\"Help! I don't know what's happening to me. I heard this bell ring, and now my legs have gone all strange.\"}}"),
+        "cat young-girl": _("\n{{wb:Girl:}} {{Bb:\"Can you help me? I can't find my friend Amy anywhere. If you see her, will you let me know?\"}}"),
+        "cat little-boy": _("\n{{wb:Boy:}} {{Bb:\"Pongo? Pongo? Has anyone seen my dog Pongo? He's never run away before...\"}}")
     }
 
     last_step = True
@@ -109,8 +101,7 @@ class Step3(StepTemplateCd):
             if len(self.all_commands) == 1:
                 hint += _("\n{{gb:Well done! Check on 1 more person.}}\n")
             elif len(self.all_commands) > 0:
-                hint += _("\n{{gb:Well done! Check on {} more people.}}\n") \
-                    .format(str(len(self.all_commands)))
+                hint += _("\n{{gb:Well done! Check on {} more people.}}\n").format(str(len(self.all_commands)))
             else:
                 hint += _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
 

@@ -46,9 +46,7 @@ class Step1(StepTemplateCd):
     ]
     highlighted_commands = ['cd']
     hints = [
-        _("{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room. The}} "
-          "{{lb:..}} "
-          "{{rb:is the room behind you.}}"),
+        _("{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room. The}} {{lb:..}} {{rb:is the room behind you.}}"),
         _("{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room.}}")
     ]
 
@@ -86,8 +84,7 @@ class Step3(StepTemplateCd):
     story = [
         _("{{pb:Ding. Dong.}}\n"),
         _("What was that? A bell? That's a bit odd."),
-        _("You see the door to your {{bb:kitchen}}, and hear the sound of "
-          "cooking."),
+        _("You see the door to your {{bb:kitchen}}, and hear the sound of cooking."),
         _("Sounds like someone is preparing breakfast!\n"),
         _("To {{lb:go inside the}} {{bb:kitchen}}, use {{yb:cd kitchen}}")
     ]
@@ -122,17 +119,12 @@ class Step4(StepTemplateCd):
 class Step5(StepTemplateCd):
     story = [
         _("You see her busily working in a cloud of steam."),
-
-        _("Let's {{lb:listen}} to what {{bb:Mum}} has to say by "
-          "using {{yb:cat}}.")
+        _("Let's {{lb:listen}} to what {{bb:Mum}} has to say by using {{yb:cat}}.")
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "cat Mum"
-    hints = (
-        _("{{rb:Stuck? Type:}} {{yb:cat Mum}}. "
-          "{{rb:Don\'t forget the capital letter!}}")
-    )
+    hints = _("{{rb:Stuck? Type:}} {{yb:cat Mum}}. {{rb:Don\'t forget the capital letter!}}")
 
     last_step = True
 
