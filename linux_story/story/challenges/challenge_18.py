@@ -22,16 +22,16 @@ class StepTemplateEcho(TerminalEcho):
 
 class Step1(StepTemplateEcho):
     story = [
-        "Woah! You spoke aloud into the empty room!\n",
-        "{{gb:You learnt the new skill echo!}}\n",
-        "This command can probably be used to talk to people.",
+        _("Woah! You spoke aloud into the empty room!\n"),
+        _("{{gb:You learnt the new skill echo!}}\n"),
+        _("This command can probably be used to talk to people."),
 
-        "\nNow let's head to {{bb:~}} to find that farm!",
-        "Type {{yb:cd}} by itself to go to the Windy Road {{bb:~}}"
+        _("\nNow let's head to {{bb:~}} to find that farm!"),
+        _("Type {{yb:cd}} by itself to go to the Windy Road {{bb:~}}")
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:cd}} {{rb:by itself to go to}} {{bb:~}}"
+        _("{{rb:Use}} {{yb:cd}} {{rb:by itself to go to}} {{bb:~}}")
     ]
 
     start_dir = "~/my-house/parents-room"
@@ -46,11 +46,10 @@ class Step1(StepTemplateEcho):
 
 class Step2(StepTemplateEcho):
     story = [
-        "You are back on the windy road, which stretches endlessly in both "
-        "directions. \n{{lb:Look around.}}"
+        _("You are back on the windy road, which stretches endlessly in both directions. \n{{lb:Look around.}}")
     ]
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+        _("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
     ]
 
     commands = [
@@ -66,14 +65,14 @@ class Step2(StepTemplateEcho):
 
 class Step3(StepTemplateEcho):
     story = [
-        "You notice a small remote farm in the distance.\n",
-        "{{lb:Let's go}} to the {{bb:farm}}."
+        _("You notice a small remote farm in the distance.\n"),
+        _("{{lb:Let's go}} to the {{bb:farm}}.")
     ]
 
     start_dir = "~"
     end_dir = "~/farm"
     hints = [
-        "{{rb:Use}} {{yb:cd farm}} {{rb:to head to the farm.}}"
+        _("{{rb:Use}} {{yb:cd farm}} {{rb:to head to the farm.}}")
     ]
 
     def block_command(self):
@@ -85,7 +84,7 @@ class Step3(StepTemplateEcho):
 
 class Step4(StepTemplateEcho):
     story = [
-        "You walk up the path to the farm, {{lb:Look around.}}"
+        _("You walk up the path to the farm, {{lb:Look around.}}")
     ]
 
     commands = "ls"
@@ -99,12 +98,9 @@ class Step4(StepTemplateEcho):
 
 class Step5(StepTemplateEcho):
     story = [
-        "You are in a farm, with a {{bb:barn}}, a {{bb:farmhouse}} and "
-        "a large {{bb:toolshed}} in sight.",
-        "The land is well tended and weed free, so there must "
-        "be people about here.\n",
-        "{{lb:Look around}} and see if you can "
-        "find someone to talk to."
+        _("You are in a farm, with a {{bb:barn}}, a {{bb:farmhouse}} and a large {{bb:toolshed}} in sight."),
+        _("The land is well tended and weed free, so there must be people about here.\n"),
+        _("{{lb:Look around}} and see if you can find someone to talk to.")
     ]
     start_dir = "~/farm"
     end_dir = "~/farm"
@@ -130,16 +126,15 @@ class Step5(StepTemplateEcho):
 
             if self.counter >= 3:
                 self.send_text(
-                    "\n{{rb:Use}} {{yb:ls barn}} {{rb:to look in the barn.}}"
+                    _("\n{{rb:Use}} {{yb:ls barn}} {{rb:to look in the barn.}}")
                 )
             if self.counter == 2:
                 self.send_text(
-                    "\n{{rb:Have you looked in the}} {{bb:barn}} {{rb:yet?}}"
+                    _("\n{{rb:Have you looked in the}} {{bb:barn}} {{rb:yet?}}")
                 )
             elif self.counter == 1:
                 self.send_text(
-                    "\n{{rb:There is no one here. You should look somewhere "
-                    "else.}}"
+                    _("\n{{rb:There is no one here. You should look somewhere else.}}")
                 )
 
         else:
@@ -156,14 +151,14 @@ class Step5(StepTemplateEcho):
 class Step6(StepTemplateEcho):
 
     story = [
-        "In the {{bb:barn}}, you see a woman tending some animals.",
-        "{{lb:Walk}} into the {{bb:barn}} so you can have a closer look."
+        _("In the {{bb:barn}}, you see a woman tending some animals."),
+        _("{{lb:Walk}} into the {{bb:barn}} so you can have a closer look.")
     ]
 
     start_dir = "~/farm"
     end_dir = "~/farm/barn"
     hints = [
-        "{{rb:Use}} {{yb:cd barn}} {{rb:to walk into the barn.}}"
+        _("{{rb:Use}} {{yb:cd barn}} {{rb:to walk into the barn.}}")
     ]
 
     def block_command(self):
@@ -176,20 +171,20 @@ class Step6(StepTemplateEcho):
 class Step7(StepTemplateEcho):
 
     story = [
-        # "In the barn, you see a woman tending some animals.",
-        # "You walk into the barn to have a closer look.",
-        "{{lb:Examine}} everyone in the {{bb:barn}} using "
-        "the {{yb:cat}} command."
+        # _("In the barn, you see a woman tending some animals."),
+        # _("You walk into the barn to have a closer look."),
+        _("{{lb:Examine}} everyone in the {{bb:barn}} using "
+        "the {{yb:cat}} command.")
     ]
 
     # what is this?
     last_challenge = True
 
     all_commands = {
-        "cat Ruth": "Ruth: {{Bb:\"Ah! Who are you?!\"}}",
-        "cat Cobweb": "Cobweb: {{Bb:\"Neiiigh.\"}}",
-        "cat Trotter": "Trotter: {{Bb:\"Oink Oink.\"}}",
-        "cat Daisy": "Daisy: {{Bb:\"Mooooooooo.\"}}"
+        "cat Ruth": _("Ruth: {{Bb:\"Ah! Who are you?!\"}}"),
+        "cat Cobweb": _("Cobweb: {{Bb:\"Neiiigh.\"}}"),
+        "cat Trotter": _("Trotter: {{Bb:\"Oink Oink.\"}}"),
+        "cat Daisy": _("Daisy: {{Bb:\"Mooooooooo.\"}}")
     }
 
     start_dir = "~/farm/barn"
@@ -197,8 +192,7 @@ class Step7(StepTemplateEcho):
     last_step = True
 
     hints = [
-        "{{rb:If you've forgotten who's in the barn, use}} "
-        "{{yb:ls}} {{rb:to remind yourself.}}"
+        _("{{rb:If you've forgotten who's in the barn, use}} {{yb:ls}} {{rb:to remind yourself.}}")
     ]
 
     # TODO: move this into step_helper_functions, used a few too
@@ -211,7 +205,7 @@ class Step7(StepTemplateEcho):
 
         # If they enter ls, say Well Done
         if self.last_user_input == 'ls':
-            hint = "\n{{gb:You look around.}}"
+            hint = _("\n{{gb:You look around.}}")
             self.send_text(hint)
             return False
 
@@ -224,28 +218,25 @@ class Step7(StepTemplateEcho):
                 end_dir_validated:
 
             # Print hint from person
-            hint = "\n" + self.all_commands[self.last_user_input]
+            hint = _("\n" + self.all_commands[self.last_user_input]
 
             self.all_commands.pop(self.last_user_input, None)
 
             if len(self.all_commands) == 1:
                 hint += (
-                    "\n{{gb:Well done! Have a look at one more.}}"
+                    _("\n{{gb:Well done! Have a look at one more.}}")
                 )
             elif len(self.all_commands) > 0:
-                hint += "\n{{gb:Well done! Look at " + \
-                    str(len(self.all_commands)) + \
-                    " more.}}"
+                hint += _("\n{{gb:Well done! Look at {} more.}}").format(str(len(self.all_commands)))
             else:
-                hint += "\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}"
+                hint += _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
 
             self.send_text(hint)
 
         else:
             if not self.hints:
                 self.hints = [
-                    "{{rb:Use}} {{yb:" + self.all_commands.keys()[0] + "}} "
-                    "{{rb:to progress.}}"
+                    _("{{rb:Use}} {{yb:{}}} {{rb:to progress.}}").format(self.all_commands.keys()[0])
                 ]
             self.send_hint()
             self.hints.pop()
