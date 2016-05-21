@@ -91,7 +91,7 @@ class Step3(StepTemplateCd):
     start_dir = "~/my-house"
     end_dir = "~/my-house/kitchen"
     commands = ["cd kitchen", "cd kitchen/"]
-    hints = ["{{rb:Type}} {{yb:cd kitchen}} {{rb:and press}} {{ob:Enter}}{{rb:.}}"]
+    hints = [_("{{rb:Type}} {{yb:cd kitchen}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")]
 
     def block_command(self):
         return unblock_commands_with_cd_hint(

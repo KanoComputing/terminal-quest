@@ -218,14 +218,12 @@ class Step7(StepTemplateEcho):
                 end_dir_validated:
 
             # Print hint from person
-            hint = _("\n" + self.all_commands[self.last_user_input]
+            hint = "\n" + self.all_commands[self.last_user_input]
 
             self.all_commands.pop(self.last_user_input, None)
 
             if len(self.all_commands) == 1:
-                hint += (
-                    _("\n{{gb:Well done! Have a look at one more.}}")
-                )
+                hint += _("\n{{gb:Well done! Have a look at one more.}}")
             elif len(self.all_commands) > 0:
                 hint += _("\n{{gb:Well done! Look at {} more.}}").format(str(len(self.all_commands)))
             else:
