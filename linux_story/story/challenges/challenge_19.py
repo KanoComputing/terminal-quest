@@ -28,21 +28,18 @@ class StepTemplateEcho(TerminalEcho):
 class Step1(StepTemplateEcho):
     username = os.environ['LOGNAME']
     story = [
-        "Ruth: {{Bb:\"You startled me!\"",
-        "\"Do I know you? You look familiar...\"",
-        "\"Wait, you're}} {{bb:Mum}}{{Bb:'s kid, aren't you!\"",
-        "\"..."
-        "Yes? Do you have a tongue?\"",
-        "\"Is your name not}} {{yb:" + username + "}}{{Bb:?\"}}",
-        "\n{{gb:Reply with}} {{yb:echo yes}} "
-        "{{gb:or}} {{yb:echo no}}."
+        _("Ruth: {{Bb:\"You startled me!\""),
+        _("\"Do I know you? You look familiar...\""),
+        _("\"Wait, you're}} {{bb:Mum}}{{Bb:'s kid, aren't you!\""),
+        _("\"...Yes? Do you have a tongue?\""),
+        _("\"Is your name not}} {{yb:{}}}{{Bb:?\"}}").format(username),
+        _("\n{{gb:Reply with}} {{yb:echo yes}} {{gb:or}} {{yb:echo no}}.")
     ]
 
     # Story has been moved to
     hints = [
-        "{{rb:Use}} {{yb:echo}} {{rb:to reply to her "
-        "question.}}",
-        "{{rb:Reply with yes by using}} {{yb:echo yes}}{{rb:.}}"
+        _("{{rb:Use}} {{yb:echo}} {{rb:to reply to her question.}}"),
+        _("{{rb:Reply with yes by using}} {{yb:echo yes}}{{rb:.}}")
     ]
 
     commands = [
@@ -60,8 +57,7 @@ class Step1(StepTemplateEcho):
                 self.last_user_input == "echo No" or \
                 self.last_user_input == "echo NO":
             hint = (
-                "Ruth: {{Bb:\"Oh don't be ridiculous, "
-                "you look just like her.\"}}"
+                _("Ruth: {{Bb:\"Oh don't be ridiculous, you look just like her.\"}}")
             )
             self.send_hint(hint)
 
@@ -72,26 +68,24 @@ class Step1(StepTemplateEcho):
 
 
 class Step2(StepTemplateEcho):
-    print_text = ["{{yb:\"Yes\"}}"]
+    print_text = [_("{{yb:\"Yes\"}}")]
 
     story = [
-        "Ruth: {{Bb:\"Ah, I knew it!\"}}",
-        "{{Bb:\"So you live in that little house outside town?\"}}",
+        _("Ruth: {{Bb:\"Ah, I knew it!\"}}"),
+        _("{{Bb:\"So you live in that little house outside town?\"}}"),
         # TODO: see if this can appear as a block
         # TODO: change the colour of this.
-        "{{yb:1: \"Yes\"}}",
-        "{{yb:2: \"No\"}}",
-        "{{yb:3: \"I don't know\"}}",
-        "\n{{gb:Use}} {{yb:echo 1}}{{gb:,}} {{yb:echo 2}} {{gb:or}} "
-        "{{yb:echo 3}} {{gb:to reply with either option 1, 2 or 3.}}\n"
+        _("{{yb:1: \"Yes\"}}"),
+        _("{{yb:2: \"No\"}}"),
+        _("{{yb:3: \"I don't know\"}}"),
+        _("\n{{gb:Use}} {{yb:echo 1}}{{gb:,}} {{yb:echo 2}} {{gb:or}} {{yb:echo 3}} {{gb:to reply with either option 1, 2 or 3.}}\n")
     ]
 
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
     commands = ["echo 1", "echo 2", "echo 3"]
     hints = [
-        "{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} "
-        "{{yb:echo 3}} {{rb:to reply to Ruth.}}"
+        _("{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} {{yb:echo 3}} {{rb:to reply to Ruth.}}")
     ]
 
     def check_command(self):
@@ -104,11 +98,8 @@ class Step2(StepTemplateEcho):
 
         if self.last_user_input.lower() in replies:
             hint = [
-                "\n{{rb:If you want to reply with \"" +
-                self.last_user_input +
-                "\", use}} {{yb:echo " +
-                replies[self.last_user_input.lower()] +
-                "}}"
+                _("\n{{rb:If you want to reply with \"{}\", use}} {{yb:echo {}}}") \
+                        .format(self.last_user_input, replies[self.last_user_input.lower()])
             ]
             self.send_text(hint)
         else:
@@ -131,35 +122,28 @@ class Step3(StepTemplateEcho):
         "echo 2"
     ]
     hints = [
-        "Ruth: {{Bb:\"Excuse me? What did you say? "
-        "You know to use the}} {{lb:echo}} {{Bb:command, yes?\"}}",
-        "{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} "
-        "{{yb:echo 3}} {{rb:to reply.}}"
+        _("Ruth: {{Bb:\"Excuse me? What did you say? You know to use the}} {{lb:echo}} {{Bb:command, yes?\"}}"),
+        _("{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} {{yb:echo 3}} {{rb:to reply.}}")
     ]
 
     def __init__(self, prev_command='echo 1'):
         if prev_command == "echo 1":  # yes
-            self.print_text = ["{{yb:\"Yes\"}}"]
-            self.story = ["Ruth: {{Bb:\"I thought so!\"}}"]
+            self.print_text = [_("{{yb:\"Yes\"}}")]
+            self.story = [_("Ruth: {{Bb:\"I thought so!\"}}")]
         elif prev_command == "echo 2":  # no
-            self.print_text = ["{{yb:\"No\"}}"]
-            self.story = ["Ruth: {{Bb:\"Stop lying, I know you do.\"}}"]
+            self.print_text = [_("{{yb:\"No\"}}")]
+            self.story = [_("Ruth: {{Bb:\"Stop lying, I know you do.\"}}")]
         elif prev_command == "echo 3":  # I don't know
-            self.print_text = ["{{yb:\"I don't know\"}}"]
-            self.story = ["Ruth: {{Bb:\"You don't know? That's worrying...\"}}"]
+            self.print_text = [_("{{yb:\"I don't know\"}}")]
+            self.story = [_("Ruth: {{Bb:\"You don't know? That's worrying...\"}}")]
 
         self.story = self.story + [
-            "\n{{Bb:\"Did you walk all the way from town? "
-            "Did you see my husband there?",
-            "He's a pretty}} {{bb:grumpy-man}}{{Bb:, he was travelling "
-            "to town because of that big "
-            "meeting with the Mayor.\"}}",
-            "\n{{yb:1: \"I'm sorry, he disappeared in front of me.\"}}",
-            "{{yb:2: \"I didn't see your husband, but people have been "
-            "disappearing in town.\"}}",
-            "{{yb:3: \"I don't know anything.\"}}",
-            "\nRespond with one of the following options using the "
-            "{{yb:echo}} command and option number.\n"
+            _("\n{{Bb:\"Did you walk all the way from town? Did you see my husband there?"),
+            _("He's a pretty}} {{bb:grumpy-man}}{{Bb:, he was travelling to town because of that big meeting with the Mayor.\"}}"),
+            _("\n{{yb:1: \"I'm sorry, he disappeared in front of me.\"}}"),
+            _("{{yb:2: \"I didn't see your husband, but people have been disappearing in town.\"}}"),
+            _("{{yb:3: \"I don't know anything.\"}}"),
+            _("\nRespond with one of the following options using the {{yb:echo}} command and option number.\n")
         ]
         StepTemplateEcho.__init__(self)
 
@@ -170,16 +154,14 @@ class Step3(StepTemplateEcho):
 
         elif self.last_user_input == "echo 2":  # I didn't see him
             hint = (
-                "Ruth: {{Bb:\"I feel like you're hiding something from "
-                "me...\"}}"
+                _("Ruth: {{Bb:\"I feel like you're hiding something from me...\"}}")
             )
             self.send_hint(hint)
             return False
 
         elif self.last_user_input == "echo 3":  # I don't know anything
             hint = (
-                "Ruth: {{Bb:\"Really? Are you sure you didn't see a}} "
-                "{{lb:grumpy-man}}{{Bb: in town?\"}}"
+                _("Ruth: {{Bb:\"Really? Are you sure you didn't see a}} {{lb:grumpy-man}}{{Bb: in town?\"}}")
             )
             self.send_hint(hint)
             return False
@@ -195,14 +177,12 @@ class Step3(StepTemplateEcho):
 
 class Step4(StepTemplateEcho):
     print_text = [
-        "{{yb:\"I'm sorry, he disappeared in front of me.\"}}"
+        _("{{yb:\"I'm sorry, he disappeared in front of me.\"}}")
     ]
     story = [
-        "Ruth: {{Bb:\"He disappeared in front of you?? Oh no! "
-        "They've been saying on the radio that people have been "
-        "going missing...what should I do?\"}}",
-        "\n{{yb:1: \"Some people survived by going into hiding.\"}}",
-        "{{yb:2: \"I think you should go and look for your husband\"}}\n"
+        _("Ruth: {{Bb:\"He disappeared in front of you?? Oh no! They've been saying on the radio that people have been going missing...what should I do?\"}}"),
+        _("\n{{yb:1: \"Some people survived by going into hiding.\"}}"),
+        _("{{yb:2: \"I think you should go and look for your husband\"}}\n")
     ]
 
     start_dir = "~/farm/barn"
@@ -215,20 +195,17 @@ class Step4(StepTemplateEcho):
     ]
 
     hints = [
-        "Ruth: {{Bb:What did you say? I didn't catch that.}}",
-        "{{rb:Use}} {{yb:echo 1}} {{rb:or}} {{yb:echo 2}} {{rb:to reply.}}"
+        _("Ruth: {{Bb:What did you say? I didn't catch that.}}"),
+        _("{{rb:Use}} {{yb:echo 1}} {{rb:or}} {{yb:echo 2}} {{rb:to reply.}}")
     ]
 
     def check_command(self):
         if self.last_user_input == "echo 1":  # Correct response
-            # Can we asssume this is alright?
+            # Can we assume this is alright?
             return True
         elif self.last_user_input == "echo 2":
             response = (
-                "Ruth: {{Bb:\"I would, but I'm scared of going missing myself.\""
-                "\n\"He might come back, so I should stay "
-                "here in case he does. Can you think of anything "
-                "else?\"}}"
+                _("Ruth: {{Bb:\"I would, but I'm scared of going missing myself.\"\n\"He might come back, so I should stay here in case he does. Can you think of anything else?\"}}")
             )
             self.send_hint(response)
         else:

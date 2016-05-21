@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: terminal-quest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-20 21:00+0900\n"
+"POT-Creation-Date: 2016-05-21 13:12+0900\n"
 "PO-Revision-Date: 2016-05-17 08:33+0900\n"
 "Last-Translator: Choppin Antoine <antoine@japonophile.com>\n"
 "Language-Team: Japanese\n"
@@ -319,15 +319,14 @@ msgid ""
 "{{rb:Type}} {{yb:cat wardrobe/trousers}} {{rb:or}} {{yb:cat wardrobe/skirt}} "
 "{{rb:to dress yourself.}}"
 msgstr ""
-"{{yb:cat wardrobe/trousers}}{{rb:または}}{{yb:cat wardrobe/skirt}}"
-"{{rb:をタイプし、履く物を探そう。}}"
+"{{yb:cat wardrobe/trousers}}{{rb:または}}{{yb:cat wardrobe/skirt}}{{rb:をタイ"
+"プし、履く物を探そう。}}"
 
 #: ../linux_story/story/challenges/challenge_2.py:106
 msgid ""
 "\n"
 "{{rb:You need to look in your}} {{bb:wardrobe}} {{rb:for that item.}}"
-msgstr ""
-"{{rb:これはタンス(}}{{bb:wardrobe}}{{rb:)の中にあるはずです。}}"
+msgstr "{{rb:これはタンス(}}{{bb:wardrobe}}{{rb:)の中にあるはずです。}}"
 
 #: ../linux_story/story/challenges/challenge_2.py:118
 msgid "Awesome, your outfit is nearly complete.\n"
@@ -341,7 +340,8 @@ msgstr "最後に、キャップ({{bb:cap}})を確認しよう。\n"
 msgid ""
 "{{rb:Type}} {{yb:cat wardrobe/cap}} {{rb:to}} {{lb:examine}} {{rb:the cap.}}"
 msgstr ""
-"{{yb:cat wardrobe/cap}}{{rb:をタイプし、キャップを}}{{lb:確認}}{{rb:しよう。}}"
+"{{yb:cat wardrobe/cap}}{{rb:をタイプし、キャップを}}{{lb:確認}}{{rb:しよ"
+"う。}}"
 
 #: ../linux_story/story/challenges/challenge_3.py:31
 msgid "Love it! Put it on quickly."
@@ -400,90 +400,101 @@ msgid ""
 "That's weird. No time for that now though - lets find {{bb:Mum}}.\n"
 " "
 msgstr ""
+"不思議だな。でも今は時間ないさ。お母さん({{bb:Mum}})を探そう。\n"
+" "
 
 #: ../linux_story/story/challenges/challenge_4.py:34
 msgid "| {{gb:New Spell}}: {{yb:cd}} lets you {{lb:move}}         |"
-msgstr ""
+msgstr "| {{gb:新しいお呪い}}: 場所を{{lb:移動する}}には、      |"
 
 #: ../linux_story/story/challenges/challenge_4.py:35
 msgid "| between places.                     | "
-msgstr ""
+msgstr "| {{yb:cd}}が使える。                 |"
 
 #: ../linux_story/story/challenges/challenge_4.py:37
 msgid ""
 "\n"
 "Use the command {{yb:cd ..}} to {{lb:leave}} your room.\n"
 msgstr ""
+"\n"
+"{{yb:cd ..}}コマンドを使って、部屋から{{lb:出る}}ことにしよう。\n"
 
 #: ../linux_story/story/challenges/challenge_4.py:49
 msgid ""
 "{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room. The}} {{lb:..}} {{rb:is "
 "the room behind you.}}"
 msgstr ""
+"{{yb:cd ..}}{{rb:をタイプし、部屋から出よう。}}{{lb:..}}"
+"{{:rbは後ろの部屋を指している。}}"
 
 #: ../linux_story/story/challenges/challenge_4.py:50
 msgid "{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room.}}"
-msgstr ""
+msgstr "{{yb:cd ..}}{{rb:をタイプし、部屋から出よう。}}"
 
 #: ../linux_story/story/challenges/challenge_4.py:64
 msgid "You've left {{bb:my-room}} and are in the hall of {{bb:my-house}}.\n"
 msgstr ""
+"君の部屋({{bb:my-room}})を出て、今、家({{bb:my-house}})の"
+"玄関のところにいる。"
 
 #: ../linux_story/story/challenges/challenge_4.py:65
 msgid "{{lb:Look around}} at the different rooms using {{yb:ls}}.\n"
-msgstr ""
+msgstr "{{yb:ls}}を使って、他の部屋を{{lb:見て}}みよう。\n"
 
 #: ../linux_story/story/challenges/challenge_4.py:70
 msgid "{{rb:Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}"
-msgstr ""
+msgstr "{{yb:ls}}{{rb:をタイプし、}}{{ob:Enter}}{{rb:キーを押して。}}"
 
 #: ../linux_story/story/challenges/challenge_4.py:85
 #: ../linux_story/story/challenges/challenge_8.py:31
 #: ../linux_story/story/challenges/challenge_9.py:50
 msgid "{{pb:Ding. Dong.}}\n"
-msgstr ""
+msgstr "キン・コーン\n"
 
 #: ../linux_story/story/challenges/challenge_4.py:86
 msgid "What was that? A bell? That's a bit odd."
-msgstr ""
+msgstr "何これ？鐘の音？不思議だな。"
 
 #: ../linux_story/story/challenges/challenge_4.py:87
 msgid "You see the door to your {{bb:kitchen}}, and hear the sound of cooking."
-msgstr ""
+msgstr "台所({{bb:kitchen}})のドアを見て、料理を作る音が聞こえる。"
 
 #: ../linux_story/story/challenges/challenge_4.py:88
 msgid "Sounds like someone is preparing breakfast!\n"
-msgstr ""
+msgstr "誰かが朝ごはんを作ってるみたい！\n"
 
 #: ../linux_story/story/challenges/challenge_4.py:89
 msgid "To {{lb:go inside the}} {{bb:kitchen}}, use {{yb:cd kitchen}}"
-msgstr ""
+msgstr "台所({{bb:kitchen}})に{{lb:入る}}には、{{yb:cd kitchen}}を使おう。"
 
 #: ../linux_story/story/challenges/challenge_4.py:107
 msgid "Great, you're in the {{bb:kitchen}}.\n"
-msgstr ""
+msgstr "よっし、台所に入った。\n"
 
 #: ../linux_story/story/challenges/challenge_4.py:108
 msgid "{{lb:Look}} for {{bb:Mum}} using {{yb:ls}}."
-msgstr ""
+msgstr "{{yb:ls}}を使って、お母さん({{bb:Mum}})のことを{{lb:探そう}}。"
 
 #: ../linux_story/story/challenges/challenge_4.py:113
 msgid ""
 "{{rb:Can't find her? Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}"
 msgstr ""
+"{{rb:お母さんが見つからない？}}{{yb:ls}}{{rb:をタイプし、}}{{ob:Enter}}"
+"{{rb:キーを押して。}}"
 
 #: ../linux_story/story/challenges/challenge_4.py:121
 msgid "You see her busily working in a cloud of steam."
-msgstr ""
+msgstr "お母さんが湯気で忙しく仕事している。"
 
 #: ../linux_story/story/challenges/challenge_4.py:122
 msgid "Let's {{lb:listen}} to what {{bb:Mum}} has to say by using {{yb:cat}}."
-msgstr ""
+msgstr "{{yb:cat}}を使って、お母さん({{bb:Mum}})の話を{{lb:聞いて}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_4.py:127
 msgid ""
 "{{rb:Stuck? Type:}} {{yb:cat Mum}}. {{rb:Don't forget the capital letter!}}"
 msgstr ""
+"{{rb:うまくいかない？}}{{yb:cat Mum}}{{rb:をタイプしてみて。Mの大文字に注意！}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:31
 msgid ""
@@ -1982,4 +1993,198 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_18.py:221
 msgid "\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:31
+msgid "Ruth: {{Bb:\"You startled me!\""
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:32
+msgid "\"Do I know you? You look familiar...\""
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:33
+msgid "\"Wait, you're}} {{bb:Mum}}{{Bb:'s kid, aren't you!\""
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:34
+msgid "\"...Yes? Do you have a tongue?\""
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:35
+msgid "\"Is your name not}} {{yb:{}}}{{Bb:?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:36
+msgid ""
+"\n"
+"{{gb:Reply with}} {{yb:echo yes}} {{gb:or}} {{yb:echo no}}."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:41
+msgid "{{rb:Use}} {{yb:echo}} {{rb:to reply to her question.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:42
+msgid "{{rb:Reply with yes by using}} {{yb:echo yes}}{{rb:.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:60
+msgid "Ruth: {{Bb:\"Oh don't be ridiculous, you look just like her.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:71
+#: ../linux_story/story/challenges/challenge_19.py:131
+msgid "{{yb:\"Yes\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:74
+msgid "Ruth: {{Bb:\"Ah, I knew it!\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:75
+msgid "{{Bb:\"So you live in that little house outside town?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:78
+msgid "{{yb:1: \"Yes\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:79
+msgid "{{yb:2: \"No\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:80
+msgid "{{yb:3: \"I don't know\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:81
+msgid ""
+"\n"
+"{{gb:Use}} {{yb:echo 1}}{{gb:,}} {{yb:echo 2}} {{gb:or}} {{yb:echo 3}} {{gb:"
+"to reply with either option 1, 2 or 3.}}\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:88
+msgid ""
+"{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} {{yb:echo 3}} {{rb:"
+"to reply to Ruth.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:101
+msgid ""
+"\n"
+"{{rb:If you want to reply with \"{}\", use}} {{yb:echo {}}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:125
+msgid ""
+"Ruth: {{Bb:\"Excuse me? What did you say? You know to use the}} {{lb:echo}} "
+"{{Bb:command, yes?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:126
+msgid ""
+"{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} {{yb:echo 3}} {{rb:"
+"to reply.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:132
+msgid "Ruth: {{Bb:\"I thought so!\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:134
+msgid "{{yb:\"No\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:135
+msgid "Ruth: {{Bb:\"Stop lying, I know you do.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:137
+msgid "{{yb:\"I don't know\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:138
+msgid "Ruth: {{Bb:\"You don't know? That's worrying...\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:141
+msgid ""
+"\n"
+"{{Bb:\"Did you walk all the way from town? Did you see my husband there?"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:142
+msgid ""
+"He's a pretty}} {{bb:grumpy-man}}{{Bb:, he was travelling to town because of "
+"that big meeting with the Mayor.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:143
+msgid ""
+"\n"
+"{{yb:1: \"I'm sorry, he disappeared in front of me.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:144
+msgid ""
+"{{yb:2: \"I didn't see your husband, but people have been disappearing in "
+"town.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:145
+msgid "{{yb:3: \"I don't know anything.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:146
+msgid ""
+"\n"
+"Respond with one of the following options using the {{yb:echo}} command and "
+"option number.\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:157
+msgid "Ruth: {{Bb:\"I feel like you're hiding something from me...\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:164
+msgid ""
+"Ruth: {{Bb:\"Really? Are you sure you didn't see a}} {{lb:grumpy-man}}{{Bb: "
+"in town?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:180
+msgid "{{yb:\"I'm sorry, he disappeared in front of me.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:183
+msgid ""
+"Ruth: {{Bb:\"He disappeared in front of you?? Oh no! They've been saying on "
+"the radio that people have been going missing...what should I do?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:184
+msgid ""
+"\n"
+"{{yb:1: \"Some people survived by going into hiding.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:185
+msgid "{{yb:2: \"I think you should go and look for your husband\"}}\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:198
+msgid "Ruth: {{Bb:What did you say? I didn't catch that.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:199
+msgid "{{rb:Use}} {{yb:echo 1}} {{rb:or}} {{yb:echo 2}} {{rb:to reply.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_19.py:208
+msgid ""
+"Ruth: {{Bb:\"I would, but I'm scared of going missing myself.\"\n"
+"\"He might come back, so I should stay here in case he does. Can you think "
+"of anything else?\"}}"
 msgstr ""
