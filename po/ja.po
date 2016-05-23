@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: terminal-quest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-23 23:10+0900\n"
+"POT-Creation-Date: 2016-05-24 08:31+0900\n"
 "PO-Revision-Date: 2016-05-17 08:33+0900\n"
 "Last-Translator: Choppin Antoine <antoine@japonophile.com>\n"
 "Language-Team: Japanese\n"
@@ -809,6 +809,9 @@ msgstr ""
 #: ../linux_story/story/challenges/challenge_11.py:146
 #: ../linux_story/story/challenges/challenge_20.py:83
 #: ../linux_story/story/challenges/challenge_22.py:162
+#: ../linux_story/story/challenges/challenge_25.py:124
+#: ../linux_story/story/challenges/challenge_26.py:32
+#: ../linux_story/story/challenges/challenge_26.py:85
 msgid "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
 msgstr ""
 
@@ -2938,4 +2941,412 @@ msgstr ""
 msgid ""
 "Eleanor: {{Bb:My}} {{lb:cat}} {{Bb:used to be a great listener, I'd tell her "
 "everything.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:23
+msgid "Bernard: {{Bb:\"Hello! Shush, don't say a word.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:25
+msgid "{{Bb:\"I know why you're here. You want a shed!\""
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:27
+msgid ""
+"\"I have just the thing for you. I have the}} {{bb:best-shed-maker-in-the-"
+"world.sh}}{{Bb:\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:30
+msgid ""
+"\n"
+"He seems pretty enthusiastic about it. {{lb:Examine}} the tool {{bb:best-"
+"shed-maker-in-the-world.sh}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:33
+#: ../linux_story/story/challenges/challenge_25.py:81
+msgid ""
+"\n"
+"{{gb:Use}} {{ob:TAB}} {{gb:to speed up your typing.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:40
+msgid ""
+"{{rb:Use}} {{yb:cat}} {{rb:to examine the}} {{bb:best-shed-maker-in-the-"
+"world.sh}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:43
+msgid ""
+"{{rb:Use}} {{yb:cat best-shed-maker-in-the-world.sh}} {{rb:to examine the "
+"tool.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:51
+msgid "Eleanor: {{Bb:Bernard scares me a bit...}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:58
+msgid ""
+"\n"
+"{{rb:You are reading the wrong file! You want to read}} {{bb:best-shed-maker-"
+"in-the-world.sh}}{{rb:.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:71
+msgid "The tool has an inscription that reads \"mkdir shed\"."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:72
+msgid ""
+"You recognise the command {{yb:mkdir}}. It's what you used to help {{bb:"
+"Ruth}} in the farm."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:75
+msgid ""
+"\n"
+"Bernard: {{Bb:It's like magic! Just run the command, and you get a new "
+"shed.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:78
+msgid "{{Bb:Try it out! Use it with}} {{yb:./best-shed-maker-in-the-world.sh}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:88
+msgid ""
+"{{rb:Do as Bernard says - use}} {{yb:./best-shed-maker-in-the-world.sh}} "
+"{{rb:to run his script}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:96
+msgid ""
+"Eleanor: {{Bb:Isn't that just the same as running}} {{yb:mkdir shed}}{{Bb:?}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:102
+msgid ""
+"\n"
+"{{rb:You're trying to run the wrong script. You want to run}} {{yb:./best-"
+"shed-maker-in-the-world.sh}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:115
+msgid "{{lb:Look around}} to see if it created a {{bb:shed}}."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:126
+msgid "Eleanor: {{Bb:Ah, look over there!}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:134
+msgid "It worked! You can see a new {{bb:shed}} in the room.\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:135
+msgid "What happens if you run it again?\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:136
+msgid "{{gb:Press}} {{ob:UP}} {{gb:twice to replay the command.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:143
+msgid "{{rb:See what happens when you run the script again.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:145
+msgid ""
+"{{rb:Run the script again using}} {{yb:./best-shed-maker-in-the-world.sh}} "
+"{{rb:to see what happens.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:152
+msgid "Eleanor: {{Bb:I don't think this will work...}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:160
+msgid ""
+"You get the error {{yb:mkdir: cannot create directory `shed': File exists}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:162
+msgid ""
+"\n"
+"Bernard: {{Bb:\"Of course it won't work second time - you already have a "
+"shed!\""
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:165
+msgid ""
+"\"I'm working on the next big thing,}} {{bb:best-horn-in-the-world.sh}}{{Bb:."
+"\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:168
+msgid ""
+"{{Bb:\"It can be used to alert anyone that you're coming. I'm having some "
+"teething problems, but I'm sure I'll fix them soon.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:172
+msgid ""
+"\n"
+"{{lb:Examine}} {{bb:best-horn-in-the-world.sh}} and see if you can identify "
+"the problem.\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:175
+msgid "{{gb:Remember to use}} {{ob:TAB}}{{gb:!}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:186
+msgid "{{rb:Use}} {{yb:cat}} {{rb:to examine the tool.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:187
+msgid ""
+"{{rb:Use}} {{yb:cat best-horn-in-the-world.sh}} {{rb:to examine the tool.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:192
+msgid "Eleanor: {{Bb:I think this tool is a bit broken.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:200
+msgid ""
+"\n"
+"{{rb:You're examining the wrong tool. You want to look at}} {{yb:best-horn-"
+"in-the-world.sh}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:213
+msgid "The tool reads {{yb:eco \"Honk!\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:214
+msgid "Maybe it should read {{yb:echo \"Honk!\"}} instead..."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:215
+msgid "How could we make changes to this tool?"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:216
+msgid ""
+"\n"
+"Bernard: {{Bb:\"Ho ho, you look like you understand the problem.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:217
+msgid ""
+"Eleanor: {{Bb:\"If we need extra help, we can go to the library, it was just "
+"outside.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:219
+msgid ""
+"\n"
+"Before we go, have a {{lb:look}} in the {{bb:basement}}."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:233
+msgid "{{rb:Use}} {{yb:ls}} {{rb:to look through.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:234
+msgid "{{rb:Use}} {{yb:ls basement/}} {{rb:to look inside.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:238
+msgid "Eleanor: {{Bb:OooOOoh, are there sweets in there?}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:247
+msgid "Bernard: {{Bb:\"Oooh naughty, you can't look in there.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:248
+msgid ""
+"\n"
+"Let's {{lb:leave}} the shed shop and go back to {{bb:east}} of town."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:254
+msgid "{{rb:Leave the shed-shop using}} {{yb:cd ..}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_25.py:257
+msgid "Eleanor: {{Bb:\"Yay, I like the library. Let's go back to town!\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:23
+msgid ""
+"You are back in town. {{bb:Eleanor}} waves her arms and points at a building "
+"in the distance."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:25
+msgid ""
+"\n"
+"{{lb:Look around}} to see where {{bb:Eleanor}} is pointing."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:46
+msgid "Eleanor: {{Bb:The library is over there!}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:54
+msgid "You see the {{bb:library}} ahead."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:56
+msgid ""
+"Eleanor: {{Bb:\"There it is! The}} {{bb:library}} {{Bb:is right there! "
+"Let's}} {{lb:go inside.}}{{Bb:\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:64
+msgid "{{rb:Use}} {{yb:cd library}} {{rb:to go inside the library.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:66
+msgid "Eleanor: {{Bb:I love the library! Let's go inside!}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:77
+msgid "{{bb:Eleanor}} skips into the {{bb:library}}, while you follow her.\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:78
+msgid "{{lb:Look around}} the {{bb:library}}."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:97
+msgid "Eleanor: {{Bb:It's all echo-y-y-y-y..}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:105
+msgid ""
+"You're in a corridor leading to two clearly labelled doors. One has the sign "
+"{{bb:public-section}}, the other {{bb:private-section}}.\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:110
+msgid "Eleanor: {{Bb:\"There used to be a librarian here."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:112
+msgid ""
+"She would tell me off for trying to look in the}} {{bb:private-section}}."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:115
+msgid ""
+"{{Bb:What do you think is in there? Let's try and}} {{lb:look inside}}{{Bb:."
+"\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:128
+msgid ""
+"{{rb:Use}} {{yb:ls private-section/}} {{rb:to look in the private-section of "
+"the library.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:131
+msgid "Eleanor: {{Bb:What's in the private-section?}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:140
+msgid "Eleanor: {{Bb:\"I guess the private-section is locked to outsiders...\""
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:142
+msgid ""
+"\"Let's see if we can find something useful in the}} {{bb:public section.}}"
+"{{Bb:\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:145
+msgid ""
+"\n"
+"Use {{yb:ls}} to look in the {{bb:public-section}}."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:157
+msgid "{{rb:Use}} {{yb:ls}} {{rb:to look in the public section.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:158
+msgid ""
+"{{rb:Use}} {{yb:ls public-section}} {{rb:to look in the public-section.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:161
+msgid "Eleanor: {{Bb:What's in the public-section?}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:169
+msgid "Eleanor: {{Bb:\"Wow, all the commands have disappeared."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:170
+msgid ""
+"I wonder if people have been stealing them?\"\n"
+"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:172
+msgid "{{Bb:\"What is that}} {{yb:NANO}} {{Bb:paper?\"}}\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:173
+msgid "{{Bb:\"Let's}} {{lb:examine}} {{Bb:it.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:181
+msgid "{{rb:Examine the NANO script with}} {{yb:cat public-section/NANO}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:184
+msgid "Eleanor: {{Bb:The library should probably have introduced late fees.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:194
+msgid "Eleanor: {{Bb:So nano allows you to edit files?}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:197
+msgid ""
+"{{Bb:\"Maybe we could use this to fix that}} {{yb:best-horn-in-the-world."
+"sh}} {{Bb:script?\"}}\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:200
+msgid ""
+"{{Bb:\"Let's}} {{lb:head back}} {{Bb:to the}} {{bb:shed-shop}}{{Bb:.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:205
+msgid "Eleanor: {{Bb:...do we have to go and see creepy Bernard again?}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:211
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:214
+msgid ""
+"\n"
+"{{gb:Now go into the}} {{bb:shed-shop}}{{gb:.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_26.py:215
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:cd shed-shop/}} {{rb:to go into the shed-shop.}}"
 msgstr ""
