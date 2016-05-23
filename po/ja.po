@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: terminal-quest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-21 15:12+0900\n"
+"POT-Creation-Date: 2016-05-23 23:10+0900\n"
 "PO-Revision-Date: 2016-05-17 08:33+0900\n"
 "Last-Translator: Choppin Antoine <antoine@japonophile.com>\n"
 "Language-Team: Japanese\n"
@@ -216,6 +216,8 @@ msgstr ""
 #: ../linux_story/story/challenges/challenge_11.py:108
 #: ../linux_story/story/challenges/challenge_11.py:111
 #: ../linux_story/story/challenges/challenge_17.py:221
+#: ../linux_story/story/challenges/challenge_20.py:132
+#: ../linux_story/story/challenges/challenge_20.py:135
 msgid " ------------------------------------- "
 msgstr " ------------------------------------- "
 
@@ -457,6 +459,7 @@ msgstr "{{yb:ls}}{{rb:をタイプし、}}{{ob:Enter}}{{rb:キーを押して。
 #: ../linux_story/story/challenges/challenge_4.py:85
 #: ../linux_story/story/challenges/challenge_8.py:31
 #: ../linux_story/story/challenges/challenge_9.py:50
+#: ../linux_story/story/challenges/challenge_22.py:55
 msgid "{{pb:Ding. Dong.}}\n"
 msgstr "キン・コーン\n"
 
@@ -757,6 +760,7 @@ msgstr ""
 #: ../linux_story/story/challenges/challenge_7.py:81
 #: ../linux_story/story/challenges/challenge_11.py:62
 #: ../linux_story/story/challenges/challenge_18.py:208
+#: ../linux_story/story/challenges/challenge_21.py:337
 msgid ""
 "\n"
 "{{gb:You look around.}}"
@@ -803,6 +807,8 @@ msgstr ""
 #: ../linux_story/story/challenges/challenge_8.py:77
 #: ../linux_story/story/challenges/challenge_8.py:109
 #: ../linux_story/story/challenges/challenge_11.py:146
+#: ../linux_story/story/challenges/challenge_20.py:83
+#: ../linux_story/story/challenges/challenge_22.py:162
 msgid "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
 msgstr ""
 
@@ -819,6 +825,7 @@ msgstr ""
 #: ../linux_story/story/challenges/challenge_8.py:51
 #: ../linux_story/story/challenges/challenge_8.py:71
 #: ../linux_story/story/challenges/challenge_8.py:104
+#: ../linux_story/story/challenges/challenge_22.py:83
 msgid ""
 "\n"
 "{{pb:Ding. Dong.}}\n"
@@ -1755,6 +1762,8 @@ msgid "{{lb:Go into your}} {{bb:parents-room}}."
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_17.py:85
+#: ../linux_story/story/challenges/challenge_20.py:48
+#: ../linux_story/story/challenges/challenge_21.py:46
 msgid ""
 "\n"
 "{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}"
@@ -1902,6 +1911,12 @@ msgid ""
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_18.py:52
+#: ../linux_story/story/challenges/challenge_21.py:173
+#: ../linux_story/story/challenges/challenge_22.py:67
+#: ../linux_story/story/challenges/challenge_22.py:96
+#: ../linux_story/story/challenges/challenge_23.py:151
+#: ../linux_story/story/challenges/challenge_24.py:36
+#: ../linux_story/story/challenges/challenge_24.py:89
 msgid "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
 msgstr ""
 
@@ -2076,6 +2091,7 @@ msgid ""
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_19.py:88
+#: ../linux_story/story/challenges/challenge_21.py:92
 msgid ""
 "{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} {{yb:echo 3}} {{rb:"
 "to reply to Ruth.}}"
@@ -2189,6 +2205,7 @@ msgid "Ruth: {{Bb:What did you say? I didn't catch that.}}"
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_19.py:199
+#: ../linux_story/story/challenges/challenge_21.py:210
 msgid "{{rb:Use}} {{yb:echo 1}} {{rb:or}} {{yb:echo 2}} {{rb:to reply.}}"
 msgstr ""
 
@@ -2197,4 +2214,728 @@ msgid ""
 "Ruth: {{Bb:\"I would, but I'm scared of going missing myself.\"\n"
 "\"He might come back, so I should stay here in case he does. Can you think "
 "of anything else?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:29
+msgid "{{yb:\"Some people survived by going into hiding.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:32
+msgid ""
+"Ruth: {{Bb:\"Oh! That reminds me, my husband used to build special shelters "
+"to store crops in over winter. I think he used a specific tool. We should "
+"take a look in his toolshed to see if we can find it.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:36
+msgid ""
+"\n"
+"Use the {{lb:cd}} command to go into the {{bb:toolshed}}.\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:42
+msgid "{{rb:Go to the toolshed in one step using}} {{yb:cd ../toolshed}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:51
+msgid ""
+"\n"
+"{{gb:You walk outside. Now go into the}} {{bb:toolshed}}{{gb:.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:52
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:cd toolshed}} {{rb:to go in the toolshed.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:75
+msgid ""
+"{{bb:Ruth}} follows you into the {{bb:toolshed}}. It's a very large space "
+"with tools lining the walls.\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:77
+msgid ""
+"Ruth: {{Bb:\"Let's}} {{lb:look around}} {{Bb:for anything that could be "
+"useful.\"}}\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:107
+msgid ""
+"Ruth: {{Bb:\"Ah, look! There are some instructions under}} {{bb:MKDIR}}{{Bb:."
+"\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:109
+msgid "{{Bb:\"What does it say?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:110
+msgid ""
+"\n"
+"{{lb:Examine}} the {{bb:MKDIR}} instructions."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:113
+msgid ""
+"Ruth: {{Bb:\"...you are able to read, yes? You use}} {{yb:cat}} {{Bb:to read "
+"things.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:115
+msgid ""
+"Ruth: {{Bb:\"What do you kids learn in schools nowadays...\"\n"
+"\"Just use}} {{yb:cat MKDIR}} {{Bb:to read the paper.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:117
+msgid "{{rb:Use}} {{yb:cat MKDIR}} {{rb:to read it.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:129
+msgid ""
+"Ruth: {{Bb:\"This says you can make something using something called}} {{yb:"
+"mkdir}}{{Bb:?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:131
+msgid ""
+"\n"
+"Try making an igloo using {{yb:mkdir igloo}}\n"
+" "
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:133
+msgid "| {{gb:New Spell}}: {{yb:mkdir}} followed by a word |"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:134
+msgid "| lets you {{lb:create}} a shelter           | "
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:138
+msgid "{{rb:Create an igloo structure by using}} {{yb:mkdir igloo}}\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:154
+msgid ""
+"\n"
+"{{gb:Well done for checking the page again!}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:165
+msgid "Now have a {{lb:look around}} and see what's changed."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_20.py:176
+#: ../linux_story/story/challenges/challenge_21.py:416
+msgid "{{rb:Look around using}} {{yb:ls}}{{rb:.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:26
+msgid "{{gb:Nice! You've built an igloo! You learned the new skill, mkdir!}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:28
+msgid ""
+"\n"
+"Ruth: {{Bb:\"That's amazing! Please help me build a shelter!"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:29
+msgid ""
+"Can we build it in the}} {{bb:barn}}{{Bb:, as then it'll be easier to move "
+"the animals inside.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:31
+msgid ""
+"\n"
+"{{lb:Go}} back into the {{bb:barn}}."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:49
+msgid ""
+"\n"
+"{{gb:You walk outside. Now go into the}} {{bb:barn}}{{gb:.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:50
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:cd barn}} {{rb:to go in the barn.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:73
+msgid "Ruth: {{Bb:\"Anyone would be able to find the igloo you just made."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:75
+msgid "Is it possible to make something hidden?\"}}\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:76
+msgid ""
+"{{yb:1: \"If we call it}} {{bb:hidden-shelter}}{{yb:, that will make it "
+"hidden.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:78
+msgid "{{yb:2: \"Putting a . at the front makes things hidden.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:79
+msgid "{{yb:3: \"It's impossible to make a hidden shelter.\"}}\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:80
+msgid "Use {{yb:echo}} to tell {{bb:Ruth}} how to make things hidden."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:90
+msgid ""
+"Ruth: {{Bb:\"You're really going to have to speak up, I can't understand "
+"anything you're saying.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:109
+msgid ""
+"\n"
+"Ruth: {{Bb:\"...Really? Are you sure about that?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:122
+msgid ""
+"{{yb:\"If we call it}} {{bb:hidden-shelter}}{{yb:, that will make it hidden."
+"\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:126
+msgid ""
+"Ruth: {{Bb:\"So creating one called}} {{bb:hidden-shelter}} {{Bb:should make "
+"it hidden? Ok, let's try that.\"}}\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:128
+msgid "Try {{lb:building}} a shelter called {{bb:hidden-shelter}}."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:136
+msgid "{{rb:You need to make a shelter called}} {{yb:hidden-shelter}}{{rb:.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:138
+msgid ""
+"{{rb:Use the command}} {{yb:mkdir hidden-shelter}} {{rb:to make the "
+"shelter.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:145
+msgid ""
+"\n"
+"Ruth: {{Bb:\"You said the shelter should be called}} {{bb:hidden-shelter}}"
+"{{Bb:, not}} {{lb:.hidden-shelter}}{{Bb:.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:165
+msgid "{{lb:Look around}} to see if it is hidden correctly."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:180
+msgid ""
+"\n"
+"{{gb:Close!}} {{ob:But you need to check if the shelter is hidden, so don't "
+"look around you}} {{yb:too closely}}{{rb:.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:195
+msgid "Ruth: {{Bb:\"You made}} {{bb:hidden-shelter}}{{Bb:!\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:196
+msgid "{{Bb:\"...The problem is, I can see it too. I don't think it worked."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:197
+msgid "How else could you make something hidden?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:198
+msgid ""
+"\n"
+"{{yb:1: \"If you put a . in front of the name, it makes it hidden.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:199
+msgid ""
+"{{yb:2: \"You're mistaken. You can't see the hidden-shelter, it's hidden."
+"\"}}\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:201
+msgid "Use {{yb:echo}} to talk to {{bb:Ruth}}."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:209
+msgid "Ruth: {{Bb:You NEED to speak more clearly. I can't understand you.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:219
+msgid ""
+"\n"
+"Ruth: {{Bb:...."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:220
+msgid ""
+"Be careful kid, I'm not stupid. That shelter is not hidden.\n"
+"How do I make one that is?}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:237
+msgid "{{yb:\"If you put a . in front of the name, it makes it hidden.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:240
+msgid ""
+"Ruth: {{Bb:\"So if we called the shelter}} {{bb:.shelter}}{{Bb:, it would be "
+"hidden? Let's try it!\"}}\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:242
+msgid "{{lb:Build}} a shelter called {{bb:.shelter}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:248
+msgid ""
+"{{rb:Make}} {{bb:.shelter}} {{rb:using}} {{yb:mkdir .shelter}}{{rb: - "
+"remember the dot!}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:266
+msgid "Check it is properly hidden. Use {{yb:ls}} to see if it is visible."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:278
+msgid ""
+"{{rb:Use}} {{yb:ls}}{{rb:, not ls -a, to check your shelter is hidden.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:288
+msgid "{{gb:Good, we can't see it in the barn.}}\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:289
+msgid "Now look around with {{yb:ls -a}} to check it actually exists!"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:297
+msgid "{{rb:Use}} {{yb:ls -a}} {{rb:to look around.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:306
+msgid "{{gb:It worked! You've succesfully created something hidden.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:307
+msgid ""
+"\n"
+"Ruth: {{Bb:\"Did you make something? That's amazing!\""
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:308
+msgid ""
+"\"...unfortunately I can't see it...please can you put me and the animals "
+"inside?\"}}\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:310
+msgid "{{lb:Move}} everyone into the {{bb:.shelter}} one by one.\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:344
+msgid "{{rb:Use}} {{yb:"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:364
+msgid ""
+"\n"
+"{{gb:Well done! Move one more in the}} {{yb:.shelter}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:368
+msgid ""
+"\n"
+"{{gb:Well done! Move {} more.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:371
+msgid ""
+"\n"
+"{{gb:Press}} {{ob:Enter}} {{gb:to continue}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:388
+msgid ""
+"{{lb:Go}} into the {{bb:.shelter}} along with {{bb:Ruth}} and the animals."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:394
+msgid ""
+"{{rb:Type}} {{yb:cd .shelter}} {{rb:to go into the}} {{bb:.shelter}}{{rb:.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_21.py:407
+msgid "Have a {{lb:look around}} to check you moved everyone."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:23
+msgid "{{gb:Well done, it looks like everyone is here!}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:24
+msgid ""
+"\n"
+"Ruth: {{Bb:\"Thank you so much!\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:25
+msgid ""
+"{{Bb:\"We'll stay in here to keep safe. I'm so grateful for everything "
+"you've done.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:27
+msgid ""
+"\n"
+"Use {{yb:cat}} to check that the animals are happy in here."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:39
+msgid ""
+"{{rb:Use}} {{yb:cat}} {{rb:to examine an animal, e.g.}} {{yb:cat Daisy}}"
+"{{rb:.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:56
+msgid "Ruth: {{Bb:\"What?? I heard a bell! What does that mean?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:57
+msgid ""
+"\n"
+"Quick! {{lb:Look around}} and see if anyone is missing."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:82
+msgid "It appears that everyone is still here..."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:84
+msgid ""
+"\n"
+"Ruth: {{Bb:\"I heard it again! Is that the sound you heard when my husband "
+"went missing?\"\n"
+"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:86
+msgid "Have another quick {{lb:look around}}."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:110
+msgid ""
+"Ruth: {{Bb:\"It's alright. We're all safe, everyone's still here. I wonder "
+"why it's ringing?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:112
+msgid ""
+"\n"
+"Perhaps we should investigate that sound. Who else do we know?"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:114
+msgid ""
+"Maybe you should check back on the family in the {{bb:.hidden-shelter}} and "
+"talk to them with your new found voice."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:117
+msgid ""
+"\n"
+"Start heading back to the {{bb:.hidden-shelter}} using {{yb:cd}}."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:124
+msgid ""
+"{{rb:We can go directly to the}} {{bb:.hidden-shelter}} {{rb:using}} {{yb:cd "
+"~/town/.hidden-shelter}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:141
+msgid ""
+"\n"
+"{{gb:You travel back to tilde}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_22.py:152
+msgid "Have a {{lb:look around}}."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:28
+msgid "You see {{bb:Eleanor}}. Listen to what she has to say."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:36
+msgid "{{rb:Use}} {{yb:cat Eleanor}} {{rb:to see what she has to say.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:45
+msgid "Eleanor: {{Bb:\"Oh, it's you! Have you seen my Mum and Dad?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:47
+msgid ""
+"\n"
+"{{yb:1: \"I'm afraid not. When did you last see them?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:48
+msgid "{{yb:2: \"Weren't they with you in the hidden-shelter?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:49
+msgid "{{yb:3: \"(lie) Yes, I saw them in town.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:50
+msgid ""
+"\n"
+"Use the {{yb:echo}} command to talk to {{bb:Eleanor}}."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:66
+msgid ""
+"\n"
+"Eleanor: {{Bb:\"Pardon? What did you say?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:70
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} {{yb:echo 3}} {{rb:"
+"to reply.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:85
+msgid "{{rb:Use}} {{yb:cd ..}} {{rb:to go into town.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:89
+msgid "Eleanor: {{Bb:Yay, we're going on an adventure!}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:97
+msgid "{{yb:\"I'm afraid not. When did you last see them?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:100
+msgid ""
+"Eleanor: {{Bb:\"Not long ago. The dog ran out again, so they went outside to "
+"look for him.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:106
+msgid "{{yb:\"Weren't they with you in the hidden-shelter?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:109
+msgid ""
+"Eleanor: {{Bb:\"No, they went outside. The dog ran away again, so they went "
+"outside to look for it. Maybe they got lost?\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:116
+msgid "{{yb:\"(lie) Yes, I saw them in town.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:119
+msgid ""
+"Eleanor: {{Bb:\"Oh that's good! The dog ran away again, and they went "
+"outside to look for him.\""
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:121
+msgid ""
+"\"The bell scared me, but I'm pleased they're alright.\"\n"
+"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:125
+msgid ""
+"{{Bb:\"Let's go to town together and find them. I'm sure I'll be safe if I'm "
+"with you.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:128
+msgid ""
+"\n"
+"{{gb:Eleanor joined you as a companion! You can check how she is any time "
+"with}} {{yb:cat Eleanor}}{{gb:.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:131
+msgid ""
+"\n"
+"{{lb:Leave}} the {{bb:.hidden-shelter.}} Don't worry, {{bb:Eleanor}} will "
+"follow!"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:148
+msgid ""
+"Eleanor: {{Bb:Have you forgotten how to look around? You need to use}} {{yb:"
+"ls}}{{Bb:.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:160
+msgid "Eleanor: {{Bb:\"Let's go to the}} {{bb:east}} {{Bb:of town.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:162
+msgid ""
+"{{Bb:\"Haven't you noticed it before? It's over there! Look over there.\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:164
+msgid ""
+"\n"
+"Use {{yb:ls}} to see what {{bb:Eleanor}} is trying to show you."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:201
+msgid ""
+"\n"
+"Eleanor: {{Bb:Why are you looking at me? You should be looking over THERE.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:211
+msgid "You look in the direction {{bb:Eleanor}} is pointing."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:212
+msgid "There is a narrow road leading to another part of town."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:213
+msgid "This must take us to the {{bb:east}} part.\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:214
+msgid "Eleanor: {{Bb:Let's go there and see if we can find my parents.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:216
+msgid ""
+"\n"
+"{{lb:Go}} into the {{bb:east}} of town."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:222
+msgid "{{rb:Use}} {{lb:cd}} {{rb:to go into the east part of town}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:224
+msgid "{{rb:Use}} {{yb:cd east}} {{rb:}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_23.py:229
+msgid ""
+"\n"
+"Eleanor: {{Bb:Let's go to the}} {{lb:east}} {{Bb:of town. Come on slow "
+"coach!}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:23
+msgid ""
+"You walk down the narrow road, with {{bb:Eleanor}} dancing alongside, until "
+"you reach an open space in the {{bb:east}} part of town."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:26
+#: ../linux_story/story/challenges/challenge_24.py:83
+msgid ""
+"\n"
+"{{lb:Look around.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:46
+msgid ""
+"Eleanor: {{Bb:I can't see my parents anywhere...but there's a weird building "
+"there.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:55
+msgid "You see a {{bb:shed-shop}}, {{bb:library}} and {{bb:restaurant}}."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:56
+msgid ""
+"\n"
+"Eleanor: {{Bb:\"Hey, what is that shed-shop?\"}}\n"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:57
+msgid "{{Bb:\"Let's}} {{lb:go in}}{{Bb:!\"}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:63
+msgid "{{rb:Use}} {{yb:cd shed-shop}} {{rb:to go in the shed-shop.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:66
+msgid "Eleanor: {{Bb:Do you think they sell candy?}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:80
+msgid "You both walk slowly into the shop."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:81
+msgid "It is dusty and significantly darker in here than outside."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:82
+msgid "{{bb:Eleanor}} looks like she needs to sneeze."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:101
+msgid "Eleanor: {{Bb:Ah..ah...achoo!! It's so dusty in here!}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:110
+msgid "You see a man called {{bb:Bernard}}, a door and a couple of tools."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:112
+msgid ""
+"\n"
+"The tools show up as {{gb:green}} in the Terminal."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:113
+msgid ""
+"\n"
+"{{lb:Listen}} to what {{bb:Bernard}} has to say."
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:120
+msgid "{{rb:Use}} {{yb:cat Bernard}} {{rb:to see what Bernard has to say.}}"
+msgstr ""
+
+#: ../linux_story/story/challenges/challenge_24.py:128
+msgid ""
+"Eleanor: {{Bb:My}} {{lb:cat}} {{Bb:used to be a great listener, I'd tell her "
+"everything.}}"
 msgstr ""

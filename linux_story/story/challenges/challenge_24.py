@@ -20,10 +20,10 @@ class StepTemplateMkdir(TerminalMkdirEleanor):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "You walk down the narrow road, with {{bb:Eleanor}} dancing "
-        "alongside, until you reach an open space in the "
-        "{{bb:east}} part of town.",
-        "\n{{lb:Look around.}}"
+        _("You walk down the narrow road, with {{bb:Eleanor}} dancing " +\
+        "alongside, until you reach an open space in the " +\
+        "{{bb:east}} part of town."),
+        _("\n{{lb:Look around.}}")
     ]
     commands = [
         "ls",
@@ -33,7 +33,7 @@ class Step1(StepTemplateMkdir):
     start_dir = "~/town/east"
     end_dir = "~/town/east"
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+        _("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
     ]
     deleted_items = ["~/town/Eleanor"]
     story_dict = {
@@ -42,10 +42,9 @@ class Step1(StepTemplateMkdir):
         }
     }
 
-    eleanors_speech = (
-        "Eleanor: {{Bb:I can't see my parents anywhere...but there's "
-        "a weird building there.}}"
-    )
+    eleanors_speech = \
+        _("Eleanor: {{Bb:I can't see my parents anywhere...but there's " +\
+        "a weird building there.}}")
 
     def next(self):
         Step2()
@@ -53,20 +52,18 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateMkdir):
     story = [
-        "You see a {{bb:shed-shop}}, {{bb:library}} and {{bb:restaurant}}.",
-        "\nEleanor: {{Bb:\"Hey, what is that shed-shop?\"}}\n",
-        "{{Bb:\"Let's}} {{lb:go in}}{{Bb:!\"}}"
+        _("You see a {{bb:shed-shop}}, {{bb:library}} and {{bb:restaurant}}."),
+        _("\nEleanor: {{Bb:\"Hey, what is that shed-shop?\"}}\n"),
+        _("{{Bb:\"Let's}} {{lb:go in}}{{Bb:!\"}}")
     ]
 
     start_dir = "~/town/east"
     end_dir = "~/town/east/shed-shop"
     hints = [
-        "{{rb:Use}} {{yb:cd shed-shop}} {{rb:to go in the shed-shop.}}"
+        _("{{rb:Use}} {{yb:cd shed-shop}} {{rb:to go in the shed-shop.}}")
     ]
 
-    eleanors_speech = (
-        "Eleanor: {{Bb:Do you think they sell candy?}}"
-    )
+    eleanors_speech = _("Eleanor: {{Bb:Do you think they sell candy?}}")
 
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)
@@ -80,16 +77,16 @@ class Step3(StepTemplateMkdir):
     # Have a sign with "the-best-shed-maker-in-town"
 
     story = [
-        "You both walk slowly into the shop.",
-        "It is dusty and significantly darker in here than outside.",
-        "{{bb:Eleanor}} looks like she needs to sneeze.",
-        "\n{{lb:Look around.}}"
+        _("You both walk slowly into the shop."),
+        _("It is dusty and significantly darker in here than outside."),
+        _("{{bb:Eleanor}} looks like she needs to sneeze."),
+        _("\n{{lb:Look around.}}")
     ]
 
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east/shed-shop"
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+        _("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
     ]
     commands = [
         "ls",
@@ -101,9 +98,7 @@ class Step3(StepTemplateMkdir):
             "path": "~/town/east/shed-shop"
         }
     }
-    eleanors_speech = (
-        "Eleanor: {{Bb:Ah..ah...achoo!! It's so dusty in here!}}"
-    )
+    eleanors_speech = _("Eleanor: {{Bb:Ah..ah...achoo!! It's so dusty in here!}}")
 
     def next(self):
         Step4()
@@ -112,27 +107,26 @@ class Step3(StepTemplateMkdir):
 class Step4(StepTemplateMkdir):
 
     story = [
-        "You see a man called {{bb:Bernard}}, a door and a "
-        "couple of tools.",
-        "\nThe tools show up as {{gb:green}} in the Terminal.",
-        "\n{{lb:Listen}} to what {{bb:Bernard}} has to say."
+        _("You see a man called {{bb:Bernard}}, a door and a " +\
+        "couple of tools."),
+        _("\nThe tools show up as {{gb:green}} in the Terminal."),
+        _("\n{{lb:Listen}} to what {{bb:Bernard}} has to say.")
     ]
 
     start_dir = "~/town/east/shed-shop"
     end_dir = "~/town/east/shed-shop"
 
     hints = [
-        "{{rb:Use}} {{yb:cat Bernard}} {{rb:to see what Bernard has "
-        "to say.}}"
+        _("{{rb:Use}} {{yb:cat Bernard}} {{rb:to see what Bernard has " +\
+        "to say.}}")
     ]
 
     commands = [
         "cat Bernard"
     ]
-    eleanors_speech = (
-        "Eleanor: {{Bb:My}} {{lb:cat}} {{Bb:used to be a great "
-        "listener, I'd tell her everything.}}"
-    )
+    eleanors_speech = \
+        _("Eleanor: {{Bb:My}} {{lb:cat}} {{Bb:used to be a great " +\
+        "listener, I'd tell her everything.}}")
 
     last_step = True
 
