@@ -25,7 +25,7 @@ class StepMkdirEleanor(TerminalMkdirEleanor):
 
 class Step1(StepMkdir):
     story = [
-        "You see {{bb:Eleanor}}. Listen to what she has to say."
+        _("You see {{bb:Eleanor}}. Listen to what she has to say.")
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
@@ -33,7 +33,7 @@ class Step1(StepMkdir):
         "cat Eleanor"
     ]
     hints = [
-        "{{rb:Use}} {{yb:cat Eleanor}} {{rb:to see what she has to say.}}"
+        _("{{rb:Use}} {{yb:cat Eleanor}} {{rb:to see what she has to say.}}")
     ]
 
     def next(self):
@@ -42,12 +42,12 @@ class Step1(StepMkdir):
 
 class Step2(StepMkdir):
     story = [
-        "Eleanor: {{Bb:\"Oh, it's you! Have you seen my Mum and Dad?\"}}",
+        _("Eleanor: {{Bb:\"Oh, it's you! Have you seen my Mum and Dad?\"}}"),
         # TODO: change colour
-        "\n{{yb:1: \"I'm afraid not. When did you last see them?\"}}",
-        "{{yb:2: \"Weren't they with you in the hidden-shelter?\"}}",
-        "{{yb:3: \"(lie) Yes, I saw them in town.\"}}",
-        "\nUse the {{yb:echo}} command to talk to {{bb:Eleanor}}."
+        _("\n{{yb:1: \"I'm afraid not. When did you last see them?\"}}"),
+        _("{{yb:2: \"Weren't they with you in the hidden-shelter?\"}}"),
+        _("{{yb:3: \"(lie) Yes, I saw them in town.\"}}"),
+        _("\nUse the {{yb:echo}} command to talk to {{bb:Eleanor}}.")
     ]
 
     start_dir = "~/town/.hidden-shelter"
@@ -63,12 +63,12 @@ class Step2(StepMkdir):
             return True
         elif self.last_user_input.startswith("echo"):
             text = (
-                "\nEleanor: {{Bb:\"Pardon? What did you say?\"}}"
+                _("\nEleanor: {{Bb:\"Pardon? What did you say?\"}}")
             )
         else:
             text = (
-                "\n{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} "
-                "{{rb:or}} {{yb:echo 3}} {{rb:to reply.}}"
+                _("\n{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} " +\
+                "{{rb:or}} {{yb:echo 3}} {{rb:to reply.}}")
             )
 
         self.send_text(text)
@@ -82,11 +82,11 @@ class Step3(StepMkdirEleanor):
     end_dir = "~/town"
 
     hints = [
-        "{{rb:Use}} {{yb:cd ..}} {{rb:to go into town.}}"
+        _("{{rb:Use}} {{yb:cd ..}} {{rb:to go into town.}}")
     ]
 
     eleanors_speech = (
-        "Eleanor: {{Bb:Yay, we're going on an adventure!}}"
+        _("Eleanor: {{Bb:Yay, we're going on an adventure!}}")
     )
 
     def __init__(self, prev_command="echo 1"):
@@ -94,42 +94,42 @@ class Step3(StepMkdirEleanor):
 
         if prev_command == "echo 1":
             self.print_text = [
-                "{{yb:\"I'm afraid not. When did you last see them?\"}}"
+                _("{{yb:\"I'm afraid not. When did you last see them?\"}}")
             ]
             self.story += [
-                "Eleanor: {{Bb:\"Not long ago. The dog ran out again, "
-                "so they went outside to look for him.\"}}"
+                _("Eleanor: {{Bb:\"Not long ago. The dog ran out again, " +\
+                "so they went outside to look for him.\"}}")
             ]
 
         elif prev_command == "echo 2":
             self.print_text = [
-                "{{yb:\"Weren't they with you in the hidden-shelter?\"}}"
+                _("{{yb:\"Weren't they with you in the hidden-shelter?\"}}")
             ]
             self.story += [
-                "Eleanor: {{Bb:\"No, they went outside. "
-                "The dog ran away again, so they went outside to look for "
-                "it. Maybe they got lost?\"}}"
+                _("Eleanor: {{Bb:\"No, they went outside. " +\
+                "The dog ran away again, so they went outside to look for " +\
+                "it. Maybe they got lost?\"}}")
             ]
 
         elif prev_command == "echo 3":
             self.print_text = [
-                "{{yb:\"(lie) Yes, I saw them in town.\"}}"
+                _("{{yb:\"(lie) Yes, I saw them in town.\"}}")
             ]
             self.story += [
-                "Eleanor: {{Bb:\"Oh that's good! The dog ran away again, "
-                "and they went outside to look for him.\"",
-                "\"The bell scared me, but I'm pleased they're alright.\"\n}}"
+                _("Eleanor: {{Bb:\"Oh that's good! The dog ran away again, " +\
+                "and they went outside to look for him.\""),
+                _("\"The bell scared me, but I'm pleased they're alright.\"\n}}")
             ]
 
         self.story += [
-            "{{Bb:\"Let's go to town together and find them. I'm sure I'll be "
-            "safe if I'm with you.\"}}",
+            _("{{Bb:\"Let's go to town together and find them. I'm sure I'll be " +\
+            "safe if I'm with you.\"}}"),
 
-            "\n{{gb:Eleanor joined you as a companion! You can check how "
-            "she is any time with}} {{yb:cat Eleanor}}{{gb:.}}",
+            _("\n{{gb:Eleanor joined you as a companion! You can check how " +\
+            "she is any time with}} {{yb:cat Eleanor}}{{gb:.}}"),
 
-            "\n{{lb:Leave}} the {{bb:.hidden-shelter.}} "
-            "Don't worry, {{bb:Eleanor}} will follow!"
+            _("\n{{lb:Leave}} the {{bb:.hidden-shelter.}} " +\
+            "Don't worry, {{bb:Eleanor}} will follow!")
         ]
 
         StepMkdirEleanor.__init__(self)
@@ -145,10 +145,10 @@ class Step4(StepMkdirEleanor):
     start_dir = "~/town"
     end_dir = "~/town"
     hints = [
-        "Eleanor: {{Bb:Have you forgotten how to look around? "
-        "You need to use}} {{yb:ls}}{{Bb:.}}",
+        _("Eleanor: {{Bb:Have you forgotten how to look around? " +\
+        "You need to use}} {{yb:ls}}{{Bb:.}}"),
 
-        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+        _("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
     ]
     commands = [
         "ls",
@@ -157,11 +157,11 @@ class Step4(StepMkdirEleanor):
     deleted_items = ["~/town/.hidden-shelter/Eleanor"]
 
     story = [
-        "Eleanor: {{Bb:\"Let's go to the}} {{bb:east}} "
-        "{{Bb:of town.\"}}",
-        "{{Bb:\"Haven't you noticed it before? It's over there! "
-        "Look over there.\"}}",
-        "\nUse {{yb:ls}} to see what {{bb:Eleanor}} is trying to show you."
+        _("Eleanor: {{Bb:\"Let's go to the}} {{bb:east}} " +\
+        "{{Bb:of town.\"}}"),
+        _("{{Bb:\"Haven't you noticed it before? It's over there! " +\
+        "Look over there.\"}}"),
+        _("\nUse {{yb:ls}} to see what {{bb:Eleanor}} is trying to show you.")
     ]
 
     story_dict = {
@@ -198,8 +198,8 @@ class Step4(StepMkdirEleanor):
     }
 
     eleanors_speech = (
-        "\nEleanor: {{Bb:Why are you looking at me? "
-        "You should be looking over THERE.}}"
+        _("\nEleanor: {{Bb:Why are you looking at me? " +\
+        "You should be looking over THERE.}}")
     )
 
     def next(self):
@@ -208,26 +208,26 @@ class Step4(StepMkdirEleanor):
 
 class Step5(StepMkdirEleanor):
     story = [
-        "You look in the direction {{bb:Eleanor}} is pointing.",
-        "There is a narrow road leading to another part of town.",
-        "This must take us to the {{bb:east}} part.\n",
-        "Eleanor: {{Bb:Let's go there and see if we can find my "
-        "parents.}}",
-        "\n{{lb:Go}} into the {{bb:east}} of town."
+        _("You look in the direction {{bb:Eleanor}} is pointing."),
+        _("There is a narrow road leading to another part of town."),
+        _("This must take us to the {{bb:east}} part.\n"),
+        _("Eleanor: {{Bb:Let's go there and see if we can find my " +\
+        "parents.}}"),
+        _("\n{{lb:Go}} into the {{bb:east}} of town.")
     ]
     start_dir = "~/town"
     end_dir = "~/town/east"
 
     hints = [
-        "{{rb:Use}} {{lb:cd}} {{rb:to go into the "
-        "east part of town}}",
-        "{{rb:Use}} {{yb:cd east}} {{rb:}}"
+        _("{{rb:Use}} {{lb:cd}} {{rb:to go into the " +\
+        "east part of town}}"),
+        _("{{rb:Use}} {{yb:cd east}} {{rb:}}")
     ]
     last_step = True
 
     eleanors_speech = (
-        "\nEleanor: {{Bb:Let's go to the}} {{lb:east}} "
-        "{{Bb:of town. Come on slow coach!}}"
+        _("\nEleanor: {{Bb:Let's go to the}} {{lb:east}} " +\
+        "{{Bb:of town. Come on slow coach!}}")
     )
 
     def block_command(self):

@@ -70,9 +70,11 @@ class Step1(StepTemplateCd):
 
         else:
             if self.first_time:
-                hint = _("\n{{rb:Use}} {{yb:cat}} {{rb:to look at two of the objects around you.}}")
+                hint = _("\n{{rb:Use}} {{yb:cat}} {{rb:to look at two of the " +\
+                         "objects around you.}}")
             else:
-                hint = _("\n{{rb:Use the command}} {{yb:{}}} {{rb:to progress.}}").format(self.allowed_commands[0])
+                hint = _("\n{{rb:Use the command}} {{yb:{}}} {{rb:to progress.}}")\
+                        .format(self.allowed_commands[0])
 
         level_up = (self.counter >= 2)
 
@@ -122,7 +124,8 @@ class Step2(StepTemplateCd):
             # then congratulate them
             if self.last_user_input == "cd .." or \
                     self.last_user_input == 'cd ../':
-                hint = _("\n{{gb:Good work! Now replay the last command using the}} {{ob:UP}} {{gb:arrow on your keyboard.}}")
+                hint = _("\n{{gb:Good work! Now replay the last command using " +\
+                         "the}} {{ob:UP}} {{gb:arrow on your keyboard.}}")
 
             # Otherwise, give them a hint
             else:
@@ -132,7 +135,8 @@ class Step2(StepTemplateCd):
             # If they have only just got to the home directory,
             # then they used an appropriate command
             if self.num_turns_in_home_dir == 0:
-                hint = _("\n{{gb:Good work! Now use}} {{yb:cd town}} {{gb:to head to town.}}")
+                hint = _("\n{{gb:Good work! Now use}} {{yb:cd town}} {{gb:" +\
+                         "to head to town.}}")
 
             # Otherwise give them a hint
             else:

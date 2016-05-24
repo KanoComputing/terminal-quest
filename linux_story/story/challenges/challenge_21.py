@@ -23,12 +23,12 @@ class StepTemplateMkdir(TerminalMkdir):
 
 class Step1(StepTemplateMkdir):
     story = [
-        "{{gb:Nice! You've built an igloo! You learned the new skill, "
-        "mkdir!}}",
-        "\nRuth: {{Bb:\"That's amazing! Please help me build a shelter!",
-        "Can we build it in the}} {{bb:barn}}{{Bb:, as then it'll be easier "
-        "to move the animals inside.\"}}",
-        "\n{{lb:Go}} back into the {{bb:barn}}."
+        _("{{gb:Nice! You've built an igloo! You learned the new skill, " +\
+        "mkdir!}}"),
+        _("\nRuth: {{Bb:\"That's amazing! Please help me build a shelter!"),
+        _("Can we build it in the}} {{bb:barn}}{{Bb:, as then it'll be easier " +\
+        "to move the animals inside.\"}}"),
+        _("\n{{lb:Go}} back into the {{bb:barn}}.")
     ]
     start_dir = "~/farm/toolshed"
     end_dir = "~/farm/barn"
@@ -43,11 +43,11 @@ class Step1(StepTemplateMkdir):
 
     path_hints = {
         "~/farm/toolshed": {
-            "blocked": "\n{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}"
+            "blocked": _("\n{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}")
         },
         "~/farm": {
-            "not_blocked": "\n{{gb:You walk outside. Now go into the}} {{bb:barn}}{{gb:.}}",
-            "blocked": "\n{{rb:Use}} {{yb:cd barn}} {{rb:to go in the barn.}}"
+            "not_blocked": _("\n{{gb:You walk outside. Now go into the}} {{bb:barn}}{{gb:.}}"),
+            "blocked": _("\n{{rb:Use}} {{yb:cd barn}} {{rb:to go in the barn.}}")
         }
     }
 
@@ -70,14 +70,14 @@ class Step1(StepTemplateMkdir):
 
 class Step2(StepTemplateMkdir):
     story = [
-        "Ruth: {{Bb:\"Anyone would be able to find the igloo "
-        "you just made.",
-        "Is it possible to make something hidden?\"}}\n",
-        "{{yb:1: \"If we call it}} {{bb:hidden-shelter}}"
-        "{{yb:, that will make it hidden.\"}}",
-        "{{yb:2: \"Putting a . at the front makes things hidden.\"}}",
-        "{{yb:3: \"It's impossible to make a hidden shelter.\"}}\n",
-        "Use {{yb:echo}} to tell {{bb:Ruth}} how to make things hidden."
+        _("Ruth: {{Bb:\"Anyone would be able to find the igloo " +\
+        "you just made."),
+        _("Is it possible to make something hidden?\"}}\n"),
+        _("{{yb:1: \"If we call it}} {{bb:hidden-shelter}}" +\
+        "{{yb:, that will make it hidden.\"}}"),
+        _("{{yb:2: \"Putting a . at the front makes things hidden.\"}}"),
+        _("{{yb:3: \"It's impossible to make a hidden shelter.\"}}\n"),
+        _("Use {{yb:echo}} to tell {{bb:Ruth}} how to make things hidden.")
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
@@ -87,10 +87,10 @@ class Step2(StepTemplateMkdir):
         "echo 3"
     ]
     hints = [
-        "Ruth: {{Bb:\"You're really going to have to speak up, "
-        "I can't understand anything you're saying.\"}}",
-        "{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} "
-        "{{yb:echo 3}} {{rb:to reply to Ruth.}}"
+        _("Ruth: {{Bb:\"You're really going to have to speak up, " +\
+        "I can't understand anything you're saying.\"}}"),
+        _("{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} " +\
+        "{{yb:echo 3}} {{rb:to reply to Ruth.}}")
     ]
 
     def __init__(self):
@@ -106,7 +106,7 @@ class Step2(StepTemplateMkdir):
             return True
         elif self.last_user_input == "echo 3":
             hint = (
-                "\nRuth: {{Bb:\"...Really? Are you sure about that?\"}}"
+                _("\nRuth: {{Bb:\"...Really? Are you sure about that?\"}}")
             )
             self.send_text(hint)
         else:
@@ -119,13 +119,13 @@ class Step2(StepTemplateMkdir):
 # First fork - try making a hidden shelter
 class Step3(StepTemplateMkdir):
     print_text = [
-        "{{yb:\"If we call it}} {{bb:hidden-shelter}}"
-        "{{yb:, that will make it hidden.\"}}"
+        _("{{yb:\"If we call it}} {{bb:hidden-shelter}}" +\
+        "{{yb:, that will make it hidden.\"}}")
     ]
     story = [
-        "Ruth: {{Bb:\"So creating one called}} {{bb:hidden-shelter}} "
-        "{{Bb:should make it hidden? Ok, let's try that.\"}}\n",
-        "Try {{lb:building}} a shelter called {{bb:hidden-shelter}}."
+        _("Ruth: {{Bb:\"So creating one called}} {{bb:hidden-shelter}} " +\
+        "{{Bb:should make it hidden? Ok, let's try that.\"}}\n"),
+        _("Try {{lb:building}} a shelter called {{bb:hidden-shelter}}.")
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
@@ -133,19 +133,19 @@ class Step3(StepTemplateMkdir):
         "mkdir hidden-shelter",
     ]
     hints = [
-        "{{rb:You need to make a shelter called}} {{yb:hidden-shelter}}"
-        "{{rb:.}}",
-        "{{rb:Use the command}} {{yb:mkdir hidden-shelter}} "
-        "{{rb:to make the shelter.}}"
+        _("{{rb:You need to make a shelter called}} {{yb:hidden-shelter}}" +\
+        "{{rb:.}}"),
+        _("{{rb:Use the command}} {{yb:mkdir hidden-shelter}} " +\
+        "{{rb:to make the shelter.}}")
     ]
 
     def check_command(self):
         if self.last_user_input == "mkdir .hidden-shelter":
             hint = (
-                "\nRuth: {{Bb:\"You said the shelter should be called}} "
-                "{{bb:hidden-shelter}}{{Bb:, not}} {{lb:.hidden-shelter}}"
-                "{{Bb:.\"}}"
-                "\n{{yb:Press UP to replay the old command, and edit it.}}"
+                _("\nRuth: {{Bb:\"You said the shelter should be called}} " +\
+                "{{bb:hidden-shelter}}{{Bb:, not}} {{lb:.hidden-shelter}}" +\
+                "{{Bb:.\"}}")
+                "\n{{yb:Press UP to replay the old command, and edit it.}}")
             )
             self.send_text(hint)
         else:
@@ -162,7 +162,7 @@ class Step3(StepTemplateMkdir):
 
 class Step4(StepTemplateMkdir):
     story = [
-        "{{lb:Look around}} to see if it is hidden correctly."
+        _("{{lb:Look around}} to see if it is hidden correctly.")
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
@@ -170,16 +170,16 @@ class Step4(StepTemplateMkdir):
         "ls"
     ]
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+        _("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
     ]
     ls_a_hint = True
 
     def check_command(self):
         if self.last_user_input == "ls -a" and self.ls_a_hint:
             hint = (
-                "\n{{gb:Close!}} {{ob:But you need to check if the "
-                "shelter is hidden, so don't look "
-                "around you}} {{yb:too closely}}{{rb:.}}"
+                _("\n{{gb:Close!}} {{ob:But you need to check if the " +\
+                "shelter is hidden, so don't look " +\
+                "around you}} {{yb:too closely}}{{rb:.}}")
             )
             self.send_text(hint)
             self.ls_a_hint = False
@@ -192,13 +192,13 @@ class Step4(StepTemplateMkdir):
 
 class Step5(StepTemplateMkdir):
     story = [
-        "Ruth: {{Bb:\"You made}} {{bb:hidden-shelter}}{{Bb:!\"}}",
-        "{{Bb:\"...The problem is, I can see it too. I don't think it worked.",
-        "How else could you make something hidden?\"}}",
-        "\n{{yb:1: \"If you put a . in front of the name, it makes it hidden.\"}}",
-        "{{yb:2: \"You're mistaken. You can't see the hidden-shelter, it's "
-        "hidden.\"}}\n",
-        "Use {{yb:echo}} to talk to {{bb:Ruth}}.",
+        _("Ruth: {{Bb:\"You made}} {{bb:hidden-shelter}}{{Bb:!\"}}"),
+        _("{{Bb:\"...The problem is, I can see it too. I don't think it worked."),
+        _("How else could you make something hidden?\"}}"),
+        _("\n{{yb:1: \"If you put a . in front of the name, it makes it hidden.\"}}"),
+        _("{{yb:2: \"You're mistaken. You can't see the hidden-shelter, it's " +\
+        "hidden.\"}}\n"),
+        _("Use {{yb:echo}} to talk to {{bb:Ruth}}."),
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
@@ -206,8 +206,8 @@ class Step5(StepTemplateMkdir):
         "echo 1"
     ]
     hints = [
-        "Ruth: {{Bb:You NEED to speak more clearly. I can't understand you.}}",
-        "{{rb:Use}} {{yb:echo 1}} {{rb:or}} {{yb:echo 2}} {{rb:to reply.}}"
+        _("Ruth: {{Bb:You NEED to speak more clearly. I can't understand you.}}"),
+        _("{{rb:Use}} {{yb:echo 1}} {{rb:or}} {{yb:echo 2}} {{rb:to reply.}}")
     ]
 
     def check_command(self):
@@ -216,9 +216,9 @@ class Step5(StepTemplateMkdir):
 
         elif self.last_user_input == "echo 2":
             hint = (
-                "\nRuth: {{Bb:....",
-                "Be careful kid, I'm not stupid. That shelter is not hidden.\n"
-                "How do I make one that is?}}"
+                _("\nRuth: {{Bb:...."),
+                _("Be careful kid, I'm not stupid. That shelter is not hidden.\n" +\
+                "How do I make one that is?}}")
             )
             self.send_text(hint)
 
@@ -234,19 +234,19 @@ class Step5(StepTemplateMkdir):
 
 class Step6(StepTemplateMkdir):
     print_text = [
-        "{{yb:\"If you put a . in front of the name, it makes it hidden.\"}}"
+        _("{{yb:\"If you put a . in front of the name, it makes it hidden.\"}}")
     ]
     story = [
-        "Ruth: {{Bb:\"So if we called the shelter}} {{bb:.shelter}}"
-        "{{Bb:, it would be hidden? Let's try it!\"}}\n",
-        "{{lb:Build}} a shelter called {{bb:.shelter}}"
+        _("Ruth: {{Bb:\"So if we called the shelter}} {{bb:.shelter}}" +\
+        "{{Bb:, it would be hidden? Let's try it!\"}}\n"),
+        _("{{lb:Build}} a shelter called {{bb:.shelter}}")
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
 
     hints = [
-        "{{rb:Make}} {{bb:.shelter}} {{rb:using}} {{yb:mkdir .shelter}}"
-        "{{rb: - remember the dot!}}"
+        _("{{rb:Make}} {{bb:.shelter}} {{rb:using}} {{yb:mkdir .shelter}}" +\
+        "{{rb: - remember the dot!}}")
     ]
     commands = [
         "mkdir .shelter"
@@ -263,8 +263,8 @@ class Step6(StepTemplateMkdir):
 
 class Step7(StepTemplateMkdir):
     story = [
-        "Check it is properly hidden. Use {{yb:ls}} to "
-        "see if it is visible."
+        _("Check it is properly hidden. Use {{yb:ls}} to " +\
+        "see if it is visible.")
     ]
 
     start_dir = "~/farm/barn"
@@ -275,8 +275,8 @@ class Step7(StepTemplateMkdir):
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:ls}}{{rb:, not ls -a, to check your shelter "
-        "is hidden.}}"
+        _("{{rb:Use}} {{yb:ls}}{{rb:, not ls -a, to check your shelter " +\
+        "is hidden.}}")
     ]
 
     def next(self):
@@ -285,8 +285,8 @@ class Step7(StepTemplateMkdir):
 
 class Step8(StepTemplateMkdir):
     story = [
-        "{{gb:Good, we can't see it in the barn.}}\n",
-        "Now look around with {{yb:ls -a}} to check it actually exists!"
+        _("{{gb:Good, we can't see it in the barn.}}\n"),
+        _("Now look around with {{yb:ls -a}} to check it actually exists!")
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
@@ -294,7 +294,7 @@ class Step8(StepTemplateMkdir):
         "ls -a"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls -a}} {{rb:to look around.}}"
+        _("{{rb:Use}} {{yb:ls -a}} {{rb:to look around.}}")
     ]
 
     def next(self):
@@ -303,12 +303,12 @@ class Step8(StepTemplateMkdir):
 
 class Step9(StepTemplateMkdir):
     story = [
-        "{{gb:It worked! You've succesfully created something hidden.}}",
-        "\nRuth: {{Bb:\"Did you make something? That's amazing!\"",
-        "\"...unfortunately I can't see it...please can you put me "
-        "and the animals inside?\"}}\n",
-        "{{lb:Move}} everyone into the {{bb:.shelter}} "
-        "one by one.\n"
+        _("{{gb:It worked! You've succesfully created something hidden.}}"),
+        _("\nRuth: {{Bb:\"Did you make something? That's amazing!\""),
+        _("\"...unfortunately I can't see it...please can you put me " +\
+        "and the animals inside?\"}}\n"),
+        _("{{lb:Move}} everyone into the {{bb:.shelter}} " +\
+        "one by one.\n")
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
@@ -334,15 +334,15 @@ class Step9(StepTemplateMkdir):
 
         # If they enter ls, say Well Done
         if self.last_user_input == 'ls' or self.last_user_input == "ls -a":
-            hint = "\n{{gb:You look around.}}"
+            hint = _("\n{{gb:You look around.}}")
             self.send_text(hint)
             return False
 
         # check through list of commands
         end_dir_validated = False
         self.hints = [
-            "{{rb:Use}} {{yb:" + self.all_commands[0] + "}} "
-            "{{rb:to progress}}"
+            _("{{rb:Use}} {{yb:" + self.all_commands[0] + "}} " +\
+            "{{rb:to progress}}")
         ]
 
         end_dir_validated = self.current_path == self.end_dir
@@ -361,15 +361,14 @@ class Step9(StepTemplateMkdir):
 
             if len(self.all_commands) == 1:
                 hint = (
-                    "\n{{gb:Well done! Move one more in the}}"
-                    " {{yb:.shelter}}"
+                    _("\n{{gb:Well done! Move one more in the}}" +\
+                    " {{yb:.shelter}}")
                 )
             elif len(self.all_commands) > 0:
-                hint = "\n{{gb:Well done! Move " + \
-                    str(len(self.all_commands) / 2) + \
-                    " more.}}"
+                hint = _("\n{{gb:Well done! Move {} more.}}")\
+                    .format(str(len(self.all_commands) / 2))
             else:
-                hint = "\n{{gb:Press}} {{ob:Enter}} {{gb:to continue}}"
+                hint = _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue}}")
 
             self.send_text(hint)
 
@@ -386,14 +385,14 @@ class Step9(StepTemplateMkdir):
 
 class Step10(StepTemplateMkdir):
     story = [
-        "{{lb:Go}} into the {{bb:.shelter}} along with {{bb:Ruth}} and the "
-        "animals."
+        _("{{lb:Go}} into the {{bb:.shelter}} along with {{bb:Ruth}} and the " + \
+        "animals.")
     ]
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn/.shelter"
     hints = [
-        "{{rb:Type}} {{yb:cd .shelter}} {{rb:to go into the}} "
-        "{{bb:.shelter}}{{rb:.}}"
+        _("{{rb:Type}} {{yb:cd .shelter}} {{rb:to go into the}} " + \
+        "{{bb:.shelter}}{{rb:.}}")
     ]
 
     def block_command(self):
@@ -405,7 +404,7 @@ class Step10(StepTemplateMkdir):
 
 class Step11(StepTemplateMkdir):
     story = [
-        "Have a {{lb:look around}} to check you moved everyone."
+        _("Have a {{lb:look around}} to check you moved everyone.")
     ]
     start_dir = "~/farm/barn/.shelter"
     end_dir = "~/farm/barn/.shelter"
@@ -414,7 +413,7 @@ class Step11(StepTemplateMkdir):
         "ls -a"
     ]
     hints = [
-        "{{rb:Look around using}} {{yb:ls}}{{rb:.}}"
+        _("{{rb:Look around using}} {{yb:ls}}{{rb:.}}")
     ]
     last_step = True
 

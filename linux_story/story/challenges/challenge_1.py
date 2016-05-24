@@ -43,7 +43,8 @@ class Step1(StepLs):
     commands = "ls"
     highlighted_commands = ["ls"]
     hints = [
-        _("{{rb:Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}} {{rb:to take a look around your bedroom.}}")
+        _("{{rb:Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}} {{rb:to take a look around " +\
+        "your bedroom.}}")
     ]
 
     last_step = True
