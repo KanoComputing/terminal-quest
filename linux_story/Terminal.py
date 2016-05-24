@@ -214,7 +214,7 @@ class Terminal(Cmd):
                 ("mv" in self.last_user_input and
                     not self.last_user_input == 'mv --help'):
 
-            print ('Nice try! But you do not need that command for this '
+            print _('Nice try! But you do not need that command for this ' +\
                    'challenge')
 
             return True
@@ -347,7 +347,7 @@ class Terminal(Cmd):
                                       )
 
         if xp > 0:
-            self.xp = "{{gb:Congratulations, you earned " + str(xp) + " XP!}}\n\n"
+            self.xp = _("{{gb:Congratulations, you earned {} XP!}}\n\n").format(str(xp))
 
     def exit(self):
         data = {'exit': '1'}
