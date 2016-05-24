@@ -7,6 +7,7 @@
 
 import time
 import string as s
+import os
 
 from gi.repository import Gtk, Pango, Gdk
 
@@ -58,6 +59,7 @@ class Storybook(Gtk.TextView):
         self.override_background_color(Gtk.StateFlags.NORMAL, bg_colour)
         self.char_width = self.__get_char_width()
         self.set_can_focus(False)
+        self.language = self.__get_language()
 
         self.sounds_manager = SoundManager()
 
@@ -170,11 +172,11 @@ class Storybook(Gtk.TextView):
         '''
 
         if challenge_number == "0":
-            text = "INTRODUCTION\n"
+            text = _("INTRODUCTION\n")
         else:
-            text = "CHALLENGE {}\n".format(challenge_number)
+            text = _("CHALLENGE {}\n").format(challenge_number)
 
-        border = "-------------------\n"
+        border = _("-------------------\n")
         header = "\n" + border + "\n" + text + "\n" + border
         self.print_text(header)
 
@@ -335,6 +337,56 @@ class Storybook(Gtk.TextView):
 
         return new_string
 
+    def __split_into_lines_nospace(self, string):
+        '''Adds new line characters appropriately into the string
+        so the text wraps around correctly, for languages which do
+        not have spaces between words (like Japanese).
+
+        Args:
+            string (str)
+        Returns:
+            str: with newline characters inserted.
+        '''
+
+        total_width = 0
+        new_string = ''
+
+        while len(string) != 0:
+
+            if string[:2] == '{{':
+                # Normally the string is of the form
+                # "{{wb:blah blah}}"
+                # need to cut out the part from the {{ to the :
+                colon_index = string.find(":")
+
+                # This should always be satified.
+                if not colon_index == -1:
+                    # This is so we don't include the colon when we
+                    # are slicing the strings.
+                    colon_index += 1
+                    new_string = new_string + string[:colon_index]
+                    string = string[colon_index:]
+                else:
+                    new_string = new_string + string[:3]
+                    string = string[3:]
+            elif string[:2] == '}}':
+                new_string = new_string + string[:2]
+                string = string[2:]
+            elif string[0] == '\n':
+                total_width = 0
+                new_string = new_string + string[0]
+                string = string[1:]
+            else:
+                total_width += self.__get_width_of_char(string[0])
+                if total_width >= self.width:
+                    total_width = 0
+                    new_string = new_string + '\n'
+                else:
+                    new_string = new_string + string[0]
+                    string = string[1:]
+
+        return new_string
+
     def __get_colour_from_id(self, colour_id='w'):
         '''Look up what letter corresponds to what colour
         '''
@@ -424,7 +476,10 @@ class Storybook(Gtk.TextView):
         size = default_size
 
         string_array = []
-        string = self.__split_into_lines(string)
+        if self.__is_space_delimited_lang():
+            string = self.__split_into_lines(string)
+        else:
+            string = self.__split_into_lines_nospace(string)
 
         if string.find("{{") == -1:
             string_array = self.__string_to_tag_list(
@@ -516,17 +571,29 @@ class Storybook(Gtk.TextView):
     def __get_char_width(self):
         '''
         Returns:
-            int: the width of the letter in monospace font
+            int: the width of the letter 'a' in monospace font
         '''
 
-        stringtomeasure = 'a'
-        font_descr = Pango.FontDescription.new()
-        font_descr.set_family('monospace')
-        context = self.get_pango_context()
-        layout = Pango.Layout.new(context)
-        layout.set_font_description(font_descr)
-        layout.set_text(stringtomeasure, -1)
-        width, height = layout.get_pixel_size()
+        return self.__get_with_of_char('a')
+
+    def __get_width_of_char(self, stringtomeasure):
+        '''
+        Returns:
+            int: the width of some text in monospace font
+        '''
+
+        if not self.__scrapbook:
+            print "Initialize layout to compute text length...\n"
+            font_descr = Pango.FontDescription.new()
+            font_descr.set_family('monospace')
+            context = self.get_pango_context()
+            self.__scrapbook = Pango.Layout.new(context)
+            self.__scrapbook.set_font_description(font_descr)
+
+        self.__scrapbook.set_text(stringtomeasure, -1)
+        width, height = self.__scrapbook.get_pixel_size()
+        print "width: %d\n" % width
+
         return width
 
     def prevent_right_click(self, widget, event):
@@ -546,3 +613,22 @@ class Storybook(Gtk.TextView):
             return True
 
         return False
+
+    def __get_language(self):
+        '''
+        Returns:
+            str: the 2-letter language code (default: 'en')
+        '''
+
+        return os.environ.get('LANG', 'en').split('_')[0].lower()
+
+    def __is_space_delimited_lang(self):
+        '''
+        Returns:
+            bool: true if the current language has space-delimited words
+        '''
+        nospace_langs = ['ja']
+
+        return self.language not in nospace_langs
+
+
