@@ -144,7 +144,7 @@ class Step3(StepTemplateMkdir):
             hint = (
                 _("\nRuth: {{Bb:\"You said the shelter should be called}} " +\
                 "{{bb:hidden-shelter}}{{Bb:, not}} {{lb:.hidden-shelter}}" +\
-                "{{Bb:.\"}}")
+                "{{Bb:.\"}}" +\
                 "\n{{yb:Press UP to replay the old command, and edit it.}}")
             )
             self.send_text(hint)
