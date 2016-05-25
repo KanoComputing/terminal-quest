@@ -518,137 +518,153 @@ msgid ""
 "{{wb:Mum:}} {{Bb:\"Hi sleepyhead, breakfast is nearly ready. Can you go and "
 "grab your Dad? I think he's in the}} {{bb:garden}}{{Bb:.\"}}\n"
 msgstr ""
+"{{wb:お母さん:}} {{Bb:\"おはよう。朝ごはんはもうすぐ出来るよ。\n"
+"お父さんを呼んできてくらない？多分お庭({{bb:garden}})にいるよ。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:32
 msgid "Let's look for your {{bb:Dad}} in the {{bb:garden}}."
-msgstr ""
+msgstr "お父さん({{bb:Dad}})を庭({{bb:garden}})で探しに行こう。"
 
 #: ../linux_story/story/challenges/challenge_5.py:33
 msgid "First we need to {{lb:leave}} the {{bb:kitchen}} using {{yb:cd ..}}\n"
-msgstr ""
+msgstr "まず、{{yb:cd ..}}を使って、台所({{bb:kitchen}})から{{lb:出よう}}。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:38
 msgid "{{rb:To leave the kitchen, type}} {{yb:cd ..}}"
-msgstr ""
+msgstr "{{rb:台所を出るには、}}{{yb:cd ..}}{{rb:をタイプしよう。}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:51
 msgid "You are back in the main hall of your house.\n"
-msgstr ""
+msgstr "家の玄関に戻った。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:52
 msgid "Can you see your {{bb:garden}}? Have a {{lb:look around}} you.\n"
-msgstr ""
+msgstr "お庭({{bb:garden}})は見えますか？{{lb:周りを見て}}みよう。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:57
 msgid "{{rb:Type}} {{yb:ls}} {{rb:to look around you.}}"
-msgstr ""
+msgstr "{{yb:ls}}{{rb:をタイプし、周りを見よう。}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:65
 msgid ""
 "You see doors to the {{bb:garden}}, {{bb:kitchen}}, {{bb:my-room}} and {{bb:"
 "parents-room}}."
 msgstr ""
+"お庭({{bb:garden}})、台所({{bb:kitchen}})、君の部屋({{bb:my-room}})と"
+"親の部屋({{bb:parents-room}})が見えるね。"
 
 #: ../linux_story/story/challenges/challenge_5.py:66
 msgid "{{lb:Go}} into your {{bb:garden}}.\n"
-msgstr ""
+msgstr "お庭({{bb:garden}})へ{{lb:行こう}}。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:71
 msgid "{{rb:Type}} {{yb:cd garden}} {{rb:to go into the garden.}}"
-msgstr ""
+msgstr "{{yb:cd garden}}{{rb:をタイプし、庭へ行こう。}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:84
 msgid ""
 "Use {{yb:ls}} to {{lb:look}} in the {{bb:garden}} for your {{bb:Dad}}.\n"
 msgstr ""
+"{{yb:ls}}を使って、庭でお父さん({{bb:Dad}})のことを{{lb:探そう}}。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:89
 msgid ""
 "{{rb:To look for your Dad, type}} {{yb:ls}} {{rb:and press {{ob:Enter}}"
 "{{rb:.}}"
 msgstr ""
+"{{rb:お父さんのことを探すには、}}{{yb:ls}}{{rb:をタイプし、}}"
+"{{ob:Enter}}{{rb:を押して。}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:97
 msgid "The {{bb:garden}} looks beautiful at this time of year."
-msgstr ""
+msgstr "この季節には庭はきれいだね。"
 
 #: ../linux_story/story/challenges/challenge_5.py:98
 msgid "Hmmm...but you can't see him anywhere."
-msgstr ""
+msgstr "でも、お父さんが見つからないな。"
 
 #: ../linux_story/story/challenges/challenge_5.py:99
 msgid "Maybe he's in the {{bb:greenhouse}}."
-msgstr ""
+msgstr "温室({{bb:greenhouse}})にいるかもしれないね。"
 
 #: ../linux_story/story/challenges/challenge_5.py:100
 msgid ""
 "\n"
 "{{lb:Go}} inside the {{bb:greenhouse}}.\n"
 msgstr ""
+"\n"
+"温室({{bb:greenhouse}})の中に{{lb:入ろう}}。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:105
 msgid "{{rb:To go to the greenhouse, type}} {{yb:cd greenhouse}}"
-msgstr ""
+msgstr "{{rb:温室に入るには、}}{{yb:cd greenhouse}}{{rb:をタイプして。}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:118
 msgid "Is he here? {{lb:Look around}} with {{yb:ls}} to find out.\n"
-msgstr ""
+msgstr "ここにいるかな？{{yb:ls}}で{{lb:周りを見て}}みよう。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:123
 msgid "{{rb:Type}} {{yb:ls}} {{rb:to look for your Dad.}}"
-msgstr ""
+msgstr "{{rb:お父さんを探すには、}}{{yb:ls}}{{rb:をタイプしてみて。}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:131
 msgid "Your {{bb:Dad}} has been busy, there are loads of vegetables here."
-msgstr ""
+msgstr "野菜はいっぱいだな。お父さん({{bb:Dad}})は忙しそうだね。"
 
 #: ../linux_story/story/challenges/challenge_5.py:132
 msgid "Hmmmm. He's not here. But there is something odd.\n"
-msgstr ""
+msgstr "しかし、ここにもいないな。あれ、変なものが。。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:133
 msgid ""
 "You see a {{bb:note}} on the ground. Use {{yb:cat note}} to {{lb:read}} what "
 "it says.\n"
 msgstr ""
+"地面にメッセージ({{bb:note}}が落ちてる。{{yb:cat note}}で{{lb:読んで}}みよう。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:138
 msgid "{{rb:Type}} {{yb:cat note}} {{rb:to see what the note says!}}"
-msgstr ""
+msgstr "{{yb:cat note}}{{rb:をタイプし、メッセージを読んでみて！}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:146
 msgid ""
 "Going back is super easy. Just type {{yb:cd ..}} to go back the way you "
 "came.\n"
 msgstr ""
+"戻るのは簡単だ：{{yb:cd ..}}をタイプすれば、来たところへ戻れる。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:151
 msgid "{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the garden.}}"
-msgstr ""
+msgstr "{{yb:cd ..}}{{rb:をタイプし、庭へ戻ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:164
 msgid ""
 "You're back in the garden. Use {{yb:cd ..}} again to {{lb:go back}} to the "
 "house.\n"
 msgstr ""
+"庭に戻った。もう一度{{yb:cd ..}}で家の中に{{lb:戻ろう。}}\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:165
 msgid ""
 "{{gb:Top tip: Press the}} {{ob:UP}} {{gb:arrow key to replay your previous "
 "command.}}\n"
 msgstr ""
+"{{gb:上級レベル：}}{{ob:UP}}{{gb:キーを押すと、１つ前のコマンドを"
+"再度実行できる。}}\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:170
 msgid "{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the house.}}"
-msgstr ""
+msgstr "{{yb:cd ..}}{{rb:をタイプし、家に戻ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:183
 msgid "Now {{lb:go}} back into the {{bb:kitchen}} and see {{bb:Mum}}.\n"
 msgstr ""
+"そして、台所({{bb:kitchen}})に{{lb:行って}}、お母さん({{bb:Mum}})の"
+"ところへ戻ろう。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:188
 msgid "{{rb:Type}} {{yb:cd kitchen}} {{rb:to go back to the kitchen.}}"
-msgstr ""
+msgstr "{{yb:cd kitchen}}{{rb:をタイプし、台所へ戻ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_6.py:31
 msgid "Let {{bb:Mum}} know about {{bb:Dad}}. Type {{yb:cat Mum}}"
