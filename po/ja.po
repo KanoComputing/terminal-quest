@@ -519,7 +519,8 @@ msgid ""
 "grab your Dad? I think he's in the}} {{bb:garden}}{{Bb:.\"}}\n"
 msgstr ""
 "{{wb:お母さん:}} {{Bb:\"おはよう。朝ごはんはもうすぐ出来るよ。\n"
-"お父さんを呼んできてくらない？多分お庭({{bb:garden}})にいるよ。\n"
+"お父さんを呼んできてくらない？多分お庭(}}{{bb:garden}}"
+"{{Bb:)にいるよ。\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:32
 msgid "Let's look for your {{bb:Dad}} in the {{bb:garden}}."
@@ -620,7 +621,7 @@ msgid ""
 "You see a {{bb:note}} on the ground. Use {{yb:cat note}} to {{lb:read}} what "
 "it says.\n"
 msgstr ""
-"地面にメッセージ({{bb:note}}が落ちてる。{{yb:cat note}}で{{lb:読んで}}みよう。\n"
+"地面にメッセージ({{bb:note}})が落ちてる。{{yb:cat note}}で{{lb:読んで}}みよう。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:138
 msgid "{{rb:Type}} {{yb:cat note}} {{rb:to see what the note says!}}"
