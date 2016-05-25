@@ -347,7 +347,7 @@ class Terminal(Cmd):
                                       )
 
         if xp > 0:
-            self.xp = _("{{gb:Congratulations, you earned {} XP!}}\n\n").format(str(xp))
+            self.xp = _("{{gb:Congratulations, you earned %d XP!}}\n\n") % xp
 
     def exit(self):
         data = {'exit': '1'}

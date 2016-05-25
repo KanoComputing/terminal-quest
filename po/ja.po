@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: terminal-quest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-25 08:01+0900\n"
+"POT-Creation-Date: 2016-05-26 00:01+0900\n"
 "PO-Revision-Date: 2016-05-17 08:33+0900\n"
 "Last-Translator: Choppin Antoine <antoine@japonophile.com>\n"
 "Language-Team: Japanese\n"
@@ -272,8 +272,8 @@ msgstr ""
 #: ../linux_story/story/challenges/challenge_2.py:45
 msgid "{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}"
 msgstr ""
-"{{yb:cat alarm}}{{rb:をタイプし、目覚まし時計}}({{bb:alarm}}){{rb:を"
-"観察しよう。}}"
+"{{yb:cat alarm}}{{rb:をタイプし、目覚まし時計}}({{bb:alarm}}){{rb:を観察しよ"
+"う。}}"
 
 #: ../linux_story/story/challenges/challenge_2.py:56
 msgid "Ok - it's switched off. Better get dressed...\n"
@@ -282,8 +282,8 @@ msgstr "よっし、止まっている。次は洋服を着よう。\n"
 #: ../linux_story/story/challenges/challenge_2.py:58
 msgid "Type {{yb:ls wardrobe/}} to {{lb:look inside}} your {{bb:wardrobe}}.\n"
 msgstr ""
-"タンス({{bb:wardrobe}})の{{lb:中を見る}}には{{yb:ls wardrobe/}}を"
-"タイプしよう。\n"
+"タンス({{bb:wardrobe}})の{{lb:中を見る}}には{{yb:ls wardrobe/}}をタイプしよ"
+"う。\n"
 
 #: ../linux_story/story/challenges/challenge_2.py:63
 msgid "{{rb:Type}} {{yb:ls wardrobe/}} {{rb:to look for something to wear.}}"
@@ -298,15 +298,15 @@ msgid ""
 "{{lb:Examine}} the {{bb:t-shirt}} with {{yb:cat wardrobe/t-shirt}} to see "
 "how it looks.\n"
 msgstr ""
-"{{yb:cat wardrobe/t-shirt}}で{{bb:Tシャツ}}を{{lb:調べて}}、"
-"似合うか見てみよう。\n"
+"{{yb:cat wardrobe/t-shirt}}で{{bb:Tシャツ}}を{{lb:調べて}}、似合うか見てみよ"
+"う。\n"
 
 #: ../linux_story/story/challenges/challenge_2.py:77
 msgid ""
 "{{rb:Type}} {{yb:cat wardrobe/t-shirt}} {{rb:to investigate how it looks.}}"
 msgstr ""
-"{{yb:cat wardrobe/t-shirt}}{{rb:をタイプし、"
-"このTシャツの見た目を確認しよう。}}"
+"{{yb:cat wardrobe/t-shirt}}{{rb:をタイプし、このTシャツの見た目を確認しよ"
+"う。}}"
 
 #: ../linux_story/story/challenges/challenge_2.py:85
 msgid "Looking good! Put that on and look for something else.\n"
@@ -373,9 +373,7 @@ msgstr "この技を試して、漫画({{bb:comic book}})を見てみよう。\n
 
 #: ../linux_story/story/challenges/challenge_3.py:48
 msgid "{{lb:Examine}} it with {{yb:cat shelves/comic-book}}\n"
-msgstr ""
-"{{yb:cat shelves/comic-book}}で漫画を"
-"{{lb:見て}}みよう。\n"
+msgstr "{{yb:cat shelves/comic-book}}で漫画を{{lb:見て}}みよう。\n"
 
 #: ../linux_story/story/challenges/challenge_3.py:49
 msgid "Press the {{ob:TAB}} key before you've finished typing!\n"
@@ -383,9 +381,7 @@ msgstr "タイプ終わる前に、{{ob:TAB}}キーを押してみて！\n"
 
 #: ../linux_story/story/challenges/challenge_3.py:54
 msgid "{{rb:Type}} {{yb:cat shelves/comic-book}} {{rb:to read the comic.}}"
-msgstr ""
-"{{yb:cat shelves/comic-book}}{{rb:をタイプし、"
-"漫画を読んでみよう。}}"
+msgstr "{{yb:cat shelves/comic-book}}{{rb:をタイプし、漫画を読んでみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_3.py:62
 msgid "Why is it covered in pawprints?"
@@ -401,16 +397,15 @@ msgstr "{{yb:cat}}を使ってメッセージ({{bb:note}})を{{lb:読もう}}。
 
 #: ../linux_story/story/challenges/challenge_3.py:69
 msgid "{{rb:Type}} {{yb:cat shelves/note}} {{rb:to read the note.}}"
-msgstr ""
-"{{yb:cat shelves/note}}{{rb:をタイプし、"
-"メッセージを読んでみよう。}}"
+msgstr "{{yb:cat shelves/note}}{{rb:をタイプし、メッセージを読んでみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_4.py:32
 msgid ""
 "That's weird. No time for that now though - lets find {{bb:Mum}}.\n"
 " "
 msgstr ""
-"不思議だな。でも今は時間ないさ。\nお母さん({{bb:Mum}})を探そう。\n"
+"不思議だな。でも今は時間ないさ。\n"
+"お母さん({{bb:Mum}})を探そう。\n"
 " "
 
 #: ../linux_story/story/challenges/challenge_4.py:34
@@ -519,8 +514,7 @@ msgid ""
 "grab your Dad? I think he's in the}} {{bb:garden}}{{Bb:.\"}}\n"
 msgstr ""
 "{{wb:お母さん:}} {{Bb:\"おはよう。朝ごはんはもうすぐ出来るよ。\n"
-"お父さんを呼んできてくらない？多分お庭(}}{{bb:garden}}"
-"{{Bb:)にいるよ。\"}}\n"
+"お父さんを呼んできてくらない？多分お庭(}}{{bb:garden}}{{Bb:)にいるよ。\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:32
 msgid "Let's look for your {{bb:Dad}} in the {{bb:garden}}."
@@ -551,8 +545,8 @@ msgid ""
 "You see doors to the {{bb:garden}}, {{bb:kitchen}}, {{bb:my-room}} and {{bb:"
 "parents-room}}."
 msgstr ""
-"お庭({{bb:garden}})、台所({{bb:kitchen}})、君の部屋({{bb:my-room}})と"
-"親の部屋({{bb:parents-room}})が見えるね。"
+"お庭({{bb:garden}})、台所({{bb:kitchen}})、君の部屋({{bb:my-room}})と親の部屋"
+"({{bb:parents-room}})が見えるね。"
 
 #: ../linux_story/story/challenges/challenge_5.py:66
 msgid "{{lb:Go}} into your {{bb:garden}}.\n"
@@ -565,16 +559,15 @@ msgstr "{{yb:cd garden}}{{rb:をタイプし、庭へ行こう。}}"
 #: ../linux_story/story/challenges/challenge_5.py:84
 msgid ""
 "Use {{yb:ls}} to {{lb:look}} in the {{bb:garden}} for your {{bb:Dad}}.\n"
-msgstr ""
-"{{yb:ls}}を使って、庭でお父さん({{bb:Dad}})のことを{{lb:探そう}}。\n"
+msgstr "{{yb:ls}}を使って、庭でお父さん({{bb:Dad}})のことを{{lb:探そう}}。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:89
 msgid ""
 "{{rb:To look for your Dad, type}} {{yb:ls}} {{rb:and press {{ob:Enter}}"
 "{{rb:.}}"
 msgstr ""
-"{{rb:お父さんのことを探すには、}}{{yb:ls}}{{rb:をタイプし、}}"
-"{{ob:Enter}}{{rb:を押して。}}"
+"{{rb:お父さんのことを探すには、}}{{yb:ls}}{{rb:をタイプし、}}{{ob:Enter}}"
+"{{rb:を押して。}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:97
 msgid "The {{bb:garden}} looks beautiful at this time of year."
@@ -621,7 +614,8 @@ msgid ""
 "You see a {{bb:note}} on the ground. Use {{yb:cat note}} to {{lb:read}} what "
 "it says.\n"
 msgstr ""
-"地面にメッセージ({{bb:note}})が落ちてる。{{yb:cat note}}で{{lb:読んで}}みよう。\n"
+"地面にメッセージ({{bb:note}})が落ちてる。{{yb:cat note}}で{{lb:読んで}}みよ"
+"う。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:138
 msgid "{{rb:Type}} {{yb:cat note}} {{rb:to see what the note says!}}"
@@ -631,8 +625,7 @@ msgstr "{{yb:cat note}}{{rb:をタイプし、メッセージを読んでみて�
 msgid ""
 "Going back is super easy. Just type {{yb:cd ..}} to go back the way you "
 "came.\n"
-msgstr ""
-"戻るのは簡単だ：{{yb:cd ..}}をタイプすれば、来たところへ戻れる。\n"
+msgstr "戻るのは簡単だ：{{yb:cd ..}}をタイプすれば、来たところへ戻れる。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:151
 msgid "{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the garden.}}"
@@ -642,16 +635,15 @@ msgstr "{{yb:cd ..}}{{rb:をタイプし、庭へ戻ろう。}}"
 msgid ""
 "You're back in the garden. Use {{yb:cd ..}} again to {{lb:go back}} to the "
 "house.\n"
-msgstr ""
-"庭に戻った。もう一度{{yb:cd ..}}で家の中に{{lb:戻ろう。}}\n"
+msgstr "庭に戻った。もう一度{{yb:cd ..}}で家の中に{{lb:戻ろう。}}\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:165
 msgid ""
 "{{gb:Top tip: Press the}} {{ob:UP}} {{gb:arrow key to replay your previous "
 "command.}}\n"
 msgstr ""
-"{{gb:上級レベル：}}{{ob:UP}}{{gb:キーを押すと、１つ前のコマンドを"
-"再度実行できる。}}\n"
+"{{gb:上級レベル：}}{{ob:UP}}{{gb:キーを押すと、１つ前のコマンドを再度実行でき"
+"る。}}\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:170
 msgid "{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the house.}}"
@@ -660,8 +652,8 @@ msgstr "{{yb:cd ..}}{{rb:をタイプし、家に戻ろう。}}"
 #: ../linux_story/story/challenges/challenge_5.py:183
 msgid "Now {{lb:go}} back into the {{bb:kitchen}} and see {{bb:Mum}}.\n"
 msgstr ""
-"そして、台所({{bb:kitchen}})に{{lb:行って}}、お母さん({{bb:Mum}})の"
-"ところへ戻ろう。\n"
+"そして、台所({{bb:kitchen}})に{{lb:行って}}、お母さん({{bb:Mum}})のところへ戻"
+"ろう。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:188
 msgid "{{rb:Type}} {{yb:cd kitchen}} {{rb:to go back to the kitchen.}}"
@@ -4108,15 +4100,15 @@ msgstr ""
 
 #: ../linux_story/gtk3/MenuScreen.py:337
 msgid "Challenge {}: {}"
-msgstr ""
+msgstr "チャレンジ{}: {}"
 
 #: ../linux_story/gtk3/MenuScreen.py:343
 msgid "Chapter {}: {}"
-msgstr ""
+msgstr "{}章: {}"
 
 #: ../linux_story/gtk3/MenuScreen.py:346
 msgid "Challenge {} to Challenge {}"
-msgstr ""
+msgstr "チャレンジ{}から{}まで"
 
 #: ../linux_story/gtk3/Storybook.py:175
 msgid "INTRODUCTION\n"
@@ -4131,7 +4123,11 @@ msgid "-------------------\n"
 msgstr "-------------------\n"
 
 #: ../linux_story/Terminal.py:350
+#, python-format
 msgid ""
-"{{gb:Congratulations, you earned {} XP!}}\n"
+"{{gb:Congratulations, you earned %d XP!}}\n"
 "\n"
 msgstr ""
+"{{gb:経験値%dポイントを獲得できた。おめでとうございます！}}\n"
+"\n"
+
