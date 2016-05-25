@@ -34,7 +34,8 @@ class Step1(StepTemplateMv):
     story = [
         _("{{wb:Edith:}} {{Bb:\"Thank you for saving her!\"}}"),
         _("{{wb:Eleanor:}} {{Bb:\"Doggy!\"}}"),
-        _("{{wb:Edith:}} {{Bb:\"Can you save her dog too? I'm worried something will happen to it if it stays outside.\"}}\n")
+        _("{{wb:Edith:}} {{Bb:\"Can you save her dog too? I'm worried something " +\
+        "will happen to it if it stays outside.\"}}\n")
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
@@ -67,18 +68,25 @@ class Step2(StepTemplateMv):
         _("{{wb:Dog:}} {{Bb:\"Ruff!\"}}"),
         _("{{wb:Edith:}} {{Bb:\"Thank you so much for getting them both back."),
         _("I was wrong about you. You're a hero!\"}}\n"),
-        _("{{lb:Listen to everyone}} and see if there's anything else you can do to help.\n")
+        _("{{lb:Listen to everyone}} and see if there's anything else you can " +\
+        "do to help.\n")
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
     commands = "cat Edward"
     all_commands = {
-        "cat Edith": _("\n{{wb:Edith:}} {{Bb:\"Thank you so much! Eleanor, don't wander outside again - you scared the life out of me!\"}}"),
-        "cat Eleanor": _("\n{{wb:Eleanor:}} {{Bb:\"Where do you think the bell would have taken us?\"}}"),
+        "cat Edith": _("\n{{wb:Edith:}} {{Bb:\"Thank you so much! " +\
+        "Eleanor, don't wander outside again - you scared the life out " +\
+        "of me!\"}}"),
+
+        "cat Eleanor": _("\n{{wb:Eleanor:}} {{Bb:\"Where do you think the " +\
+        "bell would have taken us?\"}}"),
+
         "cat dog": _("\n{{wb:Dog:}} {{Bb:\"Woof! Woof woof!\"}}")
     }
     hints = [
-        _("{{gb:Edward looks like he has something he wants to say. Listen to Edward with}} {{yb:cat Edward}}")
+        _("{{gb:Edward looks like he has something he wants to say. " +\
+        "Listen to Edward with}} {{yb:cat Edward}}")
     ]
     last_step = True
 

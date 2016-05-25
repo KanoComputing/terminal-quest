@@ -73,8 +73,8 @@ class Step1(StepTemplateCd):
                 hint = _("\n{{rb:Use}} {{yb:cat}} {{rb:to look at two of the " +\
                          "objects around you.}}")
             else:
-                hint = _("\n{{rb:Use the command}} {{yb:{}}} {{rb:to progress.}}")\
-                        .format(self.allowed_commands[0])
+                hint = _("\n{{rb:Use the command}} {{yb:%s}} {{rb:to progress.}}")\
+                        % self.allowed_commands[0]
 
         level_up = (self.counter >= 2)
 
@@ -178,7 +178,8 @@ class Step4(StepTemplateCd):
     end_dir = "~/town"
     commands = "ls -a"
     hints = [
-        _("{{rb:You heard whispers referring to}} {{yb:ls -a}}{{rb:, try using it!}}"),
+        _("{{rb:You heard whispers referring to}} {{yb:ls -a}}" +\
+        "{{rb:, try using it!}}"),
     ]
 
     def next(self):
@@ -198,8 +199,10 @@ class Step5(StepTemplateCd):
         "cd .hidden-shelter/"
     ]
     hints = [
-        _("{{rb:Try going inside the}} {{lb:.hidden-shelter}} {{rb:using }}{{yb:cd}}{{rb:.}}"),
-        _("{{rb:Use the command}} {{yb:cd .hidden-shelter }}{{rb:to go inside.}}")
+        _("{{rb:Try going inside the}} {{lb:.hidden-shelter}} {{rb:using }}" +\
+        "{{yb:cd}}{{rb:.}}"),
+        _("{{rb:Use the command}} {{yb:cd .hidden-shelter }}" +\
+        "{{rb:to go inside.}}")
     ]
 
     def block_command(self):

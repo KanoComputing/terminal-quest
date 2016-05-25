@@ -47,11 +47,11 @@ class Step1(StepTemplateCd):
     # Use functions here
     all_commands = {
         "cat Edith": _("\n{{wb:Edith:}} {{Bb:\"You found us! Edward, I told " +\
-                       "you to keep your voice down.\"}}"),
+        "you to keep your voice down.\"}}"),
         "cat Eleanor": _("\n{{wb:Eleanor:}} {{Bb:\"My mummy is scared the " +\
-                         "bell will find us if we go outside.\"}}"),
+        "bell will find us if we go outside.\"}}"),
         "cat Edward": _("\n{{wb:Edward:}} {{Bb:\"I'm sorry Edith...but " +\
-                        "I don't think they mean any harm. Maybe they could help us?\"}}"),
+        "I don't think they mean any harm. Maybe they could help us?\"}}"),
         "cat dog": _("\n{{wb:Dog:}} {{Bb:\"Woof woof!\"}}")
     }
 
@@ -69,8 +69,8 @@ class Step1(StepTemplateCd):
         # check through list of commands
         end_dir_validated = False
         self.hints = [
-            _("{{rb:Use}} {{yb:{}}} {{rb:to progress.}}")\
-                    .format(self.all_commands.keys()[0])
+            _("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}")\
+                    % self.all_commands.keys()[0]
         ]
 
         end_dir_validated = self.current_path == self.end_dir
@@ -84,8 +84,8 @@ class Step1(StepTemplateCd):
             self.all_commands.pop(self.last_user_input, None)
 
             if len(self.all_commands) > 0:
-                hint += _("\n{{gb:Well done! Check on {} more.}}\n")\
-                        .format(str(len(self.all_commands)))
+                hint += _("\n{{gb:Well done! Check on %d more.}}\n")\
+                        % len(self.all_commands)
             else:
                 hint += _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
 
@@ -195,12 +195,13 @@ class Step4(StepTemplateMv):
 class Step5(StepTemplateMv):
     story = [
         _("{{gb:Excellent, you moved the apple into the basket!}}"),
-        _("\n{{wb:Edward:}} {{Bb:\"Hey, you did it! What was I doing wrong?\"}}"),
+        _("\n{{wb:Edward:}} {{Bb:\"Hey, you did it! What was I doing " +\
+        "wrong?\"}}"),
         _("{{Bb:\"Can you move the apple from the basket back here?\"}}\n"),
         _("{{lb:Move}} the {{bb:apple}} from the {{bb:basket}} " +\
-          "to your current position. This is represented by {{bb:./}} \n"),
+        "to your current position. This is represented by {{bb:./}} \n"),
         _("So {{yb:mv basket/apple ./}} is the full command. " +\
-          "You need the {{bb:./}} !\n")
+        "You need the {{bb:./}} !\n")
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
@@ -210,7 +211,7 @@ class Step5(StepTemplateMv):
     ]
     hints = [
         _("{{rb:Use the command}} {{yb:mv basket/apple ./}} {{rb:to move " +\
-          "the apple from the basket to your current position}} {{bb:./}}")
+        "the apple from the basket to your current position}} {{bb:./}}")
     ]
 
     def block_command(self):
