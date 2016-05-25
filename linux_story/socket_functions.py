@@ -35,7 +35,7 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
 
         # self.request is the TCP socket connected to the client
         self.data = self.request.recv(4096).strip()
-        print self.data
+        #print self.data
         data_dict = json.loads(self.data)
         self.server.queue.put(data_dict)
 

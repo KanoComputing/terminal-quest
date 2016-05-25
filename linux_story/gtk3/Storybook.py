@@ -575,7 +575,7 @@ class Storybook(Gtk.TextView):
             int: the width of the letter 'a' in monospace font
         '''
 
-        return self.__get_with_of_char('a')
+        return self.__get_width_of_char('a')
 
     def __get_width_of_char(self, stringtomeasure):
         '''
@@ -583,17 +583,14 @@ class Storybook(Gtk.TextView):
             int: the width of some text in monospace font
         '''
 
-        if not self.__scrapbook:
-            print "Initialize layout to compute text length...\n"
-            font_descr = Pango.FontDescription.new()
-            font_descr.set_family('monospace')
-            context = self.get_pango_context()
-            self.__scrapbook = Pango.Layout.new(context)
-            self.__scrapbook.set_font_description(font_descr)
-
-        self.__scrapbook.set_text(stringtomeasure, -1)
-        width, height = self.__scrapbook.get_pixel_size()
-        print "width: %d\n" % width
+        font_descr = Pango.FontDescription.new()
+        font_descr.set_family('monospace')
+        context = self.get_pango_context()
+        layout = Pango.Layout.new(context)
+        layout.set_font_description(font_descr)
+        layout.set_text(stringtomeasure, -1)
+        width, height = layout.get_pixel_size()
+        #print "width: %d\n" % width
 
         return width
 
