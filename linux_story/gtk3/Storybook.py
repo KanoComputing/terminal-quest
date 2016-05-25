@@ -378,7 +378,8 @@ class Storybook(Gtk.TextView):
                 string = string[1:]
             else:
                 total_width += self.__get_width_of_char(string[0])
-                if total_width >= self.width:
+                margin = 20
+                if total_width >= self.width - margin:
                     total_width = 0
                     new_string = new_string + '\n'
                 else:
