@@ -225,7 +225,7 @@ class Step7(StepTemplateEcho):
             if len(self.all_commands) == 1:
                 hint += _("\n{{gb:Well done! Have a look at one more.}}")
             elif len(self.all_commands) > 0:
-                hint += _("\n{{gb:Well done! Look at {} more.}}").format(str(len(self.all_commands)))
+                hint += _("\n{{gb:Well done! Look at %d more.}}") % len(self.all_commands)
             else:
                 hint += _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
 
@@ -234,7 +234,7 @@ class Step7(StepTemplateEcho):
         else:
             if not self.hints:
                 self.hints = [
-                    _("{{rb:Use}} {{yb:{}}} {{rb:to progress.}}").format(self.all_commands.keys()[0])
+                    _("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % self.all_commands.keys()[0]
                 ]
             self.send_hint()
             self.hints.pop()

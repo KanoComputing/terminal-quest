@@ -85,7 +85,7 @@ class Step3(StepTemplateCd):
         # check through list of commands
         end_dir_validated = False
         self.hints = [
-            _("{{rb:Use}} {{yb:{}}} {{rb:to progress.}}").format(self.all_commands.keys()[0])
+            _("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % self.all_commands.keys()[0]
         ]
 
         end_dir_validated = self.current_path == self.end_dir
@@ -101,7 +101,7 @@ class Step3(StepTemplateCd):
             if len(self.all_commands) == 1:
                 hint += _("\n{{gb:Well done! Check on 1 more person.}}\n")
             elif len(self.all_commands) > 0:
-                hint += _("\n{{gb:Well done! Check on {} more people.}}\n").format(str(len(self.all_commands)))
+                hint += _("\n{{gb:Well done! Check on %d more people.}}\n") % len(self.all_commands)
             else:
                 hint += _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
 

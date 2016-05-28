@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: terminal-quest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-26 08:33+0900\n"
+"POT-Creation-Date: 2016-05-28 17:54+0900\n"
 "PO-Revision-Date: 2016-05-17 08:33+0900\n"
 "Last-Translator: Choppin Antoine <antoine@japonophile.com>\n"
 "Language-Team: Japanese\n"
@@ -662,18 +662,23 @@ msgstr "{{yb:cd kitchen}}{{rb:をタイプし、台所へ戻ろう。}}"
 #: ../linux_story/story/challenges/challenge_6.py:31
 msgid "Let {{bb:Mum}} know about {{bb:Dad}}. Type {{yb:cat Mum}}"
 msgstr ""
+"お父さんのことをお母さん({{bb:Mum}})に話そう。{{yb:cat Mum}}をタイプしよう。"
 
 #: ../linux_story/story/challenges/challenge_6.py:36
 msgid ""
 "{{rb:To talk to your Mum, type}} {{yb:cat Mum}} {{rb:and press}} {{ob:Enter}}"
 "{{rb:.}}"
 msgstr ""
+"{{rb:お母さんに話すには、}}{{yb:cat Mum}}{{rb:をタイプし}}{{ob:Enter}}{{rb:を"
+"おして。}}"
 
 #: ../linux_story/story/challenges/challenge_6.py:44
 msgid ""
 "{{wb:Mum:}} {{Bb:\"You couldn't find him? That's strange, he never leaves "
 "home without telling me first.\""
 msgstr ""
+"{{wb:お母さん：}}{{Bb:\"あら、お父さんが見つからないの？不思議だな。出かける"
+"時にいつも教えてくれるのに。\""
 
 #: ../linux_story/story/challenges/challenge_6.py:45
 msgid ""
@@ -681,37 +686,39 @@ msgid ""
 "talking about on the news. Why don't you go and check? I'll stay here in "
 "case he comes back.\"}}\n"
 msgstr ""
+"\"ニュースで発表された町内会議に行ったのかもしれません。見に行けばどうかし"
+"ら？家に帰ってくるかもしれないから、私はここで待ってるね。\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_6.py:46
 msgid "Let's head to {{bb:town}}. To leave the house, use {{yb:cd}} by itself."
-msgstr ""
+msgstr "町({{bb:town}})に行こう。家を出るには{{yb:cd}}をそのまま使ってみよう。"
 
 #: ../linux_story/story/challenges/challenge_6.py:51
 msgid "{{rb:Type}} {{yb:cd}} {{rb:to start the journey.}}"
-msgstr ""
+msgstr "{{rb:旅に出かけるには、}}{{yb:cd}}{{rb:をタイプして。}}"
 
 #: ../linux_story/story/challenges/challenge_6.py:64
 msgid ""
 "You're out of the house and on the long windy road called Tilde, or {{bb:~}}"
-msgstr ""
+msgstr "家を出て、ナミセン又は{{bb:~}}と呼ばれる、風の吹く長い道にいる。"
 
 #: ../linux_story/story/challenges/challenge_6.py:65
 msgid "{{lb:Look around}} again to see where to go next."
-msgstr ""
+msgstr "また{{lb:周りを見て}}、次に行く場所を確認しよう。"
 
 #: ../linux_story/story/challenges/challenge_6.py:70
 msgid "{{rb:Stuck? Type}} {{yb:ls}} {{rb:to look around.}}"
-msgstr ""
+msgstr "{{rb:止まってる？}}{{yb:ls}}{{rb:をタイプし、周りを見よう。}}"
 
 #: ../linux_story/story/challenges/challenge_6.py:78
 msgid ""
 "You can see a {{bb:town}} in the distance! Let's {{lb:go}} there using {{lb:"
 "cd}}."
-msgstr ""
+msgstr "町({{bb:town}})が遠くにある！{{lb:cd}}を使って、{{lb:行って}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_6.py:83
 msgid "{{rb:Type}} {{yb:cd town}} {{rb:to walk into town.}}"
-msgstr ""
+msgstr "{{yb:cd town}}{{rb:をタイプし、町へ行こう。}}"
 
 #: ../linux_story/story/challenges/challenge_7.py:30
 msgid "Have a {{lb:look around}} to see what's going on!"
@@ -776,8 +783,11 @@ msgid ""
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_7.py:88
+#: ../linux_story/story/challenges/challenge_11.py:72
+#: ../linux_story/story/challenges/challenge_14.py:316
 #: ../linux_story/story/challenges/challenge_18.py:237
-msgid "{{rb:Use}} {{yb:{}}} {{rb:to progress.}}"
+#, python-format
+msgid "{{rb:Use}} {{yb:%s}} {{rb:to progress.}}"
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_7.py:102
@@ -787,9 +797,10 @@ msgid ""
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_7.py:104
+#, python-format
 msgid ""
 "\n"
-"{{gb:Well done! Check on {} more people.}}\n"
+"{{gb:Well done! Check on %d more people.}}\n"
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_7.py:106
@@ -1118,12 +1129,6 @@ msgstr ""
 msgid ""
 "\n"
 "{{wb:Dog:}} {{Bb:\"Woof woof!\"}}"
-msgstr ""
-
-#: ../linux_story/story/challenges/challenge_11.py:72
-#: ../linux_story/story/challenges/challenge_14.py:316
-#, python-format
-msgid "{{rb:Use}} {{yb:%s}} {{rb:to progress.}}"
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_11.py:87
@@ -2044,9 +2049,10 @@ msgid ""
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_18.py:228
+#, python-format
 msgid ""
 "\n"
-"{{gb:Well done! Look at {} more.}}"
+"{{gb:Well done! Look at %d more.}}"
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_19.py:31
