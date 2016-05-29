@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: terminal-quest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 17:54+0900\n"
+"POT-Creation-Date: 2016-05-29 13:10+0900\n"
 "PO-Revision-Date: 2016-05-17 08:33+0900\n"
 "Last-Translator: Choppin Antoine <antoine@japonophile.com>\n"
 "Language-Team: Japanese\n"
@@ -677,7 +677,7 @@ msgid ""
 "{{wb:Mum:}} {{Bb:\"You couldn't find him? That's strange, he never leaves "
 "home without telling me first.\""
 msgstr ""
-"{{wb:お母さん：}}{{Bb:\"あら、お父さんが見つからないの？不思議だな。出かける"
+"{{wb:お母さん：}}{{Bb:\"あら、お父さんが見つからないの？\n不思議だな。出かける"
 "時にいつも教えてくれるのに。\""
 
 #: ../linux_story/story/challenges/challenge_6.py:45
@@ -722,35 +722,38 @@ msgstr "{{yb:cd town}}{{rb:をタイプし、町へ行こう。}}"
 
 #: ../linux_story/story/challenges/challenge_7.py:30
 msgid "Have a {{lb:look around}} to see what's going on!"
-msgstr ""
+msgstr "{{lb:周りを見て}}、何が起きてるか見てみよう！"
 
 #: ../linux_story/story/challenges/challenge_7.py:35
 msgid "{{rb:To look around, use}} {{yb:ls}}"
-msgstr ""
+msgstr "{{rb:周りを見るには、}}{{yb:ls}}{{rb:を使って。}}"
 
 #: ../linux_story/story/challenges/challenge_7.py:43
 msgid ""
 "Wow, there's so many people here. Find the {{bb:Mayor}} and {{lb:listen}} to "
 "what he has to say."
 msgstr ""
+"おお〜、人が大勢いるね。町長({{bb:Mayor}})を見つけて、話を{{lb:聞こう}}。"
 
 #: ../linux_story/story/challenges/challenge_7.py:48
 msgid "{{rb:Stuck? Type:}} {{yb:cat Mayor}}"
-msgstr ""
+msgstr "{{rb:次は分からない？}}{{yb:cat Mayor}}{{rb:をタイプしてみて。}}"
 
 #: ../linux_story/story/challenges/challenge_7.py:56
 msgid ""
 "{{wb:Mayor:}} {{Bb:\"Calm down please! We have our best people looking into "
 "the disappearances, and we're hoping to have an explanation soon.\"}}\n"
 msgstr ""
+"{{wb:町長：}}{{Bb:\"皆さん、落ち着いて下さい！一番優秀な人に事件を調査して"
+"もらってます。近いうちに解決すると思われます。\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_7.py:57
 msgid "Something strange is happening. Better check everyone is ok."
-msgstr ""
+msgstr "不思議なことが起きています。全員の安否を確認しよう。"
 
 #: ../linux_story/story/challenges/challenge_7.py:58
 msgid "Type {{yb:cat}} to check on the people."
-msgstr ""
+msgstr "他の人の安否を確認するには、{{yb:cat}}を使ってみよう。"
 
 #: ../linux_story/story/challenges/challenge_7.py:66
 msgid ""
@@ -758,6 +761,9 @@ msgid ""
 "{{wb:Man:}} {{Bb:\"Help! I don't know what's happening to me. I heard this "
 "bell ring, and now my legs have gone all strange.\"}}"
 msgstr ""
+"\n"
+"{{wb:おじさん：}}{{Bb:\"助けて！何が起きているかわかりません。\n"
+"鉦の音が聞こえたら、足が変になってしまったよ。\"}}"
 
 #: ../linux_story/story/challenges/challenge_7.py:67
 msgid ""
@@ -765,6 +771,9 @@ msgid ""
 "{{wb:Girl:}} {{Bb:\"Can you help me? I can't find my friend Amy anywhere. If "
 "you see her, will you let me know?\"}}"
 msgstr ""
+"\n"
+"{{wb:少女：}}{{Bb:\"誰か助けてくれる？友人のアイミーちゃんが見つからないよ。\n"
+"見つかったら教えてくれる？\"}}"
 
 #: ../linux_story/story/challenges/challenge_7.py:68
 msgid ""
@@ -772,6 +781,9 @@ msgid ""
 "{{wb:Boy:}} {{Bb:\"Pongo? Pongo? Has anyone seen my dog Pongo? He's never "
 "run away before...\"}}"
 msgstr ""
+"\n"
+"{{wb:男の子：}}{{Bb:\"ポンゴ？ポンゴ？僕の犬を見かけた人いないか？\n"
+"今まで逃げたことがなかったよ。\"}}"
 
 #: ../linux_story/story/challenges/challenge_7.py:81
 #: ../linux_story/story/challenges/challenge_11.py:65
@@ -781,6 +793,8 @@ msgid ""
 "\n"
 "{{gb:You look around.}}"
 msgstr ""
+"\n"
+"{{gb:周りを見ている。}}"
 
 #: ../linux_story/story/challenges/challenge_7.py:88
 #: ../linux_story/story/challenges/challenge_11.py:72
@@ -788,13 +802,15 @@ msgstr ""
 #: ../linux_story/story/challenges/challenge_18.py:237
 #, python-format
 msgid "{{rb:Use}} {{yb:%s}} {{rb:to progress.}}"
-msgstr ""
+msgstr "{{rb:先へ進むには}}{{yb:%s}}{{rb:を使ってみて。}}"
 
 #: ../linux_story/story/challenges/challenge_7.py:102
 msgid ""
 "\n"
 "{{gb:Well done! Check on 1 more person.}}\n"
 msgstr ""
+"\n"
+"{{gb:良く出来た！後一人。}}\n"
 
 #: ../linux_story/story/challenges/challenge_7.py:104
 #, python-format
@@ -802,6 +818,8 @@ msgid ""
 "\n"
 "{{gb:Well done! Check on %d more people.}}\n"
 msgstr ""
+"\n"
+"{{gb:良く出来た！後%d人の安否を確認しよう。}}\n"
 
 #: ../linux_story/story/challenges/challenge_7.py:106
 #: ../linux_story/story/challenges/challenge_11.py:90
@@ -814,10 +832,12 @@ msgid ""
 "\n"
 "{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}"
 msgstr ""
+"\n"
+"{{gb:続けるには、}}{{ob:Enter}}{{gb:を押そう。}}"
 
 #: ../linux_story/story/challenges/challenge_8.py:32
 msgid "It sounds like the bell you heard before.\n"
-msgstr ""
+msgstr "前に聞こえた鉦の音と似ているな。\n"
 
 #: ../linux_story/story/challenges/challenge_8.py:33
 msgid "Use {{yb:ls}} to {{lb:look around}} again."
@@ -4047,13 +4067,13 @@ msgstr ""
 #: ../linux_story/step_helper_functions.py:53
 #: ../linux_story/step_helper_functions.py:60 ../linux_story/Terminal.py:217
 msgid "Nice try! But you do not need that command for this challenge"
-msgstr ""
+msgstr "なるほど。でもこのコマンドは今のチャレンジで必要ないよ。"
 
 #: ../linux_story/step_helper_functions.py:31
 msgid ""
 "You're close, but you entered an unexpected destination path. Try going "
 "somewhere else."
-msgstr ""
+msgstr "惜しい。でもこのパスには行けない。他の場所へ行ってみよう。"
 
 #: ../linux_story/step_helper_functions.py:45
 msgid ""
@@ -4061,55 +4081,154 @@ msgid ""
 "expected.  Try building something else."
 msgstr ""
 
+#: ../linux_story/story/terminals/terminal_bernard.py:14
+msgid "Bernard stopped you looking in the basement!"
+msgstr ""
+
+#: ../linux_story/story/terminals/terminal_cd.py:34
+msgid "Nice try! But you entered an unexpected destination path."
+msgstr "なるほど。でも変なパスに入ろうとしたよ。"
+
+#: ../linux_story/story/terminals/terminal_nano.py:23
+msgid "Save modified buffer (ANSWERING \"No\" WILL DESTROY CHANGES) ? "
+msgstr ""
+
+#: ../linux_story/story/terminals/terminal_nano.py:24
+msgid "File Name to Write"
+msgstr ""
+
+#: ../linux_story/story/terminals/terminal_nano.py:323
+msgid ""
+"\n"
+"{{rb:Oops, you opened the wrong file! Press}} {{yb:Ctrl X}} {{rb:to exit.}}"
+msgstr ""
+
+#: ../linux_story/story/terminals/terminal_nano.py:330
+#, python-format
+msgid ""
+"\n"
+"{{gb:You've opened nano! Now make sure the file says}} {{yb:%s}}{{gb:. If "
+"you want to exit, press}} {{yb:Ctrl X}}{{gb:.}}"
+msgstr ""
+
+#: ../linux_story/story/terminals/terminal_nano.py:367
+#, python-format
+msgid ""
+"\n"
+"{{rb:Your text is not correct! Type}} {{yb:nano %s}} {{rb:to try again.}}"
+msgstr ""
+
+#: ../linux_story/story/terminals/terminal_nano.py:375
+#, python-format
+msgid ""
+"\n"
+"{{rb:The file path}} {{lb:%s}} {{rb:does not exists - did you save your file "
+"correctly?}}"
+msgstr ""
+
+#: ../linux_story/story/terminals/terminal_nano.py:415
+msgid ""
+"\n"
+"{{gb:Press}} {{ob:Enter}} {{gb:to confirm the filename.}}"
+msgstr ""
+"\n"
+"{{ob:Enter}}{{gb:を押して、このフェイル名を確定しよう。}}"
+
+#: ../linux_story/story/terminals/terminal_nano.py:419
+#, python-format
+msgid ""
+"\n"
+"{{gb:Type}} {{yb:%s}} {{gb:and press}} {{yb:Enter}}"
+msgstr ""
+"\n"
+"{{yb:%s}}{{gb:をタイプし、}}{{yb:Enter}}{{gb:を押して。}}"
+
+#: ../linux_story/story/terminals/terminal_nano.py:425
+msgid ""
+"\n"
+"{{ob:Oops, your text isn't correct. Press}} {{yb:Ctrl C}} {{ob:to cancel.}}"
+msgstr ""
+"\n"
+"{{ob:おっと、この文書は正しくないぞ。}}{{yb:Ctrl C}}{{ob:をタイプしてキャンセルしよう。}}"
+
+#: ../linux_story/story/terminals/terminal_nano.py:432
+msgid ""
+"\n"
+"{{gb:Press}} {{ob:Y}} {{gb:to confirm that you want to save.}}"
+msgstr ""
+"\n"
+"{{gb:本当に保存するには、}}{{ob:Y}}{{gb:を押して。}}"
+
+#: ../linux_story/story/terminals/terminal_nano.py:437
+msgid ""
+"\n"
+"{{rb:Your text is not correct! Press}} {{yb:N}} {{rb:to exit nano.}}"
+msgstr ""
+"\n"
+"{{rb:この文書は正しくない！}}{{yb:N}}{{rb:でナノを閉じよう。}}"
+
+#: ../linux_story/story/terminals/terminal_nano.py:443
+#, python-format
+msgid ""
+"\n"
+"{{gb:Excellent, you typed}} {{yb:%s}}{{gb:. Now press}} {{yb:Ctrl X}} {{gb:"
+"to exit.}}"
+msgstr ""
+"\n"
+"{{gb:そうです、}}{{yb:%s}}{{gb:をタイプした。次は}}{{yb:Ctrl X}}{{gb:で"
+"閉じよう。}}"
+
 #: ../linux_story/gtk3/FinishDialog.py:16
 msgid "You've completed Terminal Quest!"
-msgstr ""
+msgstr "ターミナル・クェストを完了しました！"
 
 #: ../linux_story/gtk3/FinishDialog.py:18
 msgid ""
 "We are working on the next Chapter. In the meantime, would you like to send "
 "us any feedback?"
 msgstr ""
+"只今、この話の続きを作っています。"
+"その間、感想を聞かせてくれませんか？"
 
 #: ../linux_story/gtk3/FinishDialog.py:26
 msgid "LAUNCH FEEDBACK"
-msgstr ""
+msgstr "感想を伝える"
 
 #: ../linux_story/gtk3/FinishDialog.py:31
 msgid "CLOSE APPLICATION"
-msgstr ""
+msgstr "アプリを閉じる"
 
 #: ../linux_story/gtk3/MenuScreen.py:82
 msgid "TERMINAL QUEST MENU"
-msgstr ""
+msgstr "ターミナル・クェスト メニュー"
 
 #: ../linux_story/gtk3/MenuScreen.py:83
 msgid "Use arrow keys to select the button"
-msgstr ""
+msgstr "矢印キーでボタンを選択して下さい"
 
 #: ../linux_story/gtk3/MenuScreen.py:87
 msgid "CONTINUE STORY"
-msgstr ""
+msgstr "ストーリーを続ける"
 
 #: ../linux_story/gtk3/MenuScreen.py:95
 msgid "SELECT CHAPTER"
-msgstr ""
+msgstr "章を選ぶ"
 
 #: ../linux_story/gtk3/MenuScreen.py:242 ../linux_story/gtk3/MenuScreen.py:422
 msgid "CHAPTERS"
-msgstr ""
+msgstr "章"
 
 #: ../linux_story/gtk3/MenuScreen.py:261
 msgid "CHALLENGES"
-msgstr ""
+msgstr "チャレンジ"
 
 #: ../linux_story/gtk3/MenuScreen.py:284
 msgid "<- BACK"
-msgstr ""
+msgstr "<- 戻る"
 
 #: ../linux_story/gtk3/MenuScreen.py:286
 msgid "Press ENTER to go to the previous screen"
-msgstr ""
+msgstr "前に戻るには、ENTERを押してください"
 
 #: ../linux_story/gtk3/MenuScreen.py:337
 msgid "Challenge {}: {}"

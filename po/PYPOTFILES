@@ -32,6 +32,9 @@
 ../linux_story/story/challenges/challenge_30.py
 ../linux_story/story/challenges/challenge_31.py
 ../linux_story/step_helper_functions.py
+../linux_story/story/terminals/terminal_bernard.py
+../linux_story/story/terminals/terminal_cd.py
+../linux_story/story/terminals/terminal_nano.py
 ../linux_story/gtk3/FinishDialog.py
 ../linux_story/gtk3/MenuScreen.py
 ../linux_story/gtk3/Storybook.py

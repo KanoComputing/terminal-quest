@@ -19,10 +19,9 @@ from linux_story.commands_real import nano
 
 class TerminalNano(TerminalEcho):
     terminal_commands = ["ls", "cat", "cd", "mv", "echo", "mkdir", "nano"]
-    SAVING_NANO_PROMPT = (
-        "Save modified buffer (ANSWERING \"No\" WILL DESTROY CHANGES) ? "
-    )
-    SAVE_FILENAME = "File Name to Write"
+    SAVING_NANO_PROMPT = \
+        _("Save modified buffer (ANSWERING \"No\" WILL DESTROY CHANGES) ? ")
+    SAVE_FILENAME = _("File Name to Write")
 
     # This is the content we want to end up with in the file.
     goal_nano_end_content = ""
@@ -320,18 +319,17 @@ class TerminalNano(TerminalEcho):
         correct_user_cmd = "nano {}".format(self.goal_nano_save_name)
 
         if not self.last_user_input == correct_user_cmd:
-            hint = (
+            hint = _(
                 "\n{{rb:Oops, you opened the wrong file! Press}} " +
                 "{{yb:Ctrl X}} {{rb:to exit.}}"
             )
             self.send_text(hint)
 
         elif self.goal_nano_end_content:
-            hint = (
-                "\n{{gb:You've opened nano! Now make sure the file says}} "
-                "{{yb:" + self.goal_nano_end_content +
-                "}}{{gb:. If you want to exit, press}} {{yb:Ctrl X}}{{gb:.}}"
-            )
+            hint = _(
+                "\n{{gb:You've opened nano! Now make sure the file says}} " +
+                "{{yb:%s}}{{gb:. If you want to exit, press}} {{yb:Ctrl X}}{{gb:.}}"
+            ) % self.goal_nano_end_content
             self.send_text(hint)
 
     #########################################################################
@@ -365,19 +363,18 @@ class TerminalNano(TerminalEcho):
             if text.strip() == self.goal_nano_end_content:
                 return self.finish_if_server_ready(True)
             else:
-                error_text = (
+                error_text = _(
                     "\n{{rb:Your text is not correct! " +
-                    "Type}} {{yb:nano " + self.goal_nano_save_name + "}} "
+                    "Type}} {{yb:nano %s}} " +
                     "{{rb:to try again.}}"
-                )
+                ) % self.goal_nano_save_name
                 self.send_text(error_text)
 
         else:
-            error_text = (
-                "\n{{rb:The file path}} {{lb:" +
-                end_path +
+            error_text = _(
+                "\n{{rb:The file path}} {{lb:%s" +
                 "}} {{rb:does not exists - did you save your file correctly?}}"
-            )
+            ) % end_path
             self.send_text(error_text)
 
     def check_nano_content(self):
@@ -403,8 +400,8 @@ class TerminalNano(TerminalEcho):
             '''
             else:
                 self.send_text(
-                    "\n{{ob:Your filename is wrong. Try starting again by "
-                    "typing}} {{yb:nano}} {{ob:and press Enter}} " +
+                    _("\n{{ob:Your filename is wrong. Try starting again by "
+                    "typing}} {{yb:nano}} {{ob:and press Enter}} ") +
                     self.get_last_nano_filename() + " " +
                     self.goal_nano_save_name
                 )
@@ -414,41 +411,38 @@ class TerminalNano(TerminalEcho):
                 self.get_nano_content().strip() == self.goal_nano_end_content:
 
             if self.get_editable() == self.goal_nano_save_name:
-                hint = (
-                    "\n{{gb:Press}} {{ob:Enter}} {{gb:to confirm the "
-                    "filename.}}"
-                )
+                hint = \
+                    _("\n{{gb:Press}} {{ob:Enter}} {{gb:to confirm the "
+                    "filename.}}")
             else:
-                hint = (
-                    "\n{{gb:Type}} {{yb:" + self.goal_nano_save_name + "}} "
-                    "{{gb:and press}} {{yb:Enter}}"
-                )
+                hint = \
+                    _("\n{{gb:Type}} {{yb:%s}} " +\
+                    "{{gb:and press}} {{yb:Enter}}") % self.goal_nano_save_name
             self.send_text(hint)
 
         elif self.get_on_filename_screen():
             self.send_text(
-                "\n{{ob:Oops, your text isn't correct. Press}} "
-                "{{yb:Ctrl C}} {{ob:to cancel.}}"
+                _("\n{{ob:Oops, your text isn't correct. Press}} "
+                "{{yb:Ctrl C}} {{ob:to cancel.}}")
             )
 
         elif self.get_save_prompt_showing():
             if self.get_nano_content().strip() == self.goal_nano_end_content:
                 self.send_text(
-                    "\n{{gb:Press}} {{ob:Y}} {{gb:to confirm that you want to "
-                    "save.}}"
+                    _("\n{{gb:Press}} {{ob:Y}} {{gb:to confirm that you want to "
+                    "save.}}")
                 )
             else:
                 self.send_text(
-                    "\n{{rb:Your text is not correct! Press}} {{yb:N}} "
-                    "{{rb:to exit nano.}}"
+                    _("\n{{rb:Your text is not correct! Press}} {{yb:N}} "
+                    "{{rb:to exit nano.}}")
                 )
 
         elif self.get_nano_content().strip() == self.goal_nano_end_content:
-            hint = (
-                "\n{{gb:Excellent, you typed}} {{yb:" +
-                self.goal_nano_end_content +
-                "}}{{gb:. Now press}} {{yb:Ctrl X}} {{gb:to exit.}}"
-            )
+            hint = \
+                _("\n{{gb:Excellent, you typed}} {{yb:%s}}{{gb:. " +
+                "Now press}} {{yb:Ctrl X}} {{gb:to exit.}}")
+                % self.goal_nano_end_content
             self.send_text(hint)
 
         return False

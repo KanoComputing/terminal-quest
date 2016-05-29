@@ -11,7 +11,7 @@ from linux_story.story.terminals.terminal_eleanor import \
 
 # Ideally put in the class, but otherwise have to repeat this across the
 # different classes.
-bernard_text = "Bernard stopped you looking in the basement!"
+bernard_text = _("Bernard stopped you looking in the basement!")
 
 
 class TerminalMkdirBernard(TerminalMkdirEleanor):
