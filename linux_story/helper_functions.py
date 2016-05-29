@@ -203,7 +203,6 @@ def get_ascii_art(name):
     """
 
     ascii_art = name
-
     asset_path = get_path_to_file_in_system(name)
 
     try:
