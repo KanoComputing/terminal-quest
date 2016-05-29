@@ -1,0 +1,30 @@
+ _       _____
+| |     / ____|
+| |    | (___
+| |     \___ \
+| |____ ____) |
+|______|_____/
+
+
+このおまじないで自分の周りが見られる。
+
+
+例：
+
+<span foreground="yellow">ls</span>
+自分のいる場所の周りにあるものが見られる。
+
+<span foreground="yellow">ls -a</span>
+現在のフォルダーに隠れているものが見られる。
+
+<span foreground="yellow">ls kitchen</span>
+例えばmy-houseにいるとしたら、kitchen(台所)
+ディレクトリーにあるものが見られる。
+
+<span foreground="yellow">ls ../</span>
+自分の後ろのフォルダーにあるものが見られる。
+
+<span foreground="yellow">ls ~/my-house/kitchen</span>
+自分のいる場所に関わらず、これでkitchen(台所)に
+あるものが見られる。
+

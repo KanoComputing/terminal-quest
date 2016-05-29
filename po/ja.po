@@ -223,7 +223,7 @@ msgstr " ------------------------------------- "
 
 #: ../linux_story/story/challenges/challenge_1.py:37
 msgid "| {{gb:New Spell:}} Type {{yb:ls}} and press        |"
-msgstr "| {{gb:新しいお呪い:}} {{lb:周りを見る}}には、          |"
+msgstr "| {{gb:新しいおまじない:}} {{lb:周りを見る}}には、      |"
 
 #: ../linux_story/story/challenges/challenge_1.py:38
 msgid "| {{ob:Enter}} to {{lb:look around}}.               |"
@@ -255,7 +255,7 @@ msgstr "まず、この目覚まし時計({{bb:alarm}})を止めよう！ \n"
 
 #: ../linux_story/story/challenges/challenge_2.py:36
 msgid "| {{gb:New Spell}}: to {{lb:examine}} objects, type |"
-msgstr "| {{gb:新しいお呪い:}} {{lb:物を観察する}}には、        |"
+msgstr "| {{gb:新しいおまじない:}} {{lb:物を観察する}}には、    |"
 
 #: ../linux_story/story/challenges/challenge_2.py:37
 msgid "| {{yb:cat}} and the object name.            | "
@@ -410,7 +410,7 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_4.py:34
 msgid "| {{gb:New Spell}}: {{yb:cd}} lets you {{lb:move}}         |"
-msgstr "| {{gb:新しいお呪い}}: 場所を{{lb:移動する}}には、      |"
+msgstr "| {{gb:新しいおまじない}}: 場所を{{lb:移動する}}には、  |"
 
 #: ../linux_story/story/challenges/challenge_4.py:35
 msgid "| between places.                     | "
@@ -863,7 +863,7 @@ msgid ""
 "{{wb:Little-boy:}} {{Bb:\"Oh no! That grumpy-man with the funny legs has "
 "gone!}} {{Bb:Did you hear the bell just before he vanished??\"}}"
 msgstr ""
-"{{wb:男の子：}}{{Bb:\"いゃ〜、おじさんの変な足は‥なくなってるよ！"
+"{{wb:男の子：}}{{Bb:\"いゃ〜、おじさんの変な足は‥\nなくなってるよ！\n"
 "なくなる前に、鉦の音は聞こえた？\"}}"
 
 #: ../linux_story/story/challenges/challenge_8.py:50
@@ -898,7 +898,7 @@ msgid ""
 "{{wb:Young-girl:}} {{Bb:\"Wait, there was a}} {{bb:little-boy}} {{Bb:here..."
 "right?\""
 msgstr ""
-"{{wb:少女：}}{{Bb:\"待てよ、さっきここに{{bb:男の子}}がいたよね‥\"}}"
+"{{wb:少女：}}{{Bb:\"待てよ、さっきここに}}{{bb:男の子}}{{Bb:がいたよね‥\"}}"
 
 #: ../linux_story/story/challenges/challenge_8.py:69
 msgid "Every time that bell goes, someone disappears!}}"
@@ -932,7 +932,7 @@ msgstr "{{wb:町長：}}{{Bb:\"全員‥いなくなったか？？\"\n"
 
 #: ../linux_story/story/challenges/challenge_8.py:103
 msgid "\"....I should head home now...\"}}"
-msgstr "\"‥ワシは家に帰らなきゃ‥\"}}"
+msgstr "\"‥わしは家に帰らなきゃ‥\"}}"
 
 #: ../linux_story/story/challenges/challenge_8.py:124
 msgid "Everyone has gone."
@@ -953,48 +953,48 @@ msgstr "{{yb:cat note}}{{rb:を使ってメッセージを読んでみて。}}"
 
 #: ../linux_story/story/challenges/challenge_9.py:31
 msgid "Oh no! Check your {{bb:Mum}} is alright.\n"
-msgstr ""
+msgstr "やばい！お母さん({{bb:Mum}})が大丈夫か見て見なきゃ\n"
 
 #: ../linux_story/story/challenges/challenge_9.py:32
 msgid "Type {{yb:cd ..}} to leave {{bb:town}}."
-msgstr ""
+msgstr "町({{bb:town}})を出るには、{{yb:cd ..}}をタイプしよう。"
 
 #: ../linux_story/story/challenges/challenge_9.py:37
 msgid "{{rb:Use}} {{yb:cd ..}} {{rb:to start heading back home.}}"
-msgstr ""
+msgstr "{{yb:cd ..}}{{rb:を使って、家に戻ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_9.py:51
 msgid "Type {{yb:cd my-house/kitchen}} to go straight to the {{bb:kitchen}}.\n"
-msgstr ""
+msgstr "{{yb:cd my-house/kitchen}}をタイプし、直接台所({{bb:kitchen}})に行こう。\n"
 
 #: ../linux_story/story/challenges/challenge_9.py:52
 msgid "{{gb:Press}} {{ob:TAB}} {{gb:to speed up your typing!}}"
-msgstr ""
+msgstr "{{gb:速くタイプするには、}}{{ob:TAB}}{{gb:を使ってみよう！}}"
 
 #: ../linux_story/story/challenges/challenge_9.py:58
 msgid "{{rb:Use}} {{yb:cd my-house/kitchen}} {{rb:to go to the kitchen.}}"
-msgstr ""
+msgstr "{{rb:台所に行くには、}}{{yb:cd my-house/kitchen}}{{rb:を使って。}}"
 
 #: ../linux_story/story/challenges/challenge_9.py:80
 msgid "Take a {{lb:look around}} to make sure everything is OK."
-msgstr ""
+msgstr "大丈夫かを確認するには、{{lb:周りを見て}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_9.py:86
 msgid ""
 "{{rb:Use}} {{yb:ls}} {{rb:to see that everything is where it should be.}}"
-msgstr ""
+msgstr "{{yb:ls}}{{rb:を使って、周りを確認してみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_9.py:95
 msgid "Oh no - {{bb:Mum}} has vanished too!"
-msgstr ""
+msgstr "いゃ〜、お母さん({{bb:Mum}})もいなくなっちゃった！"
 
 #: ../linux_story/story/challenges/challenge_9.py:96
 msgid "Wait, there's another {{bb:note}}.\n"
-msgstr ""
+msgstr "あれ、またメッセージ({{bb:note}})がある。\n"
 
 #: ../linux_story/story/challenges/challenge_9.py:97
 msgid "Use {{yb:cat}} to {{lb:read}} the {{bb:note}}."
-msgstr ""
+msgstr "{{yb:cat}}を使って、メッセージ({{bb:note}})を{{lb:読んで}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_10.py:31
 msgid "You're in your house. You appear to be alone."
