@@ -197,7 +197,7 @@ msgid ""
 "posted as it happens...\"}}\n"
 msgstr ""
 "\n"
-"\"ユーバート町長が緊急な町内会議を開きました。\n"
+"\"ヒューバート町長が緊急な町内会議を開きました。\n"
 "これからも最新状況を伝えていきます...\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_1.py:35
@@ -819,7 +819,7 @@ msgid ""
 "{{gb:Well done! Check on %d more people.}}\n"
 msgstr ""
 "\n"
-"{{gb:良く出来た！後%d人の安否を確認しよう。}}\n"
+"{{gb:出来た！後%d人の安否を確認しよう。}}\n"
 
 #: ../linux_story/story/challenges/challenge_7.py:106
 #: ../linux_story/story/challenges/challenge_11.py:90
@@ -953,7 +953,7 @@ msgstr "{{yb:cat note}}{{rb:を使ってメッセージを読んでみて。}}"
 
 #: ../linux_story/story/challenges/challenge_9.py:31
 msgid "Oh no! Check your {{bb:Mum}} is alright.\n"
-msgstr "やばい！お母さん({{bb:Mum}})が大丈夫か見て見なきゃ\n"
+msgstr "やばい！お母さん({{bb:Mum}})が大丈夫か見てみなきゃ\n"
 
 #: ../linux_story/story/challenges/challenge_9.py:32
 msgid "Type {{yb:cd ..}} to leave {{bb:town}}."
@@ -998,23 +998,27 @@ msgstr "{{yb:cat}}を使って、メッセージ({{bb:note}})を{{lb:読んで}}
 
 #: ../linux_story/story/challenges/challenge_10.py:31
 msgid "You're in your house. You appear to be alone."
-msgstr ""
+msgstr "家にいる。１人見たいだ。"
 
 #: ../linux_story/story/challenges/challenge_10.py:32
 msgid "Use {{yb:cat}} to {{lb:examine}} some of the objects around you.\n"
-msgstr ""
+msgstr "{{yb:cat}}を使って、周りのものを{{lb:確認}}しよう。\n"
 
 #: ../linux_story/story/challenges/challenge_10.py:69
 msgid ""
 "\n"
 "{{gb:Well done! Just look at one more item.}}"
 msgstr ""
+"\n"
+"{{gb:よっし、もう１つ見てみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:73
 msgid ""
 "\n"
 "{{rb:Use}} {{yb:cat}} {{rb:to look at two of the objects around you.}}"
 msgstr ""
+"\n"
+"{{yb:cat}}{{rb:を使って、周りのものを２つ確認しよう。}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:76
 #, python-format
@@ -1022,18 +1026,20 @@ msgid ""
 "\n"
 "{{rb:Use the command}} {{yb:%s}} {{rb:to progress.}}"
 msgstr ""
+"\n"
+"{{yb:%s}}{{rb:で先に進もう。}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:93
 msgid "There doesn't seem to be anything here but loads of food."
-msgstr ""
+msgstr "たくさんの食べ物以外は、何も無い。"
 
 #: ../linux_story/story/challenges/challenge_10.py:94
 msgid "See if you can find something back in {{bb:town}}.\n"
-msgstr ""
+msgstr "町({{bb:town}})へ戻って、何か無いか見てみよう。\n"
 
 #: ../linux_story/story/challenges/challenge_10.py:95
 msgid "First, use {{yb:cd ..}} to {{lb:leave}} the {{bb:kitchen}}.\n"
-msgstr ""
+msgstr "まず、{{yb:cd ..}}で台所({{bb:kitchen}})を{{lb:出よう}}。\n"
 
 #: ../linux_story/story/challenges/challenge_10.py:127
 msgid ""
@@ -1041,87 +1047,102 @@ msgid ""
 "{{gb:Good work! Now replay the last command using the}} {{ob:UP}} {{gb:arrow "
 "on your keyboard.}}"
 msgstr ""
+"\n"
+"{{gb:よっし！次は}}{{ob:UP}}{{gb:キーを使って、最後のコマンドをもう一回"
+"実行しよう。}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:132
 msgid ""
 "\n"
 "{{rb:Use}} {{yb:cd ..}} {{rb:to make your way to town.}}"
 msgstr ""
+"\n"
+"{{yb:cd ..}}{{rb:で町へ行こう。}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:138
 msgid ""
 "\n"
 "{{gb:Good work! Now use}} {{yb:cd town}} {{gb:to head to town.}}"
 msgstr ""
+"\n"
+"{{gb:できた！次は}}{{yb:cd town}}{{gb:で町(town)へ行こう。}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:143
 msgid ""
 "\n"
 "{{rb:Use}} {{yb:cd town}} {{rb:to go into town.}}"
 msgstr ""
+"\n"
+"{{yb:cd town}}{{rb:を使って、町へ行こう。}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:158
 msgid "Use {{yb:ls}} to {{lb:look around}}.\n"
-msgstr ""
+msgstr "{{yb:ls}}で{{lb:周りを見よう}}。\n"
 
 #: ../linux_story/story/challenges/challenge_10.py:163
 msgid "{{rb:Use}} {{yb:ls}} {{rb:to have a look around the town.}}"
-msgstr ""
+msgstr "{{yb:ls}}{{rb:を使って、町の周りを見て。}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:171
 msgid "The place appears to be deserted."
-msgstr ""
+msgstr "誰もいないみたい。"
 
 #: ../linux_story/story/challenges/challenge_10.py:172
 msgid "However, you think you hear whispers."
-msgstr ""
+msgstr "しかし、ささやきが聞こえている。"
 
 #: ../linux_story/story/challenges/challenge_10.py:174
 msgid ""
 "\n"
 "{{wb:?:}} {{Bn:\".....if they use}} {{yb:ls -a}}{{Bn:, they'll see us...\"}}"
 msgstr ""
+"\n"
+"{{wb:？：}}{{Bn:\".....}}{{yb:ls -a}}{{Bn:を使ったら、見つかっちゃう....\"}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:175
 msgid "{{wb:?:}} {{Bn:\"..Shhh! ...might hear....\"}}\n"
-msgstr ""
+msgstr "{{wb:？：}}{{Bn:\"...シーー....聞こえちゃうよ.....\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_10.py:181
 msgid ""
 "{{rb:You heard whispers referring to}} {{yb:ls -a}}{{rb:, try using it!}}"
 msgstr ""
+"{{yb:ls -a}}{{rb:について話しているささやき声が聞こえたから、使ってみよう！}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:191
 msgid "You see a {{bb:.hidden-shelter}} that you didn't notice before.\n"
-msgstr ""
+msgstr "以前気がつかなかった隠れシェルター({{bb:.hidden-shelter}})が見えた。\n"
 
 #: ../linux_story/story/challenges/challenge_10.py:192
 msgid ""
 "{{gb:Something that starts with . is normally hidden from view.\n"
 "}}"
 msgstr ""
+"{{gb:.(ドット)で始まるものは普通は見えないんだ。\n"
+"}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:193
 msgid "It sounds like the whispers are coming from there. Try going in.\n"
-msgstr ""
+msgstr "ささやきはそこから聞こえてくるから、入ってみよう。\n"
 
 #: ../linux_story/story/challenges/challenge_10.py:202
 msgid ""
 "{{rb:Try going inside the}} {{lb:.hidden-shelter}} {{rb:using }}{{yb:cd}}"
 "{{rb:.}}"
-msgstr ""
+msgstr "{{yb:cd}}{{rb:を使って、隠れシェルター(}}{{lb:.hidden-shelter}}"
+"{{rb:)の中に入ってみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:204
 msgid "{{rb:Use the command}} {{yb:cd .hidden-shelter }}{{rb:to go inside.}}"
-msgstr ""
+msgstr "{{yb:cd .hidden-shelter}}{{rb:コマンドを使って、中に入ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:219
 msgid "Is anyone there? Have a {{lb:look around}}.\n"
-msgstr ""
+msgstr "誰かいるか？{{lb:周りを見よう}}。\n"
 
 #: ../linux_story/story/challenges/challenge_10.py:228
 msgid "{{rb:Use}} {{yb:ls}} {{rb:to have a look around you.}}"
-msgstr ""
+msgstr "{{yb:ls}}{{rb:を使って、周りを見て。}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:41
 msgid "You see a group of scared looking people and a {{bb:dog}}.\n"
