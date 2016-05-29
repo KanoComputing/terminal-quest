@@ -202,11 +202,7 @@ def get_ascii_art(name):
 
     ascii_art = name
 
-    localized_art = localized_ascii_art(name)
-    if localized_art:
-        return localized_art
-
-    asset_path = os.path.join(fallback_story_files_dir, name)
+    asset_path = get_path_to_file_in_system(name)
 
     try:
         with open(asset_path) as f:
@@ -221,35 +217,32 @@ def get_ascii_art(name):
     return ascii_art
 
 
-def localized_ascii_art(name):
+def get_path_to_file_in_system(name):
     """
-    Try loading an ASCII art file for the current locale.
+    Finds the path of a file (asset), first looking for any translation,
+    and falling back to the default location.
 
     Args:
         name (str) - the name of the asset file
 
     Returns:
-        ascii_art (str) - the ASCII art asset as a block of text
-                          or None if a localized version was not
-                          found.
+        path (str) - the path to the file (asset)
     """
 
-    ascii_art = None
+    path_in_system = None
 
     lang_dirs = get_language_dirs()
 
     for lang_dir in lang_dirs:
         asset_path = os.path.join(localized_story_files_dir_pattern.format(lang_dir), name)
-        if not os.path.isfile(asset_path):
-            continue
-        try:
-            with open(asset_path) as f:
-                ascii_art = f.read()
-                break
-        except Exception as e:
-            continue
+        if os.path.isfile(asset_path):
+            path_in_system = asset_path
+            break
 
-    return ascii_art
+    if path_in_system is None:
+        path_in_system = os.path.join(fallback_story_files_dir, name)
+
+    return path_in_system
 
 
 language_dirs = None
