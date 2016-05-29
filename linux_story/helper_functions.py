@@ -8,7 +8,7 @@
 
 import os
 import os.path
-from gettext import _expand_lang
+import gettext
 
 from kano.colours import colourize256, decorate_string
 from kano.logging import logger
@@ -16,7 +16,9 @@ from kano_profile.apps import \
     save_app_state_variable, load_app_state_variable, \
     increment_app_state_variable
 
-from linux_story.common import story_files_dir
+from linux_story.common import \
+    localized_story_files_dir_pattern, \
+    fallback_story_files_dir
 
 
 def debugger(text):
@@ -235,6 +237,7 @@ def get_path_to_file_in_system(name):
 
     for lang_dir in lang_dirs:
         asset_path = os.path.join(localized_story_files_dir_pattern.format(lang_dir), name)
+        print "Trying %s" % asset_path
         if os.path.isfile(asset_path):
             path_in_system = asset_path
             break
@@ -259,6 +262,7 @@ def get_language_dirs():
         dirs (array) - an array of language directories
     """
 
+    global language_dirs
     if language_dirs is not None:
         return language_dirs
 
@@ -279,6 +283,7 @@ def get_language_dirs():
                 nelangs.append(nelang)
 
     language_dirs = nelangs
+    print str(language_dirs)
     return language_dirs
 
 

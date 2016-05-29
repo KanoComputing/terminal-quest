@@ -441,7 +441,7 @@ class TerminalNano(TerminalEcho):
         elif self.get_nano_content().strip() == self.goal_nano_end_content:
             hint = \
                 _("\n{{gb:Excellent, you typed}} {{yb:%s}}{{gb:. " +
-                "Now press}} {{yb:Ctrl X}} {{gb:to exit.}}")
+                "Now press}} {{yb:Ctrl X}} {{gb:to exit.}}") \
                 % self.goal_nano_end_content
             self.send_text(hint)
 
