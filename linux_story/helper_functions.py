@@ -237,7 +237,6 @@ def get_path_to_file_in_system(name):
 
     for lang_dir in lang_dirs:
         asset_path = os.path.join(localized_story_files_dir_pattern.format(lang_dir), name)
-        print "Trying %s" % asset_path
         if os.path.isfile(asset_path):
             path_in_system = asset_path
             break
@@ -283,7 +282,6 @@ def get_language_dirs():
                 nelangs.append(nelang)
 
     language_dirs = nelangs
-    print str(language_dirs)
     return language_dirs
 
 
