@@ -1158,6 +1158,7 @@ msgid ""
 "{{wb:Edith:}} {{Bb:\"You found us! Edward, I told you to keep your voice "
 "down.\"}}"
 msgstr ""
+"\n"
 "{{wb:エディス：}}{{Bb:\"見つかっちゃったよ！小さい声で話せって言った"
 "のに、エドワードさん\"}}"
 
@@ -1167,6 +1168,7 @@ msgid ""
 "{{wb:Eleanor:}} {{Bb:\"My mummy is scared the bell will find us if we go "
 "outside.\"}}"
 msgstr ""
+"\n"
 "{{wb:エレアノー：}}{{Bb:\"母ちゃんが心配してる。外に出ると鐘に見つかっちゃうって。\"}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:53
@@ -1175,6 +1177,7 @@ msgid ""
 "{{wb:Edward:}} {{Bb:\"I'm sorry Edith...but I don't think they mean any "
 "harm. Maybe they could help us?\"}}"
 msgstr ""
+"\n"
 "{{wb:エドワード：}}{{Bb:\"エディスちゃんすまん。でも僕らを傷つけようと"
 "思ってないかも。助けてくれるかも？\"}}"
 
@@ -1183,6 +1186,7 @@ msgid ""
 "\n"
 "{{wb:Dog:}} {{Bb:\"Woof woof!\"}}"
 msgstr ""
+"\n"
 "{{wb:犬：}}{{Bb:\"ワン、ワン！\"}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:87
@@ -1200,7 +1204,7 @@ msgstr "エドワードさんが君に何か言いたいみたいよ。\n"
 
 #: ../linux_story/story/challenges/challenge_11.py:108
 msgid "{{wb:Edward:}} {{Bb:\"Hi there. Can you help me with something?\""
-msgstr "{{wb:エドワード：}}{{Bb:\"ねね、君。手伝ってくらないか？\""
+msgstr "{{wb:エドワード：}}{{Bb:\"ねね、君。手伝ってくれないか？\""
 
 #: ../linux_story/story/challenges/challenge_11.py:110
 msgid ""
@@ -1227,7 +1231,7 @@ msgid ""
 "{{Bb:\"But I don't understand what that means. Do I say it? Or write it?"
 "\"}}\n"
 msgstr ""
-"{{Bb:\"意味がわからないな。このおまじないを言えばいいの？それとも書けばいい？\"}}"
+"{{Bb:\"意味がわからないな。このおまじないを言えばいいの？それとも書けばいい？\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_11.py:121
 msgid "| {{gb:New Spell}}: to {{lb:move}} objects, type {{yb:mv}} |"
@@ -1235,7 +1239,7 @@ msgstr "| {{gb:新しいおまじない}}: ものを{{lb:動かす}}には、   
 
 #: ../linux_story/story/challenges/challenge_11.py:122
 msgid "| and the object name.                |"
-msgstr "| {{yb:mv}}とものの名前をタイプする。      |"
+msgstr "| {{yb:mv}}とものの名前をタイプする。             |"
 
 #: ../linux_story/story/challenges/challenge_11.py:134
 msgid ""
@@ -1261,7 +1265,7 @@ msgid ""
 "{{wn:Now check the apple is in the}} {{bb:basket}} {{wn:using}} {{yb:ls}}"
 "{{wn:.}}\n"
 msgstr ""
-"{{wn:次は、}}{{yb:ls}}{{を使って、リンゴがカゴ(}}{{bb:basket}}{{wn:)にある"
+"{{wn:次は、}}{{yb:ls}}{{wn:を使って、リンゴがカゴ(}}{{bb:basket}}{{wn:)にある"
 "かどうか確認しよう。}}\n"
 
 #: ../linux_story/story/challenges/challenge_11.py:187
@@ -1278,7 +1282,7 @@ msgid ""
 "{{wb:Edward:}} {{Bb:\"Hey, you did it! What was I doing wrong?\"}}"
 msgstr ""
 "\n"
-"{{wb:エドワード：}}{{Bb:\"ヘェ〜、出来たね！僕はどこが間違ってたんだろう？\""
+"{{wb:エドワード：}}{{Bb:\"ヘェ〜、出来たね！僕はどこが間違ってたんだろう？\"}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:200
 msgid "{{Bb:\"Can you move the apple from the basket back here?\"}}\n"
