@@ -1551,7 +1551,7 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_13.py:120
 msgid "Move the {{bb:basket}} to {{bb:my-house/kitchen}}."
-msgstr "カゴ({{bb:basket}})を家の台所({{bb:my-house/kitchen}}に{{lb:動かそう}}。"
+msgstr "カゴ({{bb:basket}})を家の台所({{bb:my-house/kitchen}})に{{lb:動かそう}}。"
 
 #: ../linux_story/story/challenges/challenge_13.py:121
 msgid "Don't forget to use the {{ob:TAB}} key to autocomplete your commands.\n"
