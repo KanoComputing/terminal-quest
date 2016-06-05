@@ -460,7 +460,7 @@ msgstr "{{pb:キン・コーン}}\n"
 
 #: ../linux_story/story/challenges/challenge_4.py:86
 msgid "What was that? A bell? That's a bit odd."
-msgstr "何これ？鐘の音？不思議だな。"
+msgstr "何これ？かねの音？不思議だな。"
 
 #: ../linux_story/story/challenges/challenge_4.py:87
 msgid "You see the door to your {{bb:kitchen}}, and hear the sound of cooking."
@@ -514,7 +514,7 @@ msgid ""
 "grab your Dad? I think he's in the}} {{bb:garden}}{{Bb:.\"}}\n"
 msgstr ""
 "{{wb:お母さん:}} {{Bb:\"おはよう。朝ごはんはもうすぐ出来るよ。\n"
-"お父さんを呼んできてくらない？多分お庭(}}{{bb:garden}}{{Bb:)にいるよ。\"}}\n"
+"お父さんを呼んできてくれない？多分お庭(}}{{bb:garden}}{{Bb:)にいるよ。\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:32
 msgid "Let's look for your {{bb:Dad}} in the {{bb:garden}}."
@@ -603,11 +603,11 @@ msgstr "{{rb:お父さんを探すには、}}{{yb:ls}}{{rb:をタイプしてみ
 
 #: ../linux_story/story/challenges/challenge_5.py:131
 msgid "Your {{bb:Dad}} has been busy, there are loads of vegetables here."
-msgstr "野菜はいっぱいだな。お父さん({{bb:Dad}})は忙しそうだね。"
+msgstr "野菜がいっぱいだな。お父さん({{bb:Dad}})は忙しいだろうな。"
 
 #: ../linux_story/story/challenges/challenge_5.py:132
 msgid "Hmmmm. He's not here. But there is something odd.\n"
-msgstr "しかし、ここにもいないな。あれ、変なものが。。\n"
+msgstr "でもここにいないな。あれ、変なものが。。\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:133
 msgid ""
@@ -700,7 +700,7 @@ msgstr "{{rb:旅に出かけるには、}}{{yb:cd}}{{rb:をタイプして。}}"
 #: ../linux_story/story/challenges/challenge_6.py:64
 msgid ""
 "You're out of the house and on the long windy road called Tilde, or {{bb:~}}"
-msgstr "家を出て、ナミセン又は{{bb:~}}と呼ばれる、風の吹く長い道にいる。"
+msgstr "君は家を出て、ナミセン又は{{bb:~}}と呼ばれる、風の吹く長い道にいる。"
 
 #: ../linux_story/story/challenges/challenge_6.py:65
 msgid "{{lb:Look around}} again to see where to go next."
@@ -902,7 +902,7 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_8.py:69
 msgid "Every time that bell goes, someone disappears!}}"
-msgstr "鐘が鳴るたびに、誰かがいなくなっちゃう！"
+msgstr "かねが鳴るたびに、誰かがいなくなっちゃう！"
 
 #: ../linux_story/story/challenges/challenge_8.py:70
 msgid "{{wb:Mayor:}} {{Bb:\"Maybe they just decided to go home...?\"}}"
@@ -998,7 +998,7 @@ msgstr "{{yb:cat}}を使って、メッセージ({{bb:note}})を{{lb:読んで}}
 
 #: ../linux_story/story/challenges/challenge_10.py:31
 msgid "You're in your house. You appear to be alone."
-msgstr "家にいる。１人見たいだ。"
+msgstr "家にいるのは、君一人みたいだ。"
 
 #: ../linux_story/story/challenges/challenge_10.py:32
 msgid "Use {{yb:cat}} to {{lb:examine}} some of the objects around you.\n"
@@ -1089,7 +1089,7 @@ msgstr "誰もいないみたい。"
 
 #: ../linux_story/story/challenges/challenge_10.py:172
 msgid "However, you think you hear whispers."
-msgstr "しかし、ささやきが聞こえている。"
+msgstr "しかし、ささやき声が聞こえている。"
 
 #: ../linux_story/story/challenges/challenge_10.py:174
 msgid ""
@@ -1123,7 +1123,7 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_10.py:193
 msgid "It sounds like the whispers are coming from there. Try going in.\n"
-msgstr "ささやきはそこから聞こえてくるから、入ってみよう。\n"
+msgstr "ささやき声はそこから聞こえてくるから、入ってみよう。\n"
 
 #: ../linux_story/story/challenges/challenge_10.py:202
 msgid ""
@@ -1169,7 +1169,7 @@ msgid ""
 "outside.\"}}"
 msgstr ""
 "\n"
-"{{wb:エレノア：}}{{Bb:\"母ちゃんが心配してる。外に出ると鐘に見つかっちゃうって。\"}}"
+"{{wb:エレノア：}}{{Bb:\"母ちゃんが心配してる。外に出るとかねに見つかっちゃうって。\"}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:53
 msgid ""
@@ -1211,8 +1211,8 @@ msgid ""
 "\"I learnt this spell for moving items from one place to another. But I "
 "can't seem to make it work.\""
 msgstr ""
-"\"ある物を別の場所へ動かすためのおまじないを教わったけど。\n"
-"上手くいかない。\""
+"\"ある物を別の場所へ動かすためのおまじないを\n"
+"教わったんだけど、上手くいかない。\""
 
 #: ../linux_story/story/challenges/challenge_11.py:113
 msgid ""
@@ -1418,17 +1418,18 @@ msgstr "{{wb:犬：}}{{Bb:\"ワン、ワン！\"}}"
 
 #: ../linux_story/story/challenges/challenge_12.py:69
 msgid "{{wb:Edith:}} {{Bb:\"Thank you so much for getting them both back."
-msgstr ""
+msgstr "{{wb:エディス：}}{{Bb:\"二人を助けてくれて、ありがとう！"
 
 #: ../linux_story/story/challenges/challenge_12.py:70
 msgid "I was wrong about you. You're a hero!\"}}\n"
-msgstr ""
+msgstr "君の事をうたがって、すまなかったわ。君はヒーローよ！\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_12.py:71
 msgid ""
 "{{lb:Listen to everyone}} and see if there's anything else you can do to "
 "help.\n"
 msgstr ""
+"全員の{{lb:話を聞いて}}、他にできる事がないか確認しよう。\n"
 
 #: ../linux_story/story/challenges/challenge_12.py:78
 msgid ""
@@ -1436,42 +1437,53 @@ msgid ""
 "{{wb:Edith:}} {{Bb:\"Thank you so much! Eleanor, don't wander outside again "
 "- you scared the life out of me!\"}}"
 msgstr ""
+"\n"
+"{{wb:エディス：}}{{Bb:\"本当にありがとう！\nエレノアちゃん、もう外に出ないでね、"
+"お願いだから。すごい怖かったよ！\n}}"
 
 #: ../linux_story/story/challenges/challenge_12.py:82
 msgid ""
 "\n"
 "{{wb:Eleanor:}} {{Bb:\"Where do you think the bell would have taken us?\"}}"
 msgstr ""
+"\n"
+"{{wb:エレノア：}}{{Bb:\"あのかねは私たちをどこに連れちゃうと思う？\"}}"
 
 #: ../linux_story/story/challenges/challenge_12.py:85
 msgid ""
 "\n"
 "{{wb:Dog:}} {{Bb:\"Woof! Woof woof!\"}}"
 msgstr ""
+"\n"
+"{{wb:犬：}}{{Bb:\"ワン、ワン。ワワワン！\"}}"
 
 #: ../linux_story/story/challenges/challenge_12.py:88
 msgid ""
 "{{gb:Edward looks like he has something he wants to say. Listen to Edward "
 "with}} {{yb:cat Edward}}"
 msgstr ""
+"{{gb:エドワードさんが君に何か言いたいみたい。}}\n"
+"{{yb:cat Edward}}{{gb:で話を聞いてみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_13.py:33
 msgid "{{wb:Edward:}} {{Bb:\"Thank you so much for saving my little girl!"
-msgstr ""
+msgstr "{{wb:エドワード：}}{{Bb:\"娘を救ってくれてありがとう！"
 
 #: ../linux_story/story/challenges/challenge_13.py:34
 msgid "I have another favour to ask..."
-msgstr ""
+msgstr "実はもう一つお願いがあります。"
 
 #: ../linux_story/story/challenges/challenge_13.py:36
 msgid ""
 "We haven't got any food. Could you gather some for us? We didn't have time "
 "to grab any before we went into hiding.\""
 msgstr ""
+"食べ物がないんだよ。ここに隠れる前に、探す時間がなくてね。\n"
+"食べ物を僕らに持ってきてくれないか？\""
 
 #: ../linux_story/story/challenges/challenge_13.py:39
 msgid "\"Do you remember seeing any food in your travels?\"}}"
-msgstr ""
+msgstr "\"移動中に食べ物を見かけた事ないかな？\"}}"
 
 #: ../linux_story/story/challenges/challenge_13.py:41
 msgid ""
@@ -1479,6 +1491,9 @@ msgid ""
 "...ah! You have all that food in your {{bb:kitchen}}! We could give that to "
 "this family."
 msgstr ""
+"\n"
+"そうだ！台所({{bb:kitchen}})に食べ物がたくさんあったね！\n"
+"この家族に持ってきてあげよう。"
 
 #: ../linux_story/story/challenges/challenge_13.py:44
 msgid ""
@@ -1486,18 +1501,25 @@ msgid ""
 "Start by {{lb:moving}} the {{bb:basket}} to {{bb:~}}. Use the command {{yb:"
 "mv basket ~/}}\n"
 msgstr ""
+"\n"
+"まず、カゴ({{bb:basket}})を{{bb:~}}に{{lb:動かそう}}。\n"
+"{{yb:mv basket ~/}}というコマンドを使おう。\n"
 
 #: ../linux_story/story/challenges/challenge_13.py:60
 msgid ""
 "{{rb:Use the command}} {{yb:mv basket ~/}} {{rb:to move the}} {{bb:basket}} "
 "{{rb:to the windy road}} {{bb:~}}"
 msgstr ""
+"{{yb:mv basket ~/}}{{rb:を使って、カゴを風の吹く道}}{{bb:~}}"
+"{{rb:に持って行こう。}}"
 
 #: ../linux_story/story/challenges/challenge_13.py:73
 msgid ""
 "Now follow the {{bb:basket}}. Use {{yb:cd}} by itself to {{lb:go}} to the "
 "windy road Tilde {{bb:~}}.\n"
 msgstr ""
+"次は、カゴ({{bb:basket}})について行こう。{{yb:cd}}をそのままで使って、"
+"風の吹く道、ナミセン{{bb:~}}に行こう。\n"
 
 #: ../linux_story/story/challenges/challenge_13.py:84
 #: ../linux_story/story/challenges/challenge_14.py:198
@@ -1505,44 +1527,49 @@ msgid ""
 "{{rb:Use the command}} {{yb:cd}} {{rb:by itself to move yourself to the road "
 "~}}"
 msgstr ""
+"{{yb:cd}}{{rb:をそのままで使って、~道に動こう。}}"
 
 #: ../linux_story/story/challenges/challenge_13.py:99
 msgid ""
 "You are now back on the long windy road. {{lb:Look around}} with {{yb:ls}} "
 "to check that you have your {{bb:basket}} with you.\n"
 msgstr ""
+"また風の吹く長い道に戻った。{{yb:ls}}で{{lb:周りを見て}}、\n"
+"カゴ({{bb:basket}})を持っている事を確認しよう。\n"
 
 #: ../linux_story/story/challenges/challenge_13.py:109
 msgid "{{rb:Use}} {{yb:ls}} {{rb:by itself to look around.}}"
-msgstr ""
+msgstr "{{yb:ls}}{{rb:をそのままで使って、周りを見てみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_13.py:118
 msgid ""
 "You have your {{bb:basket}} safely alongside you, and you see {{bb:my-"
 "house}} close by."
 msgstr ""
+"カゴ({{bb:basket}})がそばにあって、そして家({{bb:my-house}})が"
+"見えている。"
 
 #: ../linux_story/story/challenges/challenge_13.py:120
 msgid "Move the {{bb:basket}} to {{bb:my-house/kitchen}}."
-msgstr ""
+msgstr "カゴ({{bb:basket}})を家の台所({{bb:my-house/kitchen}}に{{lb:動かそう}}。"
 
 #: ../linux_story/story/challenges/challenge_13.py:121
 msgid "Don't forget to use the {{ob:TAB}} key to autocomplete your commands.\n"
-msgstr ""
+msgstr "また、忘れないで：{{ob:TAB}}でコマンドをオートコンプリートできる。\n"
 
 #: ../linux_story/story/challenges/challenge_13.py:137
 msgid ""
 "{{rb:Use}} {{yb:mv basket my-house/kitchen/}} {{rb:to move the basket to "
 "your kitchen.}}"
-msgstr ""
+msgstr "{{yb:mv basket my-house/kitchen/}}{{rb:でカゴを台所に動かして。}}"
 
 #: ../linux_story/story/challenges/challenge_13.py:150
 msgid "Now {{lb:go}} into {{bb:my-house/kitchen}} using {{yb:cd}}.\n"
-msgstr ""
+msgstr "{{yb:cd}}を使って、家の台所({{bb:my-house/kitchen}})へ{{lb:行こう}}。\n"
 
 #: ../linux_story/story/challenges/challenge_13.py:162
 msgid "{{rb:Use}} {{yb:cd my-house/kitchen}} {{rb:to go to your kitchen.}}"
-msgstr ""
+msgstr "{{yb:cd my-house/kitchen}}{{rb:で家の台所へ行こう。}}"
 
 #: ../linux_story/story/challenges/challenge_14.py:35
 msgid ""
