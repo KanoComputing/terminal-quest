@@ -31,7 +31,7 @@ msgstr "牧場へ行こう"
 
 #: ../linux_story/titles.py:27
 msgid "Save Eleanor"
-msgstr "エレアノーちゃんを救おう"
+msgstr "エレノアちゃんを救おう"
 
 #: ../linux_story/titles.py:35
 msgid "Wake up!"
@@ -123,7 +123,7 @@ msgstr "聞こえたかい？"
 
 #: ../linux_story/titles.py:123
 msgid "Hello Eleanor"
-msgstr "エレアノーちゃん、こんにちは"
+msgstr "エレノアちゃん、こんにちは"
 
 #: ../linux_story/titles.py:127
 msgid "Go east"
@@ -1150,7 +1150,7 @@ msgstr "怖がっている人たちと犬({{bb:dog}})がいる。\n"
 
 #: ../linux_story/story/challenges/challenge_11.py:42
 msgid "{{lb:Listen}} to what they have to say with {{yb:cat}}.\n"
-msgstr "{{yb:cat}}を使って、人の話を{{lb:聞こう}}。\n"
+msgstr "{{yb:cat}}を使って、一人ひとりの話を{{lb:聞こう}}。\n"
 
 #: ../linux_story/story/challenges/challenge_11.py:49
 msgid ""
@@ -1159,8 +1159,8 @@ msgid ""
 "down.\"}}"
 msgstr ""
 "\n"
-"{{wb:エディス：}}{{Bb:\"見つかっちゃったよ！小さい声で話せって言った"
-"のに、エドワードさん\"}}"
+"{{wb:エディス：}}{{Bb:\"あなた、見つかっちゃったよ！小さい声で話せって"
+"言ったのに\"}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:51
 msgid ""
@@ -1169,7 +1169,7 @@ msgid ""
 "outside.\"}}"
 msgstr ""
 "\n"
-"{{wb:エレアノー：}}{{Bb:\"母ちゃんが心配してる。外に出ると鐘に見つかっちゃうって。\"}}"
+"{{wb:エレノア：}}{{Bb:\"母ちゃんが心配してる。外に出ると鐘に見つかっちゃうって。\"}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:53
 msgid ""
@@ -1178,8 +1178,8 @@ msgid ""
 "harm. Maybe they could help us?\"}}"
 msgstr ""
 "\n"
-"{{wb:エドワード：}}{{Bb:\"エディスちゃんすまん。でも僕らを傷つけようと"
-"思ってないかも。助けてくれるかも？\"}}"
+"{{wb:エドワード：}}{{Bb:\"すまん、エディスちゃん。でも僕らに悪さをしない"
+"と思う。むしろ助けてくれるかも。\"}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:55
 msgid ""
@@ -1204,23 +1204,23 @@ msgstr "エドワードさんが君に何か言いたいみたいよ。\n"
 
 #: ../linux_story/story/challenges/challenge_11.py:108
 msgid "{{wb:Edward:}} {{Bb:\"Hi there. Can you help me with something?\""
-msgstr "{{wb:エドワード：}}{{Bb:\"ねね、君。手伝ってくれないか？\""
+msgstr "{{wb:エドワード：}}{{Bb:\"ねねー、君。手伝ってくれないか？\""
 
 #: ../linux_story/story/challenges/challenge_11.py:110
 msgid ""
 "\"I learnt this spell for moving items from one place to another. But I "
 "can't seem to make it work.\""
 msgstr ""
-"\"ものをある場所から別のところへ動かすためのおまじないを教わったけど。"
-"上手くいかないみたい。\""
+"\"ある物を別の場所へ動かすためのおまじないを教わったけど。\n"
+"上手くいかない。\""
 
 #: ../linux_story/story/challenges/challenge_11.py:113
 msgid ""
 "\"I've been trying to move this}} {{bb:apple}} {{Bb:into the}} {{bb:basket}}"
 "{{Bb:\"}}"
 msgstr ""
-"\"このリンゴ(}}{{bb:apple}}{{Bb:)をカゴ(}}{{bb:basket}}{{Bb:)に動かそうと"
-"した。\"}}"
+"\"このリンゴ(}}{{bb:apple}}{{Bb:)をカゴ(}}{{bb:basket}}{{Bb:)に\n"
+"動かそうと思ってね。\"}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:116
 msgid "{{Bb:\"I was told the command was}} {{yb:mv apple basket/}}{{Bb:\"}}"
@@ -1239,7 +1239,7 @@ msgstr "| {{gb:新しいおまじない}}: ものを{{lb:動かす}}には、   
 
 #: ../linux_story/story/challenges/challenge_11.py:122
 msgid "| and the object name.                |"
-msgstr "| {{yb:mv}}とものの名前をタイプする。             |"
+msgstr "| {{yb:mv}}と物の名前をタイプする。               |"
 
 #: ../linux_story/story/challenges/challenge_11.py:134
 msgid ""
@@ -1274,7 +1274,7 @@ msgstr "{{yb:ls basket/}}{{rb:コマンドを使って、カゴの中を見て�
 
 #: ../linux_story/story/challenges/challenge_11.py:197
 msgid "{{gb:Excellent, you moved the apple into the basket!}}"
-msgstr "{{gb:出来た！リンゴをカゴに動かした！}}"
+msgstr "{{gb:出来た！リンゴをカゴに動かしたね！}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:198
 msgid ""
@@ -1333,7 +1333,7 @@ msgstr "{{Bb:\"あっ、犬が外に出ちゃいました！\"}}"
 #: ../linux_story/story/challenges/challenge_11.py:235
 #: ../linux_story/story/challenges/challenge_12.py:36
 msgid "{{wb:Eleanor:}} {{Bb:\"Doggy!\"}}"
-msgstr "{{wb:エレアノー：}}{{Bb:\"ワンちゃん！\"}}"
+msgstr "{{wb:エレノア：}}{{Bb:\"ワンちゃん！\"}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:236
 msgid "{{wb:Edith:}} {{Bb:\"No, honey! Don't go outside!\"}}"
@@ -1345,7 +1345,7 @@ msgid ""
 "{{bb:Eleanor}} follows her {{bb:dog}} and leaves the {{bb:.hidden-shelter}}."
 msgstr ""
 "\n"
-"エレアノー({{bb:Eleanor}})ちゃんが犬({{bb:dog}})について行って、"
+"エレノア({{bb:Eleanor}})ちゃんは、犬({{bb:dog}})について行って、"
 "隠れシェルター({{bb:.hidden-shelter}})を出た。"
 
 #: ../linux_story/story/challenges/challenge_11.py:239
@@ -1354,7 +1354,7 @@ msgstr "{{lb:周りを見て}}確認しよう。\n"
 
 #: ../linux_story/story/challenges/challenge_11.py:260
 msgid "{{rb:Look around using}} {{yb:ls}} {{rb:to check if Eleanor is here.}}"
-msgstr "{{yb:ls}}{{rb:でエレアノーちゃんがいるかどうか確認して。}}"
+msgstr "{{yb:ls}}{{rb:でエレノアちゃんがいるかどうか確認して。}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:269
 msgid "{{wb:Edith:}} {{Bb:\"No!! Honey, come back!!\"}}"
@@ -1366,7 +1366,7 @@ msgstr "{{Bb:\"あなた、私の娘を助けて！\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_11.py:271
 msgid "First, {{lb:look outside}} for {{bb:Eleanor}} with {{yb:ls ../}}"
-msgstr "まず、{{yb:ls ../}}で{{lb:外を見て}}、エレアノー({{bb:Eleanor}})ちゃんを探そう。"
+msgstr "まず、{{yb:ls ../}}で{{lb:外を見て}}、エレノア({{bb:Eleanor}})ちゃんを探そう。"
 
 #: ../linux_story/story/challenges/challenge_11.py:282
 msgid ""
@@ -1381,7 +1381,7 @@ msgid ""
 "Now {{lb:move}} {{bb:Eleanor}} from the {{bb:town}} outside {{bb:..}} to "
 "your current position {{bb:.}}\n"
 msgstr ""
-"次は、エレアノー({{bb:Eleanor}})ちゃんを{{bb:..}}にある町({{bb:town}})から"
+"次は、エレノア({{bb:Eleanor}})ちゃんを{{bb:..}}にある町({{bb:town}})から"
 "現在地{{bb:.}}までに動かそう。\n"
 
 #: ../linux_story/story/challenges/challenge_11.py:308
@@ -1394,25 +1394,27 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_12.py:35
 msgid "{{wb:Edith:}} {{Bb:\"Thank you for saving her!\"}}"
-msgstr ""
+msgstr "{{wb:エディス：}}{{Bb:\"娘を助けてくれて、ありがとう！\"}}"
 
 #: ../linux_story/story/challenges/challenge_12.py:37
 msgid ""
 "{{wb:Edith:}} {{Bb:\"Can you save her dog too? I'm worried something will "
 "happen to it if it stays outside.\"}}\n"
 msgstr ""
+"{{wb:エディス：}}{{Bb:\"犬も助けられますか？\n"
+"外にいると何かが起こる事が心配。\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_12.py:53
 msgid "{{rb:Use the command}} {{yb:mv ../dog ./}} {{rb:to rescue the dog.}}"
-msgstr ""
+msgstr "{{yb:mv ../dog ./}}{{rb:を使って、犬を助けて。}}"
 
 #: ../linux_story/story/challenges/challenge_12.py:67
 msgid "{{wb:Eleanor:}} {{Bb:\"Yay, Doggie!\"}}"
-msgstr ""
+msgstr "{{wb:エレノア：}}{{Bb:\"ワンちゃん、戻ってきた〜！\"}}"
 
 #: ../linux_story/story/challenges/challenge_12.py:68
 msgid "{{wb:Dog:}} {{Bb:\"Ruff!\"}}"
-msgstr ""
+msgstr "{{wb:犬：}}{{Bb:\"ワン、ワン！\"}}"
 
 #: ../linux_story/story/challenges/challenge_12.py:69
 msgid "{{wb:Edith:}} {{Bb:\"Thank you so much for getting them both back."
