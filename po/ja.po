@@ -1796,73 +1796,82 @@ msgstr "小さい棚({{bb:.tiny-chest}})の中を{{lb:のぞいて}}みよう。
 
 #: ../linux_story/story/challenges/challenge_15.py:62
 msgid "{{rb:Use}} {{yb:ls .tiny-chest}} {{rb:to look inside}}"
-msgstr ""
+msgstr "{{yb:ls .tiny-chest}}{{rb:で中を見てみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_15.py:80
 msgid ""
 "You see a scroll of parchment inside, with a stamp on it saying {{bb:MV}}."
 msgstr ""
+"小さい棚の中に、羊皮紙があるぞ。{{bb:MV}}と言うスタンプが押してあります。"
 
 #: ../linux_story/story/challenges/challenge_15.py:81
 msgid "{{lb:Read}} what it says."
-msgstr ""
+msgstr "羊皮紙を{{lb:読んで}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_15.py:85
 msgid "{{rb:Use}} {{yb:cat .tiny-chest/MV}} {{rb:to read the MV parchment}}"
-msgstr ""
+msgstr "{{yb:cat .tiny-chest/MV}}{{rb:でMV羊皮紙を読んでみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_15.py:100
 msgid ""
 "{{wb:Edward:}} {{Bb:\"Hey, that's our .tiny-chest We use it to keep our "
 "possessions safe. "
 msgstr ""
+"{{wb:エドワード：}}{{Bb:\"この小さい棚(.tiny-chest)に僕らの持ち物を保存"
+"してるんだ。"
 
 #: ../linux_story/story/challenges/challenge_15.py:101
 msgid ""
 "I learnt about how to move objects from that}} {{Bb:MV}} {{Bb:parchment."
 msgstr ""
+"この}}{{Bb:MV}}{{Bb:羊皮紙で、物を動かす方法を学んだけど"
 
 #: ../linux_story/story/challenges/challenge_15.py:102
 msgid "It's probably of more use to you, please take it with my thanks.\"}}"
-msgstr ""
+msgstr "僕より君に役立つと思うから、どうぞ持ってって。\"}}"
 
 #: ../linux_story/story/challenges/challenge_15.py:103
 msgid ""
 "\n"
 "Maybe you should go back to {{bb:my-house}} to look for more hidden items."
 msgstr ""
+"\n"
+"他に隠れた物があるかもしれないから、家({{bb:my-house}})に戻ろうか？"
 
 #: ../linux_story/story/challenges/challenge_15.py:104
 msgid "To quickly go back home, use {{yb:cd ~/my-house}}\n"
-msgstr ""
+msgstr "速く家に戻るには、{{yb:cd ~/my-house}}を使おう。}}\n"
 
 #: ../linux_story/story/challenges/challenge_15.py:114
 msgid ""
 "{{rb:No shortcuts! Use}} {{yb:cd ~/my-house}} {{rb:to get back to your house "
 "in one step.}}"
 msgstr ""
+"{{rb:近道を使わないで！}}{{yb:cd ~/my-house}}{{rb:ですぐに家に戻ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_15.py:128
 msgid "Let's see if we can find anything hidden around here!"
-msgstr ""
+msgstr "ここに隠れた物がないか確認しよう！"
 
 #: ../linux_story/story/challenges/challenge_15.py:129
 msgid "Where do you think any hidden things could be?\n"
-msgstr ""
+msgstr "隠れた物は、どこにあると思う？\n"
 
 #: ../linux_story/story/challenges/challenge_15.py:130
 msgid "Try {{lb:looking closely}} in {{bb:my-room}} first."
-msgstr ""
+msgstr "まず、君の部屋({{bb:my-room}})で{{lb:詳しく見て}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_15.py:136
 msgid "{{rb:Stuck? Have a look in}} {{yb:my-room}}{{rb:.}}"
-msgstr ""
+msgstr "{{rb:迷ってる？}}{{yb:my-room}}{{rb:を見てみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_15.py:137
 msgid ""
 "{{rb:Use}} {{yb:ls -a my-room}} {{rb:to look for hidden files in}} {{lb:my-"
 "room}}{{rb:.}}"
 msgstr ""
+"{{yb:ls -a my-room}}{{rb:を使って、}}{{lb:my-room}}{{rb:で隠れたファイルを"
+"探してみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_16.py:31
 msgid ""
@@ -4238,17 +4247,19 @@ msgstr "なるほど。でも変なパスに入ろうとしたよ。"
 
 #: ../linux_story/story/terminals/terminal_nano.py:23
 msgid "Save modified buffer (ANSWERING \"No\" WILL DESTROY CHANGES) ? "
-msgstr ""
+msgstr "変更済みのバッファーを保存する？（\"No\"と答えたら変更が失われる）"
 
 #: ../linux_story/story/terminals/terminal_nano.py:24
 msgid "File Name to Write"
-msgstr ""
+msgstr "書き込むファイル名"
 
 #: ../linux_story/story/terminals/terminal_nano.py:323
 msgid ""
 "\n"
 "{{rb:Oops, you opened the wrong file! Press}} {{yb:Ctrl X}} {{rb:to exit.}}"
 msgstr ""
+"\n"
+"{{rb:あれ、違うファイルを開いた！終了するには、}}{{yb:Ctrl X}}{{rb:を押して。}}"
 
 #: ../linux_story/story/terminals/terminal_nano.py:330
 #, python-format
