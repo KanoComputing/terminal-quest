@@ -1788,11 +1788,11 @@ msgstr "{{rb:より細かく周りを見るには、}}{{yb:ls -a}}{{rb:を使っ
 
 #: ../linux_story/story/challenges/challenge_15.py:57
 msgid "What's that! There's {{bb:.tiny-chest}} in the corner of the shelter"
-msgstr "何これ？！小さい棚({{bb:.tiny-chest}})がシェルターの隅にある。"
+msgstr "何これ？！小さい金庫({{bb:.tiny-chest}})がシェルターの隅にある。"
 
 #: ../linux_story/story/challenges/challenge_15.py:58
 msgid "Have a {{lb:look inside}} the {{bb:.tiny-chest}}."
-msgstr "小さい棚({{bb:.tiny-chest}})の中を{{lb:のぞいて}}みよう。"
+msgstr "小さい金庫({{bb:.tiny-chest}})の中を{{lb:のぞいて}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_15.py:62
 msgid "{{rb:Use}} {{yb:ls .tiny-chest}} {{rb:to look inside}}"
@@ -1802,7 +1802,7 @@ msgstr "{{yb:ls .tiny-chest}}{{rb:で中を見てみよう。}}"
 msgid ""
 "You see a scroll of parchment inside, with a stamp on it saying {{bb:MV}}."
 msgstr ""
-"小さい棚の中に、羊皮紙があるぞ。{{bb:MV}}と言うスタンプが押してあります。"
+"小さい金庫の中に、羊皮紙があるぞ。{{bb:MV}}と言うスタンプが押してあります。"
 
 #: ../linux_story/story/challenges/challenge_15.py:81
 msgid "{{lb:Read}} what it says."
@@ -1817,7 +1817,7 @@ msgid ""
 "{{wb:Edward:}} {{Bb:\"Hey, that's our .tiny-chest We use it to keep our "
 "possessions safe. "
 msgstr ""
-"{{wb:エドワード：}}{{Bb:\"この小さい棚(.tiny-chest)に僕らの持ち物を保存"
+"{{wb:エドワード：}}{{Bb:\"この小さい金庫(.tiny-chest)に僕らの持ち物を保存"
 "してるんだ。"
 
 #: ../linux_story/story/challenges/challenge_15.py:101
@@ -1878,61 +1878,67 @@ msgid ""
 "There is an old antique {{bb:.chest}} hidden under your bed, which you don't "
 "remember seeing before.\n"
 msgstr ""
+"ベッドの下に、今まで見てなかったアンティークな金庫({{bb:.chest}})がある。\n"
 
 #: ../linux_story/story/challenges/challenge_16.py:32
 msgid "You walk into {{bb:my-room}} to have a closer look.\n"
-msgstr ""
+msgstr "部屋({{bb:my-room}})に入って、細かく見てみよう。\n"
 
 #: ../linux_story/story/challenges/challenge_16.py:33
 msgid "{{lb:Peer inside}} the {{bb:.chest}} and see what it contains."
-msgstr ""
+msgstr "金庫({{bb:.chest}})の中を{{lb:のぞいて}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_16.py:49
 msgid "{{rb:Use}} {{yb:ls .chest}} {{rb:to look inside the .chest}}"
-msgstr ""
+msgstr "{{yb:ls .chest}}{{rb:で金庫の中を見てみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_16.py:58
 msgid ""
 "There are some rolls of parchment, similar to what you found in the {{bb:."
 "hidden-shelter}}\n"
 msgstr ""
+"隠れシェルター({{bb:.hidden-shelter}})にあったような、羊皮紙がいくつか"
+"ある。\n"
 
 #: ../linux_story/story/challenges/challenge_16.py:59
 msgid "Use {{yb:cat}} to {{lb:read}} one of the scrolls.\n"
-msgstr ""
+msgstr "{{yb:cat}}を使って、羊皮紙を{{lb:読んで}}みよう。\n"
 
 #: ../linux_story/story/challenges/challenge_16.py:72
 msgid "{{rb:Use}} {{yb:cat .chest/LS}} {{rb:to read the LS scroll.}}"
-msgstr ""
+msgstr "{{yb: cat .chest/LS}}{{rb:を使って、LSの羊皮紙を読もう。}}"
 
 #: ../linux_story/story/challenges/challenge_16.py:113
 msgid "I wonder if there's anything else hidden in this {{lb:.chest}}?"
-msgstr ""
+msgstr "この金庫({{lb:.chest}})に他に何かあるかな。"
 
 #: ../linux_story/story/challenges/challenge_16.py:114
 msgid "Have a {{lb:closer look}} for some more items."
-msgstr ""
+msgstr "他の物がないか{{lb:細かく見て}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_16.py:121
 msgid ""
 "{{rb:Use}} {{yb:ls -a .chest}} {{rb:to see if there are any hidden items in "
 "the chest.}}"
-msgstr ""
+msgstr "{{yb:ls -a .chest}}{{rb:で金庫に隠れた物があるか確認しよう。}}"
 
 #: ../linux_story/story/challenges/challenge_16.py:137
 msgid ""
 "You suddenly notice a tiny stained {{lb:.note}}, scrumpled in the corner of "
 "the {{lb:.chest}}."
 msgstr ""
+"突然、金庫({{lb:.chest}})の隅に、小さくて汚れたメッセージ({{lb:.note}})が"
+"現れる。"
 
 #: ../linux_story/story/challenges/challenge_16.py:138
 msgid "What does it say?\n"
-msgstr ""
+msgstr "何と書いてあるの？\n"
 
 #: ../linux_story/story/challenges/challenge_16.py:145
 msgid ""
 "{{rb:Use}} {{yb:cat .chest/.note}} {{rb:to read the}} {{lb:.note}}{{rb:.}}"
 msgstr ""
+"{{yb:cat .chest/.note}}{{rb:でメッセージ(}}{{lb:.note}}{{rb:)を読んでみて。}}"
 
 #: ../linux_story/story/challenges/challenge_17.py:33
 msgid ""
