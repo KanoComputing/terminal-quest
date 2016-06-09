@@ -1671,7 +1671,7 @@ msgstr "{{yb:cd}}でカゴ({{bb:basket}})について{{lb:行こう}}。\n"
 #: ../linux_story/story/challenges/challenge_14.py:213
 msgid "Now get the food-filled {{bb:basket}} to the family."
 msgstr ""
-"そして食べ物が入っているカゴ({{bb:basket}})を家族のところに持って行こう。"
+"食べ物が入っているカゴ({{bb:basket}})を家族のところに持って行こう。"
 
 #: ../linux_story/story/challenges/challenge_14.py:214
 msgid "{{lb:Move}} the {{bb:basket}} to {{bb:town/.hidden-shelter}}."
@@ -1788,11 +1788,11 @@ msgstr "{{rb:より細かく周りを見るには、}}{{yb:ls -a}}{{rb:を使っ
 
 #: ../linux_story/story/challenges/challenge_15.py:57
 msgid "What's that! There's {{bb:.tiny-chest}} in the corner of the shelter"
-msgstr "何これ？！小さいチェスト({{bb:.tiny-chest}})がシェルターの隅にある。"
+msgstr "何これ？！小さい宝箱({{bb:.tiny-chest}})がシェルターの隅にある。"
 
 #: ../linux_story/story/challenges/challenge_15.py:58
 msgid "Have a {{lb:look inside}} the {{bb:.tiny-chest}}."
-msgstr "小さいチェスト({{bb:.tiny-chest}})の中を{{lb:のぞいて}}みよう。"
+msgstr "小さい宝箱({{bb:.tiny-chest}})の中を{{lb:のぞいて}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_15.py:62
 msgid "{{rb:Use}} {{yb:ls .tiny-chest}} {{rb:to look inside}}"
@@ -1802,7 +1802,7 @@ msgstr "{{yb:ls .tiny-chest}}{{rb:で中を見てみよう。}}"
 msgid ""
 "You see a scroll of parchment inside, with a stamp on it saying {{bb:MV}}."
 msgstr ""
-"小さいチェストの中に、羊皮紙があるぞ。{{bb:MV}}と言うスタンプが押してあります。"
+"小さい宝箱の中に、羊皮紙があるぞ。{{bb:MV}}と言うスタンプが押してあります。"
 
 #: ../linux_story/story/challenges/challenge_15.py:81
 msgid "{{lb:Read}} what it says."
@@ -1817,7 +1817,7 @@ msgid ""
 "{{wb:Edward:}} {{Bb:\"Hey, that's our .tiny-chest We use it to keep our "
 "possessions safe. "
 msgstr ""
-"{{wb:エドワード：}}{{Bb:\"この小さいチェスト(.tiny-chest)に僕らの持ち物を保存"
+"{{wb:エドワード：}}{{Bb:\"この小さい宝箱(.tiny-chest)に僕らの持ち物を保存"
 "してるんだ。"
 
 #: ../linux_story/story/challenges/challenge_15.py:101
@@ -1840,7 +1840,7 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_15.py:104
 msgid "To quickly go back home, use {{yb:cd ~/my-house}}\n"
-msgstr "速く家に戻るには、{{yb:cd ~/my-house}}を使おう。}}\n"
+msgstr "速く家に戻るには、{{yb:cd ~/my-house}}を使おう。\n"
 
 #: ../linux_story/story/challenges/challenge_15.py:114
 msgid ""
@@ -1878,7 +1878,7 @@ msgid ""
 "There is an old antique {{bb:.chest}} hidden under your bed, which you don't "
 "remember seeing before.\n"
 msgstr ""
-"ベッドの下に、今まで見てなかったアンティークなチェスト({{bb:.chest}})がある。\n"
+"ベッドの下に、今まで見てなかったアンティークな宝箱({{bb:.chest}})がある。\n"
 
 #: ../linux_story/story/challenges/challenge_16.py:32
 msgid "You walk into {{bb:my-room}} to have a closer look.\n"
@@ -1886,11 +1886,11 @@ msgstr "部屋({{bb:my-room}})に入って、細かく見てみよう。\n"
 
 #: ../linux_story/story/challenges/challenge_16.py:33
 msgid "{{lb:Peer inside}} the {{bb:.chest}} and see what it contains."
-msgstr "チェスト({{bb:.chest}})の中を{{lb:のぞいて}}みよう。"
+msgstr "宝箱({{bb:.chest}})の中を{{lb:のぞいて}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_16.py:49
 msgid "{{rb:Use}} {{yb:ls .chest}} {{rb:to look inside the .chest}}"
-msgstr "{{yb:ls .chest}}{{rb:でチェストの中を見てみよう。}}"
+msgstr "{{yb:ls .chest}}{{rb:で宝箱の中を見てみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_16.py:58
 msgid ""
@@ -1910,7 +1910,7 @@ msgstr "{{yb: cat .chest/LS}}{{rb:を使って、LSの羊皮紙を読もう。}}
 
 #: ../linux_story/story/challenges/challenge_16.py:113
 msgid "I wonder if there's anything else hidden in this {{lb:.chest}}?"
-msgstr "このチェスト({{lb:.chest}})に他に何かあるかな。"
+msgstr "この宝箱({{lb:.chest}})に他に何かあるかな。"
 
 #: ../linux_story/story/challenges/challenge_16.py:114
 msgid "Have a {{lb:closer look}} for some more items."
@@ -1920,14 +1920,14 @@ msgstr "他の物がないか{{lb:細かく見て}}みよう。"
 msgid ""
 "{{rb:Use}} {{yb:ls -a .chest}} {{rb:to see if there are any hidden items in "
 "the chest.}}"
-msgstr "{{yb:ls -a .chest}}{{rb:でチェストに隠れた物があるか確認しよう。}}"
+msgstr "{{yb:ls -a .chest}}{{rb:で宝箱に隠れた物があるか確認しよう。}}"
 
 #: ../linux_story/story/challenges/challenge_16.py:137
 msgid ""
 "You suddenly notice a tiny stained {{lb:.note}}, scrumpled in the corner of "
 "the {{lb:.chest}}."
 msgstr ""
-"突然、チェスト({{lb:.chest}})の隅に、小さくて汚れたメッセージ({{lb:.note}})が"
+"突然、宝箱({{lb:.chest}})の隅に、小さくて汚れたメッセージ({{lb:.note}})が"
 "現れる。"
 
 #: ../linux_story/story/challenges/challenge_16.py:138
@@ -1945,7 +1945,7 @@ msgid ""
 "You are in your room, standing in front of the {{bb:.chest}} containing all "
 "the commands you've learned so far.\n"
 msgstr ""
-"君は部屋で、今まで学んだ全てのコマンドが入ってるチェスト({{bb:chest}})の前に"
+"君は部屋で、今まで学んだ全てのコマンドが入ってる宝箱({{bb:chest}})の前に"
 "立っている。\n"
 
 #: ../linux_story/story/challenges/challenge_17.py:34
@@ -2092,12 +2092,12 @@ msgid "Let's test this out. \n"
 msgstr "試してみよう。\n"
 
 #: ../linux_story/story/challenges/challenge_17.py:222
-msgid "| {{gb:New Spell}}: {{yb:echo}} followed by words   |"
-msgstr "| {{gb:新しいおまじない}}: {{yb:echo}}の後に単語を    |"
+msgid "| {{gb:New Spell}}: {{yb:echo}} followed by words     |"
+msgstr "| {{gb:新しいおまじない}}: {{yb:echo}}の後に単語を        |"
 
 #: ../linux_story/story/challenges/challenge_17.py:223
 msgid "| lets you {{lb:speak}}                      | "
-msgstr "| 書くと、{{lb:しゃべる}}事が出来る。        | "
+msgstr "| 書くと、{{lb:話す}}事が出来る。            | "
 
 #: ../linux_story/story/challenges/challenge_17.py:224
 msgid " -------------------------------------  "
@@ -2109,29 +2109,31 @@ msgstr "{{yb:echo hello}}{{rb:を使ってみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:25
 msgid "Woah! You spoke aloud into the empty room!\n"
-msgstr ""
+msgstr "おおぉ！空室中に大声で話した！\n"
 
 #: ../linux_story/story/challenges/challenge_18.py:26
 msgid "{{gb:You learnt the new skill echo!}}\n"
-msgstr ""
+msgstr "{{gb:echo(エコ)と言う新しいスキルを学んだ！}}\n"
 
 #: ../linux_story/story/challenges/challenge_18.py:27
 msgid "This command can probably be used to talk to people."
-msgstr ""
+msgstr "このコマンドで、他の人に話す事ができるだろう。"
 
 #: ../linux_story/story/challenges/challenge_18.py:29
 msgid ""
 "\n"
 "Now let's head to {{bb:~}} to find that farm!"
 msgstr ""
+"\n"
+"さて、牧場を探すには、{{bb:~}}へ行こう！"
 
 #: ../linux_story/story/challenges/challenge_18.py:30
 msgid "Type {{yb:cd}} by itself to go to the Windy Road {{bb:~}}"
-msgstr ""
+msgstr "風の吹く道({{bb:~}})へ行くには{{yb:cd}}をそのまま使ってみよう。"
 
 #: ../linux_story/story/challenges/challenge_18.py:34
 msgid "{{rb:Use}} {{yb:cd}} {{rb:by itself to go to}} {{bb:~}}"
-msgstr ""
+msgstr "{{yb:cd}}{{rb:をそのままで使って、}}{{bb:~}}{{rb:に行こう。}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:49
 msgid ""
@@ -2139,6 +2141,8 @@ msgid ""
 "directions. \n"
 "{{lb:Look around.}}"
 msgstr ""
+"君は、両側で永遠に広がる、風の吹く道に戻った。\n"
+"{{lb:周りを見てみよう}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:52
 #: ../linux_story/story/challenges/challenge_21.py:173
@@ -2150,101 +2154,114 @@ msgstr ""
 #: ../linux_story/story/challenges/challenge_28.py:142
 #: ../linux_story/story/challenges/challenge_31.py:82
 msgid "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
-msgstr ""
+msgstr "{{yb:ls}}{{rb:で周りを見てみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:68
 msgid "You notice a small remote farm in the distance.\n"
-msgstr ""
+msgstr "離れた小さい牧場が遠くから見えている。\n"
 
 #: ../linux_story/story/challenges/challenge_18.py:69
 msgid "{{lb:Let's go}} to the {{bb:farm}}."
-msgstr ""
+msgstr "牧場({{bb:farm}})へ{{lb:行こう}}。"
 
 #: ../linux_story/story/challenges/challenge_18.py:75
 msgid "{{rb:Use}} {{yb:cd farm}} {{rb:to head to the farm.}}"
-msgstr ""
+msgstr "{{yb:cd farm}}{{rb:を使って、牧場へ行こう。}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:87
 msgid "You walk up the path to the farm, {{lb:Look around.}}"
-msgstr ""
+msgstr "牧場への道を歩いて、到着。{{lb:周りを見よう}}。"
 
 #: ../linux_story/story/challenges/challenge_18.py:101
 msgid ""
 "You are in a farm, with a {{bb:barn}}, a {{bb:farmhouse}} and a large {{bb:"
 "toolshed}} in sight."
 msgstr ""
+"牧場に入ったところ、なや({{bb:barn}})、農家の家({{bb:farmhouse}})と、"
+"大きな倉庫({{bb:toolshed}})が見える。"
 
 #: ../linux_story/story/challenges/challenge_18.py:102
 msgid ""
 "The land is well tended and weed free, so there must be people about here.\n"
 msgstr ""
+"周りの畑はキレイで雑草も無く、この辺に人がいるはずだ。\n"
 
 #: ../linux_story/story/challenges/challenge_18.py:103
 msgid "{{lb:Look around}} and see if you can find someone to talk to."
-msgstr ""
+msgstr "話す相手がいないか、{{lb:周りを見て}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_18.py:129
 msgid ""
 "\n"
 "{{rb:Use}} {{yb:ls barn}} {{rb:to look in the barn.}}"
 msgstr ""
+"\n"
+"{{yb:ls barn}}{{rb:でなやの中を見てみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:133
 msgid ""
 "\n"
 "{{rb:Have you looked in the}} {{bb:barn}} {{rb:yet?}}"
 msgstr ""
+"\n"
+"{{rb:なや(}}{{bb:barn}}{{rb:)の中はもう見たか？}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:137
 msgid ""
 "\n"
 "{{rb:There is no one here. You should look somewhere else.}}"
 msgstr ""
+"\n"
+"{{rb:ここに誰もいないね。他のところで探してみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:154
 msgid "In the {{bb:barn}}, you see a woman tending some animals."
-msgstr ""
+msgstr "なや({{bb:barn}})で動物のお世話をしているおばさんがいる。"
 
 #: ../linux_story/story/challenges/challenge_18.py:155
 msgid "{{lb:Walk}} into the {{bb:barn}} so you can have a closer look."
-msgstr ""
+msgstr "なや({{bb:barn}})の中に{{lb:入って}}、近くから見てみよう。"
 
 #: ../linux_story/story/challenges/challenge_18.py:161
 msgid "{{rb:Use}} {{yb:cd barn}} {{rb:to walk into the barn.}}"
-msgstr ""
+msgstr "{{yb:cd barn}}{{rb:でなやの中に入ってみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:176
 msgid ""
 "{{lb:Examine}} everyone in the {{bb:barn}} using the {{yb:cat}} command."
 msgstr ""
+"{{yb:cat}}コマンドを使って、なや({{bb:barn}})にいる全員を{{lb:観察}}しよう。"
 
 #: ../linux_story/story/challenges/challenge_18.py:184
 msgid "Ruth: {{Bb:\"Ah! Who are you?!\"}}"
-msgstr ""
+msgstr "ルス：{{Bb:\"あっ！お前、誰？！\"}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:185
 msgid "Cobweb: {{Bb:\"Neiiigh.\"}}"
-msgstr ""
+msgstr "コブウェブ：{{Bb:\"にぃ〜\"}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:186
 msgid "Trotter: {{Bb:\"Oink Oink.\"}}"
-msgstr ""
+msgstr "トロッター：{{Bb:\"オインク、オインク\"}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:187
 msgid "Daisy: {{Bb:\"Mooooooooo.\"}}"
-msgstr ""
+msgstr "デイジー：{{Bb:\"モオオオー\"}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:195
 msgid ""
 "{{rb:If you've forgotten who's in the barn, use}} {{yb:ls}} {{rb:to remind "
 "yourself.}}"
 msgstr ""
+"{{rb:なやにいるものを忘れたら、}}{{yb:ls}}{{rb:を使って思い出してみて。}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:226
 msgid ""
 "\n"
 "{{gb:Well done! Have a look at one more.}}"
 msgstr ""
+"\n"
+"{{gb:いいね。後一人。}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:228
 #, python-format
@@ -2252,6 +2269,8 @@ msgid ""
 "\n"
 "{{gb:Well done! Look at %d more.}}"
 msgstr ""
+"\n"
+"{{gb:いいね。後%d人。}}"
 
 #: ../linux_story/story/challenges/challenge_19.py:31
 msgid "Ruth: {{Bb:\"You startled me!\""

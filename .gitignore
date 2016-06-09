@@ -2,5 +2,6 @@
 *.DS_Store
 ._*
 *~
-.mo
+*.swp
+*.mo
 po/messages.pot
