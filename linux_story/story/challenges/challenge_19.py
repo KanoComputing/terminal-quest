@@ -32,7 +32,7 @@ class Step1(StepTemplateEcho):
         _("\"Do I know you? You look familiar...\""),
         _("\"Wait, you're}} {{bb:Mum}}{{Bb:'s kid, aren't you!\""),
         _("\"...Yes? Do you have a tongue?\""),
-        _("\"Is your name not}} {{yb:{}}}{{Bb:?\"}}").format(username),
+        _("\"Is your name not}} {{yb:%s}}{{Bb:?\"}}") % username,
         _("\n{{gb:Reply with}} {{yb:echo yes}} {{gb:or}} {{yb:echo no}}.")
     ]
 
@@ -98,8 +98,8 @@ class Step2(StepTemplateEcho):
 
         if self.last_user_input.lower() in replies:
             hint = [
-                _("\n{{rb:If you want to reply with \"{}\", use}} {{yb:echo {}}}") \
-                        .format(self.last_user_input, replies[self.last_user_input.lower()])
+                _("\n{{rb:If you want to reply with \"%s\", use}} {{yb:echo %s}}") \
+                        % (self.last_user_input, replies[self.last_user_input.lower()])
             ]
             self.send_text(hint)
         else:
