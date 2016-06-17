@@ -90,7 +90,7 @@ class Step4(StepTemplateEcho):
     commands = "ls"
     start_dir = "~/farm"
     end_dir = "~/farm"
-    hints = ["{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"]
+    hints = [_("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")]
 
     def next(self):
         Step5()

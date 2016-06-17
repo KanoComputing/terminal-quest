@@ -341,8 +341,8 @@ class Step9(StepTemplateMkdir):
         # check through list of commands
         end_dir_validated = False
         self.hints = [
-            _("{{rb:Use}} {{yb:" + self.all_commands[0] + "}} " +\
-            "{{rb:to progress}}")
+            _("{{rb:Use}} {{yb:%s}} {{rb:to progress}}") \
+                    .format(self.all_commands[0])
         ]
 
         end_dir_validated = self.current_path == self.end_dir
@@ -365,7 +365,7 @@ class Step9(StepTemplateMkdir):
                     " {{yb:.shelter}}")
                 )
             elif len(self.all_commands) > 0:
-                hint = _("\n{{gb:Well done! Move {} more.}}")\
+                hint = _("\n{{gb:Well done! Move %d more.}}")\
                     .format(str(len(self.all_commands) / 2))
             else:
                 hint = _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue}}")

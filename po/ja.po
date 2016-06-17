@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: terminal-quest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-10 08:21+0900\n"
+"POT-Creation-Date: 2016-06-17 22:02+0900\n"
 "PO-Revision-Date: 2016-05-17 08:33+0900\n"
 "Last-Translator: Choppin Antoine <antoine@japonophile.com>\n"
 "Language-Team: Japanese\n"
@@ -849,6 +849,7 @@ msgstr "{{yb:ls}}を使って、また{{lb:周りを見て}}みよう。"
 #: ../linux_story/story/challenges/challenge_8.py:77
 #: ../linux_story/story/challenges/challenge_8.py:109
 #: ../linux_story/story/challenges/challenge_11.py:160
+#: ../linux_story/story/challenges/challenge_18.py:93
 #: ../linux_story/story/challenges/challenge_20.py:83
 #: ../linux_story/story/challenges/challenge_22.py:162
 #: ../linux_story/story/challenges/challenge_25.py:124
@@ -2239,11 +2240,11 @@ msgstr "ルス：{{Bb:\"あっ！お前、誰？！\"}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:185
 msgid "Cobweb: {{Bb:\"Neiiigh.\"}}"
-msgstr "コブウェブ：{{Bb:\"にぃ〜\"}}"
+msgstr "コブウェブ：{{Bb:\"ヒー、ヒヒヒヒー\"}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:186
 msgid "Trotter: {{Bb:\"Oink Oink.\"}}"
-msgstr "トロッター：{{Bb:\"オインク、オインク\"}}"
+msgstr "トロッター：{{Bb:\"ブーブー\"}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:187
 msgid "Daisy: {{Bb:\"Mooooooooo.\"}}"
@@ -2372,8 +2373,8 @@ msgid ""
 "Ruth: {{Bb:\"Excuse me? What did you say? You know to use the}} {{lb:echo}} "
 "{{Bb:command, yes?\"}}"
 msgstr ""
-"ルス：{{Bb:\"えっ、何と言ったの？}}{{lb:echo}}{{Bb:コマンドは知ってる"
-"でしょう？\"}}"
+"ルス：{{Bb:\"えっ、何と言ったの？}}{{lb:echo}}{{Bb:コマンドは知ってるでしょ"
+"う？\"}}"
 
 #: ../linux_story/story/challenges/challenge_19.py:126
 msgid ""
@@ -2424,7 +2425,7 @@ msgid ""
 "{{yb:1: \"I'm sorry, he disappeared in front of me.\"}}"
 msgstr ""
 "\n"
-"{{yb:1: \"気の毒です。自分の前にいなくなったんです。\"}}"
+"{{yb:1: \"残念ですが、私の目の前にいなくなったんです。\"}}"
 
 #: ../linux_story/story/challenges/challenge_19.py:144
 msgid ""
@@ -2455,8 +2456,8 @@ msgid ""
 "Ruth: {{Bb:\"Really? Are you sure you didn't see a}} {{lb:grumpy-man}}{{Bb: "
 "in town?\"}}"
 msgstr ""
-"ルス：{{Bb:\"本当？気難しいおじさん(}}{{bb:grumpy-man}}{{Bb:)は町に本当に"
-"見えなかったの？\"}}"
+"ルス：{{Bb:\"本当？気難しいおじさん(}}{{bb:grumpy-man}}{{Bb:)は町に本当に見え"
+"なかったの？\"}}"
 
 #: ../linux_story/story/challenges/challenge_19.py:180
 msgid "{{yb:\"I'm sorry, he disappeared in front of me.\"}}"
@@ -2499,8 +2500,8 @@ msgid ""
 "of anything else?\"}}"
 msgstr ""
 "ルス：{{Bb:\"行きたいけど、自分で行くのは怖い。\"\n"
-"\"戻ってくるかもしれないから、私はここで待った方が良い。他にアイディアは"
-"無いの？\"}}"
+"\"戻ってくるかもしれないから、私はここで待った方が良い。他にアイディアは無い"
+"の？\"}}"
 
 #: ../linux_story/story/challenges/challenge_20.py:29
 msgid "{{yb:\"Some people survived by going into hiding.\"}}"
@@ -2512,9 +2513,9 @@ msgid ""
 "to store crops in over winter. I think he used a specific tool. We should "
 "take a look in his toolshed to see if we can find it.\"}}"
 msgstr ""
-"ルス：{{Bb:\"そう言えば、夫は収穫物を冬の間に保存するために、特別な小屋を"
-"作ってたわ。そのために特殊な道具を使ってたと思う。この道具を見つけるには、"
-"倉庫(toolshed)の中を見てみようか？\"}}"
+"ルス：{{Bb:\"そう言えば、夫は収穫物を冬の間に保存するために、特別な小屋を作っ"
+"てたわ。そのために特殊な道具を使ってたと思う。この道具を見つけるには、倉庫"
+"(toolshed)の中を見てみようか？\"}}"
 
 #: ../linux_story/story/challenges/challenge_20.py:36
 msgid ""
@@ -2549,8 +2550,8 @@ msgid ""
 "{{bb:Ruth}} follows you into the {{bb:toolshed}}. It's a very large space "
 "with tools lining the walls.\n"
 msgstr ""
-"ルス({{bb:Ruth}})さんは君の後に倉庫({{bb:toolshed}})の中に入った。"
-"とても広い場所で、壁に色々な道具が並んでる。\n"
+"ルス({{bb:Ruth}})さんは君の後に倉庫({{bb:toolshed}})の中に入った。とても広い"
+"場所で、壁に色々な道具が並んでる。\n"
 
 #: ../linux_story/story/challenges/challenge_20.py:77
 msgid ""
@@ -2563,8 +2564,7 @@ msgstr ""
 msgid ""
 "Ruth: {{Bb:\"Ah, look! There are some instructions under}} {{bb:MKDIR}}{{Bb:."
 "\"}}"
-msgstr ""
-"ルス：{{Bb:\"あっ、見て！}}{{bb:MKDIR}}{{Bb:と言う説明書があるわ。\"}}"
+msgstr "ルス：{{Bb:\"あっ、見て！}}{{bb:MKDIR}}{{Bb:と言う説明書があるわ。\"}}"
 
 #: ../linux_story/story/challenges/challenge_20.py:109
 msgid "{{Bb:\"What does it say?\"}}"
@@ -2583,14 +2583,15 @@ msgid ""
 "Ruth: {{Bb:\"...you are able to read, yes? You use}} {{yb:cat}} {{Bb:to read "
 "things.\"}}"
 msgstr ""
-"ルス：{{Bb:\"...君、字は読めるよね？}}{{yb:cat}}{{Bb:を使って書類を"
-"読めるね。\"}}"
+"ルス：{{Bb:\"...君、字は読めるよね？}}{{yb:cat}}{{Bb:を使って書類を読める"
+"ね。\"}}"
 
 #: ../linux_story/story/challenges/challenge_20.py:115
 msgid ""
 "Ruth: {{Bb:\"What do you kids learn in schools nowadays...\"\n"
 "\"Just use}} {{yb:cat MKDIR}} {{Bb:to read the paper.\"}}"
-msgstr "ルス：{{Bb:\"最近の子供は学校で何を勉強してるのよ！\"\n"
+msgstr ""
+"ルス：{{Bb:\"最近の子供は学校で何を勉強してるのよ！\"\n"
 "\"説明を読むには、}}{{yb:cat MKDIR}}{{Bb:を使えばいいだけなのよ。\"}}"
 
 #: ../linux_story/story/challenges/challenge_20.py:117
@@ -2620,7 +2621,7 @@ msgstr "| {{gb:新しいおまじない}}: {{yb:mkdir}}の後に単語で     |"
 
 #: ../linux_story/story/challenges/challenge_20.py:134
 msgid "| lets you {{lb:create}} a shelter           | "
-msgstr "| 場所を{{lb:作る}}事が出来る。                    | "
+msgstr "| 場所を{{lb:作る}}事が出来る。                   | "
 
 #: ../linux_story/story/challenges/challenge_20.py:138
 msgid "{{rb:Create an igloo structure by using}} {{yb:mkdir igloo}}\n"
@@ -2645,101 +2646,122 @@ msgstr "{{yb:ls}}{{rb:で周りを見よう。}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:26
 msgid "{{gb:Nice! You've built an igloo! You learned the new skill, mkdir!}}"
-msgstr ""
+msgstr "{{gb:良く出来た！かまくらを作ったね！mkdirと言う新しい技能を学んだ！}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:28
 msgid ""
 "\n"
 "Ruth: {{Bb:\"That's amazing! Please help me build a shelter!"
 msgstr ""
+"\n"
+"ルス：{{Bb:\"素晴らしい！シェルターを造るのを手伝ってくれない？"
 
 #: ../linux_story/story/challenges/challenge_21.py:29
 msgid ""
 "Can we build it in the}} {{bb:barn}}{{Bb:, as then it'll be easier to move "
 "the animals inside.\"}}"
 msgstr ""
+"なや(}}{{bb:barn}}{{Bb:)で造っておけば、動物を中に移動させるのはより簡単にで"
+"きる。\"}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:31
 msgid ""
 "\n"
 "{{lb:Go}} back into the {{bb:barn}}."
 msgstr ""
+"\n"
+"なや({{bb:barn}})の中へ{{lb:行こう}}。"
 
 #: ../linux_story/story/challenges/challenge_21.py:49
 msgid ""
 "\n"
 "{{gb:You walk outside. Now go into the}} {{bb:barn}}{{gb:.}}"
 msgstr ""
+"\n"
+"{{gb:外に出ました。では、なや(}}{{bb:barn}}{{gb:)の中に入ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:50
 msgid ""
 "\n"
 "{{rb:Use}} {{yb:cd barn}} {{rb:to go in the barn.}}"
 msgstr ""
+"\n"
+"{{yb:cd barn}}{{rb:でなやの中に入ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:73
 msgid "Ruth: {{Bb:\"Anyone would be able to find the igloo you just made."
-msgstr ""
+msgstr "ルス：{{Bb:\"これじゃ、かまくらは誰にでも見えちゃうよ。"
 
 #: ../linux_story/story/challenges/challenge_21.py:75
 msgid "Is it possible to make something hidden?\"}}\n"
-msgstr ""
+msgstr "見えない物を作ることはできないの？\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_21.py:76
 msgid ""
 "{{yb:1: \"If we call it}} {{bb:hidden-shelter}}{{yb:, that will make it "
 "hidden.\"}}"
 msgstr ""
+"{{yb:1: \"}}{{bb:hidden-shelter}}{{yb:（隠れシェルター）と名付ければ、見えな"
+"いのです。\"}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:78
 msgid "{{yb:2: \"Putting a . at the front makes things hidden.\"}}"
 msgstr ""
+"{{yb:2: \"名前の前に「.」（ドット）と書いておけば、見えないのです。\"}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:79
 msgid "{{yb:3: \"It's impossible to make a hidden shelter.\"}}\n"
-msgstr ""
+msgstr "{{yb:3: \"隠れシェルターを造ることはできないのです。\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_21.py:80
 msgid "Use {{yb:echo}} to tell {{bb:Ruth}} how to make things hidden."
-msgstr ""
+msgstr "{{yb:echo}}でルス({{bb:Ruth}})さんに見えない物の作り方を教えよう。"
 
 #: ../linux_story/story/challenges/challenge_21.py:90
 msgid ""
 "Ruth: {{Bb:\"You're really going to have to speak up, I can't understand "
 "anything you're saying.\"}}"
 msgstr ""
+"ルス：{{Bb:\"もう少し大きい声で話さないと、あなたが言ってることは全く分からな"
+"いのよ。\"}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:109
 msgid ""
 "\n"
 "Ruth: {{Bb:\"...Really? Are you sure about that?\"}}"
 msgstr ""
+"\n"
+"ルス：{{Bb:\"...本当？本当にそう思ってるの？\"}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:122
 msgid ""
 "{{yb:\"If we call it}} {{bb:hidden-shelter}}{{yb:, that will make it hidden."
 "\"}}"
 msgstr ""
+"{{yb:\"}}{{bb:hidden-shelter}}{{yb:（隠れシェルター）と名付ければ、見えないの"
+"です。\"}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:126
 msgid ""
 "Ruth: {{Bb:\"So creating one called}} {{bb:hidden-shelter}} {{Bb:should make "
 "it hidden? Ok, let's try that.\"}}\n"
 msgstr ""
+"ルス：{{Bb:\"そうなんだ。}}{{bb:hidden-shelter}}{{Bb:と名付けば見えないのか？"
+"それじゃ、試してみよう。\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_21.py:128
 msgid "Try {{lb:building}} a shelter called {{bb:hidden-shelter}}."
-msgstr ""
+msgstr "{{bb:hidden-shelter}}（隠れシェルター）と言う物を{{lb:造って}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_21.py:136
 msgid "{{rb:You need to make a shelter called}} {{yb:hidden-shelter}}{{rb:.}}"
-msgstr ""
+msgstr "{{yb:hidden-shelter}}{{rb:と言う物を造ってみて。}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:138
 msgid ""
 "{{rb:Use the command}} {{yb:mkdir hidden-shelter}} {{rb:to make the "
 "shelter.}}"
-msgstr ""
+msgstr "{{yb:make hidden-shelter}}{{rb:を使って、シェルターを造ってみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:145
 msgid ""
@@ -2748,10 +2770,14 @@ msgid ""
 "{{Bb:, not}} {{lb:.hidden-shelter}}{{Bb:.\"}}\n"
 "{{yb:Press UP to replay the old command, and edit it.}}"
 msgstr ""
+"\n"
+"ルス：{{Bb:\"}}{{lb:.hidden-shelter}}{{Bb:ではなく}}{{bb:hidden-shelter}}"
+"{{Bb:と名付ければ良いと言ったよね。\"}}\n"
+"{{yb:UPキーで前のコマンドを取り戻して、編集してみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:165
 msgid "{{lb:Look around}} to see if it is hidden correctly."
-msgstr ""
+msgstr "シェルターがちゃんと隠れているか{{lb:周りを見て}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_21.py:180
 msgid ""
@@ -2759,147 +2785,180 @@ msgid ""
 "{{gb:Close!}} {{ob:But you need to check if the shelter is hidden, so don't "
 "look around you}} {{yb:too closely}}{{rb:.}}"
 msgstr ""
+"\n"
+"{{gb:おしい！}}{{ob:でもシェルターがちゃんと隠れているかどうかを見なきゃいけ"
+"ないから、そんなに}}{{yb:細かく見すぎない}}{{ob:方がいい。}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:195
 msgid "Ruth: {{Bb:\"You made}} {{bb:hidden-shelter}}{{Bb:!\"}}"
-msgstr ""
+msgstr "ルス：{{Bb:\"}}{{bb:hidden-shelter}}{{Bb:と言う物を造ったね！\"}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:196
 msgid "{{Bb:\"...The problem is, I can see it too. I don't think it worked."
-msgstr ""
+msgstr "{{Bb:\"...ただ、問題は私も見えていますよ。うまくいかなかったようだ。"
 
 #: ../linux_story/story/challenges/challenge_21.py:197
 msgid "How else could you make something hidden?\"}}"
-msgstr ""
+msgstr "他に隠れたものをつ来る方法はないかな？\"}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:198
 msgid ""
 "\n"
 "{{yb:1: \"If you put a . in front of the name, it makes it hidden.\"}}"
 msgstr ""
+"\n"
+"{{yb:1: \"名前の前に「.」（ドット）と書いておけば、見えないのです。\"}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:199
 msgid ""
 "{{yb:2: \"You're mistaken. You can't see the hidden-shelter, it's hidden."
 "\"}}\n"
 msgstr ""
+"{{yb:2: \"違いますよ。hidden-shelterは隠れていますよ。見えないはずで"
+"す。\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_21.py:201
 msgid "Use {{yb:echo}} to talk to {{bb:Ruth}}."
-msgstr ""
+msgstr "{{yb:echo}}でルス({{bb:Ruth}})さんに話してみよう。"
 
 #: ../linux_story/story/challenges/challenge_21.py:209
 msgid "Ruth: {{Bb:You NEED to speak more clearly. I can't understand you.}}"
-msgstr ""
+msgstr "ルス：{{Bb:ホントに分からないよ。もっとはっきり話しなさい。}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:219
 msgid ""
 "\n"
 "Ruth: {{Bb:...."
 msgstr ""
+"\n"
+"ルス：{{Bb:...."
 
 #: ../linux_story/story/challenges/challenge_21.py:220
 msgid ""
 "Be careful kid, I'm not stupid. That shelter is not hidden.\n"
 "How do I make one that is?}}"
 msgstr ""
+"私をバカにしないで、小僧。このシェルター隠れていないよ。\n"
+"見えないシェルターはどういう風に作ればいいの？}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:237
 msgid "{{yb:\"If you put a . in front of the name, it makes it hidden.\"}}"
-msgstr ""
+msgstr "{{yb:\"名前の前に「.」を入れておけば、見えないようになる。\"}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:240
 msgid ""
 "Ruth: {{Bb:\"So if we called the shelter}} {{bb:.shelter}}{{Bb:, it would be "
 "hidden? Let's try it!\"}}\n"
 msgstr ""
+"ルス：{{Bb:\"なるほど、そうするとシェルターを}}{{bb:.shelter}}{{Bb:と名付けて"
+"おけば見えないはずだね？試してみよう！\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_21.py:242
 msgid "{{lb:Build}} a shelter called {{bb:.shelter}}"
-msgstr ""
+msgstr "{{bb:.shelter}}と言うシェルターを{{lb:造って}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_21.py:248
 msgid ""
 "{{rb:Make}} {{bb:.shelter}} {{rb:using}} {{yb:mkdir .shelter}}{{rb: - "
 "remember the dot!}}"
 msgstr ""
+"{{yb:mkdir .shelter}}{{rb:を使って、シェルターを造ってみて（ドットを忘れない"
+"でね！）}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:266
 msgid "Check it is properly hidden. Use {{yb:ls}} to see if it is visible."
 msgstr ""
+"ちゃんと隠れていることをチェックしてみよう。{{yb:ls}}で見えるかどうか確認しよ"
+"う。"
 
 #: ../linux_story/story/challenges/challenge_21.py:278
 msgid ""
 "{{rb:Use}} {{yb:ls}}{{rb:, not ls -a, to check your shelter is hidden.}}"
-msgstr ""
+msgstr "{{rb:ls -aではなく、}}{{yb:ls}}{{rb:を使ってみて。}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:288
 msgid "{{gb:Good, we can't see it in the barn.}}\n"
-msgstr ""
+msgstr "{{gb:よっし、なやでシェルターは見えていないね。}}\n"
 
 #: ../linux_story/story/challenges/challenge_21.py:289
 msgid "Now look around with {{yb:ls -a}} to check it actually exists!"
-msgstr ""
+msgstr "実際に存在することを{{yb:ls -a}}で確認しよう！"
 
 #: ../linux_story/story/challenges/challenge_21.py:297
 msgid "{{rb:Use}} {{yb:ls -a}} {{rb:to look around.}}"
-msgstr ""
+msgstr "{{yb:ls -a}}{{rb:で周りを見てみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:306
 msgid "{{gb:It worked! You've succesfully created something hidden.}}"
-msgstr ""
+msgstr "{{gb:できたー！隠れたものを造ることができたー！}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:307
 msgid ""
 "\n"
 "Ruth: {{Bb:\"Did you make something? That's amazing!\""
 msgstr ""
+"\n"
+"ルス：{{Bb:\"何か造ったの？素晴らしい！\""
 
 #: ../linux_story/story/challenges/challenge_21.py:308
 msgid ""
 "\"...unfortunately I can't see it...please can you put me and the animals "
 "inside?\"}}\n"
 msgstr ""
+"\"...しかし私には見えないな...私を動物と一緒に中に入れていただけるかしら？"
+"\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_21.py:310
 msgid "{{lb:Move}} everyone into the {{bb:.shelter}} one by one.\n"
-msgstr ""
+msgstr "一人ずつをシェルター({{bb:.shelter}})の中に{{lb:動かして}}みよう。\n"
 
 #: ../linux_story/story/challenges/challenge_21.py:344
-msgid "{{rb:Use}} {{yb:"
-msgstr ""
+#, python-format
+msgid "{{rb:Use}} {{yb:%s}} {{rb:to progress}}"
+msgstr "{{rb:次に進むには、}}{{yb:%s}}{{rb:を使ってみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:364
 msgid ""
 "\n"
 "{{gb:Well done! Move one more in the}} {{yb:.shelter}}"
 msgstr ""
+"\n"
+"{{gb:いいね！もう一人をシェルター(}}{{yb:.shelter}}{{gb:)の中に動かそう}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:368
+#, python-format
 msgid ""
 "\n"
-"{{gb:Well done! Move {} more.}}"
+"{{gb:Well done! Move %d more.}}"
 msgstr ""
+"\n"
+"{{gb:いいね！後%d人。}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:371
 msgid ""
 "\n"
 "{{gb:Press}} {{ob:Enter}} {{gb:to continue}}"
 msgstr ""
+"\n"
+"{{gb:次へ進むには}}{{ob:Enter}}{{gb:を押してみて}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:388
 msgid ""
 "{{lb:Go}} into the {{bb:.shelter}} along with {{bb:Ruth}} and the animals."
 msgstr ""
+"ルス({{bb:Ruth}})さんと動物たちと一緒に、シェルター({{bb:.shelter}})の中へ"
+"{{lb:行こう}}。"
 
 #: ../linux_story/story/challenges/challenge_21.py:394
 msgid ""
 "{{rb:Type}} {{yb:cd .shelter}} {{rb:to go into the}} {{bb:.shelter}}{{rb:.}}"
 msgstr ""
+"{{yb:cd .shelter}}{{rb:をタイプし、シェルター(}}{{bb:.shelter}}{{rb:)の中へ"
+"入ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:407
 msgid "Have a {{lb:look around}} to check you moved everyone."
-msgstr ""
+msgstr "全員をちゃんと動かしたかどうか{{lb:周りを見て}}確認しよう。"
 
 #: ../linux_story/story/challenges/challenge_22.py:23
 msgid "{{gb:Well done, it looks like everyone is here!}}"
@@ -4519,4 +4578,3 @@ msgid ""
 msgstr ""
 "{{gb:経験値%dポイントを獲得できた。おめでとうございます！}}\n"
 "\n"
-

@@ -6,13 +6,16 @@
  |_|  |_|   \/
 
 
-このおまじないは、物を動かしたり、物の名前を変えたりする力を与えてくれる。
+このおまじないは、物を動かしたり、物の名前を
+変えたりする力を与えてくれる。
 
 
 例：
 
 <span foreground="yellow">mv item chest/</span>
-棚(chest)がディレクトリーだった場合、物(item)を棚の中に動かすコマンド。
+chest(棚)がディレクトリーだった場合、
+item(物)をchest(棚)の中に動かすコマンド。
 
 <span foreground="yellow">mv item better-item</span>
-優れた物(better-item)が存在しない場合、物(item)の名前を優れた物(better-item)に変更するコマンド。
+item(物)の名前をbetter-item(優れた物)に
+名前を変更するコマンド。
