@@ -2962,45 +2962,54 @@ msgstr "全員をちゃんと動かしたかどうか{{lb:周りを見て}}確�
 
 #: ../linux_story/story/challenges/challenge_22.py:23
 msgid "{{gb:Well done, it looks like everyone is here!}}"
-msgstr ""
+msgstr "{{gb:よくやった！全員がここにいるみたいね！}}"
 
 #: ../linux_story/story/challenges/challenge_22.py:24
 msgid ""
 "\n"
 "Ruth: {{Bb:\"Thank you so much!\"}}"
 msgstr ""
+"\n"
+"ルス：{{Bb:\"本当にありがとう！\"}}"
 
 #: ../linux_story/story/challenges/challenge_22.py:25
 msgid ""
 "{{Bb:\"We'll stay in here to keep safe. I'm so grateful for everything "
 "you've done.\"}}"
 msgstr ""
+"{{Bb:\"私たちはここに安全にいます。助けてくれて、本当に感謝します。\"}}"
 
 #: ../linux_story/story/challenges/challenge_22.py:27
 msgid ""
 "\n"
 "Use {{yb:cat}} to check that the animals are happy in here."
 msgstr ""
+"\n"
+"{{yb:cat}}を使って、動物がここで幸せかどうか見てみよう。"
 
 #: ../linux_story/story/challenges/challenge_22.py:39
 msgid ""
 "{{rb:Use}} {{yb:cat}} {{rb:to examine an animal, e.g.}} {{yb:cat Daisy}}"
 "{{rb:.}}"
 msgstr ""
+"{{rb:動物を観察するには、}}{{yb:cat}}{{rb:を使ってみよう。例えば、}}"
+"{{yb:cat Daisy}}{{rb:。}}"
 
 #: ../linux_story/story/challenges/challenge_22.py:56
 msgid "Ruth: {{Bb:\"What?? I heard a bell! What does that mean?\"}}"
-msgstr ""
+msgstr "ルス：{{Bb:\"あれ？？鐘の音が聞こえたよ！どういう意味？\"}}"
 
 #: ../linux_story/story/challenges/challenge_22.py:57
 msgid ""
 "\n"
 "Quick! {{lb:Look around}} and see if anyone is missing."
 msgstr ""
+"\n"
+"早く！誰かがいなくなっていないか、{{lb:周りを見て}}確認しよう。"
 
 #: ../linux_story/story/challenges/challenge_22.py:82
 msgid "It appears that everyone is still here..."
-msgstr ""
+msgstr "全員まだいるみたいね…"
 
 #: ../linux_story/story/challenges/challenge_22.py:84
 msgid ""
@@ -3009,50 +3018,64 @@ msgid ""
 "went missing?\"\n"
 "}}"
 msgstr ""
+"\n"
+"ルス：{{Bb:\"また聞こえたよ！夫がいなくなった時に聞こえた音じゃないの？\"\n"
+"}}"
 
 #: ../linux_story/story/challenges/challenge_22.py:86
 msgid "Have another quick {{lb:look around}}."
-msgstr ""
+msgstr "急いで、もう一回{{lb:周りを見て}}みて。"
 
 #: ../linux_story/story/challenges/challenge_22.py:110
 msgid ""
 "Ruth: {{Bb:\"It's alright. We're all safe, everyone's still here. I wonder "
 "why it's ringing?\"}}"
 msgstr ""
+"ルス：{{Bb:\"大丈夫。全員はまだここにいるね。なぜ鳴っているか、気になるな。\"}}"
 
 #: ../linux_story/story/challenges/challenge_22.py:112
 msgid ""
 "\n"
 "Perhaps we should investigate that sound. Who else do we know?"
 msgstr ""
+"\n"
+"この音を調べたほうがいいかも。他に知ってる人はいないか？"
 
 #: ../linux_story/story/challenges/challenge_22.py:114
 msgid ""
 "Maybe you should check back on the family in the {{bb:.hidden-shelter}} and "
 "talk to them with your new found voice."
 msgstr ""
+"隠れシェルター({{bb:.hidden-shelter}})にいた家族のところに戻って、新しく"
+"みつけた声で、彼らに話してみようか。"
 
 #: ../linux_story/story/challenges/challenge_22.py:117
 msgid ""
 "\n"
 "Start heading back to the {{bb:.hidden-shelter}} using {{yb:cd}}."
 msgstr ""
+"\n"
+"まず、{{yb:cd}}を使って、隠れシェルター({{bb:.hidden-shelter}})に戻ろう。"
 
 #: ../linux_story/story/challenges/challenge_22.py:124
 msgid ""
 "{{rb:We can go directly to the}} {{bb:.hidden-shelter}} {{rb:using}} {{yb:cd "
 "~/town/.hidden-shelter}}"
 msgstr ""
+"{{yb:cd ~/town/.hidden-shelter}}{{rb:を使えば、一気に隠れシェルター(}}"
+"{{bb:.hidden-shelter}}{{rb:まで行ける。}}"
 
 #: ../linux_story/story/challenges/challenge_22.py:141
 msgid ""
 "\n"
 "{{gb:You travel back to tilde}}"
 msgstr ""
+"\n"
+"{{gb:ナミセンまで戻っている}}"
 
 #: ../linux_story/story/challenges/challenge_22.py:152
 msgid "Have a {{lb:look around}}."
-msgstr ""
+msgstr "{{lb:周りを見て}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_23.py:28
 msgid "You see {{bb:Eleanor}}. Listen to what she has to say."
