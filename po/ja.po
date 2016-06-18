@@ -2491,7 +2491,7 @@ msgstr "ルス：{{Bb:何と言ったの？良く聞こえなかったの。}}"
 #: ../linux_story/story/challenges/challenge_21.py:210
 msgid "{{rb:Use}} {{yb:echo 1}} {{rb:or}} {{yb:echo 2}} {{rb:to reply.}}"
 msgstr ""
-"{{yb:echo 1}}{{rb:、}}{{yb:echo 2}}{{rb:又は}}{{yb:echo 3}}{{rb:で答えて。}}"
+"{{yb:echo 1}}{{rb:又は}}{{yb:echo 2}}{{rb:で答えて。}}"
 
 #: ../linux_story/story/challenges/challenge_19.py:208
 msgid ""
@@ -3079,41 +3079,47 @@ msgstr "{{lb:周りを見て}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_23.py:28
 msgid "You see {{bb:Eleanor}}. Listen to what she has to say."
-msgstr ""
+msgstr "エレノア({{bb:Eleanor}})ちゃんがいた。言いたいことを聞いてみよう。"
 
 #: ../linux_story/story/challenges/challenge_23.py:36
 msgid "{{rb:Use}} {{yb:cat Eleanor}} {{rb:to see what she has to say.}}"
-msgstr ""
+msgstr "{{yb:cat Eleanor}}{{rb:でエレノアちゃんの話を聞いてみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:45
 msgid "Eleanor: {{Bb:\"Oh, it's you! Have you seen my Mum and Dad?\"}}"
-msgstr ""
+msgstr "エレノア：{{Bb:\"おー、来たね！母ちゃんと父ちゃんを見かけてないか？\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:47
 msgid ""
 "\n"
 "{{yb:1: \"I'm afraid not. When did you last see them?\"}}"
 msgstr ""
+"\n"
+"{{yb:1: \"見かけてないね。最後に会ったのはいつ？\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:48
 msgid "{{yb:2: \"Weren't they with you in the hidden-shelter?\"}}"
-msgstr ""
+msgstr "{{yb:2: \"君と一緒に、隠れシェルターにいたわけじゃないの？\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:49
 msgid "{{yb:3: \"(lie) Yes, I saw them in town.\"}}"
-msgstr ""
+msgstr "{{yb:3: \"（ウソ）はい、街で見かけたよ。\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:50
 msgid ""
 "\n"
 "Use the {{yb:echo}} command to talk to {{bb:Eleanor}}."
 msgstr ""
+"\n"
+"{{yb:echo}}コマンドでエレノア({{bb:Eleanor}})ちゃんに答えよう。"
 
 #: ../linux_story/story/challenges/challenge_23.py:66
 msgid ""
 "\n"
 "Eleanor: {{Bb:\"Pardon? What did you say?\"}}"
 msgstr ""
+"\n"
+"エレノア：{{Bb:\"えっ？今、何と言ったの？\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:70
 msgid ""
@@ -3121,56 +3127,67 @@ msgid ""
 "{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} {{yb:echo 3}} {{rb:"
 "to reply.}}"
 msgstr ""
+"\n"
+"{{yb:echo 1}}{{rb:、}}{{yb:echo 2}}{{rb:又は}}{{yb:echo 3}}{{rb:で答えて。}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:85
 msgid "{{rb:Use}} {{yb:cd ..}} {{rb:to go into town.}}"
-msgstr ""
+msgstr "{{yb:cd ..}}{{rb:で街へ行こう。}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:89
 msgid "Eleanor: {{Bb:Yay, we're going on an adventure!}}"
-msgstr ""
+msgstr "エレノア：{{Bb:\"イエーイ、冒険に出かけるよ！\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:97
 msgid "{{yb:\"I'm afraid not. When did you last see them?\"}}"
-msgstr ""
+msgstr "{{yb:\"見かけてないね。最後に会ったのはいつ？\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:100
 msgid ""
 "Eleanor: {{Bb:\"Not long ago. The dog ran out again, so they went outside to "
 "look for him.\"}}"
 msgstr ""
+"エレノア：{{Bb:\"ちょっと前まで一緒にいたけど、犬がまた外に出ちゃって、"
+"追いかけに行った。\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:106
 msgid "{{yb:\"Weren't they with you in the hidden-shelter?\"}}"
-msgstr ""
+msgstr "{{yb:\"君と一緒に、隠れシェルターにいたわけじゃないの？\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:109
 msgid ""
 "Eleanor: {{Bb:\"No, they went outside. The dog ran away again, so they went "
 "outside to look for it. Maybe they got lost?\"}}"
 msgstr ""
+"Eleanor: {{Bb:\"いいえ、出かけたよ。犬がまた逃げ出して、探しにいくために外に"
+"出ちゃった。迷子になったかな？\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:116
 msgid "{{yb:\"(lie) Yes, I saw them in town.\"}}"
-msgstr ""
+msgstr "{{yb:\"（ウソ）はい、街で見かけたよ。\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:119
 msgid ""
 "Eleanor: {{Bb:\"Oh that's good! The dog ran away again, and they went "
 "outside to look for him.\""
 msgstr ""
+"エレノア：{{Bb:\"あ、よかった！実は、犬がまた逃げちゃったから、外に探しに"
+"行ったんだ。\""
 
 #: ../linux_story/story/challenges/challenge_23.py:121
 msgid ""
 "\"The bell scared me, but I'm pleased they're alright.\"\n"
 "}}"
 msgstr ""
+"\"鐘の音でびっくりしたけど、無事でよかった！\"\n"
+"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:125
 msgid ""
 "{{Bb:\"Let's go to town together and find them. I'm sure I'll be safe if I'm "
 "with you.\"}}"
 msgstr ""
+"{{Bb:\"一緒に行って探しに行こうか？君と一緒なら安全だから。\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:128
 msgid ""
@@ -3178,6 +3195,9 @@ msgid ""
 "{{gb:Eleanor joined you as a companion! You can check how she is any time "
 "with}} {{yb:cat Eleanor}}{{gb:.}}"
 msgstr ""
+"\n"
+"{{gb:エラノアちゃんは、君と一緒に行くことになった。どんな時でも、}}"
+"{{yb:cat Eleanor}}{{gb:で彼女の様子を確認できる。}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:131
 msgid ""
@@ -3185,63 +3205,76 @@ msgid ""
 "{{lb:Leave}} the {{bb:.hidden-shelter.}} Don't worry, {{bb:Eleanor}} will "
 "follow!"
 msgstr ""
+"\n"
+"隠れシェルター({{bb:.hidden-shelter}})を{{lb:出よう}}。エレノア({{bb:Eleanor}})"
+"ちゃんは一緒についてきてくれるので、心配ない。"
 
 #: ../linux_story/story/challenges/challenge_23.py:148
 msgid ""
 "Eleanor: {{Bb:Have you forgotten how to look around? You need to use}} {{yb:"
 "ls}}{{Bb:.}}"
 msgstr ""
+"エレノア：{{Bb:どうやって周りを見るか忘れちゃったの？}}{{yb:ls}}{{Bb:を"
+"使えばいいんだよ。}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:160
 msgid "Eleanor: {{Bb:\"Let's go to the}} {{bb:east}} {{Bb:of town.\"}}"
-msgstr ""
+msgstr "エレノア：{{Bb:\"街の東(}}{{bb:east}}{{Bb:)へ行こう。\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:162
 msgid ""
 "{{Bb:\"Haven't you noticed it before? It's over there! Look over there.\"}}"
 msgstr ""
+"{{Bb:\"今までに気がつかなかったの？ほら、あっちを見て。\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:164
 msgid ""
 "\n"
 "Use {{yb:ls}} to see what {{bb:Eleanor}} is trying to show you."
 msgstr ""
+"\n"
+"{{yb:ls}}を使って、エレノア({{bb:Eleanor}})ちゃんが見せようとしている"
+"ところを確認して。"
 
 #: ../linux_story/story/challenges/challenge_23.py:201
 msgid ""
 "\n"
 "Eleanor: {{Bb:Why are you looking at me? You should be looking over THERE.}}"
 msgstr ""
+"\n"
+"エレノア：{{Bb:私を見るんじゃなくて、あっちを見て！}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:211
 msgid "You look in the direction {{bb:Eleanor}} is pointing."
-msgstr ""
+msgstr "エレノア({{bb:Eleanor}})ちゃんが見せている方向を見て。"
 
 #: ../linux_story/story/challenges/challenge_23.py:212
 msgid "There is a narrow road leading to another part of town."
-msgstr ""
+msgstr "細い道が街の向こう側につながっている。"
 
 #: ../linux_story/story/challenges/challenge_23.py:213
 msgid "This must take us to the {{bb:east}} part.\n"
-msgstr ""
+msgstr "きっと、この道に行けば東({{bb:east}})側に行けるんだ。\n"
 
 #: ../linux_story/story/challenges/challenge_23.py:214
 msgid "Eleanor: {{Bb:Let's go there and see if we can find my parents.}}"
-msgstr ""
+msgstr "エレノア：{{Bb:あっちに行って、両親を探してみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:216
 msgid ""
 "\n"
 "{{lb:Go}} into the {{bb:east}} of town."
 msgstr ""
+"\n"
+"街の東({{bb:east}})側へ{{lb:行こう}}。"
 
 #: ../linux_story/story/challenges/challenge_23.py:222
 msgid "{{rb:Use}} {{lb:cd}} {{rb:to go into the east part of town}}"
-msgstr ""
+msgstr "{{lb:cd}}{{rb:を使って、街の東側へ行こう。}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:224
 msgid "{{rb:Use}} {{yb:cd east}} {{rb:}}"
-msgstr ""
+msgstr "{{yb:cd east}}{{rb:を使って。}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:229
 msgid ""
@@ -3249,12 +3282,16 @@ msgid ""
 "Eleanor: {{Bb:Let's go to the}} {{lb:east}} {{Bb:of town. Come on slow "
 "coach!}}"
 msgstr ""
+"\n"
+"エレノア：{{Bb:街の東(}}{{lb:east}}{{Bb:)側へ行こう、急いでよ！}}"
 
 #: ../linux_story/story/challenges/challenge_24.py:23
 msgid ""
 "You walk down the narrow road, with {{bb:Eleanor}} dancing alongside, until "
 "you reach an open space in the {{bb:east}} part of town."
 msgstr ""
+"エレノア({{bb:Eleanor}})ちゃんと一緒に細い道をずっと歩いて、やっと街の東("
+"{{bb:east}}側に着く。"
 
 #: ../linux_story/story/challenges/challenge_24.py:26
 #: ../linux_story/story/challenges/challenge_24.py:83
@@ -3262,6 +3299,8 @@ msgid ""
 "\n"
 "{{lb:Look around.}}"
 msgstr ""
+"\n"
+"{{lb:周りを見よう。}}"
 
 #: ../linux_story/story/challenges/challenge_24.py:46
 msgid ""
