@@ -3307,70 +3307,81 @@ msgid ""
 "Eleanor: {{Bb:I can't see my parents anywhere...but there's a weird building "
 "there.}}"
 msgstr ""
+"エレノア：{{Bb:親はここにいないな…でもあそこに変な建物があるよ。}}"
 
 #: ../linux_story/story/challenges/challenge_24.py:55
 msgid "You see a {{bb:shed-shop}}, {{bb:library}} and {{bb:restaurant}}."
 msgstr ""
+"小屋ショップ({{bb:shed-shop}})、図書館({{bb:library}})とレストラン"
+"({{bb:restaurant}})が見えます。"
 
 #: ../linux_story/story/challenges/challenge_24.py:56
 msgid ""
 "\n"
 "Eleanor: {{Bb:\"Hey, what is that shed-shop?\"}}\n"
 msgstr ""
+"\n"
+"エレノア：{{Bb:\"えー、何この小屋ショップ？\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_24.py:57
 msgid "{{Bb:\"Let's}} {{lb:go in}}{{Bb:!\"}}"
-msgstr ""
+msgstr "{{Bb:\"中に}}{{lb:入ろう}}{{Bb:！\"}}"
 
 #: ../linux_story/story/challenges/challenge_24.py:63
 msgid "{{rb:Use}} {{yb:cd shed-shop}} {{rb:to go in the shed-shop.}}"
-msgstr ""
+msgstr "{{yb:cd shed-shop}}{{rb:を使って、小屋ショップの中に入ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_24.py:66
 msgid "Eleanor: {{Bb:Do you think they sell candy?}}"
-msgstr ""
+msgstr "エレノア：{{Bb:あめを売ってると思う？}}"
 
 #: ../linux_story/story/challenges/challenge_24.py:80
 msgid "You both walk slowly into the shop."
-msgstr ""
+msgstr "お店の中にゆっくり入ります。"
 
 #: ../linux_story/story/challenges/challenge_24.py:81
 msgid "It is dusty and significantly darker in here than outside."
-msgstr ""
+msgstr "ほこりがあって、外に比べてかなり暗い。"
 
 #: ../linux_story/story/challenges/challenge_24.py:82
 msgid "{{bb:Eleanor}} looks like she needs to sneeze."
-msgstr ""
+msgstr "エレノア({{bb:Eleanor}})ちゃんはくしゃみをしそうだ。"
 
 #: ../linux_story/story/challenges/challenge_24.py:101
 msgid "Eleanor: {{Bb:Ah..ah...achoo!! It's so dusty in here!}}"
-msgstr ""
+msgstr "エレノア：{{Bb:あー、あぁー、あくしょーん！ほこりいっぱいだよ！}}"
 
 #: ../linux_story/story/challenges/challenge_24.py:110
 msgid "You see a man called {{bb:Bernard}}, a door and a couple of tools."
-msgstr ""
+msgstr "ベルナード({{bb:Bernard}})と言う男がいて、そしてドアと幾つかの道具がある。"
 
 #: ../linux_story/story/challenges/challenge_24.py:112
 msgid ""
 "\n"
 "The tools show up as {{gb:green}} in the Terminal."
 msgstr ""
+"\n"
+"コンソールでは道具が{{gb:みどり}}になっています。"
 
 #: ../linux_story/story/challenges/challenge_24.py:113
 msgid ""
 "\n"
 "{{lb:Listen}} to what {{bb:Bernard}} has to say."
 msgstr ""
+"\n"
+"ベルナード({{bb:Bernard}})さんの話を{{lb:聞いて}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_24.py:120
 msgid "{{rb:Use}} {{yb:cat Bernard}} {{rb:to see what Bernard has to say.}}"
-msgstr ""
+msgstr "{{yb:cat Bernard}}{{rb:でベルナードさんの話を聞こう。}}"
 
 #: ../linux_story/story/challenges/challenge_24.py:128
 msgid ""
 "Eleanor: {{Bb:My}} {{lb:cat}} {{Bb:used to be a great listener, I'd tell her "
 "everything.}}"
 msgstr ""
+"エレノア：{{Bb:私の猫(}}{{lb:cat}}{{Bb:)は話をよく聞いていた。私が話している"
+"ことを何でも聞いてくれた。}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:23
 msgid "Bernard: {{Bb:\"Hello! Shush, don't say a word.\"}}"
