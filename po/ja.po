@@ -3675,151 +3675,175 @@ msgid ""
 "You are back in town. {{bb:Eleanor}} waves her arms and points at a building "
 "in the distance."
 msgstr ""
+"町に戻った。エレノア({{bb:Eleanor}})ちゃんは手を振って、遠くにある建物を"
+"さしている。"
 
 #: ../linux_story/story/challenges/challenge_26.py:25
 msgid ""
 "\n"
 "{{lb:Look around}} to see where {{bb:Eleanor}} is pointing."
 msgstr ""
+"\n"
+"エレノア({{bb:Eleanor}})ちゃんがさしている建物を確認するには、{{lb:周りを見よう}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:46
 msgid "Eleanor: {{Bb:The library is over there!}}"
-msgstr ""
+msgstr "エレノア：{{Bb:図書館はあそこにあるよ！}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:54
 msgid "You see the {{bb:library}} ahead."
-msgstr ""
+msgstr "前に図書館({{bb:library}})が見えている。"
 
 #: ../linux_story/story/challenges/challenge_26.py:56
 msgid ""
 "Eleanor: {{Bb:\"There it is! The}} {{bb:library}} {{Bb:is right there! "
 "Let's}} {{lb:go inside.}}{{Bb:\"}}"
 msgstr ""
+"エレノア：{{Bb:\"ここだ！図書館(}}{{bb:library}}{{Bb:)はすぐそこ！}}"
+"{{lb:中に入ろう}}{{Bb:よ。\"}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:64
 msgid "{{rb:Use}} {{yb:cd library}} {{rb:to go inside the library.}}"
-msgstr ""
+msgstr "{{yb:cd library}}{{rb:で図書館の中に入って。}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:66
 msgid "Eleanor: {{Bb:I love the library! Let's go inside!}}"
-msgstr ""
+msgstr "エレノア：{{Bb:図書館は大好き！中に入ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:77
 msgid "{{bb:Eleanor}} skips into the {{bb:library}}, while you follow her.\n"
 msgstr ""
+"エレノア({{bb:Eleanor}})ちゃんはスキップしながら図書館({{bb:library}})"
+"に入った。君も中に入った。\n"
 
 #: ../linux_story/story/challenges/challenge_26.py:78
 msgid "{{lb:Look around}} the {{bb:library}}."
-msgstr ""
+msgstr "図書館({{bb:library}})の中で{{lb:周りを見よう}}。"
 
 #: ../linux_story/story/challenges/challenge_26.py:97
 msgid "Eleanor: {{Bb:It's all echo-y-y-y-y..}}"
-msgstr ""
+msgstr "エレノア：{{Bb:どこもecho-y-y-y-yになってるよ。}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:105
 msgid ""
 "You're in a corridor leading to two clearly labelled doors. One has the sign "
 "{{bb:public-section}}, the other {{bb:private-section}}.\n"
 msgstr ""
+"通路にはドアが二つあって、ラベルが貼ってある：片方は「公共区分」"
+"({{bb:public-section}})、もう一つは「非公開区分」({{bb:private-section}})。\n"
 
 #: ../linux_story/story/challenges/challenge_26.py:110
 msgid "Eleanor: {{Bb:\"There used to be a librarian here."
-msgstr ""
+msgstr "エレノア：{{Bb:\"前は、ここに図書館員がいて、"
 
 #: ../linux_story/story/challenges/challenge_26.py:112
 msgid ""
 "She would tell me off for trying to look in the}} {{bb:private-section}}."
 msgstr ""
+"私が非公開区分(}}{{bb:private-section}}{{Bb:)の中をのぞいてみた時に"
+"叱られた事がある。}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:115
 msgid ""
 "{{Bb:What do you think is in there? Let's try and}} {{lb:look inside}}{{Bb:."
 "\"}}"
 msgstr ""
+"{{Bb:この中に何があると思う？}}{{lb:中を見て}}{{Bb:みよう。\"}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:128
 msgid ""
 "{{rb:Use}} {{yb:ls private-section/}} {{rb:to look in the private-section of "
 "the library.}}"
 msgstr ""
+"{{yb:ls private-section/}}{{rb:で図書館の非公開区分の中を見てみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:131
 msgid "Eleanor: {{Bb:What's in the private-section?}}"
-msgstr ""
+msgstr "エレノア：{{Bb:非公開区分に、何があるの？}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:140
 msgid "Eleanor: {{Bb:\"I guess the private-section is locked to outsiders...\""
 msgstr ""
+"エレノア：{{Bb:\"非公開区分はやっぱり、関係者以外にロックがかかってるみたいね…\""
 
 #: ../linux_story/story/challenges/challenge_26.py:142
 msgid ""
 "\"Let's see if we can find something useful in the}} {{bb:public section.}}"
 "{{Bb:\"}}"
 msgstr ""
+"\"公共区分(}}{{bb:public section.}}{{Bb:)で何かいい物が無いか、確認しようか。\"}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:145
 msgid ""
 "\n"
 "Use {{yb:ls}} to look in the {{bb:public-section}}."
 msgstr ""
+"\n"
+"{{yb:ls}}を使って、公共区分({{bb:public-section}})の中を見てみよう。"
 
 #: ../linux_story/story/challenges/challenge_26.py:157
 msgid "{{rb:Use}} {{yb:ls}} {{rb:to look in the public section.}}"
-msgstr ""
+msgstr "{{yb:ls}}{{rb:で公共区分の中を見てみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:158
 msgid ""
 "{{rb:Use}} {{yb:ls public-section}} {{rb:to look in the public-section.}}"
 msgstr ""
+"{{yb:ls public-section}}{{rb:で公共区分の中を見て。}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:161
 msgid "Eleanor: {{Bb:What's in the public-section?}}"
-msgstr ""
+msgstr "エレノア：{{Bb:公共区分に、何があるの？}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:169
 msgid "Eleanor: {{Bb:\"Wow, all the commands have disappeared."
-msgstr ""
+msgstr "エレノア：{{Bb:\"あれっ？！全てのコマンドがなくなってる！"
 
 #: ../linux_story/story/challenges/challenge_26.py:170
 msgid ""
 "I wonder if people have been stealing them?\"\n"
 "}}"
 msgstr ""
+"誰か盗んだのかな？\"\n"
+"}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:172
 msgid "{{Bb:\"What is that}} {{yb:NANO}} {{Bb:paper?\"}}\n"
-msgstr ""
+msgstr "{{Bb:\"何、この「}}{{yb:NANO}}{{Bb:」と書いてある紙？\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_26.py:173
 msgid "{{Bb:\"Let's}} {{lb:examine}} {{Bb:it.\"}}"
-msgstr ""
+msgstr "{{Bb:\"}}{{lb:確認して}}{{Bb:みよう。\"}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:181
 msgid "{{rb:Examine the NANO script with}} {{yb:cat public-section/NANO}}"
-msgstr ""
+msgstr "{{yb:cat public-section/NANO}}{{rb:でNANOと言うスクリプトを見てみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:184
 msgid "Eleanor: {{Bb:The library should probably have introduced late fees.}}"
-msgstr ""
+msgstr "エレノア：{{Bb:図書館は本を返し忘れの罰金を取り入れた方がよかったかも。}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:194
 msgid "Eleanor: {{Bb:So nano allows you to edit files?}}"
-msgstr ""
+msgstr "エレノア：{{Bb:なるほど、nanoでファイルを編集できるって？}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:197
 msgid ""
 "{{Bb:\"Maybe we could use this to fix that}} {{yb:best-horn-in-the-world."
 "sh}} {{Bb:script?\"}}\n"
 msgstr ""
+"{{Bb:\"これを使って、}}{{yb:best-horn-in-the-world.sh}}{{Bb:を直せるんじゃ"
+"ないの？\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_26.py:200
 msgid ""
 "{{Bb:\"Let's}} {{lb:head back}} {{Bb:to the}} {{bb:shed-shop}}{{Bb:.\"}}"
 msgstr ""
+"{{Bb:\"小屋ショップ(}}{{bb:shed-shop}}{{Bb:)へ戻ろう。\"}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:205
 msgid "Eleanor: {{Bb:...do we have to go and see creepy Bernard again?}}"
-msgstr ""
+msgstr "エレノア：{{Bb:またベルナードさんに会わなきゃいけないの？}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:211
 #: ../linux_story/story/challenges/challenge_30.py:142
@@ -3828,6 +3852,8 @@ msgid ""
 "\n"
 "{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
 msgstr ""
+"\n"
+"{{yb:cd ../}}{{rb:で前にいたところへ戻ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:214
 #: ../linux_story/story/challenges/challenge_30.py:149
@@ -3835,12 +3861,16 @@ msgid ""
 "\n"
 "{{gb:Now go into the}} {{bb:shed-shop}}{{gb:.}}"
 msgstr ""
+"\n"
+"{{gb:次は、小屋ショップ(}}{{bb:shed-shop}}{{gb:)に戻ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:215
 msgid ""
 "\n"
 "{{rb:Use}} {{yb:cd shed-shop/}} {{rb:to go into the shed-shop.}}"
 msgstr ""
+"\n"
+"{{yb:cd shed-shop/}}{{rb:で小屋ショップに戻ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_27.py:28
 msgid "You are back in {{bb:Bernard}}'s place.\n"
