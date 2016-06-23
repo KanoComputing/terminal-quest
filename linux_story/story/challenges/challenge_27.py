@@ -200,7 +200,7 @@ class Step5(StepTemplateNano):
         _("\nEleanor: {{Bb:\"I guess the}} {{bb:librarian}} {{Bb:would have locked the " +\
         "private section.\"}}"),
 
-        _("{{Bb:Maybe she can tell us how she did it? We should look for " +\
+        _("{{Bb:\"Maybe she can tell us how she did it? We should look for " +\
         "her.\"}}"),
 
         _("\n{{lb:Leave}} the {{bb:shed-shop}}.")
