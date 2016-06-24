@@ -75,12 +75,12 @@ class Step2(StepNano):
 class Step3(StepNano):
     story = [
         _("Clara: {{Bb:\"Are you two going back out there?\"}}"),
-        _("{{Bb:\"}}{{gb:{}}}" +\
+        _("{{Bb:\"}}{{gb:%s}}" +\
         "{{Bb:, you look like you can take care of yourself, but " +\
         "I don't feel happy with Eleanor going outside.\"}}")\
-        .format(os.environ['LOGNAME']),
-        _("\n{{Bb:\"}}{{gb:{}}}{{Bb:, will you leave Eleanor with me? " +\
-        "I'll look after her.\"}}").format(os.environ['LOGNAME']),
+        % os.environ['LOGNAME'],
+        _("\n{{Bb:\"}}{{gb:%s}}{{Bb:, will you leave Eleanor with me? " +\
+        "I'll look after her.\"}}") % os.environ['LOGNAME'],
         _("\n{{yb:1: \"That's a good idea, take good care of her.\"}}"),
         _("{{yb:2: \"No I don't trust you, she's safer with me.\"}}"),
         _("{{yb:3: \"(Ask Eleanor.) Are you happy to stay here?\"}}"),

@@ -101,13 +101,13 @@ def create_story(step):
     print_text = ""
 
     if step > 1:
-        print_text = _("{{yb:{}}}").format(story_replies["echo 1"][step - 2]["user"])
+        print_text = _("{{yb:%s}}") % story_replies["echo 1"][step - 2]["user"]
 
     story = [
         story_replies["echo 1"][step - 2]["clara"],
-        _("\n{{yb:1: {}}}").format(story_replies["echo 1"][step - 1]["user"]),
-        _("{{yb:2: {}}}").format(story_replies["echo 2"][0]["user"]),
-        _("{{yb:3: {}}}").format(story_replies["echo 3"][0]["user"])
+        _("\n{{yb:1: %s}}") % story_replies["echo 1"][step - 1]["user"],
+        _("{{yb:2: %s}}") % story_replies["echo 2"][0]["user"],
+        _("{{yb:3: %s}}") % story_replies["echo 3"][0]["user"]
     ]
 
     return (print_text, story)
@@ -167,7 +167,7 @@ class StepNanoStory(StepNano):
                     # Record that the user got optional info
                     # Replace spaces with underscores
                     user_input = "_".join(self.last_user_input.split(" "))
-                    state_name = "clara_{}".format(user_input)
+                    state_name = "clara_%s" % user_input
                     record_user_interaction(self, state_name)
                 else:
                     self.send_text(
@@ -186,9 +186,9 @@ class Step1(StepNanoStory):
     story = [
         _("Clara: {{Bb:\"What? Who are you?\"}}"),
 
-        _("\nEleanor: {{Bb:\"Hello! I'm Eleanor, and this is}} {{gb:{}" +\
-        "{{Bb:I recognise you! You used to work in the library!\"}}")\
-        .format(os.environ["LOGNAME"] + "}}{{Bb:.}}"),
+        _("\nEleanor: {{Bb:\"Hello! I'm Eleanor, and this is}} {{gb:%s}}{{Bb:.}}" +\
+        " {{Bb:I recognise you! You used to work in the library!\"}}")\
+        % os.environ["LOGNAME"],
 
         _("\nClara: {{Bb:\"...ah, Eleanor! Yes, I remember you, you used to " +\
         "come in almost everyday.\"}}"),

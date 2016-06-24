@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: terminal-quest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-24 07:49+0900\n"
+"POT-Creation-Date: 2016-06-24 21:39+0900\n"
 "PO-Revision-Date: 2016-05-17 08:33+0900\n"
 "Last-Translator: Choppin Antoine <antoine@japonophile.com>\n"
 "Language-Team: Japanese\n"
@@ -901,7 +901,8 @@ msgid ""
 "{{wb:Young-girl:}} {{Bb:\"Wait, there was a}} {{bb:little-boy}} {{Bb:here..."
 "right?\""
 msgstr ""
-"{{wb:少女：}}{{Bb:\"待てよ、さっきここに}}{{bb:男の子}}{{Bb:がいたよね‥\"}}"
+"{{wb:少女：}}{{Bb:\"待てよ、さっきここに男の子(}}{{bb:little-boy}}{{Bb:)がい"
+"たよね‥\"}}"
 
 #: ../linux_story/story/challenges/challenge_8.py:69
 msgid "Every time that bell goes, someone disappears!}}"
@@ -3879,8 +3880,8 @@ msgid "You are back in {{bb:Bernard}}'s place.\n"
 msgstr "ベルナード({{bb:Bernard}})さんのところに戻った。\n"
 
 #: ../linux_story/story/challenges/challenge_27.py:29
-msgid "{{lb:Listen}} to what {{bb:Bernard}} has to say.\n"
-msgstr "ベルナード({{bb:Bernard}})さんの話を{{lb:聞こう}}。\n"
+msgid "{{lb:Listen}} to what {{bb:Bernard}} has to say."
+msgstr "ベルナード({{bb:Bernard}})さんの話を{{lb:聞こう}}。"
 
 #: ../linux_story/story/challenges/challenge_27.py:36
 msgid "{{rb:Use}} {{yb:cat Bernard}} {{rb:to interact with Bernard.}}"
@@ -4065,7 +4066,8 @@ msgstr ""
 msgid ""
 "{{Bb:\"Maybe she can tell us how she did it? We should look for her.\"}}"
 msgstr ""
-"{{Bb:\"どうやってロックをかけたか教えてくれるかも？図書館員を探してみよう。\"}}"
+"{{Bb:\"どうやってロックをかけたか教えてくれるかも？図書館員を探してみよ"
+"う。\"}}"
 
 #: ../linux_story/story/challenges/challenge_27.py:206
 msgid ""
@@ -4093,7 +4095,8 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_28.py:24
 msgid "You're back in town. {{bb:Eleanor}} looked relieved to be outside."
-msgstr "君は町に戻った。エレノア({{bb:Eleanor}})ちゃんは外にいて安心してるようだ。"
+msgstr ""
+"君は町に戻った。エレノア({{bb:Eleanor}})ちゃんは外にいて安心してるようだ。"
 
 #: ../linux_story/story/challenges/challenge_28.py:25
 msgid "Where could the {{bb:librarian}} be hiding?\n"
@@ -4126,8 +4129,8 @@ msgstr "エレノア：{{Bb:おー、どこかにサンドウィッチがある�
 #: ../linux_story/story/challenges/challenge_28.py:81
 msgid "You and {{bb:Eleanor}} walk into the {{bb:restaurant}}.\n"
 msgstr ""
-"君は、エレノア({{bb:Eleanor}})ちゃんと一緒にレストラン({{bb:restaurant}})"
-"に入った。\n"
+"君は、エレノア({{bb:Eleanor}})ちゃんと一緒にレストラン({{bb:restaurant}})に"
+"入った。\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:89
 msgid ""
@@ -4162,8 +4165,8 @@ msgid ""
 "{{bb:Eleanor}} grabs your hand, and the two of you walk into the {{bb:"
 "cellar}}.\n"
 msgstr ""
-"エレノア({{bb:Eleanor}})ちゃんは君と手をつないで、蔵({{bb:cellar}})の"
-"中に入った。\n"
+"エレノア({{bb:Eleanor}})ちゃんは君と手をつないで、蔵({{bb:cellar}})の中に入っ"
+"た。\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:156
 msgid "Eleanor: {{Bb:\"...is there someone there?\"}}"
@@ -4191,7 +4194,7 @@ msgstr "エレノア：{{Bb:\"あれ！この女性は知ってるよ！\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:20
 msgid "\"Why is the private section in the library locked?\""
-msgstr ""
+msgstr "\"図書館の非公開区分は、なぜロックされているの？\""
 
 #: ../linux_story/story/challenges/challenge_29.py:22
 msgid ""
@@ -4200,10 +4203,13 @@ msgid ""
 "that no one should go in. He was the only one who could lock and unlock it."
 "\"}}"
 msgstr ""
+"クララ：{{Bb:\"中には危険な情報が入っている。\"\n"
+"\"いや、すみません。これ以上話せないわ。図書館長は誰も入れないことを結構気に"
+"していた。彼しか開けられないようになってる。\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:28
 msgid "\"How did he lock it?\""
-msgstr ""
+msgstr "\"どうやってカギをかけたの？\""
 
 #: ../linux_story/story/challenges/challenge_29.py:30
 msgid ""
@@ -4211,10 +4217,13 @@ msgid ""
 "{{Bb:\"I think he was taught from a}} {{bb:masked swordsmaster}} {{Bb:living "
 "outside of town.\"}}"
 msgstr ""
+"クララ：{{Bb:\"分からないの。私は未経験者で教えてもらえなかった。\"}}\n"
+"{{Bb:\"多分、町の外に住んでいるマスクをしている剣の達人(}}{{bb:masked "
+"swordsmaster}}{{Bb:)から教わったと思う。\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:36
 msgid "\"Where would I find this masked swordsmaster?\""
-msgstr ""
+msgstr "\"マスクをしている剣の達人はどこにいるの？\""
 
 #: ../linux_story/story/challenges/challenge_29.py:38
 msgid ""
@@ -4223,10 +4232,14 @@ msgid ""
 "{{Bb:\"I presume he meant the woods just off the}} {{lb:Windy Road}}{{Bb:? "
 "The one near the farm and that funny lonely house outside town.\"}}"
 msgstr ""
+"クララ：{{Bb:\"マスクをしている剣の達人(}}{{bb:masked swordsmaster}}{{Bb:)は"
+"森に住んでいると言ってた。\"}}\n"
+"{{Bb:\"おそらく、風の吹く道(}}{{lb:Windy Road}}{{Bb:)のすぐ先にある森だと思"
+"う。町の外にある面白いさみしい家と牧場のそばにある森。\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:48
 msgid "\"Why are you hiding down here?\""
-msgstr ""
+msgstr "\"なぜここに隠れているの？\""
 
 #: ../linux_story/story/challenges/challenge_29.py:50
 msgid ""
@@ -4234,39 +4247,46 @@ msgid ""
 "front of me. I was so scared I ran away, and found this}} {{bb:.cellar}}"
 "{{Bb:.\"}}"
 msgstr ""
+"クララ：{{Bb:\"かねの音を聞いて、図書館長が目の前できえちゃたの。とてもこわ"
+"かったから、逃げて、この蔵(}}{{bb:.cellar}}{{Bb:)を見つけた。\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:56
 msgid "\"Do you have any relatives in town?\""
-msgstr ""
+msgstr "\"町に親せきはいるの？\""
 
 #: ../linux_story/story/challenges/challenge_29.py:58
 msgid ""
 "Clara: {{Bb:\"I have a couple of children, a}} {{bb:little-boy}} {{Bb:and "
 "a}} {{bb:young-girl}}{{Bb:. I hope they are alright.\"}}"
 msgstr ""
+"クララ：{{Bb:\"子供が２人いる。男の子(}}{{bb:little-boy}}{{Bb:)と少女(}}{{bb:"
+"young-girl}}{{Bb:)。無事だと祈ってる。\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:63
 msgid "\"Why is the library so empty?\""
-msgstr ""
+msgstr "\"なぜこの図書館に誰もいないの？\""
 
 #: ../linux_story/story/challenges/challenge_29.py:65
 msgid ""
 "Clara: {{Bb:\"We should have introduced late fees a long time ago...\"}}"
-msgstr ""
+msgstr "クララ：{{Bb:\"本返し忘れの罰金をもっと前に取り入れればよかった…\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:72
 msgid "\"Do you know any other people in town?\""
-msgstr ""
+msgstr "\"町で他にも知り合いはいるの？\""
 
 #: ../linux_story/story/challenges/challenge_29.py:74
 msgid ""
 "Clara: {{Bb:\"There's a man I don't trust that runs the}} {{bb:shed-shop}}"
 "{{Bb:. I think his name is}} {{bb:Bernard}}{{Bb:.\"}}"
 msgstr ""
+"クララ：{{Bb:\"あまり信用していない、小屋ショップ(}}{{bb:shed-shop}}{{Bb:)を"
+"経営しているおじさん。名前はベルナード(}}{{bb:Bernard}}{{Bb:)さんだと思"
+"う。\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:78
 msgid "\"Why don't you like Bernard?\""
-msgstr ""
+msgstr "\"なぜベルナードさんを信用しないの？\""
 
 #: ../linux_story/story/challenges/challenge_29.py:80
 msgid ""
@@ -4274,10 +4294,13 @@ msgid ""
 "{{Bb:His father was a very clever man and spent all his time in the library "
 "reading up commands. He became a successful business man as a result.\"}}"
 msgstr ""
+"クララ：{{Bb:\"とても単純な道具を作って、高く売っているから。}}\n"
+"{{Bb:彼のお父さんは、頭が良くてずっと図書館で新しいコマンドを勉強していた。そ"
+"のおかげで商売に成功した。\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:87
 msgid "\"What happened to Bernard's father?\""
-msgstr ""
+msgstr "\"ベルナードさんのお父さんはどうしたんですか？\""
 
 #: ../linux_story/story/challenges/challenge_29.py:89
 msgid ""
@@ -4285,47 +4308,64 @@ msgid ""
 "had died. I saw him leave the library the day he went missing, he left in a "
 "hurry. He looked absolutely terrified.\"}}"
 msgstr ""
+"クララ：{{Bb:\"それは誰も知らないの。或る日突然いなくなって、皆は亡くなったか"
+"と思った。いなくなった日に図書館から急いで出てったのを見た。とてもこわがって"
+"いる表情だった。\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:104
-msgid "{{yb:{}}}"
-msgstr ""
+#, python-format
+msgid "{{yb:%s}}"
+msgstr "{{yb:%s}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:108
+#, python-format
 msgid ""
 "\n"
-"{{yb:1: {}}}"
+"{{yb:1: %s}}"
 msgstr ""
+"\n"
+"{{yb:1: %s}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:109
-msgid "{{yb:2: {}}}"
-msgstr ""
+#, python-format
+msgid "{{yb:2: %s}}"
+msgstr "{{yb:2: %s}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:110
-msgid "{{yb:3: {}}}"
-msgstr ""
+#, python-format
+msgid "{{yb:3: %s}}"
+msgstr "{{yb:3: %s}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:137
 msgid ""
 "{{rb:Talk to Clara using}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} "
 "{{yb:echo 3}}{{rb:.}}"
 msgstr ""
+"{{yb:echo 1}}{{rb:、}}{{yb:echo 2}}{{rb:又は}}{{yb:echo 3}}{{rb:でクララさん"
+"に話してみて。}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:174
 msgid ""
 "\n"
 "{{rb:You've already asked Clara that. Ask her something else.}}"
 msgstr ""
+"\n"
+"{{rb:これは既にクララさんに聞いたね。他のことを聞いてみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:187
 msgid "Clara: {{Bb:\"What? Who are you?\"}}"
-msgstr ""
+msgstr "クララ：{{Bb:\"何？君は、だれ？\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:189
+#, python-format
 msgid ""
 "\n"
-"Eleanor: {{Bb:\"Hello! I'm Eleanor, and this is}} {{gb:{}{{Bb:I recognise "
-"you! You used to work in the library!\"}}"
+"Eleanor: {{Bb:\"Hello! I'm Eleanor, and this is}} {{gb:%s}}{{Bb:.}} {{Bb:I "
+"recognise you! You used to work in the library!\"}}"
 msgstr ""
+"\n"
+"エレノア：{{Bb:\"はじめまして！私はエレノア。そしてこちらは}}{{gb:%s}}{{Bb:さ"
+"んだ。あなたに会ったことある！図書館で働いていたね！\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:193
 msgid ""
@@ -4333,139 +4373,166 @@ msgid ""
 "Clara: {{Bb:\"...ah, Eleanor! Yes, I remember you, you used to come in "
 "almost everyday.\"}}"
 msgstr ""
+"\n"
+"クララ：{{Bb:\"あっ、エレノアちゃん？はいはい、君はほぼ毎日通ってたね。\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:197
 msgid ""
 "\n"
 "{{yb:1: \"Why is the private section in the library locked?\"}}"
 msgstr ""
+"\n"
+"{{yb:1: \"図書館の非公開区分は、なぜロックされているの？\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:198
 msgid "{{yb:2: \"Why are you hiding down here?\"}}"
-msgstr ""
+msgstr "{{yb:2: \"なぜここに隠れているの？\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:199
 msgid "{{yb:3: \"Do you know about any other people in town?\"}}"
-msgstr ""
+msgstr "{{yb:3: \"町で他にも知り合いはいるの？\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:201
 msgid ""
 "\n"
 "Use {{yb:echo}} to ask {{bb:Clara}} a question."
 msgstr ""
+"\n"
+"{{yb:echo}}でクララ({{bb:Clara}})さんに質問をしてみよう。"
 
 #: ../linux_story/story/challenges/challenge_29.py:205
 msgid "Eleanor: {{Bb:\"I'm not scared anymore, I like Clara.\"}}"
-msgstr ""
+msgstr "エレノア：{{Bb:\"もうこわくないよ。クララさんのことが好き。\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:214
 msgid "Eleanor: {{Bb:\"What is so dangerous in the private-section?\"}}"
-msgstr ""
+msgstr "エレノア：{{Bb:\"図書館の非行化区分に何がそんなに危険なの？\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:223
 msgid "Eleanor: {{Bb:\"Do we want to unlock something so dangerous?\"}}"
-msgstr ""
+msgstr "エレノア：{{Bb:\"そんなに危険なものを本当に解放するの？\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:232
 msgid "{{yb:\"Where would I find this masked swordsmaster?\"}}"
-msgstr ""
+msgstr "{{yb:\"マスクをしている剣の達人は、どこにいるの？\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:234
 msgid ""
 "Clara: {{Bb:\"He said the}} {{bb:masked swordsmaster}} {{Bb:lived in the "
 "woods.\"}}"
 msgstr ""
+"クララ：{{Bb:\"マスクをしている剣の達人(}}{{bb:masked swordsmaster}}{{Bb:)は"
+"森に住んでいると言ってた。\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:237
 msgid ""
 "{{Bb:\"I presume he meant the woods just off the}} {{bb:Windy Road}}{{Bb:? "
 "The one near the farm and that funny lonely house outside town.\"}}"
 msgstr ""
+"{{Bb:\"おそらく、風の吹く道(}}{{lb:Windy Road}}{{Bb:)のすぐ先にある森だと思"
+"う。町の外にある面白いさみしい家と牧場のそばにある森。\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:244
 msgid "Eleanor: {{Bb:\"A masked swordmaster??\"}}"
-msgstr ""
+msgstr "エレノア：{{Bb:\"マスクをしている剣の達人？\"}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:28
 msgid ""
 "\n"
 "Eleanor: {{Bb:\"...what was that?\"}}\n"
 msgstr ""
+"\n"
+"エレノア：{{Bb:\"…何だったの？\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_30.py:38
 msgid "{{rb:Use}} {{yb:ls}} {{rb:to check everyone is still present.}}"
-msgstr ""
+msgstr "{{yb:ls}}{{rb:で全員がまだいることを確認しよう。}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:48
 msgid "Eleanor: {{Bb:......}}"
-msgstr ""
+msgstr "エレノア：{{Bb:......}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:56
 msgid "Everyone seems to be here. What was that bell?"
-msgstr ""
+msgstr "全員はいるみたいね。このかねの音はなんだったんだろう？"
 
 #: ../linux_story/story/challenges/challenge_30.py:57
 msgid ""
 "\n"
 "{{bb:Clara}} looks like she has something to say. {{lb:Listen to her.}}"
 msgstr ""
+"\n"
+"クララ({{bb:Clara}})さんが何か言いたいみたい。彼女の{{lb:話を聞こう}}。"
 
 #: ../linux_story/story/challenges/challenge_30.py:65
 msgid "{{rb:Use}} {{yb:cat Clara}} {{rb:to see what Clara has to say.}}"
-msgstr ""
+msgstr "{{yb:cat Clara}}{{rb:でクララさんの話を聞こう。}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:68
 msgid ""
 "Eleanor: {{Bb:\"....I was so scared. I don't think I want to go outside now."
 "\"}}"
-msgstr ""
+msgstr "エレノア：{{Bb:\"…とても怖かった。もう外に行きたくないわ。\"}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:77
 msgid "Clara: {{Bb:\"Are you two going back out there?\"}}"
-msgstr ""
+msgstr "クララ：{{Bb:\"君たち外に出る気？\"}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:78
+#, python-format
 msgid ""
-"{{Bb:\"}}{{gb:{}}}{{Bb:, you look like you can take care of yourself, but I "
+"{{Bb:\"}}{{gb:%s}}{{Bb:, you look like you can take care of yourself, but I "
 "don't feel happy with Eleanor going outside.\"}}"
 msgstr ""
+"{{Bb:\"}}{{gb:%s}}{{Bb:さん、君は一人でも大丈夫そうだけど、エレノアちゃんは"
+"あまり外に行って欲しくないわ。\"}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:82
+#, python-format
 msgid ""
 "\n"
-"{{Bb:\"}}{{gb:{}}}{{Bb:, will you leave Eleanor with me? I'll look after her."
+"{{Bb:\"}}{{gb:%s}}{{Bb:, will you leave Eleanor with me? I'll look after her."
 "\"}}"
 msgstr ""
+"\n"
+"{{Bb:\"}}{{gb:%s}}{{Bb:さん、エレノアちゃんは私と一緒に残っても大丈夫？"
+"彼女のことを見守るよ。\"}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:84
 msgid ""
 "\n"
 "{{yb:1: \"That's a good idea, take good care of her.\"}}"
 msgstr ""
+"\n"
+"{{yb:1: \"いいですよ。彼女のことを守ってください。\"}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:85
 msgid "{{yb:2: \"No I don't trust you, she's safer with me.\"}}"
-msgstr ""
+msgstr "{{yb:2: \"あなたを信用しない。彼女は私と一緒にいた方が安全だ。\"}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:86
 msgid "{{yb:3: \"(Ask Eleanor.) Are you happy to stay here?\"}}"
-msgstr ""
+msgstr "{{yb:3: \"（エレノアちゃんに聞いて）ここにいた方が嬉しいの？\"}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:88
 msgid ""
 "\n"
 "{{lb:Reply to Clara.}}"
 msgstr ""
+"\n"
+"{{lb:クララさんに答えて。}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:96
 msgid ""
 "{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} {{yb:echo 3}} {{rb:"
 "to reply to Clara.}}"
 msgstr ""
+"{{yb:echo 1}}{{rb:、}}{{yb:echo 2}}{{rb:又は}}{{yb:echo 3}}{{rb:でクララさん"
+"に答えてみて。}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:100
 msgid "Eleanor: {{Bb:\"I'm happy to stay here. I like Clara.\"}}"
-msgstr ""
+msgstr "エレノア：{{Bb:\"ここにいたい。クララさんのことが好き。\"}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:106
 msgid ""
@@ -4473,25 +4540,30 @@ msgid ""
 "Clara: {{Bb:\"Please let me look after her. I don't think it's safe for her "
 "to go outside.\"}}"
 msgstr ""
+"\n"
+"クララ：{{Bb:\"彼女のことを守らせて。外に行ったら危ないと思う。\"}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:111
 msgid ""
 "\n"
 "Eleanor: {{Bb:\"I'm happy to stay here. I like Clara.\"}}"
 msgstr ""
+"\n"
+"エレノア：{{Bb:\"ここにいたい。クララさんのことが好き。\"}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:128
 msgid "Clara: {{Bb:\"Thank you!\"}}"
-msgstr ""
+msgstr "クララ：{{Bb:\"ありがとう！\"}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:129
 msgid ""
 "Eleanor: {{Bb:\"When you find my parents, can you tell them I'm here?\"}}"
 msgstr ""
+"エレノア：{{Bb:\"両親が見つかったら、私がここにいると伝えてくれる？\"}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:131
 msgid "Clara: {{Bb:\"Where are you going to go now?\"}}"
-msgstr ""
+msgstr "クララ：{{Bb:\"次はどこに行くの？\"}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:132
 msgid ""
@@ -4499,76 +4571,89 @@ msgid ""
 "Let's head back to see {{bb:Bernard}} and see if he's heard of the {{bb:"
 "masked swordsmaster}}.\n"
 msgstr ""
+"\n"
+"ベルナード({{bb:Bernard}})さんのところに戻って、マスクをしている剣の達人("
+"{{bb:masked swordsmaster}})を知っているかどうか聞いてみよう。\n"
 
 #: ../linux_story/story/challenges/challenge_30.py:134
 msgid "{{lb:Head to the}} {{bb:shed-shop.}}"
-msgstr ""
+msgstr "小屋ショップ({{bb:shed-shop}})へ{{lb:行こう}}。"
 
 #: ../linux_story/story/challenges/challenge_30.py:145
 msgid ""
 "\n"
 "{{gb:You head upstairs}}"
 msgstr ""
+"\n"
+"{{gb:君は上に戻った。}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:150
 msgid ""
 "\n"
 "{{rb:Use}} {{yb:cd shed-shop/}}{{rb:.}}"
 msgstr ""
+"\n"
+"{{yb:cd shed-shop/}}{{rb:を使って。}}"
 
 #: ../linux_story/story/challenges/challenge_31.py:25
 msgid "You've arrived in the {{bb:shed-shop}}. {{lb:Look around.}}"
-msgstr ""
+msgstr "小屋ショップ({{bb:shed-shop}})に着いた。{{lb:周りを見よう}}。"
 
 #: ../linux_story/story/challenges/challenge_31.py:43
 msgid "Huh, you can't see {{bb:Bernard}} anywhere."
-msgstr ""
+msgstr "ベルナード({{bb:Bernard}})さんはどこにもいない。"
 
 #: ../linux_story/story/challenges/challenge_31.py:45
 msgid "I wonder where he went.\n"
-msgstr ""
+msgstr "どこに行ったんだろう。\n"
 
 #: ../linux_story/story/challenges/challenge_31.py:47
 msgid "Maybe he's in his {{bb:basement}}? Let's {{lb:go}} down there."
-msgstr ""
+msgstr "もしかして、地下({{bb:basement}})にいるかも？下へ{{lb:行こう}}。"
 
 #: ../linux_story/story/challenges/challenge_31.py:52
 msgid "{{rb:Go into the basement with}} {{yb:cd basement}}"
-msgstr ""
+msgstr "{{yb:cd basement}}{{rb:で地下へ行こう。}}"
 
 #: ../linux_story/story/challenges/challenge_31.py:58
 msgid ""
 "\n"
 "Is that Bernard's hat? Strange he left it behind..."
 msgstr ""
+"\n"
+"これは、ベルナードさんの帽子？なぜここで忘れたんだろう…"
 
 #: ../linux_story/story/challenges/challenge_31.py:73
 msgid "You walked into {{bb:Bernard}}'s basement. {{lb:Look around.}}"
-msgstr ""
+msgstr "ベルナード({{bb:Bernard}})さんの地下に入った。{{lb:周りを見よう}}。"
 
 #: ../linux_story/story/challenges/challenge_31.py:96
 msgid "You see what looks like another tool and a couple of diaries.\n"
-msgstr ""
+msgstr "他のツールと、日記が２冊置いてある。\n"
 
 #: ../linux_story/story/challenges/challenge_31.py:97
 msgid "Shall we {{lb:examine}} them?"
-msgstr ""
+msgstr "中を{{lb:見てみよう}}か？"
 
 #: ../linux_story/story/challenges/challenge_31.py:107
 msgid "{{rb:Use}} {{yb:cat}} {{rb:to examine the objects around you.}}"
-msgstr ""
+msgstr "{{yb:cat}}{{rb:で周りのものを確認してみて。}}"
 
 #: ../linux_story/story/challenges/challenge_31.py:119
 msgid ""
 "\n"
 "{{gb:Well done! Look at the other objects.}}"
 msgstr ""
+"\n"
+"{{gb:いいね。他のものも見てみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_31.py:134
 msgid ""
 "Enough wandering. Let's go and try and find the {{bb:masked swordsmaster}} "
 "near the woods, and see what information he can tell us."
 msgstr ""
+"もう十分見たね。マスクをしている剣の達人({{bb:masked swordsmaster}})を森で"
+"探しに行って、どういう情報を教えてくれるか見てみよう。"
 
 #: ../linux_story/step_helper_functions.py:22
 #: ../linux_story/step_helper_functions.py:37
@@ -4588,10 +4673,11 @@ msgid ""
 "Nearly there!  But you're trying to build something different from what was "
 "expected.  Try building something else."
 msgstr ""
+"もう少し！でも違うものを作っているみたい。別のものを作ってみて。"
 
 #: ../linux_story/story/terminals/terminal_bernard.py:14
 msgid "Bernard stopped you looking in the basement!"
-msgstr ""
+msgstr "ベルナードさんは君が地下にいけないように止めた！"
 
 #: ../linux_story/story/terminals/terminal_cd.py:34
 msgid "Nice try! But you entered an unexpected destination path."
@@ -4621,6 +4707,9 @@ msgid ""
 "{{gb:You've opened nano! Now make sure the file says}} {{yb:%s}}{{gb:. If "
 "you want to exit, press}} {{yb:Ctrl X}}{{gb:.}}"
 msgstr ""
+"\n"
+"{{gb:nanoを開いた！ファイル名が次と一致することを確認して：}}{{yb:%s}}{{gb:"
+"終了するには、}}{{yb:Ctrl X}}{{gb:を押してください。}}"
 
 #: ../linux_story/story/terminals/terminal_nano.py:367
 #, python-format
@@ -4628,6 +4717,8 @@ msgid ""
 "\n"
 "{{rb:Your text is not correct! Type}} {{yb:nano %s}} {{rb:to try again.}}"
 msgstr ""
+"\n"
+"{{rb:文章は正しくない。}}{{yb:nano %s}}{{rb:でもう一度やってみて。}}"
 
 #: ../linux_story/story/terminals/terminal_nano.py:375
 #, python-format
@@ -4636,6 +4727,8 @@ msgid ""
 "{{rb:The file path}} {{lb:%s}} {{rb:does not exists - did you save your file "
 "correctly?}}"
 msgstr ""
+"\n"
+"{{lb:%s}}{{rb:と言うパスは存在しない。ファイルをちゃんと保存したの？}}"
 
 #: ../linux_story/story/terminals/terminal_nano.py:415
 msgid ""
@@ -4677,7 +4770,7 @@ msgid ""
 "{{rb:Your text is not correct! Press}} {{yb:N}} {{rb:to exit nano.}}"
 msgstr ""
 "\n"
-"{{rb:この文書は正しくない！}}{{yb:N}}{{rb:でナノを閉じよう。}}"
+"{{rb:この文書は正しくない！}}{{yb:N}}{{rb:でnanoを閉じよう。}}"
 
 #: ../linux_story/story/terminals/terminal_nano.py:443
 #, python-format
