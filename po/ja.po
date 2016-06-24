@@ -4093,95 +4093,101 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_28.py:24
 msgid "You're back in town. {{bb:Eleanor}} looked relieved to be outside."
-msgstr ""
+msgstr "君は町に戻った。エレノア({{bb:Eleanor}})ちゃんは外にいて安心してるようだ。"
 
 #: ../linux_story/story/challenges/challenge_28.py:25
 msgid "Where could the {{bb:librarian}} be hiding?\n"
-msgstr ""
+msgstr "図書館員({{bb:librarian}})はどこに隠れているだろう？\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:26
 msgid "{{lb:Look around}} to decide where to go next."
-msgstr ""
+msgstr "次にやることを決めるには{{lb:周りを見よう}}。"
 
 #: ../linux_story/story/challenges/challenge_28.py:49
 msgid "Eleanor: {{Bb:\"I'm hungry. Can you see anywhere we could eat?\"}}"
-msgstr ""
+msgstr "エレノア：{{Bb:\"おなかすいたな。ご飯を食べられるところないかな？\"}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:57
 msgid "We haven't checked out the {{bb:restaurant}} yet.\n"
-msgstr ""
+msgstr "レストラン({{bb:restaurant}})にまだ入ってないね。\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:58
 msgid "Let's {{lb:go}} into the {{bb:restaurant}}."
-msgstr ""
+msgstr "レストラン({{bb:restaurant}})の中に{{lb:入ろう}}。"
 
 #: ../linux_story/story/challenges/challenge_28.py:65
 msgid "{{rb:Use}} {{yb:cd restaurant}} {{rb:to go into the restaurant.}}"
-msgstr ""
+msgstr "{{yb:cd restaurant}}{{rb:でレストランの中に入ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:69
 msgid "Eleanor: {{Bb:Ooh, do you think they'll have a sandwich anywhere?}}"
-msgstr ""
+msgstr "エレノア：{{Bb:おー、どこかにサンドウィッチがあると思う？}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:81
 msgid "You and {{bb:Eleanor}} walk into the {{bb:restaurant}}.\n"
 msgstr ""
+"君は、エレノア({{bb:Eleanor}})ちゃんと一緒にレストラン({{bb:restaurant}})"
+"に入った。\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:89
 msgid ""
 "Eleanor: {{Bb:Do you remember how you found me? You used}} {{yb:ls -a}} {{Bb:"
 "right?}}"
 msgstr ""
+"エレノア：{{Bb:私を見つけた時に使ったコマンド、覚えてる？}}{{yb:ls -a}}{{Bb:"
+"だったよね？}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:104
 msgid "Eleanor: {{Bb:It seems really empty here...}}"
-msgstr ""
+msgstr "エレノア：{{Bb:ここに本当に何もないみたい…}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:112
 msgid "Do you see the {{bb:.cellar}}?\n"
-msgstr ""
+msgstr "この蔵(くら、{{bb:.cellar}})を見た？\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:113
 msgid "Let's {{lb:go}} into the {{bb:.cellar}}."
-msgstr ""
+msgstr "蔵({{bb:.cellar}})の中に{{lb:入ろう}}。"
 
 #: ../linux_story/story/challenges/challenge_28.py:120
 msgid "{{rb:Go in the wine cellar using}} {{yb:cd .cellar}}{{rb:.}}"
-msgstr ""
+msgstr "{{yb:cd .cellar}}{{rb:を使って、蔵（くら）の中に入ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:123
 msgid "Eleanor: {{Bb:I'm scared...can you hold my hand?}}"
-msgstr ""
+msgstr "エレノア：{{Bb:こわいよ！私と手をつないで。}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:134
 msgid ""
 "{{bb:Eleanor}} grabs your hand, and the two of you walk into the {{bb:"
 "cellar}}.\n"
 msgstr ""
+"エレノア({{bb:Eleanor}})ちゃんは君と手をつないで、蔵({{bb:cellar}})の"
+"中に入った。\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:156
 msgid "Eleanor: {{Bb:\"...is there someone there?\"}}"
-msgstr ""
+msgstr "エレノア：{{Bb:\"…ここに誰かいる？\"}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:169
 msgid "You see a woman {{bb:Clara}} in the {{bb:cellar}}.\n"
-msgstr ""
+msgstr "蔵({{bb:cellar}})でクララ({{bb:Clara}})と言う女性がいる。\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:170
 msgid "{{lb:Listen}} to what she has to say."
-msgstr ""
+msgstr "クララさんの話を{{lb:聞いて}}みよう。"
 
 #: ../linux_story/story/challenges/challenge_28.py:177
 msgid "{{rb:Use}} {{yb:cat}} {{rb:to listen what she has to say.}}"
-msgstr ""
+msgstr "{{yb:cat}}{{rb:で女性の話を聞いてみよう。}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:178
 msgid "{{rb:Use}} {{yb:cat Clara}} {{rb:to listen to Clara.}}"
-msgstr ""
+msgstr "{{yb:cat Clara}}{{rb:を使って、クララさんの話を聞いて。}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:185
 msgid "Eleanor: {{Bb:\"...oh! I think I recognise that woman!\"}}"
-msgstr ""
+msgstr "エレノア：{{Bb:\"あれ！この女性は知ってるよ！\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:20
 msgid "\"Why is the private section in the library locked?\""
