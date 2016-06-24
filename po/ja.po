@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: terminal-quest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-24 21:39+0900\n"
+"POT-Creation-Date: 2016-06-24 22:29+0900\n"
 "PO-Revision-Date: 2016-05-17 08:33+0900\n"
 "Last-Translator: Choppin Antoine <antoine@japonophile.com>\n"
 "Language-Team: Japanese\n"
@@ -2361,13 +2361,12 @@ msgstr ""
 "答えよう。}}"
 
 #: ../linux_story/story/challenges/challenge_19.py:101
-#, python-format
 msgid ""
 "\n"
-"{{rb:If you want to reply with \"%s\", use}} {{yb:echo %s}}"
+"{{rb:If you want to reply with \"{{}}\", use}} {{yb:echo {{}}}}"
 msgstr ""
 "\n"
-"{{rb:\"%s\"を答えるには、}}{{yb:echo %s}}{{rb:を使ってみて。}}"
+"{{rb:\"{{}}\"を答えるには、}}{{yb:echo {{}}}}{{rb:を使ってみて。}}"
 
 #: ../linux_story/story/challenges/challenge_19.py:125
 msgid ""
@@ -4484,8 +4483,8 @@ msgid ""
 "{{Bb:\"}}{{gb:%s}}{{Bb:, you look like you can take care of yourself, but I "
 "don't feel happy with Eleanor going outside.\"}}"
 msgstr ""
-"{{Bb:\"}}{{gb:%s}}{{Bb:さん、君は一人でも大丈夫そうだけど、エレノアちゃんは"
-"あまり外に行って欲しくないわ。\"}}"
+"{{Bb:\"}}{{gb:%s}}{{Bb:さん、君は一人でも大丈夫そうだけど、エレノアちゃんはあ"
+"まり外に行って欲しくないわ。\"}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:82
 #, python-format
@@ -4495,8 +4494,8 @@ msgid ""
 "\"}}"
 msgstr ""
 "\n"
-"{{Bb:\"}}{{gb:%s}}{{Bb:さん、エレノアちゃんは私と一緒に残っても大丈夫？"
-"彼女のことを見守るよ。\"}}"
+"{{Bb:\"}}{{gb:%s}}{{Bb:さん、エレノアちゃんは私と一緒に残っても大丈夫？彼女の"
+"ことを見守るよ。\"}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:84
 msgid ""
@@ -4572,8 +4571,8 @@ msgid ""
 "masked swordsmaster}}.\n"
 msgstr ""
 "\n"
-"ベルナード({{bb:Bernard}})さんのところに戻って、マスクをしている剣の達人("
-"{{bb:masked swordsmaster}})を知っているかどうか聞いてみよう。\n"
+"ベルナード({{bb:Bernard}})さんのところに戻って、マスクをしている剣の達人"
+"({{bb:masked swordsmaster}})を知っているかどうか聞いてみよう。\n"
 
 #: ../linux_story/story/challenges/challenge_30.py:134
 msgid "{{lb:Head to the}} {{bb:shed-shop.}}"
@@ -4652,8 +4651,8 @@ msgid ""
 "Enough wandering. Let's go and try and find the {{bb:masked swordsmaster}} "
 "near the woods, and see what information he can tell us."
 msgstr ""
-"もう十分見たね。マスクをしている剣の達人({{bb:masked swordsmaster}})を森で"
-"探しに行って、どういう情報を教えてくれるか見てみよう。"
+"もう十分見たね。マスクをしている剣の達人({{bb:masked swordsmaster}})を森で探"
+"しに行って、どういう情報を教えてくれるか見てみよう。"
 
 #: ../linux_story/step_helper_functions.py:22
 #: ../linux_story/step_helper_functions.py:37
@@ -4672,8 +4671,7 @@ msgstr "惜しい。でもこのパスには行けない。他の場所へ行っ
 msgid ""
 "Nearly there!  But you're trying to build something different from what was "
 "expected.  Try building something else."
-msgstr ""
-"もう少し！でも違うものを作っているみたい。別のものを作ってみて。"
+msgstr "もう少し！でも違うものを作っているみたい。別のものを作ってみて。"
 
 #: ../linux_story/story/terminals/terminal_bernard.py:14
 msgid "Bernard stopped you looking in the basement!"
@@ -4708,8 +4706,8 @@ msgid ""
 "you want to exit, press}} {{yb:Ctrl X}}{{gb:.}}"
 msgstr ""
 "\n"
-"{{gb:nanoを開いた！ファイル名が次と一致することを確認して：}}{{yb:%s}}{{gb:"
-"終了するには、}}{{yb:Ctrl X}}{{gb:を押してください。}}"
+"{{gb:nanoを開いた！ファイル名が次と一致することを確認して：}}{{yb:%s}}{{gb:終"
+"了するには、}}{{yb:Ctrl X}}{{gb:を押してください。}}"
 
 #: ../linux_story/story/terminals/terminal_nano.py:367
 #, python-format
@@ -4865,3 +4863,10 @@ msgid ""
 msgstr ""
 "{{gb:経験値%dポイントを獲得できた。おめでとうございます！}}\n"
 "\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "{{rb:If you want to reply with \"%s\", use}} {{yb:echo %s}}"
+#~ msgstr ""
+#~ "\n"
+#~ "{{rb:\"%s\"を答えるには、}}{{yb:echo %s}}{{rb:を使ってみて。}}"
