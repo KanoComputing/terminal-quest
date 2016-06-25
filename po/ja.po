@@ -3290,7 +3290,7 @@ msgid ""
 "you reach an open space in the {{bb:east}} part of town."
 msgstr ""
 "エレノア({{bb:Eleanor}})ちゃんと一緒に細い道をずっと歩いて、やっと街の東"
-"({{bb:east}}側に着く。"
+"({{bb:east}})側に着く。"
 
 #: ../linux_story/story/challenges/challenge_24.py:26
 #: ../linux_story/story/challenges/challenge_24.py:83
@@ -3406,7 +3406,7 @@ msgid ""
 "shed-maker-in-the-world.sh}}"
 msgstr ""
 "\n"
-"結構自慢してるね。この{{bb:best-shed-maker-in-the-world.sh}}を{{lb:確認}}して"
+"結構自慢してるね。この世界一の小屋作り道具({{bb:best-shed-maker-in-the-world.sh}})を{{lb:確認}}して"
 "みよう。"
 
 #: ../linux_story/story/challenges/challenge_25.py:33
@@ -3741,7 +3741,7 @@ msgstr "エレノア：{{Bb:\"前は、ここに図書館員がいて、"
 msgid ""
 "She would tell me off for trying to look in the}} {{bb:private-section}}."
 msgstr ""
-"私が非公開区分(}}{{bb:private-section}}{{Bb:)の中をのぞいてみた時に叱られた事"
+"あたしが非公開区分(}}{{bb:private-section}}{{Bb:)の中をのぞいてみた時に叱られた事"
 "がある。}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:115
@@ -3909,7 +3909,7 @@ msgstr "| {{gb:新しいおまじない}}: {{yb:nano}}の後にファイルで  
 
 #: ../linux_story/story/challenges/challenge_27.py:62
 msgid "| object lets you {{lb:edit}} it              |"
-msgstr "| このファイルを{{lb:編集}}できる               |"
+msgstr "| このファイルを{{lb:編集}}できる                 |"
 
 #: ../linux_story/story/challenges/challenge_27.py:64
 msgid ""
@@ -3978,7 +3978,7 @@ msgid ""
 "{{yb:1 \"How did you create your tools?\"}}"
 msgstr ""
 "\n"
-"{{yb:1 \"この道具はどうやって作ったんですか？\"}}"
+"{{yb:1: \"この道具はどうやって作ったんですか？\"}}"
 
 #: ../linux_story/story/challenges/challenge_27.py:141
 msgid "{{yb:2: \"What's the next big tool you want to create?\"}}"
@@ -3986,7 +3986,7 @@ msgstr "{{yb:2: \"次に作りたい道具は何ですか？\"}}"
 
 #: ../linux_story/story/challenges/challenge_27.py:143
 msgid "{{yb:3: \"Are you going into hiding now?\"}}"
-msgstr "{{yb:3: \"これから隠れていくの？\"}}"
+msgstr "{{yb:3: \"これから隠れようとしているの？\"}}"
 
 #: ../linux_story/story/challenges/challenge_27.py:145
 msgid "{{yb:4: \"What's in your basement?\"}}"
@@ -4145,15 +4145,15 @@ msgstr "エレノア：{{Bb:ここに本当に何もないみたい…}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:112
 msgid "Do you see the {{bb:.cellar}}?\n"
-msgstr "この蔵(くら、{{bb:.cellar}})を見た？\n"
+msgstr "この地下倉庫({{bb:.cellar}})を見た？\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:113
 msgid "Let's {{lb:go}} into the {{bb:.cellar}}."
-msgstr "蔵({{bb:.cellar}})の中に{{lb:入ろう}}。"
+msgstr "地下倉庫({{bb:.cellar}})の中に{{lb:入ろう}}。"
 
 #: ../linux_story/story/challenges/challenge_28.py:120
 msgid "{{rb:Go in the wine cellar using}} {{yb:cd .cellar}}{{rb:.}}"
-msgstr "{{yb:cd .cellar}}{{rb:を使って、蔵（くら）の中に入ろう。}}"
+msgstr "{{yb:cd .cellar}}{{rb:を使って、地下倉庫の中に入ろう。}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:123
 msgid "Eleanor: {{Bb:I'm scared...can you hold my hand?}}"
@@ -4164,7 +4164,7 @@ msgid ""
 "{{bb:Eleanor}} grabs your hand, and the two of you walk into the {{bb:"
 "cellar}}.\n"
 msgstr ""
-"エレノア({{bb:Eleanor}})ちゃんは君と手をつないで、蔵({{bb:cellar}})の中に入っ"
+"エレノア({{bb:Eleanor}})ちゃんは君と手をつないで、地下倉庫({{bb:cellar}})の中に入っ"
 "た。\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:156
@@ -4173,7 +4173,7 @@ msgstr "エレノア：{{Bb:\"…ここに誰かいる？\"}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:169
 msgid "You see a woman {{bb:Clara}} in the {{bb:cellar}}.\n"
-msgstr "蔵({{bb:cellar}})でクララ({{bb:Clara}})と言う女性がいる。\n"
+msgstr "地下倉庫({{bb:cellar}})でクララ({{bb:Clara}})と言う女性がいる。\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:170
 msgid "{{lb:Listen}} to what she has to say."
@@ -4247,7 +4247,7 @@ msgid ""
 "{{Bb:.\"}}"
 msgstr ""
 "クララ：{{Bb:\"かねの音を聞いて、図書館長が目の前できえちゃたの。とてもこわ"
-"かったから、逃げて、この蔵(}}{{bb:.cellar}}{{Bb:)を見つけた。\"}}"
+"かったから、逃げて、この地下倉庫(}}{{bb:.cellar}}{{Bb:)を見つけた。\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:56
 msgid "\"Do you have any relatives in town?\""
@@ -4706,7 +4706,7 @@ msgid ""
 "you want to exit, press}} {{yb:Ctrl X}}{{gb:.}}"
 msgstr ""
 "\n"
-"{{gb:nanoを開いた！ファイル名が次と一致することを確認して：}}{{yb:%s}}{{gb:終"
+"{{gb:nanoを開いた！ファイルの中身が次と一致することを確認して：}}{{yb:%s}}{{gb:終"
 "了するには、}}{{yb:Ctrl X}}{{gb:を押してください。}}"
 
 #: ../linux_story/story/terminals/terminal_nano.py:367
