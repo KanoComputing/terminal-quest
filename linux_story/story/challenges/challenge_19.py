@@ -98,7 +98,7 @@ class Step2(StepTemplateEcho):
 
         if self.last_user_input.lower() in replies:
             hint = [
-                _("\n{{rb:If you want to reply with \"{{}}\", use}} {{yb:echo {{}}}}") \
+                _("\n{{rb:If you want to reply with \"{}\", use}} {{yb:echo {}}}") \
                         .format(self.last_user_input, replies[self.last_user_input.lower()])
             ]
             self.send_text(hint)
