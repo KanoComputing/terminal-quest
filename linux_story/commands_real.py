@@ -222,7 +222,10 @@ def nano(real_path, line):
     # notifying the SoundManager about the command that is about run
     sounds_manager.on_command_run(['nano'] + line.split())
 
-    cmd = nano_filepath + " " + line
+    # Unsetting the LINES and COLUMNS variables because the
+    # hack in TerminalUi.py which sets the size to 1000x1000 is disturbing nano
+    # (https://github.com/KanoComputing/terminal-quest/commit/dd45b447363e3fdcebf80000dbbfd920b96637db)
+    cmd = 'LINES= COLUMNS= ' + nano_filepath + " " + line
     p = subprocess.Popen(cmd, cwd=real_path, shell=True)
     stdout, stderr = p.communicate()
 
