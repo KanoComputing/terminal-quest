@@ -7,6 +7,8 @@
 
 
 import os
+import os.path
+import gettext
 
 from kano.colours import colourize256, decorate_string
 from kano.logging import logger
@@ -14,7 +16,9 @@ from kano_profile.apps import \
     save_app_state_variable, load_app_state_variable, \
     increment_app_state_variable
 
-from linux_story.common import story_files_dir
+from linux_story.common import \
+    localized_story_files_dir_pattern, \
+    fallback_story_files_dir
 
 
 def debugger(text):
@@ -189,7 +193,7 @@ def record_user_interaction(instance, base_name):
 
 def get_ascii_art(name):
     """
-    Load and ASCII art file.
+    Load an ASCII art file.
 
     Args:
         name (str) - the name of the asset file
@@ -199,7 +203,7 @@ def get_ascii_art(name):
     """
 
     ascii_art = name
-    asset_path = os.path.join(story_files_dir, name)
+    asset_path = get_path_to_file_in_system(name)
 
     try:
         with open(asset_path) as f:
@@ -212,3 +216,71 @@ def get_ascii_art(name):
                          ' - [{}]'.format(e))
 
     return ascii_art
+
+
+def get_path_to_file_in_system(name):
+    """
+    Finds the path of a file (asset), first looking for any translation,
+    and falling back to the default location.
+
+    Args:
+        name (str) - the name of the asset file
+
+    Returns:
+        path (str) - the path to the file (asset)
+    """
+
+    path_in_system = None
+
+    lang_dirs = get_language_dirs()
+
+    for lang_dir in lang_dirs:
+        asset_path = os.path.join(localized_story_files_dir_pattern.format(lang_dir), name)
+        if os.path.isfile(asset_path):
+            path_in_system = asset_path
+            break
+
+    if path_in_system is None:
+        path_in_system = os.path.join(fallback_story_files_dir, name)
+
+    return path_in_system
+
+
+language_dirs = None
+
+def get_language_dirs():
+    """
+    Get possible language directories to be searched for, based on 
+    the environment variables: LANGUAGE, LC_ALL, LC_MESSAGES and LANG.
+    The result is memoized for future use.
+
+    This function is inspired by python gettext.py.
+
+    Returns:
+        dirs (array) - an array of language directories
+    """
+
+    global language_dirs
+    if language_dirs is not None:
+        return language_dirs
+
+    languages = []
+    for envar in ('LANGUAGE', 'LC_ALL', 'LC_MESSAGES', 'LANG'):
+        val = os.environ.get(envar)
+        if val:
+            languages = val.split(':')
+            break
+    if 'C' in languages:
+        languages.remove('C')
+
+    # now normalize and expand the languages
+    nelangs = []
+    for lang in languages:
+        for nelang in gettext._expand_lang(lang):
+            if nelang not in nelangs:
+                nelangs.append(nelang)
+
+    language_dirs = nelangs
+    return language_dirs
+
+

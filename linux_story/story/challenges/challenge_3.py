@@ -28,14 +28,14 @@ class StepTemplateCat(TerminalCat):
 
 class Step1(StepTemplateCat):
     story = [
-        "Love it! Put it on quickly.",
-        "There's loads more interesting stuff in your room.\n",
-        "Let's {{lb:look}} in your {{bb:shelves}} using {{yb:ls}}.\n"
+        _("Love it! Put it on quickly."),
+        _("There's loads more interesting stuff in your room.\n"),
+        _("Let's {{lb:look}} in your {{bb:shelves}} using {{yb:ls}}.\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = ["ls shelves", "ls shelves/"]
-    hints = "{{rb:Type}} {{yb:ls shelves/}} {{rb:to look at your books.}}"
+    hints = _("{{rb:Type}} {{yb:ls shelves/}} {{rb:to look at your books.}}")
 
     def next(self):
         Step2()
@@ -43,15 +43,15 @@ class Step1(StepTemplateCat):
 
 class Step2(StepTemplateCat):
     story = [
-        "Did you know you can use the {{ob:TAB}} key to speed up your typing?",
-        "Try it by checking out that {{bb:comic book}}.\n",
-        "{{lb:Examine}} it with {{yb:cat shelves/comic-book}}\n",
-        "Press the {{ob:TAB}} key before you've finished typing!\n"
+        _("Did you know you can use the {{ob:TAB}} key to speed up your typing?"),
+        _("Try it by checking out that {{bb:comic book}}.\n"),
+        _("{{lb:Examine}} it with {{yb:cat shelves/comic-book}}\n"),
+        _("Press the {{ob:TAB}} key before you've finished typing!\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat shelves/comic-book"
-    hints = "{{rb:Type}} {{yb:cat shelves/comic-book}} {{rb:to read the comic.}}"
+    hints = _("{{rb:Type}} {{yb:cat shelves/comic-book}} {{rb:to read the comic.}}")
 
     def next(self):
         Step3()
@@ -59,14 +59,14 @@ class Step2(StepTemplateCat):
 
 class Step3(StepTemplateCat):
     story = [
-        "Why is it covered in pawprints?",
-        "Hang on, can you see that? There's a {{bb:note}} amongst your books.\n",
-        "{{lb:Read}} the {{bb:note}} using {{yb:cat}}.\n"
+        _("Why is it covered in pawprints?"),
+        _("Hang on, can you see that? There's a {{bb:note}} amongst your books.\n"),
+        _("{{lb:Read}} the {{bb:note}} using {{yb:cat}}.\n")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat shelves/note"
-    hints = "{{rb:Type}} {{yb:cat shelves/note}} {{rb:to read the note.}}"
+    hints = _("{{rb:Type}} {{yb:cat shelves/note}} {{rb:to read the note.}}")
 
     last_step = True
 

@@ -1,0 +1,4866 @@
+# Japanese translations for terminal-quest package.
+# Copyright (C) 2016 Kano Computing Ltd.
+# This file is distributed under the same license as the terminal-quest package.
+# Choppin Antoine <antoine@japonophile.com>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: terminal-quest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-25 10:43+0900\n"
+"PO-Revision-Date: 2016-05-17 08:33+0900\n"
+"Last-Translator: Choppin Antoine <antoine@japonophile.com>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../linux_story/titles.py:12
+msgid "Start exploring"
+msgstr "冒険の始まり"
+
+#: ../linux_story/titles.py:17
+msgid "Save a family"
+msgstr "家族を救おう"
+
+#: ../linux_story/titles.py:22
+msgid "Go to the farm"
+msgstr "牧場へ行こう"
+
+#: ../linux_story/titles.py:27
+msgid "Save Eleanor"
+msgstr "エレノアちゃんを救おう"
+
+#: ../linux_story/titles.py:35
+msgid "Wake up!"
+msgstr "起きろ！"
+
+#: ../linux_story/titles.py:39
+msgid "Look in your wardrobe"
+msgstr "タンスの中を見よう"
+
+#: ../linux_story/titles.py:43
+msgid "Look on your shelves"
+msgstr "棚を見よう"
+
+#: ../linux_story/titles.py:47
+msgid "Find Mum"
+msgstr "お母さんを見つけよう"
+
+#: ../linux_story/titles.py:51
+msgid "Where's Dad?"
+msgstr "お父さんはどこ？"
+
+#: ../linux_story/titles.py:55
+msgid "Visit the town"
+msgstr "町に出かけよう"
+
+#: ../linux_story/titles.py:59
+msgid "Town meeting"
+msgstr "町内会議"
+
+#: ../linux_story/titles.py:63
+msgid "The bell strikes"
+msgstr "鉦の音"
+
+#: ../linux_story/titles.py:67
+msgid "Where's Mum?"
+msgstr "お母さんはどこ？"
+
+#: ../linux_story/titles.py:71
+msgid "See more clearly"
+msgstr "はっきり見よう"
+
+#: ../linux_story/titles.py:75
+msgid "Save the girl"
+msgstr "少女を救おう"
+
+#: ../linux_story/titles.py:79
+msgid "Save the dog"
+msgstr "犬を救おう"
+
+#: ../linux_story/titles.py:83
+msgid "Food hunt"
+msgstr "食べ物探し"
+
+#: ../linux_story/titles.py:87
+msgid "Folderton Hero"
+msgstr "フォルダタウンのヒーロー"
+
+#: ../linux_story/titles.py:91
+msgid "Have a closer look"
+msgstr "細かく見よう"
+
+#: ../linux_story/titles.py:95
+msgid "A gift"
+msgstr "贈り物"
+
+#: ../linux_story/titles.py:99
+msgid "Find your voice"
+msgstr "自分の声を探せ"
+
+#: ../linux_story/titles.py:103
+msgid "Visit the farm"
+msgstr "牧場へ行こう"
+
+#: ../linux_story/titles.py:107
+msgid "Meet Ruth"
+msgstr "ルースさんに会おう"
+
+#: ../linux_story/titles.py:111
+msgid "Learn to build"
+msgstr "作り方を学ぼう"
+
+#: ../linux_story/titles.py:115
+msgid "Hide Ruth and her animals"
+msgstr "ルースさんと動物を隠そう"
+
+#: ../linux_story/titles.py:119 ../linux_story/titles.py:151
+msgid "Did you hear that?"
+msgstr "聞こえたかい？"
+
+#: ../linux_story/titles.py:123
+msgid "Hello Eleanor"
+msgstr "エレノアちゃん、こんにちは"
+
+#: ../linux_story/titles.py:127
+msgid "Go east"
+msgstr "東へ行こう"
+
+#: ../linux_story/titles.py:131
+msgid "Meet Bernard"
+msgstr "ベルナードさんに会おう"
+
+#: ../linux_story/titles.py:135
+msgid "Go into the library"
+msgstr "図書館に入ろう"
+
+#: ../linux_story/titles.py:139
+msgid "Help Bernard"
+msgstr "ベルナードさんを助けよう"
+
+#: ../linux_story/titles.py:143
+msgid "Find the librarian"
+msgstr "図書館員を見つけよう"
+
+#: ../linux_story/titles.py:147
+msgid "Talk to Clara"
+msgstr "クラーラさんと話そう"
+
+#: ../linux_story/titles.py:155
+msgid "Explore the shed-shop"
+msgstr "小屋ショップの探検"
+
+#: ../linux_story/story/challenges/introduction.py:24
+msgid "Hello {}."
+msgstr "{}さん、こんにちは"
+
+#: ../linux_story/story/challenges/introduction.py:25
+msgid "Welcome to the dark side of your Kano."
+msgstr "君のKanoの暗黒面へようこそ。"
+
+#: ../linux_story/story/challenges/introduction.py:26
+msgid "You've entered a perilous world where words wield power."
+msgstr ""
+"危険な世界に入ってしまった。\n"
+"ここは言葉が権力を持っている。"
+
+#: ../linux_story/story/challenges/introduction.py:27
+msgid "Ready? Press {{gb:Enter}} to begin."
+msgstr "準備はいいかい？ {{gb:Enter}}を押して始めよう。"
+
+#: ../linux_story/story/challenges/challenge_1.py:31
+msgid "{{wb:Alarm}}: {{Bb:\"Beep beep beep! Beep beep beep!\"}}"
+msgstr "{{wb:目覚まし時計}}: {{Bb:\"ピピピー！ピピピー！ピピピー！\"}}"
+
+#: ../linux_story/story/challenges/challenge_1.py:32
+msgid "{{wb:Radio}}: {{Bb:\"Good Morning, this is the 9am news.\"\n"
+msgstr "{{wb:ラジオ}}: {{Bb:\"おはようございます。９時のニュースです。\"\n"
+
+#: ../linux_story/story/challenges/challenge_1.py:33
+msgid ""
+"\"The town of Folderton has awoken to strange news. There have been reports "
+"of missing people and damaged buildings across the town, with more stories "
+"coming in as we speak.\""
+msgstr ""
+"\"今朝、フォルダタウン町で不思議なことが起きています。\n"
+"町中に人がいなくなったり、\n"
+"建物が壊れたりする報告が出ています。\n"
+"今でも他の事件が起き続けているようです。\""
+
+#: ../linux_story/story/challenges/challenge_1.py:34
+msgid ""
+"\n"
+"\"Mayor Hubert has called an emergency town meeting and we'll keep you "
+"posted as it happens...\"}}\n"
+msgstr ""
+"\n"
+"\"ヒューバート町長が緊急な町内会議を開きました。\n"
+"これからも最新状況を伝えていきます...\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_1.py:35
+msgid ""
+"It's time to get up sleepy head!\n"
+" "
+msgstr ""
+"眠そうな君よ、早く起きよう！\n"
+" "
+
+#: ../linux_story/story/challenges/challenge_1.py:36
+#: ../linux_story/story/challenges/challenge_2.py:35
+#: ../linux_story/story/challenges/challenge_2.py:38
+#: ../linux_story/story/challenges/challenge_4.py:33
+#: ../linux_story/story/challenges/challenge_4.py:36
+#: ../linux_story/story/challenges/challenge_11.py:120
+#: ../linux_story/story/challenges/challenge_11.py:123
+#: ../linux_story/story/challenges/challenge_17.py:221
+#: ../linux_story/story/challenges/challenge_20.py:132
+#: ../linux_story/story/challenges/challenge_20.py:135
+msgid " ------------------------------------- "
+msgstr " ------------------------------------- "
+
+#: ../linux_story/story/challenges/challenge_1.py:37
+msgid "| {{gb:New Spell:}} Type {{yb:ls}} and press        |"
+msgstr "| {{gb:新しいおまじない:}} {{lb:周りを見る}}には、      |"
+
+#: ../linux_story/story/challenges/challenge_1.py:38
+msgid "| {{ob:Enter}} to {{lb:look around}}.               |"
+msgstr "| {{yb:ls}}をタイプし、{{ob:Enter}}キーを押して下さい。 |"
+
+#: ../linux_story/story/challenges/challenge_1.py:39
+msgid " ------------------------------------- \n"
+msgstr " ------------------------------------- \n"
+
+#: ../linux_story/story/challenges/challenge_1.py:46
+msgid ""
+"{{rb:Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}} {{rb:to take a look "
+"around your bedroom.}}"
+msgstr ""
+"{{rb:寝室の周りを見るには}}{{yb:ls}}{{rb:をタイプし、}}{{ob:Enter}}{{rb:キー"
+"を押して。}}"
+
+#: ../linux_story/story/challenges/challenge_2.py:32
+msgid "Awesome, now you can see the objects around you."
+msgstr "いいね。これで周りにあるものが見えちゃうんだ。"
+
+#: ../linux_story/story/challenges/challenge_2.py:33
+msgid "There's your {{bb:bed}}, an {{bb:alarm}}... "
+msgstr "君のベッド({{bb:bed}})や目覚まし時計({{bb:alarm}})などがあるね…"
+
+#: ../linux_story/story/challenges/challenge_2.py:34
+msgid "Euuughh...turn that {{bb:alarm}} off! \n"
+msgstr "まず、この目覚まし時計({{bb:alarm}})を止めよう！ \n"
+
+#: ../linux_story/story/challenges/challenge_2.py:36
+msgid "| {{gb:New Spell}}: to {{lb:examine}} objects, type |"
+msgstr "| {{gb:新しいおまじない:}} {{lb:物を観察する}}には、    |"
+
+#: ../linux_story/story/challenges/challenge_2.py:37
+msgid "| {{yb:cat}} and the object name.            | "
+msgstr "| {{yb:cat}}の後に、物の名前をタイプして下さい。  |"
+
+#: ../linux_story/story/challenges/challenge_2.py:39
+msgid ""
+"\n"
+"Use {{yb:cat alarm}} to {{lb:examine}} the {{bb:alarm}}."
+msgstr ""
+"\n"
+"{{yb:cat alarm}}で目覚まし時計({{bb:alarm}})を{{lb:観察}}してみよう。"
+
+#: ../linux_story/story/challenges/challenge_2.py:45
+msgid "{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}"
+msgstr ""
+"{{yb:cat alarm}}{{rb:をタイプし、目覚まし時計}}({{bb:alarm}}){{rb:を観察しよ"
+"う。}}"
+
+#: ../linux_story/story/challenges/challenge_2.py:56
+msgid "Ok - it's switched off. Better get dressed...\n"
+msgstr "よっし、止まっている。次は洋服を着よう。\n"
+
+#: ../linux_story/story/challenges/challenge_2.py:58
+msgid "Type {{yb:ls wardrobe/}} to {{lb:look inside}} your {{bb:wardrobe}}.\n"
+msgstr ""
+"タンス({{bb:wardrobe}})の{{lb:中を見る}}には{{yb:ls wardrobe/}}をタイプしよ"
+"う。\n"
+
+#: ../linux_story/story/challenges/challenge_2.py:63
+msgid "{{rb:Type}} {{yb:ls wardrobe/}} {{rb:to look for something to wear.}}"
+msgstr "{{yb:ls wardrobe/}}{{rb:をタイプし、着る物を探してみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_2.py:71
+msgid "Check out that {{bb:t-shirt}}!\n"
+msgstr "このTシャツ({{bb:t-shirt}})を見てみよう！\n"
+
+#: ../linux_story/story/challenges/challenge_2.py:72
+msgid ""
+"{{lb:Examine}} the {{bb:t-shirt}} with {{yb:cat wardrobe/t-shirt}} to see "
+"how it looks.\n"
+msgstr ""
+"{{yb:cat wardrobe/t-shirt}}で{{bb:Tシャツ}}を{{lb:調べて}}、似合うか見てみよ"
+"う。\n"
+
+#: ../linux_story/story/challenges/challenge_2.py:77
+msgid ""
+"{{rb:Type}} {{yb:cat wardrobe/t-shirt}} {{rb:to investigate how it looks.}}"
+msgstr ""
+"{{yb:cat wardrobe/t-shirt}}{{rb:をタイプし、このTシャツの見た目を確認しよ"
+"う。}}"
+
+#: ../linux_story/story/challenges/challenge_2.py:85
+msgid "Looking good! Put that on and look for something else.\n"
+msgstr "いいね！まずこれを着てみて、他の服を探そう。\n"
+
+#: ../linux_story/story/challenges/challenge_2.py:86
+msgid "{{lb:Examine}} the {{bb:skirt}} or the {{bb:trousers}}.\n"
+msgstr "スカート({{bb:skirt}})かズボン({{bb:trousers}})を{{lb:見て}}みよう。\n"
+
+#: ../linux_story/story/challenges/challenge_2.py:94
+msgid ""
+"{{rb:Type}} {{yb:cat wardrobe/trousers}} {{rb:or}} {{yb:cat wardrobe/skirt}} "
+"{{rb:to dress yourself.}}"
+msgstr ""
+"{{yb:cat wardrobe/trousers}}{{rb:または}}\n"
+"{{yb:cat wardrobe/skirt}}{{rb:をタイプし、履く物を探そう。}}"
+
+#: ../linux_story/story/challenges/challenge_2.py:106
+msgid ""
+"\n"
+"{{rb:You need to look in your}} {{bb:wardrobe}} {{rb:for that item.}}"
+msgstr ""
+"\n"
+"{{rb:これはタンス(}}{{bb:wardrobe}}{{rb:)の中にあるはずです。}}"
+
+#: ../linux_story/story/challenges/challenge_2.py:118
+msgid "Awesome, your outfit is nearly complete.\n"
+msgstr "いいね、もう少しで完成。\n"
+
+#: ../linux_story/story/challenges/challenge_2.py:119
+msgid "Finally, check out that {{bb:cap}}.\n"
+msgstr "最後に、キャップ({{bb:cap}})を確認しよう。\n"
+
+#: ../linux_story/story/challenges/challenge_2.py:126
+msgid ""
+"{{rb:Type}} {{yb:cat wardrobe/cap}} {{rb:to}} {{lb:examine}} {{rb:the cap.}}"
+msgstr ""
+"{{yb:cat wardrobe/cap}}{{rb:をタイプし、キャップを}}{{lb:確認}}{{rb:しよ"
+"う。}}"
+
+#: ../linux_story/story/challenges/challenge_3.py:31
+msgid "Love it! Put it on quickly."
+msgstr "すてき！早く被ってみて。"
+
+#: ../linux_story/story/challenges/challenge_3.py:32
+msgid "There's loads more interesting stuff in your room.\n"
+msgstr "君の部屋に他にも面白い物があるぞ。\n"
+
+#: ../linux_story/story/challenges/challenge_3.py:33
+msgid "Let's {{lb:look}} in your {{bb:shelves}} using {{yb:ls}}.\n"
+msgstr "{{yb:ls}}を使って、本棚({{bb:shelves}})を{{lb:見て}}みよう。\n"
+
+#: ../linux_story/story/challenges/challenge_3.py:38
+msgid "{{rb:Type}} {{yb:ls shelves/}} {{rb:to look at your books.}}"
+msgstr "{{yb:ls shelves/}}{{rb:をタイプし、君の本を見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_3.py:46
+msgid "Did you know you can use the {{ob:TAB}} key to speed up your typing?"
+msgstr "知ってた？{{ob:TAB}}キーを使って、タイプを早くできるよ。"
+
+#: ../linux_story/story/challenges/challenge_3.py:47
+msgid "Try it by checking out that {{bb:comic book}}.\n"
+msgstr "この技を試して、漫画({{bb:comic book}})を見てみよう。\n"
+
+#: ../linux_story/story/challenges/challenge_3.py:48
+msgid "{{lb:Examine}} it with {{yb:cat shelves/comic-book}}\n"
+msgstr "{{yb:cat shelves/comic-book}}で漫画を{{lb:見て}}みよう。\n"
+
+#: ../linux_story/story/challenges/challenge_3.py:49
+msgid "Press the {{ob:TAB}} key before you've finished typing!\n"
+msgstr "タイプ終わる前に、{{ob:TAB}}キーを押してみて！\n"
+
+#: ../linux_story/story/challenges/challenge_3.py:54
+msgid "{{rb:Type}} {{yb:cat shelves/comic-book}} {{rb:to read the comic.}}"
+msgstr "{{yb:cat shelves/comic-book}}{{rb:をタイプし、漫画を読んでみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_3.py:62
+msgid "Why is it covered in pawprints?"
+msgstr "あれ？なんで足跡だらけなの？"
+
+#: ../linux_story/story/challenges/challenge_3.py:63
+msgid "Hang on, can you see that? There's a {{bb:note}} amongst your books.\n"
+msgstr "ちょっと待って、本の間にメッセージ({{bb:note}})が挟まってるよ。\n"
+
+#: ../linux_story/story/challenges/challenge_3.py:64
+msgid "{{lb:Read}} the {{bb:note}} using {{yb:cat}}.\n"
+msgstr "{{yb:cat}}を使ってメッセージ({{bb:note}})を{{lb:読もう}}。\n"
+
+#: ../linux_story/story/challenges/challenge_3.py:69
+msgid "{{rb:Type}} {{yb:cat shelves/note}} {{rb:to read the note.}}"
+msgstr "{{yb:cat shelves/note}}{{rb:をタイプし、メッセージを読んでみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_4.py:32
+msgid ""
+"That's weird. No time for that now though - lets find {{bb:Mum}}.\n"
+" "
+msgstr ""
+"不思議だな。でも今は時間ないさ。\n"
+"お母さん({{bb:Mum}})を探そう。\n"
+" "
+
+#: ../linux_story/story/challenges/challenge_4.py:34
+msgid "| {{gb:New Spell}}: {{yb:cd}} lets you {{lb:move}}         |"
+msgstr "| {{gb:新しいおまじない}}: 場所を{{lb:移動する}}には、  |"
+
+#: ../linux_story/story/challenges/challenge_4.py:35
+msgid "| between places.                     | "
+msgstr "| {{yb:cd}}が使える。                           |"
+
+#: ../linux_story/story/challenges/challenge_4.py:37
+msgid ""
+"\n"
+"Use the command {{yb:cd ..}} to {{lb:leave}} your room.\n"
+msgstr ""
+"\n"
+"{{yb:cd ..}}コマンドを使って、部屋から{{lb:出る}}ことにしよう。\n"
+
+#: ../linux_story/story/challenges/challenge_4.py:49
+msgid ""
+"{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room. The}} {{lb:..}} {{rb:is "
+"the room behind you.}}"
+msgstr ""
+"{{yb:cd ..}}{{rb:をタイプし、部屋から出よう。}}\n"
+"{{lb:..}}{{rb:は後ろの部屋を指している。}}"
+
+#: ../linux_story/story/challenges/challenge_4.py:50
+msgid "{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room.}}"
+msgstr "{{yb:cd ..}}{{rb:をタイプし、部屋から出よう。}}"
+
+#: ../linux_story/story/challenges/challenge_4.py:64
+msgid "You've left {{bb:my-room}} and are in the hall of {{bb:my-house}}.\n"
+msgstr ""
+"君の部屋({{bb:my-room}})を出て、今、家({{bb:my-house}})の玄関のところにい"
+"る。\n"
+
+#: ../linux_story/story/challenges/challenge_4.py:65
+msgid "{{lb:Look around}} at the different rooms using {{yb:ls}}.\n"
+msgstr "{{yb:ls}}を使って、他の部屋を{{lb:見て}}みよう。\n"
+
+#: ../linux_story/story/challenges/challenge_4.py:70
+msgid "{{rb:Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}"
+msgstr "{{yb:ls}}{{rb:をタイプし、}}{{ob:Enter}}{{rb:キーを押して。}}"
+
+#: ../linux_story/story/challenges/challenge_4.py:85
+#: ../linux_story/story/challenges/challenge_8.py:31
+#: ../linux_story/story/challenges/challenge_9.py:50
+#: ../linux_story/story/challenges/challenge_22.py:55
+#: ../linux_story/story/challenges/challenge_30.py:27
+msgid "{{pb:Ding. Dong.}}\n"
+msgstr "{{pb:キン・コーン}}\n"
+
+#: ../linux_story/story/challenges/challenge_4.py:86
+msgid "What was that? A bell? That's a bit odd."
+msgstr "何これ？かねの音？不思議だな。"
+
+#: ../linux_story/story/challenges/challenge_4.py:87
+msgid "You see the door to your {{bb:kitchen}}, and hear the sound of cooking."
+msgstr "台所({{bb:kitchen}})のドアを見て、料理を作る音が聞こえる。"
+
+#: ../linux_story/story/challenges/challenge_4.py:88
+msgid "Sounds like someone is preparing breakfast!\n"
+msgstr "誰かが朝ごはんを作ってるみたい！\n"
+
+#: ../linux_story/story/challenges/challenge_4.py:89
+msgid "To {{lb:go inside the}} {{bb:kitchen}}, use {{yb:cd kitchen}}"
+msgstr "台所({{bb:kitchen}})に{{lb:入る}}には、{{yb:cd kitchen}}を使おう。"
+
+#: ../linux_story/story/challenges/challenge_4.py:94
+msgid "{{rb:Type}} {{yb:cd kitchen}} {{rb:and press}} {{ob:Enter}}{{rb:.}}"
+msgstr "{{yb:cd kitchen}}{{rb:をタイプし、}}{{ob:Enter}}{{rb:キーを押して。}}"
+
+#: ../linux_story/story/challenges/challenge_4.py:107
+msgid "Great, you're in the {{bb:kitchen}}.\n"
+msgstr "よっし、台所に入った。\n"
+
+#: ../linux_story/story/challenges/challenge_4.py:108
+msgid "{{lb:Look}} for {{bb:Mum}} using {{yb:ls}}."
+msgstr "{{yb:ls}}を使って、お母さん({{bb:Mum}})のことを{{lb:探そう}}。"
+
+#: ../linux_story/story/challenges/challenge_4.py:113
+msgid ""
+"{{rb:Can't find her? Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}"
+msgstr ""
+"{{rb:お母さんが見つからない？}}\n"
+"{{yb:ls}}{{rb:をタイプし、}}{{ob:Enter}}{{rb:キーを押して。}}"
+
+#: ../linux_story/story/challenges/challenge_4.py:121
+msgid "You see her busily working in a cloud of steam."
+msgstr "お母さんが湯気で忙しく仕事している。"
+
+#: ../linux_story/story/challenges/challenge_4.py:122
+msgid "Let's {{lb:listen}} to what {{bb:Mum}} has to say by using {{yb:cat}}."
+msgstr "{{yb:cat}}を使って、お母さん({{bb:Mum}})の話を{{lb:聞いて}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_4.py:127
+msgid ""
+"{{rb:Stuck? Type:}} {{yb:cat Mum}}. {{rb:Don't forget the capital letter!}}"
+msgstr ""
+"{{rb:うまくいかない？}}\n"
+"{{yb:cat Mum}}{{rb:をタイプしてみて。Mの大文字に注意！}}"
+
+#: ../linux_story/story/challenges/challenge_5.py:31
+msgid ""
+"{{wb:Mum:}} {{Bb:\"Hi sleepyhead, breakfast is nearly ready. Can you go and "
+"grab your Dad? I think he's in the}} {{bb:garden}}{{Bb:.\"}}\n"
+msgstr ""
+"{{wb:お母さん:}} {{Bb:\"おはよう。朝ごはんはもうすぐ出来るよ。\n"
+"お父さんを呼んできてくれない？多分お庭(}}{{bb:garden}}{{Bb:)にいるよ。\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_5.py:32
+msgid "Let's look for your {{bb:Dad}} in the {{bb:garden}}."
+msgstr "お父さん({{bb:Dad}})を庭({{bb:garden}})で探しに行こう。"
+
+#: ../linux_story/story/challenges/challenge_5.py:33
+msgid "First we need to {{lb:leave}} the {{bb:kitchen}} using {{yb:cd ..}}\n"
+msgstr "まず、{{yb:cd ..}}を使って、台所({{bb:kitchen}})から{{lb:出よう}}。\n"
+
+#: ../linux_story/story/challenges/challenge_5.py:38
+msgid "{{rb:To leave the kitchen, type}} {{yb:cd ..}}"
+msgstr "{{rb:台所を出るには、}}{{yb:cd ..}}{{rb:をタイプしよう。}}"
+
+#: ../linux_story/story/challenges/challenge_5.py:51
+msgid "You are back in the main hall of your house.\n"
+msgstr "家の玄関に戻った。\n"
+
+#: ../linux_story/story/challenges/challenge_5.py:52
+msgid "Can you see your {{bb:garden}}? Have a {{lb:look around}} you.\n"
+msgstr "お庭({{bb:garden}})は見えますか？{{lb:周りを見て}}みよう。\n"
+
+#: ../linux_story/story/challenges/challenge_5.py:57
+msgid "{{rb:Type}} {{yb:ls}} {{rb:to look around you.}}"
+msgstr "{{yb:ls}}{{rb:をタイプし、周りを見よう。}}"
+
+#: ../linux_story/story/challenges/challenge_5.py:65
+msgid ""
+"You see doors to the {{bb:garden}}, {{bb:kitchen}}, {{bb:my-room}} and {{bb:"
+"parents-room}}."
+msgstr ""
+"お庭({{bb:garden}})、台所({{bb:kitchen}})、君の部屋({{bb:my-room}})と親の部屋"
+"({{bb:parents-room}})が見えるね。"
+
+#: ../linux_story/story/challenges/challenge_5.py:66
+msgid "{{lb:Go}} into your {{bb:garden}}.\n"
+msgstr "お庭({{bb:garden}})へ{{lb:行こう}}。\n"
+
+#: ../linux_story/story/challenges/challenge_5.py:71
+msgid "{{rb:Type}} {{yb:cd garden}} {{rb:to go into the garden.}}"
+msgstr "{{yb:cd garden}}{{rb:をタイプし、庭へ行こう。}}"
+
+#: ../linux_story/story/challenges/challenge_5.py:84
+msgid ""
+"Use {{yb:ls}} to {{lb:look}} in the {{bb:garden}} for your {{bb:Dad}}.\n"
+msgstr "{{yb:ls}}を使って、庭でお父さん({{bb:Dad}})のことを{{lb:探そう}}。\n"
+
+#: ../linux_story/story/challenges/challenge_5.py:89
+msgid ""
+"{{rb:To look for your Dad, type}} {{yb:ls}} {{rb:and press {{ob:Enter}}"
+"{{rb:.}}"
+msgstr ""
+"{{rb:お父さんのことを探すには、}}{{yb:ls}}{{rb:をタイプし、}}{{ob:Enter}}"
+"{{rb:を押して。}}"
+
+#: ../linux_story/story/challenges/challenge_5.py:97
+msgid "The {{bb:garden}} looks beautiful at this time of year."
+msgstr "この季節には庭はきれいだね。"
+
+#: ../linux_story/story/challenges/challenge_5.py:98
+msgid "Hmmm...but you can't see him anywhere."
+msgstr "でも、お父さんが見つからないな。"
+
+#: ../linux_story/story/challenges/challenge_5.py:99
+msgid "Maybe he's in the {{bb:greenhouse}}."
+msgstr "温室({{bb:greenhouse}})にいるかもしれないね。"
+
+#: ../linux_story/story/challenges/challenge_5.py:100
+msgid ""
+"\n"
+"{{lb:Go}} inside the {{bb:greenhouse}}.\n"
+msgstr ""
+"\n"
+"温室({{bb:greenhouse}})の中に{{lb:入ろう}}。\n"
+
+#: ../linux_story/story/challenges/challenge_5.py:105
+msgid "{{rb:To go to the greenhouse, type}} {{yb:cd greenhouse}}"
+msgstr "{{rb:温室に入るには、}}{{yb:cd greenhouse}}{{rb:をタイプして。}}"
+
+#: ../linux_story/story/challenges/challenge_5.py:118
+msgid "Is he here? {{lb:Look around}} with {{yb:ls}} to find out.\n"
+msgstr "ここにいるかな？{{yb:ls}}で{{lb:周りを見て}}みよう。\n"
+
+#: ../linux_story/story/challenges/challenge_5.py:123
+msgid "{{rb:Type}} {{yb:ls}} {{rb:to look for your Dad.}}"
+msgstr "{{rb:お父さんを探すには、}}{{yb:ls}}{{rb:をタイプしてみて。}}"
+
+#: ../linux_story/story/challenges/challenge_5.py:131
+msgid "Your {{bb:Dad}} has been busy, there are loads of vegetables here."
+msgstr "野菜がいっぱいだな。お父さん({{bb:Dad}})は忙しいだろうな。"
+
+#: ../linux_story/story/challenges/challenge_5.py:132
+msgid "Hmmmm. He's not here. But there is something odd.\n"
+msgstr "でもここにいないな。あれ、変なものが。。\n"
+
+#: ../linux_story/story/challenges/challenge_5.py:133
+msgid ""
+"You see a {{bb:note}} on the ground. Use {{yb:cat note}} to {{lb:read}} what "
+"it says.\n"
+msgstr ""
+"地面にメッセージ({{bb:note}})が落ちてる。{{yb:cat note}}で{{lb:読んで}}みよ"
+"う。\n"
+
+#: ../linux_story/story/challenges/challenge_5.py:138
+msgid "{{rb:Type}} {{yb:cat note}} {{rb:to see what the note says!}}"
+msgstr "{{yb:cat note}}{{rb:をタイプし、メッセージを読んでみて！}}"
+
+#: ../linux_story/story/challenges/challenge_5.py:146
+msgid ""
+"Going back is super easy. Just type {{yb:cd ..}} to go back the way you "
+"came.\n"
+msgstr "戻るのは簡単だ：{{yb:cd ..}}をタイプすれば、来たところへ戻れる。\n"
+
+#: ../linux_story/story/challenges/challenge_5.py:151
+msgid "{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the garden.}}"
+msgstr "{{yb:cd ..}}{{rb:をタイプし、庭へ戻ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_5.py:164
+msgid ""
+"You're back in the garden. Use {{yb:cd ..}} again to {{lb:go back}} to the "
+"house.\n"
+msgstr "庭に戻った。もう一度{{yb:cd ..}}で家の中に{{lb:戻ろう。}}\n"
+
+#: ../linux_story/story/challenges/challenge_5.py:165
+msgid ""
+"{{gb:Top tip: Press the}} {{ob:UP}} {{gb:arrow key to replay your previous "
+"command.}}\n"
+msgstr ""
+"{{gb:上級レベル：}}{{ob:UP}}{{gb:キーを押すと、１つ前のコマンドを再度実行でき"
+"る。}}\n"
+
+#: ../linux_story/story/challenges/challenge_5.py:170
+msgid "{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the house.}}"
+msgstr "{{yb:cd ..}}{{rb:をタイプし、家に戻ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_5.py:183
+msgid "Now {{lb:go}} back into the {{bb:kitchen}} and see {{bb:Mum}}.\n"
+msgstr ""
+"そして、台所({{bb:kitchen}})に{{lb:行って}}、お母さん({{bb:Mum}})のところへ戻"
+"ろう。\n"
+
+#: ../linux_story/story/challenges/challenge_5.py:188
+msgid "{{rb:Type}} {{yb:cd kitchen}} {{rb:to go back to the kitchen.}}"
+msgstr "{{yb:cd kitchen}}{{rb:をタイプし、台所へ戻ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_6.py:31
+msgid "Let {{bb:Mum}} know about {{bb:Dad}}. Type {{yb:cat Mum}}"
+msgstr ""
+"お父さんのことをお母さん({{bb:Mum}})に話そう。{{yb:cat Mum}}をタイプしよう。"
+
+#: ../linux_story/story/challenges/challenge_6.py:36
+msgid ""
+"{{rb:To talk to your Mum, type}} {{yb:cat Mum}} {{rb:and press}} {{ob:Enter}}"
+"{{rb:.}}"
+msgstr ""
+"{{rb:お母さんに話すには、}}{{yb:cat Mum}}{{rb:をタイプし}}{{ob:Enter}}{{rb:を"
+"おして。}}"
+
+#: ../linux_story/story/challenges/challenge_6.py:44
+msgid ""
+"{{wb:Mum:}} {{Bb:\"You couldn't find him? That's strange, he never leaves "
+"home without telling me first.\""
+msgstr ""
+"{{wb:お母さん：}}{{Bb:\"あら、お父さんが見つからないの？\n"
+"不思議だな。出かける時にいつも教えてくれるのに。\""
+
+#: ../linux_story/story/challenges/challenge_6.py:45
+msgid ""
+"\"Maybe he went to that town meeting with the Mayor, the one they were "
+"talking about on the news. Why don't you go and check? I'll stay here in "
+"case he comes back.\"}}\n"
+msgstr ""
+"\"ニュースで発表された町内会議に行ったのかもしれません。見に行けばどうかし"
+"ら？家に帰ってくるかもしれないから、私はここで待ってるね。\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_6.py:46
+msgid "Let's head to {{bb:town}}. To leave the house, use {{yb:cd}} by itself."
+msgstr "町({{bb:town}})に行こう。家を出るには{{yb:cd}}をそのまま使ってみよう。"
+
+#: ../linux_story/story/challenges/challenge_6.py:51
+msgid "{{rb:Type}} {{yb:cd}} {{rb:to start the journey.}}"
+msgstr "{{rb:旅に出かけるには、}}{{yb:cd}}{{rb:をタイプして。}}"
+
+#: ../linux_story/story/challenges/challenge_6.py:64
+msgid ""
+"You're out of the house and on the long windy road called Tilde, or {{bb:~}}"
+msgstr "君は家を出て、ナミセン又は{{bb:~}}と呼ばれる、風の吹く長い道にいる。"
+
+#: ../linux_story/story/challenges/challenge_6.py:65
+msgid "{{lb:Look around}} again to see where to go next."
+msgstr "また{{lb:周りを見て}}、次に行く場所を確認しよう。"
+
+#: ../linux_story/story/challenges/challenge_6.py:70
+msgid "{{rb:Stuck? Type}} {{yb:ls}} {{rb:to look around.}}"
+msgstr "{{rb:止まってる？}}{{yb:ls}}{{rb:をタイプし、周りを見よう。}}"
+
+#: ../linux_story/story/challenges/challenge_6.py:78
+msgid ""
+"You can see a {{bb:town}} in the distance! Let's {{lb:go}} there using {{lb:"
+"cd}}."
+msgstr "町({{bb:town}})が遠くにある！{{lb:cd}}を使って、{{lb:行って}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_6.py:83
+msgid "{{rb:Type}} {{yb:cd town}} {{rb:to walk into town.}}"
+msgstr "{{yb:cd town}}{{rb:をタイプし、町へ行こう。}}"
+
+#: ../linux_story/story/challenges/challenge_7.py:30
+msgid "Have a {{lb:look around}} to see what's going on!"
+msgstr "{{lb:周りを見て}}、何が起きてるか見てみよう！"
+
+#: ../linux_story/story/challenges/challenge_7.py:35
+msgid "{{rb:To look around, use}} {{yb:ls}}"
+msgstr "{{rb:周りを見るには、}}{{yb:ls}}{{rb:を使って。}}"
+
+#: ../linux_story/story/challenges/challenge_7.py:43
+msgid ""
+"Wow, there's so many people here. Find the {{bb:Mayor}} and {{lb:listen}} to "
+"what he has to say."
+msgstr ""
+"おお〜、人が大勢いるね。町長({{bb:Mayor}})を見つけて、話を{{lb:聞こう}}。"
+
+#: ../linux_story/story/challenges/challenge_7.py:48
+msgid "{{rb:Stuck? Type:}} {{yb:cat Mayor}}"
+msgstr "{{rb:次は分からない？}}{{yb:cat Mayor}}{{rb:をタイプしてみて。}}"
+
+#: ../linux_story/story/challenges/challenge_7.py:56
+msgid ""
+"{{wb:Mayor:}} {{Bb:\"Calm down please! We have our best people looking into "
+"the disappearances, and we're hoping to have an explanation soon.\"}}\n"
+msgstr ""
+"{{wb:町長：}}{{Bb:\"皆さん、落ち着いて下さい！一番優秀な人に事件を調査しても"
+"らってます。近いうちに解決すると思われます。\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_7.py:57
+msgid "Something strange is happening. Better check everyone is ok."
+msgstr "不思議なことが起きています。全員の安否を確認しよう。"
+
+#: ../linux_story/story/challenges/challenge_7.py:58
+msgid "Type {{yb:cat}} to check on the people."
+msgstr "他の人の安否を確認するには、{{yb:cat}}を使ってみよう。"
+
+#: ../linux_story/story/challenges/challenge_7.py:66
+msgid ""
+"\n"
+"{{wb:Man:}} {{Bb:\"Help! I don't know what's happening to me. I heard this "
+"bell ring, and now my legs have gone all strange.\"}}"
+msgstr ""
+"\n"
+"{{wb:おじさん：}}{{Bb:\"助けて！何が起きているかわかりません。\n"
+"鉦の音が聞こえたら、足が変になってしまったよ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_7.py:67
+msgid ""
+"\n"
+"{{wb:Girl:}} {{Bb:\"Can you help me? I can't find my friend Amy anywhere. If "
+"you see her, will you let me know?\"}}"
+msgstr ""
+"\n"
+"{{wb:少女：}}{{Bb:\"誰か助けてくれる？友人のエイミーちゃんが見つからない"
+"よ。\n"
+"見つかったら教えてくれる？\"}}"
+
+#: ../linux_story/story/challenges/challenge_7.py:68
+msgid ""
+"\n"
+"{{wb:Boy:}} {{Bb:\"Pongo? Pongo? Has anyone seen my dog Pongo? He's never "
+"run away before...\"}}"
+msgstr ""
+"\n"
+"{{wb:男の子：}}{{Bb:\"ポンゴ？ポンゴ？僕の犬を見かけた人いないか？\n"
+"今まで逃げたことがなかったよ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_7.py:81
+#: ../linux_story/story/challenges/challenge_11.py:65
+#: ../linux_story/story/challenges/challenge_18.py:208
+#: ../linux_story/story/challenges/challenge_21.py:337
+msgid ""
+"\n"
+"{{gb:You look around.}}"
+msgstr ""
+"\n"
+"{{gb:周りを見ている。}}"
+
+#: ../linux_story/story/challenges/challenge_7.py:88
+#: ../linux_story/story/challenges/challenge_11.py:72
+#: ../linux_story/story/challenges/challenge_14.py:316
+#: ../linux_story/story/challenges/challenge_18.py:237
+#, python-format
+msgid "{{rb:Use}} {{yb:%s}} {{rb:to progress.}}"
+msgstr "{{rb:先へ進むには}}{{yb:%s}}{{rb:を使ってみて。}}"
+
+#: ../linux_story/story/challenges/challenge_7.py:102
+msgid ""
+"\n"
+"{{gb:Well done! Check on 1 more person.}}\n"
+msgstr ""
+"\n"
+"{{gb:良く出来た！後一人。}}\n"
+
+#: ../linux_story/story/challenges/challenge_7.py:104
+#, python-format
+msgid ""
+"\n"
+"{{gb:Well done! Check on %d more people.}}\n"
+msgstr ""
+"\n"
+"{{gb:出来た！後%d人の安否を確認しよう。}}\n"
+
+#: ../linux_story/story/challenges/challenge_7.py:106
+#: ../linux_story/story/challenges/challenge_11.py:90
+#: ../linux_story/story/challenges/challenge_14.py:307
+#: ../linux_story/story/challenges/challenge_18.py:230
+#: ../linux_story/story/challenges/challenge_29.py:241
+#: ../linux_story/story/challenges/challenge_31.py:115
+#: ../linux_story/story/challenges/challenge_31.py:137
+msgid ""
+"\n"
+"{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}"
+msgstr ""
+"\n"
+"{{gb:続けるには、}}{{ob:Enter}}{{gb:を押そう。}}"
+
+#: ../linux_story/story/challenges/challenge_8.py:32
+msgid "It sounds like the bell you heard before.\n"
+msgstr "前に聞こえた鉦の音と似ているな。\n"
+
+#: ../linux_story/story/challenges/challenge_8.py:33
+msgid "Use {{yb:ls}} to {{lb:look around}} again."
+msgstr "{{yb:ls}}を使って、また{{lb:周りを見て}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_8.py:38
+#: ../linux_story/story/challenges/challenge_8.py:58
+#: ../linux_story/story/challenges/challenge_8.py:77
+#: ../linux_story/story/challenges/challenge_8.py:109
+#: ../linux_story/story/challenges/challenge_11.py:160
+#: ../linux_story/story/challenges/challenge_18.py:93
+#: ../linux_story/story/challenges/challenge_20.py:83
+#: ../linux_story/story/challenges/challenge_22.py:162
+#: ../linux_story/story/challenges/challenge_25.py:124
+#: ../linux_story/story/challenges/challenge_26.py:32
+#: ../linux_story/story/challenges/challenge_26.py:85
+#: ../linux_story/story/challenges/challenge_28.py:33
+#: ../linux_story/story/challenges/challenge_31.py:34
+msgid "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+msgstr "{{yb:ls}}{{rb:で周りを見て。}}"
+
+#: ../linux_story/story/challenges/challenge_8.py:49
+msgid ""
+"{{wb:Little-boy:}} {{Bb:\"Oh no! That grumpy-man with the funny legs has "
+"gone!}} {{Bb:Did you hear the bell just before he vanished??\"}}"
+msgstr ""
+"{{wb:男の子：}}{{Bb:\"いゃ〜、気難しいおじさんの変な足は‥\n"
+"なくなってるよ！\n"
+"なくなる前に、鉦の音は聞こえた？\"}}"
+
+#: ../linux_story/story/challenges/challenge_8.py:50
+msgid "{{wb:Young-girl:}} {{Bb:\"I'm scared...\"}}"
+msgstr "{{wb:少女：}}{{Bb:\"怖いよ！\"}}"
+
+#: ../linux_story/story/challenges/challenge_8.py:51
+#: ../linux_story/story/challenges/challenge_8.py:71
+#: ../linux_story/story/challenges/challenge_8.py:104
+#: ../linux_story/story/challenges/challenge_22.py:83
+msgid ""
+"\n"
+"{{pb:Ding. Dong.}}\n"
+msgstr ""
+"\n"
+"{{pb:キン・コーン}}\n"
+
+#: ../linux_story/story/challenges/challenge_8.py:52
+msgid "{{wb:Young-girl:}} {{Bb:\"Oh! I heard it go again!\"}}"
+msgstr "{{wb:少女：}}{{Bb:\"わ〜、また聞こえたよ！\"}}"
+
+#: ../linux_story/story/challenges/challenge_8.py:53
+msgid ""
+"\n"
+"Take a {{lb:look around}} you to check."
+msgstr ""
+"\n"
+"{{lb:周りを見て}}、確認しておこう。"
+
+#: ../linux_story/story/challenges/challenge_8.py:68
+msgid ""
+"{{wb:Young-girl:}} {{Bb:\"Wait, there was a}} {{bb:little-boy}} {{Bb:here..."
+"right?\""
+msgstr ""
+"{{wb:少女：}}{{Bb:\"待てよ、さっきここに男の子(}}{{bb:little-boy}}{{Bb:)がい"
+"たよね‥\"}}"
+
+#: ../linux_story/story/challenges/challenge_8.py:69
+msgid "Every time that bell goes, someone disappears!}}"
+msgstr "かねが鳴るたびに、誰かがいなくなっちゃう！"
+
+#: ../linux_story/story/challenges/challenge_8.py:70
+msgid "{{wb:Mayor:}} {{Bb:\"Maybe they just decided to go home...?\"}}"
+msgstr "{{wb:町長：}}{{Bb:\"ただ、家に帰ろうと思ったんじゃ？\"}}"
+
+#: ../linux_story/story/challenges/challenge_8.py:72
+#: ../linux_story/story/challenges/challenge_28.py:135
+#: ../linux_story/story/challenges/challenge_30.py:29
+msgid "{{lb:Look around.}}"
+msgstr "{{lb:周りを見よう。}}"
+
+#: ../linux_story/story/challenges/challenge_8.py:87
+msgid "You are alone with the {{bb:Mayor}}.\n"
+msgstr "町長({{bb:Mayor}})と２人きりだ。\n"
+
+#: ../linux_story/story/challenges/challenge_8.py:88
+msgid "{{lb:Listen}} to what the {{bb:Mayor}} has to say."
+msgstr "町長({{bb:Mayor}})の話を{{lb:聞こう}}。"
+
+#: ../linux_story/story/challenges/challenge_8.py:93
+msgid "{{rb:Use}} {{yb:cat Mayor}} {{rb:to talk to the Mayor.}}"
+msgstr "{{yb:cat Mayor}}{{rb:で町長と話してみて。}}"
+
+#: ../linux_story/story/challenges/challenge_8.py:102
+msgid "{{wb:Mayor:}} {{Bb:\"Everyone...has disappeared??\"\n"
+msgstr "{{wb:町長：}}{{Bb:\"全員‥いなくなったか？？\"\n"
+
+#: ../linux_story/story/challenges/challenge_8.py:103
+msgid "\"....I should head home now...\"}}"
+msgstr "\"‥わしは家に帰らなきゃ‥\"}}"
+
+#: ../linux_story/story/challenges/challenge_8.py:124
+msgid "Everyone has gone."
+msgstr "全員いなくなっちゃった。"
+
+#: ../linux_story/story/challenges/challenge_8.py:125
+msgid "Wait - there's a {{bb:note}} on the floor.\n"
+msgstr "待てよ。地面にメッセージ({{bb:note}})が落ちてる。\n"
+
+#: ../linux_story/story/challenges/challenge_8.py:126
+msgid "Use {{yb:cat}} to read the {{bb:note}}."
+msgstr "{{yb:cat}}でメッセージ({{bb:note}})を読んでみよう。"
+
+#: ../linux_story/story/challenges/challenge_8.py:131
+#: ../linux_story/story/challenges/challenge_9.py:102
+msgid "{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}"
+msgstr "{{yb:cat note}}{{rb:を使ってメッセージを読んでみて。}}"
+
+#: ../linux_story/story/challenges/challenge_9.py:31
+msgid "Oh no! Check your {{bb:Mum}} is alright.\n"
+msgstr "やばい！お母さん({{bb:Mum}})が大丈夫か見てみなきゃ\n"
+
+#: ../linux_story/story/challenges/challenge_9.py:32
+msgid "Type {{yb:cd ..}} to leave {{bb:town}}."
+msgstr "町({{bb:town}})を出るには、{{yb:cd ..}}をタイプしよう。"
+
+#: ../linux_story/story/challenges/challenge_9.py:37
+msgid "{{rb:Use}} {{yb:cd ..}} {{rb:to start heading back home.}}"
+msgstr "{{yb:cd ..}}{{rb:を使って、家に戻ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_9.py:51
+msgid "Type {{yb:cd my-house/kitchen}} to go straight to the {{bb:kitchen}}.\n"
+msgstr ""
+"{{yb:cd my-house/kitchen}}をタイプし、直接台所({{bb:kitchen}})に行こう。\n"
+
+#: ../linux_story/story/challenges/challenge_9.py:52
+msgid "{{gb:Press}} {{ob:TAB}} {{gb:to speed up your typing!}}"
+msgstr "{{gb:速くタイプするには、}}{{ob:TAB}}{{gb:を使ってみよう！}}"
+
+#: ../linux_story/story/challenges/challenge_9.py:58
+msgid "{{rb:Use}} {{yb:cd my-house/kitchen}} {{rb:to go to the kitchen.}}"
+msgstr "{{rb:台所に行くには、}}{{yb:cd my-house/kitchen}}{{rb:を使って。}}"
+
+#: ../linux_story/story/challenges/challenge_9.py:80
+msgid "Take a {{lb:look around}} to make sure everything is OK."
+msgstr "大丈夫かを確認するには、{{lb:周りを見て}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_9.py:86
+msgid ""
+"{{rb:Use}} {{yb:ls}} {{rb:to see that everything is where it should be.}}"
+msgstr "{{yb:ls}}{{rb:を使って、周りを確認してみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_9.py:95
+msgid "Oh no - {{bb:Mum}} has vanished too!"
+msgstr "いゃ〜、お母さん({{bb:Mum}})もいなくなっちゃった！"
+
+#: ../linux_story/story/challenges/challenge_9.py:96
+msgid "Wait, there's another {{bb:note}}.\n"
+msgstr "あれ、またメッセージ({{bb:note}})がある。\n"
+
+#: ../linux_story/story/challenges/challenge_9.py:97
+msgid "Use {{yb:cat}} to {{lb:read}} the {{bb:note}}."
+msgstr "{{yb:cat}}を使って、メッセージ({{bb:note}})を{{lb:読んで}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_10.py:31
+msgid "You're in your house. You appear to be alone."
+msgstr "家にいるのは、君一人みたいだ。"
+
+#: ../linux_story/story/challenges/challenge_10.py:32
+msgid "Use {{yb:cat}} to {{lb:examine}} some of the objects around you.\n"
+msgstr "{{yb:cat}}を使って、周りのものを{{lb:確認}}しよう。\n"
+
+#: ../linux_story/story/challenges/challenge_10.py:69
+msgid ""
+"\n"
+"{{gb:Well done! Just look at one more item.}}"
+msgstr ""
+"\n"
+"{{gb:よっし、もう１つ見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_10.py:73
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:cat}} {{rb:to look at two of the objects around you.}}"
+msgstr ""
+"\n"
+"{{yb:cat}}{{rb:を使って、周りのものを２つ確認しよう。}}"
+
+#: ../linux_story/story/challenges/challenge_10.py:76
+#, python-format
+msgid ""
+"\n"
+"{{rb:Use the command}} {{yb:%s}} {{rb:to progress.}}"
+msgstr ""
+"\n"
+"{{yb:%s}}{{rb:で先に進もう。}}"
+
+#: ../linux_story/story/challenges/challenge_10.py:93
+msgid "There doesn't seem to be anything here but loads of food."
+msgstr "たくさんの食べ物以外は、何も無い。"
+
+#: ../linux_story/story/challenges/challenge_10.py:94
+msgid "See if you can find something back in {{bb:town}}.\n"
+msgstr "町({{bb:town}})へ戻って、何か無いか見てみよう。\n"
+
+#: ../linux_story/story/challenges/challenge_10.py:95
+msgid "First, use {{yb:cd ..}} to {{lb:leave}} the {{bb:kitchen}}.\n"
+msgstr "まず、{{yb:cd ..}}で台所({{bb:kitchen}})を{{lb:出よう}}。\n"
+
+#: ../linux_story/story/challenges/challenge_10.py:127
+msgid ""
+"\n"
+"{{gb:Good work! Now replay the last command using the}} {{ob:UP}} {{gb:arrow "
+"on your keyboard.}}"
+msgstr ""
+"\n"
+"{{gb:よっし！次は}}{{ob:UP}}{{gb:キーを使って、最後のコマンドをもう一回実行し"
+"よう。}}"
+
+#: ../linux_story/story/challenges/challenge_10.py:132
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:cd ..}} {{rb:to make your way to town.}}"
+msgstr ""
+"\n"
+"{{yb:cd ..}}{{rb:で町へ行こう。}}"
+
+#: ../linux_story/story/challenges/challenge_10.py:138
+msgid ""
+"\n"
+"{{gb:Good work! Now use}} {{yb:cd town}} {{gb:to head to town.}}"
+msgstr ""
+"\n"
+"{{gb:できた！次は}}{{yb:cd town}}{{gb:で町(town)へ行こう。}}"
+
+#: ../linux_story/story/challenges/challenge_10.py:143
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:cd town}} {{rb:to go into town.}}"
+msgstr ""
+"\n"
+"{{yb:cd town}}{{rb:を使って、町へ行こう。}}"
+
+#: ../linux_story/story/challenges/challenge_10.py:158
+msgid "Use {{yb:ls}} to {{lb:look around}}.\n"
+msgstr "{{yb:ls}}で{{lb:周りを見よう}}。\n"
+
+#: ../linux_story/story/challenges/challenge_10.py:163
+msgid "{{rb:Use}} {{yb:ls}} {{rb:to have a look around the town.}}"
+msgstr "{{yb:ls}}{{rb:を使って、町の周りを見て。}}"
+
+#: ../linux_story/story/challenges/challenge_10.py:171
+msgid "The place appears to be deserted."
+msgstr "誰もいないみたい。"
+
+#: ../linux_story/story/challenges/challenge_10.py:172
+msgid "However, you think you hear whispers."
+msgstr "しかし、ささやき声が聞こえている。"
+
+#: ../linux_story/story/challenges/challenge_10.py:174
+msgid ""
+"\n"
+"{{wb:?:}} {{Bn:\".....if they use}} {{yb:ls -a}}{{Bn:, they'll see us...\"}}"
+msgstr ""
+"\n"
+"{{wb:？：}}{{Bn:\".....}}{{yb:ls -a}}{{Bn:を使ったら、見つかっちゃう....\"}}"
+
+#: ../linux_story/story/challenges/challenge_10.py:175
+msgid "{{wb:?:}} {{Bn:\"..Shhh! ...might hear....\"}}\n"
+msgstr "{{wb:？：}}{{Bn:\"...シーー....聞こえちゃうよ.....\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_10.py:181
+msgid ""
+"{{rb:You heard whispers referring to}} {{yb:ls -a}}{{rb:, try using it!}}"
+msgstr ""
+"{{yb:ls -a}}{{rb:について話しているささやき声が聞こえたから、使ってみよう！}}"
+
+#: ../linux_story/story/challenges/challenge_10.py:191
+msgid "You see a {{bb:.hidden-shelter}} that you didn't notice before.\n"
+msgstr "以前気がつかなかった隠れシェルター({{bb:.hidden-shelter}})が見えた。\n"
+
+#: ../linux_story/story/challenges/challenge_10.py:192
+msgid ""
+"{{gb:Something that starts with . is normally hidden from view.\n"
+"}}"
+msgstr ""
+"{{gb:.(ドット)で始まるものは普通は見えないんだ。\n"
+"}}"
+
+#: ../linux_story/story/challenges/challenge_10.py:193
+msgid "It sounds like the whispers are coming from there. Try going in.\n"
+msgstr "ささやき声はそこから聞こえてくるから、入ってみよう。\n"
+
+#: ../linux_story/story/challenges/challenge_10.py:202
+msgid ""
+"{{rb:Try going inside the}} {{lb:.hidden-shelter}} {{rb:using }}{{yb:cd}}"
+"{{rb:.}}"
+msgstr ""
+"{{yb:cd}}{{rb:を使って、隠れシェルター(}}{{lb:.hidden-shelter}}{{rb:)の中に"
+"入ってみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_10.py:204
+msgid "{{rb:Use the command}} {{yb:cd .hidden-shelter }}{{rb:to go inside.}}"
+msgstr "{{yb:cd .hidden-shelter}}{{rb:コマンドを使って、中に入ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_10.py:219
+msgid "Is anyone there? Have a {{lb:look around}}.\n"
+msgstr "誰かいるか？{{lb:周りを見よう}}。\n"
+
+#: ../linux_story/story/challenges/challenge_10.py:228
+msgid "{{rb:Use}} {{yb:ls}} {{rb:to have a look around you.}}"
+msgstr "{{yb:ls}}{{rb:を使って、周りを見て。}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:41
+msgid "You see a group of scared looking people and a {{bb:dog}}.\n"
+msgstr "怖がっている人たちと犬({{bb:dog}})がいる。\n"
+
+#: ../linux_story/story/challenges/challenge_11.py:42
+msgid "{{lb:Listen}} to what they have to say with {{yb:cat}}.\n"
+msgstr "{{yb:cat}}を使って、一人ひとりの話を{{lb:聞こう}}。\n"
+
+#: ../linux_story/story/challenges/challenge_11.py:49
+msgid ""
+"\n"
+"{{wb:Edith:}} {{Bb:\"You found us! Edward, I told you to keep your voice "
+"down.\"}}"
+msgstr ""
+"\n"
+"{{wb:エディス：}}{{Bb:\"あなた、見つかっちゃったよ！小さい声で話せって言った"
+"のに\"}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:51
+msgid ""
+"\n"
+"{{wb:Eleanor:}} {{Bb:\"My mummy is scared the bell will find us if we go "
+"outside.\"}}"
+msgstr ""
+"\n"
+"{{wb:エレノア：}}{{Bb:\"母ちゃんが心配してる。外に出るとかねに見つかっちゃ"
+"うって。\"}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:53
+msgid ""
+"\n"
+"{{wb:Edward:}} {{Bb:\"I'm sorry Edith...but I don't think they mean any "
+"harm. Maybe they could help us?\"}}"
+msgstr ""
+"\n"
+"{{wb:エドワード：}}{{Bb:\"すまん、エディスちゃん。でも僕らに悪さをしないと思"
+"う。むしろ助けてくれるかも。\"}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:55
+msgid ""
+"\n"
+"{{wb:Dog:}} {{Bb:\"Woof woof!\"}}"
+msgstr ""
+"\n"
+"{{wb:犬：}}{{Bb:\"ワン、ワン！\"}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:87
+#, python-format
+msgid ""
+"\n"
+"{{gb:Well done! Check on %d more.}}\n"
+msgstr ""
+"\n"
+"{{gb:いいね。後%d人を確認しよう。}}\n"
+
+#: ../linux_story/story/challenges/challenge_11.py:107
+msgid "Edward looks like he has something he wants to say to you.\n"
+msgstr "エドワードさんが君に何か言いたいみたいよ。\n"
+
+#: ../linux_story/story/challenges/challenge_11.py:108
+msgid "{{wb:Edward:}} {{Bb:\"Hi there. Can you help me with something?\""
+msgstr "{{wb:エドワード：}}{{Bb:\"ねねー、君。手伝ってくれないか？\""
+
+#: ../linux_story/story/challenges/challenge_11.py:110
+msgid ""
+"\"I learnt this spell for moving items from one place to another. But I "
+"can't seem to make it work.\""
+msgstr ""
+"\"ある物を別の場所へ動かすためのおまじないを\n"
+"教わったんだけど、上手くいかない。\""
+
+#: ../linux_story/story/challenges/challenge_11.py:113
+msgid ""
+"\"I've been trying to move this}} {{bb:apple}} {{Bb:into the}} {{bb:basket}}"
+"{{Bb:\"}}"
+msgstr ""
+"\"このリンゴ(}}{{bb:apple}}{{Bb:)をカゴ(}}{{bb:basket}}{{Bb:)に\n"
+"動かそうと思ってね。\"}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:116
+msgid "{{Bb:\"I was told the command was}} {{yb:mv apple basket/}}{{Bb:\"}}"
+msgstr "{{Bb:\"コマンドは}}{{yb:mv apple basket/}}{{Bb:だと言われてけど\"}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:117
+msgid ""
+"{{Bb:\"But I don't understand what that means. Do I say it? Or write it?"
+"\"}}\n"
+msgstr ""
+"{{Bb:\"意味がわからないな。このおまじないを言えばいいの？それとも書けばいい？"
+"\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_11.py:121
+msgid "| {{gb:New Spell}}: to {{lb:move}} objects, type {{yb:mv}} |"
+msgstr "| {{gb:新しいおまじない}}: ものを{{lb:動かす}}には、    |"
+
+#: ../linux_story/story/challenges/challenge_11.py:122
+msgid "| and the object name.                |"
+msgstr "| {{yb:mv}}と物の名前をタイプする。               |"
+
+#: ../linux_story/story/challenges/challenge_11.py:134
+msgid ""
+"{{rb:Use the command}} {{yb:mv apple basket/}} {{rb:to move the apple into "
+"the basket.}}"
+msgstr "{{yb:mv apple basket/}}{{rb:を使って、リンゴをカゴへ動かして。}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:150
+msgid ""
+"Check you've managed to move the {{bb:apple}}. {{lb:Look around}} in this "
+"directory.\n"
+msgstr ""
+"リンゴ({{bb:apple}})をちゃんと動かせたかどうか確認しよう。このフォルダーで"
+"{{lb:周りを見て}}みよう。\n"
+
+#: ../linux_story/story/challenges/challenge_11.py:174
+msgid "{{gb:Nice work! The apple isn't in this directory anymore.}}\n"
+msgstr "{{gb:よくやった！リンゴはこのフォルダーからなくなったね。}}\n"
+
+#: ../linux_story/story/challenges/challenge_11.py:175
+msgid ""
+"{{wn:Now check the apple is in the}} {{bb:basket}} {{wn:using}} {{yb:ls}}"
+"{{wn:.}}\n"
+msgstr ""
+"{{wn:次は、}}{{yb:ls}}{{wn:を使って、リンゴがカゴ(}}{{bb:basket}}{{wn:)にある"
+"かどうか確認しよう。}}\n"
+
+#: ../linux_story/story/challenges/challenge_11.py:187
+msgid "{{rb:Use the command}} {{yb:ls basket/}} {{rb:to look in the basket.}}"
+msgstr "{{yb:ls basket/}}{{rb:コマンドを使って、カゴの中を見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:197
+msgid "{{gb:Excellent, you moved the apple into the basket!}}"
+msgstr "{{gb:出来た！リンゴをカゴに動かしたね！}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:198
+msgid ""
+"\n"
+"{{wb:Edward:}} {{Bb:\"Hey, you did it! What was I doing wrong?\"}}"
+msgstr ""
+"\n"
+"{{wb:エドワード：}}{{Bb:\"ヘェ〜、出来たね！僕はどこが間違ってたんだろう？"
+"\"}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:200
+msgid "{{Bb:\"Can you move the apple from the basket back here?\"}}\n"
+msgstr "{{Bb:\"今度、リンゴをカゴからここに動かせるかな？\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_11.py:201
+msgid ""
+"{{lb:Move}} the {{bb:apple}} from the {{bb:basket}} to your current "
+"position. This is represented by {{bb:./}} \n"
+msgstr ""
+"リンゴ({{bb:apple}}をカゴ({{bb:basket}})から、この場所に動かしてみよう。ここ"
+"は{{bb:./}}で表す。\n"
+
+#: ../linux_story/story/challenges/challenge_11.py:203
+msgid ""
+"So {{yb:mv basket/apple ./}} is the full command. You need the {{bb:./}} !\n"
+msgstr "コマンドは{{yb:mv basket/apple ./}}になってる。{{bb:./}}が必要！\n"
+
+#: ../linux_story/story/challenges/challenge_11.py:213
+msgid ""
+"{{rb:Use the command}} {{yb:mv basket/apple ./}} {{rb:to move the apple from "
+"the basket to your current position}} {{bb:./}}"
+msgstr ""
+"{{yb:mv basket/apple ./}}{{rb:コマンドを使って、リンゴをカゴからここ(}}"
+"{{bb:./}}{{rb:に動かそう。)}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:219
+msgid ""
+"{{gb:Nearly! The full command is}} {{yb:mv basket/apple ./}} {{gb:- don't "
+"forget the dot!}}"
+msgstr ""
+"{{gb:もう少し！コマンドは}}{{yb:mv basket/apple ./}}{{gb:になってる。点を忘れ"
+"ないようにね！}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:232
+msgid ""
+"{{wb:Edith:}} {{Bb:\"You should stop playing with that, that's the last of "
+"our food.\"}}"
+msgstr ""
+"{{wb:エディス：}}{{Bb:\"これで遊ぶのやめて、我々の持っている最後の食べ物だ"
+"よ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:234
+msgid "{{Bb:\"Ah! The dog ran outside!\"}}"
+msgstr "{{Bb:\"あっ、犬が外に出ちゃいました！\"}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:235
+#: ../linux_story/story/challenges/challenge_12.py:36
+msgid "{{wb:Eleanor:}} {{Bb:\"Doggy!\"}}"
+msgstr "{{wb:エレノア：}}{{Bb:\"ワンちゃん！\"}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:236
+msgid "{{wb:Edith:}} {{Bb:\"No, honey! Don't go outside!\"}}"
+msgstr "{{wb:エディス：}}{{Bb:\"や、外に出ないでよ！\"}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:237
+msgid ""
+"\n"
+"{{bb:Eleanor}} follows her {{bb:dog}} and leaves the {{bb:.hidden-shelter}}."
+msgstr ""
+"\n"
+"エレノア({{bb:Eleanor}})ちゃんは、犬({{bb:dog}})について行って、隠れシェル"
+"ター({{bb:.hidden-shelter}})を出た。"
+
+#: ../linux_story/story/challenges/challenge_11.py:239
+msgid "{{lb:Look around}} to check this.\n"
+msgstr "{{lb:周りを見て}}確認しよう。\n"
+
+#: ../linux_story/story/challenges/challenge_11.py:260
+msgid "{{rb:Look around using}} {{yb:ls}} {{rb:to check if Eleanor is here.}}"
+msgstr "{{yb:ls}}{{rb:でエレノアちゃんがいるかどうか確認して。}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:269
+msgid "{{wb:Edith:}} {{Bb:\"No!! Honey, come back!!\"}}"
+msgstr "{{wb:エディス：}}{{Bb:\"いやー！すぐ戻ってきて！\"}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:270
+msgid "{{Bb:\"You there, save my little girl!\"}}\n"
+msgstr "{{Bb:\"あなた、私の娘を助けて！\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_11.py:271
+msgid "First, {{lb:look outside}} for {{bb:Eleanor}} with {{yb:ls ../}}"
+msgstr ""
+"まず、{{yb:ls ../}}で{{lb:外を見て}}、エレノア({{bb:Eleanor}})ちゃんを探そ"
+"う。"
+
+#: ../linux_story/story/challenges/challenge_11.py:282
+msgid ""
+"{{rb:Look in the town directory by using either}} {{yb:ls ../}} {{rb:or}} "
+"{{yb:ls ~/town/}}"
+msgstr ""
+"{{yb:ls ../}}{{rb:又は}}{{yb:ls ~/town/}}{{rb:で町のディレクトリーの中を見て"
+"みよう。}}"
+
+#: ../linux_story/story/challenges/challenge_11.py:292
+msgid ""
+"Now {{lb:move}} {{bb:Eleanor}} from the {{bb:town}} outside {{bb:..}} to "
+"your current position {{bb:.}}\n"
+msgstr ""
+"次は、エレノア({{bb:Eleanor}})ちゃんを{{bb:..}}にある町({{bb:town}})から現在"
+"地{{bb:.}}までに動かそう。\n"
+
+#: ../linux_story/story/challenges/challenge_11.py:308
+msgid ""
+"{{rb:Quick! Use}} {{yb:mv ../Eleanor ./}} {{rb:to move the little girl back "
+"to safety.}}"
+msgstr ""
+"{{rb:早く！}}{{yb:mv ../Eleanor ./}}{{rb:を使って、少女を安全な場所に動かそ"
+"う。}}"
+
+#: ../linux_story/story/challenges/challenge_12.py:35
+msgid "{{wb:Edith:}} {{Bb:\"Thank you for saving her!\"}}"
+msgstr "{{wb:エディス：}}{{Bb:\"娘を助けてくれて、ありがとう！\"}}"
+
+#: ../linux_story/story/challenges/challenge_12.py:37
+msgid ""
+"{{wb:Edith:}} {{Bb:\"Can you save her dog too? I'm worried something will "
+"happen to it if it stays outside.\"}}\n"
+msgstr ""
+"{{wb:エディス：}}{{Bb:\"犬も助けられますか？\n"
+"外にいると何かが起こる事が心配。\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_12.py:53
+msgid "{{rb:Use the command}} {{yb:mv ../dog ./}} {{rb:to rescue the dog.}}"
+msgstr "{{yb:mv ../dog ./}}{{rb:を使って、犬を助けて。}}"
+
+#: ../linux_story/story/challenges/challenge_12.py:67
+msgid "{{wb:Eleanor:}} {{Bb:\"Yay, Doggie!\"}}"
+msgstr "{{wb:エレノア：}}{{Bb:\"ワンちゃん、戻ってきた〜！\"}}"
+
+#: ../linux_story/story/challenges/challenge_12.py:68
+msgid "{{wb:Dog:}} {{Bb:\"Ruff!\"}}"
+msgstr "{{wb:犬：}}{{Bb:\"ワン、ワン！\"}}"
+
+#: ../linux_story/story/challenges/challenge_12.py:69
+msgid "{{wb:Edith:}} {{Bb:\"Thank you so much for getting them both back."
+msgstr "{{wb:エディス：}}{{Bb:\"二人を助けてくれて、ありがとう！"
+
+#: ../linux_story/story/challenges/challenge_12.py:70
+msgid "I was wrong about you. You're a hero!\"}}\n"
+msgstr "君の事をうたがって、すまなかったわ。君はヒーローよ！\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_12.py:71
+msgid ""
+"{{lb:Listen to everyone}} and see if there's anything else you can do to "
+"help.\n"
+msgstr "全員の{{lb:話を聞いて}}、他にできる事がないか確認しよう。\n"
+
+#: ../linux_story/story/challenges/challenge_12.py:78
+msgid ""
+"\n"
+"{{wb:Edith:}} {{Bb:\"Thank you so much! Eleanor, don't wander outside again "
+"- you scared the life out of me!\"}}"
+msgstr ""
+"\n"
+"{{wb:エディス：}}{{Bb:\"本当にありがとう！\n"
+"エレノアちゃん、もう外に出ないでね、お願いだから。すごい怖かったよ！\n"
+"}}"
+
+#: ../linux_story/story/challenges/challenge_12.py:82
+msgid ""
+"\n"
+"{{wb:Eleanor:}} {{Bb:\"Where do you think the bell would have taken us?\"}}"
+msgstr ""
+"\n"
+"{{wb:エレノア：}}{{Bb:\"あのかねは私たちをどこに連れちゃうと思う？\"}}"
+
+#: ../linux_story/story/challenges/challenge_12.py:85
+msgid ""
+"\n"
+"{{wb:Dog:}} {{Bb:\"Woof! Woof woof!\"}}"
+msgstr ""
+"\n"
+"{{wb:犬：}}{{Bb:\"ワン、ワン。ワワワン！\"}}"
+
+#: ../linux_story/story/challenges/challenge_12.py:88
+msgid ""
+"{{gb:Edward looks like he has something he wants to say. Listen to Edward "
+"with}} {{yb:cat Edward}}"
+msgstr ""
+"{{gb:エドワードさんが君に何か言いたいみたい。}}\n"
+"{{yb:cat Edward}}{{gb:で話を聞いてみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_13.py:33
+msgid "{{wb:Edward:}} {{Bb:\"Thank you so much for saving my little girl!"
+msgstr "{{wb:エドワード：}}{{Bb:\"娘を救ってくれてありがとう！"
+
+#: ../linux_story/story/challenges/challenge_13.py:34
+msgid "I have another favour to ask..."
+msgstr "実はもう一つお願いがあります。"
+
+#: ../linux_story/story/challenges/challenge_13.py:36
+msgid ""
+"We haven't got any food. Could you gather some for us? We didn't have time "
+"to grab any before we went into hiding.\""
+msgstr ""
+"食べ物がないんだよ。ここに隠れる前に、探す時間がなくてね。\n"
+"食べ物を僕らに持ってきてくれないか？\""
+
+#: ../linux_story/story/challenges/challenge_13.py:39
+msgid "\"Do you remember seeing any food in your travels?\"}}"
+msgstr "\"移動中に食べ物を見かけた事ないかな？\"}}"
+
+#: ../linux_story/story/challenges/challenge_13.py:41
+msgid ""
+"\n"
+"...ah! You have all that food in your {{bb:kitchen}}! We could give that to "
+"this family."
+msgstr ""
+"\n"
+"そうだ！台所({{bb:kitchen}})に食べ物がたくさんあったね！\n"
+"この家族に持ってきてあげよう。"
+
+#: ../linux_story/story/challenges/challenge_13.py:44
+msgid ""
+"\n"
+"Start by {{lb:moving}} the {{bb:basket}} to {{bb:~}}. Use the command {{yb:"
+"mv basket ~/}}\n"
+msgstr ""
+"\n"
+"まず、カゴ({{bb:basket}})を{{bb:~}}に{{lb:動かそう}}。\n"
+"{{yb:mv basket ~/}}というコマンドを使おう。\n"
+
+#: ../linux_story/story/challenges/challenge_13.py:60
+msgid ""
+"{{rb:Use the command}} {{yb:mv basket ~/}} {{rb:to move the}} {{bb:basket}} "
+"{{rb:to the windy road}} {{bb:~}}"
+msgstr ""
+"{{yb:mv basket ~/}}{{rb:を使って、カゴを風の吹く道}}{{bb:~}}{{rb:に持って行こ"
+"う。}}"
+
+#: ../linux_story/story/challenges/challenge_13.py:73
+msgid ""
+"Now follow the {{bb:basket}}. Use {{yb:cd}} by itself to {{lb:go}} to the "
+"windy road Tilde {{bb:~}}.\n"
+msgstr ""
+"次は、カゴ({{bb:basket}})について行こう。{{yb:cd}}をそのままで使って、風の吹"
+"く道、ナミセン{{bb:~}}に行こう。\n"
+
+#: ../linux_story/story/challenges/challenge_13.py:84
+#: ../linux_story/story/challenges/challenge_14.py:198
+msgid ""
+"{{rb:Use the command}} {{yb:cd}} {{rb:by itself to move yourself to the road "
+"~}}"
+msgstr "{{yb:cd}}{{rb:をそのままで使って、~道に動こう。}}"
+
+#: ../linux_story/story/challenges/challenge_13.py:99
+msgid ""
+"You are now back on the long windy road. {{lb:Look around}} with {{yb:ls}} "
+"to check that you have your {{bb:basket}} with you.\n"
+msgstr ""
+"また風の吹く長い道に戻った。{{yb:ls}}で{{lb:周りを見て}}、\n"
+"カゴ({{bb:basket}})を持っている事を確認しよう。\n"
+
+#: ../linux_story/story/challenges/challenge_13.py:109
+msgid "{{rb:Use}} {{yb:ls}} {{rb:by itself to look around.}}"
+msgstr "{{yb:ls}}{{rb:をそのままで使って、周りを見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_13.py:118
+msgid ""
+"You have your {{bb:basket}} safely alongside you, and you see {{bb:my-"
+"house}} close by."
+msgstr ""
+"カゴ({{bb:basket}})がそばにあって、そして家({{bb:my-house}})が見えている。"
+
+#: ../linux_story/story/challenges/challenge_13.py:120
+msgid "Move the {{bb:basket}} to {{bb:my-house/kitchen}}."
+msgstr ""
+"カゴ({{bb:basket}})を家の台所({{bb:my-house/kitchen}})に{{lb:動かそう}}。"
+
+#: ../linux_story/story/challenges/challenge_13.py:121
+msgid "Don't forget to use the {{ob:TAB}} key to autocomplete your commands.\n"
+msgstr "また、忘れないで：{{ob:TAB}}でコマンドをオートコンプリートできる。\n"
+
+#: ../linux_story/story/challenges/challenge_13.py:137
+msgid ""
+"{{rb:Use}} {{yb:mv basket my-house/kitchen/}} {{rb:to move the basket to "
+"your kitchen.}}"
+msgstr "{{yb:mv basket my-house/kitchen/}}{{rb:でカゴを台所に動かして。}}"
+
+#: ../linux_story/story/challenges/challenge_13.py:150
+msgid "Now {{lb:go}} into {{bb:my-house/kitchen}} using {{yb:cd}}.\n"
+msgstr ""
+"{{yb:cd}}を使って、家の台所({{bb:my-house/kitchen}})へ{{lb:行こう}}。\n"
+
+#: ../linux_story/story/challenges/challenge_13.py:162
+msgid "{{rb:Use}} {{yb:cd my-house/kitchen}} {{rb:to go to your kitchen.}}"
+msgstr "{{yb:cd my-house/kitchen}}{{rb:で家の台所へ行こう。}}"
+
+#: ../linux_story/story/challenges/challenge_14.py:35
+msgid ""
+"Let's {{lb:look around}} to see what food is available in the {{bb:"
+"kitchen}}.\n"
+msgstr ""
+"{{lb:周りを見て}}、台所({{bb:kitchen}})にどんな食べ物があるか見てみよう。\n"
+
+#: ../linux_story/story/challenges/challenge_14.py:45
+msgid ""
+"{{rb:Use}} {{yb:ls}} {{rb:to have a}} {{lb:look around}} {{rb:the kitchen.}}"
+msgstr "{{yb:ls}}{{rb:を使って、台所の}}{{lb:周りを見て}}{{rb:みよう。}}"
+
+#: ../linux_story/story/challenges/challenge_14.py:56
+msgid "{{lb:Move}} three pieces of food into your {{bb:basket}}.\n"
+msgstr "３つの食べ物をカゴ({{bb:basket}})に{{lb:動かそう}}。\n"
+
+#: ../linux_story/story/challenges/challenge_14.py:57
+msgid ""
+"You can move multiple items using {{yb:mv <item1> <item2> <item3> basket/}}\n"
+msgstr ""
+"{{yb:mv <item1> <item2> <item3> basket/}}を使えば、複数の物を同時に動かす事が"
+"できる。\n"
+
+#: ../linux_story/story/challenges/challenge_14.py:72
+msgid "{{rb:They asked for food, they probably shouldn't eat the newspaper.}}"
+msgstr ""
+"{{rb:食べ物を頼んだから、新聞(}}{{bb:newspaper}}{{rb:)は多分いらないね。}}"
+
+#: ../linux_story/story/challenges/challenge_14.py:74
+#: ../linux_story/story/challenges/challenge_14.py:75
+msgid "{{rb:This is a bit heavy for you to carry!}}"
+msgstr "{{rb:これは運ぶには重すぎるんじゃない？}}"
+
+#: ../linux_story/story/challenges/challenge_14.py:96
+#, python-format
+msgid ""
+"{{rb:You're trying to move something that isn't in the folder.\n"
+"Try using}} {{yb:mv %s basket/}}"
+msgstr ""
+"{{rb:このフォルダーに無い物を動かそうとしているよ。}}\n"
+"{{yb:mv %s basket/}}{{rb:を使ってみて。}}"
+
+#: ../linux_story/story/challenges/challenge_14.py:106
+msgid ""
+"If you do not add the basket at the end of the command, you will rename the "
+"items!"
+msgstr ""
+"コマンドの最後にカゴ(basket)を指定しないと、物の名前を変更する事になっちゃう"
+"よ！"
+
+#: ../linux_story/story/challenges/challenge_14.py:116
+#: ../linux_story/story/challenges/challenge_14.py:138
+#, python-format
+msgid "{{rb:Try using}} {{yb:mv %s basket/}}"
+msgstr "{{yb:mv %s basket/}}{{rb:を使ってみて。}}"
+
+#: ../linux_story/story/challenges/challenge_14.py:135
+msgid ""
+"\n"
+"{{gb:Well done! Keep going.}}"
+msgstr ""
+"\n"
+"{{gb:いいね！その調子で。}}"
+
+#: ../linux_story/story/challenges/challenge_14.py:162
+msgid ""
+"\n"
+"Now we want to head back to the {{bb:.hidden-shelter}} with the {{bb:"
+"basket}}."
+msgstr ""
+"\n"
+"次に、カゴ({{bb:basket}})を持って、隠れシェルター{{bb:.hidden-shelter}}に戻ろ"
+"う。"
+
+#: ../linux_story/story/challenges/challenge_14.py:164
+msgid "{{lb:Move}} the {{bb:basket}} back to {{bb:~}}.\n"
+msgstr "カゴ({{bb:basket}})を{{bb:~}}に{{lb:動かそう}}。\n"
+
+#: ../linux_story/story/challenges/challenge_14.py:175
+msgid ""
+"{{rb:Use the command}} {{yb:mv basket ~/}} {{rb:to move the basket to the "
+"windy road ~}}"
+msgstr ""
+"{{yb:mv basket ~/}}{{rb:というコマンドを使って、カゴを風の吹く道~に動かそ"
+"う。}}"
+
+#: ../linux_story/story/challenges/challenge_14.py:188
+msgid "Follow the {{bb:basket}} by using {{yb:cd}}.\n"
+msgstr "{{yb:cd}}でカゴ({{bb:basket}})について{{lb:行こう}}。\n"
+
+#: ../linux_story/story/challenges/challenge_14.py:213
+msgid "Now get the food-filled {{bb:basket}} to the family."
+msgstr "食べ物が入っているカゴ({{bb:basket}})を家族のところに持って行こう。"
+
+#: ../linux_story/story/challenges/challenge_14.py:214
+msgid "{{lb:Move}} the {{bb:basket}} to {{bb:town/.hidden-shelter}}."
+msgstr ""
+"カゴ({{bb:basket}})を隠れシェルター({{bb:town/.hidden-shelter}})に{{lb:動かそ"
+"う}}。"
+
+#: ../linux_story/story/challenges/challenge_14.py:230
+msgid ""
+"{{rb:Use}} {{yb:mv basket town/.hidden-shelter/}} {{rb:to move the basket to "
+"the family.}}"
+msgstr "{{yb:mv basket town/.hidden-shelter/}}{{rb:でカゴを家族に届けよう。}}"
+
+#: ../linux_story/story/challenges/challenge_14.py:243
+msgid "{{lb:Enter}} the {{bb:town/.hidden-shelter}} using {{yb:cd}}.\n"
+msgstr ""
+"{{yb:cd}}を使って、町にある隠れシェルター({{bb:town/.hidden-shelter}})に{{lb:"
+"入ろう}}。\n"
+
+#: ../linux_story/story/challenges/challenge_14.py:255
+msgid ""
+"{{rb:Use}} {{yb:cd town/.hidden-shelter}} {{rb:to be reunited with the "
+"family.}}"
+msgstr ""
+"{{yb:cd town/.hidden-shelter}}{{rb:を使って、家族が隠れているところに行こ"
+"う。}}"
+
+#: ../linux_story/story/challenges/challenge_14.py:270
+msgid ""
+"{{wn:Check on everyone with}} {{yb:cat}} {{wn:to see if they're happy with "
+"the food.}}\n"
+msgstr ""
+"{{wn:皆、食べ物は気に入ってるかな？}}{{yb:cat}}{{wn:で一人ひとりの話を聞こ"
+"う。}}\n"
+
+#: ../linux_story/story/challenges/challenge_14.py:276
+msgid "{{rb:Check on everyone using}} {{yb:cat}}"
+msgstr "{{yb:cat}}{{rb:で一人ひとりの話を聞こう。}}"
+
+#: ../linux_story/story/challenges/challenge_14.py:280
+msgid ""
+"\n"
+"{{wb:Edith:}} {{Bb:\"You saved my little girl and my dog, and now you've "
+"saved us from starvation...how can I thank you?\"}}\n"
+msgstr ""
+"\n"
+"{{wb:エディス：}}{{Bb:\"娘と犬を救って、更に食べ物も持ってきてくれた。\n"
+"本当に助かるわ。\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_14.py:284
+msgid ""
+"\n"
+"{{wb:Eleanor:}} {{Bb:\"Yummy! See, I told you doggy, someone would help us."
+"\"}}\n"
+msgstr ""
+"\n"
+"{{wb:エレノア：}}{{Bb:\"美味しそう！ほらワンちゃん、助けてくれると言ったで"
+"しょう。\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_14.py:287
+msgid ""
+"\n"
+"{{wb:Edward:}} {{Bb:\"Thank you! I knew you would come through for us. You "
+"really are a hero!\"}}\n"
+msgstr ""
+"\n"
+"{{wb:エドワード：}}{{Bb:\"ありがとう！君が僕らを助けてくれると思ってたよ。ま"
+"じ、ヒーローだな、君！\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_14.py:290
+msgid ""
+"\n"
+"{{wb:Dog:}} {{Bb:\"Woof!\"}} {{wn:\n"
+"The dog seems very excited.\n"
+"}}"
+msgstr ""
+"\n"
+"{{wb:犬：}}{{Bb:\"ワンワン！\"}}{{wn:\n"
+"犬は興奮しているみたいね。\n"
+"}}"
+
+#: ../linux_story/story/challenges/challenge_14.py:312
+#, python-format
+msgid ""
+"\n"
+"{{gb:Check on}} {{yb:%d}} {{gb:others}}"
+msgstr ""
+"\n"
+"{{gb:後}}{{yb:%d人}}{{gb:を確認しよう。}}"
+
+#: ../linux_story/story/challenges/challenge_14.py:314
+msgid ""
+"\n"
+"{{gb:Check on}} {{yb:1}} {{gb:other}}"
+msgstr ""
+"\n"
+"{{gb:後}}{{yb:一人}}{{gb:を確認しよう。}}"
+
+#: ../linux_story/story/challenges/challenge_15.py:31
+msgid "You get the nagging feeling you're missing something."
+msgstr "何か見落としている気がするな。"
+
+#: ../linux_story/story/challenges/challenge_15.py:32
+msgid "What was that spell that helped you find this place?"
+msgstr "この場所を見つけた時に使ったおまじないは、何でしたっけ？"
+
+#: ../linux_story/story/challenges/challenge_15.py:33
+msgid "Use it to have a {{lb:closer look around}}.\n"
+msgstr "より{{lb:細かく周りを見る}}のに使ってみよう。\n"
+
+#: ../linux_story/story/challenges/challenge_15.py:36
+msgid "{{rb:Use}} {{yb:ls -a}} {{rb:to look more closely around you.}}"
+msgstr "{{rb:より細かく周りを見るには、}}{{yb:ls -a}}{{rb:を使ってみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_15.py:57
+msgid "What's that! There's {{bb:.tiny-chest}} in the corner of the shelter"
+msgstr "何これ？！小さい宝箱({{bb:.tiny-chest}})がシェルターの隅にある。"
+
+#: ../linux_story/story/challenges/challenge_15.py:58
+msgid "Have a {{lb:look inside}} the {{bb:.tiny-chest}}."
+msgstr "小さい宝箱({{bb:.tiny-chest}})の中を{{lb:のぞいて}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_15.py:62
+msgid "{{rb:Use}} {{yb:ls .tiny-chest}} {{rb:to look inside}}"
+msgstr "{{yb:ls .tiny-chest}}{{rb:で中を見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_15.py:80
+msgid ""
+"You see a scroll of parchment inside, with a stamp on it saying {{bb:MV}}."
+msgstr ""
+"小さい宝箱の中に、羊皮紙があるぞ。{{bb:MV}}と言うスタンプが押してあります。"
+
+#: ../linux_story/story/challenges/challenge_15.py:81
+msgid "{{lb:Read}} what it says."
+msgstr "羊皮紙を{{lb:読んで}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_15.py:85
+msgid "{{rb:Use}} {{yb:cat .tiny-chest/MV}} {{rb:to read the MV parchment}}"
+msgstr "{{yb:cat .tiny-chest/MV}}{{rb:でMV羊皮紙を読んでみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_15.py:100
+msgid ""
+"{{wb:Edward:}} {{Bb:\"Hey, that's our .tiny-chest We use it to keep our "
+"possessions safe. "
+msgstr ""
+"{{wb:エドワード：}}{{Bb:\"この小さい宝箱(.tiny-chest)に僕らの持ち物を保存して"
+"るんだ。"
+
+#: ../linux_story/story/challenges/challenge_15.py:101
+msgid ""
+"I learnt about how to move objects from that}} {{Bb:MV}} {{Bb:parchment."
+msgstr "この}}{{Bb:MV}}{{Bb:羊皮紙で、物を動かす方法を学んだけど"
+
+#: ../linux_story/story/challenges/challenge_15.py:102
+msgid "It's probably of more use to you, please take it with my thanks.\"}}"
+msgstr "僕より君に役立つと思うから、どうぞ持ってって。\"}}"
+
+#: ../linux_story/story/challenges/challenge_15.py:103
+msgid ""
+"\n"
+"Maybe you should go back to {{bb:my-house}} to look for more hidden items."
+msgstr ""
+"\n"
+"他に隠れた物があるかもしれないから、家({{bb:my-house}})に戻ろうか？"
+
+#: ../linux_story/story/challenges/challenge_15.py:104
+msgid "To quickly go back home, use {{yb:cd ~/my-house}}\n"
+msgstr "速く家に戻るには、{{yb:cd ~/my-house}}を使おう。\n"
+
+#: ../linux_story/story/challenges/challenge_15.py:114
+msgid ""
+"{{rb:No shortcuts! Use}} {{yb:cd ~/my-house}} {{rb:to get back to your house "
+"in one step.}}"
+msgstr ""
+"{{rb:近道を使わないで！}}{{yb:cd ~/my-house}}{{rb:ですぐに家に戻ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_15.py:128
+msgid "Let's see if we can find anything hidden around here!"
+msgstr "ここに隠れた物がないか確認しよう！"
+
+#: ../linux_story/story/challenges/challenge_15.py:129
+msgid "Where do you think any hidden things could be?\n"
+msgstr "隠れた物は、どこにあると思う？\n"
+
+#: ../linux_story/story/challenges/challenge_15.py:130
+msgid "Try {{lb:looking closely}} in {{bb:my-room}} first."
+msgstr "まず、君の部屋({{bb:my-room}})で{{lb:詳しく見て}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_15.py:136
+msgid "{{rb:Stuck? Have a look in}} {{yb:my-room}}{{rb:.}}"
+msgstr "{{rb:迷ってる？}}{{yb:my-room}}{{rb:を見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_15.py:137
+msgid ""
+"{{rb:Use}} {{yb:ls -a my-room}} {{rb:to look for hidden files in}} {{lb:my-"
+"room}}{{rb:.}}"
+msgstr ""
+"{{yb:ls -a my-room}}{{rb:を使って、}}{{lb:my-room}}{{rb:で隠れたファイルを探"
+"してみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_16.py:31
+msgid ""
+"There is an old antique {{bb:.chest}} hidden under your bed, which you don't "
+"remember seeing before.\n"
+msgstr ""
+"ベッドの下に、今まで見てなかったアンティークな宝箱({{bb:.chest}})がある。\n"
+
+#: ../linux_story/story/challenges/challenge_16.py:32
+msgid "You walk into {{bb:my-room}} to have a closer look.\n"
+msgstr "部屋({{bb:my-room}})に入って、細かく見てみよう。\n"
+
+#: ../linux_story/story/challenges/challenge_16.py:33
+msgid "{{lb:Peer inside}} the {{bb:.chest}} and see what it contains."
+msgstr "宝箱({{bb:.chest}})の中を{{lb:のぞいて}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_16.py:49
+msgid "{{rb:Use}} {{yb:ls .chest}} {{rb:to look inside the .chest}}"
+msgstr "{{yb:ls .chest}}{{rb:で宝箱の中を見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_16.py:58
+msgid ""
+"There are some rolls of parchment, similar to what you found in the {{bb:."
+"hidden-shelter}}\n"
+msgstr ""
+"隠れシェルター({{bb:.hidden-shelter}})にあったような、羊皮紙がいくつかあ"
+"る。\n"
+
+#: ../linux_story/story/challenges/challenge_16.py:59
+msgid "Use {{yb:cat}} to {{lb:read}} one of the scrolls.\n"
+msgstr "{{yb:cat}}を使って、羊皮紙を{{lb:読んで}}みよう。\n"
+
+#: ../linux_story/story/challenges/challenge_16.py:72
+msgid "{{rb:Use}} {{yb:cat .chest/LS}} {{rb:to read the LS scroll.}}"
+msgstr "{{yb: cat .chest/LS}}{{rb:を使って、LSの羊皮紙を読もう。}}"
+
+#: ../linux_story/story/challenges/challenge_16.py:113
+msgid "I wonder if there's anything else hidden in this {{lb:.chest}}?"
+msgstr "この宝箱({{lb:.chest}})に他に何かあるかな。"
+
+#: ../linux_story/story/challenges/challenge_16.py:114
+msgid "Have a {{lb:closer look}} for some more items."
+msgstr "他の物がないか{{lb:細かく見て}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_16.py:121
+msgid ""
+"{{rb:Use}} {{yb:ls -a .chest}} {{rb:to see if there are any hidden items in "
+"the chest.}}"
+msgstr "{{yb:ls -a .chest}}{{rb:で宝箱に隠れた物があるか確認しよう。}}"
+
+#: ../linux_story/story/challenges/challenge_16.py:137
+msgid ""
+"You suddenly notice a tiny stained {{lb:.note}}, scrumpled in the corner of "
+"the {{lb:.chest}}."
+msgstr ""
+"突然、宝箱({{lb:.chest}})の隅に、小さくて汚れたメッセージ({{lb:.note}})が現れ"
+"る。"
+
+#: ../linux_story/story/challenges/challenge_16.py:138
+msgid "What does it say?\n"
+msgstr "何と書いてあるの？\n"
+
+#: ../linux_story/story/challenges/challenge_16.py:145
+msgid ""
+"{{rb:Use}} {{yb:cat .chest/.note}} {{rb:to read the}} {{lb:.note}}{{rb:.}}"
+msgstr ""
+"{{yb:cat .chest/.note}}{{rb:でメッセージ(}}{{lb:.note}}{{rb:)を読んでみて。}}"
+
+#: ../linux_story/story/challenges/challenge_17.py:33
+msgid ""
+"You are in your room, standing in front of the {{bb:.chest}} containing all "
+"the commands you've learned so far.\n"
+msgstr ""
+"君は部屋で、今まで学んだ全てのコマンドが入ってる宝箱({{bb:chest}})の前に立っ"
+"ている。\n"
+
+#: ../linux_story/story/challenges/challenge_17.py:34
+msgid "Maybe something else is hidden in the house?\n"
+msgstr "もしかして、他に何かが家に隠れているかもしれない。\n"
+
+#: ../linux_story/story/challenges/challenge_17.py:35
+msgid ""
+"{{lb:Look}} in the hallway {{lb:behind you}}. Remember, behind you is "
+"{{bb:..}}"
+msgstr ""
+"君の{{lb:後ろ}}にある通路を{{lb:見て}}みよう。後ろは{{bb:..}}だったね。"
+
+#: ../linux_story/story/challenges/challenge_17.py:40
+msgid "{{rb:Look behind you with}} {{yb:ls ../}}"
+msgstr "{{yb:ls ../}}{{rb:で後ろを見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_17.py:53
+msgid ""
+"You see doors to your {{bb:garden}}, {{bb:kitchen}}, {{bb:my-room}} and {{bb:"
+"parents-room}}."
+msgstr ""
+"お庭({{bb:garden}})、台所({{bb:kitchen}})、君の部屋({{bb:my-room}})と、親の部"
+"屋({{bb:parents-room}})が見えるね。"
+
+#: ../linux_story/story/challenges/challenge_17.py:54
+msgid "We haven't checked out your parents' room properly yet.\n"
+msgstr "親の部屋はまでちゃんと確認してないね。\n"
+
+#: ../linux_story/story/challenges/challenge_17.py:55
+msgid "{{lb:Go into your}} {{bb:parents-room}}."
+msgstr "親の部屋({{bb:parents-room}})に{{lb:入ろう}}。"
+
+#: ../linux_story/story/challenges/challenge_17.py:85
+#: ../linux_story/story/challenges/challenge_20.py:48
+#: ../linux_story/story/challenges/challenge_21.py:46
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}"
+msgstr ""
+"\n"
+"{{yb:cd ..}}{{rb:で戻ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_17.py:88
+msgid ""
+"\n"
+"{{gb:Now go into your}} {{lb:parents-room}}{{gb:.}}"
+msgstr ""
+"\n"
+"{{gb:では、親の部屋(}}{{lb:parents-room}}{{gb:)に入ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_17.py:89
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:cd parents-room}} {{rb:to go in.}}"
+msgstr ""
+"\n"
+"{{yb:cd parents-room}}{{rb:で中に入ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_17.py:112
+#: ../linux_story/story/challenges/challenge_28.py:82
+msgid "Look around {{lb:closely}}."
+msgstr "周りを{{lb:細かく}}見てみよう。"
+
+#: ../linux_story/story/challenges/challenge_17.py:118
+msgid "{{rb:Use the command}} {{yb:ls -a}} {{rb:to look around closely.}}"
+msgstr "{{yb:ls -a}}{{rb:コマンドを使って、周りを細かく見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_17.py:135
+msgid "There's a {{bb:.safe}}!\n"
+msgstr "金庫({{bb:.safe}})がある！\n"
+
+#: ../linux_story/story/challenges/challenge_17.py:136
+msgid ""
+"Maybe there's something useful in here. {{lb:Look inside}} the {{bb:.safe}}."
+msgstr ""
+"役立つ物があるかもしれない。金庫({{bb:.safe}})の{{lb:中を見て}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_17.py:148
+msgid "{{rb:Look in the}} {{bb:.safe}} {{rb:using}} {{lb:ls}}{{rb:.}}"
+msgstr "{{lb:ls}}{{rb:を使って、金庫(}}{{bb:.safe}}{{rb:)の中を見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_17.py:149
+msgid "{{rb:Use}} {{yb:ls .safe}} {{rb:to look into the .safe.}}"
+msgstr "{{yb:ls .safe}}{{rb:で金庫の中を見て。}}"
+
+#: ../linux_story/story/challenges/challenge_17.py:171
+msgid ""
+"\n"
+"{{rb:You read your Mum's diary!}} {{ob:Your nosiness has been recorded.}}"
+msgstr ""
+"\n"
+"{{rb:お母さんの日記を読んでしまった！}}{{ob:意地の悪いやつだな。}}"
+
+#: ../linux_story/story/challenges/challenge_17.py:181
+msgid "So you found your {{bb:Mum's diary}}?"
+msgstr "お母さんの日記({{bb:Mum's diary}})を見つけた？"
+
+#: ../linux_story/story/challenges/challenge_17.py:182
+msgid "You probably shouldn't read it...\n"
+msgstr "読まない方が良いかも‥\n"
+
+#: ../linux_story/story/challenges/challenge_17.py:183
+msgid "What else is here? Let's {{lb:examine}} that {{bb:map}}."
+msgstr "他に何があるかな？あっ、この地図({{bb:map}})を{{lb:見て}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_17.py:188
+msgid "{{rb:Use}} {{yb:cat}} {{rb:to read the}} {{bb:map}}{{rb:.}}"
+msgstr ""
+"{{rb:地図(}}{{bb:map}}{{rb:)を読むには、}}{{yb:cat}}{{rb:を使ってみて。}}"
+
+#: ../linux_story/story/challenges/challenge_17.py:189
+msgid "{{rb:Use}} {{yb:cat .safe/map}} {{rb:to read the map.}}"
+msgstr "{{yb:cat .safe/map}}{{rb:で地図を読んでみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_17.py:200
+msgid "So there's a farm around here?"
+msgstr "あれ、この辺に農場があるの？"
+
+#: ../linux_story/story/challenges/challenge_17.py:201
+msgid "Apparently it's not far from our house, just off the windy road...\n"
+msgstr "家からそんなに遠くないみたい。風の吹く道をでたところか‥\n"
+
+#: ../linux_story/story/challenges/challenge_17.py:202
+msgid "What is this {{bb:ECHO}} note? {{lb:Examine}} the {{bb:ECHO}} note."
+msgstr ""
+"何この{{bb:ECHO}}メッセージ？{{bb:ECHO}}メッセージを{{lb:読んで}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_17.py:209
+msgid ""
+"{{rb:Use the}} {{yb:cat}} {{rb:command to read the}} {{bb:ECHO}} {{rb:note.}}"
+msgstr ""
+"{{yb:cat}}{{rb:コマンドを使って、}}{{bb:ECHO}}{{rb:メッセージを読んでみよ"
+"う。}}"
+
+#: ../linux_story/story/challenges/challenge_17.py:210
+msgid "{{rb:Use}} {{yb:cat .safe/ECHO}} {{rb:to read the note.}}"
+msgstr "{{yb:cat .safe/ECHO}}{{rb:でメッセージを読んで。}}"
+
+#: ../linux_story/story/challenges/challenge_17.py:219
+msgid "So the note says {{Bb:\"echo hello - will make you say hello\"}}"
+msgstr ""
+"なるほど、このメッセージに{{Bb:\"echo hello - これでハローを言える\"}}と書い"
+"てあるね。"
+
+#: ../linux_story/story/challenges/challenge_17.py:220
+msgid "Let's test this out. \n"
+msgstr "試してみよう。\n"
+
+#: ../linux_story/story/challenges/challenge_17.py:222
+msgid "| {{gb:New Spell}}: {{yb:echo}} followed by words   |"
+msgstr "| {{gb:新しいおまじない}}: {{yb:echo}}の後に単語で      |"
+
+#: ../linux_story/story/challenges/challenge_17.py:223
+msgid "| lets you {{lb:speak}}                      | "
+msgstr "| {{lb:話す}}事が出来る。                       | "
+
+#: ../linux_story/story/challenges/challenge_17.py:224
+msgid " -------------------------------------  "
+msgstr " -------------------------------------  "
+
+#: ../linux_story/story/challenges/challenge_17.py:227
+msgid "{{rb:Use the command}} {{yb:echo hello}}"
+msgstr "{{yb:echo hello}}{{rb:を使ってみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_18.py:25
+msgid "Woah! You spoke aloud into the empty room!\n"
+msgstr "おおぉ！空室中に大声で話した！\n"
+
+#: ../linux_story/story/challenges/challenge_18.py:26
+msgid "{{gb:You learnt the new skill echo!}}\n"
+msgstr "{{gb:echo(エコ)と言う新しいスキルを学んだ！}}\n"
+
+#: ../linux_story/story/challenges/challenge_18.py:27
+msgid "This command can probably be used to talk to people."
+msgstr "このコマンドで、他の人に話す事ができるだろう。"
+
+#: ../linux_story/story/challenges/challenge_18.py:29
+msgid ""
+"\n"
+"Now let's head to {{bb:~}} to find that farm!"
+msgstr ""
+"\n"
+"さて、牧場を探すには、{{bb:~}}へ行こう！"
+
+#: ../linux_story/story/challenges/challenge_18.py:30
+msgid "Type {{yb:cd}} by itself to go to the Windy Road {{bb:~}}"
+msgstr "風の吹く道({{bb:~}})へ行くには{{yb:cd}}をそのまま使ってみよう。"
+
+#: ../linux_story/story/challenges/challenge_18.py:34
+msgid "{{rb:Use}} {{yb:cd}} {{rb:by itself to go to}} {{bb:~}}"
+msgstr "{{yb:cd}}{{rb:をそのままで使って、}}{{bb:~}}{{rb:に行こう。}}"
+
+#: ../linux_story/story/challenges/challenge_18.py:49
+msgid ""
+"You are back on the windy road, which stretches endlessly in both "
+"directions. \n"
+"{{lb:Look around.}}"
+msgstr ""
+"君は、両側で永遠に広がる、風の吹く道に戻った。\n"
+"{{lb:周りを見てみよう}}"
+
+#: ../linux_story/story/challenges/challenge_18.py:52
+#: ../linux_story/story/challenges/challenge_21.py:173
+#: ../linux_story/story/challenges/challenge_22.py:67
+#: ../linux_story/story/challenges/challenge_22.py:96
+#: ../linux_story/story/challenges/challenge_23.py:151
+#: ../linux_story/story/challenges/challenge_24.py:36
+#: ../linux_story/story/challenges/challenge_24.py:89
+#: ../linux_story/story/challenges/challenge_28.py:142
+#: ../linux_story/story/challenges/challenge_31.py:82
+msgid "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+msgstr "{{yb:ls}}{{rb:で周りを見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_18.py:68
+msgid "You notice a small remote farm in the distance.\n"
+msgstr "離れた小さい牧場が遠くから見えている。\n"
+
+#: ../linux_story/story/challenges/challenge_18.py:69
+msgid "{{lb:Let's go}} to the {{bb:farm}}."
+msgstr "牧場({{bb:farm}})へ{{lb:行こう}}。"
+
+#: ../linux_story/story/challenges/challenge_18.py:75
+msgid "{{rb:Use}} {{yb:cd farm}} {{rb:to head to the farm.}}"
+msgstr "{{yb:cd farm}}{{rb:を使って、牧場へ行こう。}}"
+
+#: ../linux_story/story/challenges/challenge_18.py:87
+msgid "You walk up the path to the farm, {{lb:Look around.}}"
+msgstr "牧場への道を歩いて、到着。{{lb:周りを見よう}}。"
+
+#: ../linux_story/story/challenges/challenge_18.py:101
+msgid ""
+"You are in a farm, with a {{bb:barn}}, a {{bb:farmhouse}} and a large {{bb:"
+"toolshed}} in sight."
+msgstr ""
+"牧場に入ったところ、なや({{bb:barn}})、農家の家({{bb:farmhouse}})と、大きな倉"
+"庫({{bb:toolshed}})が見える。"
+
+#: ../linux_story/story/challenges/challenge_18.py:102
+msgid ""
+"The land is well tended and weed free, so there must be people about here.\n"
+msgstr "周りの畑はキレイで雑草も無く、この辺に人がいるはずだ。\n"
+
+#: ../linux_story/story/challenges/challenge_18.py:103
+msgid "{{lb:Look around}} and see if you can find someone to talk to."
+msgstr "話す相手がいないか、{{lb:周りを見て}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_18.py:129
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:ls barn}} {{rb:to look in the barn.}}"
+msgstr ""
+"\n"
+"{{yb:ls barn}}{{rb:でなやの中を見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_18.py:133
+msgid ""
+"\n"
+"{{rb:Have you looked in the}} {{bb:barn}} {{rb:yet?}}"
+msgstr ""
+"\n"
+"{{rb:なや(}}{{bb:barn}}{{rb:)の中はもう見たか？}}"
+
+#: ../linux_story/story/challenges/challenge_18.py:137
+msgid ""
+"\n"
+"{{rb:There is no one here. You should look somewhere else.}}"
+msgstr ""
+"\n"
+"{{rb:ここに誰もいないね。他のところで探してみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_18.py:154
+msgid "In the {{bb:barn}}, you see a woman tending some animals."
+msgstr "なや({{bb:barn}})で動物のお世話をしているおばさんがいる。"
+
+#: ../linux_story/story/challenges/challenge_18.py:155
+msgid "{{lb:Walk}} into the {{bb:barn}} so you can have a closer look."
+msgstr "なや({{bb:barn}})の中に{{lb:入って}}、近くから見てみよう。"
+
+#: ../linux_story/story/challenges/challenge_18.py:161
+msgid "{{rb:Use}} {{yb:cd barn}} {{rb:to walk into the barn.}}"
+msgstr "{{yb:cd barn}}{{rb:でなやの中に入ってみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_18.py:176
+msgid ""
+"{{lb:Examine}} everyone in the {{bb:barn}} using the {{yb:cat}} command."
+msgstr ""
+"{{yb:cat}}コマンドを使って、なや({{bb:barn}})にいる全員を{{lb:観察}}しよう。"
+
+#: ../linux_story/story/challenges/challenge_18.py:184
+msgid "Ruth: {{Bb:\"Ah! Who are you?!\"}}"
+msgstr "ルス：{{Bb:\"あっ！お前、誰？！\"}}"
+
+#: ../linux_story/story/challenges/challenge_18.py:185
+msgid "Cobweb: {{Bb:\"Neiiigh.\"}}"
+msgstr "コブウェブ：{{Bb:\"ヒー、ヒヒヒヒー\"}}"
+
+#: ../linux_story/story/challenges/challenge_18.py:186
+msgid "Trotter: {{Bb:\"Oink Oink.\"}}"
+msgstr "トロッター：{{Bb:\"ブーブー\"}}"
+
+#: ../linux_story/story/challenges/challenge_18.py:187
+msgid "Daisy: {{Bb:\"Mooooooooo.\"}}"
+msgstr "デイジー：{{Bb:\"モオオオー\"}}"
+
+#: ../linux_story/story/challenges/challenge_18.py:195
+msgid ""
+"{{rb:If you've forgotten who's in the barn, use}} {{yb:ls}} {{rb:to remind "
+"yourself.}}"
+msgstr ""
+"{{rb:なやにいるものを忘れたら、}}{{yb:ls}}{{rb:を使って思い出してみて。}}"
+
+#: ../linux_story/story/challenges/challenge_18.py:226
+msgid ""
+"\n"
+"{{gb:Well done! Have a look at one more.}}"
+msgstr ""
+"\n"
+"{{gb:いいね。後一人。}}"
+
+#: ../linux_story/story/challenges/challenge_18.py:228
+#, python-format
+msgid ""
+"\n"
+"{{gb:Well done! Look at %d more.}}"
+msgstr ""
+"\n"
+"{{gb:いいね。後%d人。}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:31
+msgid "Ruth: {{Bb:\"You startled me!\""
+msgstr "ルス：{{Bb:\"びっくりしたよ！\""
+
+#: ../linux_story/story/challenges/challenge_19.py:32
+msgid "\"Do I know you? You look familiar...\""
+msgstr "\"以前、会った事あるか？見覚えある気が‥\""
+
+#: ../linux_story/story/challenges/challenge_19.py:33
+msgid "\"Wait, you're}} {{bb:Mum}}{{Bb:'s kid, aren't you!\""
+msgstr "\"そうだ！君はお母さん(}}{{bb:Mum}}{{Bb:)の子だよね！\""
+
+#: ../linux_story/story/challenges/challenge_19.py:34
+msgid "\"...Yes? Do you have a tongue?\""
+msgstr "\"...ねね？話せないか？\""
+
+#: ../linux_story/story/challenges/challenge_19.py:35
+#, python-format
+msgid "\"Is your name not}} {{yb:%s}}{{Bb:?\"}}"
+msgstr "\"君の名前は}}{{yb:%s}}{{Bb:じゃないの？}}\""
+
+#: ../linux_story/story/challenges/challenge_19.py:36
+msgid ""
+"\n"
+"{{gb:Reply with}} {{yb:echo yes}} {{gb:or}} {{yb:echo no}}."
+msgstr ""
+"\n"
+"{{yb:echo yes}}{{gb:又は}}{{yb:echo no}}{{gb:で答えよう。}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:41
+msgid "{{rb:Use}} {{yb:echo}} {{rb:to reply to her question.}}"
+msgstr "{{yb:echo}}{{rb:で質問に答えてみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:42
+msgid "{{rb:Reply with yes by using}} {{yb:echo yes}}{{rb:.}}"
+msgstr "{{rb:「はい」と答えるには}}{{yb:echo yes}}{{rb:を使おう。}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:60
+msgid "Ruth: {{Bb:\"Oh don't be ridiculous, you look just like her.\"}}"
+msgstr "ルス：{{Bb:\"うそでしょう。お母さんにそっくりだよ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:71
+#: ../linux_story/story/challenges/challenge_19.py:131
+msgid "{{yb:\"Yes\"}}"
+msgstr "{{yb:\"はい\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:74
+msgid "Ruth: {{Bb:\"Ah, I knew it!\"}}"
+msgstr "ルス：{{Bb:\"やっぱり、そう思ってた！\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:75
+msgid "{{Bb:\"So you live in that little house outside town?\"}}"
+msgstr "{{Bb:\"じゃ、町を出たところのあの小さい家に住んでるってこと？\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:78
+msgid "{{yb:1: \"Yes\"}}"
+msgstr "{{yb:1: \"はい\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:79
+msgid "{{yb:2: \"No\"}}"
+msgstr "{{yb:2: \"いいえ\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:80
+msgid "{{yb:3: \"I don't know\"}}"
+msgstr "{{yb:3: \"分からない\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:81
+msgid ""
+"\n"
+"{{gb:Use}} {{yb:echo 1}}{{gb:,}} {{yb:echo 2}} {{gb:or}} {{yb:echo 3}} {{gb:"
+"to reply with either option 1, 2 or 3.}}\n"
+msgstr ""
+"\n"
+"{{yb:１、２、３の選択肢で回答するには、}}{{yb:echo 1}}{{gb:、}}{{yb:echo 2}}"
+"{{gb:又は}}{{yb:echo 3}}{{gb:を使おう。}}\n"
+
+#: ../linux_story/story/challenges/challenge_19.py:88
+#: ../linux_story/story/challenges/challenge_21.py:92
+msgid ""
+"{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} {{yb:echo 3}} {{rb:"
+"to reply to Ruth.}}"
+msgstr ""
+"{{yb:echo 1}}{{rb:、}}{{yb:echo 2}}{{rb:又は}}{{yb:echo 3}}{{rb:でルスさんに"
+"答えよう。}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:101
+msgid ""
+"\n"
+"{{rb:If you want to reply with \"{}\", use}} {{yb:echo {}}}"
+msgstr ""
+"\n"
+"{{rb:\"{}\"を答えるには、}}{{yb:echo {}}}{{rb:を使ってみて。}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:125
+msgid ""
+"Ruth: {{Bb:\"Excuse me? What did you say? You know to use the}} {{lb:echo}} "
+"{{Bb:command, yes?\"}}"
+msgstr ""
+"ルス：{{Bb:\"えっ、何と言ったの？}}{{lb:echo}}{{Bb:コマンドは知ってるでしょ"
+"う？\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:126
+msgid ""
+"{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} {{yb:echo 3}} {{rb:"
+"to reply.}}"
+msgstr ""
+"{{yb:echo 1}}{{rb:、}}{{yb:echo 2}}{{rb:又は}}{{yb:echo 3}}{{rb:で答えて。}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:132
+msgid "Ruth: {{Bb:\"I thought so!\"}}"
+msgstr "ルス：{{Bb:\"そう思ったよ！\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:134
+msgid "{{yb:\"No\"}}"
+msgstr "{{yb:\"いいえ\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:135
+msgid "Ruth: {{Bb:\"Stop lying, I know you do.\"}}"
+msgstr "ルス：{{Bb:\"うそを言わないで。君のことを知ってるよ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:137
+msgid "{{yb:\"I don't know\"}}"
+msgstr "{{yb:\"分からない\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:138
+msgid "Ruth: {{Bb:\"You don't know? That's worrying...\"}}"
+msgstr "ルス：{{Bb:\"分からないの？心配だな‥\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:141
+msgid ""
+"\n"
+"{{Bb:\"Did you walk all the way from town? Did you see my husband there?"
+msgstr ""
+"\n"
+"{{Bb:\"町からここまでずっと歩いてきたの？私の夫を見かけてないかしら？"
+
+#: ../linux_story/story/challenges/challenge_19.py:142
+msgid ""
+"He's a pretty}} {{bb:grumpy-man}}{{Bb:, he was travelling to town because of "
+"that big meeting with the Mayor.\"}}"
+msgstr ""
+"彼はおしゃれな気難しいおじさん(}}{{bb:grumpy-man}}{{Bb:)で、町長の町内会議に"
+"参加するために町へ行ってた。\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:143
+msgid ""
+"\n"
+"{{yb:1: \"I'm sorry, he disappeared in front of me.\"}}"
+msgstr ""
+"\n"
+"{{yb:1: \"残念ですが、私の目の前にいなくなったんです。\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:144
+msgid ""
+"{{yb:2: \"I didn't see your husband, but people have been disappearing in "
+"town.\"}}"
+msgstr ""
+"{{yb:2: \"旦那さんは見てませんが、町で人々がいなくなってしまったんです。\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:145
+msgid "{{yb:3: \"I don't know anything.\"}}"
+msgstr "{{yb:3: \"私は何も知りません。\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:146
+msgid ""
+"\n"
+"Respond with one of the following options using the {{yb:echo}} command and "
+"option number.\n"
+msgstr ""
+"\n"
+"{{yb:echo}}コマンドの後に番号で、次の選択肢から答えてみよう。\n"
+
+#: ../linux_story/story/challenges/challenge_19.py:157
+msgid "Ruth: {{Bb:\"I feel like you're hiding something from me...\"}}"
+msgstr "ルス：{{Bb:\"私に本当のことを言ってない気がする‥\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:164
+msgid ""
+"Ruth: {{Bb:\"Really? Are you sure you didn't see a}} {{lb:grumpy-man}}{{Bb: "
+"in town?\"}}"
+msgstr ""
+"ルス：{{Bb:\"本当？気難しいおじさん(}}{{bb:grumpy-man}}{{Bb:)は町に本当に見え"
+"なかったの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:180
+msgid "{{yb:\"I'm sorry, he disappeared in front of me.\"}}"
+msgstr "{{yb:\"気の毒です。自分の前にいなくなったんです。\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:183
+msgid ""
+"Ruth: {{Bb:\"He disappeared in front of you?? Oh no! They've been saying on "
+"the radio that people have been going missing...what should I do?\"}}"
+msgstr ""
+"ルス：{{Bb:\"君の前にいなくなったの？いゃ〜、ラジオで人々がいなくなってると"
+"言ってたな。どうしよう、私？\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:184
+msgid ""
+"\n"
+"{{yb:1: \"Some people survived by going into hiding.\"}}"
+msgstr ""
+"\n"
+"{{yb:1: \"ある人は、隠れて生き残っています。\"}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:185
+msgid "{{yb:2: \"I think you should go and look for your husband\"}}\n"
+msgstr "{{yb:2: \"旦那さんを探しに行った方が良いと思います。\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_19.py:198
+msgid "Ruth: {{Bb:What did you say? I didn't catch that.}}"
+msgstr "ルス：{{Bb:何と言ったの？良く聞こえなかったの。}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:199
+#: ../linux_story/story/challenges/challenge_21.py:210
+msgid "{{rb:Use}} {{yb:echo 1}} {{rb:or}} {{yb:echo 2}} {{rb:to reply.}}"
+msgstr "{{yb:echo 1}}{{rb:又は}}{{yb:echo 2}}{{rb:で答えて。}}"
+
+#: ../linux_story/story/challenges/challenge_19.py:208
+msgid ""
+"Ruth: {{Bb:\"I would, but I'm scared of going missing myself.\"\n"
+"\"He might come back, so I should stay here in case he does. Can you think "
+"of anything else?\"}}"
+msgstr ""
+"ルス：{{Bb:\"行きたいけど、自分で行くのは怖い。\"\n"
+"\"戻ってくるかもしれないから、私はここで待った方が良い。他にアイディアは無い"
+"の？\"}}"
+
+#: ../linux_story/story/challenges/challenge_20.py:29
+msgid "{{yb:\"Some people survived by going into hiding.\"}}"
+msgstr "{{yb:\"ある人は、隠れて生き残っています。\"}}"
+
+#: ../linux_story/story/challenges/challenge_20.py:32
+msgid ""
+"Ruth: {{Bb:\"Oh! That reminds me, my husband used to build special shelters "
+"to store crops in over winter. I think he used a specific tool. We should "
+"take a look in his toolshed to see if we can find it.\"}}"
+msgstr ""
+"ルス：{{Bb:\"そう言えば、夫は収穫物を冬の間に保存するために、特別な小屋を作っ"
+"てたわ。そのために特殊な道具を使ってたと思う。この道具を見つけるには、倉庫"
+"(toolshed)の中を見てみようか？\"}}"
+
+#: ../linux_story/story/challenges/challenge_20.py:36
+msgid ""
+"\n"
+"Use the {{lb:cd}} command to go into the {{bb:toolshed}}.\n"
+msgstr ""
+"\n"
+"{{lb:cd}}コマンドを使って、倉庫({{bb:toolshed}})の中に入ろう。\n"
+
+#: ../linux_story/story/challenges/challenge_20.py:42
+msgid "{{rb:Go to the toolshed in one step using}} {{yb:cd ../toolshed}}"
+msgstr "{{yb:cd ../toolshed}}{{rb:で一気に倉庫に行ってみて。}}"
+
+#: ../linux_story/story/challenges/challenge_20.py:51
+msgid ""
+"\n"
+"{{gb:You walk outside. Now go into the}} {{bb:toolshed}}{{gb:.}}"
+msgstr ""
+"\n"
+"{{gb:外に出た。次は倉庫(}}{{bb:toolshed}}{{gb:)の中に入ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_20.py:52
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:cd toolshed}} {{rb:to go in the toolshed.}}"
+msgstr ""
+"\n"
+"{{yb:cd toolshed}}{{rb:で倉庫の中に入ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_20.py:75
+msgid ""
+"{{bb:Ruth}} follows you into the {{bb:toolshed}}. It's a very large space "
+"with tools lining the walls.\n"
+msgstr ""
+"ルス({{bb:Ruth}})さんは君の後に倉庫({{bb:toolshed}})の中に入った。とても広い"
+"場所で、壁に色々な道具が並んでる。\n"
+
+#: ../linux_story/story/challenges/challenge_20.py:77
+msgid ""
+"Ruth: {{Bb:\"Let's}} {{lb:look around}} {{Bb:for anything that could be "
+"useful.\"}}\n"
+msgstr ""
+"ルス：{{Bb:\"使えるものが無いか、}}{{lb:周りを見て}}{{Bb:みよう。\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_20.py:107
+msgid ""
+"Ruth: {{Bb:\"Ah, look! There are some instructions under}} {{bb:MKDIR}}{{Bb:."
+"\"}}"
+msgstr "ルス：{{Bb:\"あっ、見て！}}{{bb:MKDIR}}{{Bb:と言う説明書があるわ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_20.py:109
+msgid "{{Bb:\"What does it say?\"}}"
+msgstr "{{Bb:\"何と書いてあるの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_20.py:110
+msgid ""
+"\n"
+"{{lb:Examine}} the {{bb:MKDIR}} instructions."
+msgstr ""
+"\n"
+"{{bb:MKDIR}}説明書を{{lb:確認しよう}}。"
+
+#: ../linux_story/story/challenges/challenge_20.py:113
+msgid ""
+"Ruth: {{Bb:\"...you are able to read, yes? You use}} {{yb:cat}} {{Bb:to read "
+"things.\"}}"
+msgstr ""
+"ルス：{{Bb:\"...君、字は読めるよね？}}{{yb:cat}}{{Bb:を使って書類を読める"
+"ね。\"}}"
+
+#: ../linux_story/story/challenges/challenge_20.py:115
+msgid ""
+"Ruth: {{Bb:\"What do you kids learn in schools nowadays...\"\n"
+"\"Just use}} {{yb:cat MKDIR}} {{Bb:to read the paper.\"}}"
+msgstr ""
+"ルス：{{Bb:\"最近の子供は学校で何を勉強してるのよ！\"\n"
+"\"説明を読むには、}}{{yb:cat MKDIR}}{{Bb:を使えばいいだけなのよ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_20.py:117
+msgid "{{rb:Use}} {{yb:cat MKDIR}} {{rb:to read it.}}"
+msgstr "{{yb:cat MKDIR}}{{rb:で説明書を読んで。}}"
+
+#: ../linux_story/story/challenges/challenge_20.py:129
+msgid ""
+"Ruth: {{Bb:\"This says you can make something using something called}} {{yb:"
+"mkdir}}{{Bb:?\"}}"
+msgstr ""
+"ルス：{{Bb:\"}}{{yb:mkdir}}{{Bb:と言うもので、物が作れると書いてあるの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_20.py:131
+msgid ""
+"\n"
+"Try making an igloo using {{yb:mkdir igloo}}\n"
+" "
+msgstr ""
+"\n"
+"{{yb:mkdir igloo}}でかまくら({{bb:igloo}})を作ってみよう。\n"
+" "
+
+#: ../linux_story/story/challenges/challenge_20.py:133
+msgid "| {{gb:New Spell}}: {{yb:mkdir}} followed by a word |"
+msgstr "| {{gb:新しいおまじない}}: {{yb:mkdir}}の後に単語で     |"
+
+#: ../linux_story/story/challenges/challenge_20.py:134
+msgid "| lets you {{lb:create}} a shelter           | "
+msgstr "| 場所を{{lb:作る}}事が出来る。                   | "
+
+#: ../linux_story/story/challenges/challenge_20.py:138
+msgid "{{rb:Create an igloo structure by using}} {{yb:mkdir igloo}}\n"
+msgstr "{{yb:mkdir igloo}}{{rb:でかまくらを作ってみよう。}}\n"
+
+#: ../linux_story/story/challenges/challenge_20.py:154
+msgid ""
+"\n"
+"{{gb:Well done for checking the page again!}}"
+msgstr ""
+"\n"
+"{{gb:いいね。これもできました！}}"
+
+#: ../linux_story/story/challenges/challenge_20.py:165
+msgid "Now have a {{lb:look around}} and see what's changed."
+msgstr "{{lb:周りを見て}}、何が変わったか確認しよう。"
+
+#: ../linux_story/story/challenges/challenge_20.py:176
+#: ../linux_story/story/challenges/challenge_21.py:416
+msgid "{{rb:Look around using}} {{yb:ls}}{{rb:.}}"
+msgstr "{{yb:ls}}{{rb:で周りを見よう。}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:26
+msgid "{{gb:Nice! You've built an igloo! You learned the new skill, mkdir!}}"
+msgstr "{{gb:良く出来た！かまくらを作ったね！mkdirと言う新しい技能を学んだ！}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:28
+msgid ""
+"\n"
+"Ruth: {{Bb:\"That's amazing! Please help me build a shelter!"
+msgstr ""
+"\n"
+"ルス：{{Bb:\"素晴らしい！シェルターを造るのを手伝ってくれない？"
+
+#: ../linux_story/story/challenges/challenge_21.py:29
+msgid ""
+"Can we build it in the}} {{bb:barn}}{{Bb:, as then it'll be easier to move "
+"the animals inside.\"}}"
+msgstr ""
+"なや(}}{{bb:barn}}{{Bb:)で造っておけば、動物を中に移動させるのはより簡単にで"
+"きる。\"}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:31
+msgid ""
+"\n"
+"{{lb:Go}} back into the {{bb:barn}}."
+msgstr ""
+"\n"
+"なや({{bb:barn}})の中へ{{lb:行こう}}。"
+
+#: ../linux_story/story/challenges/challenge_21.py:49
+msgid ""
+"\n"
+"{{gb:You walk outside. Now go into the}} {{bb:barn}}{{gb:.}}"
+msgstr ""
+"\n"
+"{{gb:外に出ました。では、なや(}}{{bb:barn}}{{gb:)の中に入ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:50
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:cd barn}} {{rb:to go in the barn.}}"
+msgstr ""
+"\n"
+"{{yb:cd barn}}{{rb:でなやの中に入ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:73
+msgid "Ruth: {{Bb:\"Anyone would be able to find the igloo you just made."
+msgstr "ルス：{{Bb:\"これじゃ、かまくらは誰にでも見えちゃうよ。"
+
+#: ../linux_story/story/challenges/challenge_21.py:75
+msgid "Is it possible to make something hidden?\"}}\n"
+msgstr "見えない物を作ることはできないの？\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_21.py:76
+msgid ""
+"{{yb:1: \"If we call it}} {{bb:hidden-shelter}}{{yb:, that will make it "
+"hidden.\"}}"
+msgstr ""
+"{{yb:1: \"}}{{bb:hidden-shelter}}{{yb:（隠れシェルター）と名付ければ、見えな"
+"いのです。\"}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:78
+msgid "{{yb:2: \"Putting a . at the front makes things hidden.\"}}"
+msgstr ""
+"{{yb:2: \"名前の前に「.」（ドット）と書いておけば、見えないのです。\"}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:79
+msgid "{{yb:3: \"It's impossible to make a hidden shelter.\"}}\n"
+msgstr "{{yb:3: \"隠れシェルターを造ることはできないのです。\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_21.py:80
+msgid "Use {{yb:echo}} to tell {{bb:Ruth}} how to make things hidden."
+msgstr "{{yb:echo}}でルス({{bb:Ruth}})さんに見えない物の作り方を教えよう。"
+
+#: ../linux_story/story/challenges/challenge_21.py:90
+msgid ""
+"Ruth: {{Bb:\"You're really going to have to speak up, I can't understand "
+"anything you're saying.\"}}"
+msgstr ""
+"ルス：{{Bb:\"もう少し大きい声で話さないと、あなたが言ってることは全く分からな"
+"いのよ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:109
+msgid ""
+"\n"
+"Ruth: {{Bb:\"...Really? Are you sure about that?\"}}"
+msgstr ""
+"\n"
+"ルス：{{Bb:\"...本当？本当にそう思ってるの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:122
+msgid ""
+"{{yb:\"If we call it}} {{bb:hidden-shelter}}{{yb:, that will make it hidden."
+"\"}}"
+msgstr ""
+"{{yb:\"}}{{bb:hidden-shelter}}{{yb:（隠れシェルター）と名付ければ、見えないの"
+"です。\"}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:126
+msgid ""
+"Ruth: {{Bb:\"So creating one called}} {{bb:hidden-shelter}} {{Bb:should make "
+"it hidden? Ok, let's try that.\"}}\n"
+msgstr ""
+"ルス：{{Bb:\"そうなんだ。}}{{bb:hidden-shelter}}{{Bb:と名付けば見えないのか？"
+"それじゃ、試してみよう。\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_21.py:128
+msgid "Try {{lb:building}} a shelter called {{bb:hidden-shelter}}."
+msgstr "{{bb:hidden-shelter}}（隠れシェルター）と言う物を{{lb:造って}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_21.py:136
+msgid "{{rb:You need to make a shelter called}} {{yb:hidden-shelter}}{{rb:.}}"
+msgstr "{{yb:hidden-shelter}}{{rb:と言う物を造ってみて。}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:138
+msgid ""
+"{{rb:Use the command}} {{yb:mkdir hidden-shelter}} {{rb:to make the "
+"shelter.}}"
+msgstr "{{yb:make hidden-shelter}}{{rb:を使って、シェルターを造ってみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:145
+msgid ""
+"\n"
+"Ruth: {{Bb:\"You said the shelter should be called}} {{bb:hidden-shelter}}"
+"{{Bb:, not}} {{lb:.hidden-shelter}}{{Bb:.\"}}\n"
+"{{yb:Press UP to replay the old command, and edit it.}}"
+msgstr ""
+"\n"
+"ルス：{{Bb:\"}}{{lb:.hidden-shelter}}{{Bb:ではなく}}{{bb:hidden-shelter}}"
+"{{Bb:と名付ければ良いと言ったよね。\"}}\n"
+"{{yb:UPキーで前のコマンドを取り戻して、編集してみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:165
+msgid "{{lb:Look around}} to see if it is hidden correctly."
+msgstr "シェルターがちゃんと隠れているか{{lb:周りを見て}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_21.py:180
+msgid ""
+"\n"
+"{{gb:Close!}} {{ob:But you need to check if the shelter is hidden, so don't "
+"look around you}} {{yb:too closely}}{{rb:.}}"
+msgstr ""
+"\n"
+"{{gb:おしい！}}{{ob:でもシェルターがちゃんと隠れているかどうかを見なきゃいけ"
+"ないから、そんなに}}{{yb:細かく見すぎない}}{{ob:方がいい。}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:195
+msgid "Ruth: {{Bb:\"You made}} {{bb:hidden-shelter}}{{Bb:!\"}}"
+msgstr "ルス：{{Bb:\"}}{{bb:hidden-shelter}}{{Bb:と言う物を造ったね！\"}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:196
+msgid "{{Bb:\"...The problem is, I can see it too. I don't think it worked."
+msgstr "{{Bb:\"...ただ、問題は私も見えていますよ。うまくいかなかったようだ。"
+
+#: ../linux_story/story/challenges/challenge_21.py:197
+msgid "How else could you make something hidden?\"}}"
+msgstr "他に隠れたものをつ来る方法はないかな？\"}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:198
+msgid ""
+"\n"
+"{{yb:1: \"If you put a . in front of the name, it makes it hidden.\"}}"
+msgstr ""
+"\n"
+"{{yb:1: \"名前の前に「.」（ドット）と書いておけば、見えないのです。\"}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:199
+msgid ""
+"{{yb:2: \"You're mistaken. You can't see the hidden-shelter, it's hidden."
+"\"}}\n"
+msgstr ""
+"{{yb:2: \"違いますよ。hidden-shelterは隠れていますよ。見えないはずで"
+"す。\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_21.py:201
+msgid "Use {{yb:echo}} to talk to {{bb:Ruth}}."
+msgstr "{{yb:echo}}でルス({{bb:Ruth}})さんに話してみよう。"
+
+#: ../linux_story/story/challenges/challenge_21.py:209
+msgid "Ruth: {{Bb:You NEED to speak more clearly. I can't understand you.}}"
+msgstr "ルス：{{Bb:ホントに分からないよ。もっとはっきり話しなさい。}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:219
+msgid ""
+"\n"
+"Ruth: {{Bb:...."
+msgstr ""
+"\n"
+"ルス：{{Bb:...."
+
+#: ../linux_story/story/challenges/challenge_21.py:220
+msgid ""
+"Be careful kid, I'm not stupid. That shelter is not hidden.\n"
+"How do I make one that is?}}"
+msgstr ""
+"私をバカにしないで、小僧。このシェルター隠れていないよ。\n"
+"見えないシェルターはどういう風に作ればいいの？}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:237
+msgid "{{yb:\"If you put a . in front of the name, it makes it hidden.\"}}"
+msgstr "{{yb:\"名前の前に「.」を入れておけば、見えないようになる。\"}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:240
+msgid ""
+"Ruth: {{Bb:\"So if we called the shelter}} {{bb:.shelter}}{{Bb:, it would be "
+"hidden? Let's try it!\"}}\n"
+msgstr ""
+"ルス：{{Bb:\"なるほど、そうするとシェルターを}}{{bb:.shelter}}{{Bb:と名付けて"
+"おけば見えないはずだね？試してみよう！\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_21.py:242
+msgid "{{lb:Build}} a shelter called {{bb:.shelter}}"
+msgstr "{{bb:.shelter}}と言うシェルターを{{lb:造って}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_21.py:248
+msgid ""
+"{{rb:Make}} {{bb:.shelter}} {{rb:using}} {{yb:mkdir .shelter}}{{rb: - "
+"remember the dot!}}"
+msgstr ""
+"{{yb:mkdir .shelter}}{{rb:を使って、シェルターを造ってみて（ドットを忘れない"
+"でね！）}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:266
+msgid "Check it is properly hidden. Use {{yb:ls}} to see if it is visible."
+msgstr ""
+"ちゃんと隠れていることをチェックしてみよう。{{yb:ls}}で見えるかどうか確認しよ"
+"う。"
+
+#: ../linux_story/story/challenges/challenge_21.py:278
+msgid ""
+"{{rb:Use}} {{yb:ls}}{{rb:, not ls -a, to check your shelter is hidden.}}"
+msgstr "{{rb:ls -aではなく、}}{{yb:ls}}{{rb:を使ってみて。}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:288
+msgid "{{gb:Good, we can't see it in the barn.}}\n"
+msgstr "{{gb:よっし、なやでシェルターは見えていないね。}}\n"
+
+#: ../linux_story/story/challenges/challenge_21.py:289
+msgid "Now look around with {{yb:ls -a}} to check it actually exists!"
+msgstr "実際に存在することを{{yb:ls -a}}で確認しよう！"
+
+#: ../linux_story/story/challenges/challenge_21.py:297
+msgid "{{rb:Use}} {{yb:ls -a}} {{rb:to look around.}}"
+msgstr "{{yb:ls -a}}{{rb:で周りを見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:306
+msgid "{{gb:It worked! You've succesfully created something hidden.}}"
+msgstr "{{gb:できたー！隠れたものを造ることができたー！}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:307
+msgid ""
+"\n"
+"Ruth: {{Bb:\"Did you make something? That's amazing!\""
+msgstr ""
+"\n"
+"ルス：{{Bb:\"何か造ったの？素晴らしい！\""
+
+#: ../linux_story/story/challenges/challenge_21.py:308
+msgid ""
+"\"...unfortunately I can't see it...please can you put me and the animals "
+"inside?\"}}\n"
+msgstr ""
+"\"...しかし私には見えないな...私を動物と一緒に中に入れていただけるかしら？"
+"\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_21.py:310
+msgid "{{lb:Move}} everyone into the {{bb:.shelter}} one by one.\n"
+msgstr "一人ずつをシェルター({{bb:.shelter}})の中に{{lb:動かして}}みよう。\n"
+
+#: ../linux_story/story/challenges/challenge_21.py:344
+#, python-format
+msgid "{{rb:Use}} {{yb:%s}} {{rb:to progress}}"
+msgstr "{{rb:次に進むには、}}{{yb:%s}}{{rb:を使ってみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:364
+msgid ""
+"\n"
+"{{gb:Well done! Move one more in the}} {{yb:.shelter}}"
+msgstr ""
+"\n"
+"{{gb:いいね！もう一人をシェルター(}}{{yb:.shelter}}{{gb:)の中に動かそう}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:368
+#, python-format
+msgid ""
+"\n"
+"{{gb:Well done! Move %d more.}}"
+msgstr ""
+"\n"
+"{{gb:いいね！後%d人。}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:371
+msgid ""
+"\n"
+"{{gb:Press}} {{ob:Enter}} {{gb:to continue}}"
+msgstr ""
+"\n"
+"{{gb:次へ進むには}}{{ob:Enter}}{{gb:を押してみて}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:388
+msgid ""
+"{{lb:Go}} into the {{bb:.shelter}} along with {{bb:Ruth}} and the animals."
+msgstr ""
+"ルス({{bb:Ruth}})さんと動物たちと一緒に、シェルター({{bb:.shelter}})の中へ"
+"{{lb:行こう}}。"
+
+#: ../linux_story/story/challenges/challenge_21.py:394
+msgid ""
+"{{rb:Type}} {{yb:cd .shelter}} {{rb:to go into the}} {{bb:.shelter}}{{rb:.}}"
+msgstr ""
+"{{yb:cd .shelter}}{{rb:をタイプし、シェルター(}}{{bb:.shelter}}{{rb:)の中へ入"
+"ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_21.py:407
+msgid "Have a {{lb:look around}} to check you moved everyone."
+msgstr "全員をちゃんと動かしたかどうか{{lb:周りを見て}}確認しよう。"
+
+#: ../linux_story/story/challenges/challenge_22.py:23
+msgid "{{gb:Well done, it looks like everyone is here!}}"
+msgstr "{{gb:よくやった！全員がここにいるみたいね！}}"
+
+#: ../linux_story/story/challenges/challenge_22.py:24
+msgid ""
+"\n"
+"Ruth: {{Bb:\"Thank you so much!\"}}"
+msgstr ""
+"\n"
+"ルス：{{Bb:\"本当にありがとう！\"}}"
+
+#: ../linux_story/story/challenges/challenge_22.py:25
+msgid ""
+"{{Bb:\"We'll stay in here to keep safe. I'm so grateful for everything "
+"you've done.\"}}"
+msgstr ""
+"{{Bb:\"私たちはここに安全にいます。助けてくれて、本当に感謝します。\"}}"
+
+#: ../linux_story/story/challenges/challenge_22.py:27
+msgid ""
+"\n"
+"Use {{yb:cat}} to check that the animals are happy in here."
+msgstr ""
+"\n"
+"{{yb:cat}}を使って、動物がここで幸せかどうか見てみよう。"
+
+#: ../linux_story/story/challenges/challenge_22.py:39
+msgid ""
+"{{rb:Use}} {{yb:cat}} {{rb:to examine an animal, e.g.}} {{yb:cat Daisy}}"
+"{{rb:.}}"
+msgstr ""
+"{{rb:動物を観察するには、}}{{yb:cat}}{{rb:を使ってみよう。例えば、}}{{yb:cat "
+"Daisy}}{{rb:。}}"
+
+#: ../linux_story/story/challenges/challenge_22.py:56
+msgid "Ruth: {{Bb:\"What?? I heard a bell! What does that mean?\"}}"
+msgstr "ルス：{{Bb:\"あれ？？鐘の音が聞こえたよ！どういう意味？\"}}"
+
+#: ../linux_story/story/challenges/challenge_22.py:57
+msgid ""
+"\n"
+"Quick! {{lb:Look around}} and see if anyone is missing."
+msgstr ""
+"\n"
+"早く！誰かがいなくなっていないか、{{lb:周りを見て}}確認しよう。"
+
+#: ../linux_story/story/challenges/challenge_22.py:82
+msgid "It appears that everyone is still here..."
+msgstr "全員まだいるみたいね…"
+
+#: ../linux_story/story/challenges/challenge_22.py:84
+msgid ""
+"\n"
+"Ruth: {{Bb:\"I heard it again! Is that the sound you heard when my husband "
+"went missing?\"\n"
+"}}"
+msgstr ""
+"\n"
+"ルス：{{Bb:\"また聞こえたよ！夫がいなくなった時に聞こえた音じゃないの？\"\n"
+"}}"
+
+#: ../linux_story/story/challenges/challenge_22.py:86
+msgid "Have another quick {{lb:look around}}."
+msgstr "急いで、もう一回{{lb:周りを見て}}みて。"
+
+#: ../linux_story/story/challenges/challenge_22.py:110
+msgid ""
+"Ruth: {{Bb:\"It's alright. We're all safe, everyone's still here. I wonder "
+"why it's ringing?\"}}"
+msgstr ""
+"ルス：{{Bb:\"大丈夫。全員はまだここにいるね。なぜ鳴っているか、気になる"
+"な。\"}}"
+
+#: ../linux_story/story/challenges/challenge_22.py:112
+msgid ""
+"\n"
+"Perhaps we should investigate that sound. Who else do we know?"
+msgstr ""
+"\n"
+"この音を調べたほうがいいかも。他に知ってる人はいないか？"
+
+#: ../linux_story/story/challenges/challenge_22.py:114
+msgid ""
+"Maybe you should check back on the family in the {{bb:.hidden-shelter}} and "
+"talk to them with your new found voice."
+msgstr ""
+"隠れシェルター({{bb:.hidden-shelter}})にいた家族のところに戻って、新しくみつ"
+"けた声で、彼らに話してみようか。"
+
+#: ../linux_story/story/challenges/challenge_22.py:117
+msgid ""
+"\n"
+"Start heading back to the {{bb:.hidden-shelter}} using {{yb:cd}}."
+msgstr ""
+"\n"
+"まず、{{yb:cd}}を使って、隠れシェルター({{bb:.hidden-shelter}})に戻ろう。"
+
+#: ../linux_story/story/challenges/challenge_22.py:124
+msgid ""
+"{{rb:We can go directly to the}} {{bb:.hidden-shelter}} {{rb:using}} {{yb:cd "
+"~/town/.hidden-shelter}}"
+msgstr ""
+"{{yb:cd ~/town/.hidden-shelter}}{{rb:を使えば、一気に隠れシェルター(}}{{bb:."
+"hidden-shelter}}{{rb:まで行ける。}}"
+
+#: ../linux_story/story/challenges/challenge_22.py:141
+msgid ""
+"\n"
+"{{gb:You travel back to tilde}}"
+msgstr ""
+"\n"
+"{{gb:ナミセンまで戻っている}}"
+
+#: ../linux_story/story/challenges/challenge_22.py:152
+msgid "Have a {{lb:look around}}."
+msgstr "{{lb:周りを見て}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_23.py:28
+msgid "You see {{bb:Eleanor}}. Listen to what she has to say."
+msgstr "エレノア({{bb:Eleanor}})ちゃんがいた。言いたいことを聞いてみよう。"
+
+#: ../linux_story/story/challenges/challenge_23.py:36
+msgid "{{rb:Use}} {{yb:cat Eleanor}} {{rb:to see what she has to say.}}"
+msgstr "{{yb:cat Eleanor}}{{rb:でエレノアちゃんの話を聞いてみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:45
+msgid "Eleanor: {{Bb:\"Oh, it's you! Have you seen my Mum and Dad?\"}}"
+msgstr ""
+"エレノア：{{Bb:\"おー、来たね！母ちゃんと父ちゃんを見かけてないか？\"}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:47
+msgid ""
+"\n"
+"{{yb:1: \"I'm afraid not. When did you last see them?\"}}"
+msgstr ""
+"\n"
+"{{yb:1: \"見かけてないね。最後に会ったのはいつ？\"}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:48
+msgid "{{yb:2: \"Weren't they with you in the hidden-shelter?\"}}"
+msgstr "{{yb:2: \"君と一緒に、隠れシェルターにいたわけじゃないの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:49
+msgid "{{yb:3: \"(lie) Yes, I saw them in town.\"}}"
+msgstr "{{yb:3: \"（ウソ）はい、街で見かけたよ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:50
+msgid ""
+"\n"
+"Use the {{yb:echo}} command to talk to {{bb:Eleanor}}."
+msgstr ""
+"\n"
+"{{yb:echo}}コマンドでエレノア({{bb:Eleanor}})ちゃんに答えよう。"
+
+#: ../linux_story/story/challenges/challenge_23.py:66
+msgid ""
+"\n"
+"Eleanor: {{Bb:\"Pardon? What did you say?\"}}"
+msgstr ""
+"\n"
+"エレノア：{{Bb:\"えっ？今、何と言ったの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:70
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} {{yb:echo 3}} {{rb:"
+"to reply.}}"
+msgstr ""
+"\n"
+"{{yb:echo 1}}{{rb:、}}{{yb:echo 2}}{{rb:又は}}{{yb:echo 3}}{{rb:で答えて。}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:85
+msgid "{{rb:Use}} {{yb:cd ..}} {{rb:to go into town.}}"
+msgstr "{{yb:cd ..}}{{rb:で街へ行こう。}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:89
+msgid "Eleanor: {{Bb:Yay, we're going on an adventure!}}"
+msgstr "エレノア：{{Bb:\"イエーイ、冒険に出かけるよ！\"}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:97
+msgid "{{yb:\"I'm afraid not. When did you last see them?\"}}"
+msgstr "{{yb:\"見かけてないね。最後に会ったのはいつ？\"}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:100
+msgid ""
+"Eleanor: {{Bb:\"Not long ago. The dog ran out again, so they went outside to "
+"look for him.\"}}"
+msgstr ""
+"エレノア：{{Bb:\"ちょっと前まで一緒にいたけど、犬がまた外に出ちゃって、追いか"
+"けに行った。\"}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:106
+msgid "{{yb:\"Weren't they with you in the hidden-shelter?\"}}"
+msgstr "{{yb:\"君と一緒に、隠れシェルターにいたわけじゃないの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:109
+msgid ""
+"Eleanor: {{Bb:\"No, they went outside. The dog ran away again, so they went "
+"outside to look for it. Maybe they got lost?\"}}"
+msgstr ""
+"Eleanor: {{Bb:\"いいえ、出かけたよ。犬がまた逃げ出して、探しにいくために外に"
+"出ちゃった。迷子になったかな？\"}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:116
+msgid "{{yb:\"(lie) Yes, I saw them in town.\"}}"
+msgstr "{{yb:\"（ウソ）はい、街で見かけたよ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:119
+msgid ""
+"Eleanor: {{Bb:\"Oh that's good! The dog ran away again, and they went "
+"outside to look for him.\""
+msgstr ""
+"エレノア：{{Bb:\"あ、よかった！実は、犬がまた逃げちゃったから、外に探しに行っ"
+"たんだ。\""
+
+#: ../linux_story/story/challenges/challenge_23.py:121
+msgid ""
+"\"The bell scared me, but I'm pleased they're alright.\"\n"
+"}}"
+msgstr ""
+"\"鐘の音でびっくりしたけど、無事でよかった！\"\n"
+"}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:125
+msgid ""
+"{{Bb:\"Let's go to town together and find them. I'm sure I'll be safe if I'm "
+"with you.\"}}"
+msgstr "{{Bb:\"一緒に行って探しに行こうか？君と一緒なら安全だから。\"}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:128
+msgid ""
+"\n"
+"{{gb:Eleanor joined you as a companion! You can check how she is any time "
+"with}} {{yb:cat Eleanor}}{{gb:.}}"
+msgstr ""
+"\n"
+"{{gb:エラノアちゃんは、君と一緒に行くことになった。どんな時でも、}}{{yb:cat "
+"Eleanor}}{{gb:で彼女の様子を確認できる。}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:131
+msgid ""
+"\n"
+"{{lb:Leave}} the {{bb:.hidden-shelter.}} Don't worry, {{bb:Eleanor}} will "
+"follow!"
+msgstr ""
+"\n"
+"隠れシェルター({{bb:.hidden-shelter}})を{{lb:出よう}}。エレノア({{bb:"
+"Eleanor}})ちゃんは一緒についてきてくれるので、心配ない。"
+
+#: ../linux_story/story/challenges/challenge_23.py:148
+msgid ""
+"Eleanor: {{Bb:Have you forgotten how to look around? You need to use}} {{yb:"
+"ls}}{{Bb:.}}"
+msgstr ""
+"エレノア：{{Bb:どうやって周りを見るか忘れちゃったの？}}{{yb:ls}}{{Bb:を使えば"
+"いいんだよ。}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:160
+msgid "Eleanor: {{Bb:\"Let's go to the}} {{bb:east}} {{Bb:of town.\"}}"
+msgstr "エレノア：{{Bb:\"街の東(}}{{bb:east}}{{Bb:)へ行こう。\"}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:162
+msgid ""
+"{{Bb:\"Haven't you noticed it before? It's over there! Look over there.\"}}"
+msgstr "{{Bb:\"今までに気がつかなかったの？ほら、あっちを見て。\"}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:164
+msgid ""
+"\n"
+"Use {{yb:ls}} to see what {{bb:Eleanor}} is trying to show you."
+msgstr ""
+"\n"
+"{{yb:ls}}を使って、エレノア({{bb:Eleanor}})ちゃんが見せようとしているところを"
+"確認して。"
+
+#: ../linux_story/story/challenges/challenge_23.py:201
+msgid ""
+"\n"
+"Eleanor: {{Bb:Why are you looking at me? You should be looking over THERE.}}"
+msgstr ""
+"\n"
+"エレノア：{{Bb:私を見るんじゃなくて、あっちを見て！}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:211
+msgid "You look in the direction {{bb:Eleanor}} is pointing."
+msgstr "エレノア({{bb:Eleanor}})ちゃんが見せている方向を見て。"
+
+#: ../linux_story/story/challenges/challenge_23.py:212
+msgid "There is a narrow road leading to another part of town."
+msgstr "細い道が街の向こう側につながっている。"
+
+#: ../linux_story/story/challenges/challenge_23.py:213
+msgid "This must take us to the {{bb:east}} part.\n"
+msgstr "きっと、この道に行けば東({{bb:east}})側に行けるんだ。\n"
+
+#: ../linux_story/story/challenges/challenge_23.py:214
+msgid "Eleanor: {{Bb:Let's go there and see if we can find my parents.}}"
+msgstr "エレノア：{{Bb:あっちに行って、両親を探してみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:216
+msgid ""
+"\n"
+"{{lb:Go}} into the {{bb:east}} of town."
+msgstr ""
+"\n"
+"街の東({{bb:east}})側へ{{lb:行こう}}。"
+
+#: ../linux_story/story/challenges/challenge_23.py:222
+msgid "{{rb:Use}} {{lb:cd}} {{rb:to go into the east part of town}}"
+msgstr "{{lb:cd}}{{rb:を使って、街の東側へ行こう。}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:224
+msgid "{{rb:Use}} {{yb:cd east}} {{rb:}}"
+msgstr "{{yb:cd east}}{{rb:を使って。}}"
+
+#: ../linux_story/story/challenges/challenge_23.py:229
+msgid ""
+"\n"
+"Eleanor: {{Bb:Let's go to the}} {{lb:east}} {{Bb:of town. Come on slow "
+"coach!}}"
+msgstr ""
+"\n"
+"エレノア：{{Bb:街の東(}}{{lb:east}}{{Bb:)側へ行こう、急いでよ！}}"
+
+#: ../linux_story/story/challenges/challenge_24.py:23
+msgid ""
+"You walk down the narrow road, with {{bb:Eleanor}} dancing alongside, until "
+"you reach an open space in the {{bb:east}} part of town."
+msgstr ""
+"エレノア({{bb:Eleanor}})ちゃんと一緒に細い道をずっと歩いて、やっと街の東"
+"({{bb:east}})側に着く。"
+
+#: ../linux_story/story/challenges/challenge_24.py:26
+#: ../linux_story/story/challenges/challenge_24.py:83
+msgid ""
+"\n"
+"{{lb:Look around.}}"
+msgstr ""
+"\n"
+"{{lb:周りを見よう。}}"
+
+#: ../linux_story/story/challenges/challenge_24.py:46
+msgid ""
+"Eleanor: {{Bb:I can't see my parents anywhere...but there's a weird building "
+"there.}}"
+msgstr "エレノア：{{Bb:親はここにいないな…でもあそこに変な建物があるよ。}}"
+
+#: ../linux_story/story/challenges/challenge_24.py:55
+msgid "You see a {{bb:shed-shop}}, {{bb:library}} and {{bb:restaurant}}."
+msgstr ""
+"小屋ショップ({{bb:shed-shop}})、図書館({{bb:library}})とレストラン({{bb:"
+"restaurant}})が見えます。"
+
+#: ../linux_story/story/challenges/challenge_24.py:56
+msgid ""
+"\n"
+"Eleanor: {{Bb:\"Hey, what is that shed-shop?\"}}\n"
+msgstr ""
+"\n"
+"エレノア：{{Bb:\"えー、何この小屋ショップ？\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_24.py:57
+msgid "{{Bb:\"Let's}} {{lb:go in}}{{Bb:!\"}}"
+msgstr "{{Bb:\"中に}}{{lb:入ろう}}{{Bb:！\"}}"
+
+#: ../linux_story/story/challenges/challenge_24.py:63
+msgid "{{rb:Use}} {{yb:cd shed-shop}} {{rb:to go in the shed-shop.}}"
+msgstr "{{yb:cd shed-shop}}{{rb:を使って、小屋ショップの中に入ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_24.py:66
+msgid "Eleanor: {{Bb:Do you think they sell candy?}}"
+msgstr "エレノア：{{Bb:あめを売ってると思う？}}"
+
+#: ../linux_story/story/challenges/challenge_24.py:80
+msgid "You both walk slowly into the shop."
+msgstr "お店の中にゆっくり入ります。"
+
+#: ../linux_story/story/challenges/challenge_24.py:81
+msgid "It is dusty and significantly darker in here than outside."
+msgstr "ほこりがあって、外に比べてかなり暗い。"
+
+#: ../linux_story/story/challenges/challenge_24.py:82
+msgid "{{bb:Eleanor}} looks like she needs to sneeze."
+msgstr "エレノア({{bb:Eleanor}})ちゃんはくしゃみをしそうだ。"
+
+#: ../linux_story/story/challenges/challenge_24.py:101
+msgid "Eleanor: {{Bb:Ah..ah...achoo!! It's so dusty in here!}}"
+msgstr "エレノア：{{Bb:あー、あぁー、あくしょーん！ほこりいっぱいだよ！}}"
+
+#: ../linux_story/story/challenges/challenge_24.py:110
+msgid "You see a man called {{bb:Bernard}}, a door and a couple of tools."
+msgstr ""
+"ベルナード({{bb:Bernard}})と言う男がいて、そしてドアと幾つかの道具がある。"
+
+#: ../linux_story/story/challenges/challenge_24.py:112
+msgid ""
+"\n"
+"The tools show up as {{gb:green}} in the Terminal."
+msgstr ""
+"\n"
+"コンソールでは道具が{{gb:みどり}}になっています。"
+
+#: ../linux_story/story/challenges/challenge_24.py:113
+msgid ""
+"\n"
+"{{lb:Listen}} to what {{bb:Bernard}} has to say."
+msgstr ""
+"\n"
+"ベルナード({{bb:Bernard}})さんの話を{{lb:聞いて}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_24.py:120
+msgid "{{rb:Use}} {{yb:cat Bernard}} {{rb:to see what Bernard has to say.}}"
+msgstr "{{yb:cat Bernard}}{{rb:でベルナードさんの話を聞こう。}}"
+
+#: ../linux_story/story/challenges/challenge_24.py:128
+msgid ""
+"Eleanor: {{Bb:My}} {{lb:cat}} {{Bb:used to be a great listener, I'd tell her "
+"everything.}}"
+msgstr ""
+"エレノア：{{Bb:私の猫(}}{{lb:cat}}{{Bb:)は話をよく聞いていた。私が話している"
+"ことを何でも聞いてくれた。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:23
+msgid "Bernard: {{Bb:\"Hello! Shush, don't say a word.\"}}"
+msgstr "ベルナード：{{Bb:\"こんにちは！シーー、何も言わないで。\"}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:25
+msgid "{{Bb:\"I know why you're here. You want a shed!\""
+msgstr ""
+"{{Bb:\"君たちはなぜここにいるのか知ってるよ。さて、小屋が欲しいんだな！\""
+
+#: ../linux_story/story/challenges/challenge_25.py:27
+msgid ""
+"\"I have just the thing for you. I have the}} {{bb:best-shed-maker-in-the-"
+"world.sh}}{{Bb:\"}}"
+msgstr ""
+"\"ちょうど良いもの持ってるよ。ここに世界一の小屋作り道具(}}{{bb:best-shed-"
+"maker-in-the-world.sh}}{{Bb:)を持っている。\"}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:30
+msgid ""
+"\n"
+"He seems pretty enthusiastic about it. {{lb:Examine}} the tool {{bb:best-"
+"shed-maker-in-the-world.sh}}"
+msgstr ""
+"\n"
+"結構自慢してるね。この世界一の小屋作り道具({{bb:best-shed-maker-in-the-world.sh}})を{{lb:確認}}して"
+"みよう。"
+
+#: ../linux_story/story/challenges/challenge_25.py:33
+#: ../linux_story/story/challenges/challenge_25.py:81
+msgid ""
+"\n"
+"{{gb:Use}} {{ob:TAB}} {{gb:to speed up your typing.}}"
+msgstr ""
+"\n"
+"{{gb:速くタイプするには、}}{{ob:TAB}}{{gb:を使ってみよう！}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:40
+msgid ""
+"{{rb:Use}} {{yb:cat}} {{rb:to examine the}} {{bb:best-shed-maker-in-the-"
+"world.sh}}"
+msgstr ""
+"{{bb:best-shed-maker-in-the-world.sh}}{{rb:を確認するには、}}{{yb:cat}}{{rb:"
+"を使ってみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:43
+msgid ""
+"{{rb:Use}} {{yb:cat best-shed-maker-in-the-world.sh}} {{rb:to examine the "
+"tool.}}"
+msgstr ""
+"{{yb:cat best-shed-maker-in-the-world.sh}}{{rb:でこの道具を確認してみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:51
+msgid "Eleanor: {{Bb:Bernard scares me a bit...}}"
+msgstr "エレノア：{{Bb:ベルナードさんはちょっと怖いな…}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:58
+msgid ""
+"\n"
+"{{rb:You are reading the wrong file! You want to read}} {{bb:best-shed-maker-"
+"in-the-world.sh}}{{rb:.}}"
+msgstr ""
+"\n"
+"{{rb:見ているファイルは間違ってるよ！}}{{bb:best-shed-maker-in-the-world.sh}}"
+"{{rb:を見なきゃ。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:71
+msgid "The tool has an inscription that reads \"mkdir shed\"."
+msgstr "道具に\"mkdir shed\"と書いてあります。"
+
+#: ../linux_story/story/challenges/challenge_25.py:72
+msgid ""
+"You recognise the command {{yb:mkdir}}. It's what you used to help {{bb:"
+"Ruth}} in the farm."
+msgstr ""
+"この{{yb:mkdir}}コマンドは、知ってるね。この前、牧場でルス({{bb:Ruth}})を手伝"
+"うために使ったものだ。"
+
+#: ../linux_story/story/challenges/challenge_25.py:75
+msgid ""
+"\n"
+"Bernard: {{Bb:It's like magic! Just run the command, and you get a new "
+"shed.}}"
+msgstr ""
+"\n"
+"ベルナード：{{Bb:魔法見たいよ！このコマンドを走らせれば、小屋ができちゃうん"
+"だ。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:78
+msgid "{{Bb:Try it out! Use it with}} {{yb:./best-shed-maker-in-the-world.sh}}"
+msgstr ""
+"{{Bb:試してみて！}}{{yb:./best-shed-maker-in-the-world.sh}}{{Bb:を使って。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:88
+msgid ""
+"{{rb:Do as Bernard says - use}} {{yb:./best-shed-maker-in-the-world.sh}} "
+"{{rb:to run his script}}"
+msgstr ""
+"{{rb:ベルナードさんが言った通りにやってみよう。}}{{yb:./best-shed-maker-in-"
+"the-world.sh}}{{rb:でこのスクリプトを走らせてみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:96
+msgid ""
+"Eleanor: {{Bb:Isn't that just the same as running}} {{yb:mkdir shed}}{{Bb:?}}"
+msgstr "エレノア：{{yb:mkdir shed}}{{Bb:を走らせると同じじゃないの？}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:102
+msgid ""
+"\n"
+"{{rb:You're trying to run the wrong script. You want to run}} {{yb:./best-"
+"shed-maker-in-the-world.sh}}"
+msgstr ""
+"\n"
+"{{rb:違うスクリプトを走らせようとしているよ。}}{{yb:./best-shed-maker-in-the-"
+"world.sh}}{{rb:をタイプしてみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:115
+msgid "{{lb:Look around}} to see if it created a {{bb:shed}}."
+msgstr "小屋({{bb:shed}})が作られたか確認するには、{{lb:周りを見よう}}。"
+
+#: ../linux_story/story/challenges/challenge_25.py:126
+msgid "Eleanor: {{Bb:Ah, look over there!}}"
+msgstr "エレノア：{{Bb:あっ、あそこ見て！}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:134
+msgid "It worked! You can see a new {{bb:shed}} in the room.\n"
+msgstr "上手く行ったよ！部屋の中に新しい小屋({{bb:shed}})ができた。\n"
+
+#: ../linux_story/story/challenges/challenge_25.py:135
+msgid "What happens if you run it again?\n"
+msgstr "もう一度走らせるとどうなるの？\n"
+
+#: ../linux_story/story/challenges/challenge_25.py:136
+msgid "{{gb:Press}} {{ob:UP}} {{gb:twice to replay the command.}}"
+msgstr "{{ob:UP}}{{gb:を２回押して、同じコマンドを走らせよう。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:143
+msgid "{{rb:See what happens when you run the script again.}}"
+msgstr "{{rb:このスクリプトをもう１回走らせるとどうなるか試してみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:145
+msgid ""
+"{{rb:Run the script again using}} {{yb:./best-shed-maker-in-the-world.sh}} "
+"{{rb:to see what happens.}}"
+msgstr ""
+"{{yb:./best-shed-maker-in-the-world.sh}}{{rb:を使って、同じスクリプトを走らせ"
+"て、どうなるか確かめてみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:152
+msgid "Eleanor: {{Bb:I don't think this will work...}}"
+msgstr "エレノア：{{Bb:上手くいかないと思う…}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:160
+msgid ""
+"You get the error {{yb:mkdir: cannot create directory `shed': File exists}}"
+msgstr ""
+"次のエラー出ています：{{yb:mkdir: ディレクトリー`shed'を作成できません: ファ"
+"イルが存在します}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:162
+msgid ""
+"\n"
+"Bernard: {{Bb:\"Of course it won't work second time - you already have a "
+"shed!\""
+msgstr ""
+"\n"
+"ベルナード：{{Bb:\"もちろん、小屋は既に持っているので、２回目に作ることはでき"
+"ないよ！\""
+
+#: ../linux_story/story/challenges/challenge_25.py:165
+msgid ""
+"\"I'm working on the next big thing,}} {{bb:best-horn-in-the-world.sh}}{{Bb:."
+"\"}}"
+msgstr ""
+"\"今、次なる目玉を作っているよ、}}{{bb:best-horn-in-the-world.sh}}{{Bb:。\"}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:168
+msgid ""
+"{{Bb:\"It can be used to alert anyone that you're coming. I'm having some "
+"teething problems, but I'm sure I'll fix them soon.\"}}"
+msgstr ""
+"{{Bb:\"間も無く来るよ、と周りの人に伝えるために使える。まだちょっと問題はある"
+"けど、もうすぐ直ると思う。\"}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:172
+msgid ""
+"\n"
+"{{lb:Examine}} {{bb:best-horn-in-the-world.sh}} and see if you can identify "
+"the problem.\n"
+msgstr ""
+"\n"
+"問題が分かるかどうか、{{bb:best-horn-in-the-world.sh}}を{{lb:観察して}}見てみ"
+"よう。\n"
+
+#: ../linux_story/story/challenges/challenge_25.py:175
+msgid "{{gb:Remember to use}} {{ob:TAB}}{{gb:!}}"
+msgstr "{{ob:TAB}}{{gb:を使うのを忘れないでね！}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:186
+msgid "{{rb:Use}} {{yb:cat}} {{rb:to examine the tool.}}"
+msgstr "{{yb:cat}}{{rb:でこの道具を観察してみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:187
+msgid ""
+"{{rb:Use}} {{yb:cat best-horn-in-the-world.sh}} {{rb:to examine the tool.}}"
+msgstr "{{yb:cat best-horn-in-the-world.sh}}{{rb:を使って、道具を確認して。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:192
+msgid "Eleanor: {{Bb:I think this tool is a bit broken.}}"
+msgstr "エレノア：{{Bb:この道具は少し壊れていると思うな。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:200
+msgid ""
+"\n"
+"{{rb:You're examining the wrong tool. You want to look at}} {{yb:best-horn-"
+"in-the-world.sh}}"
+msgstr ""
+"\n"
+"{{rb:違う道具を見ているみたいよ。}}{{yb:best-horn-in-the-world.sh}}{{rb:を見"
+"てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:213
+msgid "The tool reads {{yb:eco \"Honk!\"}}"
+msgstr "この道具に{{yb:eco \"Honk!\"}}と書いてあるね。"
+
+#: ../linux_story/story/challenges/challenge_25.py:214
+msgid "Maybe it should read {{yb:echo \"Honk!\"}} instead..."
+msgstr "それより、{{yb:echo \"Honk!\"}}が正しいんじゃないの？"
+
+#: ../linux_story/story/challenges/challenge_25.py:215
+msgid "How could we make changes to this tool?"
+msgstr "この道具をどうやって直そうか？"
+
+#: ../linux_story/story/challenges/challenge_25.py:216
+msgid ""
+"\n"
+"Bernard: {{Bb:\"Ho ho, you look like you understand the problem.\"}}"
+msgstr ""
+"\n"
+"ベルナード：{{Bb:\"君、いけない箇所が分かったみたいね。\"}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:217
+msgid ""
+"Eleanor: {{Bb:\"If we need extra help, we can go to the library, it was just "
+"outside.\"}}"
+msgstr ""
+"エレノア：{{Bb:\"何か情報が必要なら、図書館に行ってみようか？すぐ外にあった"
+"よ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:219
+msgid ""
+"\n"
+"Before we go, have a {{lb:look}} in the {{bb:basement}}."
+msgstr ""
+"\n"
+"外に出る前に、地下({{bb:basement}})を{{lb:見て}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_25.py:233
+msgid "{{rb:Use}} {{yb:ls}} {{rb:to look through.}}"
+msgstr "{{yb:ls}}{{rb:で地下を見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:234
+msgid "{{rb:Use}} {{yb:ls basement/}} {{rb:to look inside.}}"
+msgstr "{{yb:ls basement/}}{{rb:を使って中を見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:238
+msgid "Eleanor: {{Bb:OooOOoh, are there sweets in there?}}"
+msgstr "エレノア：{{Bb:おぉーー、あめがあったよ！}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:247
+msgid "Bernard: {{Bb:\"Oooh naughty, you can't look in there.\"}}"
+msgstr "ベルナード：{{Bb:\"あ、悪い子だ。この中を見ちゃいかんぞ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:248
+msgid ""
+"\n"
+"Let's {{lb:leave}} the shed shop and go back to {{bb:east}} of town."
+msgstr ""
+"\n"
+"小屋ショップを{{lb:出て}}、町の東({{bb:east}})側に戻ろう。"
+
+#: ../linux_story/story/challenges/challenge_25.py:254
+msgid "{{rb:Leave the shed-shop using}} {{yb:cd ..}}"
+msgstr "{{yb:cd ..}}{{rb:で小屋ショップを出よう。}}"
+
+#: ../linux_story/story/challenges/challenge_25.py:257
+msgid "Eleanor: {{Bb:\"Yay, I like the library. Let's go back to town!\"}}"
+msgstr "エレノア：{{Bb:\"イエーイ、図書館大好き。町へ戻ろう！\"}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:23
+msgid ""
+"You are back in town. {{bb:Eleanor}} waves her arms and points at a building "
+"in the distance."
+msgstr ""
+"町に戻った。エレノア({{bb:Eleanor}})ちゃんは手を振って、遠くにある建物をさし"
+"ている。"
+
+#: ../linux_story/story/challenges/challenge_26.py:25
+msgid ""
+"\n"
+"{{lb:Look around}} to see where {{bb:Eleanor}} is pointing."
+msgstr ""
+"\n"
+"エレノア({{bb:Eleanor}})ちゃんがさしている建物を確認するには、{{lb:周りを見よ"
+"う}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:46
+msgid "Eleanor: {{Bb:The library is over there!}}"
+msgstr "エレノア：{{Bb:図書館はあそこにあるよ！}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:54
+msgid "You see the {{bb:library}} ahead."
+msgstr "前に図書館({{bb:library}})が見えている。"
+
+#: ../linux_story/story/challenges/challenge_26.py:56
+msgid ""
+"Eleanor: {{Bb:\"There it is! The}} {{bb:library}} {{Bb:is right there! "
+"Let's}} {{lb:go inside.}}{{Bb:\"}}"
+msgstr ""
+"エレノア：{{Bb:\"ここだ！図書館(}}{{bb:library}}{{Bb:)はすぐそこ！}}{{lb:中に"
+"入ろう}}{{Bb:よ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:64
+msgid "{{rb:Use}} {{yb:cd library}} {{rb:to go inside the library.}}"
+msgstr "{{yb:cd library}}{{rb:で図書館の中に入って。}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:66
+msgid "Eleanor: {{Bb:I love the library! Let's go inside!}}"
+msgstr "エレノア：{{Bb:図書館は大好き！中に入ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:77
+msgid "{{bb:Eleanor}} skips into the {{bb:library}}, while you follow her.\n"
+msgstr ""
+"エレノア({{bb:Eleanor}})ちゃんはスキップしながら図書館({{bb:library}})に入っ"
+"た。君も中に入った。\n"
+
+#: ../linux_story/story/challenges/challenge_26.py:78
+msgid "{{lb:Look around}} the {{bb:library}}."
+msgstr "図書館({{bb:library}})の中で{{lb:周りを見よう}}。"
+
+#: ../linux_story/story/challenges/challenge_26.py:97
+msgid "Eleanor: {{Bb:It's all echo-y-y-y-y..}}"
+msgstr "エレノア：{{Bb:どこもecho-y-y-y-yになってるよ。}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:105
+msgid ""
+"You're in a corridor leading to two clearly labelled doors. One has the sign "
+"{{bb:public-section}}, the other {{bb:private-section}}.\n"
+msgstr ""
+"通路にはドアが二つあって、ラベルが貼ってある：片方は「公共区分」({{bb:public-"
+"section}})、もう一つは「非公開区分」({{bb:private-section}})。\n"
+
+#: ../linux_story/story/challenges/challenge_26.py:110
+msgid "Eleanor: {{Bb:\"There used to be a librarian here."
+msgstr "エレノア：{{Bb:\"前は、ここに図書館員がいて、"
+
+#: ../linux_story/story/challenges/challenge_26.py:112
+msgid ""
+"She would tell me off for trying to look in the}} {{bb:private-section}}."
+msgstr ""
+"あたしが非公開区分(}}{{bb:private-section}}{{Bb:)の中をのぞいてみた時に叱られた事"
+"がある。}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:115
+msgid ""
+"{{Bb:What do you think is in there? Let's try and}} {{lb:look inside}}{{Bb:."
+"\"}}"
+msgstr "{{Bb:この中に何があると思う？}}{{lb:中を見て}}{{Bb:みよう。\"}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:128
+msgid ""
+"{{rb:Use}} {{yb:ls private-section/}} {{rb:to look in the private-section of "
+"the library.}}"
+msgstr ""
+"{{yb:ls private-section/}}{{rb:で図書館の非公開区分の中を見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:131
+msgid "Eleanor: {{Bb:What's in the private-section?}}"
+msgstr "エレノア：{{Bb:非公開区分に、何があるの？}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:140
+msgid "Eleanor: {{Bb:\"I guess the private-section is locked to outsiders...\""
+msgstr ""
+"エレノア：{{Bb:\"非公開区分はやっぱり、関係者以外にロックがかかってるみたい"
+"ね…\""
+
+#: ../linux_story/story/challenges/challenge_26.py:142
+msgid ""
+"\"Let's see if we can find something useful in the}} {{bb:public section.}}"
+"{{Bb:\"}}"
+msgstr ""
+"\"公共区分(}}{{bb:public section.}}{{Bb:)で何かいい物が無いか、確認しよう"
+"か。\"}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:145
+msgid ""
+"\n"
+"Use {{yb:ls}} to look in the {{bb:public-section}}."
+msgstr ""
+"\n"
+"{{yb:ls}}を使って、公共区分({{bb:public-section}})の中を見てみよう。"
+
+#: ../linux_story/story/challenges/challenge_26.py:157
+msgid "{{rb:Use}} {{yb:ls}} {{rb:to look in the public section.}}"
+msgstr "{{yb:ls}}{{rb:で公共区分の中を見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:158
+msgid ""
+"{{rb:Use}} {{yb:ls public-section}} {{rb:to look in the public-section.}}"
+msgstr "{{yb:ls public-section}}{{rb:で公共区分の中を見て。}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:161
+msgid "Eleanor: {{Bb:What's in the public-section?}}"
+msgstr "エレノア：{{Bb:公共区分に、何があるの？}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:169
+msgid "Eleanor: {{Bb:\"Wow, all the commands have disappeared."
+msgstr "エレノア：{{Bb:\"あれっ？！全てのコマンドがなくなってる！"
+
+#: ../linux_story/story/challenges/challenge_26.py:170
+msgid ""
+"I wonder if people have been stealing them?\"\n"
+"}}"
+msgstr ""
+"誰か盗んだのかな？\"\n"
+"}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:172
+msgid "{{Bb:\"What is that}} {{yb:NANO}} {{Bb:paper?\"}}\n"
+msgstr "{{Bb:\"何、この「}}{{yb:NANO}}{{Bb:」と書いてある紙？\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_26.py:173
+msgid "{{Bb:\"Let's}} {{lb:examine}} {{Bb:it.\"}}"
+msgstr "{{Bb:\"}}{{lb:確認して}}{{Bb:みよう。\"}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:181
+msgid "{{rb:Examine the NANO script with}} {{yb:cat public-section/NANO}}"
+msgstr ""
+"{{yb:cat public-section/NANO}}{{rb:でNANOと言うスクリプトを見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:184
+msgid "Eleanor: {{Bb:The library should probably have introduced late fees.}}"
+msgstr ""
+"エレノア：{{Bb:図書館は本を返し忘れの罰金を取り入れた方がよかったかも。}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:194
+msgid "Eleanor: {{Bb:So nano allows you to edit files?}}"
+msgstr "エレノア：{{Bb:なるほど、nanoでファイルを編集できるって？}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:197
+msgid ""
+"{{Bb:\"Maybe we could use this to fix that}} {{yb:best-horn-in-the-world."
+"sh}} {{Bb:script?\"}}\n"
+msgstr ""
+"{{Bb:\"これを使って、}}{{yb:best-horn-in-the-world.sh}}{{Bb:を直せるんじゃな"
+"いの？\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_26.py:200
+msgid ""
+"{{Bb:\"Let's}} {{lb:head back}} {{Bb:to the}} {{bb:shed-shop}}{{Bb:.\"}}"
+msgstr "{{Bb:\"小屋ショップ(}}{{bb:shed-shop}}{{Bb:)へ戻ろう。\"}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:205
+msgid "Eleanor: {{Bb:...do we have to go and see creepy Bernard again?}}"
+msgstr "エレノア：{{Bb:またベルナードさんに会わなきゃいけないの？}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:211
+#: ../linux_story/story/challenges/challenge_30.py:142
+#: ../linux_story/story/challenges/challenge_30.py:146
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:cd ../}} {{rb:to go back.}}"
+msgstr ""
+"\n"
+"{{yb:cd ../}}{{rb:で前にいたところへ戻ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:214
+#: ../linux_story/story/challenges/challenge_30.py:149
+msgid ""
+"\n"
+"{{gb:Now go into the}} {{bb:shed-shop}}{{gb:.}}"
+msgstr ""
+"\n"
+"{{gb:次は、小屋ショップ(}}{{bb:shed-shop}}{{gb:)に戻ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_26.py:215
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:cd shed-shop/}} {{rb:to go into the shed-shop.}}"
+msgstr ""
+"\n"
+"{{yb:cd shed-shop/}}{{rb:で小屋ショップに戻ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:28
+msgid "You are back in {{bb:Bernard}}'s place.\n"
+msgstr "ベルナード({{bb:Bernard}})さんのところに戻った。\n"
+
+#: ../linux_story/story/challenges/challenge_27.py:29
+msgid "{{lb:Listen}} to what {{bb:Bernard}} has to say."
+msgstr "ベルナード({{bb:Bernard}})さんの話を{{lb:聞こう}}。"
+
+#: ../linux_story/story/challenges/challenge_27.py:36
+msgid "{{rb:Use}} {{yb:cat Bernard}} {{rb:to interact with Bernard.}}"
+msgstr "{{yb:cat Bernard}}{{rb:でベルナードさんと話をしよう。}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:50
+msgid "Eleanor: {{Bb:\"Achoo! This place is really dusty...*sniff*\"}}"
+msgstr "エレノア：{{Bb:\"アクショーーン、ここにホコリはいっぱいだよ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:59
+msgid ""
+"Bernard: {{Bb:\"Hellooooo. You came back to fix my script!\"}}\n"
+" "
+msgstr ""
+"ベルナード{{Bb:\"こんにちはああああ。僕のスクリプトを直しに来たね！\"}}\n"
+" "
+
+#: ../linux_story/story/challenges/challenge_27.py:60
+#: ../linux_story/story/challenges/challenge_27.py:63
+msgid " -------------------------------------- "
+msgstr " -------------------------------------- "
+
+#: ../linux_story/story/challenges/challenge_27.py:61
+msgid "| {{gb:New Spell}}: {{yb:nano}} followed by an       |"
+msgstr "| {{gb:新しいおまじない}}: {{yb:nano}}の後にファイルで   |"
+
+#: ../linux_story/story/challenges/challenge_27.py:62
+msgid "| object lets you {{lb:edit}} it              |"
+msgstr "| このファイルを{{lb:編集}}できる                 |"
+
+#: ../linux_story/story/challenges/challenge_27.py:64
+msgid ""
+"\n"
+"Let's try and use {{yb:nano best-horn-in-the-world.sh}} to edit it."
+msgstr ""
+"\n"
+"{{yb:nano best-horn-in-the-world.sh}}でこのスクリプトを編集してみよう。"
+
+#: ../linux_story/story/challenges/challenge_27.py:76
+msgid "{{rb:Use}} {{yb:nano best-horn-in-the-world}} {{rb:to edit the tool.}}"
+msgstr "{{yb:nano best-horn-in-the-world}}{{rb:で道具を変更してみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:81
+msgid ""
+"Eleanor: {{Bb:They taught us how to write at school. I don't think Bernard "
+"is very clever.}}"
+msgstr ""
+"エレノア：{{Bb:書き方は学校で学んだよね。ベルナードさんはあまり賢くないみたい"
+"ね。}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:105
+msgid "Now time to test your script!"
+msgstr "では、君のスクリプトを試してみよう！"
+
+#: ../linux_story/story/challenges/challenge_27.py:106
+msgid "Use {{yb:./best-horn-in-the-world.sh}} to run it."
+msgstr "{{yb:./best-horn-in-the-world.sh}}を使って走らせてみよう。"
+
+#: ../linux_story/story/challenges/challenge_27.py:116
+msgid "Eleanor: {{Bb:Will it be loud?}}"
+msgstr "エレノア：{{Bb:うるさくなるのかな？}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:118
+msgid "{{rb:Use}} {{yb:./best-horn-in-the-world.sh}} {{rb:to run the script.}}"
+msgstr ""
+"{{yb:./best-horn-in-the-world.sh}}{{rb:を使ってスクリプトを走らせよう。}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:129
+msgid "{{gb:Congratulations, the script now prints \"Honk!\"}}"
+msgstr "{{gb:おめでとう！スクリプトは\"Honk!\"を書いているね}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:131
+msgid ""
+"\n"
+"Bernard: {{Bb:\"The tool is working! Wonderful! Thank you so much!\"}}"
+msgstr ""
+"\n"
+"ベルナード：{{Bb:\"道具は動いた！すばらしい！本当にありがとう！\"}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:134
+msgid ""
+"\n"
+"It occurs to you that you haven't asked {{bb:Bernard}} much about himself."
+msgstr ""
+"\n"
+"ところで、ベルナード({{bb:Bernard}})さんにあまり質問してないよな。"
+
+#: ../linux_story/story/challenges/challenge_27.py:137
+msgid "What would you like to ask him?"
+msgstr "彼に何を聞きたいの？"
+
+#: ../linux_story/story/challenges/challenge_27.py:139
+msgid ""
+"\n"
+"{{yb:1 \"How did you create your tools?\"}}"
+msgstr ""
+"\n"
+"{{yb:1: \"この道具はどうやって作ったんですか？\"}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:141
+msgid "{{yb:2: \"What's the next big tool you want to create?\"}}"
+msgstr "{{yb:2: \"次に作りたい道具は何ですか？\"}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:143
+msgid "{{yb:3: \"Are you going into hiding now?\"}}"
+msgstr "{{yb:3: \"これから隠れようとしているの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:145
+msgid "{{yb:4: \"What's in your basement?\"}}"
+msgstr "{{yb:4: \"地下に、何があるの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:147
+msgid ""
+"\n"
+"Use {{yb:echo}} to ask him a question."
+msgstr ""
+"\n"
+"{{yb:echo}}で彼に質問してみよう。"
+
+#: ../linux_story/story/challenges/challenge_27.py:153
+msgid ""
+"{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}}{{rb:,}} {{yb:echo 3}} {{rb:"
+"or}} {{yb:echo 4}}"
+msgstr ""
+"{{yb:echo 1}}{{rb:、}}{{yb:echo 2}}{{rb:、}}{{yb:echo 3}}{{rb:又は}}{{yb:"
+"echo 4}}{{rb:で質問してみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:158
+msgid ""
+"Eleanor: {{Bb:\"I have a question - does he have candy in his basement?\"}}"
+msgstr "エレノア：{{Bb:\"私は質問あるよ。地下にあめはあるか？\"}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:168
+msgid ""
+"\n"
+"Bernard: {{Bb:\"Ah, trade secret. *wink*\"}}"
+msgstr ""
+"\n"
+"ベルナード：{{Bb:\"これは、企業秘密だよ。（ウィンク）\"}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:173
+msgid ""
+"\n"
+"Bernard: {{Bb:\"Er, what? No, I wasn't planning on doing so. Why would I do "
+"that?\"}}"
+msgstr ""
+"\n"
+"ベルナード：{{Bb:\"いや、特にそうしようと思ってないけど。なぜ隠れるの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:179
+msgid ""
+"\n"
+"Bernard: {{Bb:\"Oh ho ho ho, that's none of your business.\"}}"
+msgstr ""
+"\n"
+"ベルナード：{{Bb:\"あははは、これは君に教えないよ！\"}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:191
+msgid "{{yb:\"What's the next big tool you want to create?\"}}"
+msgstr "{{yb:\"次に作りたい道具は何ですか？\"}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:195
+msgid ""
+"Bernard: {{Bb:\"I want to know how the}} {{bb:private-section}} {{Bb:is "
+"locked in the}} {{bb:library}}{{Bb:, and then make a key to unlock it.\"}}"
+msgstr ""
+"ベルナード：{{Bb:\"図書館(}}{{bb:library}}{{Bb:)の非公開区分(}}{{bb:private-"
+"section}}{{Bb:)がどうロックされているか知りたい。そして開けるためのカギを作っ"
+"てみたい。\"}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:200
+msgid ""
+"\n"
+"Eleanor: {{Bb:\"I guess the}} {{bb:librarian}} {{Bb:would have locked the "
+"private section.\"}}"
+msgstr ""
+"\n"
+"エレノア：{{Bb:\"非公開区分をロックしたのは、図書館員(}}{{bb:librarian}}"
+"{{Bb:)だと思う。\"}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:203
+msgid ""
+"{{Bb:\"Maybe she can tell us how she did it? We should look for her.\"}}"
+msgstr ""
+"{{Bb:\"どうやってロックをかけたか教えてくれるかも？図書館員を探してみよ"
+"う。\"}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:206
+msgid ""
+"\n"
+"{{lb:Leave}} the {{bb:shed-shop}}."
+msgstr ""
+"\n"
+"小屋ショップ({{bb:shed-shop}})を{{lb:出よう}}。"
+
+#: ../linux_story/story/challenges/challenge_27.py:210
+msgid "{{rb:Use}} {{yb:cd}} {{rb:to leave the shed-shop.}}"
+msgstr "{{yb:cd}}{{rb:を使って小屋ショップを出よう。}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:211
+msgid "{{rb:Use}} {{yb:cd ..}} {{rb:to go}} {{lb:back}} {{rb:to town.}}"
+msgstr "{{yb:cd ..}}{{rb:で町に}}{{lb:戻ろう}}{{rb:。}}"
+
+#: ../linux_story/story/challenges/challenge_27.py:216
+msgid ""
+"Eleanor: {{Bb:\"What do you think is hidden in the private-section?}}\n"
+"{{Bb:Maybe Bernard shouldn't see it...\"}}"
+msgstr ""
+"エレノア：{{Bb:\"非公開区分に何が隠れていると思う？\n"
+"{{Bb:ベルナードさんが見ない方がいいかも…\"}}"
+
+#: ../linux_story/story/challenges/challenge_28.py:24
+msgid "You're back in town. {{bb:Eleanor}} looked relieved to be outside."
+msgstr ""
+"君は町に戻った。エレノア({{bb:Eleanor}})ちゃんは外にいて安心してるようだ。"
+
+#: ../linux_story/story/challenges/challenge_28.py:25
+msgid "Where could the {{bb:librarian}} be hiding?\n"
+msgstr "図書館員({{bb:librarian}})はどこに隠れているだろう？\n"
+
+#: ../linux_story/story/challenges/challenge_28.py:26
+msgid "{{lb:Look around}} to decide where to go next."
+msgstr "次にやることを決めるには{{lb:周りを見よう}}。"
+
+#: ../linux_story/story/challenges/challenge_28.py:49
+msgid "Eleanor: {{Bb:\"I'm hungry. Can you see anywhere we could eat?\"}}"
+msgstr "エレノア：{{Bb:\"おなかすいたな。ご飯を食べられるところないかな？\"}}"
+
+#: ../linux_story/story/challenges/challenge_28.py:57
+msgid "We haven't checked out the {{bb:restaurant}} yet.\n"
+msgstr "レストラン({{bb:restaurant}})にまだ入ってないね。\n"
+
+#: ../linux_story/story/challenges/challenge_28.py:58
+msgid "Let's {{lb:go}} into the {{bb:restaurant}}."
+msgstr "レストラン({{bb:restaurant}})の中に{{lb:入ろう}}。"
+
+#: ../linux_story/story/challenges/challenge_28.py:65
+msgid "{{rb:Use}} {{yb:cd restaurant}} {{rb:to go into the restaurant.}}"
+msgstr "{{yb:cd restaurant}}{{rb:でレストランの中に入ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_28.py:69
+msgid "Eleanor: {{Bb:Ooh, do you think they'll have a sandwich anywhere?}}"
+msgstr "エレノア：{{Bb:おー、どこかにサンドウィッチがあると思う？}}"
+
+#: ../linux_story/story/challenges/challenge_28.py:81
+msgid "You and {{bb:Eleanor}} walk into the {{bb:restaurant}}.\n"
+msgstr ""
+"君は、エレノア({{bb:Eleanor}})ちゃんと一緒にレストラン({{bb:restaurant}})に"
+"入った。\n"
+
+#: ../linux_story/story/challenges/challenge_28.py:89
+msgid ""
+"Eleanor: {{Bb:Do you remember how you found me? You used}} {{yb:ls -a}} {{Bb:"
+"right?}}"
+msgstr ""
+"エレノア：{{Bb:私を見つけた時に使ったコマンド、覚えてる？}}{{yb:ls -a}}{{Bb:"
+"だったよね？}}"
+
+#: ../linux_story/story/challenges/challenge_28.py:104
+msgid "Eleanor: {{Bb:It seems really empty here...}}"
+msgstr "エレノア：{{Bb:ここに本当に何もないみたい…}}"
+
+#: ../linux_story/story/challenges/challenge_28.py:112
+msgid "Do you see the {{bb:.cellar}}?\n"
+msgstr "この地下倉庫({{bb:.cellar}})を見た？\n"
+
+#: ../linux_story/story/challenges/challenge_28.py:113
+msgid "Let's {{lb:go}} into the {{bb:.cellar}}."
+msgstr "地下倉庫({{bb:.cellar}})の中に{{lb:入ろう}}。"
+
+#: ../linux_story/story/challenges/challenge_28.py:120
+msgid "{{rb:Go in the wine cellar using}} {{yb:cd .cellar}}{{rb:.}}"
+msgstr "{{yb:cd .cellar}}{{rb:を使って、地下倉庫の中に入ろう。}}"
+
+#: ../linux_story/story/challenges/challenge_28.py:123
+msgid "Eleanor: {{Bb:I'm scared...can you hold my hand?}}"
+msgstr "エレノア：{{Bb:こわいよ！私と手をつないで。}}"
+
+#: ../linux_story/story/challenges/challenge_28.py:134
+msgid ""
+"{{bb:Eleanor}} grabs your hand, and the two of you walk into the {{bb:"
+"cellar}}.\n"
+msgstr ""
+"エレノア({{bb:Eleanor}})ちゃんは君と手をつないで、地下倉庫({{bb:cellar}})の中に入っ"
+"た。\n"
+
+#: ../linux_story/story/challenges/challenge_28.py:156
+msgid "Eleanor: {{Bb:\"...is there someone there?\"}}"
+msgstr "エレノア：{{Bb:\"…ここに誰かいる？\"}}"
+
+#: ../linux_story/story/challenges/challenge_28.py:169
+msgid "You see a woman {{bb:Clara}} in the {{bb:cellar}}.\n"
+msgstr "地下倉庫({{bb:cellar}})でクララ({{bb:Clara}})と言う女性がいる。\n"
+
+#: ../linux_story/story/challenges/challenge_28.py:170
+msgid "{{lb:Listen}} to what she has to say."
+msgstr "クララさんの話を{{lb:聞いて}}みよう。"
+
+#: ../linux_story/story/challenges/challenge_28.py:177
+msgid "{{rb:Use}} {{yb:cat}} {{rb:to listen what she has to say.}}"
+msgstr "{{yb:cat}}{{rb:で女性の話を聞いてみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_28.py:178
+msgid "{{rb:Use}} {{yb:cat Clara}} {{rb:to listen to Clara.}}"
+msgstr "{{yb:cat Clara}}{{rb:を使って、クララさんの話を聞いて。}}"
+
+#: ../linux_story/story/challenges/challenge_28.py:185
+msgid "Eleanor: {{Bb:\"...oh! I think I recognise that woman!\"}}"
+msgstr "エレノア：{{Bb:\"あれ！この女性は知ってるよ！\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:20
+msgid "\"Why is the private section in the library locked?\""
+msgstr "\"図書館の非公開区分は、なぜロックされているの？\""
+
+#: ../linux_story/story/challenges/challenge_29.py:22
+msgid ""
+"Clara: {{Bb:\"It contains some dangerous information.\"\n"
+"\"...I'm sorry, I shouldn't say more. The head librarian was quite concerned "
+"that no one should go in. He was the only one who could lock and unlock it."
+"\"}}"
+msgstr ""
+"クララ：{{Bb:\"中には危険な情報が入っている。\"\n"
+"\"いや、すみません。これ以上話せないわ。図書館長は誰も入れないことを結構気に"
+"していた。彼しか開けられないようになってる。\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:28
+msgid "\"How did he lock it?\""
+msgstr "\"どうやってカギをかけたの？\""
+
+#: ../linux_story/story/challenges/challenge_29.py:30
+msgid ""
+"Clara: {{Bb:\"I don't know, I wasn't senior enough to be taught.\"}}\n"
+"{{Bb:\"I think he was taught from a}} {{bb:masked swordsmaster}} {{Bb:living "
+"outside of town.\"}}"
+msgstr ""
+"クララ：{{Bb:\"分からないの。私は未経験者で教えてもらえなかった。\"}}\n"
+"{{Bb:\"多分、町の外に住んでいるマスクをしている剣の達人(}}{{bb:masked "
+"swordsmaster}}{{Bb:)から教わったと思う。\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:36
+msgid "\"Where would I find this masked swordsmaster?\""
+msgstr "\"マスクをしている剣の達人はどこにいるの？\""
+
+#: ../linux_story/story/challenges/challenge_29.py:38
+msgid ""
+"Clara: {{Bb:\"He said the}} {{bb:masked swordsmaster}} {{Bb:lived in the "
+"woods.\"}}\n"
+"{{Bb:\"I presume he meant the woods just off the}} {{lb:Windy Road}}{{Bb:? "
+"The one near the farm and that funny lonely house outside town.\"}}"
+msgstr ""
+"クララ：{{Bb:\"マスクをしている剣の達人(}}{{bb:masked swordsmaster}}{{Bb:)は"
+"森に住んでいると言ってた。\"}}\n"
+"{{Bb:\"おそらく、風の吹く道(}}{{lb:Windy Road}}{{Bb:)のすぐ先にある森だと思"
+"う。町の外にある面白いさみしい家と牧場のそばにある森。\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:48
+msgid "\"Why are you hiding down here?\""
+msgstr "\"なぜここに隠れているの？\""
+
+#: ../linux_story/story/challenges/challenge_29.py:50
+msgid ""
+"Clara: {{Bb:\"I heard a bell ring, and saw the lead librarian disappear in "
+"front of me. I was so scared I ran away, and found this}} {{bb:.cellar}}"
+"{{Bb:.\"}}"
+msgstr ""
+"クララ：{{Bb:\"かねの音を聞いて、図書館長が目の前できえちゃたの。とてもこわ"
+"かったから、逃げて、この地下倉庫(}}{{bb:.cellar}}{{Bb:)を見つけた。\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:56
+msgid "\"Do you have any relatives in town?\""
+msgstr "\"町に親せきはいるの？\""
+
+#: ../linux_story/story/challenges/challenge_29.py:58
+msgid ""
+"Clara: {{Bb:\"I have a couple of children, a}} {{bb:little-boy}} {{Bb:and "
+"a}} {{bb:young-girl}}{{Bb:. I hope they are alright.\"}}"
+msgstr ""
+"クララ：{{Bb:\"子供が２人いる。男の子(}}{{bb:little-boy}}{{Bb:)と少女(}}{{bb:"
+"young-girl}}{{Bb:)。無事だと祈ってる。\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:63
+msgid "\"Why is the library so empty?\""
+msgstr "\"なぜこの図書館に誰もいないの？\""
+
+#: ../linux_story/story/challenges/challenge_29.py:65
+msgid ""
+"Clara: {{Bb:\"We should have introduced late fees a long time ago...\"}}"
+msgstr "クララ：{{Bb:\"本返し忘れの罰金をもっと前に取り入れればよかった…\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:72
+msgid "\"Do you know any other people in town?\""
+msgstr "\"町で他にも知り合いはいるの？\""
+
+#: ../linux_story/story/challenges/challenge_29.py:74
+msgid ""
+"Clara: {{Bb:\"There's a man I don't trust that runs the}} {{bb:shed-shop}}"
+"{{Bb:. I think his name is}} {{bb:Bernard}}{{Bb:.\"}}"
+msgstr ""
+"クララ：{{Bb:\"あまり信用していない、小屋ショップ(}}{{bb:shed-shop}}{{Bb:)を"
+"経営しているおじさん。名前はベルナード(}}{{bb:Bernard}}{{Bb:)さんだと思"
+"う。\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:78
+msgid "\"Why don't you like Bernard?\""
+msgstr "\"なぜベルナードさんを信用しないの？\""
+
+#: ../linux_story/story/challenges/challenge_29.py:80
+msgid ""
+"Clara: {{Bb:\"He makes very simple tools and charges a fortune for them.}}\n"
+"{{Bb:His father was a very clever man and spent all his time in the library "
+"reading up commands. He became a successful business man as a result.\"}}"
+msgstr ""
+"クララ：{{Bb:\"とても単純な道具を作って、高く売っているから。}}\n"
+"{{Bb:彼のお父さんは、頭が良くてずっと図書館で新しいコマンドを勉強していた。そ"
+"のおかげで商売に成功した。\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:87
+msgid "\"What happened to Bernard's father?\""
+msgstr "\"ベルナードさんのお父さんはどうしたんですか？\""
+
+#: ../linux_story/story/challenges/challenge_29.py:89
+msgid ""
+"Clara: {{Bb:\"People aren't sure, he disappeared one day. It was assumed he "
+"had died. I saw him leave the library the day he went missing, he left in a "
+"hurry. He looked absolutely terrified.\"}}"
+msgstr ""
+"クララ：{{Bb:\"それは誰も知らないの。或る日突然いなくなって、皆は亡くなったか"
+"と思った。いなくなった日に図書館から急いで出てったのを見た。とてもこわがって"
+"いる表情だった。\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:104
+#, python-format
+msgid "{{yb:%s}}"
+msgstr "{{yb:%s}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:108
+#, python-format
+msgid ""
+"\n"
+"{{yb:1: %s}}"
+msgstr ""
+"\n"
+"{{yb:1: %s}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:109
+#, python-format
+msgid "{{yb:2: %s}}"
+msgstr "{{yb:2: %s}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:110
+#, python-format
+msgid "{{yb:3: %s}}"
+msgstr "{{yb:3: %s}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:137
+msgid ""
+"{{rb:Talk to Clara using}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} "
+"{{yb:echo 3}}{{rb:.}}"
+msgstr ""
+"{{yb:echo 1}}{{rb:、}}{{yb:echo 2}}{{rb:又は}}{{yb:echo 3}}{{rb:でクララさん"
+"に話してみて。}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:174
+msgid ""
+"\n"
+"{{rb:You've already asked Clara that. Ask her something else.}}"
+msgstr ""
+"\n"
+"{{rb:これは既にクララさんに聞いたね。他のことを聞いてみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:187
+msgid "Clara: {{Bb:\"What? Who are you?\"}}"
+msgstr "クララ：{{Bb:\"何？君は、だれ？\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:189
+#, python-format
+msgid ""
+"\n"
+"Eleanor: {{Bb:\"Hello! I'm Eleanor, and this is}} {{gb:%s}}{{Bb:.}} {{Bb:I "
+"recognise you! You used to work in the library!\"}}"
+msgstr ""
+"\n"
+"エレノア：{{Bb:\"はじめまして！私はエレノア。そしてこちらは}}{{gb:%s}}{{Bb:さ"
+"んだ。あなたに会ったことある！図書館で働いていたね！\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:193
+msgid ""
+"\n"
+"Clara: {{Bb:\"...ah, Eleanor! Yes, I remember you, you used to come in "
+"almost everyday.\"}}"
+msgstr ""
+"\n"
+"クララ：{{Bb:\"あっ、エレノアちゃん？はいはい、君はほぼ毎日通ってたね。\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:197
+msgid ""
+"\n"
+"{{yb:1: \"Why is the private section in the library locked?\"}}"
+msgstr ""
+"\n"
+"{{yb:1: \"図書館の非公開区分は、なぜロックされているの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:198
+msgid "{{yb:2: \"Why are you hiding down here?\"}}"
+msgstr "{{yb:2: \"なぜここに隠れているの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:199
+msgid "{{yb:3: \"Do you know about any other people in town?\"}}"
+msgstr "{{yb:3: \"町で他にも知り合いはいるの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:201
+msgid ""
+"\n"
+"Use {{yb:echo}} to ask {{bb:Clara}} a question."
+msgstr ""
+"\n"
+"{{yb:echo}}でクララ({{bb:Clara}})さんに質問をしてみよう。"
+
+#: ../linux_story/story/challenges/challenge_29.py:205
+msgid "Eleanor: {{Bb:\"I'm not scared anymore, I like Clara.\"}}"
+msgstr "エレノア：{{Bb:\"もうこわくないよ。クララさんのことが好き。\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:214
+msgid "Eleanor: {{Bb:\"What is so dangerous in the private-section?\"}}"
+msgstr "エレノア：{{Bb:\"図書館の非行化区分に何がそんなに危険なの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:223
+msgid "Eleanor: {{Bb:\"Do we want to unlock something so dangerous?\"}}"
+msgstr "エレノア：{{Bb:\"そんなに危険なものを本当に解放するの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:232
+msgid "{{yb:\"Where would I find this masked swordsmaster?\"}}"
+msgstr "{{yb:\"マスクをしている剣の達人は、どこにいるの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:234
+msgid ""
+"Clara: {{Bb:\"He said the}} {{bb:masked swordsmaster}} {{Bb:lived in the "
+"woods.\"}}"
+msgstr ""
+"クララ：{{Bb:\"マスクをしている剣の達人(}}{{bb:masked swordsmaster}}{{Bb:)は"
+"森に住んでいると言ってた。\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:237
+msgid ""
+"{{Bb:\"I presume he meant the woods just off the}} {{bb:Windy Road}}{{Bb:? "
+"The one near the farm and that funny lonely house outside town.\"}}"
+msgstr ""
+"{{Bb:\"おそらく、風の吹く道(}}{{lb:Windy Road}}{{Bb:)のすぐ先にある森だと思"
+"う。町の外にある面白いさみしい家と牧場のそばにある森。\"}}"
+
+#: ../linux_story/story/challenges/challenge_29.py:244
+msgid "Eleanor: {{Bb:\"A masked swordmaster??\"}}"
+msgstr "エレノア：{{Bb:\"マスクをしている剣の達人？\"}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:28
+msgid ""
+"\n"
+"Eleanor: {{Bb:\"...what was that?\"}}\n"
+msgstr ""
+"\n"
+"エレノア：{{Bb:\"…何だったの？\"}}\n"
+
+#: ../linux_story/story/challenges/challenge_30.py:38
+msgid "{{rb:Use}} {{yb:ls}} {{rb:to check everyone is still present.}}"
+msgstr "{{yb:ls}}{{rb:で全員がまだいることを確認しよう。}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:48
+msgid "Eleanor: {{Bb:......}}"
+msgstr "エレノア：{{Bb:......}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:56
+msgid "Everyone seems to be here. What was that bell?"
+msgstr "全員はいるみたいね。このかねの音はなんだったんだろう？"
+
+#: ../linux_story/story/challenges/challenge_30.py:57
+msgid ""
+"\n"
+"{{bb:Clara}} looks like she has something to say. {{lb:Listen to her.}}"
+msgstr ""
+"\n"
+"クララ({{bb:Clara}})さんが何か言いたいみたい。彼女の{{lb:話を聞こう}}。"
+
+#: ../linux_story/story/challenges/challenge_30.py:65
+msgid "{{rb:Use}} {{yb:cat Clara}} {{rb:to see what Clara has to say.}}"
+msgstr "{{yb:cat Clara}}{{rb:でクララさんの話を聞こう。}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:68
+msgid ""
+"Eleanor: {{Bb:\"....I was so scared. I don't think I want to go outside now."
+"\"}}"
+msgstr "エレノア：{{Bb:\"…とても怖かった。もう外に行きたくないわ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:77
+msgid "Clara: {{Bb:\"Are you two going back out there?\"}}"
+msgstr "クララ：{{Bb:\"君たち外に出る気？\"}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:78
+#, python-format
+msgid ""
+"{{Bb:\"}}{{gb:%s}}{{Bb:, you look like you can take care of yourself, but I "
+"don't feel happy with Eleanor going outside.\"}}"
+msgstr ""
+"{{Bb:\"}}{{gb:%s}}{{Bb:さん、君は一人でも大丈夫そうだけど、エレノアちゃんはあ"
+"まり外に行って欲しくないわ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:82
+#, python-format
+msgid ""
+"\n"
+"{{Bb:\"}}{{gb:%s}}{{Bb:, will you leave Eleanor with me? I'll look after her."
+"\"}}"
+msgstr ""
+"\n"
+"{{Bb:\"}}{{gb:%s}}{{Bb:さん、エレノアちゃんは私と一緒に残っても大丈夫？彼女の"
+"ことを見守るよ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:84
+msgid ""
+"\n"
+"{{yb:1: \"That's a good idea, take good care of her.\"}}"
+msgstr ""
+"\n"
+"{{yb:1: \"いいですよ。彼女のことを守ってください。\"}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:85
+msgid "{{yb:2: \"No I don't trust you, she's safer with me.\"}}"
+msgstr "{{yb:2: \"あなたを信用しない。彼女は私と一緒にいた方が安全だ。\"}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:86
+msgid "{{yb:3: \"(Ask Eleanor.) Are you happy to stay here?\"}}"
+msgstr "{{yb:3: \"（エレノアちゃんに聞いて）ここにいた方が嬉しいの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:88
+msgid ""
+"\n"
+"{{lb:Reply to Clara.}}"
+msgstr ""
+"\n"
+"{{lb:クララさんに答えて。}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:96
+msgid ""
+"{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} {{yb:echo 3}} {{rb:"
+"to reply to Clara.}}"
+msgstr ""
+"{{yb:echo 1}}{{rb:、}}{{yb:echo 2}}{{rb:又は}}{{yb:echo 3}}{{rb:でクララさん"
+"に答えてみて。}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:100
+msgid "Eleanor: {{Bb:\"I'm happy to stay here. I like Clara.\"}}"
+msgstr "エレノア：{{Bb:\"ここにいたい。クララさんのことが好き。\"}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:106
+msgid ""
+"\n"
+"Clara: {{Bb:\"Please let me look after her. I don't think it's safe for her "
+"to go outside.\"}}"
+msgstr ""
+"\n"
+"クララ：{{Bb:\"彼女のことを守らせて。外に行ったら危ないと思う。\"}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:111
+msgid ""
+"\n"
+"Eleanor: {{Bb:\"I'm happy to stay here. I like Clara.\"}}"
+msgstr ""
+"\n"
+"エレノア：{{Bb:\"ここにいたい。クララさんのことが好き。\"}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:128
+msgid "Clara: {{Bb:\"Thank you!\"}}"
+msgstr "クララ：{{Bb:\"ありがとう！\"}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:129
+msgid ""
+"Eleanor: {{Bb:\"When you find my parents, can you tell them I'm here?\"}}"
+msgstr ""
+"エレノア：{{Bb:\"両親が見つかったら、私がここにいると伝えてくれる？\"}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:131
+msgid "Clara: {{Bb:\"Where are you going to go now?\"}}"
+msgstr "クララ：{{Bb:\"次はどこに行くの？\"}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:132
+msgid ""
+"\n"
+"Let's head back to see {{bb:Bernard}} and see if he's heard of the {{bb:"
+"masked swordsmaster}}.\n"
+msgstr ""
+"\n"
+"ベルナード({{bb:Bernard}})さんのところに戻って、マスクをしている剣の達人"
+"({{bb:masked swordsmaster}})を知っているかどうか聞いてみよう。\n"
+
+#: ../linux_story/story/challenges/challenge_30.py:134
+msgid "{{lb:Head to the}} {{bb:shed-shop.}}"
+msgstr "小屋ショップ({{bb:shed-shop}})へ{{lb:行こう}}。"
+
+#: ../linux_story/story/challenges/challenge_30.py:145
+msgid ""
+"\n"
+"{{gb:You head upstairs}}"
+msgstr ""
+"\n"
+"{{gb:君は上に戻った。}}"
+
+#: ../linux_story/story/challenges/challenge_30.py:150
+msgid ""
+"\n"
+"{{rb:Use}} {{yb:cd shed-shop/}}{{rb:.}}"
+msgstr ""
+"\n"
+"{{yb:cd shed-shop/}}{{rb:を使って。}}"
+
+#: ../linux_story/story/challenges/challenge_31.py:25
+msgid "You've arrived in the {{bb:shed-shop}}. {{lb:Look around.}}"
+msgstr "小屋ショップ({{bb:shed-shop}})に着いた。{{lb:周りを見よう}}。"
+
+#: ../linux_story/story/challenges/challenge_31.py:43
+msgid "Huh, you can't see {{bb:Bernard}} anywhere."
+msgstr "ベルナード({{bb:Bernard}})さんはどこにもいない。"
+
+#: ../linux_story/story/challenges/challenge_31.py:45
+msgid "I wonder where he went.\n"
+msgstr "どこに行ったんだろう。\n"
+
+#: ../linux_story/story/challenges/challenge_31.py:47
+msgid "Maybe he's in his {{bb:basement}}? Let's {{lb:go}} down there."
+msgstr "もしかして、地下({{bb:basement}})にいるかも？下へ{{lb:行こう}}。"
+
+#: ../linux_story/story/challenges/challenge_31.py:52
+msgid "{{rb:Go into the basement with}} {{yb:cd basement}}"
+msgstr "{{yb:cd basement}}{{rb:で地下へ行こう。}}"
+
+#: ../linux_story/story/challenges/challenge_31.py:58
+msgid ""
+"\n"
+"Is that Bernard's hat? Strange he left it behind..."
+msgstr ""
+"\n"
+"これは、ベルナードさんの帽子？なぜここで忘れたんだろう…"
+
+#: ../linux_story/story/challenges/challenge_31.py:73
+msgid "You walked into {{bb:Bernard}}'s basement. {{lb:Look around.}}"
+msgstr "ベルナード({{bb:Bernard}})さんの地下に入った。{{lb:周りを見よう}}。"
+
+#: ../linux_story/story/challenges/challenge_31.py:96
+msgid "You see what looks like another tool and a couple of diaries.\n"
+msgstr "他のツールと、日記が２冊置いてある。\n"
+
+#: ../linux_story/story/challenges/challenge_31.py:97
+msgid "Shall we {{lb:examine}} them?"
+msgstr "中を{{lb:見てみよう}}か？"
+
+#: ../linux_story/story/challenges/challenge_31.py:107
+msgid "{{rb:Use}} {{yb:cat}} {{rb:to examine the objects around you.}}"
+msgstr "{{yb:cat}}{{rb:で周りのものを確認してみて。}}"
+
+#: ../linux_story/story/challenges/challenge_31.py:119
+msgid ""
+"\n"
+"{{gb:Well done! Look at the other objects.}}"
+msgstr ""
+"\n"
+"{{gb:いいね。他のものも見てみよう。}}"
+
+#: ../linux_story/story/challenges/challenge_31.py:134
+msgid ""
+"Enough wandering. Let's go and try and find the {{bb:masked swordsmaster}} "
+"near the woods, and see what information he can tell us."
+msgstr ""
+"もう十分見たね。マスクをしている剣の達人({{bb:masked swordsmaster}})を森で探"
+"しに行って、どういう情報を教えてくれるか見てみよう。"
+
+#: ../linux_story/step_helper_functions.py:22
+#: ../linux_story/step_helper_functions.py:37
+#: ../linux_story/step_helper_functions.py:53
+#: ../linux_story/step_helper_functions.py:60 ../linux_story/Terminal.py:217
+msgid "Nice try! But you do not need that command for this challenge"
+msgstr "なるほど。でもこのコマンドは今のチャレンジで必要ないよ。"
+
+#: ../linux_story/step_helper_functions.py:31
+msgid ""
+"You're close, but you entered an unexpected destination path. Try going "
+"somewhere else."
+msgstr "惜しい。でもこのパスには行けない。他の場所へ行ってみよう。"
+
+#: ../linux_story/step_helper_functions.py:45
+msgid ""
+"Nearly there!  But you're trying to build something different from what was "
+"expected.  Try building something else."
+msgstr "もう少し！でも違うものを作っているみたい。別のものを作ってみて。"
+
+#: ../linux_story/story/terminals/terminal_bernard.py:14
+msgid "Bernard stopped you looking in the basement!"
+msgstr "ベルナードさんは君が地下にいけないように止めた！"
+
+#: ../linux_story/story/terminals/terminal_cd.py:34
+msgid "Nice try! But you entered an unexpected destination path."
+msgstr "なるほど。でも変なパスに入ろうとしたよ。"
+
+#: ../linux_story/story/terminals/terminal_nano.py:23
+msgid "Save modified buffer (ANSWERING \"No\" WILL DESTROY CHANGES) ? "
+msgstr "変更済みのバッファーを保存する？（\"No\"と答えたら変更が失われる）"
+
+#: ../linux_story/story/terminals/terminal_nano.py:24
+msgid "File Name to Write"
+msgstr "書き込むファイル名"
+
+#: ../linux_story/story/terminals/terminal_nano.py:323
+msgid ""
+"\n"
+"{{rb:Oops, you opened the wrong file! Press}} {{yb:Ctrl X}} {{rb:to exit.}}"
+msgstr ""
+"\n"
+"{{rb:あれ、違うファイルを開いた！終了するには、}}{{yb:Ctrl X}}{{rb:を押し"
+"て。}}"
+
+#: ../linux_story/story/terminals/terminal_nano.py:330
+#, python-format
+msgid ""
+"\n"
+"{{gb:You've opened nano! Now make sure the file says}} {{yb:%s}}{{gb:. If "
+"you want to exit, press}} {{yb:Ctrl X}}{{gb:.}}"
+msgstr ""
+"\n"
+"{{gb:nanoを開いた！ファイルの中身が次と一致することを確認して：}}{{yb:%s}}{{gb:終"
+"了するには、}}{{yb:Ctrl X}}{{gb:を押してください。}}"
+
+#: ../linux_story/story/terminals/terminal_nano.py:367
+#, python-format
+msgid ""
+"\n"
+"{{rb:Your text is not correct! Type}} {{yb:nano %s}} {{rb:to try again.}}"
+msgstr ""
+"\n"
+"{{rb:文章は正しくない。}}{{yb:nano %s}}{{rb:でもう一度やってみて。}}"
+
+#: ../linux_story/story/terminals/terminal_nano.py:375
+#, python-format
+msgid ""
+"\n"
+"{{rb:The file path}} {{lb:%s}} {{rb:does not exists - did you save your file "
+"correctly?}}"
+msgstr ""
+"\n"
+"{{lb:%s}}{{rb:と言うパスは存在しない。ファイルをちゃんと保存したの？}}"
+
+#: ../linux_story/story/terminals/terminal_nano.py:415
+msgid ""
+"\n"
+"{{gb:Press}} {{ob:Enter}} {{gb:to confirm the filename.}}"
+msgstr ""
+"\n"
+"{{ob:Enter}}{{gb:を押して、このフェイル名を確定しよう。}}"
+
+#: ../linux_story/story/terminals/terminal_nano.py:419
+#, python-format
+msgid ""
+"\n"
+"{{gb:Type}} {{yb:%s}} {{gb:and press}} {{yb:Enter}}"
+msgstr ""
+"\n"
+"{{yb:%s}}{{gb:をタイプし、}}{{yb:Enter}}{{gb:を押して。}}"
+
+#: ../linux_story/story/terminals/terminal_nano.py:425
+msgid ""
+"\n"
+"{{ob:Oops, your text isn't correct. Press}} {{yb:Ctrl C}} {{ob:to cancel.}}"
+msgstr ""
+"\n"
+"{{ob:おっと、この文書は正しくないぞ。}}{{yb:Ctrl C}}{{ob:をタイプしてキャンセ"
+"ルしよう。}}"
+
+#: ../linux_story/story/terminals/terminal_nano.py:432
+msgid ""
+"\n"
+"{{gb:Press}} {{ob:Y}} {{gb:to confirm that you want to save.}}"
+msgstr ""
+"\n"
+"{{gb:本当に保存するには、}}{{ob:Y}}{{gb:を押して。}}"
+
+#: ../linux_story/story/terminals/terminal_nano.py:437
+msgid ""
+"\n"
+"{{rb:Your text is not correct! Press}} {{yb:N}} {{rb:to exit nano.}}"
+msgstr ""
+"\n"
+"{{rb:この文書は正しくない！}}{{yb:N}}{{rb:でnanoを閉じよう。}}"
+
+#: ../linux_story/story/terminals/terminal_nano.py:443
+#, python-format
+msgid ""
+"\n"
+"{{gb:Excellent, you typed}} {{yb:%s}}{{gb:. Now press}} {{yb:Ctrl X}} {{gb:"
+"to exit.}}"
+msgstr ""
+"\n"
+"{{gb:そうです、}}{{yb:%s}}{{gb:をタイプした。次は}}{{yb:Ctrl X}}{{gb:で閉じよ"
+"う。}}"
+
+#: ../linux_story/gtk3/FinishDialog.py:16
+msgid "You've completed Terminal Quest!"
+msgstr "ターミナル・クェストを完了しました！"
+
+#: ../linux_story/gtk3/FinishDialog.py:18
+msgid ""
+"We are working on the next Chapter. In the meantime, would you like to send "
+"us any feedback?"
+msgstr "只今、この話の続きを作っています。その間、感想を聞かせてくれませんか？"
+
+#: ../linux_story/gtk3/FinishDialog.py:26
+msgid "LAUNCH FEEDBACK"
+msgstr "感想を伝える"
+
+#: ../linux_story/gtk3/FinishDialog.py:31
+msgid "CLOSE APPLICATION"
+msgstr "アプリを閉じる"
+
+#: ../linux_story/gtk3/MenuScreen.py:82
+msgid "TERMINAL QUEST MENU"
+msgstr "ターミナル・クェスト メニュー"
+
+#: ../linux_story/gtk3/MenuScreen.py:83
+msgid "Use arrow keys to select the button"
+msgstr "矢印キーでボタンを選択して下さい"
+
+#: ../linux_story/gtk3/MenuScreen.py:87
+msgid "CONTINUE STORY"
+msgstr "ストーリーを続ける"
+
+#: ../linux_story/gtk3/MenuScreen.py:95
+msgid "SELECT CHAPTER"
+msgstr "章を選ぶ"
+
+#: ../linux_story/gtk3/MenuScreen.py:242 ../linux_story/gtk3/MenuScreen.py:422
+msgid "CHAPTERS"
+msgstr "章"
+
+#: ../linux_story/gtk3/MenuScreen.py:261
+msgid "CHALLENGES"
+msgstr "チャレンジ"
+
+#: ../linux_story/gtk3/MenuScreen.py:284
+msgid "<- BACK"
+msgstr "<- 戻る"
+
+#: ../linux_story/gtk3/MenuScreen.py:286
+msgid "Press ENTER to go to the previous screen"
+msgstr "前に戻るには、ENTERを押してください"
+
+#: ../linux_story/gtk3/MenuScreen.py:337
+msgid "Challenge {}: {}"
+msgstr "チャレンジ{}: {}"
+
+#: ../linux_story/gtk3/MenuScreen.py:343
+msgid "Chapter {}: {}"
+msgstr "{}章: {}"
+
+#: ../linux_story/gtk3/MenuScreen.py:346
+msgid "Challenge {} to Challenge {}"
+msgstr "チャレンジ{}から{}まで"
+
+#: ../linux_story/gtk3/Storybook.py:175
+msgid "INTRODUCTION\n"
+msgstr "プロローグ\n"
+
+#: ../linux_story/gtk3/Storybook.py:177
+msgid "CHALLENGE {}\n"
+msgstr "チャレンジ {}\n"
+
+#: ../linux_story/gtk3/Storybook.py:179
+msgid "-------------------\n"
+msgstr "-------------------\n"
+
+#: ../linux_story/Terminal.py:350
+#, python-format
+msgid ""
+"{{gb:Congratulations, you earned %d XP!}}\n"
+"\n"
+msgstr ""
+"{{gb:経験値%dポイントを獲得できた。おめでとうございます！}}\n"
+"\n"
+
