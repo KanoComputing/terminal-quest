@@ -182,7 +182,7 @@ class Step4(StepTemplateEcho):
     story = [
         _("Ruth: {{Bb:\"He disappeared in front of you?? Oh no! They've been saying on the radio that people have been going missing...what should I do?\"}}"),
         _("\n{{yb:1: \"Some people survived by going into hiding.\"}}"),
-        _("{{yb:2: \"I think you should go and look for your husband\"}}\n")
+        _("{{yb:2: \"I think you should go and look for your husband.\"}}\n")
     ]
 
     start_dir = "~/farm/barn"
