@@ -248,9 +248,10 @@ def get_path_to_file_in_system(name):
 
 language_dirs = None
 
+
 def get_language_dirs():
     """
-    Get possible language directories to be searched for, based on 
+    Get possible language directories to be searched for, based on
     the environment variables: LANGUAGE, LC_ALL, LC_MESSAGES and LANG.
     The result is memoized for future use.
 
@@ -282,5 +283,3 @@ def get_language_dirs():
 
     language_dirs = nelangs
     return language_dirs
-
-
