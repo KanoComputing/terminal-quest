@@ -208,19 +208,6 @@ msgstr ""
 "眠そうな君よ、早く起きよう！\n"
 " "
 
-#: ../linux_story/story/challenges/challenge_1.py:36
-#: ../linux_story/story/challenges/challenge_2.py:35
-#: ../linux_story/story/challenges/challenge_2.py:38
-#: ../linux_story/story/challenges/challenge_4.py:33
-#: ../linux_story/story/challenges/challenge_4.py:36
-#: ../linux_story/story/challenges/challenge_11.py:120
-#: ../linux_story/story/challenges/challenge_11.py:123
-#: ../linux_story/story/challenges/challenge_17.py:221
-#: ../linux_story/story/challenges/challenge_20.py:132
-#: ../linux_story/story/challenges/challenge_20.py:135
-msgid " ------------------------------------- "
-msgstr " ------------------------------------- "
-
 #: ../linux_story/story/challenges/challenge_1.py:37
 msgid "| {{gb:New Spell:}} Type {{yb:ls}} and press        |"
 msgstr "| {{gb:新しいおまじない:}} {{lb:周りを見る}}には、      |"
@@ -228,10 +215,6 @@ msgstr "| {{gb:新しいおまじない:}} {{lb:周りを見る}}には、      
 #: ../linux_story/story/challenges/challenge_1.py:38
 msgid "| {{ob:Enter}} to {{lb:look around}}.               |"
 msgstr "| {{yb:ls}}をタイプし、{{ob:Enter}}キーを押して下さい。 |"
-
-#: ../linux_story/story/challenges/challenge_1.py:39
-msgid " ------------------------------------- \n"
-msgstr " ------------------------------------- \n"
 
 #: ../linux_story/story/challenges/challenge_1.py:46
 msgid ""
@@ -2103,10 +2086,6 @@ msgstr "| {{gb:新しいおまじない}}: {{yb:echo}}の後に単語で      |"
 msgid "| lets you {{lb:speak}}                      | "
 msgstr "| {{lb:話す}}事が出来る。                       | "
 
-#: ../linux_story/story/challenges/challenge_17.py:224
-msgid " -------------------------------------  "
-msgstr " -------------------------------------  "
-
 #: ../linux_story/story/challenges/challenge_17.py:227
 msgid "{{rb:Use the command}} {{yb:echo hello}}"
 msgstr "{{yb:echo hello}}{{rb:を使ってみよう。}}"
@@ -3898,11 +3877,6 @@ msgstr ""
 "ベルナード{{Bb:\"こんにちはああああ。僕のスクリプトを直しに来たね！\"}}\n"
 " "
 
-#: ../linux_story/story/challenges/challenge_27.py:60
-#: ../linux_story/story/challenges/challenge_27.py:63
-msgid " -------------------------------------- "
-msgstr " -------------------------------------- "
-
 #: ../linux_story/story/challenges/challenge_27.py:61
 msgid "| {{gb:New Spell}}: {{yb:nano}} followed by an       |"
 msgstr "| {{gb:新しいおまじない}}: {{yb:nano}}の後にファイルで   |"
@@ -4850,10 +4824,6 @@ msgstr "プロローグ\n"
 #: ../linux_story/gtk3/Storybook.py:177
 msgid "CHALLENGE {}\n"
 msgstr "チャレンジ {}\n"
-
-#: ../linux_story/gtk3/Storybook.py:179
-msgid "-------------------\n"
-msgstr "-------------------\n"
 
 #: ../linux_story/Terminal.py:350
 #, python-format

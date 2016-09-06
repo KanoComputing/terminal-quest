@@ -9,6 +9,7 @@
 import os
 import os.path
 import gettext
+import re
 
 from kano.colours import colourize256, decorate_string
 from kano.logging import logger
@@ -19,6 +20,10 @@ from kano_profile.apps import \
 from linux_story.common import \
     localized_story_files_dir_pattern, \
     fallback_story_files_dir
+
+
+FORMATTING_BEGIN = re.compile(r"{{\w+:")
+FORMATTING_END = re.compile(r"}}")
 
 
 def debugger(text):
@@ -283,3 +288,34 @@ def get_language_dirs():
 
     language_dirs = nelangs
     return language_dirs
+
+
+def strip_formatting(string):
+    """
+    Remove formatting in strings
+
+    e.g.
+    strip_formatting('{{gb:Foo}}') => 'Foo'
+    """
+    string = FORMATTING_BEGIN.sub("", string)
+    string = FORMATTING_END.sub("", string)
+    return string
+
+
+def wrap_in_box(lines):
+    """Wrap lines in an ascii box"""
+
+    def reduction(memo, line):
+        line_length = len(strip_formatting(line))
+        return memo if line_length < memo else line_length
+
+    def format_line(line):
+        num_padding = max_characters - len(strip_formatting(line))
+        return "| {} |".format(line + (" " * num_padding))
+
+    max_characters = reduce(reduction, lines, 0)
+    outer_line = " {} ".format("-" * (max_characters + 2))
+
+    new_lines = map(format_line, lines)
+
+    return [outer_line] + new_lines + [outer_line + "\n"]
