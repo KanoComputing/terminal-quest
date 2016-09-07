@@ -224,16 +224,15 @@ msgid "Euuughh...turn that {{bb:alarm}} off! \n"
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_2.py:36
-msgid "| {{gb:New Spell}}: to {{lb:examine}} objects, type |"
+msgid "{{gb:New Spell}}: to {{lb:examine}} objects, type"
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_2.py:37
-msgid "| {{yb:cat}} and the object name.            | "
+msgid "{{yb:cat}} and the object name."
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_2.py:39
 msgid ""
-"\n"
 "Use {{yb:cat alarm}} to {{lb:examine}} the {{bb:alarm}}."
 msgstr ""
 
@@ -360,11 +359,11 @@ msgid ""
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_4.py:34
-msgid "| {{gb:New Spell}}: {{yb:cd}} lets you {{lb:move}}         |"
+msgid "{{gb:New Spell}}: {{yb:cd}} lets you {{lb:move}}"
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_4.py:35
-msgid "| between places.                     | "
+msgid "between places."
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_4.py:37
@@ -1090,11 +1089,11 @@ msgid ""
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_11.py:121
-msgid "| {{gb:New Spell}}: to {{lb:move}} objects, type {{yb:mv}} |"
+msgid "{{gb:New Spell}}: to {{lb:move}} objects, type {{yb:mv}}"
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_11.py:122
-msgid "| and the object name.                |"
+msgid "and the object name."
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_11.py:134
@@ -1815,11 +1814,11 @@ msgid "Let's test this out. \n"
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_17.py:222
-msgid "| {{gb:New Spell}}: {{yb:echo}} followed by words   |"
+msgid "{{gb:New Spell}}: {{yb:echo}} followed by words"
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_17.py:223
-msgid "| lets you {{lb:speak}}                      | "
+msgid "lets you {{lb:speak}}"
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_17.py:227
@@ -2261,11 +2260,11 @@ msgid ""
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_20.py:133
-msgid "| {{gb:New Spell}}: {{yb:mkdir}} followed by a word |"
+msgid "{{gb:New Spell}}: {{yb:mkdir}} followed by a word"
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_20.py:134
-msgid "| lets you {{lb:create}} a shelter           | "
+msgid "lets you {{lb:create}} a shelter"
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_20.py:138
@@ -3331,16 +3330,15 @@ msgid ""
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_27.py:61
-msgid "| {{gb:New Spell}}: {{yb:nano}} followed by an       |"
+msgid "{{gb:New Spell}}: {{yb:nano}} followed by an"
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_27.py:62
-msgid "| object lets you {{lb:edit}} it              |"
+msgid "object lets you {{lb:edit}} it"
 msgstr ""
 
 #: ../linux_story/story/challenges/challenge_27.py:64
 msgid ""
-"\n"
 "Let's try and use {{yb:nano best-horn-in-the-world.sh}} to edit it."
 msgstr ""
 

@@ -226,19 +226,17 @@ msgid "Euuughh...turn that {{bb:alarm}} off! \n"
 msgstr "Euuughh...apaga ese {{bb:despertador}} por favor! \n"
 
 #: ../linux_story/story/challenges/challenge_2.py:36
-msgid "| {{gb:New Spell}}: to {{lb:examine}} objects, type |"
-msgstr "| {{gb:Nuevo hechizo}}: para {{lb:examinar}} objectos, escribe |"
+msgid "{{gb:New Spell}}: to {{lb:examine}} objects, type"
+msgstr "{{gb:Nuevo hechizo}}: para {{lb:examinar}} objectos, escribe"
 
 #: ../linux_story/story/challenges/challenge_2.py:37
-msgid "| {{yb:cat}} and the object name.            | "
-msgstr "| {{yb:cat}} y el nombre del objeto.            | "
+msgid "{{yb:cat}} and the object name."
+msgstr "{{yb:cat}} y el nombre del objeto."
 
 #: ../linux_story/story/challenges/challenge_2.py:39
 msgid ""
-"\n"
 "Use {{yb:cat alarm}} to {{lb:examine}} the {{bb:alarm}}."
 msgstr ""
-"\n"
 "Usa {{yb:cat despertador}} para {{lb:examinar}} el {{bb:despertador}}."
 
 #: ../linux_story/story/challenges/challenge_2.py:45
@@ -383,19 +381,17 @@ msgstr ""
 " "
 
 #: ../linux_story/story/challenges/challenge_4.py:34
-msgid "| {{gb:New Spell}}: {{yb:cd}} lets you {{lb:move}}         |"
-msgstr "| {{gb:Nuevo hechizo}}: {{yb:cd}} te permite{{lb:moverte}}         |"
+msgid "{{gb:New Spell}}: {{yb:cd}} lets you {{lb:move}}"
+msgstr "{{gb:Nuevo hechizo}}: {{yb:cd}} te permite{{lb:moverte}}"
 
 #: ../linux_story/story/challenges/challenge_4.py:35
-msgid "| between places.                     | "
-msgstr "| entre distintos sitios.                     | "
+msgid "between places."
+msgstr "entre distintos sitios."
 
 #: ../linux_story/story/challenges/challenge_4.py:37
 msgid ""
-"\n"
 "Use the command {{yb:cd ..}} to {{lb:leave}} your room.\n"
 msgstr ""
-"\n"
 "Usa el comando {{yb:cd ..}} para {{lb:abandonar}} tu habitación.\n"
 
 #: ../linux_story/story/challenges/challenge_4.py:49
@@ -1202,13 +1198,13 @@ msgid ""
 msgstr "{{Bb:\"Pero no entiendo qué significa eso. ¿Lo digo? ¿O lo escribo?\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_11.py:121
-msgid "| {{gb:New Spell}}: to {{lb:move}} objects, type {{yb:mv}} |"
+msgid "{{gb:New Spell}}: to {{lb:move}} objects, type {{yb:mv}}"
 msgstr ""
-"| {{gb:Nuevo hechizo}}: para {{lb:mover}} objectos, escribe {{yb:mv}} |"
+"{{gb:Nuevo hechizo}}: para {{lb:mover}} objectos, escribe {{yb:mv}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:122
-msgid "| and the object name.                |"
-msgstr "| y el nombre del objeto.                |"
+msgid "and the object name."
+msgstr "y el nombre del objeto."
 
 #: ../linux_story/story/challenges/challenge_11.py:134
 msgid ""
@@ -2057,12 +2053,12 @@ msgid "Let's test this out. \n"
 msgstr "Probémoslo. \n"
 
 #: ../linux_story/story/challenges/challenge_17.py:222
-msgid "| {{gb:New Spell}}: {{yb:echo}} followed by words   |"
-msgstr "| {{gb:Nuevo hechizo}}: {{yb:echo}} seguido de palabras |"
+msgid "{{gb:New Spell}}: {{yb:echo}} followed by words"
+msgstr "{{gb:Nuevo hechizo}}: {{yb:echo}} seguido de palabras"
 
 #: ../linux_story/story/challenges/challenge_17.py:223
-msgid "| lets you {{lb:speak}}                      | "
-msgstr "| te permite {{lb:hablar}}                      | "
+msgid "lets you {{lb:speak}}"
+msgstr "te permite {{lb:hablar}}"
 
 #: ../linux_story/story/challenges/challenge_17.py:227
 msgid "{{rb:Use the command}} {{yb:echo hello}}"
@@ -2569,12 +2565,12 @@ msgstr ""
 " "
 
 #: ../linux_story/story/challenges/challenge_20.py:133
-msgid "| {{gb:New Spell}}: {{yb:mkdir}} followed by a word |"
-msgstr "| {{gb:Nuevo hechizo}}: {{yb:mkdir}} seguido de una palabra |"
+msgid "{{gb:New Spell}}: {{yb:mkdir}} followed by a word"
+msgstr "{{gb:Nuevo hechizo}}: {{yb:mkdir}} seguido de una palabra"
 
 #: ../linux_story/story/challenges/challenge_20.py:134
-msgid "| lets you {{lb:create}} a shelter           | "
-msgstr "| te permite {{lb:construir}} un refugio           | "
+msgid "lets you {{lb:create}} a shelter"
+msgstr "te permite {{lb:construir}} un refugio"
 
 #: ../linux_story/story/challenges/challenge_20.py:138
 msgid "{{rb:Create an igloo structure by using}} {{yb:mkdir igloo}}\n"
@@ -3854,19 +3850,17 @@ msgstr ""
 " "
 
 #: ../linux_story/story/challenges/challenge_27.py:61
-msgid "| {{gb:New Spell}}: {{yb:nano}} followed by an       |"
-msgstr "| {{gb:Nuevo hechizo}}: {{yb:nano}} seguido de un       |"
+msgid "{{gb:New Spell}}: {{yb:nano}} followed by an"
+msgstr "{{gb:Nuevo hechizo}}: {{yb:nano}} seguido de un"
 
 #: ../linux_story/story/challenges/challenge_27.py:62
-msgid "| object lets you {{lb:edit}} it              |"
-msgstr "| objecto te permite {{lb:editarlo}}              |"
+msgid "object lets you {{lb:edit}} it"
+msgstr "objecto te permite {{lb:editarlo}}"
 
 #: ../linux_story/story/challenges/challenge_27.py:64
 msgid ""
-"\n"
 "Let's try and use {{yb:nano best-horn-in-the-world.sh}} to edit it."
 msgstr ""
-"\n"
 "Intentémoslo usando {{yb:nano mejor-bocina-del-mundo.sh}} to edit it."
 
 #: ../linux_story/story/challenges/challenge_27.py:76

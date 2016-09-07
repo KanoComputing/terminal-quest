@@ -13,6 +13,7 @@ from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_18 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
+from linux_story.helper_functions import wrap_in_box
 
 
 # This is for the challenges that only need ls
@@ -218,11 +219,12 @@ class Step7(StepTemplateEcho):
     story = [
         _("So the note says {{Bb:\"echo hello - will make you say hello\"}}"),
         _("Let's test this out. \n"),
-        _(" ------------------------------------- "),
-        _("| {{gb:New Spell}}: {{yb:echo}} followed by words   |"),
-        _("| lets you {{lb:speak}}                      | "),
-        _(" -------------------------------------  ")
     ]
+    story += wrap_in_box([
+        _("{{gb:New Spell}}: {{yb:echo}} followed by words"),
+        _("lets you {{lb:speak}}"),
+    ])
+
     hints = [
         _("{{rb:Use the command}} {{yb:echo hello}}")
     ]

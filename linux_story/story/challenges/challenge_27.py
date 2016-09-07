@@ -10,6 +10,7 @@ from linux_story.story.challenges.challenge_28 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.terminals.terminal_bernard import \
     TerminalMkdirBernard, TerminalNanoBernard
+from linux_story.helper_functions import wrap_in_box
 
 
 class StepTemplateMkdir(TerminalMkdirBernard):
@@ -57,11 +58,13 @@ class Step1(StepTemplateMkdir):
 class Step2(StepTemplateNano):
     story = [
         _("Bernard: {{Bb:\"Hellooooo. You came back to fix my script!\"}}\n "),
-        _(" -------------------------------------- "),
-        _("| {{gb:New Spell}}: {{yb:nano}} followed by an       |"),
-        _("| object lets you {{lb:edit}} it              |"),
-        _(" -------------------------------------- "),
-        _("\nLet's try and use {{yb:nano best-horn-in-the-world.sh}} to edit it."),
+    ]
+    story += wrap_in_box([
+        _("{{gb:New Spell}}: {{yb:nano}} followed by an"),
+        _("object lets you {{lb:edit}} it"),
+    ])
+    story += [
+        _("Let's try and use {{yb:nano best-horn-in-the-world.sh}} to edit it."),
     ]
 
     start_dir = "~/town/east/shed-shop"

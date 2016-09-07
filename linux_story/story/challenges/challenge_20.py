@@ -11,6 +11,7 @@ from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
 from linux_story.story.challenges.challenge_21 import Step1 as NextStep
 from linux_story.step_helper_functions import \
     unblock_commands_with_mkdir_hint, unblock_cd_commands
+from linux_story.helper_functions import wrap_in_box
 
 
 class StepTemplateEcho(TerminalEcho):
@@ -129,11 +130,13 @@ class Step4(StepTemplateMkdir):
         _("Ruth: {{Bb:\"This says you can make something using something " +\
         "called}} {{yb:mkdir}}{{Bb:?\"}}"),
         _("\nTry making an igloo using {{yb:mkdir igloo}}\n "),
-        _(" ------------------------------------- "),
-        _("| {{gb:New Spell}}: {{yb:mkdir}} followed by a word |"),
-        _("| lets you {{lb:create}} a shelter           | "),
-        _(" ------------------------------------- ")
     ]
+
+    story += wrap_in_box([
+        _("{{gb:New Spell}}: {{yb:mkdir}} followed by a word"),
+        _("lets you {{lb:create}} a shelter"),
+    ])
+
     hints = [
         _("{{rb:Create an igloo structure by using}} {{yb:mkdir igloo}}\n")
     ]
