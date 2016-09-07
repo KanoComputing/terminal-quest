@@ -224,11 +224,11 @@ msgstr "Increíble, ahora puedes ver los objetos a tu alrededor. "
 
 #: ../linux_story/story/challenges/challenge_2.py:34
 msgid "There's your {{bb:bed}}, an {{bb:alarm}}... "
-msgstr "Allí está tu{{bb:cama}}, tu {{bb:despertador}}... "
+msgstr "Allí está tu {{bb:bed}}, tu {{bb:alarm}}... "
 
 #: ../linux_story/story/challenges/challenge_2.py:35
 msgid "Euuughh...turn that {{bb:alarm}} off! \n"
-msgstr "Euuughh...apaga ese {{bb:despertador}} por favor! \n"
+msgstr "Euuughh...apaga ese {{bb:alarm}} por favor! \n"
 
 #: ../linux_story/story/challenges/challenge_2.py:39
 msgid "{{gb:New Spell}}: to {{lb:examine}} objects, type"
@@ -240,12 +240,12 @@ msgstr "{{yb:cat}} y el nombre del objeto."
 
 #: ../linux_story/story/challenges/challenge_2.py:44
 msgid "Use {{yb:cat alarm}} to {{lb:examine}} the {{bb:alarm}}."
-msgstr "Usa {{yb:cat despertador}} para {{lb:examinar}} el {{bb:despertador}}."
+msgstr "Usa {{yb:cat alarm}} para {{lb:examinar}} el {{bb:alarm}}."
 
 #: ../linux_story/story/challenges/challenge_2.py:51
 msgid "{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}"
 msgstr ""
-"{{rb:Escribe}} {{yb:cat despertador}} {{rb:para investigar el despertador.}}"
+"{{rb:Escribe}} {{yb:cat alarm}} {{rb:para investigar el despertador.}}"
 
 #: ../linux_story/story/challenges/challenge_2.py:62
 msgid "Ok - it's switched off. Better get dressed...\n"
@@ -254,31 +254,31 @@ msgstr "Ok - está apagado. Mejor vístete...\n"
 #: ../linux_story/story/challenges/challenge_2.py:64
 msgid "Type {{yb:ls wardrobe/}} to {{lb:look inside}} your {{bb:wardrobe}}.\n"
 msgstr ""
-"Escribe {{yb:ls guardarropas/}} para {{lb:mirar dentro}} de tu {{bb:"
-"guardarropas}}.\n"
+"Escribe {{yb:ls wardrobe/}} para {{lb:mirar dentro}} de tu {{bb:"
+"wardrobe}}.\n"
 
 #: ../linux_story/story/challenges/challenge_2.py:69
 msgid "{{rb:Type}} {{yb:ls wardrobe/}} {{rb:to look for something to wear.}}"
 msgstr ""
-"{{rb:Escribe}} {{yb:ls guardarropas/}} {{rb:para buscar ropa para ponerte.}}"
+"{{rb:Escribe}} {{yb:ls wardrobe/}} {{rb:para buscar ropa para ponerte.}}"
 
 #: ../linux_story/story/challenges/challenge_2.py:77
 msgid "Check out that {{bb:t-shirt}}!\n"
-msgstr "¡Mira esa {{bb:camiseta}}!\n"
+msgstr "¡Mira esa {{bb:t-shirt}}!\n"
 
 #: ../linux_story/story/challenges/challenge_2.py:78
 msgid ""
 "{{lb:Examine}} the {{bb:t-shirt}} with {{yb:cat wardrobe/t-shirt}} to see "
 "how it looks.\n"
 msgstr ""
-"{{lb:Examina}} la {{bb:camiseta}} con {{yb:cat guardarropas/camiseta}} para "
+"{{lb:Examina}} la {{bb:t-shirt}} con {{yb:cat wardrobe/t-shirt}} para "
 "ver cómo te sienta.\n"
 
 #: ../linux_story/story/challenges/challenge_2.py:83
 msgid ""
 "{{rb:Type}} {{yb:cat wardrobe/t-shirt}} {{rb:to investigate how it looks.}}"
 msgstr ""
-"{{rb:Escribe}} {{yb:cat guardarropas/camiseta}} {{rb:para averiguar cómo se "
+"{{rb:Escribe}} {{yb:cat wardrobe/t-shirt}} {{rb:para averiguar cómo se "
 "ve.}}"
 
 #: ../linux_story/story/challenges/challenge_2.py:91
@@ -287,15 +287,15 @@ msgstr "¡Se ve bien! Póntela y busca algo más.\n"
 
 #: ../linux_story/story/challenges/challenge_2.py:92
 msgid "{{lb:Examine}} the {{bb:skirt}} or the {{bb:trousers}}.\n"
-msgstr "{{lb:Examina}} la {{bb:falda}} o los {{bb:pantalones}}.\n"
+msgstr "{{lb:Examina}} la {{bb:skirt}} o los {{bb:trousers}}.\n"
 
 #: ../linux_story/story/challenges/challenge_2.py:100
 msgid ""
 "{{rb:Type}} {{yb:cat wardrobe/trousers}} {{rb:or}} {{yb:cat wardrobe/skirt}} "
 "{{rb:to dress yourself.}}"
 msgstr ""
-"{{rb:Escribe}} {{yb:cat guardarropas/pantalones}} {{rb:o}} {{yb:cat "
-"guardarropas/falda}} {{rb:para vestirte.}}"
+"{{rb:Escribe}} {{yb:cat wardrobe/trousers}} {{rb:o}} {{yb:cat "
+"wardrobe/shirt}} {{rb:para vestirte.}}"
 
 #: ../linux_story/story/challenges/challenge_2.py:112
 msgid ""
@@ -303,7 +303,7 @@ msgid ""
 "{{rb:You need to look in your}} {{bb:wardrobe}} {{rb:for that item.}}"
 msgstr ""
 "\n"
-"{{rb:Necesitas mirar dentro de tu}} {{bb:guardarropas}} {{rb:para ver ese "
+"{{rb:Necesitas mirar dentro de tu}} {{bb:wardrobe}} {{rb:para ver ese "
 "objeto.}}"
 
 #: ../linux_story/story/challenges/challenge_2.py:124
@@ -312,14 +312,14 @@ msgstr "Genial, tu vestimenta está casi completa.\n"
 
 #: ../linux_story/story/challenges/challenge_2.py:125
 msgid "Finally, check out that {{bb:cap}}.\n"
-msgstr "Finalmente, échale un vistazo a esa {{bb:gorra}}.\n"
+msgstr "Finalmente, échale un vistazo a esa {{bb:cap}}.\n"
 
 #: ../linux_story/story/challenges/challenge_2.py:132
 msgid ""
 "{{rb:Type}} {{yb:cat wardrobe/cap}} {{rb:to}} {{lb:examine}} {{rb:the cap.}}"
 msgstr ""
-"{{rb:Escribe}} {{yb:cat guardarropas/gorra}} {{rb:para}} {{lb:examinar}} "
-"{{rb:la gorra.}}"
+"{{rb:Escribe}} {{yb:cat wardrobe/cap}} {{rb:para}} {{lb:examinar}} "
+"{{rb:la cap.}}"
 
 #: ../linux_story/story/challenges/challenge_3.py:31
 msgid "Love it! Put it on quickly."
@@ -331,11 +331,11 @@ msgstr "Hay muchas otras cosas interesantes en tu habitación.\n"
 
 #: ../linux_story/story/challenges/challenge_3.py:33
 msgid "Let's {{lb:look}} in your {{bb:shelves}} using {{yb:ls}}.\n"
-msgstr "Vamos a {{lb:mirar}} en tus {{bb:estantes}} usando {{yb:ls}}.\n"
+msgstr "Vamos a {{lb:mirar}} en tus {{bb:shelves}} usando {{yb:ls}}.\n"
 
 #: ../linux_story/story/challenges/challenge_3.py:38
 msgid "{{rb:Type}} {{yb:ls shelves/}} {{rb:to look at your books.}}"
-msgstr "{{rb:Escribe}} {{yb:ls estantes/}} {{rb:para mirar tus libros.}}"
+msgstr "{{rb:Escribe}} {{yb:ls shelves/}} {{rb:para mirar tus libros.}}"
 
 #: ../linux_story/story/challenges/challenge_3.py:46
 msgid "Did you know you can use the {{ob:TAB}} key to speed up your typing?"
@@ -343,11 +343,11 @@ msgstr "¿Sabes que puedes usar la tecla {{ob:TAB}} para acelerar tu escritura?"
 
 #: ../linux_story/story/challenges/challenge_3.py:47
 msgid "Try it by checking out that {{bb:comic book}}.\n"
-msgstr "Intentalo échandole un vistazo a ese {{bb:comic}}.\n"
+msgstr "Intentalo échandole un vistazo a ese {{bb:comic book}}.\n"
 
 #: ../linux_story/story/challenges/challenge_3.py:48
 msgid "{{lb:Examine}} it with {{yb:cat shelves/comic-book}}\n"
-msgstr "{{lb:Examina}} el comic con {{yb:cat estantes/comic}}\n"
+msgstr "{{lb:Examina}} el comic con {{yb:cat shelves/comic-book}}\n"
 
 #: ../linux_story/story/challenges/challenge_3.py:49
 msgid "Press the {{ob:TAB}} key before you've finished typing!\n"
@@ -356,7 +356,7 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_3.py:54
 msgid "{{rb:Type}} {{yb:cat shelves/comic-book}} {{rb:to read the comic.}}"
-msgstr "{{rb:Escribe}} {{yb:cat estantes/comic}} {{rb:para leer el comic.}}"
+msgstr "{{rb:Escribe}} {{yb:cat shelves/comic-book}} {{rb:para leer el comic.}}"
 
 #: ../linux_story/story/challenges/challenge_3.py:62
 msgid "Why is it covered in pawprints?"
@@ -365,27 +365,27 @@ msgstr "¿Por qué tiene huellas de garras?"
 #: ../linux_story/story/challenges/challenge_3.py:63
 msgid "Hang on, can you see that? There's a {{bb:note}} amongst your books.\n"
 msgstr ""
-"Espera un momento, ¿puedes ver eso? Hay una {{bb:nota}} entre tus libros.\n"
+"Espera un momento, ¿puedes ver eso? Hay una {{bb:note}} entre tus libros.\n"
 
 #: ../linux_story/story/challenges/challenge_3.py:64
 msgid "{{lb:Read}} the {{bb:note}} using {{yb:cat}}.\n"
-msgstr "{{lb:Lee}} la {{bb:nota}} usando {{yb:cat}}.\n"
+msgstr "{{lb:Lee}} la {{bb:note}} usando {{yb:cat}}.\n"
 
 #: ../linux_story/story/challenges/challenge_3.py:69
 msgid "{{rb:Type}} {{yb:cat shelves/note}} {{rb:to read the note.}}"
-msgstr "{{rb:Escribe}} {{yb:cat estantes/nota}} {{rb:para leer la nota.}}"
+msgstr "{{rb:Escribe}} {{yb:cat shelves/note}} {{rb:para leer la note.}}"
 
 #: ../linux_story/story/challenges/challenge_4.py:33
 msgid ""
 "That's weird. No time for that now though - lets find {{bb:Mum}}.\n"
 " "
 msgstr ""
-"¡Qué extraño! No hay tiempo para eso - encontremos a {{bb:Mamá}}.\n"
+"¡Qué extraño! No hay tiempo para eso - encontremos a {{bb:Mum}}.\n"
 " "
 
 #: ../linux_story/story/challenges/challenge_4.py:36
 msgid "{{gb:New Spell}}: {{yb:cd}} lets you {{lb:move}}"
-msgstr "{{gb:Nuevo hechizo}}: {{yb:cd}} te permite{{lb:moverte}}"
+msgstr "{{gb:Nuevo hechizo}}: {{yb:cd}} te permite {{lb:moverte}}"
 
 #: ../linux_story/story/challenges/challenge_4.py:37
 msgid "between places."
@@ -409,7 +409,7 @@ msgstr "{{rb:Escribe}} {{yb:cd ..}} {{rb:para abandonar tu habitación.}}"
 
 #: ../linux_story/story/challenges/challenge_4.py:68
 msgid "You've left {{bb:my-room}} and are in the hall of {{bb:my-house}}.\n"
-msgstr "Abandonaste {{bb:mi-habitación}} estás en la sala de{{bb:mi-casa}}.\n"
+msgstr "Abandonaste {{bb:my-room}} estás en la sala de {{bb:my-house}}.\n"
 
 #: ../linux_story/story/challenges/challenge_4.py:69
 msgid "{{lb:Look around}} at the different rooms using {{yb:ls}}.\n"
@@ -434,7 +434,7 @@ msgstr "¿Qué fue eso? ¿Un timbre? Eso es un poco extraño."
 #: ../linux_story/story/challenges/challenge_4.py:91
 msgid "You see the door to your {{bb:kitchen}}, and hear the sound of cooking."
 msgstr ""
-"Ves la puerta de tu {{bb:cocina}}, y escuchas el sonido de alguien cocinando."
+"Ves la puerta de tu {{bb:kitchen}}, y escuchas el sonido de alguien cocinando."
 
 #: ../linux_story/story/challenges/challenge_4.py:92
 msgid "Sounds like someone is preparing breakfast!\n"
@@ -442,19 +442,19 @@ msgstr "¡Parece que alguien está preparando el desayuno!\n"
 
 #: ../linux_story/story/challenges/challenge_4.py:93
 msgid "To {{lb:go inside the}} {{bb:kitchen}}, use {{yb:cd kitchen}}"
-msgstr "Para {{lb:entrar a la}} {{bb:cocina}}, usa {{yb:cd cocina}}"
+msgstr "Para {{lb:entrar a la}} {{bb:kitchen}}, usa {{yb:cd kitchen}}"
 
 #: ../linux_story/story/challenges/challenge_4.py:98
 msgid "{{rb:Type}} {{yb:cd kitchen}} {{rb:and press}} {{ob:Enter}}{{rb:.}}"
-msgstr "{{rb:Escribe}} {{yb:cd cocina}} {{rb:y presiona}} {{ob:Enter}}{{rb:.}}"
+msgstr "{{rb:Escribe}} {{yb:cd kitchen}} {{rb:y presiona}} {{ob:Enter}}{{rb:.}}"
 
 #: ../linux_story/story/challenges/challenge_4.py:111
 msgid "Great, you're in the {{bb:kitchen}}.\n"
-msgstr "Genial, estás dentro de la {{bb:cocina}}.\n"
+msgstr "Genial, estás dentro de la {{bb:kitchen}}.\n"
 
 #: ../linux_story/story/challenges/challenge_4.py:112
 msgid "{{lb:Look}} for {{bb:Mum}} using {{yb:ls}}."
-msgstr "{{lb:Busca}} a {{bb:Mamá}} usando {{yb:ls}}."
+msgstr "{{lb:Busca}} a {{bb:Mum}} usando {{yb:ls}}."
 
 #: ../linux_story/story/challenges/challenge_4.py:117
 msgid ""
@@ -470,35 +470,35 @@ msgstr "La ves trabajando muy duro entre una nube de vapor."
 #: ../linux_story/story/challenges/challenge_4.py:126
 msgid "Let's {{lb:listen}} to what {{bb:Mum}} has to say by using {{yb:cat}}."
 msgstr ""
-"Vamos a {{lb:escuchar}} lo que {{bb:Mamá}} tiene para decir usando {{yb:"
+"Vamos a {{lb:escuchar}} lo que {{bb:Mum}} tiene para decir usando {{yb:"
 "cat}}."
 
 #: ../linux_story/story/challenges/challenge_4.py:131
 msgid ""
 "{{rb:Stuck? Type:}} {{yb:cat Mum}}. {{rb:Don't forget the capital letter!}}"
 msgstr ""
-"{{rb:Escribe:}} {{yb:cat Mamá}}. {{rb:¡No te olvides la letra mayúscula!}}"
+"{{rb:Escribe:}} {{yb:cat Mum}}. {{rb:¡No te olvides la letra mayúscula!}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:31
 msgid ""
 "{{wb:Mum:}} {{Bb:\"Hi sleepyhead, breakfast is nearly ready. Can you go and "
 "grab your Dad? I think he's in the}} {{bb:garden}}{{Bb:.\"}}\n"
 msgstr ""
-"{{wb:Mamá:}} {{Bb:\"Hola dormilón, el desayuno está casi listo. ¿Puedes ir a "
-"avisarle a tu Papá? Creo que está en el}} {{bb:jardín}}{{Bb:.\"}}\n"
+"{{wb:Mum:}} {{Bb:\"Hola dormilón, el desayuno está casi listo. ¿Puedes ir a "
+"avisarle a tu Papá? Creo que está en el}} {{bb:garden}}{{Bb:.\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:32
 msgid "Let's look for your {{bb:Dad}} in the {{bb:garden}}."
-msgstr "Vamos a buscar a tu {{bb:Papá}} en el {{bb:jardín}}."
+msgstr "Vamos a buscar a tu {{bb:Dad}} en el {{bb:garden}}."
 
 #: ../linux_story/story/challenges/challenge_5.py:33
 msgid "First we need to {{lb:leave}} the {{bb:kitchen}} using {{yb:cd ..}}\n"
 msgstr ""
-"Primero necesitamos {{lb:abandonar}} la {{bb:cocina}} usando {{yb:cd ..}}\n"
+"Primero necesitamos {{lb:abandonar}} la {{bb:kitchen}} usando {{yb:cd ..}}\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:38
 msgid "{{rb:To leave the kitchen, type}} {{yb:cd ..}}"
-msgstr "{{rb:Para abandonar la cocina escribe}} {{yb:cd ..}}"
+msgstr "{{rb:Para abandonar la kitchen escribe}} {{yb:cd ..}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:51
 msgid "You are back in the main hall of your house.\n"
@@ -506,7 +506,7 @@ msgstr "Estás nuevamente en la sala de tu casa.\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:52
 msgid "Can you see your {{bb:garden}}? Have a {{lb:look around}} you.\n"
-msgstr "¿Puedes ver tu {{bb:jardín}}? {{lb:mira alrededor}} tuyo.\n"
+msgstr "¿Puedes ver tu {{bb:garden}}? {{lb:mira alrededor}} tuyo.\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:57
 msgid "{{rb:Type}} {{yb:ls}} {{rb:to look around you.}}"
@@ -517,22 +517,22 @@ msgid ""
 "You see doors to the {{bb:garden}}, {{bb:kitchen}}, {{bb:my-room}} and {{bb:"
 "parents-room}}."
 msgstr ""
-"Ves las puertas al {{bb:jardín}}, {{bb:cocina}}, {{bb:mi-habitación}} y la "
-"{{bb:habitación-padres}}."
+"Ves las puertas al {{bb:garden}}, {{bb:kitchen}}, {{bb:my-room}} y la "
+"{{bb:parents-room}}."
 
 #: ../linux_story/story/challenges/challenge_5.py:66
 msgid "{{lb:Go}} into your {{bb:garden}}.\n"
-msgstr "{{lb:Ve}} hacia el {{bb:jardín}}.\n"
+msgstr "{{lb:Ve}} hacia el {{bb:garden}}.\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:71
 msgid "{{rb:Type}} {{yb:cd garden}} {{rb:to go into the garden.}}"
-msgstr "{{rb:Escribe}} {{yb:cd jardin}} {{rb:para ir hacia el jardín.}}"
+msgstr "{{rb:Escribe}} {{yb:cd garden}} {{rb:para ir hacia el garden.}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:84
 msgid ""
 "Use {{yb:ls}} to {{lb:look}} in the {{bb:garden}} for your {{bb:Dad}}.\n"
 msgstr ""
-"Usa {{yb:ls}} para {{lb:buscar}} en el {{bb:jardín}} a tu {{bb:Papá}}.\n"
+"Usa {{yb:ls}} para {{lb:buscar}} en el {{bb:garden}} a tu {{bb:Dad}}.\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:89
 msgid ""
@@ -544,7 +544,7 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_5.py:97
 msgid "The {{bb:garden}} looks beautiful at this time of year."
-msgstr "El {{bb:jardín}} se ve muy lindo en esta época del año."
+msgstr "El {{bb:garden}} se ve muy lindo en esta época del año."
 
 #: ../linux_story/story/challenges/challenge_5.py:98
 msgid "Hmmm...but you can't see him anywhere."
@@ -552,7 +552,7 @@ msgstr "Hmmm...pero no podemos verlo en ninguna parte."
 
 #: ../linux_story/story/challenges/challenge_5.py:99
 msgid "Maybe he's in the {{bb:greenhouse}}."
-msgstr "Tal vez está en el {{bb:invernadero}}."
+msgstr "Tal vez está en el {{bb:greenhouse}}."
 
 #: ../linux_story/story/challenges/challenge_5.py:100
 msgid ""
@@ -560,11 +560,11 @@ msgid ""
 "{{lb:Go}} inside the {{bb:greenhouse}}.\n"
 msgstr ""
 "\n"
-"{{lb:Ve}} dentro del {{bb:invernadero}}.\n"
+"{{lb:Ve}} dentro del {{bb:greenhouse}}.\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:105
 msgid "{{rb:To go to the greenhouse, type}} {{yb:cd greenhouse}}"
-msgstr "{{rb:Para ir al invernadero, escribe}} {{yb:cd invernadero}}"
+msgstr "{{rb:Para ir al invernadero, escribe}} {{yb:cd greenhouse}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:118
 msgid "Is he here? {{lb:Look around}} with {{yb:ls}} to find out.\n"
@@ -587,12 +587,12 @@ msgid ""
 "You see a {{bb:note}} on the ground. Use {{yb:cat note}} to {{lb:read}} what "
 "it says.\n"
 msgstr ""
-"Ves una {{bb:nota}} en el suelo. Usa {{yb:cat nota}} para {{lb:leer}} lo que "
+"Ves una {{bb:note}} en el suelo. Usa {{yb:cat note}} para {{lb:leer}} lo que "
 "dice.\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:138
 msgid "{{rb:Type}} {{yb:cat note}} {{rb:to see what the note says!}}"
-msgstr "{{rb:Escribe}} {{yb:cat nota}} {{rb: ¡para ver lo que dice la nota!}}"
+msgstr "{{rb:Escribe}} {{yb:cat note}} {{rb: ¡para ver lo que dice la nota!}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:146
 msgid ""
@@ -628,22 +628,22 @@ msgstr "{{rb:Escribe}} {{yb:cd ..}} {{rb:para volver a la casa.}}"
 
 #: ../linux_story/story/challenges/challenge_5.py:183
 msgid "Now {{lb:go}} back into the {{bb:kitchen}} and see {{bb:Mum}}.\n"
-msgstr "Ahora {{lb:ve}} otra vez a la {{bb:cocina}} con {{bb:Mamá}}.\n"
+msgstr "Ahora {{lb:ve}} otra vez a la {{bb:kitchen}} con {{bb:Mum}}.\n"
 
 #: ../linux_story/story/challenges/challenge_5.py:188
 msgid "{{rb:Type}} {{yb:cd kitchen}} {{rb:to go back to the kitchen.}}"
-msgstr "{{rb:Escribe}} {{yb:cd cocina}} {{rb:para volver a la cocina.}}"
+msgstr "{{rb:Escribe}} {{yb:cd kitchen}} {{rb:para volver a la cocina.}}"
 
 #: ../linux_story/story/challenges/challenge_6.py:31
 msgid "Let {{bb:Mum}} know about {{bb:Dad}}. Type {{yb:cat Mum}}"
-msgstr "Contémosle a {{bb:Mamá}} sobre {{bb:Papá}}. Escribe {{yb:cat Mamá}}"
+msgstr "Contémosle a {{bb:Mum}} sobre {{bb:Dad}}. Escribe {{yb:cat Mum}}"
 
 #: ../linux_story/story/challenges/challenge_6.py:36
 msgid ""
 "{{rb:To talk to your Mum, type}} {{yb:cat Mum}} {{rb:and press}} {{ob:Enter}}"
 "{{rb:.}}"
 msgstr ""
-"{{rb:Para hablar con tu Mamá, escribe}} {{yb:cat Mamá}} {{rb:y presiona}} "
+"{{rb:Para hablar con tu Mamá, escribe}} {{yb:cat Mum}} {{rb:y presiona}} "
 "{{ob:Enter}}{{rb:.}}"
 
 #: ../linux_story/story/challenges/challenge_6.py:44
@@ -666,7 +666,7 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_6.py:46
 msgid "Let's head to {{bb:town}}. To leave the house, use {{yb:cd}} by itself."
-msgstr "Vamos al {{bb:pueblo}}. Para abandonar la casa usa {{yb:cd}} solo."
+msgstr "Vamos al {{bb:town}}. Para abandonar la casa usa {{yb:cd}} solo."
 
 #: ../linux_story/story/challenges/challenge_6.py:51
 msgid "{{rb:Type}} {{yb:cd}} {{rb:to start the journey.}}"
@@ -692,11 +692,11 @@ msgid ""
 "You can see a {{bb:town}} in the distance! Let's {{lb:go}} there using {{lb:"
 "cd}}."
 msgstr ""
-"Puedes ver el {{bb:pueblo}} a la distancia! {{lb:Ve}} usando {{lb:cd}}."
+"Puedes ver el {{bb:town}} a la distancia! {{lb:Ve}} usando {{lb:cd}}."
 
 #: ../linux_story/story/challenges/challenge_6.py:83
 msgid "{{rb:Type}} {{yb:cd town}} {{rb:to walk into town.}}"
-msgstr "{{rb:Escribe}} {{yb:cd pueblo}} {{rb:para caminar en el pueblo.}}"
+msgstr "{{rb:Escribe}} {{yb:cd town}} {{rb:para caminar en el pueblo.}}"
 
 #: ../linux_story/story/challenges/challenge_7.py:30
 msgid "Have a {{lb:look around}} to see what's going on!"
@@ -711,12 +711,12 @@ msgid ""
 "Wow, there's so many people here. Find the {{bb:Mayor}} and {{lb:listen}} to "
 "what he has to say."
 msgstr ""
-"Wow, hay mucha gente aquí. Encuentra al {{bb:Alcalde}} y {{lb:escucha}} lo "
+"Wow, hay mucha gente aquí. Encuentra al {{bb:Mayor}} y {{lb:escucha}} lo "
 "que tiene para decir."
 
 #: ../linux_story/story/challenges/challenge_7.py:48
 msgid "{{rb:Stuck? Type:}} {{yb:cat Mayor}}"
-msgstr "{{rb:Escribe:}} {{yb:cat Alcalde}}"
+msgstr "{{rb:Escribe:}} {{yb:cat Mayor}}"
 
 #: ../linux_story/story/challenges/challenge_7.py:56
 msgid ""
@@ -896,15 +896,15 @@ msgstr "{{lb:Mira alrededor.}}"
 
 #: ../linux_story/story/challenges/challenge_8.py:87
 msgid "You are alone with the {{bb:Mayor}}.\n"
-msgstr "Te encuentras solo con el {{bb:Alcalde}}.\n"
+msgstr "Te encuentras solo con el {{bb:Mayor}}.\n"
 
 #: ../linux_story/story/challenges/challenge_8.py:88
 msgid "{{lb:Listen}} to what the {{bb:Mayor}} has to say."
-msgstr "{{lb:Escucha}} lo que el {{bb:Alcalde}} tiene para decir."
+msgstr "{{lb:Escucha}} lo que el {{bb:Mayor}} tiene para decir."
 
 #: ../linux_story/story/challenges/challenge_8.py:93
 msgid "{{rb:Use}} {{yb:cat Mayor}} {{rb:to talk to the Mayor.}}"
-msgstr "{{rb:Usa}} {{yb:cat Alcalde}} {{rb:para hablarle al Alcalde.}}"
+msgstr "{{rb:Usa}} {{yb:cat Mayor}} {{rb:para hablarle al Mayor.}}"
 
 #: ../linux_story/story/challenges/challenge_8.py:102
 msgid "{{wb:Mayor:}} {{Bb:\"Everyone...has disappeared??\"\n"
@@ -920,16 +920,16 @@ msgstr "Todos se han ido."
 
 #: ../linux_story/story/challenges/challenge_8.py:125
 msgid "Wait - there's a {{bb:note}} on the floor.\n"
-msgstr "Espera - hay una {{bb:nota}} en el suelo.\n"
+msgstr "Espera - hay una {{bb:note}} en el suelo.\n"
 
 #: ../linux_story/story/challenges/challenge_8.py:126
 msgid "Use {{yb:cat}} to read the {{bb:note}}."
-msgstr "Usa {{yb:cat}} para leer la {{bb:nota}}."
+msgstr "Usa {{yb:cat}} para leer la {{bb:note}}."
 
 #: ../linux_story/story/challenges/challenge_8.py:131
 #: ../linux_story/story/challenges/challenge_9.py:102
 msgid "{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}"
-msgstr "{{rb:Usa}} {{yb:cat nota}} {{rb:para leer la nota.}}"
+msgstr "{{rb:Usa}} {{yb:cat note}} {{rb:para leer la note.}}"
 
 #: ../linux_story/story/challenges/challenge_9.py:31
 msgid "Oh no! Check your {{bb:Mum}} is alright.\n"
@@ -945,7 +945,7 @@ msgstr "{{rb:Usa}} {{yb:cd ..}} {{rb:para emprender el regreso a casa.}}"
 
 #: ../linux_story/story/challenges/challenge_9.py:51
 msgid "Type {{yb:cd my-house/kitchen}} to go straight to the {{bb:kitchen}}.\n"
-msgstr "Escribe {{yb:cd mi-casa/cocina}} para ir directo a la {{bb:cocina}}.\n"
+msgstr "Escribe {{yb:cd my-house/kitchen}} para ir directo a la {{bb:cocina}}.\n"
 
 #: ../linux_story/story/challenges/challenge_9.py:52
 msgid "{{gb:Press}} {{ob:TAB}} {{gb:to speed up your typing!}}"
@@ -953,7 +953,7 @@ msgstr "{{gb:Presiona}} {{ob:TAB}} {{gb:¡para acelerar tu escritura!}}"
 
 #: ../linux_story/story/challenges/challenge_9.py:58
 msgid "{{rb:Use}} {{yb:cd my-house/kitchen}} {{rb:to go to the kitchen.}}"
-msgstr "{{rb:Usa}} {{yb:cd mi-casa/cocina}} {{rb:para ir a la cocina.}}"
+msgstr "{{rb:Usa}} {{yb:cd mi-house/kitchen}} {{rb:para ir a la cocina.}}"
 
 #: ../linux_story/story/challenges/challenge_9.py:80
 msgid "Take a {{lb:look around}} to make sure everything is OK."
@@ -970,11 +970,11 @@ msgstr "¡Oh no - {{bb:Mamá}} también ha desaparecido!"
 
 #: ../linux_story/story/challenges/challenge_9.py:96
 msgid "Wait, there's another {{bb:note}}.\n"
-msgstr "Espera, allí hay otra {{bb:nota}}.\n"
+msgstr "Espera, allí hay otra {{bb:note}}.\n"
 
 #: ../linux_story/story/challenges/challenge_9.py:97
 msgid "Use {{yb:cat}} to {{lb:read}} the {{bb:note}}."
-msgstr "Usa {{yb:cat}} para {{lb:leer}} la {{bb:nota}}."
+msgstr "Usa {{yb:cat}} para {{lb:leer}} la {{bb:note}}."
 
 #: ../linux_story/story/challenges/challenge_10.py:31
 msgid "You're in your house. You appear to be alone."
@@ -1045,7 +1045,7 @@ msgid ""
 "{{gb:Good work! Now use}} {{yb:cd town}} {{gb:to head to town.}}"
 msgstr ""
 "\n"
-"{{gb:¡Buen trabajo! Ahora usa}} {{yb:cd pueblo}} {{gb:para ir al pueblo.}}"
+"{{gb:¡Buen trabajo! Ahora usa}} {{yb:cd town}} {{gb:para ir al pueblo.}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:143
 msgid ""
@@ -1053,7 +1053,7 @@ msgid ""
 "{{rb:Use}} {{yb:cd town}} {{rb:to go into town.}}"
 msgstr ""
 "\n"
-"{{rb:Usa}} {{yb:cd pueblo}} {{rb:para ir al pueblo.}}"
+"{{rb:Usa}} {{yb:cd town}} {{rb:para ir al pueblo.}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:158
 msgid "Use {{yb:ls}} to {{lb:look around}}.\n"
@@ -1092,7 +1092,7 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_10.py:191
 msgid "You see a {{bb:.hidden-shelter}} that you didn't notice before.\n"
-msgstr "Ves un {{bb:.refugio-oculto}} que no has visto antes.\n"
+msgstr "Ves un {{bb:.hidden-shelter}} que no has visto antes.\n"
 
 #: ../linux_story/story/challenges/challenge_10.py:192
 msgid ""
@@ -1111,12 +1111,12 @@ msgid ""
 "{{rb:Try going inside the}} {{lb:.hidden-shelter}} {{rb:using }}{{yb:cd}}"
 "{{rb:.}}"
 msgstr ""
-"{{rb:Intenta entrar al}} {{lb:.refugio-oculto}} {{rb:usando }}{{yb:cd}}"
+"{{rb:Intenta entrar al}} {{lb:.hidden-shelter}} {{rb:usando }}{{yb:cd}}"
 "{{rb:.}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:204
 msgid "{{rb:Use the command}} {{yb:cd .hidden-shelter }}{{rb:to go inside.}}"
-msgstr "{{rb:Usa el comando}} {{yb:cd .refugio-oculto }}{{rb:para entrar.}}"
+msgstr "{{rb:Usa el comando}} {{yb:cd .hidden-shelter }}{{rb:para entrar.}}"
 
 #: ../linux_story/story/challenges/challenge_10.py:219
 msgid "Is anyone there? Have a {{lb:look around}}.\n"
@@ -1202,13 +1202,13 @@ msgid ""
 "\"I've been trying to move this}} {{bb:apple}} {{Bb:into the}} {{bb:basket}}"
 "{{Bb:\"}}"
 msgstr ""
-"\"He estado intentando mover esta}} {{bb:manzana}} {{Bb:dentro de la}} {{bb:"
-"canasta}}{{Bb:\"}}"
+"\"He estado intentando mover esta}} {{bb:apple}} {{Bb:dentro de la}} {{bb:"
+"basket}}{{Bb:\"}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:112
 msgid "{{Bb:\"I was told the command was}} {{yb:mv apple basket/}}{{Bb:\"}}"
 msgstr ""
-"{{Bb:\"Me dijeron que el comando era}} {{yb:mv manzana canasta/}}{{Bb:\"}}"
+"{{Bb:\"Me dijeron que el comando era}} {{yb:mv apple basket/}}{{Bb:\"}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:113
 msgid ""
@@ -1230,7 +1230,7 @@ msgid ""
 "{{rb:Use the command}} {{yb:mv apple basket/}} {{rb:to move the apple into "
 "the basket.}}"
 msgstr ""
-"{{rb:Usa el comando}} {{yb:mv manzana canasta/}} {{rb:para mover la manzana "
+"{{rb:Usa el comando}} {{yb:mv apple basket/}} {{rb:para mover la manzana "
 "dentro de la canasta.}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:145
@@ -1238,25 +1238,25 @@ msgid ""
 "Check you've managed to move the {{bb:apple}}. {{lb:Look around}} in this "
 "directory.\n"
 msgstr ""
-"Asegúrate de que has podido mover la {{bb:manzana}}. {{lb:Mira alrededor}} "
+"Asegúrate de que has podido mover la {{bb:apple}}. {{lb:Mira alrededor}} "
 "paracomprobarlo.\n"
 
 #: ../linux_story/story/challenges/challenge_11.py:168
 msgid "{{gb:Nice work! The apple isn't in this directory anymore.}}\n"
-msgstr "{{gb:¡Buen trabajo! La manzana fue movida con éxito.}}\n"
+msgstr "{{gb:¡Buen trabajo! La apple fue movida con éxito.}}\n"
 
 #: ../linux_story/story/challenges/challenge_11.py:169
 msgid ""
 "{{wn:Now check the apple is in the}} {{bb:basket}} {{wn:using}} {{yb:ls}}"
 "{{wn:.}}\n"
 msgstr ""
-"{{wn:Ahora asegúrate de que la manzana este en la}} {{bb:canasta}} {{wn:"
+"{{wn:Ahora asegúrate de que la manzana este en la}} {{bb:basket}} {{wn:"
 "usando}} {{yb:ls}}{{wn:.}}\n"
 
 #: ../linux_story/story/challenges/challenge_11.py:180
 msgid "{{rb:Use the command}} {{yb:ls basket/}} {{rb:to look in the basket.}}"
 msgstr ""
-"{{rb:Usa el comando}} {{yb:ls canasta/}} {{rb:para mirar dentro de la "
+"{{rb:Usa el comando}} {{yb:ls basket/}} {{rb:para mirar dentro de la "
 "canasta.}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:190
@@ -1281,14 +1281,14 @@ msgid ""
 "{{lb:Move}} the {{bb:apple}} from the {{bb:basket}} to your current "
 "position. This is represented by {{bb:./}} \n"
 msgstr ""
-"{{lb:Mueve}} la {{bb:manzana}} de la {{bb:canasta}} a tu posición actual. "
+"{{lb:Mueve}} la {{bb:apple}} de la {{bb:basket}} a tu posición actual. "
 "Esto se hace con {{bb:./}} \n"
 
 #: ../linux_story/story/challenges/challenge_11.py:194
 msgid ""
 "So {{yb:mv basket/apple ./}} is the full command. You need the {{bb:./}} !\n"
 msgstr ""
-"Entonces {{yb:mv canasta/manzana ./}} es el comando completo. ¡Necesitas el "
+"Entonces {{yb:mv basket/apple ./}} es el comando completo. ¡Necesitas el "
 "{{bb:./}} !\n"
 
 #: ../linux_story/story/challenges/challenge_11.py:203
@@ -1296,7 +1296,7 @@ msgid ""
 "{{rb:Use the command}} {{yb:mv basket/apple ./}} {{rb:to move the apple from "
 "the basket to your current position}} {{bb:./}}"
 msgstr ""
-"{{rb:Usa el comando}} {{yb:mv canasta/manzana ./}} {{rb:para mover la "
+"{{rb:Usa el comando}} {{yb:mv basket/apple ./}} {{rb:para mover la "
 "manzana de la canasta a tu posición actual}} {{bb:./}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:208
@@ -1304,7 +1304,7 @@ msgid ""
 "{{gb:Nearly! The full command is}} {{yb:mv basket/apple ./}} {{gb:- don't "
 "forget the dot!}}"
 msgstr ""
-"{{gb:¡Estás cerca! El comando completo es }} {{yb:mv canasta/manzana ./}} "
+"{{gb:¡Estás cerca! El comando completo es }} {{yb:mv basket/apple ./}} "
 "{{gb:- ¡no olvides el punto!}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:220
@@ -1334,7 +1334,7 @@ msgid ""
 "{{bb:Eleanor}} follows her {{bb:dog}} and leaves the {{bb:.hidden-shelter}}."
 msgstr ""
 "\n"
-"{{bb:Eleanor}} sigue a su {{bb:perro}} y sale del {{bb:.refugio-oculto}}."
+"{{bb:Eleanor}} sigue a su {{bb:perro}} y sale del {{bb:.hidden-shelter}}."
 
 #: ../linux_story/story/challenges/challenge_11.py:225
 msgid "{{lb:Look around}} to check this.\n"
@@ -1363,14 +1363,14 @@ msgid ""
 "{{rb:Look in the town directory by using either}} {{yb:ls ../}} {{rb:or}} "
 "{{yb:ls ~/town/}}"
 msgstr ""
-"{{rb:Mira en el pueblo usando}} {{yb:ls ../}} {{rb:o}} {{yb:ls ~/pueblo/}}"
+"{{rb:Mira en el pueblo usando}} {{yb:ls ../}} {{rb:o}} {{yb:ls ~/town/}}"
 
 #: ../linux_story/story/challenges/challenge_11.py:277
 msgid ""
 "Now {{lb:move}} {{bb:Eleanor}} from the {{bb:town}} outside {{bb:..}} to "
 "your current position {{bb:.}}\n"
 msgstr ""
-"Ahora {{lb:mueve}} a {{bb:Eleanor}} del pueblo{{bb:town}} {{bb:..}} a tu "
+"Ahora {{lb:mueve}} a {{bb:Eleanor}} del {bb:town}} {{bb:..}} a tu "
 "posición actual{{bb:.}}\n"
 
 #: ../linux_story/story/challenges/challenge_11.py:292
@@ -1396,7 +1396,7 @@ msgstr ""
 #: ../linux_story/story/challenges/challenge_12.py:53
 msgid "{{rb:Use the command}} {{yb:mv ../dog ./}} {{rb:to rescue the dog.}}"
 msgstr ""
-"{{rb:Usa el comando}} {{yb:mv ../perro ./}} {{rb:para rescatar al perro.}}"
+"{{rb:Usa el comando}} {{yb:mv ../dog ./}} {{rb:para rescatar al perro.}}"
 
 #: ../linux_story/story/challenges/challenge_12.py:67
 msgid "{{wb:Eleanor:}} {{Bb:\"Yay, Doggie!\"}}"
@@ -1494,14 +1494,14 @@ msgid ""
 msgstr ""
 "\n"
 "Empieza por {{lb:mover}} la {{bb:canasta}} a {{bb:~}}. usando el comando{{yb:"
-"mv canasta ~/}}\n"
+"mv basket ~/}}\n"
 
 #: ../linux_story/story/challenges/challenge_13.py:60
 msgid ""
 "{{rb:Use the command}} {{yb:mv basket ~/}} {{rb:to move the}} {{bb:basket}} "
 "{{rb:to the windy road}} {{bb:~}}"
 msgstr ""
-"{{rb:Usa el comando}} {{yb:mv canasta ~/}} {{rb:para mover la}} {{bb:"
+"{{rb:Usa el comando}} {{yb:mv basket ~/}} {{rb:para mover la}} {{bb:"
 "canasta}} {{rb:a la carretera ventosa}} {{bb:~}}"
 
 #: ../linux_story/story/challenges/challenge_13.py:73
@@ -1540,27 +1540,27 @@ msgstr "Tienes la {{bb:canasta}} a tu lado, y ves {{bb:mi-casa}} cerca."
 
 #: ../linux_story/story/challenges/challenge_13.py:120
 msgid "Move the {{bb:basket}} to {{bb:my-house/kitchen}}."
-msgstr "Mueve la {{bb:canasta}} a tu {{bb:mi-casa/cocina}}."
+msgstr "Mueve la {{bb:canasta}} a tu {{bb:my-house/kitchen}}."
 
 #: ../linux_story/story/challenges/challenge_13.py:121
 msgid "Don't forget to use the {{ob:TAB}} key to autocomplete your commands.\n"
-msgstr "No olvides usar la tecla{{ob:TAB}} para autocompletar los comandos.\n"
+msgstr "No olvides usar la tecla {{ob:TAB}} para autocompletar los comandos.\n"
 
 #: ../linux_story/story/challenges/challenge_13.py:137
 msgid ""
 "{{rb:Use}} {{yb:mv basket my-house/kitchen/}} {{rb:to move the basket to "
 "your kitchen.}}"
 msgstr ""
-"{{rb:Usa}} {{yb:mv canasta mi-casa/cocina/}} {{rb:para mover la canasta "
+"{{rb:Usa}} {{yb:mv basket my-house/kitchen/}} {{rb:para mover la canasta "
 "hacia tu cocina.}}"
 
 #: ../linux_story/story/challenges/challenge_13.py:150
 msgid "Now {{lb:go}} into {{bb:my-house/kitchen}} using {{yb:cd}}.\n"
-msgstr "Ahora {{lb:ve}} a {{bb:mi-casa/cocina}} usando {{yb:cd}}.\n"
+msgstr "Ahora {{lb:ve}} a {{bb:my-house/kitchen}} usando {{yb:cd}}.\n"
 
 #: ../linux_story/story/challenges/challenge_13.py:162
 msgid "{{rb:Use}} {{yb:cd my-house/kitchen}} {{rb:to go to your kitchen.}}"
-msgstr "{{rb:Usa}} {{yb:cd mi-casa/cocina}} {{rb:para ir a tu cocina.}}"
+msgstr "{{rb:Usa}} {{yb:cd my-house/kitchen}} {{rb:para ir a tu cocina.}}"
 
 #: ../linux_story/story/challenges/challenge_14.py:35
 msgid ""
@@ -1603,7 +1603,7 @@ msgid ""
 "Try using}} {{yb:mv %s basket/}}"
 msgstr ""
 "{{rb:Estás intentando mover algo que no está en los archivos.\n"
-"Intenta usando}} {{yb:mv %s canasta/}}"
+"Intenta usando}} {{yb:mv %s basket/}}"
 
 #: ../linux_story/story/challenges/challenge_14.py:106
 msgid ""
@@ -1617,7 +1617,7 @@ msgstr ""
 #: ../linux_story/story/challenges/challenge_14.py:138
 #, python-format
 msgid "{{rb:Try using}} {{yb:mv %s basket/}}"
-msgstr "{{rb:Intenta usando}} {{yb:mv %s canasta/}}"
+msgstr "{{rb:Intenta usando}} {{yb:mv %s basket/}}"
 
 #: ../linux_story/story/challenges/challenge_14.py:135
 msgid ""
@@ -1634,7 +1634,7 @@ msgid ""
 "basket}}."
 msgstr ""
 "\n"
-"Ahora debemos volver al {{bb:.refugio-oculto}} con la {{bb:canasta}}."
+"Ahora debemos volver al {{bb:.hidden-shelter}} con la {{bb:canasta}}."
 
 #: ../linux_story/story/challenges/challenge_14.py:164
 msgid "{{lb:Move}} the {{bb:basket}} back to {{bb:~}}.\n"
@@ -1645,7 +1645,7 @@ msgid ""
 "{{rb:Use the command}} {{yb:mv basket ~/}} {{rb:to move the basket to the "
 "windy road ~}}"
 msgstr ""
-"{{rb:Usa el comando}} {{yb:mv canasta ~/}} {{rb:para moverla a la carretera "
+"{{rb:Usa el comando}} {{yb:mv basket ~/}} {{rb:para moverla a la carretera "
 "ventosa ~}}"
 
 #: ../linux_story/story/challenges/challenge_14.py:188
@@ -1658,26 +1658,26 @@ msgstr "Ahora lleva la {{bb:canasta}} llena de comida a la familia."
 
 #: ../linux_story/story/challenges/challenge_14.py:214
 msgid "{{lb:Move}} the {{bb:basket}} to {{bb:town/.hidden-shelter}}."
-msgstr "{{lb:Mueve}} la {{bb:canasta}} al {{bb:pueblo/.refugio-oculto}}."
+msgstr "{{lb:Mueve}} la {{bb:canasta}} al {{bb:town/.hidden-shelter}}."
 
 #: ../linux_story/story/challenges/challenge_14.py:230
 msgid ""
 "{{rb:Use}} {{yb:mv basket town/.hidden-shelter/}} {{rb:to move the basket to "
 "the family.}}"
 msgstr ""
-"{{rb:Usa}} {{yb:mv canasta pueblo/.refugio-oculto/}} {{rb:para llevarle la "
+"{{rb:Usa}} {{yb:mv basket town/.hidden-shelter/}} {{rb:para llevarle la "
 "canasta a la familia.}}"
 
 #: ../linux_story/story/challenges/challenge_14.py:243
 msgid "{{lb:Enter}} the {{bb:town/.hidden-shelter}} using {{yb:cd}}.\n"
-msgstr "{{lb:Entra}} al {{bb:pueblo/.refugio-oculto}} usando {{yb:cd}}.\n"
+msgstr "{{lb:Entra}} al {{bb:town/.hidden-shelter}} usando {{yb:cd}}.\n"
 
 #: ../linux_story/story/challenges/challenge_14.py:255
 msgid ""
 "{{rb:Use}} {{yb:cd town/.hidden-shelter}} {{rb:to be reunited with the "
 "family.}}"
 msgstr ""
-"{{rb:Usa}} {{yb:cd pueblo/.refugio-oculto}} {{rb:para reunirte con la "
+"{{rb:Usa}} {{yb:cd town/.hidden-shelter}} {{rb:para reunirte con la "
 "familia.}}"
 
 #: ../linux_story/story/challenges/challenge_14.py:270
@@ -1768,15 +1768,15 @@ msgstr "{{rb:Usa}} {{yb:ls -a}} {{rb:para mirar más de cerca alrededor tuyo.}}"
 
 #: ../linux_story/story/challenges/challenge_15.py:57
 msgid "What's that! There's {{bb:.tiny-chest}} in the corner of the shelter"
-msgstr "¿Qué es eso? Hay un {{bb:.pequeño-cofre}} en la esquina del refugio"
+msgstr "¿Qué es eso? Hay un {{bb:.tiny-chest}} en la esquina del refugio"
 
 #: ../linux_story/story/challenges/challenge_15.py:58
 msgid "Have a {{lb:look inside}} the {{bb:.tiny-chest}}."
-msgstr "Vamos a {{lb:mirar dentro}} del {{bb:.pequeño-cofre}}."
+msgstr "Vamos a {{lb:mirar dentro}} del {{bb:.tiny-chest}}."
 
 #: ../linux_story/story/challenges/challenge_15.py:62
 msgid "{{rb:Use}} {{yb:ls .tiny-chest}} {{rb:to look inside}}"
-msgstr "{{rb:Usa}} {{yb:ls .pequeño-cofre}} {{rb:para mirar dentro}}"
+msgstr "{{rb:Usa}} {{yb:ls .tiny-chest}} {{rb:para mirar dentro}}"
 
 #: ../linux_story/story/challenges/challenge_15.py:80
 msgid ""
@@ -1790,14 +1790,14 @@ msgstr "{{lb:Lee}} lo que dice."
 
 #: ../linux_story/story/challenges/challenge_15.py:85
 msgid "{{rb:Use}} {{yb:cat .tiny-chest/MV}} {{rb:to read the MV parchment}}"
-msgstr "{{rb:Usa}} {{yb:cat .pequeño-cofre/MV}} {{rb:para leer el pergamino}}"
+msgstr "{{rb:Usa}} {{yb:cat .tiny-chest/MV}} {{rb:para leer el pergamino}}"
 
 #: ../linux_story/story/challenges/challenge_15.py:100
 msgid ""
 "{{wb:Edward:}} {{Bb:\"Hey, that's our .tiny-chest We use it to keep our "
 "possessions safe. "
 msgstr ""
-"{{wb:Edward:}} {{Bb:\"Hey, ese es nuestro .pequeño-cofre Lo usamos para "
+"{{wb:Edward:}} {{Bb:\"Hey, ese es nuestro .tiny-chest Lo usamos para "
 "mantener nuestras cosas seguras. "
 
 #: ../linux_story/story/challenges/challenge_15.py:101
@@ -1817,18 +1817,18 @@ msgid ""
 "Maybe you should go back to {{bb:my-house}} to look for more hidden items."
 msgstr ""
 "\n"
-"Tal vez deberías volver a {{bb:mi-casa}} para buscar más objetos ocultos."
+"Tal vez deberías volver a {{bb:my-house}} para buscar más objetos ocultos."
 
 #: ../linux_story/story/challenges/challenge_15.py:104
 msgid "To quickly go back home, use {{yb:cd ~/my-house}}\n"
-msgstr "Para volver rápidamente a casa, usa {{yb:cd ~/mi-casa}}\n"
+msgstr "Para volver rápidamente a casa, usa {{yb:cd ~/my-house}}\n"
 
 #: ../linux_story/story/challenges/challenge_15.py:114
 msgid ""
 "{{rb:No shortcuts! Use}} {{yb:cd ~/my-house}} {{rb:to get back to your house "
 "in one step.}}"
 msgstr ""
-"{{rb:¡Sin abreviaturas! Usa}} {{yb:cd ~/mi-casa}} {{rb:para volver a tu casa "
+"{{rb:¡Sin abreviaturas! Usa}} {{yb:cd ~/my-house}} {{rb:para volver a tu casa "
 "en un solo paso.}}"
 
 #: ../linux_story/story/challenges/challenge_15.py:128
@@ -1841,39 +1841,39 @@ msgstr "¿Dónde piensas que podremos encontrar cosas ocultas?\n"
 
 #: ../linux_story/story/challenges/challenge_15.py:130
 msgid "Try {{lb:looking closely}} in {{bb:my-room}} first."
-msgstr "Intenta {{lb:mirar más de cerca}} en {{bb:mi-habitación}} primero."
+msgstr "Intenta {{lb:mirar más de cerca}} en {{bb:my-room}} primero."
 
 #: ../linux_story/story/challenges/challenge_15.py:136
 msgid "{{rb:Stuck? Have a look in}} {{yb:my-room}}{{rb:.}}"
-msgstr "{{rb:¿Bloqueado? Mira en}} {{yb:mi-habitación}}{{rb:.}}"
+msgstr "{{rb:¿Bloqueado? Mira en}} {{yb:my-room}}{{rb:.}}"
 
 #: ../linux_story/story/challenges/challenge_15.py:137
 msgid ""
 "{{rb:Use}} {{yb:ls -a my-room}} {{rb:to look for hidden files in}} {{lb:my-"
 "room}}{{rb:.}}"
 msgstr ""
-"{{rb:Usa}} {{yb:ls -a mi-habitación}} {{rb:para buscar objetos ocultos en}} "
-"{{lb:mi-habitación}}{{rb:.}}"
+"{{rb:Usa}} {{yb:ls -a my-room}} {{rb:para buscar objetos ocultos en}} "
+"{{lb:my-room}}{{rb:.}}"
 
 #: ../linux_story/story/challenges/challenge_16.py:31
 msgid ""
 "There is an old antique {{bb:.chest}} hidden under your bed, which you don't "
 "remember seeing before.\n"
 msgstr ""
-"Hay un antigüo {{bb:.cofre}} oculto debajo de tu cama, no recuerdas haberlo "
+"Hay un antigüo {{bb:.chest}} oculto debajo de tu cama, no recuerdas haberlo "
 "visto antes.\n"
 
 #: ../linux_story/story/challenges/challenge_16.py:32
 msgid "You walk into {{bb:my-room}} to have a closer look.\n"
-msgstr "Vas dentro de {{bb:mi-habitación}} para mirar más de cerca.\n"
+msgstr "Vas dentro de {{bb:my-room}} para mirar más de cerca.\n"
 
 #: ../linux_story/story/challenges/challenge_16.py:33
 msgid "{{lb:Peer inside}} the {{bb:.chest}} and see what it contains."
-msgstr "{{lb:Mira dentro}} del {{bb:.cofre}} y fíjate qué contiene."
+msgstr "{{lb:Mira dentro}} del {{bb:.chest}} y fíjate qué contiene."
 
 #: ../linux_story/story/challenges/challenge_16.py:49
 msgid "{{rb:Use}} {{yb:ls .chest}} {{rb:to look inside the .chest}}"
-msgstr "{{rb:Usa}} {{yb:ls .cofre}} {{rb:para mirar dentro del .cofre}}"
+msgstr "{{rb:Usa}} {{yb:ls .chest}} {{rb:para mirar dentro del .chest}}"
 
 #: ../linux_story/story/challenges/challenge_16.py:58
 msgid ""
@@ -1881,7 +1881,7 @@ msgid ""
 "hidden-shelter}}\n"
 msgstr ""
 "Hay algunos rollos de pergamino, similares a los que encontraste en el {{bb:."
-"refugio-oculto}}\n"
+"hidden-shelter}}\n"
 
 #: ../linux_story/story/challenges/challenge_16.py:59
 msgid "Use {{yb:cat}} to {{lb:read}} one of the scrolls.\n"
@@ -1889,11 +1889,11 @@ msgstr "Usa {{yb:cat}} para {{lb:leer}} uno de los rollos.\n"
 
 #: ../linux_story/story/challenges/challenge_16.py:72
 msgid "{{rb:Use}} {{yb:cat .chest/LS}} {{rb:to read the LS scroll.}}"
-msgstr "{{rb:Usa}} {{yb:cat .cofre/LS}} {{rb:para leer el rollo LS.}}"
+msgstr "{{rb:Usa}} {{yb:cat .chest/LS}} {{rb:para leer el rollo LS.}}"
 
 #: ../linux_story/story/challenges/challenge_16.py:113
 msgid "I wonder if there's anything else hidden in this {{lb:.chest}}?"
-msgstr "¿Me pregunto si habrá algo más oculto en este {{lb:.cofre}}?"
+msgstr "¿Me pregunto si habrá algo más oculto en este {{lb:.chest}}?"
 
 #: ../linux_story/story/challenges/challenge_16.py:114
 msgid "Have a {{lb:closer look}} for some more items."
@@ -1904,7 +1904,7 @@ msgid ""
 "{{rb:Use}} {{yb:ls -a .chest}} {{rb:to see if there are any hidden items in "
 "the chest.}}"
 msgstr ""
-"{{rb:Usa}} {{yb:ls -a .cofre}} {{rb:para encontrar otros objetos ocultos en "
+"{{rb:Usa}} {{yb:ls -a .chest}} {{rb:para encontrar otros objetos ocultos en "
 "el cofre.}}"
 
 #: ../linux_story/story/challenges/challenge_16.py:137
@@ -1912,8 +1912,8 @@ msgid ""
 "You suddenly notice a tiny stained {{lb:.note}}, scrumpled in the corner of "
 "the {{lb:.chest}}."
 msgstr ""
-"De repente encuentras una pequeña y manchada {{lb:.nota}}, estropeada en la "
-"esquina del {{lb:.cofre}}."
+"De repente encuentras una pequeña y manchada {{lb:.note}}, estropeada en la "
+"esquina del {{lb:.chest}}."
 
 #: ../linux_story/story/challenges/challenge_16.py:138
 msgid "What does it say?\n"
@@ -1923,14 +1923,14 @@ msgstr "¿Qué dice?\n"
 msgid ""
 "{{rb:Use}} {{yb:cat .chest/.note}} {{rb:to read the}} {{lb:.note}}{{rb:.}}"
 msgstr ""
-"{{rb:Usa}} {{yb:cat .cofre/.nota}} {{rb:para leer la}} {{lb:.nota}}{{rb:.}}"
+"{{rb:Usa}} {{yb:cat .chest/.note}} {{rb:para leer la}} {{lb:.note}}{{rb:.}}"
 
 #: ../linux_story/story/challenges/challenge_17.py:34
 msgid ""
 "You are in your room, standing in front of the {{bb:.chest}} containing all "
 "the commands you've learned so far.\n"
 msgstr ""
-"Estás en tu habitación, parado en frente del {{bb:.cofre}} que contiene "
+"Estás en tu habitación, parado en frente del {{bb:.chest}} que contiene "
 "todos los comandos que has aprendido hasta ahora.\n"
 
 #: ../linux_story/story/challenges/challenge_17.py:35
@@ -1954,8 +1954,8 @@ msgid ""
 "You see doors to your {{bb:garden}}, {{bb:kitchen}}, {{bb:my-room}} and {{bb:"
 "parents-room}}."
 msgstr ""
-"Ves las puertas del {{bb:jardín}}, {{bb:cocina}}, {{bb:mi-habitación}} y "
-"{{bb:habitación-padres}}."
+"Ves las puertas del {{bb:garden}}, {{bb:kitchen}}, {{bb:my-room}} y "
+"{{bb:parents-room}}."
 
 #: ../linux_story/story/challenges/challenge_17.py:55
 msgid "We haven't checked out your parents' room properly yet.\n"
@@ -1963,7 +1963,7 @@ msgstr "No nos hemos fijado en el habitción de tus padres aún.\n"
 
 #: ../linux_story/story/challenges/challenge_17.py:56
 msgid "{{lb:Go into your}} {{bb:parents-room}}."
-msgstr "{{lb:Ve dentro de la}} {{bb:habitación-padres}}."
+msgstr "{{lb:Ve dentro de la}} {{bb:parents-room}}."
 
 #: ../linux_story/story/challenges/challenge_17.py:86
 #: ../linux_story/story/challenges/challenge_20.py:49
@@ -1981,7 +1981,7 @@ msgid ""
 "{{gb:Now go into your}} {{lb:parents-room}}{{gb:.}}"
 msgstr ""
 "\n"
-"{{gb:Ahora ve a la}} {{lb:habitación-padres}}{{gb:.}}"
+"{{gb:Ahora ve a la}} {{lb:parents-room}}{{gb:.}}"
 
 #: ../linux_story/story/challenges/challenge_17.py:90
 msgid ""
@@ -1989,7 +1989,7 @@ msgid ""
 "{{rb:Use}} {{yb:cd parents-room}} {{rb:to go in.}}"
 msgstr ""
 "\n"
-"{{rb:Usa}} {{yb:cd habitación-padres}} {{rb:para entrar.}}"
+"{{rb:Usa}} {{yb:cd parents-room}} {{rb:para entrar.}}"
 
 #: ../linux_story/story/challenges/challenge_17.py:113
 #: ../linux_story/story/challenges/challenge_28.py:82
@@ -2003,24 +2003,24 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_17.py:136
 msgid "There's a {{bb:.safe}}!\n"
-msgstr "Hay algo que está {{bb:.cerrado}}!\n"
+msgstr "Hay algo que está {{bb:.safe}}!\n"
 
 #: ../linux_story/story/challenges/challenge_17.py:137
 msgid ""
 "Maybe there's something useful in here. {{lb:Look inside}} the {{bb:.safe}}."
-msgstr "Hay algo útil aquí. {{lb:Mira dentro}} de lo que está {{bb:.cerrado}}."
+msgstr "Hay algo útil aquí. {{lb:Mira dentro}} de lo que está {{bb:.safe}}."
 
 #: ../linux_story/story/challenges/challenge_17.py:149
 msgid "{{rb:Look in the}} {{bb:.safe}} {{rb:using}} {{lb:ls}}{{rb:.}}"
 msgstr ""
-"{{rb:Mira dentro de lo que está}} {{bb:.cerrado}} {{rb:usando}} {{lb:ls}}"
+"{{rb:Mira dentro de lo que está}} {{bb:.safe}} {{rb:usando}} {{lb:ls}}"
 "{{rb:.}}"
 
 #: ../linux_story/story/challenges/challenge_17.py:150
 msgid "{{rb:Use}} {{yb:ls .safe}} {{rb:to look into the .safe.}}"
 msgstr ""
-"{{rb:Usa}} {{yb:ls .cerrado}} {{rb:para mirar dentro de lo que está ."
-"cerrado.}}"
+"{{rb:Usa}} {{yb:ls .safe}} {{rb:para mirar dentro de lo que está ."
+"safe.}}"
 
 #: ../linux_story/story/challenges/challenge_17.py:172
 msgid ""
@@ -2044,11 +2044,11 @@ msgstr "¿Qué más hay aquí? Vamos a {{lb:examinar}} ese {{bb:mapa}}."
 
 #: ../linux_story/story/challenges/challenge_17.py:189
 msgid "{{rb:Use}} {{yb:cat}} {{rb:to read the}} {{bb:map}}{{rb:.}}"
-msgstr "{{rb:Usa}} {{yb:cat}} {{rb:para leer el}} {{bb:mapa}}{{rb:.}}"
+msgstr "{{rb:Usa}} {{yb:cat}} {{rb:para leer el}} {{bb:map}}{{rb:.}}"
 
 #: ../linux_story/story/challenges/challenge_17.py:190
 msgid "{{rb:Use}} {{yb:cat .safe/map}} {{rb:to read the map.}}"
-msgstr "{{rb:Usa}} {{yb:cat .mapa/cerrado}} {{rb:para leer el mapa.}}"
+msgstr "{{rb:Usa}} {{yb:cat .safe/map}} {{rb:para leer el mapa.}}"
 
 #: ../linux_story/story/challenges/challenge_17.py:201
 msgid "So there's a farm around here?"
@@ -2070,11 +2070,11 @@ msgstr "{{rb:Usa}} {{yb:cat}} {{rb:para leer la}} {{bb:ECHO}} {{rb:nota.}}"
 
 #: ../linux_story/story/challenges/challenge_17.py:211
 msgid "{{rb:Use}} {{yb:cat .safe/ECHO}} {{rb:to read the note.}}"
-msgstr "{{rb:Usa}} {{yb:cat .ECHO/cerrado}} {{rb:para leer la nota.}}"
+msgstr "{{rb:Usa}} {{yb:cat .safe/ECHO}} {{rb:para leer la nota.}}"
 
 #: ../linux_story/story/challenges/challenge_17.py:220
 msgid "So the note says {{Bb:\"echo hello - will make you say hello\"}}"
-msgstr "La nota dice {{Bb:\"echo hola - te ayudará a decir hola\"}}"
+msgstr "La nota dice {{Bb:\"echo hello - te ayudará a decir hola\"}}"
 
 #: ../linux_story/story/challenges/challenge_17.py:221
 msgid "Let's test this out. \n"
@@ -2090,7 +2090,7 @@ msgstr "te permite {{lb:hablar}}"
 
 #: ../linux_story/story/challenges/challenge_17.py:229
 msgid "{{rb:Use the command}} {{yb:echo hello}}"
-msgstr "{{rb:Usa el comando}} {{yb:echo hola}}"
+msgstr "{{rb:Usa el comando}} {{yb:echo hello}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:25
 msgid "Woah! You spoke aloud into the empty room!\n"
@@ -2152,7 +2152,7 @@ msgstr "{{lb:Vayamos}} a la {{bb:granja}}."
 
 #: ../linux_story/story/challenges/challenge_18.py:75
 msgid "{{rb:Use}} {{yb:cd farm}} {{rb:to head to the farm.}}"
-msgstr "{{rb:Usa}} {{yb:cd granja}} {{rb:para dirigirte a la granja.}}"
+msgstr "{{rb:Usa}} {{yb:cd farm}} {{rb:para dirigirte a la granja.}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:87
 msgid "You walk up the path to the farm, {{lb:Look around.}}"
@@ -2163,8 +2163,8 @@ msgid ""
 "You are in a farm, with a {{bb:barn}}, a {{bb:farmhouse}} and a large {{bb:"
 "toolshed}} in sight."
 msgstr ""
-"Estás en la granja, con un {{bb:granero}}, una {{bb:casa-granja}} y un largo "
-"{{bb:portaherramientas}} a la vista."
+"Estás en la granja, con un {{bb:barn}}, una {{bb:farmhouse}} y un largo "
+"{{bb:toolshed}} a la vista."
 
 #: ../linux_story/story/challenges/challenge_18.py:102
 msgid ""
@@ -2181,7 +2181,7 @@ msgid ""
 "{{rb:Use}} {{yb:ls barn}} {{rb:to look in the barn.}}"
 msgstr ""
 "\n"
-"{{rb:Usa}} {{yb:ls granero}} {{rb:para mirar dentro del granero.}}"
+"{{rb:Usa}} {{yb:ls barn}} {{rb:para mirar dentro del granero.}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:133
 msgid ""
@@ -2189,7 +2189,7 @@ msgid ""
 "{{rb:Have you looked in the}} {{bb:barn}} {{rb:yet?}}"
 msgstr ""
 "\n"
-"{{rb:¿Has mirado dentro del}} {{bb:granero}} {{rb:ya?}}"
+"{{rb:¿Has mirado dentro del}} {{bb:barn}} {{rb:ya?}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:137
 msgid ""
@@ -2201,21 +2201,21 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_18.py:154
 msgid "In the {{bb:barn}}, you see a woman tending some animals."
-msgstr "En el {{bb:granero}}, ves a una mujer atendiendo a unos animales."
+msgstr "En el {{bb:barn}}, ves a una mujer atendiendo a unos animales."
 
 #: ../linux_story/story/challenges/challenge_18.py:155
 msgid "{{lb:Walk}} into the {{bb:barn}} so you can have a closer look."
-msgstr "{{lb:Camina}} dentro del {{bb:granero}} para poder ver más de cerca."
+msgstr "{{lb:Camina}} dentro del {{bb:barn}} para poder ver más de cerca."
 
 #: ../linux_story/story/challenges/challenge_18.py:161
 msgid "{{rb:Use}} {{yb:cd barn}} {{rb:to walk into the barn.}}"
-msgstr "{{rb:Usa}} {{yb:cd granero}} {{rb:para ir al granero.}}"
+msgstr "{{rb:Usa}} {{yb:cd barn}} {{rb:para ir al granero.}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:176
 msgid ""
 "{{lb:Examine}} everyone in the {{bb:barn}} using the {{yb:cat}} command."
 msgstr ""
-"{{lb:Examina}} a todos en el {{bb:granero}} usando el comando {{yb:cat}}."
+"{{lb:Examina}} a todos en el {{bb:barn}} usando el comando {{yb:cat}}."
 
 #: ../linux_story/story/challenges/challenge_18.py:184
 msgid "Ruth: {{Bb:\"Ah! Who are you?!\"}}"
@@ -2238,7 +2238,7 @@ msgid ""
 "{{rb:If you've forgotten who's in the barn, use}} {{yb:ls}} {{rb:to remind "
 "yourself.}}"
 msgstr ""
-"{{rb:Si te has olvidado quién está en el granero, usa}} {{yb:ls}} {{rb:para "
+"{{rb:Si te has olvidado quién está en el barn, usa}} {{yb:ls}} {{rb:para "
 "recordarlo.}}"
 
 #: ../linux_story/story/challenges/challenge_18.py:226
@@ -2283,7 +2283,7 @@ msgid ""
 "{{gb:Reply with}} {{yb:echo yes}} {{gb:or}} {{yb:echo no}}."
 msgstr ""
 "\n"
-"{{gb:Responde con}} {{yb:echo si}} {{gb:o}} {{yb:echo no}}."
+"{{gb:Responde con}} {{yb:echo yes}} {{gb:o}} {{yb:echo no}}."
 
 #: ../linux_story/story/challenges/challenge_19.py:41
 msgid "{{rb:Use}} {{yb:echo}} {{rb:to reply to her question.}}"
@@ -2291,7 +2291,7 @@ msgstr "{{rb:Usa}} {{yb:echo}} {{rb:para responder a su pregunta.}}"
 
 #: ../linux_story/story/challenges/challenge_19.py:42
 msgid "{{rb:Reply with yes by using}} {{yb:echo yes}}{{rb:.}}"
-msgstr "{{rb:Responde con sí usando}} {{yb:echo si}}{{rb:.}}"
+msgstr "{{rb:Responde con sí usando}} {{yb:echo yes}}{{rb:.}}"
 
 #: ../linux_story/story/challenges/challenge_19.py:60
 msgid "Ruth: {{Bb:\"Oh don't be ridiculous, you look just like her.\"}}"
@@ -2399,7 +2399,7 @@ msgid ""
 "He's a pretty}} {{bb:grumpy-man}}{{Bb:, he was travelling to town because of "
 "that big meeting with the Mayor.\"}}"
 msgstr ""
-"Es un}} {{bb:hombre-gruñón}}{{Bb:, estuvo viajando al pueblo por esa "
+"Es un}} {{bb:grumpy-man}}{{Bb:, estuvo viajando al pueblo por esa "
 "importante reunión con el Alcalde.\"}}"
 
 #: ../linux_story/story/challenges/challenge_19.py:143
@@ -2441,8 +2441,8 @@ msgid ""
 "Ruth: {{Bb:\"Really? Are you sure you didn't see a}} {{lb:grumpy-man}}{{Bb: "
 "in town?\"}}"
 msgstr ""
-"Ruth: {{Bb:\"¿En serio? ¿Estás seguro de que no vista a un }} {{lb:hombre-"
-"gruñón}}{{Bb: en el pueblo?\"}}"
+"Ruth: {{Bb:\"¿En serio? ¿Estás seguro de que no vista a un }} {{lb:grumpy-"
+"man}}{{Bb: en el pueblo?\"}}"
 
 #: ../linux_story/story/challenges/challenge_19.py:180
 msgid "{{yb:\"I'm sorry, he disappeared in front of me.\"}}"
@@ -2508,13 +2508,13 @@ msgid ""
 "Use the {{lb:cd}} command to go into the {{bb:toolshed}}.\n"
 msgstr ""
 "\n"
-"Usa el comando {{lb:cd}} para ir al {{bb:portaherramientas}}.\n"
+"Usa el comando {{lb:cd}} para ir al {{bb:toolshed}}.\n"
 
 #: ../linux_story/story/challenges/challenge_20.py:43
 msgid "{{rb:Go to the toolshed in one step using}} {{yb:cd ../toolshed}}"
 msgstr ""
 "{{rb:Ve al portaherramientas en un solo paso usando}} {{yb:cd ../"
-"portaherramientas}}"
+"toolshed}}"
 
 #: ../linux_story/story/challenges/challenge_20.py:52
 msgid ""
@@ -2522,7 +2522,7 @@ msgid ""
 "{{gb:You walk outside. Now go into the}} {{bb:toolshed}}{{gb:.}}"
 msgstr ""
 "\n"
-"{{gb:Saliste, ahora ve al}} {{bb:portaherramientas}}{{gb:.}}"
+"{{gb:Saliste, ahora ve al}} {{bb:toolshed}}{{gb:.}}"
 
 #: ../linux_story/story/challenges/challenge_20.py:53
 msgid ""
@@ -2530,14 +2530,14 @@ msgid ""
 "{{rb:Use}} {{yb:cd toolshed}} {{rb:to go in the toolshed.}}"
 msgstr ""
 "\n"
-"{{rb:Usa}} {{yb:cd portaherramientas}} {{rb:para ir a ver las herramientas.}}"
+"{{rb:Usa}} {{yb:cd toolshed}} {{rb:para ir a ver las herramientas.}}"
 
 #: ../linux_story/story/challenges/challenge_20.py:76
 msgid ""
 "{{bb:Ruth}} follows you into the {{bb:toolshed}}. It's a very large space "
 "with tools lining the walls.\n"
 msgstr ""
-"{{bb:Ruth}} te sigue al {{bb:portaherramientas}}. Es muy grande y "
+"{{bb:Ruth}} te sigue al {{bb:toolshed}}. Es muy grande y "
 "tienemuchas herramientas.\n"
 
 #: ../linux_story/story/challenges/challenge_20.py:78
@@ -2603,7 +2603,7 @@ msgid ""
 " "
 msgstr ""
 "\n"
-"Intenta construir un inglú usando {{yb:mkdir iglú}}\n"
+"Intenta construir un inglú usando {{yb:mkdir igloo}}\n"
 " "
 
 #: ../linux_story/story/challenges/challenge_20.py:136
@@ -2616,7 +2616,7 @@ msgstr "te permite {{lb:construir}} un refugio"
 
 #: ../linux_story/story/challenges/challenge_20.py:141
 msgid "{{rb:Create an igloo structure by using}} {{yb:mkdir igloo}}\n"
-msgstr "{{rb:Construye un inglú usando}} {{yb:mkdir iglú}}\n"
+msgstr "{{rb:Construye un inglú usando}} {{yb:mkdir igloo}}\n"
 
 #: ../linux_story/story/challenges/challenge_20.py:157
 msgid ""
@@ -2679,7 +2679,7 @@ msgid ""
 "{{rb:Use}} {{yb:cd barn}} {{rb:to go in the barn.}}"
 msgstr ""
 "\n"
-"{{rb:Usa}} {{yb:cd granero}} {{rb:para ir al granero.}}"
+"{{rb:Usa}} {{yb:cd barn}} {{rb:para ir al granero.}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:73
 msgid "Ruth: {{Bb:\"Anyone would be able to find the igloo you just made."
@@ -2694,7 +2694,7 @@ msgid ""
 "{{yb:1: \"If we call it}} {{bb:hidden-shelter}}{{yb:, that will make it "
 "hidden.\"}}"
 msgstr ""
-"{{yb:1: \"Si lo llamamos}} {{bb:refugio-oculto}}{{yb:, eso lo hará oculto."
+"{{yb:1: \"Si lo llamamos}} {{bb:hidden-shelter}}{{yb:, eso lo hará oculto."
 "\"}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:78
@@ -2731,7 +2731,7 @@ msgid ""
 "{{yb:\"If we call it}} {{bb:hidden-shelter}}{{yb:, that will make it hidden."
 "\"}}"
 msgstr ""
-"{{yb:\"Si lo llamamos}} {{bb:refugio-oculto}}{{yb:, eso lo convertirá en "
+"{{yb:\"Si lo llamamos}} {{bb:hidden-shelter}}{{yb:, eso lo convertirá en "
 "oculto.\"}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:126
@@ -2739,24 +2739,24 @@ msgid ""
 "Ruth: {{Bb:\"So creating one called}} {{bb:hidden-shelter}} {{Bb:should make "
 "it hidden? Ok, let's try that.\"}}\n"
 msgstr ""
-"Ruth: {{Bb:\"¿Entonces creando uno llamado}} {{bb:refugio-oculto}} {{Bb:lo "
+"Ruth: {{Bb:\"¿Entonces creando uno llamado}} {{bb:hidden-shelter}} {{Bb:lo "
 "haráoculto? Ok, intentémoslo.\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_21.py:128
 msgid "Try {{lb:building}} a shelter called {{bb:hidden-shelter}}."
-msgstr "Intenta {{lb:construir}} un refugio llamado {{bb:refugio-oculto}}."
+msgstr "Intenta {{lb:construir}} un refugio llamado {{bb:hidden-shelter}}."
 
 #: ../linux_story/story/challenges/challenge_21.py:136
 msgid "{{rb:You need to make a shelter called}} {{yb:hidden-shelter}}{{rb:.}}"
 msgstr ""
-"{{rb:Necesitas construir un refugio llamado}} {{yb:refugio-oculto}}{{rb:.}}"
+"{{rb:Necesitas construir un refugio llamado}} {{yb:hidden-shelter}}{{rb:.}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:138
 msgid ""
 "{{rb:Use the command}} {{yb:mkdir hidden-shelter}} {{rb:to make the "
 "shelter.}}"
 msgstr ""
-"{{rb:Usa el comando}} {{yb:mkdir refugio-oculto}} {{rb:para construir el "
+"{{rb:Usa el comando}} {{yb:mkdir hidden-shelter}} {{rb:para construir el "
 "refugio.}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:145
@@ -2767,8 +2767,8 @@ msgid ""
 "{{yb:Press UP to replay the old command, and edit it.}}"
 msgstr ""
 "\n"
-"Ruth: {{Bb:\"Has dicho que debería llamarse}} {{bb:refugio-oculto}}{{Bb:, "
-"no}} {{lb:.refugio-oculto}}{{Bb:.\"}}\n"
+"Ruth: {{Bb:\"Has dicho que debería llamarse}} {{bb:hidden-shelter}}{{Bb:, "
+"no}} {{lb:.hidden-shelter}}{{Bb:.\"}}\n"
 "{{yb:Presiona la flecha hacia ARRIBA para volver al viejo comando y "
 "editarlo.}}"
 
@@ -2788,7 +2788,7 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_21.py:195
 msgid "Ruth: {{Bb:\"You made}} {{bb:hidden-shelter}}{{Bb:!\"}}"
-msgstr "Ruth: {{Bb:\"¡Hiciste un}} {{bb:refugio-oculto}}{{Bb:!\"}}"
+msgstr "Ruth: {{Bb:\"¡Hiciste un}} {{bb:hidden-shelter}}{{Bb:!\"}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:196
 msgid "{{Bb:\"...The problem is, I can see it too. I don't think it worked."
@@ -2813,7 +2813,7 @@ msgid ""
 "{{yb:2: \"You're mistaken. You can't see the hidden-shelter, it's hidden."
 "\"}}\n"
 msgstr ""
-"{{yb:2: \"Estás equivocado. No puedes ver el refugio-oculto, está oculto."
+"{{yb:2: \"Estás equivocado. No puedes ver el hidden-shelter, está oculto."
 "\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_21.py:201
@@ -2849,19 +2849,19 @@ msgid ""
 "Ruth: {{Bb:\"So if we called the shelter}} {{bb:.shelter}}{{Bb:, it would be "
 "hidden? Let's try it!\"}}\n"
 msgstr ""
-"Ruth: {{Bb:\"Si llamas al refugio}} {{bb:.refugio}}{{Bb:, ¿estará oculto? "
+"Ruth: {{Bb:\"Si llamas al refugio}} {{bb:.shelter}}{{Bb:, ¿estará oculto? "
 "¡Probemos!\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_21.py:242
 msgid "{{lb:Build}} a shelter called {{bb:.shelter}}"
-msgstr "{{lb:Construye}} un refugio llamado {{bb:.refugio}}"
+msgstr "{{lb:Construye}} un refugio llamado {{bb:.shelter}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:248
 msgid ""
 "{{rb:Make}} {{bb:.shelter}} {{rb:using}} {{yb:mkdir .shelter}}{{rb: - "
 "remember the dot!}}"
 msgstr ""
-"{{rb:Construye el}} {{bb:.refugio}} {{rb:usando}} {{yb:mkdir .refugio}}{{rb: "
+"{{rb:Construye el}} {{bb:.shelter}} {{rb:usando}} {{yb:mkdir .shelter}}{{rb: "
 "- ¡no olvides el punto!}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:266
@@ -2911,7 +2911,7 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_21.py:310
 msgid "{{lb:Move}} everyone into the {{bb:.shelter}} one by one.\n"
-msgstr "{{lb:Mueve}} a todos dentro del {{bb:.refugio}} uno por uno.\n"
+msgstr "{{lb:Mueve}} a todos dentro del {{bb:.shelter}} uno por uno.\n"
 
 #: ../linux_story/story/challenges/challenge_21.py:344
 #, python-format
@@ -2924,7 +2924,7 @@ msgid ""
 "{{gb:Well done! Move one more in the}} {{yb:.shelter}}"
 msgstr ""
 "\n"
-"{{gb:¡Bien hecho! Mueve a alguien más al}} {{yb:.refugio}}"
+"{{gb:¡Bien hecho! Mueve a alguien más al}} {{yb:.shelter}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:368
 #, python-format
@@ -2947,13 +2947,13 @@ msgstr ""
 msgid ""
 "{{lb:Go}} into the {{bb:.shelter}} along with {{bb:Ruth}} and the animals."
 msgstr ""
-"{{lb:Ve}} dentro del {{bb:.refugio}} junto con {{bb:Ruth}} y los animales."
+"{{lb:Ve}} dentro del {{bb:.shelter}} junto con {{bb:Ruth}} y los animales."
 
 #: ../linux_story/story/challenges/challenge_21.py:394
 msgid ""
 "{{rb:Type}} {{yb:cd .shelter}} {{rb:to go into the}} {{bb:.shelter}}{{rb:.}}"
 msgstr ""
-"{{rb:Escribe}} {{yb:cd .refugio}} {{rb:para ir dentro del}} {{bb:.refugio}}"
+"{{rb:Escribe}} {{yb:cd .shelter}} {{rb:para ir dentro del}} {{bb:.shelter}}"
 "{{rb:.}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:407
@@ -3049,7 +3049,7 @@ msgid ""
 "Maybe you should check back on the family in the {{bb:.hidden-shelter}} and "
 "talk to them with your new found voice."
 msgstr ""
-"Tal vez deberías volver a ver a la familia del {{bb:.refugio-oculto}} y "
+"Tal vez deberías volver a ver a la familia del {{bb:.hidden-shelter}} y "
 "hablar con ellos."
 
 #: ../linux_story/story/challenges/challenge_22.py:117
@@ -3058,15 +3058,15 @@ msgid ""
 "Start heading back to the {{bb:.hidden-shelter}} using {{yb:cd}}."
 msgstr ""
 "\n"
-"Comienza tu camino hacia el {{bb:.refugio-oculto}} usando {{yb:cd}}."
+"Comienza tu camino hacia el {{bb:.hidden-shelter}} usando {{yb:cd}}."
 
 #: ../linux_story/story/challenges/challenge_22.py:124
 msgid ""
 "{{rb:We can go directly to the}} {{bb:.hidden-shelter}} {{rb:using}} {{yb:cd "
 "~/town/.hidden-shelter}}"
 msgstr ""
-"{{rb:Podemos ir directo al}} {{bb:.refugio-oculto}} {{rb:usando}} {{yb:cd ~/"
-"town/.refugio-oculto}}"
+"{{rb:Podemos ir directo al}} {{bb:.hidden-shelter}} {{rb:usando}} {{yb:cd ~/"
+"town/.hidden-shelter}}"
 
 #: ../linux_story/story/challenges/challenge_22.py:141
 msgid ""
@@ -3102,7 +3102,7 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_23.py:48
 msgid "{{yb:2: \"Weren't they with you in the hidden-shelter?\"}}"
-msgstr "{{yb:2: \"¿No estaban contigo en el refugio-oculto?\"}}"
+msgstr "{{yb:2: \"¿No estaban contigo en el hidden-shelter?\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:49
 msgid "{{yb:3: \"(lie) Yes, I saw them in town.\"}}"
@@ -3156,7 +3156,7 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_23.py:106
 msgid "{{yb:\"Weren't they with you in the hidden-shelter?\"}}"
-msgstr "{{yb:\"¿No estaban contigo en el refugio-oculto?\"}}"
+msgstr "{{yb:\"¿No estaban contigo en el hidden-shelter?\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:109
 msgid ""
@@ -3210,7 +3210,7 @@ msgid ""
 "follow!"
 msgstr ""
 "\n"
-"{{lb:Abandona}} el {{bb:.refugio-oculto.}} No te preocupes, ¡{{bb:Eleanor}} "
+"{{lb:Abandona}} el {{bb:.hidden-shelter.}} No te preocupes, ¡{{bb:Eleanor}} "
 "te seguirá!"
 
 #: ../linux_story/story/challenges/challenge_23.py:148
@@ -3316,8 +3316,8 @@ msgstr ""
 #: ../linux_story/story/challenges/challenge_24.py:55
 msgid "You see a {{bb:shed-shop}}, {{bb:library}} and {{bb:restaurant}}."
 msgstr ""
-"Ves una {{bb:tienda-cobertizos}}, una {{bb:biblioteca}} y un {{bb:"
-"restaurante}}."
+"Ves una {{bb:shed-shop}}, una {{bb:library}} y un {{bb:"
+"restaurant}}."
 
 #: ../linux_story/story/challenges/challenge_24.py:56
 msgid ""
@@ -3325,7 +3325,7 @@ msgid ""
 "Eleanor: {{Bb:\"Hey, what is that shed-shop?\"}}\n"
 msgstr ""
 "\n"
-"Eleanor: {{Bb:\"¿Qué es esa tienda-cobertizos?\"}}\n"
+"Eleanor: {{Bb:\"¿Qué es esa shed-shop?\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_24.py:57
 msgid "{{Bb:\"Let's}} {{lb:go in}}{{Bb:!\"}}"
@@ -3334,8 +3334,8 @@ msgstr "{{Bb:\"Vamos}} {{lb:adentro}}{{Bb:!\"}}"
 #: ../linux_story/story/challenges/challenge_24.py:63
 msgid "{{rb:Use}} {{yb:cd shed-shop}} {{rb:to go in the shed-shop.}}"
 msgstr ""
-"{{rb:Usa}} {{yb:cd tienda-cobertizos}} {{rb:para entrar a la tienda-"
-"cobertizos.}}"
+"{{rb:Usa}} {{yb:cd shed-shop}} {{rb:para entrar a la shed-"
+"shop.}}"
 
 #: ../linux_story/story/challenges/challenge_24.py:66
 msgid "Eleanor: {{Bb:Do you think they sell candy?}}"
@@ -3405,8 +3405,8 @@ msgid ""
 "\"I have just the thing for you. I have the}} {{bb:best-shed-maker-in-the-"
 "world.sh}}{{Bb:\"}}"
 msgstr ""
-"\"Tengo justo lo que buscan. Tengo el}} {{bb:mejor-constructor-de-cobertizos-"
-"del-mundo.sh}}{{Bb:\"}}"
+"\"Tengo justo lo que buscan. Tengo el}} {{bb:best-shed-maker-in-the-"
+"world.sh}}{{Bb:\"}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:30
 msgid ""
@@ -3416,7 +3416,7 @@ msgid ""
 msgstr ""
 "\n"
 "Se encuentra muy entusiasmado con la idea. {{lb:Examina}} el utensilio {{bb:"
-"mejor-constructor-de-cobertizos-del-mundo.sh}}"
+"best-shed-maker-in-the-world.sh}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:33
 #: ../linux_story/story/challenges/challenge_25.py:81
@@ -3432,15 +3432,15 @@ msgid ""
 "{{rb:Use}} {{yb:cat}} {{rb:to examine the}} {{bb:best-shed-maker-in-the-"
 "world.sh}}"
 msgstr ""
-"{{rb:Usa}} {{yb:cat}} {{rb:para exminar el}} {{bb:mejor-constructor-de-"
-"cobertizos-del-mundo.sh}}"
+"{{rb:Usa}} {{yb:cat}} {{rb:para exminar el}} {{bb:best-shed-maker-"
+"in-the-world.sh}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:43
 msgid ""
 "{{rb:Use}} {{yb:cat best-shed-maker-in-the-world.sh}} {{rb:to examine the "
 "tool.}}"
 msgstr ""
-"{{rb:Usa}} {{yb:cat mejor-constructor-de-cobertizos-del-mundo.sh}} {{rb:para "
+"{{rb:Usa}} {{yb:cat best-shed-maker-in-the-world.sh}} {{rb:para "
 "examinar el utensilio.}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:51
@@ -3454,12 +3454,12 @@ msgid ""
 "in-the-world.sh}}{{rb:.}}"
 msgstr ""
 "\n"
-"{{rb:¡Estás buscando archivos equivocados! Quieres ver}} {{bb:mejor-"
-"constructor-de-cobertizos-del-mundo.sh}}{{rb:.}}"
+"{{rb:¡Estás buscando archivos equivocados! Quieres ver}} {{bb:best-"
+"shed-maker-in-the-world.sh}}{{rb:.}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:71
 msgid "The tool has an inscription that reads \"mkdir shed\"."
-msgstr "El utensilio tiene una etiqueta que dice \"mkdir cobertizo\"."
+msgstr "El utensilio tiene una etiqueta que dice \"mkdir shed\"."
 
 #: ../linux_story/story/challenges/challenge_25.py:72
 msgid ""
@@ -3482,22 +3482,22 @@ msgstr ""
 #: ../linux_story/story/challenges/challenge_25.py:78
 msgid "{{Bb:Try it out! Use it with}} {{yb:./best-shed-maker-in-the-world.sh}}"
 msgstr ""
-"{{Bb:¡Inténtalo! Úsalo con}} {{yb:./mejor-constructor-de-cobertizos-del-"
-"mundo.sh}}"
+"{{Bb:¡Inténtalo! Úsalo con}} {{yb:./best-shed-maker-in-the-"
+"world.sh}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:88
 msgid ""
 "{{rb:Do as Bernard says - use}} {{yb:./best-shed-maker-in-the-world.sh}} "
 "{{rb:to run his script}}"
 msgstr ""
-"{{rb:Haz lo que dice Bernard- usa}} {{yb:./mejor-constructor-de-cobertizos-"
-"del-mundo.sh}} {{rb:para ejecutar el comando}}"
+"{{rb:Haz lo que dice Bernard- usa}} {{yb:./best-shed-maker-in-"
+"the-world.sh}} {{rb:para ejecutar el comando}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:96
 msgid ""
 "Eleanor: {{Bb:Isn't that just the same as running}} {{yb:mkdir shed}}{{Bb:?}}"
 msgstr ""
-"Eleanor: {{Bb:¿No es eso lo mismo que poner}} {{yb:mkdir cobertizo}}{{Bb:?}}"
+"Eleanor: {{Bb:¿No es eso lo mismo que poner}} {{yb:mkdir shed}}{{Bb:?}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:102
 msgid ""
@@ -3506,12 +3506,12 @@ msgid ""
 "shed-maker-in-the-world.sh}}"
 msgstr ""
 "\n"
-"{{rb:Te estás equivocando. Quieres ejecutar}} {{yb:./mejor-constructor-de-"
-"cobertizos-del-mundo.sh}}"
+"{{rb:Te estás equivocando. Quieres ejecutar}} {{yb:./best-shed-maker-"
+"in-the-world.sh}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:115
 msgid "{{lb:Look around}} to see if it created a {{bb:shed}}."
-msgstr "{{lb:Mira alrededor}} para ver si creaste el {{bb:cobertizo}}."
+msgstr "{{lb:Mira alrededor}} para ver si creaste el {{bb:shed}}."
 
 #: ../linux_story/story/challenges/challenge_25.py:126
 msgid "Eleanor: {{Bb:Ah, look over there!}}"
@@ -3519,7 +3519,7 @@ msgstr "Eleanor: {{Bb:Ah, ¡mira allí!}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:134
 msgid "It worked! You can see a new {{bb:shed}} in the room.\n"
-msgstr "¡Funcionó! Puedes ver un nuevo {{bb:cobertizo}}.\n"
+msgstr "¡Funcionó! Puedes ver un nuevo {{bb:shed}}.\n"
 
 #: ../linux_story/story/challenges/challenge_25.py:135
 msgid "What happens if you run it again?\n"
@@ -3540,8 +3540,8 @@ msgid ""
 "{{rb:Run the script again using}} {{yb:./best-shed-maker-in-the-world.sh}} "
 "{{rb:to see what happens.}}"
 msgstr ""
-"{{rb:Ejecuta el comando otra vez usando}} {{yb:./mejor-constructor-de-"
-"cobertizos-del-mundo.sh}} {{rb:para ver qué sucede.}}"
+"{{rb:Ejecuta el comando otra vez usando}} {{yb:./best-shed-maker-"
+"in-the-world.sh}} {{rb:para ver qué sucede.}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:152
 msgid "Eleanor: {{Bb:I don't think this will work...}}"
@@ -3550,7 +3550,7 @@ msgstr "Eleanor: {{Bb:No creo que esto funcione...}}"
 #: ../linux_story/story/challenges/challenge_25.py:160
 msgid ""
 "You get the error {{yb:mkdir: cannot create directory `shed': File exists}}"
-msgstr "Error {{yb:mkdir: no puede crear el `cobertizo': Ya existe}}"
+msgstr "Error {{yb:mkdir: no puede crear el `shed': Ya existe}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:162
 msgid ""
@@ -3560,14 +3560,14 @@ msgid ""
 msgstr ""
 "\n"
 "Bernard: {{Bb:\"Claro que no funcionará una segunda vez- ya tienes un "
-"cobertizo!\""
+"shed!\""
 
 #: ../linux_story/story/challenges/challenge_25.py:165
 msgid ""
 "\"I'm working on the next big thing,}} {{bb:best-horn-in-the-world.sh}}{{Bb:."
 "\"}}"
 msgstr ""
-"\"Estoy trabajando en algo nuevo,}} {{bb:mejor-bocina-del-mundo.sh}}{{Bb:."
+"\"Estoy trabajando en algo nuevo,}} {{bb:best-horn-in-the-world.sh}}{{Bb:."
 "\"}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:168
@@ -3586,7 +3586,7 @@ msgid ""
 "the problem.\n"
 msgstr ""
 "\n"
-"{{lb:Examina}} {{bb:mejor-bocina-del-mundo.sh}} y fíjate si pueden "
+"{{lb:Examina}} {{bb:best-horn-in-the-world.sh}} y fíjate si pueden "
 "identificar el problema.\n"
 
 #: ../linux_story/story/challenges/challenge_25.py:175
@@ -3601,7 +3601,7 @@ msgstr "{{rb:Usa}} {{yb:cat}} {{rb:para examinar el utensilio.}}"
 msgid ""
 "{{rb:Use}} {{yb:cat best-horn-in-the-world.sh}} {{rb:to examine the tool.}}"
 msgstr ""
-"{{rb:Usa}} {{yb:cat mejor-bocina-del-mundo.sh}} {{rb:para examinar el "
+"{{rb:Usa}} {{yb:cat best-horn-in-the-world.sh}} {{rb:para examinar el "
 "utensilio.}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:192
@@ -3615,12 +3615,12 @@ msgid ""
 "in-the-world.sh}}"
 msgstr ""
 "\n"
-"{{rb:Estás examinando el utensilio equivocado. Quieres ver la}} {{yb:mejor-"
-"bocina-del-mundo.sh}}"
+"{{rb:Estás examinando el utensilio equivocado. Quieres ver la}} {{yb:best-horn-"
+"in-the-world.sh}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:213
 msgid "The tool reads {{yb:eco \"Honk!\"}}"
-msgstr "El utensilio tiene una etiqueta que dice {{yb:eco \"¡Honk!\"}}"
+msgstr "El utensilio tiene una etiqueta que dice {{yb:eco \"Honk!\"}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:214
 msgid "Maybe it should read {{yb:echo \"Honk!\"}} instead..."
@@ -3652,7 +3652,7 @@ msgid ""
 "Before we go, have a {{lb:look}} in the {{bb:basement}}."
 msgstr ""
 "\n"
-"Antes de irse, {{lb:mira}} en el {{bb:sótano}}."
+"Antes de irse, {{lb:mira}} en el {{bb:basement}}."
 
 #: ../linux_story/story/challenges/challenge_25.py:233
 msgid "{{rb:Use}} {{yb:ls}} {{rb:to look through.}}"
@@ -3660,7 +3660,7 @@ msgstr "{{rb:Usa}} {{yb:ls}} {{rb:para mirar.}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:234
 msgid "{{rb:Use}} {{yb:ls basement/}} {{rb:to look inside.}}"
-msgstr "{{rb:Usa}} {{yb:ls sótano/}} {{rb:para mirar dentro.}}"
+msgstr "{{rb:Usa}} {{yb:ls basement/}} {{rb:para mirar dentro.}}"
 
 #: ../linux_story/story/challenges/challenge_25.py:238
 msgid "Eleanor: {{Bb:OooOOoh, are there sweets in there?}}"
@@ -3716,12 +3716,12 @@ msgid ""
 "Eleanor: {{Bb:\"There it is! The}} {{bb:library}} {{Bb:is right there! "
 "Let's}} {{lb:go inside.}}{{Bb:\"}}"
 msgstr ""
-"Eleanor: {{Bb:\"¡Allí está! ¡La}} {{bb:biblioteca}} {{Bb:está justo allí! "
+"Eleanor: {{Bb:\"¡Allí está! ¡La}} {{bb:library}} {{Bb:está justo allí! "
 "Vayamos}} {{lb:dentro.}}{{Bb:\"}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:64
 msgid "{{rb:Use}} {{yb:cd library}} {{rb:to go inside the library.}}"
-msgstr "{{rb:Usa}} {{yb:cd biblioteca}} {{rb:para entrar a la bilbioteca.}}"
+msgstr "{{rb:Usa}} {{yb:cd library}} {{rb:para entrar a la bilbioteca.}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:66
 msgid "Eleanor: {{Bb:I love the library! Let's go inside!}}"
@@ -3729,11 +3729,11 @@ msgstr "Eleanor: {{Bb:¡Me encanta la biblioteca! ¡Entremos!}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:77
 msgid "{{bb:Eleanor}} skips into the {{bb:library}}, while you follow her.\n"
-msgstr "{{bb:Eleanor}} entra a la {{bb:biblioteca}}, tú la sigues.\n"
+msgstr "{{bb:Eleanor}} entra a la {{bb:library}}, tú la sigues.\n"
 
 #: ../linux_story/story/challenges/challenge_26.py:78
 msgid "{{lb:Look around}} the {{bb:library}}."
-msgstr "{{lb:Mira alrededor}} de la {{bb:biblioteca}}."
+msgstr "{{lb:Mira alrededor}} de la {{bb:library}}."
 
 #: ../linux_story/story/challenges/challenge_26.py:97
 msgid "Eleanor: {{Bb:It's all echo-y-y-y-y..}}"
@@ -3745,7 +3745,7 @@ msgid ""
 "{{bb:public-section}}, the other {{bb:private-section}}.\n"
 msgstr ""
 "Te encuentras en un pasillo que conduce a dos puertas, cada una con un "
-"cartel. Uno dice {{bb:sección-pública}}, y el otro {{bb:sección-privada}}.\n"
+"cartel. Uno dice {{bb:public-section}}, y el otro {{bb:private-section}}.\n"
 
 #: ../linux_story/story/challenges/challenge_26.py:110
 msgid "Eleanor: {{Bb:\"There used to be a librarian here."
@@ -3754,7 +3754,7 @@ msgstr "Eleanor: {{Bb:\"Solía haber una bibliotecaria aquí."
 #: ../linux_story/story/challenges/challenge_26.py:112
 msgid ""
 "She would tell me off for trying to look in the}} {{bb:private-section}}."
-msgstr "Me regañaría si me ve intentando entrar a la}} {{bb:sección-privada}}."
+msgstr "Me regañaría si me ve intentando entrar a la}} {{bb:private-section}}."
 
 #: ../linux_story/story/challenges/challenge_26.py:115
 msgid ""
@@ -3769,17 +3769,17 @@ msgid ""
 "{{rb:Use}} {{yb:ls private-section/}} {{rb:to look in the private-section of "
 "the library.}}"
 msgstr ""
-"{{rb:Usa}} {{yb:ls sección-privada/}} {{rb:para mirar dentro de la sección-"
+"{{rb:Usa}} {{yb:ls private-section/}} {{rb:para mirar dentro de la sección-"
 "privada de la biblioteca.}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:131
 msgid "Eleanor: {{Bb:What's in the private-section?}}"
-msgstr "Eleanor: {{Bb:¿Qué habrá en la sección-privada?}}"
+msgstr "Eleanor: {{Bb:¿Qué habrá en la private-section?}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:140
 msgid "Eleanor: {{Bb:\"I guess the private-section is locked to outsiders...\""
 msgstr ""
-"Eleanor: {{Bb:\"Me imagino que la sección-privada está cerrada para quienes "
+"Eleanor: {{Bb:\"Me imagino que la private-section está cerrada para quienes "
 "vienen de afuera...\""
 
 #: ../linux_story/story/challenges/challenge_26.py:142
@@ -3787,7 +3787,7 @@ msgid ""
 "\"Let's see if we can find something useful in the}} {{bb:public section.}}"
 "{{Bb:\"}}"
 msgstr ""
-"\"Fijémonos si podemos encontrar algo en la}} {{bb:sección pública.}}{{Bb:"
+"\"Fijémonos si podemos encontrar algo en la}} {{bb:public-section.}}{{Bb:"
 "\"}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:145
@@ -3796,22 +3796,22 @@ msgid ""
 "Use {{yb:ls}} to look in the {{bb:public-section}}."
 msgstr ""
 "\n"
-"Usa {{yb:ls}} para mirar dentro de la {{bb:sección-pública}}."
+"Usa {{yb:ls}} para mirar dentro de la {{bb:public-section}}."
 
 #: ../linux_story/story/challenges/challenge_26.py:157
 msgid "{{rb:Use}} {{yb:ls}} {{rb:to look in the public section.}}"
-msgstr "{{rb:Usa}} {{yb:ls}} {{rb:para mirar dentro de la sección pública.}}"
+msgstr "{{rb:Usa}} {{yb:ls}} {{rb:para mirar dentro de la public-section.}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:158
 msgid ""
 "{{rb:Use}} {{yb:ls public-section}} {{rb:to look in the public-section.}}"
 msgstr ""
-"{{rb:Usa}} {{yb:ls sección-pública}} {{rb:para mirar dentro de la sección-"
-"pública.}}"
+"{{rb:Usa}} {{yb:ls public-section}} {{rb:para mirar dentro de la public-"
+"section.}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:161
 msgid "Eleanor: {{Bb:What's in the public-section?}}"
-msgstr "Eleanor: {{Bb:¿Qué crees que habrá en la sección-pública?}}"
+msgstr "Eleanor: {{Bb:¿Qué crees que habrá en la public-section?}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:169
 msgid "Eleanor: {{Bb:\"Wow, all the commands have disappeared."
@@ -3835,7 +3835,7 @@ msgstr "{{Bb:\"Vamos a }} {{lb:examinar}} {{Bb:el papel.\"}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:181
 msgid "{{rb:Examine the NANO script with}} {{yb:cat public-section/NANO}}"
-msgstr "{{rb:Examina el papel con}} {{yb:cat sección-pública/NANO}}"
+msgstr "{{rb:Examina el papel con}} {{yb:cat public-section/NANO}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:184
 msgid "Eleanor: {{Bb:The library should probably have introduced late fees.}}"
@@ -3852,14 +3852,14 @@ msgid ""
 "{{Bb:\"Maybe we could use this to fix that}} {{yb:best-horn-in-the-world."
 "sh}} {{Bb:script?\"}}\n"
 msgstr ""
-"{{Bb:\"Tal vez podemos usar esto para arreglar aquel comando}} {{yb:mejor-"
-"bocina-del-mundo.sh}} {{Bb:?\"}}\n"
+"{{Bb:\"Tal vez podemos usar esto para arreglar aquel comando}} {{yb:best-"
+"horn-in-the-world.sh}} {{Bb:?\"}}\n"
 
 #: ../linux_story/story/challenges/challenge_26.py:200
 msgid ""
 "{{Bb:\"Let's}} {{lb:head back}} {{Bb:to the}} {{bb:shed-shop}}{{Bb:.\"}}"
 msgstr ""
-"{{Bb:\"Vayamos}} {{lb:otra vez}} {{Bb:a la}} {{bb:tienda-cobertizos}}{{Bb:."
+"{{Bb:\"Vayamos}} {{lb:otra vez}} {{Bb:a la}} {{bb:shed-shop}}{{Bb:."
 "\"}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:205
@@ -3884,7 +3884,7 @@ msgid ""
 "{{gb:Now go into the}} {{bb:shed-shop}}{{gb:.}}"
 msgstr ""
 "\n"
-"{{gb:Ahora dirígete a la}} {{bb:tienda-cobertizos}}{{gb:.}}"
+"{{gb:Ahora dirígete a la}} {{bb:shed-shop}}{{gb:.}}"
 
 #: ../linux_story/story/challenges/challenge_26.py:215
 msgid ""
@@ -3892,7 +3892,7 @@ msgid ""
 "{{rb:Use}} {{yb:cd shed-shop/}} {{rb:to go into the shed-shop.}}"
 msgstr ""
 "\n"
-"{{rb:Usa}} {{yb:cd tienda-cobertizos/}} {{rb:para ir a la tienda-"
+"{{rb:Usa}} {{yb:cd shed-shop/}} {{rb:para ir a la tienda-"
 "cobertizos.}}"
 
 #: ../linux_story/story/challenges/challenge_27.py:29
@@ -3929,12 +3929,12 @@ msgstr "objecto te permite {{lb:editarlo}}"
 
 #: ../linux_story/story/challenges/challenge_27.py:67
 msgid "Let's try and use {{yb:nano best-horn-in-the-world.sh}} to edit it."
-msgstr "Intentémoslo usando {{yb:nano mejor-bocina-del-mundo.sh}} to edit it."
+msgstr "Intentémoslo usando {{yb:nano best-horn-in-the-world.sh}} to edit it."
 
 #: ../linux_story/story/challenges/challenge_27.py:79
 msgid "{{rb:Use}} {{yb:nano best-horn-in-the-world}} {{rb:to edit the tool.}}"
 msgstr ""
-"{{rb:Usa}} {{yb:nano mejor-bocina-del-mundo}} {{rb:para editar el "
+"{{rb:Usa}} {{yb:nano best-horn-in-the-world}} {{rb:para editar el "
 "utensilio.}}"
 
 #: ../linux_story/story/challenges/challenge_27.py:84
@@ -3951,7 +3951,7 @@ msgstr "¡Es hora de poner a prueba tu comando!"
 
 #: ../linux_story/story/challenges/challenge_27.py:109
 msgid "Use {{yb:./best-horn-in-the-world.sh}} to run it."
-msgstr "Usa {{yb:./mejor-bocina-del-mundo.sh}} para ejecutarlo."
+msgstr "Usa {{yb:./best-horn-in-the-world.sh}} para ejecutarlo."
 
 #: ../linux_story/story/challenges/challenge_27.py:119
 msgid "Eleanor: {{Bb:Will it be loud?}}"
@@ -3960,7 +3960,7 @@ msgstr "Eleanor: {{Bb:¿Sonará fuerte?}}"
 #: ../linux_story/story/challenges/challenge_27.py:121
 msgid "{{rb:Use}} {{yb:./best-horn-in-the-world.sh}} {{rb:to run the script.}}"
 msgstr ""
-"{{rb:Usa}} {{yb:./mejor-bocina-del-mundo.sh}} {{rb:para ejecutar el "
+"{{rb:Usa}} {{yb:./best-horn-in-the-world.sh}} {{rb:para ejecutar el "
 "comando.}}"
 
 #: ../linux_story/story/challenges/challenge_27.py:132
@@ -4065,8 +4065,8 @@ msgid ""
 "Bernard: {{Bb:\"I want to know how the}} {{bb:private-section}} {{Bb:is "
 "locked in the}} {{bb:library}}{{Bb:, and then make a key to unlock it.\"}}"
 msgstr ""
-"Bernard: {{Bb:\"Quisiera saber cómo es que la}} {{bb:sección-privada}} {{Bb:"
-"está cerrada en la}} {{bb:biblioteca}}{{Bb:, y luego crear una llave para "
+"Bernard: {{Bb:\"Quisiera saber cómo es que la}} {{bb:private-section}} {{Bb:"
+"está cerrada en la}} {{bb:library}}{{Bb:, y luego crear una llave para "
 "abrirla.\"}}"
 
 #: ../linux_story/story/challenges/challenge_27.py:203
@@ -4076,7 +4076,7 @@ msgid ""
 "private section.\"}}"
 msgstr ""
 "\n"
-"Eleanor: {{Bb:\"Me imagino que la}} {{bb:bibliotecaria}} {{Bb:es quien "
+"Eleanor: {{Bb:\"Me imagino que la}} {{bb:librarian}} {{Bb:es quien "
 "cierrar la sección privada.\"}}"
 
 #: ../linux_story/story/challenges/challenge_27.py:206
@@ -4090,11 +4090,11 @@ msgid ""
 "{{lb:Leave}} the {{bb:shed-shop}}."
 msgstr ""
 "\n"
-"{{lb:Abandona}} la {{bb:tienda-cobertizos}}."
+"{{lb:Abandona}} la {{bb:shed-shop}}."
 
 #: ../linux_story/story/challenges/challenge_27.py:213
 msgid "{{rb:Use}} {{yb:cd}} {{rb:to leave the shed-shop.}}"
-msgstr "{{rb:Usa}} {{yb:cd}} {{rb:para abandonar la tienda-cobertizos.}}"
+msgstr "{{rb:Usa}} {{yb:cd}} {{rb:para abandonar la shed-shop.}}"
 
 #: ../linux_story/story/challenges/challenge_27.py:214
 msgid "{{rb:Use}} {{yb:cd ..}} {{rb:to go}} {{lb:back}} {{rb:to town.}}"
@@ -4105,7 +4105,7 @@ msgid ""
 "Eleanor: {{Bb:\"What do you think is hidden in the private-section?}}\n"
 "{{Bb:Maybe Bernard shouldn't see it...\"}}"
 msgstr ""
-"Eleanor: {{Bb:\"¿Qué crees que esconde la sección-privada?}}\n"
+"Eleanor: {{Bb:\"¿Qué crees que esconde la private-section?}}\n"
 "{{Bb:Tal vez Bernard no debería saberlo...\"}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:24
@@ -4116,7 +4116,7 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_28.py:25
 msgid "Where could the {{bb:librarian}} be hiding?\n"
-msgstr "¿Dónde puede estar escondiéndose la {{bb:bibliotecaria}} ?\n"
+msgstr "¿Dónde puede estar escondiéndose la {{bb:librarian}} ?\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:26
 msgid "{{lb:Look around}} to decide where to go next."
@@ -4129,15 +4129,15 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_28.py:57
 msgid "We haven't checked out the {{bb:restaurant}} yet.\n"
-msgstr "No hemos ido al {{bb:restaurante}} aún.\n"
+msgstr "No hemos ido al {{bb:restaurant}} aún.\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:58
 msgid "Let's {{lb:go}} into the {{bb:restaurant}}."
-msgstr "{{lb:Vamos}} dentro del {{bb:restaurante}}."
+msgstr "{{lb:Vamos}} dentro del {{bb:restaurant}}."
 
 #: ../linux_story/story/challenges/challenge_28.py:65
 msgid "{{rb:Use}} {{yb:cd restaurant}} {{rb:to go into the restaurant.}}"
-msgstr "{{rb:Usa}} {{yb:cd restaurante}} {{rb:para ir al restaurante.}}"
+msgstr "{{rb:Usa}} {{yb:cd restaurant}} {{rb:para ir al restaurante.}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:69
 msgid "Eleanor: {{Bb:Ooh, do you think they'll have a sandwich anywhere?}}"
@@ -4145,7 +4145,7 @@ msgstr "Eleanor: {{Bb:Ooh, ¿crees que tendrán un sándwich aquí?}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:81
 msgid "You and {{bb:Eleanor}} walk into the {{bb:restaurant}}.\n"
-msgstr "Junto con {{bb:Eleanor}} caminas al {{bb:restaurante}}.\n"
+msgstr "Junto con {{bb:Eleanor}} caminas al {{bb:restaurant}}.\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:89
 msgid ""
@@ -4161,15 +4161,15 @@ msgstr "Eleanor: {{Bb:Está realmente vacío aquí adentro...}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:112
 msgid "Do you see the {{bb:.cellar}}?\n"
-msgstr "¿Puedes ver la {{bb:.bodega}}?\n"
+msgstr "¿Puedes ver la {{bb:.cellar}}?\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:113
 msgid "Let's {{lb:go}} into the {{bb:.cellar}}."
-msgstr "{{lb:Vamos}} dentro de la {{bb:.bodega}}."
+msgstr "{{lb:Vamos}} dentro de la {{bb:.cellar}}."
 
 #: ../linux_story/story/challenges/challenge_28.py:120
 msgid "{{rb:Go in the wine cellar using}} {{yb:cd .cellar}}{{rb:.}}"
-msgstr "{{rb:Entra a la bodega de vinos usando}} {{yb:cd .bodega}}{{rb:.}}"
+msgstr "{{rb:Entra a la bodega de vinos usando}} {{yb:cd .cellar}}{{rb:.}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:123
 msgid "Eleanor: {{Bb:I'm scared...can you hold my hand?}}"
@@ -4180,7 +4180,7 @@ msgid ""
 "{{bb:Eleanor}} grabs your hand, and the two of you walk into the {{bb:"
 "cellar}}.\n"
 msgstr ""
-"{{bb:Eleanor}} toma tu mano, y los dos caminan hacia la {{bb:bodega}}.\n"
+"{{bb:Eleanor}} toma tu mano, y los dos caminan hacia la {{bb:cellar}}.\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:156
 msgid "Eleanor: {{Bb:\"...is there someone there?\"}}"
@@ -4188,7 +4188,7 @@ msgstr "Eleanor: {{Bb:\"¿...hay alguien aquí?\"}}"
 
 #: ../linux_story/story/challenges/challenge_28.py:169
 msgid "You see a woman {{bb:Clara}} in the {{bb:cellar}}.\n"
-msgstr "Ves a una mujer, {{bb:Clara}}, en la {{bb:bodega}}.\n"
+msgstr "Ves a una mujer, {{bb:Clara}}, en la {{bb:cellar}}.\n"
 
 #: ../linux_story/story/challenges/challenge_28.py:170
 msgid "{{lb:Listen}} to what she has to say."
@@ -4264,7 +4264,7 @@ msgid ""
 "{{Bb:.\"}}"
 msgstr ""
 "Clara: {{Bb:\"Escuché un timbre sonar y ví como alguien desaparecía delante "
-"de mí. Estaba tan asustada que corrí, y encontré ésta}} {{bb:.bodega}}{{Bb:."
+"de mí. Estaba tan asustada que corrí, y encontré ésta}} {{bb:.cellar}}{{Bb:."
 "\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:56
@@ -4276,8 +4276,8 @@ msgid ""
 "Clara: {{Bb:\"I have a couple of children, a}} {{bb:little-boy}} {{Bb:and "
 "a}} {{bb:young-girl}}{{Bb:. I hope they are alright.\"}}"
 msgstr ""
-"Clara: {{Bb:\"Tengo dos hijos, un}} {{bb:pequeño-niño}} {{Bb:y una}} {{bb:"
-"joven-niña}}{{Bb:. Espero que se encuentren bien.\"}}"
+"Clara: {{Bb:\"Tengo dos hijos, un}} {{bb:little-boy}} {{Bb:y una}} {{bb:"
+"young-girl}}{{Bb:. Espero que se encuentren bien.\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:63
 msgid "\"Why is the library so empty?\""
@@ -4300,7 +4300,7 @@ msgid ""
 "{{Bb:. I think his name is}} {{bb:Bernard}}{{Bb:.\"}}"
 msgstr ""
 "Clara: {{Bb:\"Hay un hombre en quien no confío, el dueño de la }} {{bb:"
-"tienda-cobertizos}}{{Bb:. Creo que su nombre es}} {{bb:Bernard}}{{Bb:.\"}}"
+"shed-shop}}{{Bb:. Creo que su nombre es}} {{bb:Bernard}}{{Bb:.\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:78
 msgid "\"Why don't you like Bernard?\""
@@ -4427,8 +4427,8 @@ msgstr "Eleanor: {{Bb:\"Ya no estoy asustada, me simpatiza Clara.\"}}"
 #: ../linux_story/story/challenges/challenge_29.py:214
 msgid "Eleanor: {{Bb:\"What is so dangerous in the private-section?\"}}"
 msgstr ""
-"Eleanor: {{Bb:\"¿Qué es aquello tan peligroso que se oculta en la sección-"
-"privada?\"}}"
+"Eleanor: {{Bb:\"¿Qué es aquello tan peligroso que se oculta en la private-"
+"section?\"}}"
 
 #: ../linux_story/story/challenges/challenge_29.py:223
 msgid "Eleanor: {{Bb:\"Do we want to unlock something so dangerous?\"}}"
@@ -4604,7 +4604,7 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_30.py:134
 msgid "{{lb:Head to the}} {{bb:shed-shop.}}"
-msgstr "{{lb:Dirígete a la }} {{bb:tienda-cobertizos.}}"
+msgstr "{{lb:Dirígete a la }} {{bb:shed-shop.}}"
 
 #: ../linux_story/story/challenges/challenge_30.py:145
 msgid ""
@@ -4620,11 +4620,11 @@ msgid ""
 "{{rb:Use}} {{yb:cd shed-shop/}}{{rb:.}}"
 msgstr ""
 "\n"
-"{{rb:Usa}} {{yb:cd tienda-cobertizos/}}{{rb:.}}"
+"{{rb:Usa}} {{yb:cd shed-shop/}}{{rb:.}}"
 
 #: ../linux_story/story/challenges/challenge_31.py:25
 msgid "You've arrived in the {{bb:shed-shop}}. {{lb:Look around.}}"
-msgstr "Has llegado a la {{bb:tienda-cobertizos}}. {{lb:Mira alrededor.}}"
+msgstr "Has llegado a la {{bb:shed-shop}}. {{lb:Mira alrededor.}}"
 
 #: ../linux_story/story/challenges/challenge_31.py:43
 msgid "Huh, you can't see {{bb:Bernard}} anywhere."
@@ -4636,11 +4636,11 @@ msgstr "Me pregunto dónde habrá ido.\n"
 
 #: ../linux_story/story/challenges/challenge_31.py:47
 msgid "Maybe he's in his {{bb:basement}}? Let's {{lb:go}} down there."
-msgstr "¿Tal vez está en el {{bb:sótano}}? {{lb:Vayamos}} ahí abajo."
+msgstr "¿Tal vez está en el {{bb:basement}}? {{lb:Vayamos}} ahí abajo."
 
 #: ../linux_story/story/challenges/challenge_31.py:52
 msgid "{{rb:Go into the basement with}} {{yb:cd basement}}"
-msgstr "{{rb:Ve al sótano con}} {{yb:cd sótano}}"
+msgstr "{{rb:Ve al sótano con}} {{yb:cd basement}}"
 
 #: ../linux_story/story/challenges/challenge_31.py:58
 msgid ""
