@@ -790,7 +790,7 @@ msgid ""
 "{{gb:Well done! Check on 1 more person.}}\n"
 msgstr ""
 "\n"
-"{{gb:¡Bien hecho! Fíjate alguien más.}}\n"
+"{{gb:¡Bien hecho! Fíjate en una persona más.}}\n"
 
 #: ../linux_story/story/challenges/challenge_7.py:104
 #, python-format
@@ -798,6 +798,8 @@ msgid ""
 "\n"
 "{{gb:Well done! Check on %d more people.}}\n"
 msgstr ""
+"\n"
+"{{gb:¡Bien hecho! Fíjate en %d personas más.}}\n"
 
 #: ../linux_story/story/challenges/challenge_7.py:106
 #: ../linux_story/story/challenges/challenge_11.py:86
@@ -1179,7 +1181,7 @@ msgid ""
 "{{gb:Well done! Check on %d more.}}\n"
 msgstr ""
 "\n"
-"{{gb:¡Bien hecho! Escucha a alguien más. %d}}\n"
+"{{gb:¡Bien hecho! Escucha a %d más.}}\n"
 
 #: ../linux_story/story/challenges/challenge_11.py:103
 msgid "Edward looks like he has something he wants to say to you.\n"
@@ -1740,7 +1742,7 @@ msgid ""
 "{{gb:Check on}} {{yb:%d}} {{gb:others}}"
 msgstr ""
 "\n"
-"{{gb:Fíjate}} {{yb:%d}} {{gb:los otros}}"
+"{{gb:Fíjate en}} {{yb:%d}} {{gb:de los otros}}"
 
 #: ../linux_story/story/challenges/challenge_14.py:314
 msgid ""
@@ -2255,6 +2257,8 @@ msgid ""
 "\n"
 "{{gb:Well done! Look at %d more.}}"
 msgstr ""
+"\n"
+"{{gb:¡Bien hecho! Mira a %d más.}}"
 
 #: ../linux_story/story/challenges/challenge_19.py:31
 msgid "Ruth: {{Bb:\"You startled me!\""
@@ -2933,7 +2937,7 @@ msgid ""
 "{{gb:Well done! Move %s more.}}"
 msgstr ""
 "\n"
-"{{gb:¡Bien hecho! Mueve a alguien más. %s}}"
+"{{gb:¡Bien hecho! Mueve a %s más.}}"
 
 #: ../linux_story/story/challenges/challenge_21.py:371
 msgid ""
