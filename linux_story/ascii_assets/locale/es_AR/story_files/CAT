@@ -1,0 +1,25 @@
+ ,--------------------------------------------.
+/                                              \ 
+|    _____       _______                        |
+|   / ____|   /\|__   __|                       |
+|  | |       /  \  | |                          |
+|  | |      / /\ \ | |                          |
+|  | |____ / ____ \| |                          |
+|   \_____/_/    \_\_|                          |
+|                                               |
+|  Este hechizo te da el poder de leer el       |
+|  contenido de los archivos                    |
+|                                               |
+|  Ejemplos                                     |
+|                                               |
+|  cat wardrobe/cap                             |
+|  Esto te permitirá ver el contenido de -cap-  |
+|  si te encuentras en ~/my-house/my-room       |
+|                                               |
+|  cat ~/my-house/my-room/wardrobe/cap          |
+|  Esto te permmitirá ver el contenido de -cap- |
+|  sin importar dónde estés                     |
+\                                              /
+ `--------------------------------------------"
+
+

@@ -1,0 +1,27 @@
+   _____ _____
+  / ____|  __ \
+ | |    | |  | |
+ | |    | |  | |
+ | |____| |__| |
+  \_____|_____/
+
+
+Este hechizo te da el poder de moverte.
+
+
+Ejemplos
+
+<span foreground="yellow">cd</span>
+Esto te lleva al directorio
+
+<span foreground="yellow">cd ~</span>
+Idéntico al de arriba
+
+<span foreground="yellow">cd ../</span>
+Esto te mueve fuera del directorio
+
+<span foreground="yellow">cd hidy-hole</span>
+Esto te mueve dentro del hidey-hole, asumiendo que estás cerca de él
+
+<span foreground="yellow">cd ~/wood/treehouse</span>
+Esto te mueve al directorio ~/wood/treehouse sin importar tu posición actual

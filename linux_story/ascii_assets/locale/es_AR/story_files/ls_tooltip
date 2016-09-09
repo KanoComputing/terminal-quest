@@ -1,0 +1,29 @@
+ _       _____
+| |     / ____|
+| |    | (___
+| |     \___ \
+| |____ ____) |
+|______|_____/
+
+
+Este hechizo te muestra tus alrededores.
+
+
+Examples
+
+<span foreground="yellow">ls</span>
+Te muestra lo que hay a tu alrededor en tu posición actual                              
+
+<span foreground="yellow">ls -a</span>
+Te muestra objetos escondidos en el directorio actual
+
+<span foreground="yellow">ls kitchen</span>
+Te muestra qué hay en el directorio de la
+cocina, asumiendo que estás en la casa.
+
+<span foreground="yellow">ls ../</span>
+Te muestra lo que hay en el directorio detrás tuyo
+
+<span foreground="yellow">ls ~/my-house/kitchen</span>
+Sin importar tu posición actual, esto te mostrará
+qué hay en tu cocina.

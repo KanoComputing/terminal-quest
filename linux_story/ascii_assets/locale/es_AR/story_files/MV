@@ -1,0 +1,23 @@
+ ,---------------------------------------------,
+/                                               \
+|   __  ____      __                            |
+|  |  \/  \ \    / /                            |
+|  | \  / |\ \  / /                             |
+|  | |\/| | \ \/ /                              |
+|  | |  | |  \  /                               |
+|  |_|  |_|   \/                                |
+|                                               |
+|  Este hechizo te permite mover objetos        |
+|  y renombrarlos                               |
+|                                               |
+|  Ejemplos                                     |
+|                                               |
+|  mv item chest/                               |
+|  Si el cofre existe en el directorio,         |
+|  esto mueve al objeto dentro del cofre        |
+|                                               |
+|  mv item better-item                          |
+|  Si better-item no existe, entonces esto      |
+|  renombrará el objeto a better-item           |
+\                                              /
+ `--------------------------------------------'

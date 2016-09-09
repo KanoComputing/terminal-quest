@@ -1,0 +1,28 @@
+ ,---------------------------------------------,
+/                                               \
+|   _       _____                               |
+|  | |     / ____|                              |
+|  | |    | (___                                |
+|  | |     \___ \                               |
+|  | |____ ____) |                              |
+|  |______|_____/                               |
+|                                               |
+|  Este hechizo te muestra tus alrededores.     |
+|                                               |
+|  ls                                           |
+|  Te muestra lo que hay a tu alrededor en tu   |
+|  posición actual                              |
+|                                               |
+|  ls -a                                        |
+|  Te muestra objetos escondidos en el          |
+|  directorio actual                            |
+|                                               |
+|  ls kitchen                                   |
+|  Te muestra qué hay en el directorio de la    |
+|  cocina, asumiendo que estás en la casa       |
+|                                               |
+|  ls ../                                       |
+|  Te muestra lo que hay en el directorio detrás|
+|  tuyo                                         |
+\                                              /
+ `--------------------------------------------'
