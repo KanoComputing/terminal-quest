@@ -11,18 +11,18 @@
 |                                               |
 |  ls                                           |
 |  Te muestra lo que hay a tu alrededor en tu   |
-|  posiciÛn actual                              |
+|  posici√≥n actual                              |
 |                                               |
 |  ls -a                                        |
 |  Te muestra objetos escondidos en el          |
 |  directorio actual                            |
 |                                               |
 |  ls kitchen                                   |
-|  Te muestra quÈ hay en el directorio de la    |
-|  cocina, asumiendo que est·s en la casa       |
+|  Te muestra qu√© hay en el directorio de la    |
+|  cocina, asumiendo que est√°s en la casa       |
 |                                               |
 |  ls ../                                       |
-|  Te muestra lo que hay en el directorio detr·s|
+|  Te muestra lo que hay en el directorio detr√°s|
 |  tuyo                                         |
 \                                              /
  `--------------------------------------------'

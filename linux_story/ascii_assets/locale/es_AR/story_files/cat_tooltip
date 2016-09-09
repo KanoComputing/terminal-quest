@@ -12,7 +12,7 @@ Este hechizo te da el poder de leer el contenido de los archivos
 Ejemplos
 
 <span foreground="yellow">cat wardrobe/cap</span>
-Esto te permitir· ver el contenido de -cap- si te encuentras en ~/my-house/my-room
+Esto te permitir√° ver el contenido de -cap- si te encuentras en ~/my-house/my-room
 
 <span foreground="yellow">cat ~/my-house/my-room/wardrobe/cap</span>
-Esto te permitir· ver el contenido de -cap- sin importar dÛnde estÈs
+Esto te permitir√° ver el contenido de -cap- sin importar d√≥nde est√©s

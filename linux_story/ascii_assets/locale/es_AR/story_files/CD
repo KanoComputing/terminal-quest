@@ -17,10 +17,10 @@
 |                                               |
 |  cd hidey-hole                                |
 |  Esto te mueve dentro del  hidey-hole,        |
-|  asumiendo que est·s cerca de Èl              |
+|  asumiendo que est√°s cerca de √©l              |
 |                                               |
 |  cd ~/wood/treehouse                          |
 |  Esto te mueve a ~/wood/treehouse             |
-|  sin importar tu posiciÛn actual              |
+|  sin importar tu posici√≥n actual              |
 \                                               /
  `---------------------------------------------'

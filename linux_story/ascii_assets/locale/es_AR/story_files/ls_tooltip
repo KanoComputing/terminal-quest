@@ -12,18 +12,18 @@ Este hechizo te muestra tus alrededores.
 Examples
 
 <span foreground="yellow">ls</span>
-Te muestra lo que hay a tu alrededor en tu posiciÛn actual                              
+Te muestra lo que hay a tu alrededor en tu posici√≥n actual                              
 
 <span foreground="yellow">ls -a</span>
 Te muestra objetos escondidos en el directorio actual
 
 <span foreground="yellow">ls kitchen</span>
-Te muestra quÈ hay en el directorio de la
-cocina, asumiendo que est·s en la casa.
+Te muestra qu√© hay en el directorio de la
+cocina, asumiendo que est√°s en la casa.
 
 <span foreground="yellow">ls ../</span>
-Te muestra lo que hay en el directorio detr·s tuyo
+Te muestra lo que hay en el directorio detr√°s tuyo
 
 <span foreground="yellow">ls ~/my-house/kitchen</span>
-Sin importar tu posiciÛn actual, esto te mostrar·
-quÈ hay en tu cocina.
+Sin importar tu posici√≥n actual, esto te mostrar√°
+qu√© hay en tu cocina.

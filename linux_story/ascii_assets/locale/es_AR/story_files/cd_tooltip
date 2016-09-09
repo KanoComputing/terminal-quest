@@ -15,13 +15,13 @@ Ejemplos
 Esto te lleva al directorio
 
 <span foreground="yellow">cd ~</span>
-IdÈntico al de arriba
+Id√©ntico al de arriba
 
 <span foreground="yellow">cd ../</span>
 Esto te mueve fuera del directorio
 
 <span foreground="yellow">cd hidy-hole</span>
-Esto te mueve dentro del hidey-hole, asumiendo que est·s cerca de Èl
+Esto te mueve dentro del hidey-hole, asumiendo que est√°s cerca de √©l
 
 <span foreground="yellow">cd ~/wood/treehouse</span>
-Esto te mueve al directorio ~/wood/treehouse sin importar tu posiciÛn actual
+Esto te mueve al directorio ~/wood/treehouse sin importar tu posici√≥n actual

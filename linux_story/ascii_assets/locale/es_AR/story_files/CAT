@@ -13,12 +13,12 @@
 |  Ejemplos                                     |
 |                                               |
 |  cat wardrobe/cap                             |
-|  Esto te permitir· ver el contenido de -cap-  |
+|  Esto te permitir√° ver el contenido de -cap-  |
 |  si te encuentras en ~/my-house/my-room       |
 |                                               |
 |  cat ~/my-house/my-room/wardrobe/cap          |
-|  Esto te permmitir· ver el contenido de -cap- |
-|  sin importar dÛnde estÈs                     |
+|  Esto te permmitir√° ver el contenido de -cap- |
+|  sin importar d√≥nde est√©s                     |
 \                                              /
  `--------------------------------------------"
 
