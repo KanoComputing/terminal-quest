@@ -1,0 +1,27 @@
+  _   _          _   _  ____
+ | \ | |   /\   | \ | |/ __ \
+ |  \| |  /  \  |  \| | |  | |
+ | . ` | / /\ \ | . ` | |  | |
+ | |\  |/ ____ \| |\  | |__| |
+ |_| \_/_/    \_\_| \_|\____/
+
+
+Un comando para modificar archivos.
+
+
+Ejemplos
+
+<span foreground="yellow">nano filename.sh/</span>
+Abre filename.sh para editarlo
+
+
+Teclas del comando
+
+<span foreground="yellow">Teclas de Flechas/</span>
+Mueve el cursor
+
+<span foreground="yellow">Mantiene CTRL y presiona O/</span>
+Guarda los cambios
+
+<span foreground="yellow">Mantiene CTRL y presiona X/</span>
+Cierra nano, presiona Y luego de guardar tus cambios

@@ -176,7 +176,7 @@ class Storybook(Gtk.TextView):
         else:
             text = _("CHALLENGE {}\n").format(challenge_number)
 
-        border = _("-------------------\n")
+        border = "-------------------\n"
         header = "\n" + border + "\n" + text + "\n" + border
         self.print_text(header)
 

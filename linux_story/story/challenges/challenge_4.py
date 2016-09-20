@@ -18,6 +18,7 @@ if __name__ == '__main__' and __package__ is None:
 from linux_story.story.terminals.terminal_cd import TerminalCd
 from linux_story.story.challenges.challenge_5 import Step1 as NextChallengeStep
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.helper_functions import wrap_in_box
 
 
 class StepTemplateCd(TerminalCd):
@@ -30,12 +31,15 @@ class StepTemplateCd(TerminalCd):
 class Step1(StepTemplateCd):
     story = [
         _("That's weird. No time for that now though - lets find {{bb:Mum}}.\n "),
-        _(" ------------------------------------- "),
-        _("| {{gb:New Spell}}: {{yb:cd}} lets you {{lb:move}}         |"),
-        _("| between places.                     | "),
-        _(" ------------------------------------- "),
-        _("\nUse the command {{yb:cd ..}} to {{lb:leave}} your room.\n")
     ]
+    story += wrap_in_box([
+        _("{{gb:New Spell}}: {{yb:cd}} lets you {{lb:move}}"),
+        _("between places."),
+    ])
+    story += [
+        _("Use the command {{yb:cd ..}} to {{lb:leave}} your room.\n")
+    ]
+
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house"
     commands = [

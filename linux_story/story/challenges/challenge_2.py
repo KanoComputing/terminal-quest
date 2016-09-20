@@ -18,6 +18,7 @@ from kano_profile.apps import save_app_state_variable
 
 from linux_story.story.terminals.terminal_cat import TerminalCat
 from linux_story.story.challenges.challenge_3 import Step1 as NextChallengeStep
+from linux_story.helper_functions import wrap_in_box
 
 
 class StepCat(TerminalCat):
@@ -32,12 +33,17 @@ class Step1(StepCat):
         _("Awesome, now you can see the objects around you."),
         _("There's your {{bb:bed}}, an {{bb:alarm}}... "),
         _("Euuughh...turn that {{bb:alarm}} off! \n"),
-        _(" ------------------------------------- "),
-        _("| {{gb:New Spell}}: to {{lb:examine}} objects, type |"),
-        _("| {{yb:cat}} and the object name.            | "),
-        _(" ------------------------------------- "),
-        _("\nUse {{yb:cat alarm}} to {{lb:examine}} the {{bb:alarm}}.")
     ]
+
+    story += wrap_in_box([
+        _("{{gb:New Spell}}: to {{lb:examine}} objects, type"),
+        _("{{yb:cat}} and the object name."),
+    ])
+
+    story += [
+        _("Use {{yb:cat alarm}} to {{lb:examine}} the {{bb:alarm}}.")
+    ]
+
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat alarm"
