@@ -1,25 +1,30 @@
-#!/usr/bin/env python
+# titles.py
+#
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+
 
 chapters = {
     1: {
         'start_challenge': 1,
         'end_challenge': 9,
-        'title': 'Start exploring'
+        'title': _('Start exploring')
     },
     2: {
         'start_challenge': 10,
         'end_challenge': 16,
-        'title': 'Save a family'
+        'title': _('Save a family')
     },
     3: {
         'start_challenge': 17,
         'end_challenge': 22,
-        'title': 'Go to the farm'
+        'title': _('Go to the farm')
     },
     4: {
         'start_challenge': 23,
         'end_challenge': 31,
-        'title': 'Save Eleanor'
+        'title': _('Save Eleanor')
     },
     5: {
         'start_challenge': 32,
@@ -32,167 +37,167 @@ chapters = {
 # Contains the text describing the challenges
 challenges = {
     1: {
-        'title': 'Wake up!',
+        'title': _('Wake up!'),
         'chapter': 1
     },
     2: {
-        'title': 'Look in your wardrobe',
+        'title': _('Look in your wardrobe'),
         'chapter': 1
     },
     3: {
-        'title': 'Look on your shelves',
+        'title': _('Look on your shelves'),
         'chapter': 1
     },
     4: {
-        'title': 'Find Mum',
+        'title': _('Find Mum'),
         'chapter': 1
     },
     5: {
-        'title': 'Where\'s Dad?',
+        'title': _('Where\'s Dad?'),
         'chapter': 1
     },
     6: {
-        'title': 'Visit the town',
+        'title': _('Visit the town'),
         'chapter': 1
     },
     7: {
-        'title': 'Town meeting',
+        'title': _('Town meeting'),
         'chapter': 1
     },
     8: {
-        'title': 'The bell strikes',
+        'title': _('The bell strikes'),
         'chapter': 1
     },
     9: {
-        'title': 'Where\'s Mum?',
+        'title': _('Where\'s Mum?'),
         'chapter': 1
     },
     10: {
-        'title': 'See more clearly',
+        'title': _('See more clearly'),
         'chapter': 2
     },
     11: {
-        'title': 'Save the girl',
+        'title': _('Save the girl'),
         'chapter': 2
     },
     12: {
-        'title': 'Save the dog',
+        'title': _('Save the dog'),
         'chapter': 2
     },
     13: {
-        'title': 'Food hunt',
+        'title': _('Food hunt'),
         'chapter': 2
     },
     14: {
-        'title': 'Folderton Hero',
+        'title': _('Folderton Hero'),
         'chapter': 2
     },
     15: {
-        'title': 'Have a closer look',
+        'title': _('Have a closer look'),
         'chapter': 2
     },
     16: {
-        'title': 'A gift',
+        'title': _('A gift'),
         'chapter': 2
     },
     17: {
-        'title': 'Find your voice',
+        'title': _('Find your voice'),
         'chapter': 3
     },
     18: {
-        'title': 'Visit the farm',
+        'title': _('Visit the farm'),
         'chapter': 3
     },
     19: {
-        'title': 'Meet Ruth',
+        'title': _('Meet Ruth'),
         'chapter': 3
     },
     20: {
-        'title': 'Learn to build',
+        'title': _('Learn to build'),
         'chapter': 3
     },
     21: {
-        'title': 'Hide Ruth and her animals',
+        'title': _('Hide Ruth and her animals'),
         'chapter': 3
     },
     22: {
-        'title': 'Did you hear that?',
+        'title': _('Did you hear that?'),
         'chapter': 3
     },
     23: {
-        'title': 'Hello Eleanor',
+        'title': _('Hello Eleanor'),
         'chapter': 4
     },
     24: {
-        'title': 'Go east',
+        'title': _('Go east'),
         'chapter': 4
     },
     25: {
-        'title': 'Meet Bernard',
+        'title': _('Meet Bernard'),
         'chapter': 4
     },
     26: {
-        'title': 'Go into the library',
+        'title': _('Go into the library'),
         'chapter': 4
     },
     27: {
-        'title': 'Help Bernard',
+        'title': _('Help Bernard'),
         'chapter': 4
     },
     28: {
-        'title': 'Find the librarian',
+        'title': _('Find the librarian'),
         'chapter': 4
     },
     29: {
-        'title': 'Talk to Clara',
+        'title': _('Talk to Clara'),
         'chapter': 4
     },
     30: {
-        'title': 'Did you hear that?',
+        'title': _('Did you hear that?'),
         'chapter': 4
     },
     31: {
-        'title': 'Explore the shed-shop',
+        'title': _('Explore the shed-shop'),
         'chapter': 4
     },
     32: {
-        'title': 'Follow Ruth\'s hint',
+        'title': _('Follow Ruth\'s hint'),
         'chapter': 5
     },
     33: {
-        'title': 'Another locked door',
+        'title': _('Another locked door'),
         'chapter': 5
     },
     34: {
-        'title': 'Meet the swordsmaster',
+        'title': _('Meet the swordsmaster'),
         'chapter': 5
     },
     35: {
-        'title': 'The swordsmaster\'s test',
+        'title': _('The swordsmaster\'s test'),
         'chapter': 5
     },
     36: {
-        'title': 'The swordsmaster\'s test',
+        'title': _('The swordsmaster\'s test'),
         'chapter': 5
     },
     37: {
-        'title': 'The swordsmaster\'s test',
+        'title': _('The swordsmaster\'s test'),
         'chapter': 5
     },
     38: {
-        'title': 'Another note',
+        'title': _('Another note'),
         'chapter': 5
     },
     39: {
-        'title': 'Explore the woods',
+        'title': _('Explore the woods'),
         'chapter': 5
     },
     40: {
-        'title': 'Time to meet the note giver',
+        'title': _('Time to meet the note giver'),
         'chapter': 5
     },
     41: {
-        'title': 'Unlock the library',
+        'title': _('Unlock the library'),
         'chapter': 5
     }
 }

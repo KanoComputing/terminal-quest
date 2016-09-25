@@ -1,10 +1,8 @@
-#!/usr/bin/env python
+# load_defaults_into_filetree.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
-# load_defaults_into_filetree.py
-
 # This takes the file tree from the yaml and creates it.
 
 
@@ -14,6 +12,7 @@ import stat
 
 from linux_story.get_defaults import get_default_file_dict
 from linux_story.common import tq_file_system
+from linux_story.helper_functions import get_path_to_file_in_system
 
 
 def default_global_tree(challenge, step):
@@ -116,13 +115,6 @@ def modify_file_tree(filesystem_dict):
     if not os.path.exists(tq_file_system):
         os.mkdir(tq_file_system)
 
-    containing_dir = os.path.dirname(os.path.abspath(__file__))
-
-    # Move this to the common.py?
-    containing_dir_of_files = os.path.join(
-        containing_dir, "ascii_assets/story_files"
-    )
-
     for item_names, item_dict in filesystem_dict.iteritems():
 
         item_ids = item_names.split(', ')
@@ -142,11 +134,8 @@ def modify_file_tree(filesystem_dict):
                 # Changes tree
                 split_path_and_add_dirs_to_tree(item_id, fake_path)
 
-                # Copy the file contents in the file system
-                path_to_file_in_system = os.path.join(
-                    containing_dir_of_files,
-                    item_id
-                )
+                # Get the file location in the file system
+                path_to_file_in_system = get_path_to_file_in_system(item_id)
 
                 # If the file is specified as a directory.
                 if 'directory' in item_dict.keys():

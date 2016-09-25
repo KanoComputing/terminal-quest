@@ -1,15 +1,14 @@
-#!/usr/bin/env python
-
 # socket_functions.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # Create server so terminal and GUI can communicate with each other
 
-import SocketServer
-import socket
+
 import json
+import socket
+import SocketServer
 
 
 server_busy = None
@@ -35,7 +34,8 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
     def handle(self):
 
         # self.request is the TCP socket connected to the client
-        self.data = self.request.recv(1024).strip()
+        self.data = self.request.recv(4096).strip()
+        #print self.data
         data_dict = json.loads(self.data)
         self.server.queue.put(data_dict)
 
@@ -73,9 +73,9 @@ def launch_client(data):
         sock.sendall(json_data)
 
         # Receive data from the server and shut down
-        received1 = sock.recv(1024)
+        received1 = sock.recv(4096)
         server_busy = (received1 == 'busy')
-        received2 = sock.recv(1024)
+        received2 = sock.recv(4096)
         server_busy = (received2 == 'busy')
     finally:
         sock.close()

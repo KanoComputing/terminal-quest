@@ -36,6 +36,20 @@ def is_image(filepath):
     return ext in img_extensions
 
 
+def get_locales():
+    locale_dir = 'locale'
+    locales = []
+
+    for dirpath, dirnames, filenames in os.walk(locale_dir):
+        for filename in filenames:
+            locales.append(
+                (os.path.join('/usr/share', dirpath),
+                 [os.path.join(dirpath, filename)])
+            )
+
+    return locales
+
+
 story = recursively_get_dirs("linux_story", "story")
 ascii_assets = recursively_get_dirs("linux_story", "ascii_assets")
 gtk3 = recursively_get_dirs("linux_story", "gtk3")
@@ -62,5 +76,5 @@ setup(name='Linux Story',
           ('/usr/share/kano-desktop/kdesk/kdesktop/', kdesktop),
           ('/usr/share/icons/Kano/88x88/apps', icons),
           ('/usr/share/linux-story', ['nano-2.2.6/src/nano'])
-      ]
+      ] + get_locales()
       )

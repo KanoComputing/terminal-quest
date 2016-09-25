@@ -1,11 +1,10 @@
-#!/usr/bin/env python
-
 # Terminal.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # The template of the terminal classes.
+
 
 import os
 import sys
@@ -38,6 +37,7 @@ import readline
 
 class Terminal(Cmd):
     terminal_commands = []
+    highlighted_commands = []
     print_text = [""]
     story = [""]
     start_dir = "~"
@@ -216,7 +216,7 @@ class Terminal(Cmd):
                 ("mv" in self.last_user_input and
                     not self.last_user_input == 'mv --help'):
 
-            print ('Nice try! But you do not need that command for this '
+            print _('Nice try! But you do not need that command for this ' +\
                    'challenge')
 
             return True
@@ -334,6 +334,7 @@ class Terminal(Cmd):
         data['story'] = "\n".join(self.story)
         data['challenge'] = str(self.challenge_number)
         data['spells'] = self.terminal_commands
+        data['highlighted_spells'] = self.highlighted_commands
 
         t = threading.Thread(target=launch_client, args=(data,))
         t.daemon = True
@@ -348,7 +349,7 @@ class Terminal(Cmd):
                                       )
 
         if xp > 0:
-            self.xp = "{{gb:Congratulations, you earned " + str(xp) + " XP!}}\n\n"
+            self.xp = _("{{gb:Congratulations, you earned %d XP!}}\n\n") % xp
 
     def exit(self):
         data = {'exit': '1'}

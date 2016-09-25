@@ -1,18 +1,23 @@
-#!/usr/bin/env python
-
 # Storybook.py
 #
-# Copyright (C) 2014 Kano Computing Ltd
-# License: GNU GPL v2 http://www.gnu.org/licenses/gpl-2.0.txt
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
-# Author: Caroline Clark <caroline@kano.me>
 
+
+import time
+import string as s
+import os
 
 from gi.repository import Gtk, Pango, Gdk
-import time
-from kano.utils import is_model_2_b
 
-if is_model_2_b():
+from kano.utils import has_min_performance, RPI_2_B_SCORE
+
+from linux_story.sound_manager import SoundManager
+from linux_story.helper_functions import get_ascii_art
+
+
+if has_min_performance(RPI_2_B_SCORE):
     NEWLINE_SLEEP = 0.15
     OTHER_SLEEP = 0.025
 else:
@@ -47,12 +52,16 @@ class Storybook(Gtk.TextView):
         self.set_size_request(self.width, height)
         font_desc = Pango.FontDescription()
         font_desc.set_family("monospace")
+        font_desc.set_size(13*Pango.SCALE)
         self.override_font(font_desc)
         bg_colour = Gdk.RGBA()
         bg_colour.parse("#313131")
         self.override_background_color(Gtk.StateFlags.NORMAL, bg_colour)
         self.char_width = self.__get_char_width()
         self.set_can_focus(False)
+        self.language = self.__get_language()
+
+        self.sounds_manager = SoundManager()
 
     def clear(self):
         '''Clear all text in spellbook
@@ -60,30 +69,42 @@ class Storybook(Gtk.TextView):
         self.get_buffer().set_text('', 0)
 
     def type_coloured_text(self, string):
-        '''
+        """
         Adds colour to the string and prints string with a typing effect.
 
         Args:
             string (str): Text we want to print with a typing effect
+
         Returns:
             None
-        '''
-
+        """
         lines = self.__parse_string(string)
+        unstyled_string = self.__compose_string(lines)
 
-        for line in lines:
+        for i in xrange(len(lines)):
+            line = lines[i]
+
+            # if we are printing a new word, notify the sound manager
+            if i == 0:
+                self.sounds_manager.on_typing_story_text(unstyled_string)
+            else:
+                if unstyled_string[i - 1] in s.whitespace and \
+                   unstyled_string[i] in s.letters:
+
+                    self.sounds_manager.on_typing_story_text(unstyled_string[i:])
+
             self.__style_char(
                 line['letter'],
 
                 # TODO: get size tag working
                 [line['colour'], line['bold']]
             )
-
             if line['letter'] == '\n':
                 time.sleep(NEWLINE_SLEEP)
             else:
                 time.sleep(OTHER_SLEEP)
 
+            # tell GTK to flush the textbuffer and refresh the textview
             while Gtk.events_pending():
                 Gtk.main_iteration_do(False)
 
@@ -98,8 +119,8 @@ class Storybook(Gtk.TextView):
 
         Returns:
             None
-
         '''
+
         lines = self.__parse_string(string)
 
         for line in lines:
@@ -151,9 +172,9 @@ class Storybook(Gtk.TextView):
         '''
 
         if challenge_number == "0":
-            text = "INTRODUCTION\n"
+            text = _("INTRODUCTION\n")
         else:
-            text = "CHALLENGE {}\n".format(challenge_number)
+            text = _("CHALLENGE {}\n").format(challenge_number)
 
         border = "-------------------\n"
         header = "\n" + border + "\n" + text + "\n" + border
@@ -170,6 +191,26 @@ class Storybook(Gtk.TextView):
         end_iter = textbuffer.get_end_iter()
         white_tag = self.__get_tag('white')
         textbuffer.insert_with_tags(end_iter, string, white_tag)
+
+    def print_coming_soon(self, window, terminal):
+        text = get_ascii_art('coming_soon')
+        text_lines = text.splitlines()
+        leading_newlines = len(text_lines)
+
+        for i in xrange(leading_newlines, -1, -1):
+            self.clear()
+
+            for j in xrange(i):
+                self.print_text('')
+
+            for j in xrange(leading_newlines - i):
+                self.print_text(text_lines[j])
+
+            time.sleep(0.2)
+
+            # tell GTK to flush the textbuffer and refresh the textview
+            while Gtk.events_pending():
+                Gtk.main_iteration_do(False)
 
     def __generate_tags(self):
         '''
@@ -296,6 +337,57 @@ class Storybook(Gtk.TextView):
 
         return new_string
 
+    def __split_into_lines_nospace(self, string):
+        '''Adds new line characters appropriately into the string
+        so the text wraps around correctly, for languages which do
+        not have spaces between words (like Japanese).
+
+        Args:
+            string (str)
+        Returns:
+            str: with newline characters inserted.
+        '''
+
+        total_width = 0
+        new_string = ''
+
+        while len(string) != 0:
+
+            if string[:2] == '{{':
+                # Normally the string is of the form
+                # "{{wb:blah blah}}"
+                # need to cut out the part from the {{ to the :
+                colon_index = string.find(":")
+
+                # This should always be satified.
+                if not colon_index == -1:
+                    # This is so we don't include the colon when we
+                    # are slicing the strings.
+                    colon_index += 1
+                    new_string = new_string + string[:colon_index]
+                    string = string[colon_index:]
+                else:
+                    new_string = new_string + string[:3]
+                    string = string[3:]
+            elif string[:2] == '}}':
+                new_string = new_string + string[:2]
+                string = string[2:]
+            elif string[0] == '\n':
+                total_width = 0
+                new_string = new_string + string[0]
+                string = string[1:]
+            else:
+                total_width += self.__get_width_of_char(string[0])
+                margin = 20
+                if total_width >= self.width - margin:
+                    total_width = 0
+                    new_string = new_string + '\n'
+                else:
+                    new_string = new_string + string[0]
+                    string = string[1:]
+
+        return new_string
+
     def __get_colour_from_id(self, colour_id='w'):
         '''Look up what letter corresponds to what colour
         '''
@@ -385,7 +477,10 @@ class Storybook(Gtk.TextView):
         size = default_size
 
         string_array = []
-        string = self.__split_into_lines(string)
+        if self.__is_space_delimited_lang():
+            string = self.__split_into_lines(string)
+        else:
+            string = self.__split_into_lines_nospace(string)
 
         if string.find("{{") == -1:
             string_array = self.__string_to_tag_list(
@@ -460,13 +555,34 @@ class Storybook(Gtk.TextView):
 
         return string_array
 
+    def __compose_string(self, lines):
+        """
+        Composes a parsed string from the string_array back together.
+
+        Returns:
+            unstyled_string (str): a single string without the custom markup symbols
+        """
+        unstyled_string = ''
+
+        for line in lines:
+            unstyled_string += line['letter']
+
+        return unstyled_string
+
     def __get_char_width(self):
         '''
         Returns:
-            int: the width of the letter in monospace font
+            int: the width of the letter 'a' in monospace font
         '''
 
-        stringtomeasure = 'a'
+        return self.__get_width_of_char('a')
+
+    def __get_width_of_char(self, stringtomeasure):
+        '''
+        Returns:
+            int: the width of some text in monospace font
+        '''
+
         font_descr = Pango.FontDescription.new()
         font_descr.set_family('monospace')
         context = self.get_pango_context()
@@ -474,6 +590,8 @@ class Storybook(Gtk.TextView):
         layout.set_font_description(font_descr)
         layout.set_text(stringtomeasure, -1)
         width, height = layout.get_pixel_size()
+        #print "width: %d\n" % width
+
         return width
 
     def prevent_right_click(self, widget, event):
@@ -493,3 +611,22 @@ class Storybook(Gtk.TextView):
             return True
 
         return False
+
+    def __get_language(self):
+        '''
+        Returns:
+            str: the 2-letter language code (default: 'en')
+        '''
+
+        return os.environ.get('LANG', 'en').split('_')[0].lower()
+
+    def __is_space_delimited_lang(self):
+        '''
+        Returns:
+            bool: true if the current language has space-delimited words
+        '''
+        nospace_langs = ['ja']
+
+        return self.language not in nospace_langs
+
+

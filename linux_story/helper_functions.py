@@ -1,21 +1,29 @@
-#!/usr/bin/env python
-
 # helper_functions.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # Helper functions used across the system.
 
+
 import os
-import subprocess
+import os.path
+import gettext
+import re
 
 from kano.colours import colourize256, decorate_string
-from kano_profile.apps import (
-    save_app_state_variable, load_app_state_variable,
+from kano.logging import logger
+from kano_profile.apps import \
+    save_app_state_variable, load_app_state_variable, \
     increment_app_state_variable
-)
-from linux_story.common import common_media_dir
+
+from linux_story.common import \
+    localized_story_files_dir_pattern, \
+    fallback_story_files_dir
+
+
+FORMATTING_BEGIN = re.compile(r"{{\w+:")
+FORMATTING_END = re.compile(r"}}")
 
 
 def debugger(text):
@@ -91,26 +99,6 @@ def colour_file_dir(path, f):
         f = decorate_string(f, "cyan", None)
 
     return f
-
-
-def play_sound(object_name):
-    '''
-    Args:
-        object_name (str): 'alarm' or 'bell'
-    Returns:
-        None
-    '''
-
-    sound_path = os.path.join(
-        common_media_dir,
-        "sounds",
-        object_name + '.wav'
-    )
-
-    subprocess.Popen(
-        ["/usr/bin/aplay", sound_path],
-        stderr=subprocess.STDOUT, stdout=subprocess.PIPE
-    )
 
 
 def colour_string_with_preset(string, colour_name="white", input_fn=True):
@@ -206,3 +194,128 @@ def record_user_interaction(instance, base_name):
         increment_app_state_variable("linux-story", total_name, 1)
 
         # If total reaches a certain amount, then can award XP.
+
+
+def get_ascii_art(name):
+    """
+    Load an ASCII art file.
+
+    Args:
+        name (str) - the name of the asset file
+
+    Returns:
+        ascii_art (str) - the ASCII art asset as a block of text
+    """
+
+    ascii_art = name
+    asset_path = get_path_to_file_in_system(name)
+
+    try:
+        with open(asset_path) as f:
+            ascii_art = f.read()
+
+    except (IOError, OSError) as e:
+            logger.error('Could not load file {} - [{}]'.format(asset_path, e))
+    except Exception as e:
+            logger.error('Unexpected error while loading the ascii art'
+                         ' - [{}]'.format(e))
+
+    return ascii_art
+
+
+def get_path_to_file_in_system(name):
+    """
+    Finds the path of a file (asset), first looking for any translation,
+    and falling back to the default location.
+
+    Args:
+        name (str) - the name of the asset file
+
+    Returns:
+        path (str) - the path to the file (asset)
+    """
+
+    path_in_system = None
+
+    lang_dirs = get_language_dirs()
+
+    for lang_dir in lang_dirs:
+        asset_path = os.path.join(localized_story_files_dir_pattern.format(lang_dir), name)
+        if os.path.isfile(asset_path):
+            path_in_system = asset_path
+            break
+
+    if path_in_system is None:
+        path_in_system = os.path.join(fallback_story_files_dir, name)
+
+    return path_in_system
+
+
+language_dirs = None
+
+
+def get_language_dirs():
+    """
+    Get possible language directories to be searched for, based on
+    the environment variables: LANGUAGE, LC_ALL, LC_MESSAGES and LANG.
+    The result is memoized for future use.
+
+    This function is inspired by python gettext.py.
+
+    Returns:
+        dirs (array) - an array of language directories
+    """
+
+    global language_dirs
+    if language_dirs is not None:
+        return language_dirs
+
+    languages = []
+    for envar in ('LANGUAGE', 'LC_ALL', 'LC_MESSAGES', 'LANG'):
+        val = os.environ.get(envar)
+        if val:
+            languages = val.split(':')
+            break
+    if 'C' in languages:
+        languages.remove('C')
+
+    # now normalize and expand the languages
+    nelangs = []
+    for lang in languages:
+        for nelang in gettext._expand_lang(lang):
+            if nelang not in nelangs:
+                nelangs.append(nelang)
+
+    language_dirs = nelangs
+    return language_dirs
+
+
+def strip_formatting(string):
+    """
+    Remove formatting in strings
+
+    e.g.
+    strip_formatting('{{gb:Foo}}') => 'Foo'
+    """
+    string = FORMATTING_BEGIN.sub("", string)
+    string = FORMATTING_END.sub("", string)
+    return string
+
+
+def wrap_in_box(lines):
+    """Wrap lines in an ascii box"""
+
+    def reduction(memo, line):
+        line_length = len(strip_formatting(line))
+        return memo if line_length < memo else line_length
+
+    def format_line(line):
+        num_padding = max_characters - len(strip_formatting(line))
+        return "| {} |".format(line + (" " * num_padding))
+
+    max_characters = reduce(reduction, lines, 0)
+    outer_line = " {} ".format("-" * (max_characters + 2))
+
+    new_lines = map(format_line, lines)
+
+    return [outer_line] + new_lines + [outer_line + "\n"]

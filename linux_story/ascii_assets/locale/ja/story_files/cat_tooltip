@@ -1,0 +1,19 @@
+   _____       _______
+  / ____|   /\|__   __|
+ | |       /  \  | |
+ | |      / /\ \ | |
+ | |____ / ____ \| |
+  \_____/_/    \_\_|
+
+
+このおまじないはファイルの中身を読む力を与えてくれる。
+
+
+例：
+
+<span foreground="yellow">cat wardrobe/cap</span>
+~/my-house/my-roomにいるとしたら、cap(帽子)の中身が見られる。
+
+<span foreground="yellow">cat ~/my-house/my-room/wardrobe/cap</span>
+これを使えば、どこにいてもcap(帽子)の中身が表示される。
+

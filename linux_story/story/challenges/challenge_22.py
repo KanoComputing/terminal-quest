@@ -1,13 +1,13 @@
-#!/usr/bin/env python
+# challenge_22.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
+
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
-from linux_story.helper_functions import play_sound
 from linux_story.story.challenges.challenge_23 import Step1 as NextStep
 
 
@@ -15,13 +15,16 @@ class StepTemplateMkdir(TerminalMkdir):
     challenge_number = 22
 
 
+# ----------------------------------------------------------------------------------------
+
+
 class Step1(StepTemplateMkdir):
     story = [
-        "{{gb:Well done, it looks like everyone is here!}}",
-        "\nRuth: {{Bb:Thank you so much!}}",
-        "{{Bb:We'll stay in here to keep safe.  I'm so grateful to everything "
-        "you've done.}}",
-        "\nUse {{lb:cat}} to check that the animals are happy in here."
+        _("{{gb:Well done, it looks like everyone is here!}}"),
+        _("\nRuth: {{Bb:\"Thank you so much!\"}}"),
+        _("{{Bb:\"We'll stay in here to keep safe. I'm so grateful for everything " +\
+        "you've done.\"}}"),
+        _("\nUse {{yb:cat}} to check that the animals are happy in here.")
     ]
 
     start_dir = "~/farm/barn/.shelter"
@@ -33,8 +36,8 @@ class Step1(StepTemplateMkdir):
         "cat Cobweb"
     ]
     hints = [
-        "{{rb:Use}} {{lb:cat}} {{rb:to examine an animal, e.g.}} "
-        "{{yb:cat Daisy}}{{rb:.}}"
+        _("{{rb:Use}} {{yb:cat}} {{rb:to examine an animal, e.g.}} " +\
+        "{{yb:cat Daisy}}{{rb:.}}")
     ]
 
     # Remove all the food
@@ -44,15 +47,14 @@ class Step1(StepTemplateMkdir):
     ]
 
     def next(self):
-        play_sound("bell")
         Step2()
 
 
 class Step2(StepTemplateMkdir):
     story = [
-        "{{pb:Ding. Dong.}}",
-        "Ruth: {{Bb:What?? I heard a bell!  What does that mean?}}",
-        "\nQuick! {{lb:Look around}} and see if anyone is missing."
+        _("{{pb:Ding. Dong.}}\n"),
+        _("Ruth: {{Bb:\"What?? I heard a bell! What does that mean?\"}}"),
+        _("\nQuick! {{lb:Look around}} and see if anyone is missing.")
     ]
 
     start_dir = "~/farm/barn/.shelter"
@@ -62,7 +64,7 @@ class Step2(StepTemplateMkdir):
         "ls -a"
     ]
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+        _("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
     ]
 
     # Remove Edith
@@ -71,17 +73,17 @@ class Step2(StepTemplateMkdir):
     ]
 
     def next(self):
-        play_sound("bell")
         Step3()
 
 
 class Step3(StepTemplateMkdir):
+
     story = [
-        "It appears that everyone is still here...",
-        "\n{{pb:Ding. Dong.}}",
-        "\nRuth: {{Bb:I heard it again!  Is that the sound you heard when "
-        "my husband went missing?}}",
-        "Have another quick {{lb:look around}}."
+        _("It appears that everyone is still here..."),
+        _("\n{{pb:Ding. Dong.}}\n"),
+        _("\nRuth: {{Bb:\"I heard it again! Is that the sound you heard when " +\
+        "my husband went missing?\"\n}}"),
+        _("Have another quick {{lb:look around}}.")
     ]
 
     start_dir = "~/farm/barn/.shelter"
@@ -91,7 +93,7 @@ class Step3(StepTemplateMkdir):
         "ls -a"
     ]
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+        _("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
     ]
     # Remove Edward
     deleted_items = [
@@ -99,29 +101,28 @@ class Step3(StepTemplateMkdir):
     ]
 
     def next(self):
-        play_sound("bell")
         Step4()
 
 
 # TODO: FIX THIS STEP
 class Step4(StepTemplateMkdir):
     story = [
-        "Ruth: {{Bb:It's alright. We're all safe, everyone's still here. "
-        "I wonder why it's ringing?}}",
-        "\nPerhaps we should investigate that sound.  Who else do we "
-        "know?",
-        "Maybe you should check back on the family in the "
-        "{{lb:.hidden-shelter}} and talk to them with your new found voice.",
+        _("Ruth: {{Bb:\"It's alright. We're all safe, everyone's still here. " +\
+        "I wonder why it's ringing?\"}}"),
+        _("\nPerhaps we should investigate that sound. Who else do we " +\
+        "know?"),
+        _("Maybe you should check back on the family in the " +\
+        "{{bb:.hidden-shelter}} and talk to them with your new found voice."),
 
-        "\nStart heading back to the {{lb:.hidden-shelter}} using {{lb:cd}}."
+        _("\nStart heading back to the {{bb:.hidden-shelter}} using {{yb:cd}}.")
     ]
 
     start_dir = "~/farm/barn/.shelter"
     end_dir = "~/town/.hidden-shelter"
 
     hints = [
-        "{{rb:We can go directly to the}} {{lb:.hidden-shelter}} "
-        "{{rb:using}} {{yb:cd ~/town/.hidden-shelter/}}"
+        _("{{rb:We can go directly to the}} {{bb:.hidden-shelter}} " +\
+        "{{rb:using}} {{yb:cd ~/town/.hidden-shelter}}")
     ]
 
     # Remove the dog
@@ -137,7 +138,7 @@ class Step4(StepTemplateMkdir):
         if self.last_user_input.startswith("cd") and \
                 not self.get_command_blocked() and \
                 not self.current_path == self.end_dir:
-            hint = "\n{{gb:Well done! Keep going!}}"
+            hint = _("\n{{gb:You travel back to tilde}}")
             self.send_text(hint)
         else:
             return StepTemplateMkdir.check_command(self)
@@ -148,7 +149,7 @@ class Step4(StepTemplateMkdir):
 
 class Step5(StepTemplateMkdir):
     story = [
-        "Have a {{lb:look around}}."
+        _("Have a {{lb:look around}}.")
     ]
 
     start_dir = "~/town/.hidden-shelter"
@@ -158,7 +159,7 @@ class Step5(StepTemplateMkdir):
         "ls -a"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
     last_step = True
 

@@ -1,0 +1,28 @@
+  _   _          _   _  ____
+ | \ | |   /\   | \ | |/ __ \
+ |  \| |  /  \  |  \| | |  | |
+ | . ` | / /\ \ | . ` | |  | |
+ | |\  |/ ____ \| |\  | |__| |
+ |_| \_/_/    \_\_| \_|\____/
+
+
+ファイルを編集するためのコマンド。
+
+
+例
+
+<span foreground="yellow">nano filename.sh/</span>
+filename.shというファイルを開く
+
+
+主なコマンド
+
+<span foreground="yellow">矢印キー</span>
+カーソルを動かす
+
+<span foreground="yellow">CTRLを押しながらO</span>
+変更を保存
+
+<span foreground="yellow">CTRLを押しながらX</span>
+nanoを終了する、変更を保存するにはYを押してください
+

@@ -1,11 +1,10 @@
-#!/usr/bin/env python
-
-# menu_screen.py
+# MenuScreen.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # Shows the menu for selecting the appropriate challenge
+
 
 import os
 import sys
@@ -21,8 +20,10 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from gi.repository import Gtk, GObject
-from linux_story.common import get_max_challenge_number
+
 from kano_profile.apps import load_app_state_variable
+
+from linux_story.common import get_max_challenge_number
 from linux_story.titles import challenges, chapters
 
 
@@ -78,12 +79,12 @@ class MenuScreen(Gtk.Alignment):
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         header = self.create_menu_header(
-            "TERMINAL QUEST MENU",
-            "Use arrow keys to select the button"
+            _("TERMINAL QUEST MENU"),
+            _("Use arrow keys to select the button")
         )
 
         # This takes the user to the latest point in the story
-        continue_btn = self.create_menu_button("CONTINUE STORY")
+        continue_btn = self.create_menu_button(_("CONTINUE STORY"))
 
         # For now, remove the launching functionality.
         continue_btn.connect(
@@ -91,7 +92,7 @@ class MenuScreen(Gtk.Alignment):
         )
 
         # This takes the user to the chapter menu
-        select_chapter_btn = self.create_menu_button("SELECT CHAPTER")
+        select_chapter_btn = self.create_menu_button(_("SELECT CHAPTER"))
         select_chapter_btn.connect("clicked", self.show_chapter_menu_wrapper)
 
         vbox.pack_start(header, False, False, 15)
@@ -238,7 +239,7 @@ class MenuScreen(Gtk.Alignment):
 
         num_of_chapters = len(chapters)
         menu = self.create_menu(
-            "CHAPTERS",
+            _("CHAPTERS"),
             1,
             num_of_chapters,
             self.create_chapter_button,
@@ -257,7 +258,7 @@ class MenuScreen(Gtk.Alignment):
         end_challenge = chapters[chapter_number]['end_challenge']
 
         menu = self.create_menu(
-            "CHALLENGES",
+            _("CHALLENGES"),
             start_challenge,
             end_challenge,
             self.create_challenge_button,
@@ -280,9 +281,9 @@ class MenuScreen(Gtk.Alignment):
         return button
 
     def create_back_button(self):
-        button = self.create_menu_button("<- BACK")
+        button = self.create_menu_button(_("<- BACK"))
         # Get title, description.
-        title = "Press ENTER to go to the previous screen"
+        title = _("Press ENTER to go to the previous screen")
         description = ""
 
         button.connect(
@@ -333,16 +334,16 @@ class MenuScreen(Gtk.Alignment):
         return button
 
     def create_challenge_title(self, number):
-        return "Challenge {}: {}".format(number, challenges[number]["title"])
+        return _("Challenge {}: {}").format(number, challenges[number]["title"])
 
     def create_challenge_description(self, number):
         return
 
     def create_chapter_title(self, number):
-        return "Chapter {}: {}".format(number, chapters[number]["title"])
+        return _("Chapter {}: {}").format(number, chapters[number]["title"])
 
     def create_chapter_description(self, number):
-        return "Challenge {} to Challenge {}".format(
+        return _("Challenge {} to Challenge {}").format(
             chapters[number]["start_challenge"],
             chapters[number]["end_challenge"]
         )
@@ -418,7 +419,7 @@ class MenuScreen(Gtk.Alignment):
                 number = int(child.get_label())
 
                 # Decide if we're showing the chapters or the challenges
-                if self.menu_title.get_text() == "CHAPTERS":
+                if self.menu_title.get_text() == _("CHAPTERS"):
                     title = self.create_chapter_title(number)
                     description = self.create_chapter_description(number)
                 else:

@@ -1,0 +1,26 @@
+ ,---------------------------------------------.
+/                                               \
+|    _____ _____                                |
+|   / ____|  __ \                               |
+|  | |    | |  | |                              |
+|  | |    | |  | |                              |
+|  | |____| |__| |                              |
+|   \_____|_____/                               |
+|                                               |
+|  Este hechizo te da el poder de moverte.      |
+|                                               |
+|  cd                                           |
+|  Esto te lleva al directorio                  |
+|                                               |
+|  cd ../                                       |
+|  Esto te mueve fuera del directorio           |
+|                                               |
+|  cd hidey-hole                                |
+|  Esto te mueve dentro del  hidey-hole,        |
+|  asumiendo que estás cerca de él              |
+|                                               |
+|  cd ~/wood/treehouse                          |
+|  Esto te mueve a ~/wood/treehouse             |
+|  sin importar tu posición actual              |
+\                                               /
+ `---------------------------------------------'

@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+# challenge_12.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
+
 
 import os
 import sys
@@ -25,13 +26,16 @@ class StepTemplateMv(TerminalMv):
     challenge_number = 12
 
 
+# ----------------------------------------------------------------------------------------
+
+
 # Thanks you for saving the little girl
 class Step1(StepTemplateMv):
     story = [
-        "{{wb:Edith:}} {{Bb:Thank you for saving her!}}",
-        "{{wb:Eleanor:}} {{Bb:Doggy!}}",
-        "{{wb:Edith:}} {{Bb:Can you save her dog too? I'm worried something "
-        "will happen to it if it stays outside.}}\n"
+        _("{{wb:Edith:}} {{Bb:\"Thank you for saving her!\"}}"),
+        _("{{wb:Eleanor:}} {{Bb:\"Doggy!\"}}"),
+        _("{{wb:Edith:}} {{Bb:\"Can you save her dog too? I'm worried something " +\
+        "will happen to it if it stays outside.\"}}\n")
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
@@ -46,7 +50,7 @@ class Step1(StepTemplateMv):
         "mv ../dog ~/town/.hidden-shelter/",
     ]
     hints = [
-        "{{rb:Use the command}} {{yb:mv ../dog ./}} {{rb:to rescue the dog.}}"
+        _("{{rb:Use the command}} {{yb:mv ../dog ./}} {{rb:to rescue the dog.}}")
     ]
     dog_file = os.path.join(tq_file_system, 'town/.hidden-shelter/dog')
 
@@ -60,29 +64,29 @@ class Step1(StepTemplateMv):
 # Save both the dog and the little girl
 class Step2(StepTemplateMv):
     story = [
-        "{{wb:Eleanor:}} {{Bb:Yay, Doggie!}}",
-        "{{wb:Dog:}} {{Bb:Ruff!}}",
-        "{{wb:Edith:}} {{Bb:Thank you so much for getting them both back.",
-        "I was wrong about you. You're a hero!}}\n",
-        "{{lb:Listen to everyone}} and see if there's anything else you can "
-        "do to help.\n"
+        _("{{wb:Eleanor:}} {{Bb:\"Yay, Doggie!\"}}"),
+        _("{{wb:Dog:}} {{Bb:\"Ruff!\"}}"),
+        _("{{wb:Edith:}} {{Bb:\"Thank you so much for getting them both back."),
+        _("I was wrong about you. You're a hero!\"}}\n"),
+        _("{{lb:Listen to everyone}} and see if there's anything else you can " +\
+        "do to help.\n")
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
     commands = "cat Edward"
     all_commands = {
-        "cat Edith": "\n{{wb:Edith:}} {{Bb:\"Thank you so much! "
-        "Eleanor, don't wander outside again - you scared the life out "
-        "of me!\"}}",
+        "cat Edith": _("\n{{wb:Edith:}} {{Bb:\"Thank you so much! " +\
+        "Eleanor, don't wander outside again - you scared the life out " +\
+        "of me!\"}}"),
 
-        "cat Eleanor": "\n{{wb:Eleanor:}} {{Bb:\"Where do you think the "
-        "bell would have taken us?\"}}",
+        "cat Eleanor": _("\n{{wb:Eleanor:}} {{Bb:\"Where do you think the " +\
+        "bell would have taken us?\"}}"),
 
-        "cat dog": "\n{{wb:Dog:}} {{Bb:\"Woof! Woof woof!\"}}"
+        "cat dog": _("\n{{wb:Dog:}} {{Bb:\"Woof! Woof woof!\"}}")
     }
     hints = [
-        "{{gb:Edward looks like he has something he wants to say. "
-        "Listen to Edward with}} {{yb:cat Edward}}"
+        _("{{gb:Edward looks like he has something he wants to say. " +\
+        "Listen to Edward with}} {{yb:cat Edward}}")
     ]
     last_step = True
 

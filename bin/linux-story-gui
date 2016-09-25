@@ -2,8 +2,8 @@
 
 # linux-story-gui
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd
-# License: GNU General Public License v2 http://www.gnu.org/licenses/gpl-2.0.txt
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # Launches linux tutorial in a Gtk application
 
@@ -21,15 +21,22 @@ Options:
 """
 
 
-from gi.repository import Gtk
 import os
 import sys
 import docopt
+
+from gi.repository import Gtk
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
+        LOCALE_PATH = os.path.join(dir_path, 'locale')
+    else:
+        LOCALE_PATH = '/usr/share/locale'
+
+import kano_i18n.init
+kano_i18n.init.install('terminal-quest', LOCALE_PATH)
 
 from linux_story.gtk3.MainWindow import MainWindow
 from kano_profile.apps import load_app_state_variable
@@ -74,12 +81,32 @@ def handle_cleanup():
     pass
 
 
+def tracefunc(frame, event, arg, indent=[0]):
+    text = ''
+    if event == "call":
+        indent[0] += 2
+        text = "-" * indent[0] + "> call function", frame.f_code.co_name
+    elif event == "return":
+        text = "<" + "-" * indent[0], "exit function", frame.f_code.co_name
+        indent[0] -= 2
+    with open(os.path.join(os.path.expanduser('~'), 'debug.txt'), 'a') as f:
+        if text:
+            if '__getattr__' not in text:
+                f.write(str(text) + '\n')
+    return tracefunc
+
+
 if __name__ == "__main__":
     args = docopt.docopt(__doc__)
 
     debug = args['--debug']
     challenge = args['<challenge>']
     step = args['<step>']
+
+    if debug:
+        if os.path.isfile(os.path.join(os.path.expanduser('~'), 'debug.txt')):
+            os.remove(os.path.join(os.path.expanduser('~'), 'debug.txt'))
+        sys.settrace(tracefunc)
 
     try:
         main(debug, challenge, step)

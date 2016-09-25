@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+# challenge_18.py
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
+
 
 from linux_story.step_helper_functions import (
     unblock_cd_commands
@@ -12,22 +13,25 @@ from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.story.challenges.challenge_19 import Step1 as NextStep
 
 
-class StepTemplate(TerminalEcho):
+class StepTemplateEcho(TerminalEcho):
     challenge_number = 18
 
 
-class Step1(StepTemplate):
-    story = [
-        "Woah! You spoke aloud into the empty room!",
-        "{{gb:You learnt the new skill echo!}}",
-        "This command can probably be used to talk to people.",
+# ----------------------------------------------------------------------------------------
 
-        "\nNow let's head to ~ to find that farm!",
-        "Type {{yb:cd}} by itself to go to the Windy Road {{lb:~}}"
+
+class Step1(StepTemplateEcho):
+    story = [
+        _("Woah! You spoke aloud into the empty room!\n"),
+        _("{{gb:You learnt the new skill echo!}}\n"),
+        _("This command can probably be used to talk to people."),
+
+        _("\nNow let's head to {{bb:~}} to find that farm!"),
+        _("Type {{yb:cd}} by itself to go to the Windy Road {{bb:~}}")
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:cd}} {{rb:by itself to go to}} {{lb:~}}"
+        _("{{rb:Use}} {{yb:cd}} {{rb:by itself to go to}} {{bb:~}}")
     ]
 
     start_dir = "~/my-house/parents-room"
@@ -40,13 +44,12 @@ class Step1(StepTemplate):
         Step2()
 
 
-class Step2(StepTemplate):
+class Step2(StepTemplateEcho):
     story = [
-        "You are back on the windy road, which stretches endlessly in both "
-        "directions. {{lb:Look around.}}"
+        _("You are back on the windy road, which stretches endlessly in both directions. \n{{lb:Look around.}}")
     ]
     hints = [
-        "{{rb:Look around with}} {{yb:ls}}{{rb:.}}"
+        _("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
     ]
 
     commands = [
@@ -60,16 +63,16 @@ class Step2(StepTemplate):
         Step3()
 
 
-class Step3(StepTemplate):
+class Step3(StepTemplateEcho):
     story = [
-        "You notice a small remote farm in the distance.",
-        "{{lb:Let's go}} to the {{lb:farm}}."
+        _("You notice a small remote farm in the distance.\n"),
+        _("{{lb:Let's go}} to the {{bb:farm}}.")
     ]
 
     start_dir = "~"
     end_dir = "~/farm"
     hints = [
-        "{{rb:Use}} {{yb:cd farm/}} {{rb:to head to the farm.}}"
+        _("{{rb:Use}} {{yb:cd farm}} {{rb:to head to the farm.}}")
     ]
 
     def block_command(self):
@@ -79,28 +82,25 @@ class Step3(StepTemplate):
         Step4()
 
 
-class Step4(StepTemplate):
+class Step4(StepTemplateEcho):
     story = [
-        "{{lb:Look around.}}"
+        _("You walk up the path to the farm, {{lb:Look around.}}")
     ]
 
     commands = "ls"
     start_dir = "~/farm"
     end_dir = "~/farm"
-    hints = ["{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"]
+    hints = [_("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")]
 
     def next(self):
         Step5()
 
 
-class Step5(StepTemplate):
+class Step5(StepTemplateEcho):
     story = [
-        "You are in a farm, with a {{bb:barn}}, a {{bb:farmhouse}} and "
-        "a large {{bb:toolshed}} in sight.",
-        "The land is well tended and weed free, so there must "
-        "be people about here.",
-        "{{lb:Look around}} and see if you can "
-        "find someone to talk to."
+        _("You are in a farm, with a {{bb:barn}}, a {{bb:farmhouse}} and a large {{bb:toolshed}} in sight."),
+        _("The land is well tended and weed free, so there must be people about here.\n"),
+        _("{{lb:Look around}} and see if you can find someone to talk to.")
     ]
     start_dir = "~/farm"
     end_dir = "~/farm"
@@ -126,16 +126,15 @@ class Step5(StepTemplate):
 
             if self.counter >= 3:
                 self.send_text(
-                    "\n{{rb:Use}} {{yb:ls barn}} {{rb:to look in the barn.}}"
+                    _("\n{{rb:Use}} {{yb:ls barn}} {{rb:to look in the barn.}}")
                 )
             if self.counter == 2:
                 self.send_text(
-                    "\n{{rb:Have you looked in the}} {{lb:barn}} {{rb:yet?}}"
+                    _("\n{{rb:Have you looked in the}} {{bb:barn}} {{rb:yet?}}")
                 )
             elif self.counter == 1:
                 self.send_text(
-                    "\n{{rb:There is no one here. You should look somewhere "
-                    "else.}}"
+                    _("\n{{rb:There is no one here. You should look somewhere else.}}")
                 )
 
         else:
@@ -149,17 +148,17 @@ class Step5(StepTemplate):
         Step6()
 
 
-class Step6(StepTemplate):
+class Step6(StepTemplateEcho):
 
     story = [
-        "In the barn, you see a woman tending some animals.",
-        "{{lb:Walk}} into the {{lb:barn}} so you can have a closer look."
+        _("In the {{bb:barn}}, you see a woman tending some animals."),
+        _("{{lb:Walk}} into the {{bb:barn}} so you can have a closer look.")
     ]
 
     start_dir = "~/farm"
     end_dir = "~/farm/barn"
     hints = [
-        "{{rb:Use}} {{yb:cd barn/}} {{rb:to walk into the barn.}}"
+        _("{{rb:Use}} {{yb:cd barn}} {{rb:to walk into the barn.}}")
     ]
 
     def block_command(self):
@@ -169,23 +168,23 @@ class Step6(StepTemplate):
         Step7()
 
 
-class Step7(StepTemplate):
+class Step7(StepTemplateEcho):
 
     story = [
-        # "In the barn, you see a woman tending some animals.",
-        # "You walk into the barn to have a closer look.",
-        "{{lb:Examine}} everyone in the barn using "
-        "the {{lb:cat}} command."
+        # _("In the barn, you see a woman tending some animals."),
+        # _("You walk into the barn to have a closer look."),
+        _("{{lb:Examine}} everyone in the {{bb:barn}} using "
+        "the {{yb:cat}} command.")
     ]
 
     # what is this?
     last_challenge = True
 
     all_commands = {
-        "cat Ruth": "Ruth: {{Bb:Ah! Who are you?!}}",
-        "cat Cobweb": "Cobweb: {{Bb:Neiiigh.}}",
-        "cat Trotter": "Trotter: {{Bb:Oink Oink.}}",
-        "cat Daisy": "Daisy: {{Bb:Mooooooooo.}}"
+        "cat Ruth": _("Ruth: {{Bb:\"Ah! Who are you?!\"}}"),
+        "cat Cobweb": _("Cobweb: {{Bb:\"Neiiigh.\"}}"),
+        "cat Trotter": _("Trotter: {{Bb:\"Oink Oink.\"}}"),
+        "cat Daisy": _("Daisy: {{Bb:\"Mooooooooo.\"}}")
     }
 
     start_dir = "~/farm/barn"
@@ -193,8 +192,7 @@ class Step7(StepTemplate):
     last_step = True
 
     hints = [
-        "{{rb:If you've forgotten who's in the barn, use}} "
-        "{{yb:ls}} {{rb:to remind yourself.}}"
+        _("{{rb:If you've forgotten who's in the barn, use}} {{yb:ls}} {{rb:to remind yourself.}}")
     ]
 
     # TODO: move this into step_helper_functions, used a few too
@@ -207,7 +205,7 @@ class Step7(StepTemplate):
 
         # If they enter ls, say Well Done
         if self.last_user_input == 'ls':
-            hint = "\n{{gb:Well done for looking around.}}"
+            hint = _("\n{{gb:You look around.}}")
             self.send_text(hint)
             return False
 
@@ -225,23 +223,18 @@ class Step7(StepTemplate):
             self.all_commands.pop(self.last_user_input, None)
 
             if len(self.all_commands) == 1:
-                hint += (
-                    "\n{{gb:Well done! Have a look at one more.}}"
-                )
+                hint += _("\n{{gb:Well done! Have a look at one more.}}")
             elif len(self.all_commands) > 0:
-                hint += "\n{{gb:Well done! Look at " + \
-                    str(len(self.all_commands)) + \
-                    " more.}}"
+                hint += _("\n{{gb:Well done! Look at %d more.}}") % len(self.all_commands)
             else:
-                hint += "\n{{gb:Press Enter to continue.}}"
+                hint += _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
 
             self.send_text(hint)
 
         else:
             if not self.hints:
                 self.hints = [
-                    "{{rb:Use}} {{yb:" + self.all_commands.keys()[0] + "}} "
-                    "{{rb:to progress.}}"
+                    _("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % self.all_commands.keys()[0]
                 ]
             self.send_hint()
             self.hints.pop()

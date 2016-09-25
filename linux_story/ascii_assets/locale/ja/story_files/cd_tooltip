@@ -1,0 +1,28 @@
+   _____ _____
+  / ____|  __ \
+ | |    | |  | |
+ | |    | |  | |
+ | |____| |__| |
+  \_____|_____/
+
+
+このおまじないは動く力を与えてくれる。
+
+
+例：
+
+<span foreground="yellow">cd</span>
+これでホームディレクトリーに行ける。
+
+<span foreground="yellow">cd ~</span>
+上のおまじないと同じです。
+
+<span foreground="yellow">cd ../</span>
+一個前のフォルダーに戻れる。
+
+<span foreground="yellow">cd hidy-hole</span>
+hidey-hole(隠れ穴)の中に入る（すぐ隣にいるとしたら）。
+
+<span foreground="yellow">cd ~/wood/treehouse</span>
+これで現在地に関わらず、~/wood/treehouse(森の中のバンガロー)に行ける。
+

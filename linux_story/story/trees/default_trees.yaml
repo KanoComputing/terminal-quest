@@ -21,7 +21,7 @@ bed_my-room:
           path: "~/my-house/my-room"
 
 # shelves
-redwall, watership-down, alice-and-wonderland, comic-book:
+redwall, watership-down, alice-in-wonderland, comic-book:
     challenges:
         - challenge: 1
           step: 1
