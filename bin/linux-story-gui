@@ -47,34 +47,7 @@ kanotracker = Tracker()
 
 
 def main(debug=False, challenge=None, step=None):
-    win = MainWindow(debug)
-
-    # If the application is launched with two arguments, then this is
-    # debugging and we want to launch the application directly from the level
-    # specified
-    if challenge and step:
-        win.setup_application_widgets()
-        win.start_script_in_terminal(challenge, step)
-
-    else:
-        # Show the selection menu for the unlocked challenges
-
-        # Get the last unlocked challenge.
-        last_unlocked_challenge = load_app_state_variable(
-            'linux-story', 'level'
-        )
-
-        if last_unlocked_challenge:
-            # With this data, we need to decide which chapters are locked.
-            win.show_menu()
-
-        else:
-            win.setup_application_widgets()
-            win.start_script_in_terminal("0", "1")
-
-    os.system("kano-stop-splash")
-    Gtk.main()
-
+    MainWindow(debug, challenge, step)
 
 # close the server through here
 def handle_cleanup():

@@ -8,7 +8,7 @@
 
 import os
 
-from gi.repository import Vte, GLib
+from gi.repository import Vte, GLib, Gdk, Pango
 
 
 class TerminalUi(Vte.Terminal):
@@ -34,6 +34,19 @@ class TerminalUi(Vte.Terminal):
         # initial values, it will force to resize from large to smaller values as
         # opposed from a default 80, 24.
         self.set_size(1000, 1000)  # TODO: please fix this
+        self.__setup_appearance()
+
+    def __setup_appearance(self):
+        fg_color = Gdk.Color.parse("#ffffff")[1]
+        bg_color = Gdk.Color.parse("#262626")[1]
+        self.set_colors(fg_color, bg_color, [])
+        self.set_margin_top(10)
+        self.set_margin_left(10)
+        self.set_margin_right(10)
+        font_desc = Pango.FontDescription()
+        font_desc.set_family("monospace")
+        font_desc.set_size(13 * Pango.SCALE)
+        self.set_font(font_desc)
 
     def feed_child(self, command):
         Vte.Terminal.feed_child(self, command, len(command))

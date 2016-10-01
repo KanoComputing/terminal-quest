@@ -63,6 +63,10 @@ class Storybook(Gtk.TextView):
 
         self.sounds_manager = SoundManager()
 
+        self.set_margin_top(10)
+        self.set_margin_left(10)
+        self.set_margin_right(10)
+
     def clear(self):
         '''Clear all text in spellbook
         '''

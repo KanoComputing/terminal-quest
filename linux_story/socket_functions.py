@@ -43,7 +43,7 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
 def create_server(queue):
     HOST, PORT = "localhost", 9959
 
-    # Create the server, binding to localhost on port 9999
+    # Create the server, binding to localhost on port 9959
 
     # Magic line that allows you to reuse the address, even if a
     # different server is using it.  This means if we launch this and then
