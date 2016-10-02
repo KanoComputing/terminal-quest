@@ -23,6 +23,7 @@ if __name__ == '__main__' and __package__ is None:
 from kano.gtk3.apply_styles import apply_styling_to_screen
 from kano.gtk3.scrolled_window import ScrolledWindow
 from kano.logging import logger
+from kano_profile.apps import load_app_state_variable
 
 from linux_story.socket_functions import create_server
 from linux_story.gtk3.TerminalUi import TerminalUi
