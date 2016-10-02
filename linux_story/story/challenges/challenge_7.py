@@ -9,6 +9,8 @@
 import os
 import sys
 
+from linux_story.story.tasks.TaskTownHall import TaskTownHall
+
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
 if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
@@ -59,60 +61,15 @@ class Step3(StepTemplateCd):
     ]
     start_dir = "~/town"
     end_dir = "~/town"
-
-    # Use functions here
-    command = ""
-    all_commands = {
-        "cat grumpy-man": _("\n{{wb:Man:}} {{Bb:\"Help! I don't know what's happening to me. I heard this bell ring, and now my legs have gone all strange.\"}}"),
-        "cat young-girl": _("\n{{wb:Girl:}} {{Bb:\"Can you help me? I can't find my friend Amy anywhere. If you see her, will you let me know?\"}}"),
-        "cat little-boy": _("\n{{wb:Boy:}} {{Bb:\"Pongo? Pongo? Has anyone seen my dog Pongo? He's never run away before...\"}}")
-    }
-
     last_step = True
 
-    def check_command(self):
+    task = TaskTownHall()
 
-        # If we've emptied the list of available commands, then pass the level
-        if not self.all_commands:
+    def check_command(self):
+        if self.task.passed(self.last_user_input):
             return True
 
-        # If they enter ls, say Well Done
-        if self.last_user_input == 'ls':
-            hint = _("\n{{gb:You look around.}}")
-            self.send_text(hint)
-            return False
-
-        # check through list of commands
-        end_dir_validated = False
-        self.hints = [
-            _("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % self.all_commands.keys()[0]
-        ]
-
-        end_dir_validated = self.current_path == self.end_dir
-
-        # if the validation is included
-        if (self.last_user_input in self.all_commands.keys()) and \
-                end_dir_validated:
-            # Print hint from person
-            hint = "\n" + self.all_commands[self.last_user_input]
-
-            self.all_commands.pop(self.last_user_input, None)
-
-            if len(self.all_commands) == 1:
-                hint += _("\n{{gb:Well done! Check on 1 more person.}}\n")
-            elif len(self.all_commands) > 0:
-                hint += _("\n{{gb:Well done! Check on %d more people.}}\n") % len(self.all_commands)
-            else:
-                hint += _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
-
-            self.send_text(hint)
-
-        else:
-            self.send_text("\n" + self.hints[0])
-
-        # Always return False unless the list of valid commands have been
-        # emptied
-        return False
+        self.send_text(self.task.get_hint_text(self.last_user_input))
 
     def next(self):
         NextChallengeStep(self.xp)
