@@ -17,6 +17,95 @@ class StepTemplateChmod(TerminalChmod):
     challenge_number = 39
 
 
+class Step1(StepTemplateChmod):
+    story = [
+        "Swordsmaster: {{Bb:There's a note that's appeared. Who left it here?",
+        "...this is very strange. I left the door open. Perhaps someone...or "
+        "something...sneaked in while we were training.}}",
+        "",
+        "{{Bb:What does it say?}}"
+    ]
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
+    commands = [
+        "cat note"
+    ]
+
+    hints = [
+        "{{rb:Read the note with}} {{yb:cat note}}"
+    ]
+
+    def next(self):
+        Step2()
+
+
+# Note is from the rabbit and says "It's time for us to meet.
+# Follow the notes to find me."
+class Step2(StepTemplateChmod):
+    story = [
+        "Swordsmaster: {{Bb:You may need my help later. Come back if you are blocked "
+        "by lack of knowledge.}}",
+        "",
+        "Time to head off - leave the swordsmaster's house."
+    ]
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing"
+
+    hints = [
+        "{{rb:Leave the house and go into the clearing with}} {{yb:cd ..}}"
+    ]
+
+    # this should be inherited somehowz
+    def block_command(self):
+        unblock_cd_commands(self.last_user_input)
+
+    def next(self):
+        Step3()
+
+
+class Step3(StepTemplateChmod):
+    story = [
+        "Look around and see if there are clues about where to go next."
+    ]
+
+    start_dir = "~/woods/clearing"
+    end_dir = "~/woods/clearing"
+    commands = [
+        "ls",
+        "ls -a"
+    ]
+
+    hints = [
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+    ]
+    story_dict = {
+        "note_swordsmaster-clearing": {
+            "path": "~/woods/clearing",
+            "name": "note"
+        }
+    }
+
+    def next(self):
+        Step4()
+
+
+class Step4(StepTemplateChmod):
+    story = [
+        "Another one! What does this say?"
+    ]
+    start_dir = "~/woods/clearing"
+    end_dir = "~/woods/clearing"
+    commands = [
+        "cat note"
+    ]
+    hints = [
+        "{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}"
+    ]
+
+    def next(self):
+        NextStep(self.xp)
+
+
 # The note should say:
 # "There is a monster kidnapping people. I've been watching you, and think you
 # could help. Find me, I'm deeper in the woods."
@@ -126,7 +215,8 @@ class Step9(StepTemplateChmod):
 
 class Step10(StepTemplateChmod):
     story = [
-        "Yet another note...let's read this one.",
+        "Yet another note, and a rabbithole. Will there be a bomb in this one?",
+        "What does the note say?",
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"

@@ -7,8 +7,10 @@
 
 
 class Task:
-    def __init__(self, *args, **kwargs):
-        raise NotImplementedError('Overwrite this function!')
+
+    def __init__(self):
+        # add a log here?
+        pass
 
     def get_hint_text(self, text):
         """

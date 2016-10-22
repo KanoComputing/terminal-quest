@@ -60,3 +60,7 @@ def get_max_challenge_number():
     max_level = dict_data['linux-story']['max-level']
 
     return max_level
+
+
+def get_username():
+    return os.environ["LOGNAME"]

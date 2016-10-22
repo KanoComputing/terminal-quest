@@ -1,4 +1,4 @@
-from linux_story.gameobjects.Npc import Npc
+from linux_story.gameobjects.TownPerson import TownPerson
 from linux_story.story.tasks.Task import Task
 
 
@@ -6,19 +6,19 @@ class TaskTownHall(Task):
 
     # noinspection PyMissingConstructor
     def __init__(self, *args, **kwargs):
-        grumpy_man = Npc(
+        grumpy_man = TownPerson(
             {
                 "cat grumpy-man": _("\n{{wb:Man:}} {{Bb:\"Help! I don't know what's happening to me. "
                                     "I heard this bell ring, and now my legs have gone all strange.\"}}")
             }
         )
-        young_girl = Npc(
+        young_girl = TownPerson(
             {
                 "cat young-girl": _("\n{{wb:Girl:}} {{Bb:\"Can you help me? I can't find my friend Amy anywhere. "
                                     "If you see her, will you let me know?\"}}")
             }
         )
-        little_boy = Npc(
+        little_boy = TownPerson(
             {
                 "cat little-boy": _("\n{{wb:Boy:}} {{Bb:\"Pongo? Pongo? Has anyone seen my dog Pongo? "
                                     "He's never run away before...\"}}")

@@ -16,19 +16,19 @@ class StepTemplateChmod(TerminalChmod):
 
 # Note reads:
 # We need to find a special command which makes the User into a Super User.
-# I'm close, look for me more closely.
+# I'm down the rabbithole. Don't worry, there are no nasty surprises here.
 class Step1(StepTemplateChmod):
     story = [
-        "Look more closely? Ok, let's {{lb:look more closely}}."
+        "..no nasty surprises, ok that's good. Let's go inside the rabbithole."
     ]
     start_dir = "~/woods/thicket"
-    end_dir = "~/woods/thicket"
-    commands = [
-        "ls -a"
-    ]
+    end_dir = "~/woods/thicket/rabbithole"
     hints = [
-        "{{rb:Use}} {{yb:ls -a}} {{rb: to look around more closely.}}"
+        "{{rb:Use}} {{yb:cd rabbithole/}} {{rb:to go inside.}}"
     ]
+
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step2()
@@ -36,33 +36,16 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "There's a .rabbithole! Let's go inside."
-    ]
-    start_dir = "~/woods/thicket"
-    end_dir = "~/woods/thicket/.rabbithole"
-    hints = [
-        "{{rb:Use}} {{yb:cd .rabbithole/}} {{rb:to go inside.}}"
-    ]
-
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
-
-    def next(self):
-        Step3()
-
-
-class Step3(StepTemplateChmod):
-    story = [
         "Look around"
     ]
-    start_dir = "~/woods/thicket/.rabbithole"
-    end_dir = "~/woods/thicket/.rabbithole"
+    start_dir = "~/woods/thicket/rabbithole"
+    end_dir = "~/woods/thicket/rabbithole"
     commands = [
         "ls",
         "ls -a"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around more closely.}}"
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     ]
 
     def next(self):
@@ -75,8 +58,8 @@ class Step4(StepTemplateChmod):
         "This Rabbit looks somewhat familiar...",
         "{{lb:Listen}} to the Rabbit."
     ]
-    start_dir = "~/woods/thicket/.rabbithole"
-    end_dir = "~/woods/thicket/.rabbithole"
+    start_dir = "~/woods/thicket/rabbithole"
+    end_dir = "~/woods/thicket/rabbithole"
     commands = [
         "cat Rabbit"
     ]

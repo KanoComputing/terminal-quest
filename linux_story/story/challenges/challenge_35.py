@@ -16,21 +16,14 @@ class StepTemplateChmod(TerminalChmod):
 
 class Step1(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:Well done. Now go inside the basement.}}"
+        "Swordsmaster: {{Bb:Your name is written in this world, for anyone who knows where to look. Use}} {{yb:ls -l}} "
+        "to see what I mean.}}"
+    ]
+    commands = [
+        "ls -l"
     ]
     start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house/basement"
-    commands = [
-        "cd basement",
-        "cd basement/"
-    ]
-    hints = [
-        "{{rb:Use}} {{yb:cd basement/}} {{rb:to go inside the basement.}}"
-    ]
-
-    def block_command(self):
-        return unblock_commands_with_cd_hint(self.last_user_input,
-                                             self.commands)
+    end_dir = "~/woods/clearing/house"
 
     def next(self):
         Step2()
@@ -38,16 +31,14 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:Look around.}}"
+        "Swordsmaster: {{Bb:Do you see your name on the files? You have extra abilities in this world, and the best "
+        "chance of stopping this thing.}}",
+        "{{Bb:I will teach you how to unlock the private section.}}",
+        "{{Bb:Look around.}}"
     ]
-    start_dir = "~/woods/clearing/house/basement"
-    end_dir = "~/woods/clearing/house/basement"
-    commands = [
-        "ls", "ls -a"
-    ]
-    hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
-    ]
+    commands = ["ls"]
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
 
     def next(self):
         Step3()
@@ -55,44 +46,52 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:You got the error}} {{yb:ls: cannot open directory .: Permission denied}}",
-        "",
-        "{{Bb:This is because you do not have permission to}} {{lb:read}} "
-        "{{Bb:the contents of}} {{bb:basement}}{{Bb:.}}",
-        "",
-        "{{Bb:Use the command}} {{yb:chmod +r ./}} {{Bb:to be able to look "
-        "around your current location.}}"
+        "Swordsmaster: {{Bb:Go into the basement you see.}}"
     ]
-    commands = [
-        "chmod +r .",
-        "chmod +r ./"
-    ]
-    hints = [
-        "{{rb:Use}} {{yb:chmod +r ./}} {{rb:to change the permissions on the basement.}}"
-    ]
-    start_dir = "~/woods/clearing/house/basement"
-    end_dir = "~/woods/clearing/house/basement"
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
+    commands = ["cd basement"]
+
+    def check_command(self):
+        if self.last_user_input.strip() in self.commands:
+            print "-bash: cd: basement: Permission denied"
+            return True
+        else:
+            self.send_hint("{{rb:Use}} {{yb:cd basement/}} {{rb:to go into the basement.}}")
+            return False
+
+    def block_command(self):
+        if self.last_user_input.startswith("cd"):
+            return True
 
     def next(self):
         Step4()
 
 
+# Make directory executable
 class Step4(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:See if it worked.}} {{lb:Look around}}{{Bb:.}}"
+        "Swordsmaster: {{Bb:You got the error}} {{yb:-bash: cd: basement: Permission denied}}",
+        "{{Bb:Normally you can do 3 things to a directory.}}",
+        "",
+        "{{Bb:See what is inside -}} {{lb:read}}",
+        "{{Bb:Create something inside -}} {{lb:write}}",
+        "{{Bb:Go inside with cd -}} {{lb:execute}}",
+        "",
+        "{{Bb:This directory is missing all three.}}"
+        "",
+        "{{Bb:To go inside, you need to activate the execute one.}}",
+        "{{Bb:Use}} {{yb:chmod +x basement}} {{Bb:to unlock the basement.}}"
     ]
     commands = [
-        "ls",
-        "ls -a",
-        "ls ./",
-        "ls ."
+        "chmod +x basement",
+        "chmod +x basement/"
     ]
-    start_dir = "~/woods/clearing/house/basement"
-    end_dir = "~/woods/clearing/house/basement"
-
     hints = [
-        "{{rb:Look around using}} {{yb:ls}}{{rb:.}}"
+        "{{rb:Use}} {{yb:chmod +x basement/}} {{rb:to unlock the basement.}}"
     ]
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
 
     def next(self):
-        NextStep(self.xp)
+        NextStep()

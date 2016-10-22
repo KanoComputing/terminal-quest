@@ -6,6 +6,8 @@
 # A chapter of the story
 
 import os
+
+from linux_story.common import get_username
 from linux_story.story.terminals.terminal_nano import TerminalNano
 from linux_story.story.challenges.challenge_34 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
@@ -49,7 +51,7 @@ class Step1(StepTemplateNano):
 class Step2(StepTemplateNano):
     story = [
         "So the signpost has an instruction on it? Let's carry it out.",
-        "Use {{yb:./doorbell.sh}} to ring the doorbell."
+        "Use {{yb:echo knock knock}} to knock on the door."
     ]
 
     # It would be good if we could pass the current dir across and this would
@@ -58,39 +60,31 @@ class Step2(StepTemplateNano):
     end_dir = "~/woods/clearing"
 
     hints = [
-        "{{rb:Use}} {{yb:./doorbell.sh}} {{rb:to ring the doorbell.}}"
+        "{{rb:Use}} {{yb:echo knock knock}} {{rb:to knock on the door.}}"
     ]
 
-    # TODO: script contains "echo ring ring; aplay /usr/share/doorbell"
-    # Add a nice sound, or remove the aplay section.
     commands = [
-        "./doorbell.sh"
+        "echo knock knock"
     ]
 
     def next(self):
         Step3()
 
 
-# TODO: he doesn't currently reply to the other echos.
-# Add the other replies to this, or make up your own.
 class Step3(StepTemplateNano):
     story = [
         "You hear a deep voice on the other side of the door.",
         "",
-        "Swordsmaster: {{Bb:Hello? Who's there?}}",
-        "",
-        "{{yb:1: Me}}",  # Reply with "Swordsmaster: {{Bb:Stop wasting my time.}}"
-        "{{yb:2: " + os.environ["LOGNAME"] + "}}",  # This should pass
-        "{{yb:3: The one you want to speak to.}}"  # "Swordsmaster: ...no, I don't think so."
+        "Swordsmaster: {{Bb:Hello? Who's there?}}"
     ]
 
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing"
     commands = [
-        "echo 2"
+        "echo " + get_username()
     ]
     hints = [
-        "{{rb:Give him your name with}} {{yb:echo 2}}{{rb:.}}"
+        "{{rb:Use}} {{yb:echo " + get_username() + "}} {{rb:to give him your name}}"
     ]
 
     def next(self):

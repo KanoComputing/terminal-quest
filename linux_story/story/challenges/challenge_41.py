@@ -22,10 +22,10 @@ class Step1(StepTemplateChmod):
     story = [
         "The Rabbit wants to know where the Super User command is kept?",
         "....",
-        "Oh! Could it be in the locked section of the library?",
+        "Could it be in the locked section of the library?",
         "Let's head there. I guess the Rabbit will follow."
     ]
-    start_dir = "~/woods/thicket/.rabbithole"
+    start_dir = "~/woods/thicket/rabbithole"
     end_dir = "~/town/east/library"
     hints = [
         "{{rb:Use}} {{yb:cd ~/town/east/library}} {{rb:to go to the library}}"
@@ -172,7 +172,6 @@ class Step7(StepTemplateChmod):
         "The Rabbit looks more excited than you've ever seen "
         "him before.",
         "He snatches the paper off you and runs off!",
-        "{{gb:Press ENTER to continue.}}"
     ]
     start_dir = "~/town/east/library/private-section"
     end_dir = "~/town/east/library/private-section"
@@ -180,6 +179,20 @@ class Step7(StepTemplateChmod):
     def next(self):
         script_path = os.path.expanduser("~/terminal-quest/bin/rabbit")
         os.system(script_path)
+        Step8()
 
+
+class Step8(StepTemplateChmod):
+    story = [
+        "The place shivers...and then everything goes black.",
+        "{{gb:Press ENTER to continue.}}"
+    ]
+
+    start_dir = "~/town/east/library/private-section"
+    end_dir = "~/town/east/library/private-section"
+
+    # Make the screen shiver, and then break the tiles/icons.
+
+    def next(self):
         self.exit()
         time.sleep(3)

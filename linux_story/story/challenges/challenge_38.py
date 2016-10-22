@@ -19,47 +19,45 @@ class StepTemplateChmod(TerminalChmod):
 
 class Step1(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:There's a note that's appeared. Who left it here?",
-        "...this is very strange. I left the door open. Perhaps someone...or "
-        "something...sneaked in while we were training.}}",
-        "",
-        "{{Bb:What does it say?}}"
+        "Swordsmaster: {{Bb:Now try again. Move the}} {{lb:key.sh}} "
+        "{{Bb:outside the basement.}}"
     ]
-    start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house"
     commands = [
-        "cat note"
+        "mv key.sh ../",
+        "mv key.sh .."
+    ]
+    start_dir = "~/woods/clearing/house/basement"
+    end_dir = "~/woods/clearing/house/basement"
+
+    commands = [
+        "mv key.sh ../",
+        "mv key.sh .."
     ]
 
     hints = [
-        "{{rb:Read the note with}} {{yb:cat note}}"
+        "{{rb:Use}} {{yb:mv key.sh ../}} {{rb:to move the key.sh}} "
+        "{{rb:back a directory.}}"
     ]
+
+    def block_command(self):
+        return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step2()
 
 
-# Note is from the rabbit and says "It's time for us to meet.
-# Follow the notes to find me."
 class Step2(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:I see you are involved in something bigger than I "
-        "thought.",
-        "You may need my help later. Remember me if you find you are blocked "
-        "by lack of knowledge.}}",
-        "",
-        "Time to head off - leave the swordsmaster's house."
+        "Swordsmaster: {{Bb:Leave the basement and join me.}}"
     ]
-    start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing"
-
+    start_dir = "~/woods/clearing/house/basement"
+    end_dir = "~/woods/clearing/house"
     hints = [
-        "{{rb:Leave the house and go into the clearing with}} {{yb:cd ..}}"
+        "{{rb:Use}} {{yb:cd ../}} {{rb:to go back a directory.}}"
     ]
 
-    # this should be inherited somehowz
     def block_command(self):
-        unblock_cd_commands(self.last_user_input)
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step3()
@@ -67,25 +65,17 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        "Look around and see if there are clues about where to go next."
+        "Swordsmaster: {{Bb:Now finally, make the key executable with}} "
+        "{{yb:chmod +x key.sh}} {{Bb:so you can run it.}}"
     ]
-
-    start_dir = "~/woods/clearing"
-    end_dir = "~/woods/clearing"
-    commands = [
-        "ls",
-        "ls -a"
-    ]
-
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+        "{{rb:Use}} {{yb:chmod +x key.sh}} {{rb:to activate the key.}}"
     ]
-    story_dict = {
-        "note_swordsmaster-clearing": {
-            "path": "~/woods/clearing",
-            "name": "note"
-        }
-    }
+    commands = [
+        "chmod +x key.sh"
+    ]
 
     def next(self):
         Step4()
@@ -93,16 +83,66 @@ class Step3(StepTemplateChmod):
 
 class Step4(StepTemplateChmod):
     story = [
-        "Another one! What does this say?"
+        "Swordsmaster: {{Bb:If you look around now, you can see the key has been activated.}}"
     ]
-    start_dir = "~/woods/clearing"
-    end_dir = "~/woods/clearing"
-    commands = [
-        "cat note"
-    ]
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
     hints = [
-        "{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}"
+        "{{rb:Look around with}} {{yb:ls}} {{rb:to see that the key has been activated.}}"
+    ]
+    commands = [
+        "ls",
+        "ls -l"
     ]
 
     def next(self):
-        NextStep(self.xp)
+        Step5()
+
+
+class Step5(StepTemplateChmod):
+    story = [
+        "Swordsmaster: {{Bb:The key.sh is now a bright green. This means you can use it.}}",
+        "{{Bb:Try using the key with}} {{yb:./key.sh}}"
+    ]
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
+    hints = [
+        "{{rb:Use}} {{yb:./key.sh}}"
+    ]
+    commands = [
+        "./key.sh"
+    ]
+
+    def next(self):
+        Step6()
+
+
+class Step6(StepTemplateChmod):
+    story = [
+        "Swordsmaster: {{Bb:Thank you, you locked the basement back up for me.}}",
+        "{{Bb:Well done - you've learned to use chmod!}}",
+        "{{Bb:...}}",
+        "{{Bb:...}}",
+        "{{Bb:...what is this?}}",
+        "{{Bb:Do you see this? Have a}} {{lb:look around}}."
+    ]
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
+    commands = [
+        "ls",
+        "ls -a"
+    ]
+
+    story_dict = {
+        "note_swordsmaster-house": {
+            "path": "~/woods/clearing/house",
+            "name": "note"
+        }
+    }
+
+    hints = [
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+    ]
+
+    def next(self):
+        NextStep()

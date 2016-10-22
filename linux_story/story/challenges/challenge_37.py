@@ -15,31 +15,24 @@ from linux_story.story.challenges.challenge_38 import Step1 as NextStep
 class StepTemplateChmod(TerminalChmod):
     challenge_number = 37
 
-
+# Instead of a sandwich, make this a script, and then the last task is to make
+# it executable.
 class Step1(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:Now try again. Move the}} {{lb:key.sh}} "
-        "{{Bb:outside the basement.}}"
+        "Swordsmaster: {{Bb:Well done. You've made the basement readable, "
+        "and you can see there is a}} {{lb:key.sh}} {{Bb:in there.}}",
+        "{{lb:Read the contents of key.sh.}}"
     ]
     commands = [
-        "mv key.sh ../",
-        "mv key.sh .."
+        "cat key.sh"
     ]
     start_dir = "~/woods/clearing/house/basement"
     end_dir = "~/woods/clearing/house/basement"
 
-    commands = [
-        "mv key.sh ../",
-        "mv key.sh .."
-    ]
-
     hints = [
-        "{{rb:Use}} {{yb:mv key.sh ../}} {{rb:to move the key.sh}} "
-        "{{rb:back a directory.}}"
+        "{{rb:Use}} {{yb:cat key.sh}} {{rb:to read the contents of "
+        "key.sh}}"
     ]
-
-    def block_command(self):
-        return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step2()
@@ -47,16 +40,18 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:Leave the basement and join me.}}"
+        "Swordsmaster: {{Bb:The key.sh has also had its permissions removed.}}",
+        "{{yb:Can you remember how to make it readable?}}"
+    ]
+    commands = [
+        "chmod +r key.sh"
     ]
     start_dir = "~/woods/clearing/house/basement"
-    end_dir = "~/woods/clearing/house"
-    hints = [
-        "{{rb:Use}} {{yb:cd ../}} {{rb:to go back a directory.}}"
-    ]
+    end_dir = "~/woods/clearing/house/basement"
 
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    hints = [
+        "{{rb:Use}} {{yb:chmod +r key.sh}} {{rb:to make key.sh readable.}}"
+    ]
 
     def next(self):
         Step3()
@@ -64,16 +59,16 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:Now finally, make the key executable with}} "
-        "{{yb:chmod +x key.sh}} {{Bb:so you can run it.}}"
-    ]
-    start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house"
-    hints = [
-        "{{rb:Use}} {{yb:chmod +x key.sh}} {{rb:to activate the key.}}"
+        "Swordsmaster: {{Bb:Now try and read key.sh again.}}"
     ]
     commands = [
-        "chmod +x key.sh"
+        "cat key.sh"
+    ]
+    start_dir = "~/woods/clearing/house/basement"
+    end_dir = "~/woods/clearing/house/basement"
+
+    hints = [
+        "{{rb:Use}} {{yb:cat key.sh}} {{rb:to read the contents of key.sh}}"
     ]
 
     def next(self):
@@ -82,17 +77,25 @@ class Step3(StepTemplateChmod):
 
 class Step4(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:If you look around now, you can see the key has been activated.}}"
-    ]
-    start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house"
-    hints = [
-        "{{rb:Look around with}} {{yb:ls}} {{rb:to see that the key has been activated.}}"
+        "Swordsmaster: {{Bb:This key.sh acts on the basement. ",
+        "By using -  instead of +, it removes the permissions from basement.",
+        "For it to work, it should be moved outside the basement to where I am.}}",
+        "",
+        "{{Bb:Move the}} {{lb:key.sh}} {{Bb:back to ../}}"
     ]
     commands = [
-        "ls",
-        "ls -l"
+        "mv key.sh ../",
+        "mv key.sh .."
     ]
+    start_dir = "~/woods/clearing/house/basement"
+    end_dir = "~/woods/clearing/house/basement"
+
+    hints = [
+        "{{rb:Use}} {{yb:mv key.sh ../}} {{rb:to move the key outside the basement.}}"
+    ]
+
+    def block_command(self):
+        return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step5()
@@ -100,48 +103,29 @@ class Step4(StepTemplateChmod):
 
 class Step5(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:The key.sh is now a bright green. This means you can use it.}}",
-        "{{Bb:Try using the key with}} {{yb:./key.sh}}"
-    ]
-    start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house"
-    hints = [
-        "{{rb:Use}} {{yb:./key.sh}}"
+        "Swordsmaster: {{Bb:Now you get the error}} {{yb:mv: cannot move "
+        "key.sh to ../key.sh: Permission denied}}",
+        "",
+        "{{Bb:This is the final permission you need to enable - the write "
+        "permission.",
+        "This permission allows you to change what is inside}} "
+        "{{bb:basement}}{{Bb:.}}",
+        "",
+        "{{Bb:To give yourself this, use}} {{yb:chmod +w ./}}"
     ]
     commands = [
-        "./key.sh"
+        "chmod +w ./",
+        "chmod +w ."
     ]
-
-    def next(self):
-        Step6()
-
-
-class Step6(StepTemplateChmod):
-    story = [
-        "Swordsmaster: {{Bb:Thank you, you locked the basement back up for me.}}",
-        "{{Bb:Well done - you've learned to use chmod!}}",
-        "{{Bb:...}}",
-        "{{Bb:...}}",
-        "{{Bb:...what is this?}}",
-        "{{Bb:Do you see this? Have a}} {{lb:look around}}."
-    ]
-    start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house"
-    commands = [
-        "ls",
-        "ls -a"
-    ]
-
-    story_dict = {
-        "note_swordsmaster-house": {
-            "path": "~/woods/clearing/house",
-            "name": "note"
-        }
-    }
+    start_dir = "~/woods/clearing/house/basement"
+    end_dir = "~/woods/clearing/house/basement"
 
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+        "{{rb:Use}} {{yb:chmod +w ./}} {{rb:to make the current directory "
+        "Writeable}}"
     ]
 
     def next(self):
         NextStep()
+
+
