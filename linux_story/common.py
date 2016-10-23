@@ -36,7 +36,7 @@ images_dir = os.path.join(common_media_dir, 'images')
 # /home/user/
 home_folder = os.path.expanduser('~')
 
-# This is where the filetree that the user interacts with.
+# This is where the file tree that the user interacts with.
 tq_file_system = os.path.join(home_folder, '.linux-story')
 
 # The contents of this folder are backed up online
@@ -50,7 +50,7 @@ def get_max_challenge_number():
             kano-profile.
     '''
 
-    # Hardcoded path, perhapes change it later
+    # Hardcoded path, perhaps change it later
     path = "/usr/share/kano-profile/rules/app_profiles.json"
     f = open(path)
     str_data = f.read()

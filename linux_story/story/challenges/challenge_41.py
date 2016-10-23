@@ -9,9 +9,15 @@ import os
 import time
 from linux_story.story.terminals.terminal_chmod import TerminalChmod
 from linux_story.step_helper_functions import unblock_cd_commands
+from linux_story.story.terminals.terminal_sudo import TerminalSudo
+from linux_story.story.challenges.challenge_42 import Step1 as NextStep
 
 
 class StepTemplateChmod(TerminalChmod):
+    challenge_number = 41
+
+
+class StepTemplateSudo(TerminalSudo):
     challenge_number = 41
 
 
@@ -166,7 +172,7 @@ class Step6(StepTemplateChmod):
         Step7()
 
 
-class Step7(StepTemplateChmod):
+class Step7(StepTemplateSudo):
     story = [
         "This looks like the command we were looking for.",
         "The Rabbit looks more excited than you've ever seen "
@@ -182,7 +188,7 @@ class Step7(StepTemplateChmod):
         Step8()
 
 
-class Step8(StepTemplateChmod):
+class Step8(StepTemplateSudo):
     story = [
         "The place shivers...and then everything goes black.",
         "{{gb:Press ENTER to continue.}}"
@@ -194,5 +200,6 @@ class Step8(StepTemplateChmod):
     # Make the screen shiver, and then break the tiles/icons.
 
     def next(self):
-        self.exit()
-        time.sleep(3)
+        # self.exit()
+        # time.sleep(3)
+        NextStep()

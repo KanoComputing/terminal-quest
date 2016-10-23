@@ -12,7 +12,6 @@ import Queue
 import socket
 import threading
 import traceback
-
 from gi.repository import Gtk, Gdk, GLib, Pango
 
 if __name__ == '__main__' and __package__ is None:
@@ -20,19 +19,15 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-from kano.gtk3.apply_styles import apply_styling_to_screen
-from kano.gtk3.scrolled_window import ScrolledWindow
-from kano.logging import logger
-from kano_profile.apps import load_app_state_variable
-
+from linux_story.dependencies import load_app_state_variable, Logger, apply_styling_to_screen, \
+    ScrolledWindow
 from linux_story.socket_functions import create_server
 from linux_story.gtk3.TerminalUi import TerminalUi
 from linux_story.gtk3.Spellbook import Spellbook
 from linux_story.gtk3.Storybook import Storybook
 from linux_story.common import css_dir
 from linux_story.gtk3.MenuScreen import MenuScreen
-from linux_story.load_defaults_into_filetree import \
-    revert_to_default_permissions
+from linux_story.load_defaults_into_filetree import revert_to_default_permissions
 
 
 def save_point_exists():
@@ -208,8 +203,7 @@ class MainWindow(Gtk.Window):
         except Queue.Empty:
             pass
         except Exception:
-            logger.error('Unexpected error in MainWindow: check_queue:'
-                         ' - [{}]'.format(traceback.format_exc()))
+            Logger.error('Unexpected error in MainWindow: check_queue: - [{}]'.format(traceback.format_exc()))
         finally:
             time.sleep(0.02)
             return True

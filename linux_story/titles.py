@@ -3,33 +3,33 @@
 # Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
-
+from linux_story.dependencies import translate
 
 chapters = {
     1: {
         'start_challenge': 1,
         'end_challenge': 9,
-        'title': _('Start exploring')
+        'title': translate('Start exploring')
     },
     2: {
         'start_challenge': 10,
         'end_challenge': 16,
-        'title': _('Save a family')
+        'title': translate('Save a family')
     },
     3: {
         'start_challenge': 17,
         'end_challenge': 22,
-        'title': _('Go to the farm')
+        'title': translate('Go to the farm')
     },
     4: {
         'start_challenge': 23,
         'end_challenge': 31,
-        'title': _('Save Eleanor')
+        'title': translate('Save Eleanor')
     },
     5: {
         'start_challenge': 32,
         'end_challenge': 41,
-        'title': 'Meet the swordsmaster'
+        'title': translate('Meet the swordsmaster')
     }
 }
 
@@ -37,35 +37,35 @@ chapters = {
 # Contains the text describing the challenges
 challenges = {
     1: {
-        'title': _('Wake up!'),
+        'title': translate('Wake up!'),
         'chapter': 1
     },
     2: {
-        'title': _('Look in your wardrobe'),
+        'title': translate('Look in your wardrobe'),
         'chapter': 1
     },
     3: {
-        'title': _('Look on your shelves'),
+        'title': translate('Look on your shelves'),
         'chapter': 1
     },
     4: {
-        'title': _('Find Mum'),
+        'title': translate('Find Mum'),
         'chapter': 1
     },
     5: {
-        'title': _('Where\'s Dad?'),
+        'title': translate('Where\'s Dad?'),
         'chapter': 1
     },
     6: {
-        'title': _('Visit the town'),
+        'title': translate('Visit the town'),
         'chapter': 1
     },
     7: {
-        'title': _('Town meeting'),
+        'title': translate('Town meeting'),
         'chapter': 1
     },
     8: {
-        'title': _('The bell strikes'),
+        'title': translate('The bell strikes'),
         'chapter': 1
     },
     9: {
@@ -73,131 +73,131 @@ challenges = {
         'chapter': 1
     },
     10: {
-        'title': _('See more clearly'),
+        'title': translate('See more clearly'),
         'chapter': 2
     },
     11: {
-        'title': _('Save the girl'),
+        'title': translate('Save the girl'),
         'chapter': 2
     },
     12: {
-        'title': _('Save the dog'),
+        'title': translate('Save the dog'),
         'chapter': 2
     },
     13: {
-        'title': _('Food hunt'),
+        'title': translate('Food hunt'),
         'chapter': 2
     },
     14: {
-        'title': _('Folderton Hero'),
+        'title': translate('Folderton Hero'),
         'chapter': 2
     },
     15: {
-        'title': _('Have a closer look'),
+        'title': translate('Have a closer look'),
         'chapter': 2
     },
     16: {
-        'title': _('A gift'),
+        'title': translate('A gift'),
         'chapter': 2
     },
     17: {
-        'title': _('Find your voice'),
+        'title': translate('Find your voice'),
         'chapter': 3
     },
     18: {
-        'title': _('Visit the farm'),
+        'title': translate('Visit the farm'),
         'chapter': 3
     },
     19: {
-        'title': _('Meet Ruth'),
+        'title': translate('Meet Ruth'),
         'chapter': 3
     },
     20: {
-        'title': _('Learn to build'),
+        'title': translate('Learn to build'),
         'chapter': 3
     },
     21: {
-        'title': _('Hide Ruth and her animals'),
+        'title': translate('Hide Ruth and her animals'),
         'chapter': 3
     },
     22: {
-        'title': _('Did you hear that?'),
+        'title': translate('Did you hear that?'),
         'chapter': 3
     },
     23: {
-        'title': _('Hello Eleanor'),
+        'title': translate('Hello Eleanor'),
         'chapter': 4
     },
     24: {
-        'title': _('Go east'),
+        'title': translate('Go east'),
         'chapter': 4
     },
     25: {
-        'title': _('Meet Bernard'),
+        'title': translate('Meet Bernard'),
         'chapter': 4
     },
     26: {
-        'title': _('Go into the library'),
+        'title': translate('Go into the library'),
         'chapter': 4
     },
     27: {
-        'title': _('Help Bernard'),
+        'title': translate('Help Bernard'),
         'chapter': 4
     },
     28: {
-        'title': _('Find the librarian'),
+        'title': translate('Find the librarian'),
         'chapter': 4
     },
     29: {
-        'title': _('Talk to Clara'),
+        'title': translate('Talk to Clara'),
         'chapter': 4
     },
     30: {
-        'title': _('Did you hear that?'),
+        'title': translate('Did you hear that?'),
         'chapter': 4
     },
     31: {
-        'title': _('Explore the shed-shop'),
+        'title': translate('Explore the shed-shop'),
         'chapter': 4
     },
     32: {
-        'title': _('Follow Ruth\'s hint'),
+        'title': translate('Follow Ruth\'s hint'),
         'chapter': 5
     },
     33: {
-        'title': _('Another locked door'),
+        'title': translate('Another locked door'),
         'chapter': 5
     },
     34: {
-        'title': _('Meet the swordsmaster'),
+        'title': translate('Meet the swordsmaster'),
         'chapter': 5
     },
     35: {
-        'title': _('The swordsmaster\'s test'),
+        'title': translate('The swordsmaster\'s test'),
         'chapter': 5
     },
     36: {
-        'title': _('The swordsmaster\'s test'),
+        'title': translate('The swordsmaster\'s test'),
         'chapter': 5
     },
     37: {
-        'title': _('The swordsmaster\'s test'),
+        'title': translate('The swordsmaster\'s test'),
         'chapter': 5
     },
     38: {
-        'title': _('Another note'),
+        'title': translate('Another note'),
         'chapter': 5
     },
     39: {
-        'title': _('Explore the woods'),
+        'title': translate('Explore the woods'),
         'chapter': 5
     },
     40: {
-        'title': _('Time to meet the note giver'),
+        'title': translate('Time to meet the note giver'),
         'chapter': 5
     },
     41: {
-        'title': _('Unlock the library'),
+        'title': translate('Unlock the library'),
         'chapter': 5
     }
 }

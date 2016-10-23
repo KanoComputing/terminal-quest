@@ -10,6 +10,7 @@ import os
 import sys
 from cmd import Cmd
 
+
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     if dir_path != '/usr':
@@ -19,16 +20,13 @@ import threading
 from helper_functions import (
     get_script_cmd, debugger, is_exe, colour_string_with_preset
 )
-from kano_profile.apps import (
-    load_app_state_variable, get_app_xp_for_challenge
-)
-from kano_profile.badges import save_app_state_variable_with_dialog
-
+from linux_story.dependencies import load_app_state_variable, save_app_state_variable_with_dialog, \
+    get_app_xp_for_challenge, Logger, translate
 from socket_functions import is_server_busy, launch_client
-from kano.logging import logger
-from common import tq_file_system
+from common import tq_file_system, get_username
 from load_defaults_into_filetree import delete_item, modify_file_tree
 from linux_story.commands_real import run_executable
+import strings
 
 # If this is not imported, the escape characters used for the colour prompts
 # show up as special characters.
@@ -119,7 +117,7 @@ class Terminal(Cmd):
             fake_cwd = fake_cwd[:-1]
 
         # Put together the terminal prompt.
-        username = os.environ['LOGNAME']
+        username = get_username()
         yellow_part = username + "@kano "
         yellow_part = colour_string_with_preset(yellow_part, "yellow", True)
 
@@ -216,9 +214,7 @@ class Terminal(Cmd):
                 ("mv" in self.last_user_input and
                     not self.last_user_input == 'mv --help'):
 
-            print _('Nice try! But you do not need that command for this ' +\
-                   'challenge')
-
+            print strings.COMMAND_BLOCKED_MESSAGE
             return True
 
     def check_output(self, output):
@@ -325,7 +321,7 @@ class Terminal(Cmd):
         '''
 
         data = {}
-        coloured_username = "{{yb:" + os.environ['LOGNAME'] + ":}} "
+        coloured_username = "{{yb:" + get_username() + ":}} "
         print_text = "\n".join(self.print_text)
         # Get data about any XP.
         data['xp'] = self.xp
@@ -343,13 +339,9 @@ class Terminal(Cmd):
     def get_xp(self):
         '''Look up XP earned after challenge
         '''
-        # Look up XP earned
-        xp = get_app_xp_for_challenge("linux-story",
-                                      str(self.challenge_number)
-                                      )
-
+        xp = get_app_xp_for_challenge("linux-story", str(self.challenge_number))
         if xp > 0:
-            self.xp = _("{{gb:Congratulations, you earned %d XP!}}\n\n") % xp
+            self.xp = translate("{{gb:Congratulations, you earned %d XP!}}\n\n") % xp
 
     def exit(self):
         data = {'exit': '1'}
@@ -366,8 +358,7 @@ class Terminal(Cmd):
         level = load_app_state_variable("linux-story", "level")
 
         if self.challenge_number > level:
-            save_app_state_variable_with_dialog("linux-story", "level",
-                                                self.challenge_number)
+            save_app_state_variable_with_dialog("linux-story", "level", self.challenge_number)
             self.get_xp()
 
     #######################################################
@@ -459,10 +450,7 @@ class Terminal(Cmd):
             return completions
 
         except Exception as e:
-            logger.debug(
-                "Hit Exception in the autocomplete_files "
-                "function {}".format(str(e))
-            )
+            Logger.debug("Hit Exception in the autocomplete_files function {}".format(str(e)))
 
     # Overwrite this to check for shell scripts instead.
     def completedefault(self, *ignored):

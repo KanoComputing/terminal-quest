@@ -51,15 +51,15 @@ def sudo(real_path, line, counter=0, success_cb=None, *cb_args):
         return
 
     user = getpass.getuser()
-    pswd = getpass.getpass('[sudo] password for {}:'.format(user))
+    password = getpass.getpass('[sudo] password for {}:'.format(user))
 
-    # For now hardcode the password?
-    if pswd != "kano":
+    # For now hard code the password?
+    if password != "kano":
         print "Sorry, try again."
         counter += 1
         return sudo(real_path, line, counter)
 
-    logger.debug("successfully entered pswd = {}".format(pswd))
+    logger.debug("successfully entered password = {}".format(password))
     logger.debug("calling success cb = {}".format(cb_args))
     if success_cb:
         success_cb(*cb_args)
