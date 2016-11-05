@@ -1,5 +1,10 @@
 # Server controls the Gtk window
-from flask import Flask
+import sys
+import traceback
+
+from flask import Flask, jsonify
+
+from linux_story.gtk3.MainWindow import MainWindow
 
 app = Flask(__name__)
 port = 9959
@@ -8,25 +13,44 @@ window = None
 
 @app.route("/")
 def hello():
+    print "/ hit"
     return "Hello World!"
 
 
-@app.route("/hint/<string:text>")
+@app.route("/hint/<text>")
 def show_hint(text):
+    print "/hint hit"
+    print text
     # window.show_hint(hint_text)
-    window.add_hint_to_queue(text)
+    try:
+        window.add_hint_to_queue(str(text))
+        return jsonify(result={"status": 200})
+    except Exception as e:
+        print "exception " + e.message;
+        ex_type, ex, tb = sys.exc_info()
+        traceback.print_tb(tb)
 
 
 @app.route("/challenge/<int:number>")
 def start_challenge(number):
-    # get data about what info to show?
-    # window.start_challenge(number)
-    window.add_start_new_challenge_to_queue(number, "blah", ["cd"])
+    try:
+        print "/challenge hit"
+        # get data about what info to show?
+        # window.start_challenge(number)
+        window.add_start_new_challenge_to_queue(number, "blah", ["cd"])
+        return jsonify(result={"status": 200})
+    except Exception as e:
+        print "exception " + e.message;
 
 
 @app.route("/busy")
 def get_if_server_busy():
-    return window.is_busy
+    try:
+        print "/busy hit"
+        return window.is_busy
+        return jsonify(result={"status": 200})
+    except Exception as e:
+        print "exception " + e.message;
 
 
 @app.route("/exit")
@@ -35,11 +59,12 @@ def close_window():
     print "exiting app"
 
 
-def run(win):
+def run(**kwargs):
     global window
 
-    window = win
-    return app.run(port=port)
+    window = kwargs["window"]
+    print window
+    return app.run(port=port, host="127.0.0.1", threaded=True)
 
 
 def get_window():

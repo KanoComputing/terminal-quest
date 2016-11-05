@@ -23,8 +23,12 @@ Options:
 
 import os
 import sys
-import docopt
+import threading
 
+import docopt
+import multiprocessing
+
+import time
 from gi.repository import Gtk
 
 if __name__ == '__main__' and __package__ is None:
@@ -50,7 +54,14 @@ from linux_story.server.Server import run
 
 
 def main(debug=False, challenge=None, step=None):
-    run(MainWindow(debug, challenge, step))
+    window = MainWindow(debug, challenge, step)
+
+    t = threading.Thread(target=run, kwargs={"window": window})
+    t.daemon = True
+    t.start()
+
+    os.system("kano-stop-splash")
+    Gtk.main()
 
 
 # close the server through here

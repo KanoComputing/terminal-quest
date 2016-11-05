@@ -20,7 +20,7 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.dependencies import load_app_state_variable, Logger, apply_styling_to_screen, \
     ScrolledWindow
-from linux_story.MyTCPHandler import create_server
+# from linux_story.MyTCPHandler import create_server
 from linux_story.gtk3.TerminalUi import TerminalUi
 from linux_story.gtk3.Spellbook import Spellbook
 from linux_story.gtk3.Storybook import Storybook
@@ -45,6 +45,8 @@ class MainWindow(Gtk.Window):
     def __init__(self, debug, challenge, step):
         Gtk.Window.__init__(self)
 
+        self.__queue = Queue.Queue(1)
+
         apply_styling_to_screen(self.CSS_FILE)
         apply_styling_to_screen(self.COLOUR_CSS_FILE)
 
@@ -55,13 +57,10 @@ class MainWindow(Gtk.Window):
 
         if challenge and step:
             self.__start_game_from_challenge(challenge, step)
-        elif save_point_exists():
-            self.__show_menu()
+        # elif save_point_exists():
+        #     self.__show_menu()
         else:
             self.__start_game_from_challenge("0", "1")
-
-        os.system("kano-stop-splash")
-        Gtk.main()
 
     def __setup_gtk_properties(self):
         self.connect('delete-event', self.__close_window)
@@ -85,6 +84,10 @@ class MainWindow(Gtk.Window):
     def __start_game_from_challenge(self, challenge, step):
         self.__setup_application_widgets()
         self.__start_script_in_terminal(challenge, step)
+        self.show_all()
+        if False:
+            self.__terminal.hide()
+            self.__spellbook.hide()
 
     def __show_menu(self):
         menu = MenuScreen()
@@ -176,13 +179,7 @@ class MainWindow(Gtk.Window):
         )
 
         self.__terminal.launch_command(command)
-
         GLib.idle_add(self.__check_queue)
-        self.show_all()
-
-        if not self.__debug:
-            self.__terminal.hide()
-            self.__spellbook.hide()
 
     def __check_queue(self):
         """
@@ -264,12 +261,12 @@ class MainWindow(Gtk.Window):
         so the script running in the terminal can
         send messages to the MainWindow class.
         """
-
-        self.__queue = Queue.Queue(1)
-        self.__server = create_server(self.__queue)
-        t = threading.Thread(target=self.__server.serve_forever)
-        t.daemon = True
-        t.start()
+        pass
+        # self.__queue = Queue.Queue(1)
+        # self.__server = create_server(self.__queue)
+        # t = threading.Thread(target=self.__server.serve_forever)
+        # t.daemon = True
+        # t.start()
 
     def add_hint_to_queue(self, hint):
         self.__add_to_queue({"hint": hint})
@@ -283,7 +280,8 @@ class MainWindow(Gtk.Window):
         })
 
     def __add_to_queue(self, data):
-        self.__queue.put(json.loads(data))
+        print data
+        self.__queue.put(data)
 
     def __center_storybook(self):
         """
