@@ -13,6 +13,12 @@ from kano_profile.badges import save_app_state_variable_with_dialog as kp_save_a
 from kano.logging import logger as kp_logger
 from kano.gtk3.apply_styles import apply_styling_to_screen as kano_apply_styling_to_screen
 from kano.gtk3.scrolled_window import ScrolledWindow as Kano_ScrolledWindow
+from kano_profile.tracker import Tracker as KpTracker
+import kano_i18n.init
+
+
+def install_i18n(name, path):
+    return kano_i18n.init.install(name, path)
 
 
 def load_app_state_variable(string1, string2):
@@ -33,6 +39,10 @@ def translate(string):
 
 def apply_styling_to_screen(filename):
     return kano_apply_styling_to_screen(filename)
+
+
+class Tracker(KpTracker):
+    pass
 
 
 class Logger:

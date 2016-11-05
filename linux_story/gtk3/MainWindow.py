@@ -3,8 +3,7 @@
 # Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
-
-
+import json
 import os
 import sys
 import time
@@ -21,7 +20,7 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.dependencies import load_app_state_variable, Logger, apply_styling_to_screen, \
     ScrolledWindow
-from linux_story.socket_functions import create_server
+from linux_story.MyTCPHandler import create_server
 from linux_story.gtk3.TerminalUi import TerminalUi
 from linux_story.gtk3.Spellbook import Spellbook
 from linux_story.gtk3.Storybook import Storybook
@@ -52,6 +51,7 @@ class MainWindow(Gtk.Window):
         self.__debug = debug
         self.__setup_gtk_properties()
         self.__setup_keymap()
+        self.is_busy = False
 
         if challenge and step:
             self.__start_game_from_challenge(challenge, step)
@@ -136,7 +136,7 @@ class MainWindow(Gtk.Window):
             width / 2 - 20, height - self.__spellbook.HEIGHT - 2 * 44 - 10
         )
 
-        self.__run_server()
+        # self.__run_server()
 
     def on_caps_lock_changed(self, is_caps_lock_on):
         if self.__spellbook:
@@ -185,13 +185,15 @@ class MainWindow(Gtk.Window):
             self.__spellbook.hide()
 
     def __check_queue(self):
-        '''
+        """
         This receives the messages sent from the script running in the
         terminal. From these messages we can decide how to update the GUI.
-        '''
+        """
 
         try:
             data_dict = self.__queue.get(False, timeout=5.0)
+
+            self.is_busy = True
 
             if 'exit' in data_dict.keys():
                 self.__finish_app()
@@ -199,6 +201,8 @@ class MainWindow(Gtk.Window):
                 self.__show_hint(data_dict)
             elif 'challenge' in data_dict.keys() and 'story' in data_dict.keys() and 'spells' in data_dict.keys():
                 self.__start_new_challenge(data_dict)
+
+            self.is_busy = False
 
         except Queue.Empty:
             pass
@@ -266,6 +270,20 @@ class MainWindow(Gtk.Window):
         t = threading.Thread(target=self.__server.serve_forever)
         t.daemon = True
         t.start()
+
+    def add_hint_to_queue(self, hint):
+        self.__add_to_queue({"hint": hint})
+
+    def add_start_new_challenge_to_queue(self, challenge, story, spells):
+        self.__add_to_queue({
+            "challenge": 1,
+            "story": "blah blah blah",
+            "spells": ["ls"],
+            "highlighted_spells": ["ls"]
+        })
+
+    def __add_to_queue(self, data):
+        self.__queue.put(json.loads(data))
 
     def __center_storybook(self):
         """
