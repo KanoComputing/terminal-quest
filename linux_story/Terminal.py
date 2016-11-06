@@ -16,14 +16,12 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-import threading
 from helper_functions import (
     get_script_cmd, debugger, is_exe, colour_string_with_preset
 )
 from linux_story.dependencies import load_app_state_variable, save_app_state_variable_with_dialog, \
     get_app_xp_for_challenge, Logger, translate
-# from MyTCPHandler import is_server_busy, launch_client, finish_if_server_ready
-from linux_story.server.Client import Client
+from linux_story.MessageClient import MessageClient
 from common import tq_file_system, get_username
 from load_defaults_into_filetree import delete_item, modify_file_tree
 from linux_story.commands_real import run_executable
@@ -77,7 +75,7 @@ class Terminal(Cmd):
         if isinstance(self.hints, basestring):
             self.hints = [self.hints]
 
-        self.__client = Client()
+        self.__client = MessageClient()
 
         ##################################
 
@@ -182,8 +180,7 @@ class Terminal(Cmd):
         """
 
         finished = self.finished_challenge(line)
-        # return finish_if_server_ready(finished)
-        return True
+        return self.__client.finish_if_server_ready(finished)
 
 
     #######################################################
@@ -260,29 +257,13 @@ class Terminal(Cmd):
             end_dir_validated = self.current_path == self.end_dir
 
         if not (command_validated and end_dir_validated):
-            self.show_hint()
+            self.send_hint()
 
         condition = (command_validated and end_dir_validated)
-        # return finish_if_server_ready(condition)
-        return True
+        return self.__client.finish_if_server_ready(condition)
 
     #######################################################
     # Send text to the GUI.
-
-    # TODO: Remove this
-    def show_hint(self):
-        """Customize the hint that is shown to the user
-        depending on their input.
-        Default behaviour, display normal hint.
-        """
-        # Default behaviour
-        # if user does not pass challenge, show hints.
-        # Go through hints until we get to last hint
-        # then just keep showing last hint
-
-        # The last line the user typed is self.last_user_input
-
-        self.send_hint()
 
     def send_hint(self, hint=None):
         """Sends a hint string through the pipe to the GUI
@@ -292,15 +273,7 @@ class Terminal(Cmd):
             hint = '\n' + self.hints[0]
         else:
             hint = '\n' + hint
-
         self.__client.send_hint(hint)
-
-        # if not is_server_busy():
-        #     if not hint:
-        #         hint = '\n' + self.hints[0]
-        #     else:
-        #         hint = '\n' + hint
-        #     self.send_text(hint)
 
         # TODO: This should only be run is a hint is not provided
         if len(self.hints) > 1:
@@ -310,37 +283,26 @@ class Terminal(Cmd):
         """Sends a string through the pipe to the GUI
         """
         self.__client.send_hint(string)
-        # if not is_server_busy():
-        #     data = {'hint': string}
-        #     t = threading.Thread(target=launch_client, args=(data,))
-        #     t.daemon = True
-        #     t.start()
 
     def send_start_challenge_data(self):
         """Sends all the relevent information at the start of a new step
         """
-
-        # data = {}
-        # coloured_username = "{{yb:" + get_username() + ":}} "
-        # print_text = "\n".join(self.print_text)
-        # # Get data about any XP.
-        # data['xp'] = self.xp
-        # if print_text:
-        #     data["print_text"] = coloured_username + print_text
-        # data['story'] = "\n".join(self.story)
-        # data['challenge'] = str(self.challenge_number)
-        # data['spells'] = self.terminal_commands
-        # data['highlighted_spells'] = self.highlighted_commands
-        #
-        # t = threading.Thread(target=launch_client, args=(data,))
-        # t.daemon = True
-        # t.start()
         print "sending challenge data"
+        coloured_username = "{{yb:" + get_username() + ":}} "
+        print_text = "\n".join(self.print_text)
+
+        if print_text:
+            print print_text
+            print_text = coloured_username + print_text
+            print print_text
+
         self.__client.send_start_challenge_data(
             "\n".join(self.story),
             str(self.challenge_number),
             self.terminal_commands,
-            self.highlighted_commands
+            self.highlighted_commands,
+            self.xp,
+            print_text
         )
 
     def get_xp(self):
@@ -351,10 +313,7 @@ class Terminal(Cmd):
             self.xp = translate("{{gb:Congratulations, you earned %d XP!}}\n\n") % xp
 
     def exit(self):
-        data = {'exit': '1'}
-        t = threading.Thread(target=launch_client, args=(data,))
-        t.daemon = True
-        t.start()
+        self.__client.exit()
 
     ######################################################
     # Kano world integration

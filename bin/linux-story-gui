@@ -23,13 +23,10 @@ Options:
 
 import os
 import sys
-import threading
-
 import docopt
-import multiprocessing
-
-import time
 from gi.repository import Gtk
+import Queue
+
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -42,6 +39,7 @@ if __name__ == '__main__' and __package__ is None:
 # import kano_i18n.init
 # from kano_profile.apps import load_app_state_variable
 # from kano_profile.tracker import Tracker
+from linux_story.MessageServer import MessageServer
 from linux_story.dependencies import load_app_state_variable, Tracker, install_i18n
 install_i18n('terminal-quest', LOCALE_PATH)
 
@@ -50,15 +48,13 @@ kanotracker = Tracker()
 
 
 from linux_story.gtk3.MainWindow import MainWindow
-from linux_story.server.Server import run
 
 
 def main(debug=False, challenge=None, step=None):
-    window = MainWindow(debug, challenge, step)
-
-    t = threading.Thread(target=run, kwargs={"window": window})
-    t.daemon = True
-    t.start()
+    queue = Queue.Queue(1)
+    window = MainWindow(queue, debug, challenge, step)
+    server = MessageServer(queue, window)
+    window.connect("delete-event", server.shutdown)
 
     os.system("kano-stop-splash")
     Gtk.main()

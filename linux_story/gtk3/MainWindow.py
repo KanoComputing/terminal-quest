@@ -3,15 +3,9 @@
 # Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
-import json
 import os
-import sys
 import time
-import Queue
-import socket
-import threading
-import traceback
-from gi.repository import Gtk, Gdk, GLib, Pango
+from gi.repository import Gtk, Gdk, Pango
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -20,7 +14,6 @@ if __name__ == '__main__' and __package__ is None:
 
 from linux_story.dependencies import load_app_state_variable, Logger, apply_styling_to_screen, \
     ScrolledWindow
-# from linux_story.MyTCPHandler import create_server
 from linux_story.gtk3.TerminalUi import TerminalUi
 from linux_story.gtk3.Spellbook import Spellbook
 from linux_story.gtk3.Storybook import Storybook
@@ -42,10 +35,10 @@ class MainWindow(Gtk.Window):
     CSS_FILE = os.path.join(css_dir, "style.css")
     COLOUR_CSS_FILE = os.path.join(css_dir, "colours.css")
 
-    def __init__(self, debug, challenge, step):
+    def __init__(self, queue, debug, challenge, step):
         Gtk.Window.__init__(self)
 
-        self.__queue = Queue.Queue(1)
+        self.__queue = queue
 
         apply_styling_to_screen(self.CSS_FILE)
         apply_styling_to_screen(self.COLOUR_CSS_FILE)
@@ -139,8 +132,6 @@ class MainWindow(Gtk.Window):
             width / 2 - 20, height - self.__spellbook.HEIGHT - 2 * 44 - 10
         )
 
-        # self.__run_server()
-
     def on_caps_lock_changed(self, is_caps_lock_on):
         if self.__spellbook:
             self.__spellbook.caps_lock_changed(is_caps_lock_on)
@@ -179,46 +170,16 @@ class MainWindow(Gtk.Window):
         )
 
         self.__terminal.launch_command(command)
-        GLib.idle_add(self.__check_queue)
 
-    def __check_queue(self):
-        """
-        This receives the messages sent from the script running in the
-        terminal. From these messages we can decide how to update the GUI.
-        """
-
-        try:
-            data_dict = self.__queue.get(False, timeout=5.0)
-
-            self.is_busy = True
-
-            if 'exit' in data_dict.keys():
-                self.__finish_app()
-            elif 'hint' in data_dict.keys():
-                self.__show_hint(data_dict)
-            elif 'challenge' in data_dict.keys() and 'story' in data_dict.keys() and 'spells' in data_dict.keys():
-                self.__start_new_challenge(data_dict)
-
-            self.is_busy = False
-
-        except Queue.Empty:
-            pass
-        except Exception:
-            Logger.error('Unexpected error in MainWindow: check_queue: - [{}]'.format(traceback.format_exc()))
-        finally:
-            time.sleep(0.02)
-            return True
-
-    def __finish_app(self):
+    def finish_app(self):
         self.__stop_typing_in_terminal()
         self.__center_storybook()
         # TODO: update asset when we finish the last chapter in the storyline
         self.__story.print_coming_soon(self, self.__terminal)
-
         time.sleep(5)
         self.__close_window()
 
-    def __show_hint(self, data_dict):
+    def show_hint(self, data_dict):
         self.__stop_typing_in_terminal()
         self.__story.type_coloured_text(data_dict['hint'])
         self.__show_terminal()
@@ -228,60 +189,30 @@ class MainWindow(Gtk.Window):
         self.__terminal.set_sensitive(True)
         self.__terminal.grab_focus()
 
-    def __start_new_challenge(self, data_dict):
+    def start_new_challenge(self, data_dict):
         self.__story.clear()
         self.__stop_typing_in_terminal()
         self.__story.print_challenge_title(data_dict['challenge'])
-        self.__show_earned_xp(data_dict)
+        if 'xp' in data_dict and data_dict['xp']:
+            self.__show_earned_xp(data_dict['xp'])
         self.__show_echo_choice(data_dict)
         self.__story.type_coloured_text(data_dict['story'])
-        self.__repack_spells(data_dict)
+        self.__repack_spells(data_dict["spells"], data_dict["highlighted"])
         self.__show_terminal()
         self.show_all()
 
     def __stop_typing_in_terminal(self):
         self.__terminal.set_sensitive(False)
 
-    def __show_earned_xp(self, data_dict):
-        if 'xp' in data_dict and data_dict['xp']:
-            self.__story.type_coloured_text(data_dict['xp'])
+    def __show_earned_xp(self, xp):
+        self.__story.type_coloured_text(xp)
 
     def __show_echo_choice(self, data_dict):
         if user_used_echo(data_dict):
             self.__story.print_coloured_text(data_dict["print_text"] + "\n\n")
 
-    def __repack_spells(self, data_dict):
-        spells = data_dict['spells']
-        highlighted_spells = data_dict['highlighted_spells']
+    def __repack_spells(self, spells, highlighted_spells):
         self.__spellbook.repack_spells(spells, highlighted_spells)
-
-    def __run_server(self):
-        """
-        Start the server, and pass a Queue to it,
-        so the script running in the terminal can
-        send messages to the MainWindow class.
-        """
-        pass
-        # self.__queue = Queue.Queue(1)
-        # self.__server = create_server(self.__queue)
-        # t = threading.Thread(target=self.__server.serve_forever)
-        # t.daemon = True
-        # t.start()
-
-    def add_hint_to_queue(self, hint):
-        self.__add_to_queue({"hint": hint})
-
-    def add_start_new_challenge_to_queue(self, challenge, story, spells):
-        self.__add_to_queue({
-            "challenge": 1,
-            "story": "blah blah blah",
-            "spells": ["ls"],
-            "highlighted_spells": ["ls"]
-        })
-
-    def __add_to_queue(self, data):
-        print data
-        self.__queue.put(data)
 
     def __center_storybook(self):
         """
@@ -313,15 +244,6 @@ class MainWindow(Gtk.Window):
         Returns:
             None
         """
-
-        if hasattr(self, "server"):
-            self.__server.socket.shutdown(socket.SHUT_RDWR)
-            self.__server.socket.close()
-            self.__server.shutdown()
-
-        # Do this AFTER the server shutdown, so if this goes wrong,
-        # we can quickly relaunch TQ.
         revert_to_default_permissions()
-
         Gtk.main_quit()
 
