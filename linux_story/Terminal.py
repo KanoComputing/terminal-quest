@@ -200,6 +200,9 @@ class Terminal(Cmd):
         Default behaviour is to block cd, mv and mkdir.
         """
 
+        return self.default_block_command()
+
+    def default_block_command(self):
         if "cd" in self.last_user_input or \
                 "mkdir" in self.last_user_input or \
                 ("mv" in self.last_user_input and
@@ -207,6 +210,8 @@ class Terminal(Cmd):
 
             print strings.COMMAND_BLOCKED_MESSAGE
             return True
+
+        return False
 
     def check_output(self, output):
         """Use output of the command to level up.
