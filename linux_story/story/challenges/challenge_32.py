@@ -30,6 +30,28 @@ class Step1(StepTemplateNano):
         "Windy Road ~}}"
     ]
 
+    story_dict = {
+        "house": {
+            "directory": True,
+            "path": "~/woods/clearing",
+            "permissions": 0000
+        },
+        "signpost": {
+            "path": "~/woods/clearing"
+        },
+        "weed": {
+            "path": "~/woods/clearing"
+        },
+        "doorbell.sh": {
+            "path": "~/woods/clearing",
+            "permissions": 0755
+        },
+        "trail": {
+            "directory": True,
+            "path": "~/woods"
+        }
+    }
+
     # Maybe this could be reduced to an argument in the class.
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)
@@ -140,19 +162,23 @@ class Step6(StepTemplateNano):
 
 class Step7(StepTemplateNano):
     story = [
-        "There's a house in the clearing. Have a {{lb:look}} in the {{lb:house}}.",
+        "There's a house in the clearing. Have a {{lb:look}} in the {{lb:house}}, or try and {{lb:go inside}}.",
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing"
+    dirs_to_attempt = "~/woods/clearing/house"
     commands = [
         "ls house",
         "ls house/",
         "ls -a house",
-        "ls -a house/"
+        "ls -a house/",
+        "cd house",
+        "cd house/"
     ]
     hints = [
         "{{rb:Use}} {{yb:ls house/}} {{rb:to look in the house.}}"
     ]
+    last_step = True
 
     # Allow all. Perhaps have an "unblock cd"
     def block_command(self):

@@ -7,7 +7,7 @@
 
 
 import os
-
+import stat
 from linux_story.commands_fake import cd
 from linux_story.story.terminals.terminal_cat import \
     TerminalCat
@@ -16,15 +16,31 @@ from linux_story.story.terminals.terminal_cat import \
 from linux_story.step_helper_functions import route_between_paths
 
 
+def not_locked(directory):
+    uid = os.geteuid()
+    gid = os.getegid()
+    s = os.stat(directory)
+    mode = s[stat.ST_MODE]
+    return (
+        ((s[stat.ST_UID] == uid) and (mode & stat.S_IXUSR)) or
+        ((s[stat.ST_GID] == gid) and (mode & stat.S_IXGRP)) or
+        (mode & stat.S_IWOTH)
+    )
+
+
 class TerminalCd(TerminalCat):
     terminal_commands = ["ls", "cat", "cd"]
 
-    def do_cd(self, line, has_access=True):
-        if self.check_cd():
+    def do_cd(self, line):
+        if self.__check_cd():
             self.set_command_blocked(False)
             new_path = cd(self.real_path, line)
-
-            if new_path:
+            if not not_locked(new_path):
+                self.set_command_blocked(True)
+                print (
+                    _("bash: cd: " + line + ": Permission denied")
+                )
+            elif new_path:
                 self.real_path = new_path
                 self.current_path = self.generate_fake_path(self.real_path)
                 self.set_prompt()
@@ -40,19 +56,20 @@ class TerminalCd(TerminalCat):
         except Exception as e:
             print str(e)
 
-    def check_cd(self):
-        '''If returns True, that means that cd will bring the user closer
+    def __check_cd(self):
+        """If returns True, that means that cd will bring the user closer
         to their destination, so cd should be allowed to run with the
         user's choice of path.
-        '''
+        """
+        if not self.last_user_input.startswith("cd"):
+            return False
 
         # Get the current list of the paths that we're allowed to go on
         route = route_between_paths(self.current_path, self.end_dir)
 
-        if not self.last_user_input.startswith("cd"):
-            return False
+        if not route:
+            route = route_between_paths(self.current_path, self.dirs_to_attempt)
 
-        # Check the path the user entered
         user_path = self.last_user_input.replace("cd", "").strip()
 
         if user_path:

@@ -38,6 +38,7 @@ class Terminal(Cmd):
     print_text = [""]
     story = [""]
     start_dir = "~"
+    dirs_to_attempt = ""
     end_dir = "~"
     commands = ""
     hints = ""
@@ -65,6 +66,10 @@ class Terminal(Cmd):
 
         # self.current_path is the current path that the user sees
         self.current_path = self.start_dir
+
+        if not self.dirs_to_attempt:
+            self.dirs_to_attempt = self.start_dir
+
         # real_path is the actual filename.
         self.real_path = self.generate_real_path(self.current_path)
 
@@ -292,14 +297,11 @@ class Terminal(Cmd):
     def send_start_challenge_data(self):
         """Sends all the relevent information at the start of a new step
         """
-        print "sending challenge data"
         coloured_username = "{{yb:" + get_username() + ":}} "
         print_text = "\n".join(self.print_text)
 
         if print_text:
-            print print_text
             print_text = coloured_username + print_text
-            print print_text
 
         self.__client.send_start_challenge_data(
             "\n".join(self.story),
@@ -348,8 +350,8 @@ class Terminal(Cmd):
                 delete_item(real_path)
 
     def modify_file_tree(self):
-        '''If self.story_dict is specified, add files to the filetree
-        '''
+        """If self.story_dict is specified, add files to the filetree
+        """
         if self.story_dict:
             modify_file_tree(self.story_dict)
 

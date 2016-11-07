@@ -93,5 +93,7 @@ class Step4(StepTemplateChmod):
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
 
+    last_step = True
+
     def next(self):
         NextStep()

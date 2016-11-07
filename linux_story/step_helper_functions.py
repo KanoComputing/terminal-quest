@@ -59,6 +59,7 @@ def unblock_cd_commands(line):
             (line.startswith("mv") and not line.strip() == 'mv --help'):
         print _('Nice try! But you do not need that command for this challenge')
         return True
+    return False
 
 
 ###########################################################################

@@ -20,7 +20,7 @@ class StepTemplateNano(TerminalNano):
 class Step1(StepTemplateNano):
     story = [
         "Huh, you can't seem to look inside.",
-        "It seems to be locked in the same way that library door was locked.",
+        "It seems to be locked in the same way that library door was.",
         "Maybe there's a clue somewhere around here.",
         "{{lb:Investigate}} the area around and see if you can find any clues."
     ]
@@ -50,8 +50,7 @@ class Step1(StepTemplateNano):
 
 class Step2(StepTemplateNano):
     story = [
-        "So the signpost has an instruction on it? Let's carry it out.",
-        "Use {{yb:echo knock knock}} to knock on the door."
+        "So the signpost has an instruction on it? Let's carry it out."
     ]
 
     # It would be good if we could pass the current dir across and this would
@@ -120,7 +119,7 @@ class Step4(StepTemplateNano):
         "basement": {
             "directory": True,
             "path": "~/woods/clearing/house",
-            "permissions": 0100
+            "permissions": 0000
         }
     }
 
@@ -147,6 +146,7 @@ class Step5(StepTemplateNano):
         "ls",
         "ls -a"
     ]
+    last_step = True
 
     def next(self):
         NextStep(self.xp)

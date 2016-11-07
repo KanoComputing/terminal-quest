@@ -63,10 +63,13 @@ class Step2(StepTemplateNano):
         "echo 3": "Swordsmaster: {{Bb:What notes?}}"
     }
 
+    last_step = True
+
     def check_command(self):
 
         if self.last_user_input in self.extra_hints:
             self.send_hint(self.extra_hints[self.last_user_input])
+            return
 
         return StepTemplateNano.check_command(self)
 

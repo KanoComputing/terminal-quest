@@ -538,8 +538,8 @@ basement_swordsmaster:
     directory: True
     name: basement
     challenges:
-        - challenge: 32
-          step: 1
+        - challenge: 33
+          step: 4
           path: "~/woods/clearing/house"
           permissions: 0100
         - challenge: 35
@@ -553,8 +553,8 @@ basement_swordsmaster:
 
 key.sh:
     challenges:
-        - challenge: 32
-          step: 1
+        - challenge: 35
+          step: 4
           path: "~/woods/clearing/house/basement"
           permissions: 0000
 
