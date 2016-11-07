@@ -10,7 +10,6 @@ import Queue
 import SocketServer
 import time
 import traceback
-from gi.repository import GLib
 
 from linux_story.MyTCPHandler import MyTCPHandler
 from linux_story.dependencies import Logger
@@ -27,26 +26,25 @@ class MessageServer:
         self.__server = SocketServer.TCPServer((MessageServer.HOST, MessageServer.PORT), MyTCPHandler)
         self.__server.queue = queue
         self.__is_busy = False
+
+    def start_in_separate_thread(self):
         t = threading.Thread(target=self.__server.serve_forever)
         t.start()
-        GLib.idle_add(self.__check_queue)
 
     def shutdown(self, widget=None, event=None):
-        print "shutdown server"
         self.__server.socket.shutdown(socket.SHUT_RDWR)
         self.__server.socket.close()
         self.__server.shutdown()
 
-    def __check_queue(self):
+    def check_queue(self):
         try:
             self.__is_busy = True
             data_dict = self.__server.queue.get(False, timeout=5.0)
             if 'exit' in data_dict.keys():
                 self.__window.finish_app()
-                print "return False"
                 return False
             elif 'hint' in data_dict.keys():
-                self.__window.send_hint(data_dict)
+                self.__window.show_hint(data_dict["hint"])
             elif 'challenge' in data_dict.keys() and 'story' in data_dict.keys() and 'spells' in data_dict.keys():
                 self.__window.start_new_challenge(data_dict)
 

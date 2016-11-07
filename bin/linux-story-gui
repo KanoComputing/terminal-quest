@@ -24,7 +24,7 @@ Options:
 import os
 import sys
 import docopt
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
 import Queue
 
 
@@ -54,7 +54,9 @@ def main(debug=False, challenge=None, step=None):
     queue = Queue.Queue(1)
     window = MainWindow(queue, debug, challenge, step)
     server = MessageServer(queue, window)
+    server.start_in_separate_thread()
     window.connect("delete-event", server.shutdown)
+    GLib.idle_add(server.check_queue)
 
     os.system("kano-stop-splash")
     Gtk.main()

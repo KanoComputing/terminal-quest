@@ -50,8 +50,8 @@ class MainWindow(Gtk.Window):
 
         if challenge and step:
             self.__start_game_from_challenge(challenge, step)
-        # elif save_point_exists():
-        #     self.__show_menu()
+        elif save_point_exists():
+            self.__show_menu()
         else:
             self.__start_game_from_challenge("0", "1")
 
@@ -179,9 +179,9 @@ class MainWindow(Gtk.Window):
         time.sleep(5)
         self.__close_window()
 
-    def show_hint(self, data_dict):
+    def show_hint(self, hint):
         self.__stop_typing_in_terminal()
-        self.__story.type_coloured_text(data_dict['hint'])
+        self.__story.type_coloured_text(hint)
         self.__show_terminal()
 
     def __show_terminal(self):

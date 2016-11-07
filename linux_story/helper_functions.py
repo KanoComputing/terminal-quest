@@ -27,16 +27,16 @@ FORMATTING_END = re.compile(r"}}")
 
 
 def debugger(text):
-    '''
+    """
     Change first line to "if True:" to show all the debugging lines.
-    '''
+    """
 
     if False:
         print text
 
 
 def get_script_cmd(string, real_path):
-    '''
+    """
     Checks whether the path (from the user's point of view)
     is an executable.
 
@@ -51,7 +51,7 @@ def get_script_cmd(string, real_path):
         tuple = (bool, str):
             The first argument says if the script is a valid executable.
             The second argument gives the full filepath of the executable.
-    '''
+    """
 
     is_script = False
 
@@ -77,7 +77,7 @@ def is_exe(fpath):
 
 
 def colour_file_dir(path, f):
-    '''
+    """
     Colourize the files and directories consistently
 
     Args:
@@ -87,7 +87,7 @@ def colour_file_dir(path, f):
     Returns:
         str: the filename with the appropriate appended substrings to
             make it appear the correct colour in a terminal.
-    '''
+    """
 
     if os.path.isfile(path) and is_exe(path):
         f = colour_string_with_preset(f, "green", False)
@@ -102,7 +102,7 @@ def colour_file_dir(path, f):
 
 
 def colour_string_with_preset(string, colour_name="white", input_fn=True):
-    '''
+    """
     Args:
         string (str): the string we want to colourise.
         colour_name (str): takes the values "yellow", "white", "blue", "green"
@@ -110,7 +110,7 @@ def colour_string_with_preset(string, colour_name="white", input_fn=True):
 
     Returns:
         str: string which will appear with specified colour in a terminal.
-    '''
+    """
 
     colours = {
         "yellow": 226,
@@ -167,14 +167,14 @@ def colourize_input256(string, fg_num=None, bg_num=None, bold=False):
 
 
 def record_user_interaction(instance, base_name):
-    '''
+    """
     This is to store some of the user actions, so we can determine
     if the user does the optional side quests.
 
     Args:
         The class instance.
         base_name (str): a string for the identity of the command.
-    '''
+    """
 
     class_instance = instance.__class__.__name__
     challenge_number = instance.challenge_number
