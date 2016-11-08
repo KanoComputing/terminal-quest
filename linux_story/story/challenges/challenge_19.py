@@ -205,7 +205,8 @@ class Step4(StepTemplateEcho):
             return True
         elif self.last_user_input == "echo 2":
             response = (
-                _("Ruth: {{Bb:\"I would, but I'm scared of going missing myself.\"\n\"He might come back, so I should stay here in case he does. Can you think of anything else?\"}}")
+                _("Ruth: {{Bb:\"I would, but I'm scared of going missing myself.\"\n\"He might come back, so I should "
+                  "stay here in case he does. Can you think of anything else?\"}}")
             )
             self.send_hint(response)
         else:

@@ -6,7 +6,7 @@
 # A chapter of the story
 
 from linux_story.story.terminals.terminal_chmod import TerminalChmod
-from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint, unblock_cd_commands
 from linux_story.story.challenges.challenge_36 import Step1 as NextStep
 
 
@@ -17,7 +17,7 @@ class StepTemplateChmod(TerminalChmod):
 class Step1(StepTemplateChmod):
     story = [
         "Swordsmaster: {{Bb:Your name is written in this world, for anyone who knows where to look. Use}} {{yb:ls -l}} "
-        "to see what I mean.}}"
+        "to see.}}"
     ]
     commands = [
         "ls -l"
@@ -31,14 +31,36 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:Do you see your name on the files? You have extra abilities in this world, and the best "
+        "Swordsmaster: {{Bb:See your name on the files? You have extra permissions in this world, and the best "
         "chance of stopping this thing.}}",
         "{{Bb:I will teach you how to unlock the private section.}}",
-        "{{Bb:Look around.}}"
+        "{{Bb:First,}} {{lb:go into the basement}} {{Bb:in this room.}}"
     ]
-    commands = ["ls"]
+    commands = [
+        "ls",
+        "ls .",
+        "ls ./",
+        "ls -a",
+        "ls -a .",
+        "ls -a ./",
+        "cd basement",
+        "cd basement/"
+    ]
     start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house/basement"
+
+    def __init__(self):
+        self.__counter = 0
+        StepTemplateChmod.__init__(self)
+
+    def check_command(self):
+        self.__counter += 1
+        if self.__counter >= 2:
+            if self.last_user_input.strip().startswith("ls") and self.last_user_input in self.commands:
+                self.send_hint("Swordsmaster: {{Bb:Good! Now use}} {{yb:cd basement/}}")
+            else:
+                self.send_hint("Swordsmaster: {{Bb:Why the delay? Use}} {{yb:cd basement/}} {{Bb:to go inside.}}")
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step3()
