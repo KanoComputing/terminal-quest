@@ -79,7 +79,7 @@ class Step2(StepTemplateNano):
 
 class Step3(StepTemplateNano):
     print_text = [
-        "{{yb:How did you lock your front door?}}"
+        "{{yb:I want to unlock the private section in the library.}}"
     ]
     story = [
         "Swordsmaster: {{Bb:There is a monster seeking what is locked away in that section. "
@@ -97,7 +97,7 @@ class Step3(StepTemplateNano):
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
     extra_hints = {
-        "echo 1": "Swordsmaster: {{Bb:I was the one who locked it away. I will not unlock it for good reason.}}",
+        "echo 1": "Swordsmaster: {{Bb:I was the one who locked it. I will not unlock it without good reason.}}",
         "echo 2": "Swordsmaster: {{Bb:A command which gives the wielder tremendous power. "
                   "I was concerned what would happen if the command was put in the wrong hands.}}"
     }
@@ -113,12 +113,12 @@ class Step3(StepTemplateNano):
         Step4()
 
 
-class Step4(StepTemplateChmod):
+class Step4(StepTemplateNano):
     print_text = [
         "{{yb:This world is already in peril. People are disappearing.}}"
     ]
     story = [
-        "Swordsmaster: {{Bb:I hoped something like this would never happen. Perhaps it is good then you are here. "
+        "Swordsmaster: {{Bb:I hoped something like this would never happen. Perhaps it is good you are here. "
         + get_username() + ", do you know why I let you into my house?}}",
         "{{yb:1: No.}}",
         "{{yb:2: You knew my name?}}",

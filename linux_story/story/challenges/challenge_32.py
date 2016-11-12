@@ -180,7 +180,6 @@ class Step7(StepTemplateNano):
     ]
     last_step = True
 
-    # Allow all. Perhaps have an "unblock cd"
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)
 

@@ -541,7 +541,7 @@ basement_swordsmaster:
         - challenge: 33
           step: 4
           path: "~/woods/clearing/house"
-          permissions: 0100
+          permissions: 0000
         - challenge: 35
           step: 4
           path: "~/woods/clearing/house"
