@@ -533,45 +533,92 @@ swordsmaster:
           step: 4
           path: "~/woods/clearing/house"
 
-# basement used in Bernard's houses
-basement_swordsmaster:
+# Directory with the read permissions removed
+dark-room:
     directory: True
-    name: basement
     challenges:
         - challenge: 33
           step: 4
           path: "~/woods/clearing/house"
-          permissions: 0000
+          permissions: 0300
         - challenge: 35
+          step: 2
+          path: "~/woods/clearing/house"
+          permissions: 0500
+        - challenge: 36
+          step: 4
+          path: "~/woods/clearing/house"
+          permissions: 0300
+
+bookshelf:
+    challenges:
+        - challenge: 33
+          step: 4
+          path: "~/woods/clearing/house/dark-room"
+
+desk_swordsmaster:
+    name: "desk"
+    challenges:
+        - challenge: 33
+          step: 4
+          path: "~/woods/clearing/house/dark-room"
+
+READ-ME:
+    challenges:
+        - challenge: 33
+          step: 4
+          path: "~/woods/clearing/house/dark-room"
+          permissions: 0200
+        - challenge: 36
+          step: 1
+          path: "~/woods/clearing/house/dark-room"
+          permissions: 0600
+
+# Directory with the write permissions removed
+cage-room:
+    directory: True
+    challenges:
+        - challenge: 33
           step: 4
           path: "~/woods/clearing/house"
           permissions: 0500
         - challenge: 37
-          step: 1
+          step: 4
+          path: "~/woods/clearing/house"
+          permissions: 0755
+
+
+bird:
+    challenges:
+        - challenge: 33
+          step: 4
+          path: "~/woods/clearing/house/cage-room"
+          permissions: 0644
+        - challenge: 37
+          step: 4
+          exists: False
+
+
+no-entry-room:
+    directory: True
+    challenges:
+        - challenge: 33
+          step: 4
+          path: "~/woods/clearing/house"
+          permissions: 0600
+        - challenge: 38
+          step: 3
           path: "~/woods/clearing/house"
           permissions: 0700
 
-key.sh:
+RUN-ME:
     challenges:
-        - challenge: 35
+        - challenge: 33
           step: 4
-          path: "~/woods/clearing/house/basement"
-          permissions: 0000
+          path: "~/woods/clearing/house/no-entry-room"
+          permissions: 0600
 
-        - challenge: 36
-          step: 3
-          path: "~/woods/clearing/house/basement"
-          permissions: 0400
-
-        - challenge: 37
-          step: 2
-          path: "~/woods/clearing/house"
-          permissions: 0400
-
-        - challenge: 37
-          step: 4
-          path: "~/woods/clearing/house"
-          permissions: 0544
+# Directory with the executable permissions removed
 
 note_swordsmaster-house:
     name: "note"
@@ -610,14 +657,14 @@ note_rabbithole:
     challenges:
         - challenge: 37
           step: 6
-          path: "~/woods/thicket/.rabbithole"
+          path: "~/woods/thicket/rabbithole"
 
 
 Rabbit:
     challenges:
         - challenge: 37
           step: 6
-          path: "~/woods/thicket/.rabbithole"
+          path: "~/woods/thicket/rabbithole"
 
 
 # Copy into the challenge folder when the permissions allow it.

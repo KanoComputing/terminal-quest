@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 #
-# Copyright (C) 2014, 2015, 2016 Kano Computing Ltd.
+# Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
-import os
-import time
+
 from linux_story.story.terminals.terminal_chmod import TerminalChmod
 from linux_story.step_helper_functions import unblock_cd_commands
-from linux_story.story.terminals.terminal_sudo import TerminalSudo
 from linux_story.story.challenges.challenge_42 import Step1 as NextStep
 
 
@@ -17,55 +15,47 @@ class StepTemplateChmod(TerminalChmod):
     challenge_number = 41
 
 
-class StepTemplateSudo(TerminalSudo):
-    challenge_number = 41
-
-
-# The note says:
-# "Hello. I here to help you.
-# Show me where you think the Super User command is kept."
 class Step1(StepTemplateChmod):
     story = [
-        "The Rabbit wants to know where the Super User command is kept?",
-        "....",
-        "Could it be in the locked section of the library?",
-        "Let's head there. I guess the Rabbit will follow."
+        "Swordsmaster: {{Bb:There's a note that's appeared. Who left it here?",
+        "...this is very strange. I left the door open. Perhaps someone...or "
+        "something...sneaked in while we were training.}}",
+        "",
+        "{{Bb:What does it say?}}"
     ]
-    start_dir = "~/woods/thicket/rabbithole"
-    end_dir = "~/town/east/library"
-    hints = [
-        "{{rb:Use}} {{yb:cd ~/town/east/library}} {{rb:to go to the library}}"
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
+    commands = [
+        "cat note"
     ]
 
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    hints = [
+        "{{rb:Read the note with}} {{yb:cat note}}"
+    ]
 
     def next(self):
         Step2()
 
 
-# Make the rabbit follow whether the user goes.
-# If the user does cat rabbit, the rabbit should reply with his emotions
-# depending on how far he is from the locked room
+# Note is from the rabbit and says "It's time for us to meet.
+# Follow the notes to find me."
 class Step2(StepTemplateChmod):
     story = [
-        "Now, which is the locked room? {{lb:Look around}} to remind yourself."
+        "Swordsmaster: {{Bb:You may need my help later. Come back if you are blocked "
+        "by lack of knowledge.}}",
+        "",
+        "Time to head off - leave the swordsmaster's house."
     ]
-    start_dir = "~/town/east/library"
-    end_dir = "~/town/east/library"
-    commands = [
-        "ls",
-        "ls -a"
-    ]
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing"
+
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+        "{{rb:Leave the house and go into the clearing with}} {{yb:cd ..}}"
     ]
-    story_dict = {
-        "Rabbit": {
-            "path": "~/town/east/library"
-        }
-    }
-    deleted_items = ["~/woods/thicket/.raabithole/Rabbit"]
+
+    # this should be inherited somehowz
+    def block_command(self):
+        unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step3()
@@ -73,35 +63,25 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        "Ah, it's the {{lb:private-section}}.",
-        "The Rabbit looks very excited. His eyes are sparkling.",
-        "How do you unlock the {{lb:private-section}}? It was the command "
-        "that the swordsmaster talked about..."
+        "Look around and see if there are clues about where to go next."
     ]
-    start_dir = "~/town/east/library"
-    end_dir = "~/town/east/library"
+
+    start_dir = "~/woods/clearing"
+    end_dir = "~/woods/clearing"
     commands = [
-        "chmod +rwx private-section",
-        "chmod +rwx private-section/",
-        "chmod +wxr private-section",
-        "chmod +wxr private-section/",
-        "chmod +xrw private-section",
-        "chmod +xrw private-section/",
-        "chmod +rxw private-section",
-        "chmod +rxw private-section/",
-        "chmod +xwr private-section",
-        "chmod +xwr private-section/",
-        "chmod +wxr private-section",
-        "chmod +wxr private-section/"
+        "ls",
+        "ls -a"
     ]
 
     hints = [
-        "{{rb:The command was}} {{lb:chmod}}{{rb:, and you need to enable "
-        "all the permissions.}}",
-        "{{rb:The command is}} {{yb:chmod +rwx private-section}} {{rb:to "
-        "make the private-section readable, "
-        "writeable and executable so you can go inside.}}"
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     ]
+    story_dict = {
+        "note_swordsmaster-clearing": {
+            "path": "~/woods/clearing",
+            "name": "note"
+        }
+    }
 
     def next(self):
         Step4()
@@ -109,97 +89,141 @@ class Step3(StepTemplateChmod):
 
 class Step4(StepTemplateChmod):
     story = [
-        "Awesome, you unlocked it! Let's go inside."
+        "Another one! What does this say?"
     ]
-    start_dir = "~/town/east/library"
-    end_dir = "~/town/east/library/private-section"
+    start_dir = "~/woods/clearing"
+    end_dir = "~/woods/clearing"
+    commands = [
+        "cat note"
+    ]
     hints = [
-        "{{rb:Use}} {{yb:cd private-section/}} {{rb:to go inside the}} "
-        "{{rb:private-section.}}"
+        "{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}"
     ]
-    story_dict = {
-        "SUDO": {
-            "path": "~/town/east/library/private-section"
-        }
-    }
-
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
-        Step5()
+        Step5(self.xp)
 
 
+# The note should say:
+# "There is a monster kidnapping people. I've been watching you, and think you
+# could help. Find me, I'm deeper in the woods."
 class Step5(StepTemplateChmod):
     story = [
-        "Have a look around."
+        "It looks like we should go further into the woods.",
+        "Let's leave the clearing and see where else we can go."
     ]
-    start_dir = "~/town/east/library/private-section"
-    end_dir = "~/town/east/library/private-section"
-    commands = [
-        "ls",
-        "ls -a"
-    ]
-    story_dict = {
-        "Rabbit": {
-            "path": "~/town/east/library/private-section"
-        }
-    }
-    deleted_items = ["~/town/east/library/Rabbit"]
+    start_dir = "~/woods/clearing"
+    end_dir = "~/woods"
+
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+        "{{rb:Go back to the woods with}} {{yb:cd ../}}"
     ]
+
+    def block_command(self):
+        unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step6()
 
 
+# They'll find the rabbithole if they look more closely at this point.
 class Step6(StepTemplateChmod):
     story = [
-        "You see a piece of paper with {{lb:SUDO}} written on it.",
-        "It looks like another command. Read it."
+        "Look around."
     ]
-    start_dir = "~/town/east/library/private-section"
-    end_dir = "~/town/east/library/private-section"
+    start_dir = "~/woods"
+    end_dir = "~/woods"
     commands = [
-        "cat SUDO"
+        "ls",
+        "ls -a"
     ]
+    story_dict = {
+        "note_woods": {
+            "path": "~/woods",
+            "name": "note"
+        }
+    }
+
+    # This text is used so much we can probably save it as "default ls hint"
     hints = [
-        "{{rb:Read the note with}} {{yb:cat SUDO}}{{rb:.}}"
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     ]
 
     def next(self):
         Step7()
 
 
-class Step7(StepTemplateSudo):
+class Step7(StepTemplateChmod):
     story = [
-        "This looks like the command we were looking for.",
-        "The Rabbit looks more excited than you've ever seen "
-        "him before.",
-        "He snatches the paper off you and runs off!",
+        "There's another note! Let's read it."
     ]
-    start_dir = "~/town/east/library/private-section"
-    end_dir = "~/town/east/library/private-section"
+    start_dir = "~/woods"
+    end_dir = "~/woods"
+    commands = [
+        "cat note"
+    ]
+    hints = [
+        "{{rb:Use}} {{yb:cat note}} {{rb:to examine the note.}}"
+    ]
 
     def next(self):
-        script_path = os.path.expanduser("~/terminal-quest/bin/rabbit")
-        os.system(script_path)
         Step8()
 
 
-class Step8(StepTemplateSudo):
+class Step8(StepTemplateChmod):
     story = [
-        "The place shivers...and then everything goes black.",
-        "{{gb:Press ENTER to continue.}}"
+        "Let's go into the thicket."
+    ]
+    start_dir = "~/woods"
+    end_dir = "~/woods/thicket"
+    hints = [
+        "{{rb:Use}} {{yb:cd thicket}} {{rb:to go into the thicket.}}"
     ]
 
-    start_dir = "~/town/east/library/private-section"
-    end_dir = "~/town/east/library/private-section"
-
-    # Make the screen shiver, and then break the tiles/icons.
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
-        # self.exit()
-        # time.sleep(3)
-        NextStep()
+        Step9()
+
+
+class Step9(StepTemplateChmod):
+    story = [
+        "Look around."
+    ]
+    start_dir = "~/woods/thicket"
+    end_dir = "~/woods/thicket"
+    command = [
+        "ls",
+        "ls -a"
+    ]
+    hints = [
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+    ]
+    story_dict = {
+        "note_thicket": {
+            "path": "~/woods/thicket",
+            "name": "note"
+        }
+    }
+
+    def next(self):
+        Step10()
+
+
+class Step10(StepTemplateChmod):
+    story = [
+        "Yet another note, and a rabbithole. Will there be a bomb in this one?",
+        "What does the note say?",
+    ]
+    start_dir = "~/woods/thicket"
+    end_dir = "~/woods/thicket"
+    commands = [
+        "cat note"
+    ]
+    hints = [
+        "{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}"
+    ]
+
+    def next(self):
+        NextStep(self.xp)

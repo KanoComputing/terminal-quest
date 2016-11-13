@@ -46,7 +46,7 @@ class Step1(StepTemplateNano):
             "path": "~/woods/clearing",
             "permissions": 0755
         },
-        "trail": {
+        "thicket": {
             "directory": True,
             "path": "~/woods"
         }

@@ -41,10 +41,10 @@ def cd(real_path, line, has_access=True):
 
 
 def sudo(real_path, line, counter=0, success_cb=None, *cb_args):
-    '''
+    """
     Ask the user for their password, and do not show answer.
     If the user is successful, execute success_cb with success_args passed
-    '''
+    """
 
     if counter == 3:
         print "sudo: 3 incorrect password attempts"
@@ -63,3 +63,17 @@ def sudo(real_path, line, counter=0, success_cb=None, *cb_args):
     logger.debug("calling success cb = {}".format(cb_args))
     if success_cb:
         success_cb(*cb_args)
+
+
+# By using these python commands, we can more easily run tests on a mac.
+def cat(real_path):
+    with open(real_path, "r") as f:
+        output = f.read()
+    return output
+
+
+def mkdir(real_path):
+    # check if directory exists
+    if os.path.exists(real_path):
+        return "error", "whatever the mkdir error message is here"
+    os.mkdir(real_path, 0755)

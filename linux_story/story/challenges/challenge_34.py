@@ -140,6 +140,21 @@ class Step4(StepTemplateNano):
 
 
     def next(self):
+        Step5()
+
+
+class Step5(StepTemplateNano):
+    story = [
+        "Swordsmaster: {{Bb:Your name is written in this world, for anyone who knows where to look. Use}} {{yb:ls -l}} "
+        "{{Bb:to see.}}"
+    ]
+    commands = [
+        "ls -l"
+    ]
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
+
+    def next(self):
         NextStep()
 
 
