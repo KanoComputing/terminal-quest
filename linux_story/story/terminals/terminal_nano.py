@@ -349,9 +349,9 @@ class TerminalNano(TerminalMkdir):
     # TODO: better way of doing this?
     # This seems very messy.
     def check_nano_input(self):
-        '''This is not called anywhere by default. The intention is that is
+        """This is not called anywhere by default. The intention is that is
         this is called after nano has been closed in check_command.
-        '''
+        """
 
         end_path = self.generate_real_path(self.goal_nano_filepath)
 
@@ -362,13 +362,10 @@ class TerminalNano(TerminalMkdir):
             f.close()
 
             if text.strip() == self.goal_nano_end_content:
-                return self.finish_if_server_ready(True)
+                return self.__finish_if_server_ready(True)
             else:
-                error_text = _(
-                    "\n{{rb:Your text is not correct! " +
-                    "Type}} {{yb:nano %s}} " +
-                    "{{rb:to try again.}}"
-                ) % self.goal_nano_save_name
+                error_text = _("\n{{rb:Your text is not correct! Type}} {{yb:nano %s}} {{rb:to try again.}}") \
+                             % self.goal_nano_save_name
                 self.send_text(error_text)
 
         else:
@@ -379,15 +376,15 @@ class TerminalNano(TerminalMkdir):
             self.send_text(error_text)
 
     def check_nano_content(self):
-        '''We keep this blank so we don't automatically get messages
+        """We keep this blank so we don't automatically get messages
         when opening nano.
-        '''
+        """
         if not self.get_nano_running():
             return True
 
     def check_nano_content_default(self):
-        '''We want to customise this for the individual Step classes.
-        '''
+        """We want to customise this for the individual Step classes.
+        """
         # Make the if statements cumulative, so you trickle down as less
         # conditions are satisfied.
 
@@ -396,17 +393,6 @@ class TerminalNano(TerminalMkdir):
             # Call self.check_nano_input here?
             if self.get_last_nano_filename() == self.goal_nano_save_name:
                 return True
-
-            # This hint appears along another one, so this feels redundant.
-            '''
-            else:
-                self.send_text(
-                    _("\n{{ob:Your filename is wrong. Try starting again by "
-                    "typing}} {{yb:nano}} {{ob:and press Enter}} ") +
-                    self.get_last_nano_filename() + " " +
-                    self.goal_nano_save_name
-                )
-            '''
 
         elif self.get_on_filename_screen() and \
                 self.get_nano_content().strip() == self.goal_nano_end_content:
@@ -430,19 +416,16 @@ class TerminalNano(TerminalMkdir):
         elif self.get_save_prompt_showing():
             if self.get_nano_content().strip() == self.goal_nano_end_content:
                 self.send_text(
-                    _("\n{{gb:Press}} {{ob:Y}} {{gb:to confirm that you want to "
-                    "save.}}")
+                    _("\n{{gb:Press}} {{ob:Y}} {{gb:to confirm that you want to save.}}")
                 )
             else:
                 self.send_text(
-                    _("\n{{rb:Your text is not correct! Press}} {{yb:N}} "
-                    "{{rb:to exit nano.}}")
+                    _("\n{{rb:Your text is not correct! Press}} {{yb:N}} {{rb:to exit nano.}}")
                 )
 
         elif self.get_nano_content().strip() == self.goal_nano_end_content:
             hint = \
-                _("\n{{gb:Excellent, you typed}} {{yb:%s}}{{gb:. " +
-                "Now press}} {{yb:Ctrl X}} {{gb:to exit.}}") \
+                _("\n{{gb:Excellent, you typed}} {{yb:%s}}{{gb:. Now press}} {{yb:Ctrl X}} {{gb:to exit.}}") \
                 % self.goal_nano_end_content
             self.send_text(hint)
 

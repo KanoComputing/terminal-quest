@@ -128,8 +128,8 @@ class Step4(StepTemplateNano):
         "echo 3": "Swordsmaster: {{Bb:No, my door is locked to most people.}}"
     }
     commands = [
-        "echo 2",
-        "echo 3"
+        "echo 1",
+        "echo 2"
     ]
 
     def check_command(self):

@@ -10,9 +10,9 @@ import os
 
 
 def unblock_commands(line, list_of_commands):
-    '''Blocks the command that start with cd and mv unless the command is in
+    """Blocks the command that start with cd and mv unless the command is in
     list_of_commands
-    '''
+    """
 
     line = line.strip()
     if ("mv" in line or "cd" in line) and \
@@ -24,8 +24,8 @@ def unblock_commands(line, list_of_commands):
 
 
 def unblock_commands_with_cd_hint(line, list_of_commands):
-    '''Unblocks the commands and informs the user
-    '''
+    """Unblocks the commands and informs the user
+    """
     line = line.strip()
     if ("cd" in line and line not in list_of_commands):
         print _("You're close, but you entered an unexpected destination path. Try going somewhere else.")
@@ -67,7 +67,7 @@ def unblock_cd_commands(line):
 
 
 def find_common_parent(path1, path2):
-    '''
+    """
     Find the largest common path between two paths.
 
     Args:
@@ -81,7 +81,7 @@ def find_common_parent(path1, path2):
 
     Return:
         str
-    '''
+    """
 
     dirs1 = path1.split("/")
     dirs2 = path2.split("/")
@@ -104,7 +104,7 @@ def find_common_parent(path1, path2):
 # TODO: this will break if we have two paths with directories with
 # the same name but in different places.
 def route_between_paths(start_path, end_path):
-    '''
+    """
     Args:
         start_path (str)
         end_path (str)
@@ -117,7 +117,7 @@ def route_between_paths(start_path, end_path):
     Return:
         list of strings: listing every path you could hit on
         a direct route from start_path to end_path.
-    '''
+    """
 
     common_path = find_common_parent(start_path, end_path)
 

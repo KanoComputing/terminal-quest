@@ -595,7 +595,7 @@ bird:
           path: "~/woods/clearing/house/cage-room"
           permissions: 0644
         - challenge: 37
-          step: 4
+          step: 6
           exists: False
 
 

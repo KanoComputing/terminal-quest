@@ -75,6 +75,7 @@ class Step3(StepTemplateNano):
         "You hear a deep voice on the other side of the door.",
         "",
         "Swordsmaster: {{Bb:Hello? Who's there?}}",
+        "",
         "Tell him your name using {{lb:echo}}"
     ]
 

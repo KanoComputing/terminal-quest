@@ -16,7 +16,7 @@ class StepTemplateChmod(TerminalChmod):
 
 class Step1(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:Try and go into the no-entry-room}}",
+        "Swordsmaster: {{Bb:Try and go into the}} {{bb:no-entry-room}}",
     ]
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"

@@ -18,7 +18,7 @@ from linux_story.load_defaults_into_filetree import default_global_tree
 
 
 def launch_project(challenge_number=1, step_number=1):
-    '''
+    """
     Start the game off form the specified challenge and step
 
     Args:
@@ -27,7 +27,7 @@ def launch_project(challenge_number=1, step_number=1):
 
     Returns:
         None
-    '''
+    """
 
     # For now, just show the default filesystem for that step.
     if challenge_number == 0:
@@ -40,7 +40,7 @@ def launch_project(challenge_number=1, step_number=1):
 
 
 def get_step_class(challenge_number, step_number):
-    '''
+    """
     Gets the step class for the specified challenge and step
 
     Args:
@@ -49,7 +49,7 @@ def get_step_class(challenge_number, step_number):
 
     Returns:
         class which starts the story at the correct point.
-    '''
+    """
 
     if challenge_number == 0:
         module_name = "story.challenges.introduction"

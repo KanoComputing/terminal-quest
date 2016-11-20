@@ -29,7 +29,7 @@ class Step1(StepTemplateChmod):
         "cd ../"
     ]
     hints = [
-        "Use cd .. to leave"
+        "{{rb:Use cd .. to go back a directory.}}"
     ]
 
     def block_command(self):
@@ -41,13 +41,13 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:You learnt how to grant yourself individual permissions. However you can also combine "
+        "Swordsmaster: {{Bb:You learnt how to grant yourself individual permissions. You can also combine "
         "them and use them all at once. If you use}} {{lb:chmod +rwx}} {{Bb:you can unlock them all in one go.}}",
-        "{{Bb:Try it out on the fo}}"
+        "{{Bb:Try it out on the}} {{bb:no-entry-room}}"
     ]
 
-    start_dir = "~/woods/clearing/house/no-entry-room"
-    end_dir = "~/woods/clearing/house/no-entry-room"
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
     commands = [
     ]
     hints = [

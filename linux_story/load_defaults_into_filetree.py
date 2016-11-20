@@ -16,13 +16,14 @@ from linux_story.helper_functions import get_path_to_file_in_system
 
 
 def default_global_tree(challenge, step):
-    '''
+    """
     This creates the filetree from the yaml of challenge 1
-    '''
+    """
 
     # If we are loading from the default file system, we
     # don't want to pollute it with anything lingering
     if os.path.exists(tq_file_system):
+        revert_to_default_permissions()
         shutil.rmtree(tq_file_system)
 
     story_dict = get_default_file_dict(challenge, step)
@@ -31,13 +32,13 @@ def default_global_tree(challenge, step):
 
 
 def create_item(dest_path, item_type="file", src_path=""):
-    '''
+    """
     Create a file or directory
     Args:
         dest_path (str): the destination path
         item_type (str): "file" or "directory"
         src_path (str): the source path
-    '''
+    """
 
     if not os.path.exists(dest_path):
         permissions_changed = False
@@ -65,9 +66,9 @@ def create_item(dest_path, item_type="file", src_path=""):
 
 
 def delete_item(path):
-    '''
+    """
     Delete the file or directory specified by path.
-    '''
+    """
 
     if os.path.exists(path):
         if os.path.isdir(path):
@@ -78,11 +79,11 @@ def delete_item(path):
 
 # TODO: This could be done better.
 def split_path_and_add_dirs_to_tree(item_id, fake_path):
-    '''
+    """
     This breaks up the path of the item_id and adds all
     the containing directories to the tree, if they haven't been added
     already
-    '''
+    """
 
     dirs = fake_path.split('/')
 
@@ -97,7 +98,7 @@ def split_path_and_add_dirs_to_tree(item_id, fake_path):
 
 
 def modify_file_tree(filesystem_dict):
-    '''
+    """
     This modifies the game filesystem.
 
     Args:
@@ -110,7 +111,7 @@ def modify_file_tree(filesystem_dict):
             }
         }
 
-    '''
+    """
 
     if not os.path.exists(tq_file_system):
         os.mkdir(tq_file_system)

@@ -34,7 +34,7 @@ class Step1(StepTemplateChmod):
 class Step2(StepTemplateChmod):
     story = [
         "Swordsmaster: {{Bb:This file contains code. However we can't run it until it's been made}} {{lb:executable}}",
-        "{{Bb:Use}} {{lb:chmod +x RUN-ME}}"
+        "{{Bb:Use}} {{lb:chmod +x RUN-ME}} {{Bb:to activate the script.}}"
     ]
     start_dir = "~/woods/clearing/house/no-entry-room"
     end_dir = "~/woods/clearing/house/no-entry-room"
