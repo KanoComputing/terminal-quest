@@ -7,10 +7,7 @@
 
 
 import os
-import traceback
 import subprocess
-
-from kano.logging import logger
 
 from helper_functions import colour_file_dir, debugger
 from linux_story.common import tq_file_system
@@ -79,7 +76,6 @@ def ls(real_loc, line, has_access=True):
     # Need to filter output
     files = orig_output.split('\n')
     coloured_files = []
-    coloured_output = ""
     output = " ".join(files)
 
     if get_all_info:

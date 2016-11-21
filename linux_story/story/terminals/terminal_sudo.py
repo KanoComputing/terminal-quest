@@ -14,7 +14,6 @@ if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
         sys.path.insert(1, dir_path)
 
-
 from linux_story.story.terminals.terminal_rm import TerminalRm
 from linux_story.commands_fake import sudo
 
@@ -26,12 +25,18 @@ class TerminalSudo(TerminalRm):
 
     def do_sudo(self, line):
         command = line.split(" ")[0]
-        following_line = "".join(line.split(" ")[1:])
+        following_line = " ".join(line.split(" ")[1:])
 
         if command in self.terminal_commands:
             success_cb = getattr(self, 'do_{}'.format(command))
+        else:
+            success_cb = lambda *cb_args: printf("sudo: " + line + ": command not found")
 
-        sudo(self.real_path, line, 0, success_cb, following_line)
+        sudo(self.real_path, line, success_cb, 0, following_line)
+
+
+def printf(text):
+   print text
 
 
 if __name__ == "__main__":

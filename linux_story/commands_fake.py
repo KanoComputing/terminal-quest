@@ -40,12 +40,13 @@ def cd(real_path, line, has_access=True):
     return new_path
 
 
-def sudo(real_path, line, counter=0, success_cb=None, *cb_args):
+def sudo(real_path, line, success_cb, counter=0, *cb_args):
     """
     Ask the user for their password, and do not show answer.
     If the user is successful, execute success_cb with success_args passed
     """
 
+    print "cb_args = " + str(cb_args)
     if counter == 3:
         print "sudo: 3 incorrect password attempts"
         return
@@ -57,10 +58,11 @@ def sudo(real_path, line, counter=0, success_cb=None, *cb_args):
     if password != "kano":
         print "Sorry, try again."
         counter += 1
-        return sudo(real_path, line, counter)
+        return sudo(real_path, line, success_cb, counter)
 
     logger.debug("successfully entered password = {}".format(password))
     logger.debug("calling success cb = {}".format(cb_args))
+
     if success_cb:
         success_cb(*cb_args)
 
