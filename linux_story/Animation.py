@@ -81,6 +81,7 @@ class Animation:
         ascii_h = animation_height(ascii_frames)
         h, w = self.__screen.getmaxyx()
         starty = startx = 0
+        cycles = 0
 
         frame = 0
         offsetx = offsety = 0
@@ -92,8 +93,11 @@ class Animation:
 
             self.draw_frame(ascii_frames[frame], startx + offsetx, starty, ascii_w)
             frame += 1
-            if frame >= len(ascii_frames) * max_cycles:
-                break
+            if frame >= len(ascii_frames):
+                frame = 0
+                cycles += 1
+                if cycles == max_cycles:
+                    break
 
             self.__screen.refresh()
 
