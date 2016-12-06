@@ -528,6 +528,7 @@ house:
           permissions: 0755
 
 swordsmaster:
+    name: swordmaster
     challenges:
         - challenge: 33
           step: 4
@@ -557,7 +558,7 @@ bookshelf:
           path: "~/woods/clearing/house/dark-room"
 
 desk_swordsmaster:
-    name: "desk"
+    name: desk
     challenges:
         - challenge: 33
           step: 4
@@ -644,7 +645,7 @@ note_woods:
           path: "~/woods"
 
 
-note_thicket:
+note_rabbithole:
     name: "note"
     challenges:
         - challenge: 37
@@ -652,15 +653,22 @@ note_thicket:
           path: "~/woods/thicket"
 
 
-note_rabbithole:
-    name: "note"
-    challenges:
-        - challenge: 37
-          step: 6
-          path: "~/woods/thicket/rabbithole"
+#note_rabbithole:
+#    name: "note"
+#    challenges:
+#        - challenge: 37
+#          step: 6
+#          path: "~/woods/thicket/rabbithole"
 
 
 Rabbit:
+    challenges:
+        - challenge: 37
+          step: 6
+          path: "~/woods/thicket"
+
+cage:
+    directory: True
     challenges:
         - challenge: 37
           step: 6
@@ -669,7 +677,11 @@ Rabbit:
 
 # Copy into the challenge folder when the permissions allow it.
 SUDO:
+    name: scroll
     challenges:
         - challenge: 32
           step: 1
-          path: "~/town/east/library/private-section"
+          path: "~/town/east/library/private-section/chest"
+
+
+

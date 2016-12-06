@@ -291,4 +291,4 @@ def debug(msg):
 
 
 if __name__ == "__main__":
-    Animation("firework-animation").play(speed=0)
+    Animation("firework-animation").play_finite(cycles=1)

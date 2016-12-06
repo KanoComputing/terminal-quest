@@ -42,6 +42,8 @@ tq_file_system = os.path.join(home_folder, '.linux-story')
 # The contents of this folder are backed up online
 tq_backup_folder = os.path.join(home_folder, 'Terminal-Quest-content')
 
+dark_css_class = "dark"
+
 
 def get_max_challenge_number():
     '''

@@ -54,9 +54,10 @@ class Storybook(Gtk.TextView):
         font_desc.set_family("monospace")
         font_desc.set_size(13*Pango.SCALE)
         self.override_font(font_desc)
-        bg_colour = Gdk.RGBA()
-        bg_colour.parse("#313131")
-        self.override_background_color(Gtk.StateFlags.NORMAL, bg_colour)
+        # bg_colour = Gdk.RGBA()
+        # bg_colour.parse("#313131")
+        # self.override_background_color(Gtk.StateFlags.NORMAL, bg_colour)
+        self.get_style_context().add_class("storybook_background")
         self.char_width = self.__get_char_width()
         self.set_can_focus(False)
         self.language = self.__get_language()
@@ -66,6 +67,16 @@ class Storybook(Gtk.TextView):
         self.set_margin_top(10)
         self.set_margin_left(10)
         self.set_margin_right(10)
+
+    def set_dark_theme(self):
+        style_context = self.get_style_context()
+        if "dark" not in style_context.list_classes():
+            self.get_style_context().add_class("dark")
+
+    def set_normal_theme(self):
+        style_context = self.get_style_context()
+        if "dark" in style_context.list_classes():
+            style_context.remove_class("dark")
 
     def clear(self):
         '''Clear all text in spellbook
@@ -317,7 +328,7 @@ class Storybook(Gtk.TextView):
                 # need to cut out the part from the {{ to the :
                 colon_index = string.find(":")
 
-                # This should always be satified.
+                # This should always be satisfied.
                 if not colon_index == -1:
                     # This is so we don't include the colon when we
                     # are slicing the strings.
@@ -393,8 +404,8 @@ class Storybook(Gtk.TextView):
         return new_string
 
     def __get_colour_from_id(self, colour_id='w'):
-        '''Look up what letter corresponds to what colour
-        '''
+        """Look up what letter corresponds to what colour
+        """
 
         pairs = {
             'r': 'red',

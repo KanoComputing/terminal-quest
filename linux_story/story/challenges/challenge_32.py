@@ -17,7 +17,7 @@ class StepTemplateNano(TerminalNano):
 
 class Step1(StepTemplateNano):
     story = [
-        "Time to find the swordsmaster.",
+        "Time to find the swordmaster.",
         "Ruth said that he was in the woods just off the "
         "{{lb:Windy Road}} {{yb:~}}.",
         "Use {{yb:cd}} to head there now."

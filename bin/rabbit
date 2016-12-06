@@ -30,7 +30,7 @@ def main():
     # Leave messages
     os.system("typewriter_echo 'Thanks for helping me {}.'".format(get_user_unsudoed()))
     time.sleep(0.2)
-    os.system("typewriter_echo 'I knew you were special when you avoided that bomb.'")
+    os.system("typewriter_echo 'I knew you were special from the beginning.'")
     time.sleep(0.2)
     os.system("typewriter_echo 'Now I have the power to take over this world.'")
     time.sleep(2)

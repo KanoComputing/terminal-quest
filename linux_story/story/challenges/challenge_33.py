@@ -20,7 +20,7 @@ class StepTemplateNano(TerminalNano):
 class Step1(StepTemplateNano):
     story = [
         "Huh, you can't seem to look inside.",
-        "It seems to be locked in the same way that library door was.",
+        "It seems to be locked in the same way the {{bb:private-section}} is.",
         "Maybe there's a clue somewhere around here.",
         "{{lb:Investigate}} the area around and see if you can find any clues."
     ]
@@ -74,7 +74,7 @@ class Step3(StepTemplateNano):
     story = [
         "You hear a deep voice on the other side of the door.",
         "",
-        "Swordsmaster: {{Bb:Hello? Who's there?}}",
+        "Swordmaster: {{Bb:Hello? Who's there?}}",
         "",
         "Tell him your name using {{lb:echo}}"
     ]
@@ -116,20 +116,51 @@ class Step4(StepTemplateNano):
 
     story_dict = {
         "swordsmaster": {
+            "name": "swordmaster",
             "path": "~/woods/clearing/house"
         },
         "basement": {
             "directory": True,
             "path": "~/woods/clearing/house",
             "permissions": 0000
+        },
+        # Directory with the read permissions removed
+        "dark-room": {
+            "directory": True,
+            "permissions": 0300,
+            "path": "~/woods/clearing/house/dark-room"
+        },
+        "bookshelf": {
+            "path": "~/woods/clearing/house/dark-room"
+        },
+        "desk_swordsmaster": {
+            "name": "desk",
+            "path": "~/woods/clearing/house/dark-room"
+        },
+        "READ-ME": {
+            "path": "~/woods/clearing/house/dark-room",
+            "permissions": 0200
+        },
+        "cage-room": {
+            "directory": True,
+            "path": "~/woods/clearing/house",
+        },
+        "bird": {
+            "path": "~/woods/clearing/house/cage-room",
+            "permissions": 0644
+        },
+        "no-entry-room": {
+            "directory": True,
+            "path": "~/woods/clearing/house",
+        },
+        "RUN-ME": {
+            "path": "~/woods/clearing/house/no-entry-room",
+            "permissions": 0600
         }
     }
 
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)
-
-    # Perhaps a nice data structure could be if the list of commands were
-    # paired with appropriate hints?
 
     def next(self):
         Step5()
@@ -144,6 +175,18 @@ class Step5(StepTemplateNano):
     hints = [
         "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     ]
+    story_dict = {
+        "cage-room": {
+            "directory": True,
+            "path": "~/woods/clearing/house",
+            "permissions": 0500
+        },
+        "no-entry-room": {
+            "directory": True,
+            "path": "~/woods/clearing/house",
+            "permissions": 0600
+        }
+    }
     commands = [
         "ls",
         "ls -a"

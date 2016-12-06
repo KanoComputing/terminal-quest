@@ -24,7 +24,7 @@ class Step1(StepTemplateChmod):
         "cat RUN-ME"
     ]
     hints = [
-        "Swordsmaster: {{Bb:Use}} {{yb:cat RUN-ME}}"
+        "Swordmaster: {{Bb:Use}} {{yb:cat RUN-ME}}"
     ]
 
     def next(self):
@@ -33,7 +33,7 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:This file contains code. However we can't run it until it's been made}} {{lb:executable}}",
+        "Swordmaster: {{Bb:This file contains code. However we can't run it until it's been made}} {{lb:executable}}",
         "{{Bb:Use}} {{lb:chmod +x RUN-ME}} {{Bb:to activate the script.}}"
     ]
     start_dir = "~/woods/clearing/house/no-entry-room"
@@ -42,7 +42,7 @@ class Step2(StepTemplateChmod):
         "chmod +x RUN-ME"
     ]
     hints = [
-        "Swordsmaster: {{Bb:Use}} {{yb:chmod +x RUN-ME}}"
+        "Swordmaster: {{Bb:Use}} {{yb:chmod +x RUN-ME}}"
     ]
 
     def next(self):
@@ -51,7 +51,7 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:Look around to see how the file has changed.}}"
+        "Swordmaster: {{Bb:Look around to see how the file has changed.}}"
     ]
     start_dir = "~/woods/clearing/house/no-entry-room"
     end_dir = "~/woods/clearing/house/no-entry-room"
@@ -64,7 +64,7 @@ class Step3(StepTemplateChmod):
         "ls -a ./"
     ]
     hints = [
-        "Swordsmaster: {{Bb:Use}} {{yb:ls}}"
+        "Swordmaster: {{Bb:Use}} {{yb:ls}}"
     ]
 
     def next(self):
@@ -73,7 +73,7 @@ class Step3(StepTemplateChmod):
 
 class Step4(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:Notice how the activated file has become}} {{gb:bright green}}{{Bb:?}}",
+        "Swordmaster: {{Bb:Notice how the activated file has become}} {{gb:bright green}}{{Bb:?}}",
         "{{Bb:This means you can run the script. Use}} {{yb:./RUN-ME}} {{Bb:to run the script.}}"
     ]
     start_dir = "~/woods/clearing/house/no-entry-room"
@@ -82,7 +82,7 @@ class Step4(StepTemplateChmod):
         "./RUN-ME"
     ]
     hints = [
-        "Swordsmaster: {{Bb:Use}} {{yb:./RUN-ME}}"
+        "Swordmaster: {{Bb:Use}} {{yb:./RUN-ME}}"
     ]
 
     def next(self):

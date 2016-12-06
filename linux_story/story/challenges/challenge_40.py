@@ -16,7 +16,7 @@ class StepTemplateChmod(TerminalChmod):
 class Step1(StepTemplateChmod):
     story = [
         # This wraps very early
-        "Swordsmaster: {{Bb:Well done, you've learned how give yourself three permissions.}}",
+        "Swordmaster: {{Bb:Well done, you've learned how give yourself three permissions.}}",
         "{{lb:Read}}",
         "{{lb:Write}}",
         "{{lb:Execute}}",
@@ -41,7 +41,7 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:You learnt how to grant yourself individual permissions. You can also combine "
+        "Swordmaster: {{Bb:You learnt how to grant yourself individual permissions. You can also combine "
         "them and use them all at once. If you use}} {{lb:chmod +rwx}} {{Bb:you can unlock them all in one go.}}",
         "{{Bb:Try it out on the}} {{bb:no-entry-room}}"
     ]
@@ -60,7 +60,7 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:Thank you, you locked the basement back up for me.}}",
+        "Swordmaster: {{Bb:Thank you, you locked the basement back up for me.}}",
         "{{Bb:Well done - you've learned to use chmod!}}",
         "{{Bb:...}}",
         "{{Bb:...}}",

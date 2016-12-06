@@ -17,28 +17,56 @@
 	background: @story_background;
 }
 
+.dark .main_window {
+	background: @dark_story_background;
+}
+
 .terminal_background {
 	background: @terminal_background;
+}
+
+.dark .terminal_background {
+	background: @dark_terminal_background;
 }
 
 .story_background {
 	background: @story_background;
 }
 
+.dark .story_background {
+    background: @dark_story_background;
+}
+
 .spell_icon_background {
 	background: @spell_icon_background;
+}
+
+.dark.spell_icon_background, .dark .spell_icon_background {
+	background: @dark_spell_icon_background;
 }
 
 .spell_icon_background.locked {
 	background: @spell_icon_background_locked;
 }
 
+.dark .spell_icon_background.locked {
+	background: @dark_spell_icon_background_locked;
+}
+
 .spell_label_background {
 	background: @spell_label_background;
 }
 
+.dark .spell_label_background {
+	background: @dark_spell_label_background;
+}
+
 .spell_label_background.locked {
 	background: @spell_label_background_locked;
+}
+
+.dark .spell_label_background.locked {
+	background: @dark_spell_label_background_locked;
 }
 
 .tooltip {
@@ -50,12 +78,21 @@
     font: monospace 10px;
 }
 
-.spell_label {
+.dark .tooltip {
+    background: @dark_spell_tooltip_background;
+    border-color: @dark_spell_tooltip_border;
+    border-width: 3px;
+    border-radius: 0px;
+    color: #ffffff;
+    font: monospace 10px;
+}
+
+.spell_label, .dark .spell_label {
 	color: #cccccc;
 	font: Bariol 13px;
 }
 
-.spell_command {
+.spell_command, .dark .spell_command {
 	color: #ffffff;
 	font: Bariol Bold 17px;
 }
@@ -64,8 +101,18 @@
 	background: @spellbook_background;
 }
 
+.dark.spellbook_background, .dark .spellbook_background {
+	background: @dark_spellbook_background;
+}
+
 .caps_lock_warning {
     background: @caps_lock_warning_background;
+    color: #ffffff;
+    font: Bariol 14px;
+}
+
+.dark .caps_lock_warning {
+    background: @dark_caps_lock_warning_background;
     color: #ffffff;
     font: Bariol 14px;
 }
@@ -128,4 +175,12 @@
 .menu_button GtkLabel:insensitive {
 	color: @spell_label_background_locked;
 	background: transparent;
+}
+
+.storybook_background {
+    background: @story_background;
+}
+
+.dark .storybook_background, .dark.storybook_background {
+    background: @dark_story_background;
 }

@@ -126,12 +126,12 @@ class Step4(StepTemplateChmod):
 
 class Step5(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:Now you should be able to release the bird. Use}} {{lb:mv}} {{Bb:to release the bird.}}"
+        "Swordmaster: {{Bb:Now you should be able to release the bird. Use}} {{lb:mv}} {{Bb:to release the bird.}}"
     ]
     start_dir = "~/woods/clearing/house/cage-room"
     end_dir = "~/woods/clearing/house/cage-room"
     hints = [
-        "Swordsmaster: {{Bb:You want to move the bird to the directory}} {{yb:../}}",
+        "Swordmaster: {{Bb:You want to move the bird to the directory}} {{yb:../}}",
         "Swordmaster: {{rb:Use}} {{yb:mv bird ../}} {{rb:to move the bird outside the room.}}"
     ]
     commands = [
@@ -159,7 +159,7 @@ class Step6(StepTemplateChmod):
     story = [
         "The bird flew away",
         "",
-        "Swordmaster: {{Bb:I found that bird when it was injured. Now it's better it should be free.}}",
+        "Swordmaster: {{Bb:I found that bird when it was injured. It was time for it to be free.}}",
         "{{Bb:Come out and you will face your last challenge.}}"
     ]
 

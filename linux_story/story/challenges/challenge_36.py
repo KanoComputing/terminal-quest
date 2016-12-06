@@ -15,7 +15,7 @@ class StepTemplateChmod(TerminalChmod):
 
 class Step1(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:This file has also had its read permissions removed. This means you cannot read the "
+        "Swordmaster: {{Bb:This file has also had its read permissions removed. This means you cannot read the "
         "contents of the file.}}",
         "{{Bb:Repeat what you did to make the file readable.}}"
 
@@ -26,8 +26,8 @@ class Step1(StepTemplateChmod):
         "chmod +r dark-room/READ-ME",
     ]
     hints = [
-        "Swordsmaster: {{Bb:Press UP a few times on the keyboard if you don't remember what you typed..}}",
-        "Swordsmaster: {{Bb:Try typing}} {{yb:chmod +r dark-room/READ-ME}}"
+        "Swordmaster: {{Bb:Press UP a few times on the keyboard if you don't remember what you typed..}}",
+        "Swordmaster: {{Bb:Try typing}} {{yb:chmod +r dark-room/READ-ME}}"
     ]
 
     def next(self):
@@ -36,7 +36,7 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:Now read the file.}}"
+        "Swordmaster: {{Bb:Now read the file.}}"
     ]
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
@@ -47,7 +47,7 @@ class Step2(StepTemplateChmod):
         "cat dark-room/READ-ME"
     ]
     hints = [
-        "Swordsmaster: {{Bb:Use}} {{yb:cat dark-room/READ-ME}}"
+        "Swordmaster: {{Bb:Use}} {{yb:cat dark-room/READ-ME}}"
     ]
 
     def next(self):
@@ -56,7 +56,7 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:You can also remove the permissions. If you use}}",
+        "Swordmaster: {{Bb:You can also remove the permissions. If you use}}",
         "{{yb:chmod -r dark-room}}",
         "{{Bb:you will be unable to look inside.}}",
         "{{Bb:Try it!}}"
@@ -70,7 +70,7 @@ class Step3(StepTemplateChmod):
     ]
 
     hints = [
-        "Swordsmaster: {{Bb:Use}} {{yb:chmod -r dark-room}}"
+        "Swordmaster: {{Bb:Use}} {{yb:chmod -r dark-room}}"
     ]
 
     def next(self):
@@ -79,7 +79,7 @@ class Step3(StepTemplateChmod):
 
 class Step4(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:Look inside to confirm you cannot see inside.}}"
+        "Swordmaster: {{Bb:Look inside to confirm you cannot see inside.}}"
     ]
 
     start_dir = "~/woods/clearing/house"
@@ -92,7 +92,7 @@ class Step4(StepTemplateChmod):
     ]
 
     hints = [
-        "Swordsmaster: {{Bb:Use}} {{yb:ls dark-room}}"
+        "Swordmaster: {{Bb:Use}} {{yb:ls dark-room}}"
     ]
 
     def next(self):

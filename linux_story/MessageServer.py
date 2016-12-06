@@ -47,6 +47,8 @@ class MessageServer:
                 self.__window.show_hint(data_dict["hint"])
             elif 'challenge' in data_dict.keys() and 'story' in data_dict.keys() and 'spells' in data_dict.keys():
                 self.__window.start_new_challenge(data_dict)
+            elif 'dark' in data_dict.keys():
+                self.__window.set_theme(data_dict["dark"])
 
             self.__is_busy = False
 

@@ -89,7 +89,7 @@ class Step3(StepTemplateChmod):
 
 class Step4(StepTemplateChmod):
     story = [
-        "Another one! What does this say?"
+        "Another note! What does this say?"
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing"
@@ -206,24 +206,28 @@ class Step9(StepTemplateChmod):
             "name": "note"
         }
     }
-
-    def next(self):
-        Step10()
-
-
-class Step10(StepTemplateChmod):
-    story = [
-        "Yet another note, and a rabbithole. Will there be a bomb in this one?",
-        "What does the note say?",
-    ]
-    start_dir = "~/woods/thicket"
-    end_dir = "~/woods/thicket"
-    commands = [
-        "cat note"
-    ]
-    hints = [
-        "{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}"
-    ]
+    last_step = True
 
     def next(self):
         NextStep(self.xp)
+
+
+# class Step10(StepTemplateChmod):
+#     story = [
+#         "Yet another note, and a rabbithole. Will there be a bomb in this one?",
+#         "What does the note say?",
+#     ]
+#     start_dir = "~/woods/thicket"
+#     end_dir = "~/woods/thicket"
+#     commands = [
+#         "cat note"
+#     ]
+#     hints = [
+#         "{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}"
+#     ]
+#
+#     def next(self):
+#         NextStep(self.xp)
+
+
+

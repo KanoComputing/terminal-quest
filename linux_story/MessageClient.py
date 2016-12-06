@@ -13,6 +13,12 @@ class MessageClient:
     def exit(self):
         self.__send_message({"exit": 1})
 
+    def set_dark_theme(self):
+        self.__send_message({"dark": True})
+
+    def set_normal_theme(self):
+        self.__send_message({"dark": False})
+
     def send_hint(self, string):
         self.send_text(string)
 

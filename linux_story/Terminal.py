@@ -73,14 +73,14 @@ class Terminal(Cmd):
         # real_path is the actual filename.
         self.real_path = self.generate_real_path(self.current_path)
 
-        self.modify_file_tree()
         self.delete_items()
+        self.modify_file_tree()
 
         # if hints are a string
         if isinstance(self.hints, basestring):
             self.hints = [self.hints]
 
-        self.__client = MessageClient()
+        self._client = MessageClient()
 
         ##################################
 
@@ -185,7 +185,7 @@ class Terminal(Cmd):
         """
 
         finished = self.finished_challenge(line)
-        return self.__client.finish_if_server_ready(finished)
+        return self._client.finish_if_server_ready(finished)
 
 
     #######################################################
@@ -250,10 +250,17 @@ class Terminal(Cmd):
         by the user matches self.commands.
         """
 
-        # check through list of commands
-        command_validated = True
-        end_dir_validated = True
+        return self._default_check_command()
 
+    def _default_check_command(self):
+        command_validated = self._validate_check_command()
+        end_dir_validated = self._validate_end_dir()
+        if not (command_validated and end_dir_validated):
+            self.send_hint()
+        return self._client.finish_if_server_ready((command_validated and end_dir_validated))
+
+    def _validate_check_command(self):
+        command_validated = True
         # if the validation is included
         if self.commands:
             # if only one command can pass the level
@@ -262,15 +269,13 @@ class Terminal(Cmd):
             # else there are multiple commands that can pass the level
             else:
                 command_validated = self.last_user_input in self.commands
+        return command_validated
 
+    def _validate_end_dir(self):
+        end_dir_validated = True
         if self.end_dir:
             end_dir_validated = self.current_path == self.end_dir
-
-        if not (command_validated and end_dir_validated):
-            self.send_hint()
-
-        condition = (command_validated and end_dir_validated)
-        return self.__client.finish_if_server_ready(condition)
+        return end_dir_validated
 
     #######################################################
     # Send text to the GUI.
@@ -283,7 +288,7 @@ class Terminal(Cmd):
             hint = '\n' + self.hints[0]
         else:
             hint = '\n' + hint
-        self.__client.send_hint(hint)
+        self._client.send_hint(hint)
 
         # TODO: This should only be run is a hint is not provided
         if len(self.hints) > 1:
@@ -292,7 +297,7 @@ class Terminal(Cmd):
     def send_text(self, string):
         """Sends a string through the pipe to the GUI
         """
-        self.__client.send_hint(string)
+        self._client.send_hint(string)
 
     def send_start_challenge_data(self):
         """Sends all the relevent information at the start of a new step
@@ -303,7 +308,7 @@ class Terminal(Cmd):
         if print_text:
             print_text = coloured_username + print_text
 
-        self.__client.send_start_challenge_data(
+        self._client.send_start_challenge_data(
             "\n".join(self.story),
             str(self.challenge_number),
             self.terminal_commands,
@@ -311,6 +316,12 @@ class Terminal(Cmd):
             self.xp,
             print_text
         )
+
+    def send_dark_theme(self):
+        self._client.set_dark_theme()
+
+    def send_normal_theme(self):
+        self._client.set_normal_theme()
 
     def get_xp(self):
         """Look up XP earned after challenge
@@ -320,7 +331,7 @@ class Terminal(Cmd):
             self.xp = translate("{{gb:Congratulations, you earned %d XP!}}\n\n") % xp
 
     def exit(self):
-        self.__client.exit()
+        self._client.exit()
 
     ######################################################
     # Kano world integration

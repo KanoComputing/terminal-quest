@@ -21,17 +21,17 @@ class StepTemplateChmod(TerminalChmod):
 
 class Step1(StepTemplateNano):
     story = [
-        "You see a Masked Swordsmaster watching you.",
+        "You see a Masked Swordmaster watching you.",
         "Listen to what he has to say."
     ]
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
     hints = [
-        "{{rb:Use}} {{yb:cat swordsmaster}} {{rb:to}} {{lb:listen}} "
-        "{{rb:to what the swordsmaster has to say.}}"
+        "{{rb:Use}} {{yb:cat swordmaster}} {{rb:to}} {{lb:listen}} "
+        "{{rb:to what the swordmaster has to say.}}"
     ]
     commands = [
-        "cat swordsmaster"
+        "cat swordmaster"
     ]
 
     def next(self):
@@ -41,7 +41,7 @@ class Step1(StepTemplateNano):
 # TODO: fill in the extra responses to the other questions
 class Step2(StepTemplateNano):
     story = [
-        "{{wb:Swordsmaster:}} {{Bb:Child, why do you seek me?}}",
+        "{{wb:Swordmaster:}} {{Bb:Child, why do you seek me?}}",
         "",
         "{{yb:1: I want to unlock the private section in the library.}}",
         "{{yb:2: Who are you?}}",
@@ -59,8 +59,8 @@ class Step2(StepTemplateNano):
         "{{yb:echo 3}}{{rb:.}}"
     ]
     extra_hints = {
-        "echo 2": "Swordsmaster: {{Bb:I am one who has removed themselves from society. The few who know of me call me the Masked Swordsmaster.}}",
-        "echo 3": "Swordsmaster: {{Bb:What notes?}}"
+        "echo 2": "Swordmaster: {{Bb:I am one who has removed themselves from society. The few who know of me call me the Masked Swordmaster.}}",
+        "echo 3": "Swordmaster: {{Bb:What notes?}}"
     }
 
     last_step = True
@@ -82,7 +82,7 @@ class Step3(StepTemplateNano):
         "{{yb:I want to unlock the private section in the library.}}"
     ]
     story = [
-        "Swordsmaster: {{Bb:There is a monster seeking what is locked away in that section. "
+        "Swordmaster: {{Bb:There is a monster seeking what is locked away in that section. "
         "To unlock it would put the world in peril.}}",
         "",
         "{{yb:1: Do you know how to unlock it?}}",
@@ -97,8 +97,8 @@ class Step3(StepTemplateNano):
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
     extra_hints = {
-        "echo 1": "Swordsmaster: {{Bb:I was the one who locked it. I will not unlock it without good reason.}}",
-        "echo 2": "Swordsmaster: {{Bb:A command which gives the wielder tremendous power. "
+        "echo 1": "Swordmaster: {{Bb:I was the one who locked it. I will not unlock it without good reason.}}",
+        "echo 2": "Swordmaster: {{Bb:A command which gives the wielder tremendous power. "
                   "I was concerned what would happen if the command was put in the wrong hands.}}"
     }
 
@@ -118,14 +118,14 @@ class Step4(StepTemplateNano):
         "{{yb:This world is already in peril. People are disappearing.}}"
     ]
     story = [
-        "Swordsmaster: {{Bb:I hoped something like this would never happen. Perhaps it is good you are here. "
+        "Swordmaster: {{Bb:I hoped something like this would never happen. Perhaps it is good you are here. "
         + get_username() + ", do you know why I let you into my house?}}",
         "{{yb:1: No.}}",
         "{{yb:2: You knew my name?}}",
         "{{yb:3: You are a friendly individual?}}"
     ]
     extra_hints = {
-        "echo 3": "Swordsmaster: {{Bb:No, my door is locked to most people.}}"
+        "echo 3": "Swordmaster: {{Bb:No, my door is locked to most people.}}"
     }
     commands = [
         "echo 1",
@@ -145,7 +145,7 @@ class Step4(StepTemplateNano):
 
 class Step5(StepTemplateNano):
     story = [
-        "Swordsmaster: {{Bb:Your name is written in this world, for anyone who knows where to look. Use}} {{yb:ls -l}} "
+        "Swordmaster: {{Bb:Your name is written in this world, for anyone who knows where to look. Use}} {{yb:ls -l}} "
         "{{Bb:to see.}}"
     ]
     commands = [
@@ -156,13 +156,3 @@ class Step5(StepTemplateNano):
 
     def next(self):
         NextStep()
-
-
-# "Swordsmaster: {{Bb:I used a special command. Only those who have "
-# "proved themselves may learn it.",
-# # How does he know your name? Initially thought of ls -l.
-# "I know of your name...it is written all over this world for those "
-# "who know where to look.",
-# # ...but are you who you say you are? (Give user a test?)
-# "...Ok. I will teach how I lock my door and protect myself.",
-# "First, try and}} {{lb:go inside my basement.}}"

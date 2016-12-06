@@ -55,6 +55,28 @@ class MainWindow(Gtk.Window):
         else:
             self.__start_game_from_challenge("0", "1")
 
+    def set_theme(self, dark=False):
+        if dark:
+            self.__set_dark_theme()
+        else:
+            self.__set_normal_theme()
+
+    def __set_dark_theme(self):
+        style_context = self.get_style_context()
+        if "dark" not in style_context.list_classes():
+            self.get_style_context().add_class("dark")
+        self.__spellbook.set_dark_theme()
+        self.__terminal.set_dark_theme()
+        self.__story.set_dark_theme()
+
+    def __set_normal_theme(self):
+        style_context = self.get_style_context()
+        if "dark" not in style_context.list_classes():
+            style_context.remove_class("dark")
+        self.__spellbook.set_normal_theme()
+        self.__terminal.set_normal_theme()
+        self.__story.set_normal_theme()
+
     def __setup_gtk_properties(self):
         self.connect('delete-event', self.__close_window)
         self.get_style_context().add_class("main_window")

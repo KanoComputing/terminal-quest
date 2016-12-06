@@ -16,7 +16,7 @@ class StepTemplateChmod(TerminalChmod):
 
 class Step1(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:Try and go into the}} {{bb:no-entry-room}}",
+        "Swordmaster: {{Bb:Try and go into the}} {{bb:no-entry-room}}",
     ]
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
@@ -38,9 +38,9 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "Swordsmaster: {{Bb:You are blocked from going inside. This is because the}} {{lb:execute}} {{Bb:permission "
-        "has been removed.}}",
-        "{{Bb:Use}} {{yb:chmod +x no-entry-room}} {{Bb:to allow yourself to go inside}}"
+        "Swordmaster: {{Bb:You are blocked from going inside. This is because the}} {{lb:execute}} {{Bb:permission "
+        "has been removed from this room.}}",
+        "{{Bb:Use}} {{yb:chmod +x no-entry-room}} {{Bb:to allow yourself to go inside.}}"
     ]
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
@@ -50,7 +50,7 @@ class Step2(StepTemplateChmod):
         "chmod +x no-entry-room/"
     ]
     hints = [
-        "Swordsmaster: {{Bb:Use}} {{yb:chmod +x no-entry-room}}"
+        "Swordmaster: {{Bb:Use}} {{yb:chmod +x no-entry-room}}"
     ]
 
     def next(self):

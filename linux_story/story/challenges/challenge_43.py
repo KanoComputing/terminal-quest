@@ -7,10 +7,13 @@
 
 import os
 import time
+from threading import Thread
+
 from linux_story.story.terminals.terminal_chmod import TerminalChmod
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.terminals.terminal_sudo import TerminalSudo
-from linux_story.story.challenges.challenge_44 import Step1 as NextStep
+# from linux_story.story.challenges.challenge_44 import Step1 as NextStep
+from linux_story.story.challenges.challenge_50 import Step10 as NextStep
 
 
 class StepTemplateChmod(TerminalChmod):
@@ -21,33 +24,10 @@ class StepTemplateSudo(TerminalSudo):
     challenge_number = 43
 
 
-# The note says:
-# "Hello. I here to help you.
-# Show me where you think the Super User command is kept."
-class Step1(StepTemplateChmod):
-    story = [
-        "The Rabbit wants to know where the Super User command is kept?",
-        "....",
-        "Could it be in the locked section of the library?",
-        "Let's head there. I guess the Rabbit will follow."
-    ]
-    start_dir = "~/woods/thicket/rabbithole"
-    end_dir = "~/town/east/library"
-    hints = [
-        "{{rb:Use}} {{yb:cd ~/town/east/library}} {{rb:to go to the library}}"
-    ]
-
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
-
-    def next(self):
-        Step2()
-
-
 # Make the rabbit follow whether the user goes.
 # If the user does cat rabbit, the rabbit should reply with his emotions
 # depending on how far he is from the locked room
-class Step2(StepTemplateChmod):
+class Step1(StepTemplateChmod):
     story = [
         "Now, which is the locked room? {{lb:Look around}} to remind yourself."
     ]
@@ -99,8 +79,7 @@ class Step3(StepTemplateChmod):
         "{{rb:The command was}} {{lb:chmod}}{{rb:, and you need to enable "
         "all the permissions.}}",
         "{{rb:The command is}} {{yb:chmod +rwx private-section}} {{rb:to "
-        "make the private-section readable, "
-        "writeable and executable so you can go inside.}}"
+        "enabled all the permissions.}}"
     ]
 
     def next(self):
@@ -118,8 +97,8 @@ class Step4(StepTemplateChmod):
         "{{rb:private-section.}}"
     ]
     story_dict = {
-        "SUDO": {
-            "path": "~/town/east/library/private-section"
+        "scroll": {
+            "path": "~/town/east/library/private-section/chest"
         }
     }
 
@@ -138,7 +117,8 @@ class Step5(StepTemplateChmod):
     end_dir = "~/town/east/library/private-section"
     commands = [
         "ls",
-        "ls -a"
+        "ls -a",
+        "cat chest/scroll"
     ]
     story_dict = {
         "Rabbit": {
@@ -156,28 +136,10 @@ class Step5(StepTemplateChmod):
 
 class Step6(StepTemplateChmod):
     story = [
-        "You see a piece of paper with {{lb:SUDO}} written on it.",
-        "It looks like another command. Read it."
-    ]
-    start_dir = "~/town/east/library/private-section"
-    end_dir = "~/town/east/library/private-section"
-    commands = [
-        "cat SUDO"
-    ]
-    hints = [
-        "{{rb:Read the note with}} {{yb:cat SUDO}}{{rb:.}}"
-    ]
-
-    def next(self):
-        Step7()
-
-
-class Step7(StepTemplateSudo):
-    story = [
-        "This looks like the command we were looking for.",
-        "The Rabbit looks more excited than you've ever seen "
-        "him before.",
-        "He snatches the paper off you and runs off!",
+        "You see a chest.",
+        "This looks like the treasure we were looking for.",
+        "The Rabbit looks more excited than you've ever seen him before.",
+        "He snatches the chest and runs off!",
     ]
     start_dir = "~/town/east/library/private-section"
     end_dir = "~/town/east/library/private-section"
@@ -185,7 +147,13 @@ class Step7(StepTemplateSudo):
     def next(self):
         script_path = os.path.expanduser("~/weekend-work-2/terminal-Quest/bin/rabbit")
         os.system(script_path)
+        t = Thread(target=self.timeout_dark_theme)
+        t.start()
         Step8()
+
+    def timeout_dark_theme(self):
+        time.sleep(3)
+        self.send_dark_theme()
 
 
 class Step8(StepTemplateSudo):
@@ -202,4 +170,4 @@ class Step8(StepTemplateSudo):
     def next(self):
         # self.exit()
         # time.sleep(3)
-        NextStep()
+        NextStep(self.xp)

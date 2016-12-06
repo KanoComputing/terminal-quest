@@ -58,7 +58,8 @@ class Spellbook(Gtk.EventBox):
         self.grid.connect('show', self.__on_show)
         self.caps_lock_warning.connect('show', self.__on_show)
 
-    def __create_caps_lock_warning(self):
+    @staticmethod
+    def __create_caps_lock_warning():
         box = Gtk.Box()
         box.get_style_context().add_class("caps_lock_warning")
         box.set_margin_top(10)
@@ -223,3 +224,20 @@ class Spellbook(Gtk.EventBox):
             locked_box = self.__create_spell("...", locked=True)
             self.grid.attach(locked_box, left, 0, 1, 1)
             left += 1
+
+    def __set_theme(self):
+        if self.dark:
+            self.set_dark_theme()
+        else:
+            self.set_normal_theme()
+
+    def set_dark_theme(self):
+        style_context = self.get_style_context()
+        if "dark" not in style_context.list_classes():
+            self.get_style_context().add_class("dark")
+
+    def set_normal_theme(self):
+        style_context = self.get_style_context()
+        if "dark" in style_context.list_classes():
+            style_context.remove_class("dark")
+
