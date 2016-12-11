@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#  ___    A
+#  | |   {*}
+#  | |  __V__
+#  |_|o_|%%%|0_
+#     |       |
+#     |       |
+#     |_______|
+
+if [[ ! -e firework-animation ]]; then
+    echo In the wrong directory!
+    exit 1
+fi
+
+python - <<END
+
+import os
+import sys
+
+dir_path = os.path.abspath("/home/caroline/weekend-work-2/terminal-Quest")
+sys.path.insert(1, dir_path)
+
+from linux_story.Animation import Animation
+Animation("firework-animation-2").play_finite(cycles=3)
+
+END
