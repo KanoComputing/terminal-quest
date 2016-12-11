@@ -486,34 +486,6 @@ doorbell.sh:
           path: "~/woods/clearing"
           permissions: 0755
 
-gemstone:
-    challenges:
-        - challenge: 32
-          step: 1
-          path: "~/woods/clearing/chest"
-
-
-chest:
-    directory: True
-    challenges:
-        - challenge: 32
-          step: 1
-          path: "~/woods/clearing"
-          permissions: 0000
-        - challenge: 40
-          step: 2
-          path: "~/woods/clearing"
-          permissions: 0755
-
-
-# This needs to be marked in some way as immovable.
-# Maybe just lock it conventionally
-#sword:
-#    challenges:
-#        - challenge: 32
-#          step: 1
-#          path: "~/woods/clearing/chest"
-#          permissions: 0444
 
 house:
     directory: True
@@ -522,10 +494,6 @@ house:
           step: 1
           path: "~/woods/clearing"
           permissions: 0000
-        - challenge: 33
-          step: 4
-          path: "~/woods/clearing"
-          permissions: 0755
 
 swordsmaster:
     name: swordmaster
@@ -534,90 +502,164 @@ swordsmaster:
           step: 4
           path: "~/woods/clearing/house"
 
-# Directory with the read permissions removed
+sign_cave:
+    name: sign
+    challenges:
+         - challenge: 33
+           step: 4
+           path: "~/woods/cave"
+
+
+sign-cave-2:
+    name: sign
+    challenges:
+         - challenge: 32
+           step: 1
+           path: "~/woods/cave"
+
+## Directory with the read permissions removed
 dark-room:
     directory: True
     challenges:
-        - challenge: 33
-          step: 4
-          path: "~/woods/clearing/house"
+        - challenge: 32
+          step: 1
+          path: "~/woods/cave"
           permissions: 0300
         - challenge: 35
           step: 2
-          path: "~/woods/clearing/house"
+          path: "~/woods/cave"
           permissions: 0500
         - challenge: 36
           step: 4
-          path: "~/woods/clearing/house"
+          path: "~/woods/cave"
           permissions: 0300
 
-bookshelf:
+instructions-dark-room:
+    name: instructions
     challenges:
-        - challenge: 33
-          step: 4
-          path: "~/woods/clearing/house/dark-room"
-
-desk_swordsmaster:
-    name: desk
-    challenges:
-        - challenge: 33
-          step: 4
-          path: "~/woods/clearing/house/dark-room"
-
-READ-ME:
-    challenges:
-        - challenge: 33
-          step: 4
-          path: "~/woods/clearing/house/dark-room"
+        - challenge: 32
+          step: 1
+          path: "~/woods/cave/dark-room"
           permissions: 0200
         - challenge: 36
           step: 1
-          path: "~/woods/clearing/house/dark-room"
+          path: "~/woods/cave/dark-room"
           permissions: 0600
 
-# Directory with the write permissions removed
 cage-room:
     directory: True
     challenges:
-        - challenge: 33
-          step: 4
-          path: "~/woods/clearing/house"
-          permissions: 0500
-        - challenge: 37
-          step: 4
-          path: "~/woods/clearing/house"
-          permissions: 0755
-
+         - challenge: 32
+           step: 1
+           path: "~/woods/cave"
+           permissions: 0500
 
 bird:
     challenges:
-        - challenge: 33
-          step: 4
-          path: "~/woods/clearing/house/cage-room"
-          permissions: 0644
-        - challenge: 37
-          step: 6
-          exists: False
+        - challenge: 32
+          step: 1
+          path: "~/woods/cave/cage-room"
 
+instructions_cave:
+    name: sign
+    challenges:
+        - challenge: 32
+          step: 1
+          path: "~/woods/cave/cage-room"
 
-no-entry-room:
+lighter:
+    challenges:
+        - challenge: 32
+          step: 1
+          path: "~/woods/cave/cage-room"
+
+doorless-room:
     directory: True
     challenges:
-        - challenge: 33
-          step: 4
-          path: "~/woods/clearing/house"
-          permissions: 0600
-        - challenge: 38
-          step: 3
-          path: "~/woods/clearing/house"
-          permissions: 0700
+         - challenge: 32
+           step: 1
+           path: "~/woods/cave"
+           permissions: 0600
 
-RUN-ME:
+firework:
     challenges:
-        - challenge: 33
-          step: 4
-          path: "~/woods/clearing/house/no-entry-room"
-          permissions: 0600
+        - challenge: 32
+          step: 1
+          path: "~/woods/cave/doorless-room"
+          permissions: 0500
+
+chest:
+    directory: True
+    challenges:
+        - challenge: 32
+          step: 1
+          permissions: 0000
+          path: "~/woods/cave"
+
+
+riddle-cave:
+    name: riddle
+    challenges:
+        - challenge: 35
+          step: 1
+          path: "~/woods/cave/chest"
+
+
+answer-cave:
+    name: answer
+    challenges:
+        - challenge: 35
+          step: 1
+          path: "~/woods/cave/chest"
+
+
+
+
+#
+## Directory with the write permissions removed
+#cage-room:
+#    directory: True
+#    challenges:
+#        - challenge: 33
+#          step: 4
+#          path: "~/woods/clearing/house"
+#          permissions: 0500
+#        - challenge: 37
+#          step: 4
+#          path: "~/woods/clearing/house"
+#          permissions: 0755
+#
+#
+#bird:
+#    challenges:
+#        - challenge: 33
+#          step: 4
+#          path: "~/woods/clearing/house/cage-room"
+#          permissions: 0644
+#        - challenge: 37
+#          step: 6
+#          exists: False
+#
+#
+#no-entry-room:
+#    directory: True
+#    challenges:
+#        - challenge: 33
+#          step: 4
+#          path: "~/woods/clearing/house"
+#          permissions: 0600
+#        - challenge: 38
+#          step: 3
+#          path: "~/woods/clearing/house"
+#          permissions: 0700
+#
+#RUN-ME:
+#    challenges:
+#        - challenge: 33
+#          step: 4
+#          path: "~/woods/clearing/house/no-entry-room"
+#          permissions: 0600
+
 
 # Directory with the executable permissions removed
 

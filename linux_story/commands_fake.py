@@ -10,6 +10,9 @@ import os
 import getpass
 from kano.logging import logger
 
+from linux_story.common import tq_file_system
+from linux_story.helper_functions import debugger
+
 
 def cd(real_path, line, has_access=True):
     if not has_access:

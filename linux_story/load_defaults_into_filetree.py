@@ -31,7 +31,7 @@ def default_global_tree(challenge, step):
     modify_file_tree(story_dict)
 
 
-def create_item(dest_path, item_type="file", src_path=""):
+def create_item(dest_path, item_type="file", src_path="", item_perm=None):
     """
     Create a file or directory
     Args:
@@ -40,29 +40,57 @@ def create_item(dest_path, item_type="file", src_path=""):
         src_path (str): the source path
     """
 
-    if not os.path.exists(dest_path):
+    # if item_perm is None:
+    #     if item_type == "file":
+    #         item_perm = 0644
+    #     else:
+    #         item_perm = 0755
+
+
+    if os.path.exists(dest_path) and item_perm is not None:
+        permissions = int(stat.S_IMODE(os.stat(dest_path).st_mode))
+        if not permissions == item_perm:
+            print "dest_path: " + dest_path + " exists but permissions should change from " + str(permissions) + " to " + str(item_perm)
+            os.chmod(dest_path, item_perm)
+
+    elif not os.path.exists(dest_path):
         permissions_changed = False
 
         # Check permissions of the parent directory
         parent_dir = os.path.normpath(os.path.join(dest_path, ".."))
         mode = os.stat(parent_dir).st_mode
-        permissions = oct(stat.S_IMODE(mode))
+        parent_permissions = int(stat.S_IMODE(mode))
 
         # Lazy - just checking owner has write permissions
-        if len(permissions) < 3 or int(permissions[-3]) % 4 < 2:
+        # if len(permissions) < 3 or int(permissions[-3]) % 4 < 2:
+        if not bool(mode & stat.S_IXUSR):
+            print "no execute permissions for: " + parent_dir
             os.chmod(parent_dir, 0755)
             permissions_changed = True
-            mode = os.stat(parent_dir).st_mode
-            permissions = oct(stat.S_IMODE(mode))
+
+
+        if not bool(mode & stat.S_IWUSR):
+            print "no write permissions for: " + parent_dir
+            os.chmod(parent_dir, 0755)
+            permissions_changed = True
+
 
         if item_type == 'file':
             shutil.copyfile(src_path, dest_path)
         elif item_type == 'directory':
             os.mkdir(dest_path)
 
+        if item_perm:
+            os.chmod(dest_path, item_perm)
+
         if permissions_changed:
             # change permissions of the parent directory back
-            os.chmod(parent_dir, int(permissions, 8))
+            # print "changing parent dir " + parent_dir + " back to permissions " + str(parent_permissions)
+            os.chmod(parent_dir, parent_permissions)
+
+    else:
+        if "chest" in dest_path:
+            print "path " + dest_path + " exists and has correct permisisons"
 
 
 def delete_item(path):
@@ -121,10 +149,13 @@ def modify_file_tree(filesystem_dict):
         item_ids = item_names.split(', ')
         for item_id in item_ids:
 
-            # Check if the item is specified to exist
-            if 'exists' in item_dict.keys() and not item_dict['exists']:
-                # Go to the next item_id
+            if __file_does_not_exist(item_dict):
                 continue
+
+            # If specified, change the permissions of the file
+            permissions = None
+            if "permissions" in item_dict.keys():
+                permissions = item_dict["permissions"]
 
             if 'path' in item_dict:
                 if 'name' in item_dict:
@@ -139,31 +170,23 @@ def modify_file_tree(filesystem_dict):
                 path_to_file_in_system = get_path_to_file_in_system(item_id)
 
                 # If the file is specified as a directory.
-                if 'directory' in item_dict.keys():
-                    # Create the directory in the file system.
-                    if item_dict['directory']:
-                        create_item(
-                            real_path,
-                            item_type="directory"
-                        )
-                    else:
-                        create_item(
-                            real_path,
-                            item_type="file",
-                            src_path=path_to_file_in_system
-                        )
-                # Default - make the item into a file.
+                if 'directory' in item_dict.keys() and item_dict['directory']:
+                    create_item(
+                        real_path,
+                        item_type="directory",
+                        item_perm=permissions
+                    )
                 else:
                     create_item(
                         real_path,
                         item_type="file",
-                        src_path=path_to_file_in_system
+                        src_path=path_to_file_in_system,
+                        item_perm=permissions
                     )
 
-                # If specified, change the permissions of the file
-                if "permissions" in item_dict.keys():
-                    permissions = item_dict["permissions"]
-                    os.chmod(real_path, permissions)
+
+def __file_does_not_exist(item_dict):
+    return 'exists' in item_dict.keys() and not item_dict['exists']
 
 
 # Call this on closing the application.

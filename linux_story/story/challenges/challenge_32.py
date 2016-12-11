@@ -7,7 +7,7 @@
 
 
 from linux_story.story.terminals.terminal_nano import TerminalNano
-from linux_story.story.challenges.challenge_33 import Step1 as NextStep
+from linux_story.story.challenges.challenge_33_talk_to_sword_master import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
 
 
@@ -178,10 +178,65 @@ class Step7(StepTemplateNano):
     hints = [
         "{{rb:Use}} {{yb:ls house/}} {{rb:to look in the house.}}"
     ]
-    last_step = True
 
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)
 
     def next(self):
-        NextStep(self.xp)
+        Step8()
+
+
+class Step8(StepTemplateNano):
+    story = [
+        "Huh, you can't seem to look inside.",
+        "It seems to be locked in the same way the {{bb:private-section}} is.",
+        "Maybe there's a clue somewhere around here.",
+        "{{lb:Investigate}} the area around and see if you can find any clues."
+    ]
+    start_dir = "~/woods/clearing"
+
+    # This should be an array of allowed directories you can end up in.
+    # Perhaps an empty array means it doesn't matter where you end up.
+    end_dir = "~/woods/clearing"
+
+    hints = [
+        "{{rb:Examine that signpost with}} {{yb:cat signpost}}{{rb:.}}"
+    ]
+
+    commands = [
+        "cat signpost"
+    ]
+
+    # Perhaps a nice data structure could be if the list of commands were
+    # paired with appropriate hints?
+    paired_hints = {
+        "ls": "Try examining the individual items with {{lb:cat}}."
+    }
+
+    def next(self):
+        Step9()
+
+
+class Step9(StepTemplateNano):
+    story = [
+        "So the signpost has an instruction on it? Let's carry it out."
+    ]
+
+    # It would be good if we could pass the current dir across and this would
+    # simply be the default?
+    start_dir = "~/woods/clearing"
+    end_dir = "~/woods/clearing"
+
+    hints = [
+        "{{rb:Use}} {{yb:echo knock knock}} {{rb:to knock on the door.}}"
+    ]
+
+    commands = [
+        "echo knock knock"
+    ]
+
+    def next(self):
+        NextStep()
+
+
+

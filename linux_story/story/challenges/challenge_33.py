@@ -5,11 +5,13 @@
 #
 # A chapter of the story
 
+# Redo chapter 5 with the swordmaster.
+
 import os
 
-from linux_story.common import get_username
+from linux_story.Animation import Animation
 from linux_story.story.terminals.terminal_nano import TerminalNano
-from linux_story.story.challenges.challenge_34 import Step1 as NextStep
+from linux_story.story.challenges.challenge_34 import Step1 as NextStep, StepTemplateChmod
 from linux_story.step_helper_functions import unblock_cd_commands
 
 
@@ -19,52 +21,74 @@ class StepTemplateNano(TerminalNano):
 
 class Step1(StepTemplateNano):
     story = [
-        "Huh, you can't seem to look inside.",
-        "It seems to be locked in the same way the {{bb:private-section}} is.",
-        "Maybe there's a clue somewhere around here.",
-        "{{lb:Investigate}} the area around and see if you can find any clues."
+        "You hear a deep voice on the other side of the door.",
+        "",
+        "Swordmaster: {{Bb:If you have me, you want to share me. If you share me, you haven't got me. What am I?}}",
+        "",
+        "{{yb:1. I don't know?}}",
+        "{{yb:2. What?}}"
     ]
-    start_dir = "~/woods/clearing"
 
-    # This should be an array of allowed directories you can end up in.
-    # Perhaps an empty array means it doesn't matter where you end up.
+    start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing"
 
-    hints = [
-        "{{rb:Examine that signpost with}} {{yb:cat signpost}}{{rb:.}}"
-    ]
+    def next(self):
+        if self.last_user_input.lower() == "secret" or self.last_user_input.lower() == "echo secret":
+            Step1b()
+        else:
+            Step2()
 
-    commands = [
-        "cat signpost"
-    ]
 
-    # Perhaps a nice data structure could be if the list of commands were
-    # paired with appropriate hints?
-    paired_hints = {
-        "ls": "Try examining the individual items with {{lb:cat}}."
-    }
+class Step1b(StepTemplateNano):
+    story = [
+        "Swordmaster: {{Bb:...Did you complete the cave challenge?",
+        "Fine, here's another. Unlock the door to my house.}}"
+    ]
+    start_dir = "~/woods/clearing"
+    end_dir = "~/woods/clearing"
 
     def next(self):
-        Step2()
+        Step1c()
+
+
+class Step1c(StepTemplateNano):
+    story = [
+        "Swordmaster: {{Bb:I thought so. You need to complete the challenges in the cave in the woods. Come back when "
+        "you've finished.}}"
+    ]
+    start_dir = "~/woods/clearing"
+    end_dir = "~/woods/cave"
+
+    def check_command(self):
+        if self.last_user_input == "echo knock knock":
+            self.send_hint("Swordmaster: {{Bb:Go and find the answer. Don't just stand there.}}")
+
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
+
+    def next(self):
+        Step3()
 
 
 class Step2(StepTemplateNano):
     story = [
-        "So the signpost has an instruction on it? Let's carry it out."
+        "Swordmaster: {{Bb:That is not the answer! You can try and find the answer to the riddle in cave near the woods.}}"
     ]
-
-    # It would be good if we could pass the current dir across and this would
-    # simply be the default?
     start_dir = "~/woods/clearing"
-    end_dir = "~/woods/clearing"
-
+    end_dir = "~/woods/cave"
     hints = [
-        "{{rb:Use}} {{yb:echo knock knock}} {{rb:to knock on the door.}}"
+        "Swordmaster: {{Bb:Head to the}} {{bb:~/woods/cave}} {{Bb:and stop hanging about outside my house!}}",
+        "{{yb:Head to}} {{bb:~/woods/cave}}"
     ]
 
-    commands = [
-        "echo knock knock"
-    ]
+    def check_command(self):
+        if self.last_user_input == "echo knock knock":
+            self.send_hint("Swordmaster: {{Bb:Go and find the answer. Don't just stand there guessing.}}")
+            return
+        return StepTemplateNano.check_command(self)
+
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step3()
@@ -72,126 +96,451 @@ class Step2(StepTemplateNano):
 
 class Step3(StepTemplateNano):
     story = [
-        "You hear a deep voice on the other side of the door.",
-        "",
-        "Swordmaster: {{Bb:Hello? Who's there?}}",
-        "",
-        "Tell him your name using {{lb:echo}}"
+        "Look around."
     ]
-
-    start_dir = "~/woods/clearing"
-    end_dir = "~/woods/clearing"
+    start_dir = "~/woods/cave"
+    end_dir = "~/woods/cave"
     commands = [
-        "echo " + get_username()
-    ]
-    hints = [
-        "{{rb:Use}} {{yb:echo " + get_username() + "}} {{rb:to give him your name}}"
+        "ls",
+        "ls .",
+        "ls ./"
     ]
 
     def next(self):
-        path = self.generate_real_path("~/woods/clearing/house")
-        os.chmod(path, 0755)
         Step4()
 
 
 class Step4(StepTemplateNano):
     story = [
-        "{{wb:Cluck.}} {{gb:It sounds like the door unlocked.}}",
-        "",
-        "{{lb:Go inside the house.}}"
+        "There are three rooms, and a sign. {{lb:Read}} the sign."
     ]
-
-    # Change permissions of the house directory here.
-    start_dir = "~/woods/clearing"
-
-    # This should be an array of allowed directories you can end up in.
-    # Perhaps an empty array means it doesn't matter where you end up.
-    end_dir = "~/woods/clearing/house"
-
-    # Level up based on the output of the command.
-
-    hints = [
-        "{{rb:Use}} {{yb:cd house/}} {{rb:to go into the house.}}"
+    start_dir = "~/woods/cave"
+    end_dir = "~/woods/cave"
+    commands = [
+        "cat sign"
     ]
-
-    story_dict = {
-        "swordsmaster": {
-            "name": "swordmaster",
-            "path": "~/woods/clearing/house"
-        },
-        "basement": {
-            "directory": True,
-            "path": "~/woods/clearing/house",
-            "permissions": 0000
-        },
-        # Directory with the read permissions removed
-        "dark-room": {
-            "directory": True,
-            "permissions": 0300,
-            "path": "~/woods/clearing/house/dark-room"
-        },
-        "bookshelf": {
-            "path": "~/woods/clearing/house/dark-room"
-        },
-        "desk_swordsmaster": {
-            "name": "desk",
-            "path": "~/woods/clearing/house/dark-room"
-        },
-        "READ-ME": {
-            "path": "~/woods/clearing/house/dark-room",
-            "permissions": 0200
-        },
-        "cage-room": {
-            "directory": True,
-            "path": "~/woods/clearing/house",
-        },
-        "bird": {
-            "path": "~/woods/clearing/house/cage-room",
-            "permissions": 0644
-        },
-        "no-entry-room": {
-            "directory": True,
-            "path": "~/woods/clearing/house",
-        },
-        "RUN-ME": {
-            "path": "~/woods/clearing/house/no-entry-room",
-            "permissions": 0600
-        }
-    }
-
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step5()
 
 
-class Step5(StepTemplateNano):
+class Step5(StepTemplateChmod):
+    # the sign should read:
+    # Three rooms, each with a permission missing.
+    # Start with the dark room. To switch on the lights, use chmod +r
+    story = [
+        "So you have the command chmod +r. What does it do?",
+        "To find out, {{lb:go into the dark room}}"
+    ]
+    start_dir = "~/woods/cave"
+    end_dir = "~/woods/cave/dark-room"
+
+    hints = [
+        "Use {{yb:cd dark-room}} to go inside"
+    ]
+
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
+
+    def next(self):
+        Step6()
+
+
+class Step6(StepTemplateChmod):
+    story = [
+        "Have a look around."
+    ]
+    start_dir = "~/woods/cave/dark-room"
+    end_dir = "~/woods/cave/dark-room"
+    commands = [
+        "ls",
+        "ls .",
+        "ls ./"
+    ]
+
+    def next(self):
+        Step7()
+
+
+class Step7(StepTemplateChmod):
+    story = [
+        "The lights in this room are off. Try using the command you read on the sign."
+        # add new spell here of chmod +r
+    ]
+    start_dir = "~/woods/cave/dark-room"
+    end_dir = "~/woods/cave/dark-room"
+    commands = [
+        "chmod +r ./",
+        "chmod +r ."
+    ]
+    hints = [
+        "Use {{yb:chmod +r .}}"
+    ]
+
+    def next(self):
+        Step8()
+
+
+class Step8(StepTemplateChmod):
     story = [
         "Look around."
     ]
-    start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house"
-    hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
-    ]
-    story_dict = {
-        "cage-room": {
-            "directory": True,
-            "path": "~/woods/clearing/house",
-            "permissions": 0500
-        },
-        "no-entry-room": {
-            "directory": True,
-            "path": "~/woods/clearing/house",
-            "permissions": 0600
-        }
-    }
+    start_dir = "~/woods/cave/dark-room"
+    end_dir = "~/woods/cave/dark-room"
     commands = [
         "ls",
-        "ls -a"
+        "ls .",
+        "ls ./",
     ]
-    last_step = True
+
+    hints = [
+        "{{Use}} {{yb:ls}}"
+    ]
 
     def next(self):
-        NextStep(self.xp)
+        Step9()
+
+
+class Step9(StepTemplateChmod):
+    story = [
+        "You can see a set of {{lb:instructions}}. Read it."
+    ]
+    start_dir = "~/woods/cave/dark-room"
+    end_dir = "~/woods/cave/dark-room"
+    commands = [
+        "cat instructions"
+    ]
+
+    hints = [
+        "{{Bb:Use}} {{yb:cat instructions}}"
+    ]
+
+    def next(self):
+        Step10()
+
+
+class Step10(StepTemplateChmod):
+    # The note should read:
+    # Move the lighter from the cage into the doorless room.
+    # When the bird is free, you will be able to progress.
+    # You'll need chmod +w
+    story = [
+        "The note refers to the cage. Let's go over there."
+    ]
+    start_dir = "~/woods/cave/dark-room"
+    end_dir = "~/woods/cave/cage-room"
+    hints = [
+        "{{rb:Go into the cage room using cd.}}",
+        "{{rb:Use the command}} {{yb:cd ../cage}} {{rb:to go inside the cage.}}"
+    ]
+
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
+
+    def next(self):
+        Step11()
+
+
+class Step11(StepTemplateChmod):
+    story = [
+        "Look around"
+    ]
+    start_dir = "~/woods/cave/cage-room"
+    end_dir = "~/woods/cave/cage-room"
+
+    commands = [
+        "ls"
+    ]
+
+    def next(self):
+        Step12()
+
+
+class Step12(StepTemplateChmod):
+    story = [
+        "You see a bird, a lighter, and a note.",
+        "This must be the lighter the note in the dark room was referring to.",
+        "Move it outside this room, to .."
+    ]
+    start_dir = "~/woods/cave/cage-room"
+    end_dir = "~/woods/cave/cage-room"
+    commands = [
+        "mv lighter ..",
+        "mv lighter ../",
+        "mv lighter ../doorless-room",
+        "mv lighter ../doorless-room/"
+    ]
+
+    hints = [
+        "Use mv lighter ../doorless-room"
+    ]
+
+    optional_commands = {
+        "cat note": False
+    }
+
+    def check_command(self):
+        if self.last_user_input == "cat bird":
+            self.send_hint("The bird looks lifeless and unhappy.")
+        elif self.last_user_input == "cat lighter":
+            self.send_hint("This must be the lighter the instructions in the dark-room was referring to")
+        elif self.last_user_input == "cat note":
+            self.optional_commands[self.last_user_input] = True;
+            self.send_hint("To move the lighter.....does this mean you can't already? Try moving it.")
+
+    def next(self):
+        if self.optional_commands["cat note"]:
+            Step14()
+        else:
+            Step13()
+
+
+class Step13(StepTemplateChmod):
+    story = [
+        "You are unable to move the lighter.",
+        "Read the note to see what's going on"
+    ]
+
+    start_dir = "~/woods/cave/cage-room"
+    end_dir = "~/woods/cave/cage-room"
+    commands = [
+        "cat note"
+    ]
+    hints = ["Read the note using {{lb:cat note}}"]
+
+    def next(self):
+        Step14()
+
+
+class Step14(StepTemplateChmod):
+    # The note should say something like
+    story = [
+        "So you are unable to move the lighter because the write permissions are removed from the room.",
+        "Add them with chmod +w ."
+    ]
+    start_dir = "~/woods/cave/cage-room"
+    end_dir = "~/woods/cave/cage-room"
+    commands = [
+        "chmod +w ./",
+        "chmod +w ."
+    ]
+    hints = ["Use chmod +w ."]
+
+    def next(self):
+        Step15()
+
+
+class Step15(StepTemplateChmod):
+    story = [
+        "Tweet!",
+        "",
+        "The bird looks more alert.",
+        "It flapped its wings and flew away!",
+        "Press ENTER to continue"
+    ]
+    start_dir = "~/woods/cave/cage-room"
+    end_dir = "~/woods/cave/cage-room"
+
+    def next(self):
+        Animation("bird").play_across_screen(speed=10)
+        Step16()
+
+
+class Step16(StepTemplateChmod):
+    story = [
+        "It looks like the bird was trapped here.",
+        "Try and move the note out of here and into the doorless-room"
+    ]
+    start_dir = "~/woods/cave/cage-room"
+    end_dir = "~/woods/cave/cage-room"
+    commands = [
+        "mv lighter ../doorless-room",
+        "mv lighter ../doorless-room/"
+    ]
+    hints = [
+        "Use mv lighter ../doorless-room"
+    ]
+
+    def next(self):
+        Step17()
+
+
+class Step17(StepTemplateChmod):
+    story = [
+        "Leave the cage room."
+    ]
+    start_dir = "~/woods/cave/cage-room"
+    end_dir = "~/woods/cave"
+    commands = [
+        "cd ..",
+        "cd ../"
+    ]
+
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
+
+    def next(self):
+        Step18()
+
+
+class Step18(StepTemplateChmod):
+    story = [
+        "The final room is the doorless room.",
+        "Try and go inside."
+    ]
+    start_dir = "~/woods/cave"
+    end_dir = "~/woods/cave"
+    dirs_to_attempt = "~/woods/cave/doorless-room"
+
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
+
+    def next(self):
+        Step19()
+
+
+class Step19(StepTemplateChmod):
+    story = [
+        "You don't see a way in, and cannot go inside.",
+        "What did the note say from the cage room?",
+        "Use the chmod +x ./ to get inside"
+    ]
+    start_dir = "~/woods/cave"
+    end_dir = "~/woods/cave"
+
+    commands = [
+        "chmod +x doorless-room",
+        "chmod +x doorless-room/"
+    ]
+
+    def next(self):
+        Step20()
+
+
+class Step20(StepTemplateChmod):
+    story = [
+        "Now try and go inside."
+    ]
+
+    start_dir = "~/woods/cave"
+    end_dir = "~/woods/cave/doorless-room"
+
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
+
+    def next(self):
+        Step21()
+
+
+class Step21(StepTemplateChmod):
+    story = [
+        "Look around"
+    ]
+    start_dir = "~/woods/cave/doorless-room"
+    end_dir = "~/woods/cave/doorless-room"
+
+    commands = [
+        "ls"
+    ]
+
+    def next(self):
+        Step22()
+
+
+class Step22(StepTemplateChmod):
+    story = [
+        "There is a firework, lighter and a final set of instructions.",
+        "Go and read the set of instructions."
+    ]
+    start_dir = "~/woods/cave/doorless-room"
+    end_dir = "~/woods/cave/doorless-room"
+
+    commands = [
+        "cat instructions"
+    ]
+
+    def next(self):
+        Step23()
+
+
+class Step23(StepTemplateChmod):
+    story = [
+        "Follow the instructions to activate the lighter"
+    ]
+
+    start_dir = "~/woods/cave/doorless-room"
+    end_dir = "~/woods/cave/doorless-room"
+
+    commands = [
+        "chmod +x lighter"
+    ]
+
+    def next(self):
+        Step24()
+
+
+class Step24(StepTemplateChmod):
+    story = [
+        "Look around to see what happened to the lighter"
+    ]
+
+    start_dir = "~/woods/cave/doorless-room"
+    end_dir = "~/woods/cave/doorless-room"
+
+    commands = [
+        "ls",
+        "ls .",
+        "ls ./"
+    ]
+
+    def next(self):
+        Step25()
+
+
+class Step25(StepTemplateChmod):
+    story = [
+        "The lighter went bright green after you activated it.",
+        "Now use it with {{yb:./lighter}}"
+    ]
+    start_dir = "~/woods/cave/doorless-room"
+    end_dir = "~/woods/cave/doorless-room"
+
+    commands = [
+        "./lighter"
+    ]
+
+    def next(self):
+        Step26()
+
+
+class Step26(StepTemplateChmod):
+    story = [
+        "You lit the firework!",
+        "You know how to use the three chmod commands"
+        "Leave the room and go back into the cave",
+    ]
+    start_dir = "~/woods/cave/doorless-room"
+    end_dir = "~/woods/cave"
+
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
+
+    def next(self):
+        Step27()
+
+
+class Step27(StepTemplateChmod):
+    story = [
+        "Time to face the final hurdle.",
+        "There is a chest waiting for you.",
+        "Try and open it."
+    ]
+    start_dir = "~/woods/cave"
+    end_dir = "~/woods/cave"
+    commands = [
+        "chmod +rwx chest/"
+    ]
+
+
+    def next(self):
+        pass
