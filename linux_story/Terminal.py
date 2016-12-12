@@ -10,6 +10,7 @@ import os
 import sys
 from cmd import Cmd
 
+from linux_story.file_creation.FileTree import FileTree
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -22,7 +23,7 @@ from helper_functions import (
 from linux_story.dependencies import load_app_state_variable, save_app_state_variable_with_dialog, \
     get_app_xp_for_challenge, Logger, translate
 from linux_story.MessageClient import MessageClient
-from common import get_username, fake_home_dir
+from common import get_username, fake_home_dir, tq_file_system
 from load_defaults_into_filetree import delete_item, modify_file_tree
 from linux_story.commands_real import run_executable
 import strings
@@ -47,6 +48,7 @@ class Terminal(Cmd):
     output_condition = lambda x, y: False
     story_dict = {}
     deleted_items = []
+    file_list = []
     command_blocked = False
     needs_sudo = False
 
@@ -345,18 +347,16 @@ class Terminal(Cmd):
         """
         if self.deleted_items:
             for path in self.deleted_items:
-
-                # TODO: move this to common
-                real_path = os.path.expanduser(
-                    path.replace('~', fake_home_dir)
-                )
+                real_path = os.path.expanduser(path.replace('~', fake_home_dir))
                 delete_item(real_path)
 
     def modify_file_tree(self):
         """If self.story_dict is specified, add files to the filetree
         """
-        if self.story_dict:
-            modify_file_tree(self.story_dict)
+        if self.file_list:
+            file_tree = FileTree(None, tq_file_system)
+            for f in self.file_list:
+                file_tree.create_item(f["type"], f["path"], f["permissions"], f["contents"])
 
     #######################################################
     # Helper commands
