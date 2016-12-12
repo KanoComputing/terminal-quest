@@ -185,6 +185,48 @@ class TestFileTree(unittest.TestCase):
         self.assertFalse(os.path.exists(house))
         self.assertFalse(os.path.exists(dad))
 
+    def test_create_a_new_standalone_item(self):
+        file_tree = FileTree(None, self.__end_path)
+        contents_path = "/tmp/test"
+        contents = "hello"
+        open(contents_path, "w+").write(contents)
+        file_tree.create_item("file", "~/my-house", 0644, contents_path)
+        house = os.path.join(self.__end_path, "~/my-house")
+        self.assertTrue(os.path.exists(house))
+        test_contents = open(house).readline()
+        self.assertEquals(contents, test_contents)
+
+    def test_setting_permissions_in_challenges_works(self):
+        tree = {
+            "name": "~",
+            "children": [
+                {
+                    "name": "my-house",
+                    "type": "directory",
+                    "challenges": [
+                        {
+                            "challenge": 1,
+                            "step": 1,
+                            "permissions": 0500
+                        },
+                        {
+                            "challenge": 2,
+                            "step": 1,
+                            "permissions": 0300
+                        }
+                    ]
+                }
+            ]
+        }
+        FileTree(tree, self.__end_path).parse_complete(1, 9)
+        house = os.path.join(self.__end_path, "~/my-house")
+        self.assertTrue(os.path.exists(house))
+        self.assertEquals(get_oct_permissions(house), "0500")
+        self.tearDown()
+        FileTree(tree, self.__end_path).parse_complete(2, 1)
+        self.assertTrue(os.path.exists(house))
+        self.assertEquals(get_oct_permissions(house), "0300")
+
 
 if __name__ == '__main__':
     unittest.main()

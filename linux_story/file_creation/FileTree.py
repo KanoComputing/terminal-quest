@@ -21,6 +21,7 @@ class FileTree:
     KEY_CHALLENGES = "challenges"
     KEY_CHALLENGE = "challenge"
     KEY_STEP = "step"
+    KEY_EXISTS = "exists"
     TYPE_DIR = "directory"
     TYPE_FILE = "file"
     DEFAULT_DIR_PERMISSIONS = 0755
@@ -35,6 +36,10 @@ class FileTree:
         self.__clear_old_tree()
         self.__parse(self.__tree, self.__end_dir, challenge, step)
 
+    def create_item(self, item_type, path, permissions, contents_path):
+        path = os.path.join(self.__end_dir, path)
+        self.__create_item(item_type, path, permissions, {self.KEY_CONTENTS: contents_path})
+
     def __clear_old_tree(self):
         revert_to_default_permissions(self.__end_dir)
         delete_item(self.__end_dir)
@@ -44,12 +49,13 @@ class FileTree:
         if "name" not in tree:
             raise Exception("Malformed tree")
 
-        if not self.__exists_in_current_challenge(tree, challenge, step):
+        challenge_data = self.__specs_for_challenge(challenge, step, tree)
+        if not self.__exists_in_current_challenge(challenge_data):
             return
 
         path = os.path.join(path, tree[self.KEY_NAME])
         item_type = self.__get_item_type(tree)
-        permissions = self.__get_permissions(tree, item_type)
+        permissions = self.__get_permissions(challenge_data, item_type)
         self.__create_item(item_type, path, permissions, tree)
 
         if self.KEY_CHILDREN in tree:
@@ -58,6 +64,10 @@ class FileTree:
 
     def __create_item(self, item_type, path, permissions, tree):
         parent_dir = os.path.normpath(os.path.join(path, ".."))
+
+        if not os.path.exists(parent_dir):
+            self.__create_dir(parent_dir, 0755)
+
         mode = os.stat(parent_dir).st_mode
         permissions_changed = self.__make_parent_writable(parent_dir, mode)
 
@@ -70,16 +80,23 @@ class FileTree:
         if permissions_changed:
             os.chmod(parent_dir, stat.S_IMODE(mode))
 
-    def __exists_in_current_challenge(self, tree, challenge, step):
-        if self.KEY_CHALLENGES not in tree:
+    def __exists_in_current_challenge(self, challenge_data):
+        if self.KEY_CHALLENGE not in challenge_data and self.KEY_STEP not in challenge_data:
             return True
+        if self.KEY_EXISTS in challenge_data and not challenge_data[self.KEY_EXISTS]:
+            return False
+
+        return True
+
+    def __specs_for_challenge(self, challenge, step, tree):
+        if self.KEY_CHALLENGES not in tree:
+            return tree
 
         lower_bound_challenge = 1
         lower_bound_step = 1
         challenge_data = {}
-
         for challenge_dict in tree[self.KEY_CHALLENGES]:
-            if "challenge" not in challenge_dict or "step" not in challenge_dict:
+            if self.KEY_CHALLENGE not in challenge_dict or self.KEY_STEP not in challenge_dict:
                 raise Exception("missing challenge key in " + str(challenge_dict))
             poss_challenge = challenge_dict["challenge"]
             poss_step = challenge_dict["step"]
@@ -90,10 +107,10 @@ class FileTree:
                     lower_bound_challenge = poss_challenge
                     lower_bound_step = poss_step
 
-        if "exists" in challenge_data and not challenge_data["exists"]:
-            return False
+        if self.KEY_PERMISSIONS in tree:
+            challenge_data[self.KEY_PERMISSIONS] = tree[self.KEY_PERMISSIONS]
 
-        return True
+        return challenge_data
 
     @staticmethod
     def __challenge_step_higher(challenge, step, poss_challenge, poss_step):
@@ -128,10 +145,10 @@ class FileTree:
             os.chmod(parent_dir, 0755)
             return True
 
-    def __get_permissions(self, tree, item_type):
+    def __get_permissions(self, challenge_data, item_type):
         permissions = self.__get_default_permissions(item_type)
-        if self.KEY_PERMISSIONS in tree:
-            permissions = tree[self.KEY_PERMISSIONS]
+        if self.KEY_PERMISSIONS in challenge_data:
+            permissions = challenge_data[self.KEY_PERMISSIONS]
         return permissions
 
     def __get_default_permissions(self, type):
@@ -158,7 +175,7 @@ class FileTree:
         return os.environ['LOGNAME']
 
     def __get_contents_path(self, tree):
-        if not self.KEY_CONTENTS in tree:
+        if self.KEY_CONTENTS not in tree:
             raise Exception("No contents associated with the file: " + tree["name"])
         return tree[self.KEY_CONTENTS]
 
