@@ -319,3 +319,7 @@ def wrap_in_box(lines):
     new_lines = map(format_line, lines)
 
     return [outer_line] + new_lines + [outer_line + "\n"]
+
+
+def is_executable(path):
+    return os.path.isfile(path) and os.access(path, os.X_OK)

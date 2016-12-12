@@ -17,12 +17,12 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from helper_functions import (
-    get_script_cmd, debugger, is_exe, colour_string_with_preset
+    get_script_cmd, is_exe, colour_string_with_preset
 )
 from linux_story.dependencies import load_app_state_variable, save_app_state_variable_with_dialog, \
     get_app_xp_for_challenge, Logger, translate
 from linux_story.MessageClient import MessageClient
-from common import tq_file_system, get_username
+from common import get_username, fake_home_dir
 from load_defaults_into_filetree import delete_item, modify_file_tree
 from linux_story.commands_real import run_executable
 import strings
@@ -86,8 +86,7 @@ class Terminal(Cmd):
 
         Cmd.__init__(self)
 
-        # This changes the special characters, so we can autocomplete on
-        # the - character
+        # This changes the special characters, so we can autocomplete on the - character
         old_delims = readline.get_completer_delims()
         readline.set_completer_delims(old_delims.replace('-', ''))
 
@@ -95,33 +94,26 @@ class Terminal(Cmd):
         self.send_start_challenge_data()
 
         # Need to call .cmdloop() to start terminal class.
-        # Maybe put a wrapper function around this if we frequently need to
-        # add extra stuff around this.
         self.cmdloop()
 
         # Once the Terminal has finished, decide whether to add xp to profile
         if self.last_step:
             self.save_challenge()
 
-        # Tell storyline the step is finished
         self.next()
 
     def generate_real_path(self, fake_path):
-        return fake_path.replace('~', tq_file_system)
+        return fake_path.replace('~', fake_home_dir)
 
     def generate_fake_path(self, real_path):
-        return real_path.replace(tq_file_system, '~')
+        return real_path.replace(fake_home_dir, '~')
 
     def set_prompt(self):
-        home_dir = os.path.expanduser('~')
-        cwd = self.real_path.replace(home_dir, '~')
-        fake_cwd = cwd.replace('/.linux-story', '')
+        fake_cwd = self.real_path.replace(fake_home_dir, '~')
 
-        # if prompt ends with / strip it off
         if fake_cwd[-1] == '/':
             fake_cwd = fake_cwd[:-1]
 
-        # Put together the terminal prompt.
         username = get_username()
         yellow_part = username + "@kano "
         yellow_part = colour_string_with_preset(yellow_part, "yellow", True)
@@ -356,7 +348,7 @@ class Terminal(Cmd):
 
                 # TODO: move this to common
                 real_path = os.path.expanduser(
-                    path.replace('~', '~/.linux-story')
+                    path.replace('~', fake_home_dir)
                 )
                 delete_item(real_path)
 
@@ -378,17 +370,11 @@ class Terminal(Cmd):
             # If we do ls ~/ we need to change the path to be absolute.
             if additional_path.startswith('~'):
                 # Needs to be moved to helper_functions
-                additional_path = additional_path.replace(
-                    '~', '~/.linux-story'
-                )
-                # should actually be the hidden-directory
+                additional_path = additional_path.replace('~', fake_home_dir)
                 path = os.path.expanduser(additional_path)
             else:
                 path = os.path.join(self.real_path, additional_path)
 
-            # If the path doesn't exist, return early
-            # TODO: move this part to a separate function?
-            # Then we can have a list of all the functions that get called
             if not os.path.exists(path):
                 return []
 

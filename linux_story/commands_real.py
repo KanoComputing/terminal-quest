@@ -10,7 +10,7 @@ import os
 import subprocess
 
 from helper_functions import colour_file_dir, debugger
-from linux_story.common import tq_file_system
+from linux_story.common import tq_file_system, fake_home_dir
 from linux_story.sound_manager import SoundManager
 
 
@@ -38,7 +38,7 @@ def ls(real_loc, line, has_access=True):
     get_all_info = False
     new_lines = False
     args = ["ls"]
-    line = line.replace('~', tq_file_system)
+    line = line.replace('~', fake_home_dir)
 
     if line:
         args = line.split(" ")
@@ -129,7 +129,7 @@ def shell_command(real_loc, line, command_word=""):
     stdout, stderr = p.communicate()
 
     if stderr:
-        print stderr.strip().replace(tq_file_system, '~')
+        print stderr.strip().replace(fake_home_dir, '~')
         return False
 
     if stdout:

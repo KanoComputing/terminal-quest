@@ -10,7 +10,7 @@ import os
 import getpass
 from kano.logging import logger
 
-from linux_story.common import tq_file_system
+from linux_story.common import tq_file_system, fake_home_dir
 from linux_story.helper_functions import debugger
 
 
@@ -20,19 +20,14 @@ def cd(real_path, line, has_access=True):
         print "-bash: cd: {}: Permission denied".format(line)
         return
 
-    tq_file_system = os.path.join(os.path.expanduser('~'), '.linux-story')
-
     if not line:
-        new_path = tq_file_system
+        new_path = fake_home_dir
     else:
         if line.startswith('~'):
-            new_line = line.replace('~', '~/.linux-story')
+            new_line = line.replace('~', fake_home_dir)
             new_path = os.path.expanduser(new_line)
         else:
             new_path = os.path.join(real_path, line)
-
-            # We use os.path.abspath so we don't get paths
-            # like ~/my-house/../my-house
             new_path = os.path.abspath(new_path)
 
         if not os.path.exists(new_path) or not os.path.isdir(new_path):
@@ -49,7 +44,6 @@ def sudo(real_path, line, success_cb, counter=0, *cb_args):
     If the user is successful, execute success_cb with success_args passed
     """
 
-    print "cb_args = " + str(cb_args)
     if counter == 3:
         print "sudo: 3 incorrect password attempts"
         return

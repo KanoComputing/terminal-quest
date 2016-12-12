@@ -15,6 +15,9 @@ if __name__ == '__main__' and __package__ is None:
         sys.path.insert(1, dir_path)
 
 from linux_story.load_defaults_into_filetree import default_global_tree
+from linux_story.common import tq_file_system
+from linux_story.file_creation.FileTree import FileTree
+from linux_story.story.trees.default_trees import tree
 
 
 def launch_project(challenge_number=1, step_number=1):
@@ -31,9 +34,14 @@ def launch_project(challenge_number=1, step_number=1):
 
     # For now, just show the default filesystem for that step.
     if challenge_number == 0:
-        default_global_tree(1, 1)
-    else:
-        default_global_tree(challenge_number, step_number)
+        challenge_number = 1
+        step_number = 1
+        # default_global_tree(1, 1)
+
+    # else:
+    #     default_global_tree(challenge_number, step_number)
+
+    FileTree(tree, tq_file_system).parse_complete(challenge_number, step_number)
 
     step = get_step_class(challenge_number, step_number)
     step()

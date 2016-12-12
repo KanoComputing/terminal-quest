@@ -44,6 +44,8 @@ tq_backup_folder = os.path.join(home_folder, 'Terminal-Quest-content')
 
 dark_css_class = "dark"
 
+fake_home_dir = os.path.join(tq_file_system, "~")
+
 
 def get_max_challenge_number():
     '''
@@ -66,3 +68,7 @@ def get_max_challenge_number():
 
 def get_username():
     return os.environ["LOGNAME"]
+
+
+def get_story_file(name):
+    return os.path.join(fallback_story_files_dir, name)
