@@ -47,7 +47,7 @@ shed_shop = {
         },
         {
             "name": "best-horn-in-the-world.sh",
-            "contents": get_story_file("best-horn-in-the-world.sh"),
+            "contents": get_story_file("best-horn-in-the-world-correct.sh"),
             "challenges": [
                 {
                     "challenge": 27,

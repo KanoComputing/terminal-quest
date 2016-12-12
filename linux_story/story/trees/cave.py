@@ -2,7 +2,18 @@ from linux_story.common import get_story_file
 
 dark_room = {
     "name": "dark-room",
-    "permissions": 0300,
+    "challenges": [
+        {
+            "challenge": 32,
+            "step": 1,
+            "permissions": 0300
+        },
+        {
+            "challenge": 33,
+            "step": 8,
+            "permissions": 0700
+        }
+    ],
     "children": [
         {
             "name": "instructions",
@@ -13,18 +24,70 @@ dark_room = {
 
 cage_room = {
     "name": "cage-room",
-    "permissions": 0500,
+    "challenges": [
+        {
+            "challenge": 32,
+            "step": 1,
+            "permissions": 0500
+        },
+        {
+            "challenge": 33,
+            "step": 15,
+            "permissions": 0700
+        }
+    ],
     "children": [
         {
             "name": "bird",
-            "contents": get_story_file("bird")
+            "contents": get_story_file("bird"),
+            "challenges": [
+                {
+                    "challenge": 33,
+                    "step": 17,
+                    "exists": False
+                }
+            ]
+        },
+        {
+            "name": "lighter",
+            "contents": get_story_file("lighter")
+        },
+        {
+            "name": "w-sign",
+            "contents": get_story_file("w-sign")
+        },
+        {
+            "name": "x-scroll",
+            "contents": get_story_file("x-scroll"),
+            "challenges": [
+                {
+                    "challenge": 1,
+                    "step": 1,
+                    "exists": False
+                },
+                {
+                    "challenge": 33,
+                    "step": 17
+                }
+            ]
         }
     ]
 }
 
 doorless_room = {
     "name": "doorless-room",
-    "permissions": 0600,
+    "challenges": [
+        {
+            "challenge": 32,
+            "step": 1,
+            "permissions": 0600
+        },
+        {
+            "challenge": 35,
+            "step": 20,
+            "permissions": 0700
+        }
+    ],
     "children": [
         {
             "name": "firework-animation",
@@ -52,12 +115,12 @@ cave = {
     "name": "cave",
     "children": [
         {
-            "name": "sign-1",
+            "name": "sign",
             "contents": get_story_file("sign_cave")
         },
         {
-            "name": "sign-2",
-            "contents": get_story_file("sign-cave-2")
+            "name": "r-sign",
+            "contents": get_story_file("r-sign")
         },
         dark_room,
         cage_room,

@@ -1,5 +1,6 @@
 from linux_story.common import get_story_file
 from hidden_shelter import hidden_shelter
+from east import east
 
 
 grumpy_man = {
@@ -88,6 +89,7 @@ town = {
         grumpy_man,
         young_girl,
         little_boy,
-        note_town
+        note_town,
+        east
     ]
 }

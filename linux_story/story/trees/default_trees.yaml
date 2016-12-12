@@ -495,7 +495,7 @@ house:
           path: "~/woods/clearing"
           permissions: 0000
 
-swordsmaster:
+swordmaster:
     name: swordmaster
     challenges:
         - challenge: 33
