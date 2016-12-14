@@ -2,11 +2,37 @@ from linux_story.common import get_story_file
 
 house = {
     "name": "house",
-    "permissions": 0000,
     "children": [
         {
            "name": "swordmaster",
             "contents": get_story_file("swordmaster")
+        },
+        {
+            "name": "note",
+            "contents": get_story_file("note_woods"),
+            "challenges": [
+                {
+                    "challenge": 1,
+                    "step": 1,
+                    "exists": False
+                },
+                {
+                    "challenge": 33,
+                    "step": 38
+                }
+            ]
+        }
+    ],
+    "challenges": [
+        {
+            "challenge": 32,
+            "step": 1,
+            "permissions": 0000
+        },
+        {
+            "challenge": 33,
+            "step": 32,
+            "permissions": 0700,
         }
     ]
 }

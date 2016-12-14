@@ -50,7 +50,18 @@ cage_room = {
         },
         {
             "name": "lighter",
-            "contents": get_story_file("lighter")
+            "contents": get_story_file("lighter"),
+            "challenges": [
+                {
+                    "challenge": 32,
+                    "step": 1
+                },
+                {
+                    "challenge": 33,
+                    "step": 16,
+                    "exists": False
+                }
+            ]
         },
         {
             "name": "w-sign",
@@ -83,7 +94,7 @@ doorless_room = {
             "permissions": 0600
         },
         {
-            "challenge": 35,
+            "challenge": 33,
             "step": 20,
             "permissions": 0700
         }
@@ -92,6 +103,20 @@ doorless_room = {
         {
             "name": "firework-animation",
             "contents": get_story_file("firework-animation")
+        },
+        {
+            "name": "x-sign",
+            "contents": get_story_file("x-sign_doorless-room"),
+            "challenges": [
+                {
+                    "challenge": 32,
+                    "step": 1
+                },
+                {
+                    "challenge": 33,
+                    "step": 23
+                }
+            ]
         }
     ]
 }
@@ -121,6 +146,26 @@ cave = {
         {
             "name": "r-sign",
             "contents": get_story_file("r-sign")
+        },
+        {
+            "name": "lighter",
+            "contents": get_story_file("lighter"),
+            "challenges": [
+                {
+                    "challenge": 1,
+                    "step": 1,
+                    "exists": False
+                },
+                {
+                    "challenge": 33,
+                    "step": 16
+                },
+                {
+                    "challenge": 33,
+                    "step": 24,
+                    "exists": False
+                }
+            ]
         },
         dark_room,
         cage_room,

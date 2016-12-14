@@ -47,7 +47,7 @@ class FileTree:
 
     def __parse(self, tree, path, challenge, step):
         if "name" not in tree:
-            raise Exception("Malformed tree")
+            raise Exception("No name for component in tree")
 
         challenge_data = self.__specs_for_challenge(challenge, step, tree)
         if not self.__exists_in_current_challenge(challenge_data):
@@ -132,7 +132,7 @@ class FileTree:
         if os.path.exists(path) and os.path.isdir(path):
             raise Exception("File " + path + " exists and should be a file")
         if os.path.exists(path) and not filecmp.cmp(path, src_path, shallow=False):
-            shutil.rmtree(path)
+            os.remove(path)
 
         shutil.copyfile(src_path, path)
         os.chmod(path, permissions)

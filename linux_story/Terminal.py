@@ -356,8 +356,10 @@ class Terminal(Cmd):
         if self.file_list:
             file_tree = FileTree(None, tq_file_system)
             for f in self.file_list:
-                file_tree.create_item(f["type"], f["path"], f["permissions"], f["contents"])
-
+                if "type" in f and f["type"] == "file":
+                    file_tree.create_item(f["type"], f["path"], f["permissions"], f["contents"])
+                else:
+                    file_tree.create_item(f["type"], f["path"], f["permissions"], "")
     #######################################################
     # Helper commands
 
