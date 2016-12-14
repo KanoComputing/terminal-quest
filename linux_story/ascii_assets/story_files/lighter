@@ -22,6 +22,6 @@ dir_path = os.path.abspath("/home/caroline/weekend-work-2/terminal-Quest")
 sys.path.insert(1, dir_path)
 
 from linux_story.Animation import Animation
-Animation("firework-animation-2").play_finite(cycles=3)
+Animation("firework-animation-2").play_finite(cycles=1)
 
 END

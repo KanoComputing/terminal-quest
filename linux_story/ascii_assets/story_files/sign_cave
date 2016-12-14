@@ -5,8 +5,9 @@
    |  Three rooms, each with   |\
   .'   a permission missing. _.' |
   `._                          |:.'
-    |                        _.' |
-    `|                        |  |
+    |        Read            _.' |
+    `|       Write            |  |
+     |       Execute          |  |
       `=''"=---.._.--.      _|  |
            | _   - | `-...-__|_.'
            |  -    |
