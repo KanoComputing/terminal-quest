@@ -30,13 +30,13 @@ story_replies = {
                 _("Clara: {{Bb:\"I don't know, I wasn't senior enough " +\
                 "to be taught.\"}}" +\
                 "\n{{Bb:\"I think he was taught from a}} " +\
-                "{{bb:masked swordsmaster}} {{Bb:living outside of town.\"}}")
+                "{{bb:masked swordmaster}} {{Bb:living outside of town.\"}}")
         },
         {
-            "user": _("\"Where would I find this masked swordsmaster?\""),
+            "user": _("\"Where would I find this masked swordmaster?\""),
             "clara": \
                 _("Clara: {{Bb:\"He said the}} " +\
-                "{{bb:masked swordsmaster}} {{Bb:lived in the woods.\"}}" +\
+                "{{bb:masked swordmaster}} {{Bb:lived in the woods.\"}}" +\
                 "\n{{Bb:\"I presume he meant the woods just off the}} " +\
                 "{{lb:Windy Road}}{{Bb:? The one " +\
                 "near the farm and that funny lonely house outside town.\"}}")
@@ -229,10 +229,10 @@ class Step3(StepNanoStory):
 class Step4(StepNanoStory):
     last_step = True
 
-    print_text = _("{{yb:\"Where would I find this masked swordsmaster?\"}}"),
+    print_text = _("{{yb:\"Where would I find this masked swordmaster?\"}}"),
     story = [
         _("Clara: {{Bb:\"He said the}} " +\
-        "{{bb:masked swordsmaster}} {{Bb:lived in the woods.\"}}"),
+        "{{bb:masked swordmaster}} {{Bb:lived in the woods.\"}}"),
 
         _("{{Bb:\"I presume he meant the woods just off the}} " +\
         "{{bb:Windy Road}}{{Bb:? The one " +\

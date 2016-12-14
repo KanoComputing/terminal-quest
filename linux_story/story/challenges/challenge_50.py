@@ -9,7 +9,7 @@ import os
 import time
 
 from linux_story.Animation import Animation
-from linux_story.common import get_username
+from linux_story.common import get_username, get_story_file
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.terminals.terminal_sudo import TerminalSudo
 
@@ -35,24 +35,20 @@ class Step10(StepTemplateSudo):
         "",
         "{{yb:1: A rabbit came and stole the command in front of us.}}",
         "{{yb:2: Nothing.}}",
-        "{{yb:3: Hello.}}"
 
     ]
     start_dir = "~/town/east/library/private-section"
     end_dir = "~/town/east/library/private-section"
     commands = [
         "echo 1",
-        "echo 2",
-        "echo 3"
+        "echo 2"
     ]
     user_replies = {
         "echo 1:": "A rabbit came and stole the command in front of us.",
-        "echo 2": "Nothing.",
-        "echo 3": "There was nothing in the private section."
+        "echo 2": "Nothing."
     }
     extra_hints = {
-        "echo 2": "Swordmaster: {{Bb:Tell me the truth.}}",
-        "echo 3": "Swordmaster: {{Bb:I can assure you there was.}}"
+        "echo 2": "Swordmaster: {{Bb:Tell me the truth.}}"
     }
     hints = [
         "Swordmaster: {{Bb:Speak with}} {{lb:echo}} {{Bb:and tell me!}}"
@@ -80,14 +76,12 @@ class StepAngrySwordMaster(StepTemplateSudo):
     ]
     commands = [
         "echo 1",
-        "echo 2",
-        "echo 3"
+        "echo 2"
 
     ]
     user_replies = {
         "echo 1:": "A rabbit came and stole the command in front of us.}}",
-        "echo 2": "Nothing.",
-        "echo 3": "There was nothing in the private section."
+        "echo 2": "Nothing."
     }
     start_dir = "~/town/east/library/private-section"
     end_dir = "~/town/east/library/private-section"
@@ -156,10 +150,10 @@ class Step12(StepTemplateSudo):
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
     commands = [
-        "cat swordsmaster"
+        "cat swordmaster"
     ]
     hints = [
-        "Talk to him with {{yb:cat swordsmaster}}"
+        "Talk to him with {{yb:cat swordmaster}}"
     ]
 
     def next(self):
@@ -180,19 +174,33 @@ class Step13(StepTemplateSudo):
     ]
 
     deleted_items = [
-        "~/woods/clearing/house/swordsmaster"
+        "~/woods/clearing/house/swordmaster"
     ]
 
-    story_dict = {
-        "swordmaster-without-sword": {
-            "name": "swordsmaster",
-            "path": "~/woods/clearing/house"
+    file_list = [
+        {
+            "path": "~/woods/clearing/house/swordmaster",
+            "contents": get_story_file("swordmaster-without-sword"),
+            "type": "file",
+            "permissions": 0755
         },
-        "RM-sword": {
-            "name": "sword",
-            "path": "~/woods/clearing/house"
+        {
+            "path": "~/woods/clearing/house/sword",
+            "contents": get_story_file("RM-sword"),
+            "type": "file",
+            "permissions": 0755
         }
-    }
+    ]
+    # {
+    #     "swordmaster-without-sword": {
+    #         "name": "swordmaster",
+    #         "path": "~/woods/clearing/house"
+    #     },
+    #     "RM-sword": {
+    #         "name": "sword",
+    #         "path": "~/woods/clearing/house"
+    #     }
+    # }
 
     def check_command(self):
         if self.last_user_input == "ls":
@@ -291,8 +299,11 @@ class Step19(StepTemplateSudo):
 # Story where swordmaster gets kidnapped by the rabbit
 class Step21(StepTemplateSudo):
     print_text = REPLY_PRINT_TEXT
-    story = SWORDMASTER_STORY + [
-        "",
+    # story = SWORDMASTER_STORY + [
+    #     "",
+    #     "{{pb:Ding. Dong.}}"
+    # ]
+    story = [
         "{{pb:Ding. Dong.}}"
     ]
     start_dir = "~/town/east/library/private-section"
@@ -305,15 +316,29 @@ class Step21(StepTemplateSudo):
     hints = [
         "Look around with {{yb:ls}}"
     ]
-    story_dict = {
-        "RM-sword": {
-            "name": "sword",
-            "path": "~/town/east/library/private-section"
+    # story_dict = {
+    #     "RM-sword": {
+    #         "name": "sword",
+    #         "path": "~/town/east/library/private-section"
+    #     },
+    #     "torn-note": {
+    #         "path": "~/town/east/library/private-section"
+    #     }
+    # }
+    file_list = [
+        {
+            "path": "~/town/east/library/private-section/swordmaster",
+            "contents": get_story_file("swordmaster-without-sword"),
+            "type": "file",
+            "permissions": 0644
         },
-        "torn-note": {
-            "path": "~/town/east/library/private-section"
+        {
+            "path": "~/town/east/library/private-section/sword",
+            "contents": get_story_file("RM-sword"),
+            "type": "file",
+            "permissions": 0644
         }
-    }
+    ]
 
     def next(self):
         Step22()
@@ -441,12 +466,19 @@ class Step1(StepTemplateSudo):
         "cd rabbithole",
         "cd rabbithole/"
     ]
-    story_dict = {
-        "rabbithole": {
-            "path": "~/woods/thicket",
+    # story_dict = {
+    #     "rabbithole": {
+    #         "path": "~/woods/thicket",
+    #         "permissions": 0000
+    #     }
+    # }
+    file_list = [
+        {
+            "type": "directory",
+            "path": "~/woods/thicket/rabbithole",
             "permissions": 0000
         }
-    }
+    ]
 
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)
@@ -495,15 +527,83 @@ class Step3(StepTemplateSudo):
         "cd rabbithole/"
     ]
 
-    story_dict = {
-        "bell, Rabbit": {
-            "path": "~/woods/thicket/rabbithole"
+    # story_dict = {
+    #     "bell, Rabbit": {
+    #         "path": "~/woods/thicket/rabbithole"
+    #     },
+    #     # these should be moved as in appropriate in the story
+    #     "Mum, Dad, dog, Edith, Edward, grumpy-man, Mayor, young-girl, little-boy": {
+    #         "path": "~/woods/thicket/rabbithole/cage"
+    #     }
+    # }
+    file_list = [
+        {
+            "path": "~/woods/thicket/rabbithole/bell",
+            "type": "file",
+            "contents": get_story_file("bell"),
+            "permissions": 0644
         },
-        # these should be moved as in appropriate in the story
-        "Mum, Dad, dog, Edith, Edward, grumpy-man, Mayor, young-girl, little-boy": {
-            "path": "~/woods/thicket/rabbithole/cage"
+        {
+            "path": "~/woods/thicket/rabbithole/Rabbit",
+            "type": "file",
+            "contents": get_story_file("Rabbit"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/Mum",
+            "type": "file",
+            "contents": get_story_file("Mum"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/Dad",
+            "type": "file",
+            "contents": get_story_file("Dad"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/dog",
+            "type": "file",
+            "contents": get_story_file("dog"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/Edith",
+            "type": "file",
+            "contents": get_story_file("Edith"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/Edward",
+            "type": "file",
+            "contents": get_story_file("Edward"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/grumpy-man",
+            "type": "file",
+            "contents": get_story_file("grumpy-man"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/Mayor",
+            "type": "file",
+            "contents": get_story_file("Mayor"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/young-girl",
+            "type": "file",
+            "contents": get_story_file("young-girl"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/little-boy",
+            "type": "file",
+            "contents": get_story_file("little-boy"),
+            "permissions": 0644
         }
-    }
+    ]
 
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)

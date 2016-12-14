@@ -32,7 +32,7 @@ class Step1(StepTemplateSudo):
 
 class Step2(StepTemplateSudo):
     story = [
-        "The swordsmaster appears.",
+        "The swordmaster appears.",
         "Swordsmaster: {{Bb:I felt something shift...did you get the command?}}",
         "",
         "{{yb:1: A white rabbit stole the command.}}",

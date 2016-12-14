@@ -4,8 +4,7 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-
-
+from linux_story.common import get_story_file
 from linux_story.story.terminals.terminal_chmod import TerminalChmod
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.challenges.challenge_42 import Step1 as NextStep
@@ -44,13 +43,45 @@ class Step2(StepTemplateChmod):
         "Swordsmaster: {{Bb:You may need my help later. Come back if you are blocked "
         "by lack of knowledge.}}",
         "",
-        "Time to head off - leave the swordsmaster's house."
+        "Time to head off - {{lb:leave}} the swordmaster's house."
     ]
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing"
 
     hints = [
         "{{rb:Leave the house and go into the clearing with}} {{yb:cd ..}}"
+    ]
+
+    file_list = [
+        {
+            "contents": get_story_file("note_woods"),
+            "path": "~/woods/note",
+            "permissions": 0644,
+            "type": "file"
+        },
+        {
+            "contents": get_story_file("Rabbit"),
+            "path": "~/woods/thicket/Rabbit",
+            "permissions": 0644,
+            "type": "file"
+        },
+        {
+            "path": "~/woods/thicket/rabbithole",
+            "permissions": 0755,
+            "type": "directory"
+        },
+        {
+            "contents": get_story_file("note_swordsmaster-clearing"),
+            "path": "~/woods/clearing/note",
+            "permissions": 0644,
+            "type": "file"
+        },
+        {
+            "contents": get_story_file("note_rabbithole"),
+            "path": "~/woods/thicket/note",
+            "permissions": 0644,
+            "type": "file"
+        }
     ]
 
     # this should be inherited somehowz
@@ -63,7 +94,7 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        "Look around and see if there are clues about where to go next."
+        "{{lb:Look around}} and see if there are clues about where to go next."
     ]
 
     start_dir = "~/woods/clearing"
@@ -76,12 +107,6 @@ class Step3(StepTemplateChmod):
     hints = [
         "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     ]
-    story_dict = {
-        "note_swordsmaster-clearing": {
-            "path": "~/woods/clearing",
-            "name": "note"
-        }
-    }
 
     def next(self):
         Step4()
@@ -109,8 +134,8 @@ class Step4(StepTemplateChmod):
 # could help. Find me, I'm deeper in the woods."
 class Step5(StepTemplateChmod):
     story = [
-        "It looks like we should go further into the woods.",
-        "Let's leave the clearing and see where else we can go."
+        "It looks like we should leave the clearing.",
+        "{{lb:Go back into the woods.}}"
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods"
@@ -137,12 +162,6 @@ class Step6(StepTemplateChmod):
         "ls",
         "ls -a"
     ]
-    story_dict = {
-        "note_woods": {
-            "path": "~/woods",
-            "name": "note"
-        }
-    }
 
     # This text is used so much we can probably save it as "default ls hint"
     hints = [
@@ -200,12 +219,6 @@ class Step9(StepTemplateChmod):
     hints = [
         "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     ]
-    story_dict = {
-        "note_thicket": {
-            "path": "~/woods/thicket",
-            "name": "note"
-        }
-    }
     last_step = True
 
     def next(self):

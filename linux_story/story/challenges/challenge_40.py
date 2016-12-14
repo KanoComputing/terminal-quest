@@ -4,6 +4,7 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
+from linux_story.common import get_story_file
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.terminals.terminal_chmod import TerminalChmod
 from linux_story.story.challenges.challenge_41 import Step1 as NextStep
@@ -74,12 +75,21 @@ class Step3(StepTemplateChmod):
         "ls -a"
     ]
 
-    story_dict = {
-        "note_swordsmaster-house": {
-            "path": "~/woods/clearing/house",
-            "name": "note"
+    # story_dict = {
+    #     "note_swordsmaster-house": {
+    #         "path": "~/woods/clearing/house",
+    #         "name": "note"
+    #     }
+    # }
+
+    file_list = [
+        {
+            "contents": get_story_file("note_swordsmaster-house"),
+            "path": "~/woods/clearing/house/note",
+            "permissions": 0755,
+            "type": "file"
         }
-    }
+    ]
 
     hints = [
         "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"

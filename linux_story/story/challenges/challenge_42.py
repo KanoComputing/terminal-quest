@@ -78,7 +78,8 @@ GO_TO_THE_LIBRARY = [
 RABBITS_ARE_QUIET = [
     "Rabbit: {{Bb:...}}",
     "",
-    "It seems the Rabbit doesn't say very much. That's quite normal for rabbits."
+    "It seems the Rabbit doesn't say very much.",
+    "That's quite normal for rabbits."
 ]
 
 
@@ -116,7 +117,7 @@ class StepTemplateChmod(TerminalRabbit):
 # Same as the towns people, and the last challenge?
 class Step1(StepTemplateChmod):
     story = [
-        "You see a Rabbit, a piece of paper and a doorway.",
+        "You see a Rabbit, a piece of paper and a rabbithole.",
         "This Rabbit looks somewhat familiar...",
         "{{lb:Listen}} to the Rabbit."
     ]
@@ -181,7 +182,7 @@ class Step4(StepTemplateChmod):
     start_dir = "~/woods/thicket"
     end_dir = "~/town/east/library"
     hints = [
-        "{{rb:Is this the same place the swordsmaster referred to?}}"
+        "{{rb:Is this the same place the swordmaster referred to?}}"
         "{{rb:Use}} {{yb:cd ~/town/east/library}} {{rb:to go to the library}}"
     ]
     last_step = True

@@ -130,7 +130,7 @@ class Step4(StepTemplateNano):
 class Step5(StepTemplateNano):
     story = [
         _("Enough wandering. Let's go and try and find the " +\
-        "{{bb:masked swordsmaster}} near the woods, and see " +\
+        "{{bb:masked swordmaster}} near the woods, and see " +\
         "what information he can tell us."),
         _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
     ]

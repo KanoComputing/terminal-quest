@@ -130,7 +130,7 @@ class Step4(StepNano):
         "here?\"}}"),
         _("Clara: {{Bb:\"Where are you going to go now?\"}}"),
         _("\nLet's head back to see {{bb:Bernard}} and see if he's heard of " +\
-        "the {{bb:masked swordsmaster}}.\n"),
+        "the {{bb:masked swordmaster}}.\n"),
         _("{{lb:Head to the}} {{bb:shed-shop.}}")
     ]
     start_dir = "~/town/east/restaurant/.cellar"

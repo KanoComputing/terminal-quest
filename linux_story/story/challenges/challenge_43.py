@@ -56,7 +56,7 @@ class Step3(StepTemplateChmod):
         "Ah, it's the {{lb:private-section}}.",
         "The Rabbit looks very excited. His eyes are sparkling.",
         "How do you unlock the {{lb:private-section}}? It was the command "
-        "that the swordsmaster talked about..."
+        "that the swordmaster talked about..."
     ]
     start_dir = "~/town/east/library"
     end_dir = "~/town/east/library"

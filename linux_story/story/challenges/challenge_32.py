@@ -7,7 +7,7 @@
 
 
 from linux_story.story.terminals.terminal_nano import TerminalNano
-from linux_story.story.challenges.challenge_33_talk_to_sword_master import Step1 as NextStep
+from linux_story.story.challenges.challenge_33 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
 
 
@@ -18,8 +18,7 @@ class StepTemplateNano(TerminalNano):
 class Step1(StepTemplateNano):
     story = [
         "Time to find the swordmaster.",
-        "Ruth said that he was in the woods just off the "
-        "{{lb:Windy Road}} {{yb:~}}.",
+        "Clara said that he was in the woods just off the {{lb:Windy Road}} {{yb:~}}.",
         "Use {{yb:cd}} to head there now."
     ]
     start_dir = "~/town/east/shed-shop"
@@ -124,12 +123,13 @@ class Step4(StepTemplateNano):
 class Step5(StepTemplateNano):
     story = [
         "You see a {{bb:clearing}} which reminds you of a garden.",
-        "Try and {{lb:go into the clearing.}}"
+        "{{lb:Go into the}} {{Bb:clearing}}"
     ]
     start_dir = "~/woods"
     end_dir = "~/woods/clearing"
     commands = [
-        "cd clearing/"
+        "cd clearing/",
+        "cd clearing"
     ]
     hints = [
         "{{rb:Use}} {{yb:cd clearing/}} {{rb:to go into the clearing.}}"
@@ -189,9 +189,10 @@ class Step7(StepTemplateNano):
 class Step8(StepTemplateNano):
     story = [
         "Huh, you can't seem to look inside.",
-        "It seems to be locked in the same way the {{bb:private-section}} is.",
+        "It is locked in the same way the {{bb:private-section}} in the library is.",
         "Maybe there's a clue somewhere around here.",
-        "{{lb:Investigate}} the area around and see if you can find any clues."
+        "",
+        "{{lb:Investigate}} the area and see if you can find any clues."
     ]
     start_dir = "~/woods/clearing"
 
