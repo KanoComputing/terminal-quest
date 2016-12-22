@@ -1,141 +1,226 @@
 #!/usr/bin/env python
 #
-# Copyright (C) 2014, 2015, 2016 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-
-import os
-import time
-from linux_story.story.terminals.terminal_sudo import TerminalSudo
+from linux_story.common import get_story_file
 from linux_story.step_helper_functions import unblock_cd_commands
+from linux_story.story.terminals.terminal_rm import TerminalRm
+from linux_story.story.challenges.challenge_45 import Step1 as NextStep
 
 
-class StepTemplateSudo(TerminalSudo):
+class StepTemplateRm(TerminalRm):
     challenge_number = 44
 
 
-
-class Step1(StepTemplateSudo):
+class Step1(StepTemplateRm):
     story = [
-        "The command locked away has been stolen...",
-        "...",
-        "What should you do now?",
+        "You destroyed the torn-note.",
+        "The rm command gives you the power to {{lb:remove}} items.",
+        "",
+        "It is time to find that rabbit.",
+        "Go to where you met the rabbit."
+    ]
+    start_dir = "~/town/east/library/private-section"
+    end_dir = "~/woods/thicket"
+
+    hints = [
+        "Remember where you met the rabbit?",
+        "You met the rabbit in the woods",
+        "Go to ~/woods/thicket"
     ]
 
-    start_dir = "~/town/east/library/private-section"
-    end_dir = "~/town/east/library/private-section"
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step2()
 
 
-class Step2(StepTemplateSudo):
+class Step2(StepTemplateRm):
     story = [
-        "The swordmaster appears.",
-        "Swordsmaster: {{Bb:I felt something shift...did you get the command?}}",
-        "",
-        "{{yb:1: A white rabbit stole the command.}}",
-        "{{yb:2: Yeah I got it. Nothing else happened.}}",
-        "{{yb:3: Please don't kill me.}}"
+        "Look around."
     ]
-
-    start_dir = "~/town/east/library/private-section"
-    end_dir = "~/town/east/library/private-section"
-
-    extra_hints = {
-        "echo 2": "Swordsmaster: {{Bb:...tell me the truth. What happened here?}}",
-        "echo 3": "Swordsmaster: {{Bb:..I can't promise that.}}"
-    }
+    start_dir = "~/woods/thicket"
+    end_dir = "~/woods/thicket"
     commands = [
-        "echo 1"
+        "ls",
+        "ls .",
+        "ls ./",
+        "ls -a",
+        "ls -a .",
+        "ls -a ./"
     ]
 
-    def check_command(self):
-        if self.last_user_input in self.extra_hints:
-            self.send_hint(self.extra_hints[self.last_user_input])
-
-        return StepTemplateSudo.check_command(self)
+    hint = [
+        "Use ls to look around"
+    ]
 
     def next(self):
         Step3()
 
 
-class Step3(StepTemplateSudo):
+# Outside the rabbithole.
+class Step3(StepTemplateRm):
     story = [
-        "Swordsmaster: {{Bb:A white rabbit? An old friend of mine, the Judoka, used to have a white rabbit...}}",
-        "{{Bb:Tell me, was there anything unusual about this rabbit?}}"
-        "",
-        "{{yb:1: It communicated via notes.}}",
-        "{{yb:2: I think I've seen it before.}}",
-        "{{yb:3: It was carrying something.}}"
+        "You are outside the rabbithole. Try and go inside."
     ]
-    start_dir = "~/town/east/library/private-section"
-    end_dir = "~/town/east/library/private-section"
+    start_dir = "~/woods/thicket"
+    end_dir = "~/woods/thicket"
+    dirs_to_attempt = "~/woods/thicket/rabbithole"
 
-    extra_hints = {
-        "echo 2": "Swordsmaster: {{Bb:It could have been watching you for a while. Was there anything else?}}",
-        "echo 1": "Swordsmaster: {{Bb:Well rabbits can't normally speak. How else did you expect it to communicate?}}"
-    }
     commands = [
-        "echo 3"
+        "cd rabbithole",
+        "cd rabbithole/"
+    ]
+    # story_dict = {
+    #     "rabbithole": {
+    #         "path": "~/woods/thicket",
+    #         "permissions": 0000
+    #     }
+    # }
+    file_list = [
+        {
+            "type": "directory",
+            "path": "~/woods/thicket/rabbithole",
+            "permissions": 0000
+        }
     ]
 
-    def check_command(self):
-        if self.last_user_input in self.extra_hints:
-            self.send_hint(self.extra_hints[self.last_user_input])
-
-        return StepTemplateSudo.check_command(self)
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step4()
 
 
-class Step4(StepTemplateSudo):
+class Step4(StepTemplateRm):
     story = [
-        "Swordsmaster: {{Bb:Could this be the bell you've been hearing that makes people disappear?}}",
-        "{{Bb:I wonder if this is controlling the rabbit in some way...}}",
-        "{{Bb:I want to find the Judoka and see if he has a solution to this.}}"
+        "It looks like it is locked to us. The rabbit must have learnt how to lock the directory",
+        "Unlock it."
     ]
+    start_dir = "~/woods/thicket"
+    end_dir = "~/woods/thicket"
 
-
-class Step5(StepTemplateSudo):
-    story = [
-        "Swordsmaster: {{Bb:It's not all over yet. To use the}} {{lb:command you picked up}} {{Bb:you need to know "
-        "the password.}}",
-        "{{Bb:If the rabbit doesn't know the password, then we have some time. I need you to try and guess it.}}",
-        "{{Bb:Use}} {{yb:sudo ls}} {{Bb:to look around.}}"
-    ]
-    start_dir = "~/town/east/library/private-section"
-    end_dir = "~/town/east/library/private-section"
-
-    hints = [
-        "Swordsmaster: {{Bb:Use}} {{yb:sudo ls}} {{to look around.}}"
-    ]
     commands = [
-        "sudo ls"
+        # wrap this in a function?
+        "chmod +rwx rabbithole",
+        "chmod +rwx rabbithole/",
+        "chmod +rxw rabbithole",
+        "chmod +rxw rabbithole/",
+        "chmod +wxr rabbithole",
+        "chmod +wxr rabbithole/",
+        "chmod +wrx rabbithole",
+        "chmod +wrx rabbithole/",
+        "chmod +xwr rabbithole",
+        "chmod +xwr rabbithole/",
+        "chmod +xrw rabbithole",
+        "chmod +xrw rabbithole/"
     ]
 
     def next(self):
-        Step6()
+        Step5()
 
 
-class Step6(StepTemplateSudo):
+class Step5(StepTemplateRm):
     story = [
-        "{{Bb:I need you to face the rabbit, and do whatever you have to to stop this.}}",
-        "{{Bb:I will teach you the command to remove this...creature, should the worst come to that}}",
-        "{{Bb:Take a look at my sword.}}"
+        "Now go inside"
     ]
-    start_dir = "~/town/east/library/private-section"
-    end_dir = "~/town/east/library/private-section"
+    start_dir = "~/woods/thicket"
+    end_dir = "~/woods/thicket/rabbithole"
 
-    hints = [
-        "Swordsmaster: {{Bb:Examine my sword with}} {{yb:cat sword}}"
-    ]
     commands = [
-        "cat sword"
+        "cd rabbithole",
+        "cd rabbithole/"
     ]
+
+    # story_dict = {
+    #     "bell, Rabbit": {
+    #         "path": "~/woods/thicket/rabbithole"
+    #     },
+    #     # these should be moved as in appropriate in the story
+    #     "Mum, Dad, dog, Edith, Edward, grumpy-man, Mayor, young-girl, little-boy": {
+    #         "path": "~/woods/thicket/rabbithole/cage"
+    #     }
+    # }
+    file_list = [
+        {
+            "path": "~/woods/thicket/rabbithole/bell",
+            "type": "file",
+            "contents": get_story_file("bell"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/Rabbit",
+            "type": "file",
+            "contents": get_story_file("Rabbit"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/Mum",
+            "type": "file",
+            "contents": get_story_file("Mum"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/Dad",
+            "type": "file",
+            "contents": get_story_file("Dad"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/dog",
+            "type": "file",
+            "contents": get_story_file("dog"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/Edith",
+            "type": "file",
+            "contents": get_story_file("Edith"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/Edward",
+            "type": "file",
+            "contents": get_story_file("Edward"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/grumpy-man",
+            "type": "file",
+            "contents": get_story_file("grumpy-man"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/Mayor",
+            "type": "file",
+            "contents": get_story_file("Mayor"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/young-girl",
+            "type": "file",
+            "contents": get_story_file("young-girl"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/little-boy",
+            "type": "file",
+            "contents": get_story_file("little-boy"),
+            "permissions": 0644
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/cage/swordmaster",
+            "contents": get_story_file("swordmaster-without-sword"),
+            "type": "file",
+            "permissions": 0644
+        }
+    ]
+
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
-        pass
-
+        NextStep()

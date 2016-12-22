@@ -5,9 +5,13 @@
 #
 # A chapter of the story
 
+# Redo chapter 5 with the swordmaster.
+
+import os
+
 from linux_story.story.terminals.terminal_chmod import TerminalChmod
-from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.challenges.challenge_39 import Step1 as NextStep
+from linux_story.step_helper_functions import unblock_cd_commands
 
 
 class StepTemplateChmod(TerminalChmod):
@@ -16,17 +20,14 @@ class StepTemplateChmod(TerminalChmod):
 
 class Step1(StepTemplateChmod):
     story = [
-        "Swordmaster: {{Bb:Try and go into the}} {{bb:no-entry-room}}",
+        "{{gb:You've found the answer to the swordmaster's riddle!}}",
+        "Now {{lb:go back to the swordmaster's clearing.}}",
+        ""
     ]
-    start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house"
-    dirs_to_attempt = "~/woods/clearing/house/no-entry-room"
-    commands = [
-        "cd no-entry-room",
-        "cd no-entry-room/"
-    ]
+    start_dir = "~/woods/cave"
+    end_dir = "~/woods/clearing"
     hints = [
-        "Swordsmaster: {{Bb:Use}} {{yb:cd no-entry-room}}"
+        "Head back to the {{lb:~/woods/clearing}} where the swordmaster lives"
     ]
 
     def block_command(self):
@@ -38,19 +39,15 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "Swordmaster: {{Bb:You are blocked from going inside. This is because the}} {{lb:execute}} {{Bb:permission "
-        "has been removed from this room.}}",
-        "{{Bb:Use}} {{yb:chmod +x no-entry-room}} {{Bb:to allow yourself to go inside.}}"
+        "Knock on the swordmaster's door."
     ]
-    start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house"
-    dirs_to_attempt = "~/woods/clearing/house/no-entry-room"
+    start_dir = "~/woods/clearing"
+    end_dir = "~/woods/clearing"
     commands = [
-        "chmod +x no-entry-room",
-        "chmod +x no-entry-room/"
+        "echo knock knock"
     ]
     hints = [
-        "Swordmaster: {{Bb:Use}} {{yb:chmod +x no-entry-room}}"
+        "Use {{yb:echo knock knock}} to knock on the swordmaster's door"
     ]
 
     def next(self):
@@ -59,38 +56,61 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        "Now try and go inside"
+        "Swordmaster:",
+        "{{Bb:If you have me, you want to share me.",
+        "If you share me, you haven't got me.",
+        "What am I?}}",
+        "",
+        "{{yb:1. A secret}}",
+        "{{yb:2. I don't know}}",
+        "",
+        "Use {{lb:echo}} to reply."
     ]
-    start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house/no-entry-room"
+    start_dir = "~/woods/clearing"
+    end_dir = "~/woods/clearing"
     commands = [
-        "cd no-entry-room",
-        "cd no-entry-room/"
+        "echo 1"
     ]
     hints = [
-        "Swordsmaster: {{Bb:Use}} {{yb:cd no-entry-room}}"
+        "Swordmaster: {{lb:Incorrect. Did you finish the challenges in the cave? The answer was in there.}}"
+    ]
+
+    def next(self):
+        path = self.generate_real_path("~/woods/clearing/house")
+        os.chmod(path, 0755)
+        Step4()
+
+
+class Step4(StepTemplateChmod):
+    story = [
+        "{{wb:Clunck.}} {{gb:It sounds like the door unlocked.}}",
+        "",
+        "{{lb:Go in the house.}}"
+    ]
+    start_dir = "~/woods/clearing"
+    end_dir = "~/woods/clearing/house"
+    hints = [
+        "{{rb:Use}} {{yb:cd house}} {{rb:to go inside}}"
     ]
 
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)
 
     def next(self):
-        Step4()
+        Step5()
 
 
-class Step4(StepTemplateChmod):
+class Step5(StepTemplateChmod):
     story = [
-        "Look around"
+        "Look around."
     ]
-    start_dir = "~/woods/clearing/house/no-entry-room"
-    end_dir = "~/woods/clearing/house/no-entry-room"
-    commands = [
-        "ls",
-        "ls .",
-        "ls ./"
-    ]
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
     hints = [
-        "Swordsmaster: {{Bb:Use}} {{yb:ls}}"
+        "{{rb:Use}} {{yb:ls}} {{rb:to go inside}}"
+    ]
+    commands = [
+        "ls"
     ]
 
     def next(self):

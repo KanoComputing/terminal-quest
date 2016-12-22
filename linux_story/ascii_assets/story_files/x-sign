@@ -3,10 +3,10 @@
            |  - :- |
     <''''''''''''''''''''''''-._..--'\'\
    |   You cannot go into the        |  |
-  `.   doorless room, nor            |  |
+  `.   locked room, nor              |  |
     |  access the contents. Using  . _.' |
     `|                                |  |
-     |  chmod +x room                _.' |
+     |  chmod +x locked-room         _.' |
      |                                |  |
      | gives you access to the room   |  |
      |                               |  |

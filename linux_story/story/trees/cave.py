@@ -9,21 +9,21 @@ dark_room = {
             "permissions": 0300
         },
         {
-            "challenge": 33,
-            "step": 8,
+            "challenge": 35,
+            "step": 1,
             "permissions": 0700
         }
     ],
     "children": [
         {
-            "name": "instructions",
-            "contents": get_story_file("instructions-dark-room")
+            "name": "sign",
+            "contents": get_story_file("x-sign")
         }
     ]
 }
 
 cage_room = {
-    "name": "cage-room",
+    "name": "cage",
     "challenges": [
         {
             "challenge": 32,
@@ -31,8 +31,8 @@ cage_room = {
             "permissions": 0500
         },
         {
-            "challenge": 33,
-            "step": 15,
+            "challenge": 35,
+            "step": 6,
             "permissions": 0700
         }
     ],
@@ -42,8 +42,8 @@ cage_room = {
             "contents": get_story_file("bird"),
             "challenges": [
                 {
-                    "challenge": 33,
-                    "step": 17,
+                    "challenge": 36,
+                    "step": 1,
                     "exists": False
                 }
             ]
@@ -57,28 +57,9 @@ cage_room = {
                     "step": 1
                 },
                 {
-                    "challenge": 33,
-                    "step": 16,
+                    "challenge": 36,
+                    "step": 2,
                     "exists": False
-                }
-            ]
-        },
-        {
-            "name": "w-sign",
-            "contents": get_story_file("w-sign")
-        },
-        {
-            "name": "x-scroll",
-            "contents": get_story_file("x-scroll"),
-            "challenges": [
-                {
-                    "challenge": 1,
-                    "step": 1,
-                    "exists": False
-                },
-                {
-                    "challenge": 33,
-                    "step": 17
                 }
             ]
         }
@@ -86,7 +67,7 @@ cage_room = {
 }
 
 doorless_room = {
-    "name": "doorless-room",
+    "name": "locked-room",
     "challenges": [
         {
             "challenge": 32,
@@ -94,19 +75,19 @@ doorless_room = {
             "permissions": 0600
         },
         {
-            "challenge": 33,
-            "step": 20,
+            "challenge": 35,
+            "step": 4,
             "permissions": 0700
         }
     ],
     "children": [
         {
-            "name": "firework-animation",
+            "name": "firework",
             "contents": get_story_file("firework-animation")
         },
         {
-            "name": "x-sign",
-            "contents": get_story_file("x-sign_doorless-room"),
+            "name": "sign",
+            "contents": get_story_file("w-sign"),
             "challenges": [
                 {
                     "challenge": 32,
@@ -117,13 +98,27 @@ doorless_room = {
                     "step": 23
                 }
             ]
+        },
+        {
+            "name": "lighter",
+            "contents": get_story_file("lighter"),
+            "challenges": [
+                {
+                    "challenge": 32,
+                    "step": 1,
+                    "exists": False
+                },
+                {
+                    "challenge": 36,
+                    "step": 2
+                }
+            ]
         }
     ]
 }
 
 chest = {
     "name": "chest",
-    "permissions": 0000,
     "children": [
         {
             "name": "riddle",
@@ -133,40 +128,29 @@ chest = {
             "name": "answer",
             "contents": get_story_file("answer-cave")
         }
+    ],
+    "challenges": [
+        {
+            "challenge": 1,
+            "step": 1,
+            "exists": False
+        },
+        {
+            "challenge": 37,
+            "step": 2,
+            "permissions": 0000
+        },
+        {
+            "challenge": 37,
+            "step": 5,
+            "permissions": 0700
+        }
     ]
 }
 
 cave = {
     "name": "cave",
     "children": [
-        {
-            "name": "sign",
-            "contents": get_story_file("sign_cave")
-        },
-        {
-            "name": "r-sign",
-            "contents": get_story_file("r-sign")
-        },
-        {
-            "name": "lighter",
-            "contents": get_story_file("lighter"),
-            "challenges": [
-                {
-                    "challenge": 1,
-                    "step": 1,
-                    "exists": False
-                },
-                {
-                    "challenge": 33,
-                    "step": 16
-                },
-                {
-                    "challenge": 33,
-                    "step": 24,
-                    "exists": False
-                }
-            ]
-        },
         dark_room,
         cage_room,
         doorless_room,

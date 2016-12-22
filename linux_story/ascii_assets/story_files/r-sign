@@ -5,7 +5,7 @@
    |  You cannot read in a     |\
    |   dark room. Use          | |
    |                         _.' |
-   |    chmod +r room          | |
+   |  chmod +r dark-room       | |
  .'                          _.' |
  `._   to turn the lights on  |:.'
   |                          _.' |

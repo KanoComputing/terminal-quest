@@ -322,4 +322,16 @@ def wrap_in_box(lines):
 
 
 def is_executable(path):
-    return os.path.isfile(path) and os.access(path, os.X_OK)
+    return os.path.isfile(path) and has_execute_permissions(path)
+
+
+def has_read_permissions(path):
+    return os.access(path, os.R_OK)
+
+
+def has_write_permissions(path):
+    return os.access(path, os.W_OK)
+
+
+def has_execute_permissions(path):
+    return os.access(path, os.X_OK)

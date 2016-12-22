@@ -8,7 +8,7 @@ from linux_story.common import get_username
 from linux_story.story.terminals.terminal_nano import TerminalNano
 from linux_story.story.terminals.terminal_chmod import TerminalChmod
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
-from linux_story.story.challenges.challenge_35 import Step1 as NextStep
+from linux_story.story.challenges.challenge_35_old import Step1 as NextStep
 
 
 class StepTemplateNano(TerminalNano):

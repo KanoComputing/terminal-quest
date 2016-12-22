@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 #
-# Copyright (C) 2014, 2015, 2016 Kano Computing Ltd.
+# Copyright (C) 2014, 2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
 from linux_story.story.terminals.terminal_chmod import TerminalChmod
 from linux_story.story.challenges.challenge_37 import Step1 as NextStep
+from linux_story.step_helper_functions import unblock_cd_commands, unblock_commands
 
 
 class StepTemplateChmod(TerminalChmod):
@@ -15,20 +16,21 @@ class StepTemplateChmod(TerminalChmod):
 
 class Step1(StepTemplateChmod):
     story = [
-        "Swordmaster: {{Bb:This file has also had its read permissions removed. This means you cannot read the "
-        "contents of the file.}}",
-        "{{Bb:Repeat what you did to make the file readable.}}"
-
+        "The bird flew out of the cage.",
+        "According to the bird, we need to {{lb:move the lighter from the cage into the locked-room.}}"
     ]
-    start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house"
+    start_dir = "~/woods/cave"
+    end_dir = "~/woods/cave"
     commands = [
-        "chmod +r dark-room/READ-ME",
+        "mv cage/lighter locked-room/",
+        "mv cage/lighter locked-room"
     ]
     hints = [
-        "Swordmaster: {{Bb:Press UP a few times on the keyboard if you don't remember what you typed..}}",
-        "Swordmaster: {{Bb:Try typing}} {{yb:chmod +r dark-room/READ-ME}}"
+        "Use {{yb:mv cage/lighter locked-room}}"
     ]
+
+    def block_command(self):
+        return unblock_commands(self.last_user_input, self.commands)
 
     def next(self):
         Step2()
@@ -36,19 +38,13 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "Swordmaster: {{Bb:Now read the file.}}"
+        "Go inside the {{bb:locked-room}}"
     ]
-    start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house"
-    commands = [
-        # Congratulation, you learnt how to make things readable.
-        # Could be a hint for something to come?
-        # Could be something he found?
-        "cat dark-room/READ-ME"
-    ]
-    hints = [
-        "Swordmaster: {{Bb:Use}} {{yb:cat dark-room/READ-ME}}"
-    ]
+    start_dir = "~/woods/cave"
+    end_dir = "~/woods/cave/locked-room"
+
+    def block_command(self):
+        return unblock_cd_commands(self.last_user_input)
 
     def next(self):
         Step3()
@@ -56,22 +52,10 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        "Swordmaster: {{Bb:You can also remove the permissions. If you use}}",
-        "{{yb:chmod -r dark-room}}",
-        "{{Bb:you will be unable to look inside.}}",
-        "{{Bb:Try it!}}"
+        "Activate the lighter with {{yb:chmod +x lighter}}"
     ]
-    start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house"
-
-    commands = [
-        "chmod -r dark-room",
-        "chmod -r dark-room/"
-    ]
-
-    hints = [
-        "Swordmaster: {{Bb:Use}} {{yb:chmod -r dark-room}}"
-    ]
+    start_dir = "~/woods/cave/locked-room"
+    end_dir = "~/woods/cave/locked-room"
 
     def next(self):
         Step4()
@@ -79,20 +63,34 @@ class Step3(StepTemplateChmod):
 
 class Step4(StepTemplateChmod):
     story = [
-        "Swordmaster: {{Bb:Look inside to confirm you cannot see inside.}}"
+        "Look around to see what happened to the lighter"
     ]
 
-    start_dir = "~/woods/clearing/house"
-    end_dir = "~/woods/clearing/house"
+    start_dir = "~/woods/cave/locked-room"
+    end_dir = "~/woods/cave/locked-room"
 
     commands = [
-        "ls dark-room",
-        "ls dark-room/",
-        "ls dark-room/READ-ME"
+        "ls",
+        "ls .",
+        "ls ./"
     ]
 
-    hints = [
-        "Swordmaster: {{Bb:Use}} {{yb:ls dark-room}}"
+    def next(self):
+        Step5()
+
+
+class Step5(StepTemplateChmod):
+    story = [
+        "The lighter went {{gb:bright green}} after you activated it.",
+        "Now use it with {{yb:./lighter}}"
+    ]
+    start_dir = "~/woods/cave/locked-room"
+    end_dir = "~/woods/cave/locked-room"
+
+    hints = "To use the lighter, "
+
+    commands = [
+        "./lighter"
     ]
 
     def next(self):

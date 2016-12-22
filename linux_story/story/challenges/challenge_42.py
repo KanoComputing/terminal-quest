@@ -1,194 +1,186 @@
 #!/usr/bin/env python
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014, 2015, 2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
+import os
+import time
+from threading import Thread
+
+from linux_story.common import get_story_file
 from linux_story.story.terminals.terminal_chmod import TerminalChmod
 from linux_story.step_helper_functions import unblock_cd_commands
-from linux_story.story.challenges.challenge_43 import Step1 as NextStep
+from linux_story.story.challenges.challenge_43 import Step10 as NextStep
 
 
-# Note reads:
-# We need to find a special command which makes the User into a Super User.
-# I'm down the rabbithole. Don't worry, there are no nasty surprises here.
-# class Step1(StepTemplateChmod):
-#     story = [
-#         "..no nasty surprises, ok that's good. Let's go inside the rabbithole."
-#     ]
-#     start_dir = "~/woods/thicket"
-#     end_dir = "~/woods/thicket/rabbithole"
-#     hints = [
-#         "{{rb:Use}} {{yb:cd rabbithole/}} {{rb:to go inside.}}"
-#     ]
-#
-#     def block_command(self):
-#         return unblock_cd_commands(self.last_user_input)
-#
-#     def next(self):
-#         Step2()
-#
-#
-# class Step2(StepTemplateChmod):
-#     story = [
-#         "Look around"
-#     ]
-#     start_dir = "~/woods/thicket/rabbithole"
-#     end_dir = "~/woods/thicket/rabbithole"
-#     commands = [
-#         "ls",
-#         "ls -a"
-#     ]
-#     hints = [
-#         "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
-#     ]
-#
-#     def next(self):
-#         Step4()
-#
-#
-# class Step4(StepTemplateChmod):
-#     story = [
-#         "You see a Rabbit, a piece of paper and a doorway.",
-#         "This Rabbit looks somewhat familiar...",
-#         "{{lb:Listen}} to the Rabbit."
-#     ]
-#     start_dir = "~/woods/thicket/rabbithole"
-#     end_dir = "~/woods/thicket/rabbithole"
-#     commands = [
-#         "cat Rabbit"
-#     ]
-#     hints = [
-#         "{{rb:Use}} {{yb:cat Rabbit}} {{rb:to examine the Rabbit.}}"
-#     ]
-#
-#     def next(self):
-#         Step5()
-
-
-GO_TO_THE_LIBRARY = [
-    "The Rabbit wants to know where the Super User command is kept?",
-    "....",
-    "Where could that be?",
-    ""
-    # "Let's head there. It looks as if the Rabbit will follow."
-]
-
-RABBITS_ARE_QUIET = [
-    "Rabbit: {{Bb:...}}",
-    "",
-    "It seems the Rabbit doesn't say very much.",
-    "That's quite normal for rabbits."
-]
-
-
-class TerminalRabbit(TerminalChmod):
-    rabbit_text = "The rabbit is in front of the rabbithole and won't let you pass"
-
-    def block_command(self):
-        if "rabbithole" in self.last_user_input and \
-                (
-                    "ls" in self.last_user_input or
-                    "cat" in self.last_user_input
-                ):
-            print self.rabbit_text
-            return True
-        else:
-            return TerminalChmod.block_command(self)
-
-    def autocomplete_files(self, text, line, begidx, endidx, only_dirs=False,
-                           only_exe=False):
-        completions = TerminalChmod.autocomplete_files(
-            self, text, line, begidx, endidx, only_dirs,
-            only_exe
-        )
-        if "cage/" in completions or "Mum" in completions:
-            print "\n" + self.rabbit_text
-            return []
-        else:
-            return completions
-
-
-class StepTemplateChmod(TerminalRabbit):
+class StepTemplateChmod(TerminalChmod):
     challenge_number = 42
 
 
-# Same as the towns people, and the last challenge?
+# Make the rabbit follow whether the user goes.
+# If the user does cat rabbit, the rabbit should reply with his emotions
+# depending on how far he is from the locked room
 class Step1(StepTemplateChmod):
     story = [
-        "You see a Rabbit, a piece of paper and a rabbithole.",
-        "This Rabbit looks somewhat familiar...",
-        "{{lb:Listen}} to the Rabbit."
+        "Now, which is the locked room? {{lb:Look around}} to remind yourself."
     ]
-    start_dir = "~/woods/thicket"
-    end_dir = "~/woods/thicket"
-    hints = [
-        "{{rb:Use}} {{yb:cat Rabbit}} {{rb:to examine the Rabbit.}}"
-    ]
-
-    commands_done = {
-        "cat note":  False,
-        "cat Rabbit": False
-    }
-
-    def check_command(self):
-        if self.last_user_input == "cat note":
-            self.commands_done[self.last_user_input] = True
-            # self.send_hint("\nThe Rabbit wants to know where the Super User command is kept...")
-
-        if self.last_user_input == "cat Rabbit":
-            return True
-
-        return False
-
-    def next(self):
-        if self.commands_done["cat note"]:
-            Step4()
-        else:
-            Step2()
-
-
-class Step2(StepTemplateChmod):
-    story = RABBITS_ARE_QUIET + ["", "{{lb:Examine}} the note."]
-    start_dir = "~/woods/thicket"
-    end_dir = "~/woods/thicket"
+    start_dir = "~/town/east/library"
+    end_dir = "~/town/east/library"
     commands = [
-        "cat note"
+        "ls",
+        "ls -a"
+    ]
+    hints = [
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+    ]
+    file_list = [
+        {
+            "path": "~/town/east/library/Rabbit",
+            "contents": get_story_file("Rabbit"),
+            "permissions": 0644,
+            "type": "file"
+        }
+    ]
+    deleted_items = [
+        "~/woods/thicket/Rabbit",
+        "~/woods/thicket/note"
     ]
 
     def next(self):
-        Step3(self.xp)
+        Step3()
 
 
 class Step3(StepTemplateChmod):
-    story = GO_TO_THE_LIBRARY
-    start_dir = "~/woods/thicket"
-    end_dir = "~/town/east/library"
-    hints = [
-        "{{rb:Use}} {{yb:cd ~/town/east/library}} {{rb:to go to the library}}"
+    story = [
+        "Ah, it's the {{lb:private-section}}.",
+        "The Rabbit looks very excited. His eyes are sparkling.",
+        "How do you unlock the {{lb:private-section}}? It was the command "
+        "that the swordmaster talked about..."
     ]
-    last_step = True
+    start_dir = "~/town/east/library"
+    end_dir = "~/town/east/library"
+    commands = [
+        "chmod +rwx private-section",
+        "chmod +rwx private-section/",
+        "chmod +wxr private-section",
+        "chmod +wxr private-section/",
+        "chmod +xrw private-section",
+        "chmod +xrw private-section/",
+        "chmod +rxw private-section",
+        "chmod +rxw private-section/",
+        "chmod +xwr private-section",
+        "chmod +xwr private-section/",
+        "chmod +wxr private-section",
+        "chmod +wxr private-section/"
+    ]
+
+    hints = [
+        "{{rb:The command was}} {{lb:chmod}}{{rb:, and you need to enable "
+        "all the permissions.}}",
+        "{{rb:The command is}} {{yb:chmod +rwx private-section}} {{rb:to "
+        "enable all the permissions.}}"
+    ]
+
+    def next(self):
+        Step4()
+
+
+class Step4(StepTemplateChmod):
+    story = [
+        "Awesome, you unlocked it! Let's go inside."
+    ]
+    start_dir = "~/town/east/library"
+    end_dir = "~/town/east/library/private-section"
+    hints = [
+        "{{rb:Use}} {{yb:cd private-section/}} {{rb:to go inside the}} "
+        "{{rb:private-section.}}"
+    ]
+    file_list = [
+        {
+            "path": "~/town/east/library/private-section/chest/scroll",
+            "contents": get_story_file("SUDO"),
+            "permissions": 0644,
+            "type": "file"
+        },
+        {
+            "path": "~/town/east/library/private-section/torn-note",
+            "contents": get_story_file("torn-note"),
+            "permissions": 0644,
+            "type": "file"
+        }
+    ]
 
     def block_command(self):
         return unblock_cd_commands(self.last_user_input)
 
     def next(self):
-        NextStep(self.xp)
+        Step5()
 
 
-class Step4(StepTemplateChmod):
-    story = RABBITS_ARE_QUIET + [""] + GO_TO_THE_LIBRARY
-    start_dir = "~/woods/thicket"
-    end_dir = "~/town/east/library"
-    hints = [
-        "{{rb:Is this the same place the swordmaster referred to?}}"
-        "{{rb:Use}} {{yb:cd ~/town/east/library}} {{rb:to go to the library}}"
+class Step5(StepTemplateChmod):
+    story = [
+        "Have a look around."
     ]
-    last_step = True
+    start_dir = "~/town/east/library/private-section"
+    end_dir = "~/town/east/library/private-section"
+    commands = [
+        "ls",
+        "ls -a",
+        "cat chest/scroll"
+    ]
+    file_list = [
+        {
+            "path": "~/town/east/library/private-section/Rabbit",
+            "contents": get_story_file("Rabbit"),
+            "permissions": 0644,
+            "type": "file"
+        }
+    ]
+    deleted_items = ["~/town/east/library/Rabbit"]
+    hints = [
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+    ]
 
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    def next(self):
+        Step6()
+
+
+class Step6(StepTemplateChmod):
+    story = [
+        "You see a chest.",
+        "This looks like the treasure we were looking for.",
+        "The Rabbit looks more excited than you've ever seen him before.",
+        "He snatches the chest and runs off!",
+    ]
+    start_dir = "~/town/east/library/private-section"
+    end_dir = "~/town/east/library/private-section"
+    deleted_items = [
+        "~/town/east/library/private-section/Rabbit",
+        "~/town/east/library/private-section/chest"
+    ]
+
+    def next(self):
+        script_path = os.path.expanduser("~/weekend-work-2/terminal-Quest/bin/rabbit")
+        os.system(script_path)
+        t = Thread(target=self.timeout_dark_theme)
+        t.start()
+        Step8()
+
+    def timeout_dark_theme(self):
+        time.sleep(3)
+        self.send_dark_theme()
+
+
+class Step8(StepTemplateChmod):
+    story = [
+        "The place shivers...and then everything goes black.",
+        "{{gb:Press ENTER to continue.}}"
+    ]
+
+    start_dir = "~/town/east/library/private-section"
+    end_dir = "~/town/east/library/private-section"
 
     def next(self):
         NextStep(self.xp)

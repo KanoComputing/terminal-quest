@@ -17,8 +17,8 @@ house = {
                     "exists": False
                 },
                 {
-                    "challenge": 33,
-                    "step": 38
+                    "challenge": 40,
+                    "step": 1
                 }
             ]
         }

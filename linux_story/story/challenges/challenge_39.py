@@ -5,7 +5,7 @@
 #
 # A chapter of the story
 
-
+from linux_story.common import get_story_file, get_username
 from linux_story.story.terminals.terminal_chmod import TerminalChmod
 from linux_story.story.challenges.challenge_40 import Step1 as NextStep
 
@@ -16,15 +16,17 @@ class StepTemplateChmod(TerminalChmod):
 
 class Step1(StepTemplateChmod):
     story = [
-        "There's a file in this directory called RUN-ME. Read it."
+        "You see a Masked Swordmaster watching you.",
+        "Listen to what he has to say."
     ]
-    start_dir = "~/woods/clearing/house/no-entry-room"
-    end_dir = "~/woods/clearing/house/no-entry-room"
-    commands = [
-        "cat RUN-ME"
-    ]
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
     hints = [
-        "Swordmaster: {{Bb:Use}} {{yb:cat RUN-ME}}"
+        "{{rb:Use}} {{yb:cat swordmaster}} {{rb:to}} {{lb:listen}} "
+        "{{rb:to what the swordmaster has to say.}}"
+    ]
+    commands = [
+        "cat swordmaster"
     ]
 
     def next(self):
@@ -33,57 +35,139 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "Swordmaster: {{Bb:This file contains code. However we can't run it until it's been made}} {{lb:executable}}",
-        "{{Bb:Use}} {{lb:chmod +x RUN-ME}} {{Bb:to activate the script.}}"
+        "{{wb:Swordmaster:}} {{Bb:Child, why do you seek me?}}",
+        "",
+        "{{yb:1: I want to unlock the private section in the library.}}",
+        "{{yb:2: Who are you?}}",
+        "{{yb:3: Have you been leaving me the strange notes?}}",
+        "",
+        "Respond with {{yb:echo 1}}, {{yb:echo 2}}, or {{yb:echo 3}}."
     ]
-    start_dir = "~/woods/clearing/house/no-entry-room"
-    end_dir = "~/woods/clearing/house/no-entry-room"
     commands = [
-        "chmod +x RUN-ME"
+        "echo 1"
     ]
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
     hints = [
-        "Swordmaster: {{Bb:Use}} {{yb:chmod +x RUN-ME}}"
+        "{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} "
+        "{{yb:echo 3}}{{rb:.}}"
     ]
+    extra_hints = {
+        "echo 2": "Swordmaster: {{Bb:I am one who has removed themselves from society. The few who know of me call me the Masked Swordmaster.}}",
+        "echo 3": "Swordmaster: {{Bb:What notes?}}"
+    }
+
+    last_step = True
+
+    def check_command(self):
+        if self.last_user_input in self.extra_hints:
+            self.send_hint(self.extra_hints[self.last_user_input])
+            return
+
+        return StepTemplateChmod.check_command(self)
 
     def next(self):
         Step3()
 
 
 class Step3(StepTemplateChmod):
+    print_text = [
+        "{{yb:I want to unlock the private section in the library.}}"
+    ]
     story = [
-        "Swordmaster: {{Bb:Look around to see how the file has changed.}}"
+        "Swordmaster: {{Bb:Well, if you completed the challenges in the}} {{lb:~/woods/cave}}"
+        "{{Bb:, then you already know how.}}",
+        "{{Bb:A note of caution: what is inside is both powerful and dangerous.}}"
+        "",
+        "{{yb:1: What is inside that is so dangerous?}}",
+        "{{yb:2: Why do you live so far from other people?}}",
+        "{{yb:3: Do you know why people are disappearing?}}"
     ]
-    start_dir = "~/woods/clearing/house/no-entry-room"
-    end_dir = "~/woods/clearing/house/no-entry-room"
+
     commands = [
-        "ls",
-        "ls .",
-        "ls ./",
-        "ls -a",
-        "ls -a .",
-        "ls -a ./"
+        "echo 3"
     ]
-    hints = [
-        "Swordmaster: {{Bb:Use}} {{yb:ls}}"
-    ]
+    # This logic for commands doesn't work
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
+    extra_hints = {
+        "echo 1": "Swordmaster: {{Bb:A command that makes the wielder into a Super User and gives them tremendous power.}}",
+        "echo 2": "Swordmaster: {{Bb:Being a swordmaster, I have the ability to}} {{lb:remove}} {{Bb:others. "
+                  "This makes people uneasy around me, so I choose to live in the woods instead.}}"
+    }
+
+    def check_command(self):
+        if self.last_user_input in self.extra_hints:
+            self.send_hint(self.extra_hints[self.last_user_input])
+
+        return StepTemplateChmod.check_command(self)
 
     def next(self):
         Step4()
 
 
 class Step4(StepTemplateChmod):
-    story = [
-        "Swordmaster: {{Bb:Notice how the activated file has become}} {{gb:bright green}}{{Bb:?}}",
-        "{{Bb:This means you can run the script. Use}} {{yb:./RUN-ME}} {{Bb:to run the script.}}"
+    print_text = [
+        "{{yb:Do you know why people are disappearing?}}"
     ]
-    start_dir = "~/woods/clearing/house/no-entry-room"
-    end_dir = "~/woods/clearing/house/no-entry-room"
+    story = [
+        "Swordmaster: {{Bb:I wasn't aware people were disappearing. Is that what is causing that bell sound?",
+        "Perhaps it is good you are here then.",
+        "Tell me, what is your name?}}"
+    ]
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
     commands = [
-        "./RUN-ME"
+        "echo " + get_username()
     ]
     hints = [
-        "Swordmaster: {{Bb:Use}} {{yb:./RUN-ME}}"
+        "Use {{yb:echo " + get_username() + "}} to give your name."
     ]
+
+    def next(self):
+        Step5()
+
+
+class Step5(StepTemplateChmod):
+    story = [
+        "Swordmaster: {{Bb:I thought you might be. Few have the power to use the commands you used earlier.",
+        "How did I know your name? Use}} {{yb:ls -l}} {{Bb:to see.}}"
+    ]
+    commands = [
+        "ls -l"
+    ]
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
+    hints = [
+        "Swordmaster: {{Bb:Use}} {{yb:ls -l}} {{Bb:}}"
+    ]
+
+    file_list = [
+        {
+            "contents": get_story_file("note_swordsmaster-house"),
+            "path": "~/woods/clearing/house/note",
+            "permissions": 0644,
+            "type": "file"
+        }
+    ]
+
+    def next(self):
+        Step6()
+
+
+class Step6(StepTemplateChmod):
+    story = [
+        "Swordmaster: {{Bb:Your name is written in this world, for anyone who knows where to look.}}",
+        "{{Bb:...}}",
+        "{{Bb:...why is there a}} {{lb:note}} {{Bb:in this room?}}",
+        "{{Bb:Do you see it? Use}} {{lb:cat note}} {{Bb:to examine it.}}"
+    ]
+    commands = [
+        "cat note"
+    ]
+
+    start_dir = "~/woods/clearing/house"
+    end_dir = "~/woods/clearing/house"
 
     def next(self):
         NextStep()

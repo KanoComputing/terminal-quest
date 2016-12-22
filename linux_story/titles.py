@@ -29,7 +29,7 @@ chapters = {
     5: {
         'start_challenge': 32,
         'end_challenge': 41,
-        'title': translate('Meet the swordsmaster')
+        'title': translate('Meet the swordmaster')
     }
 }
 
@@ -169,19 +169,19 @@ challenges = {
         'chapter': 5
     },
     34: {
-        'title': translate('Meet the swordsmaster'),
+        'title': translate('Meet the swordmaster'),
         'chapter': 5
     },
     35: {
-        'title': translate('The swordsmaster\'s test'),
+        'title': translate('The swordmaster\'s test'),
         'chapter': 5
     },
     36: {
-        'title': translate('The swordsmaster\'s test'),
+        'title': translate('The swordmaster\'s test'),
         'chapter': 5
     },
     37: {
-        'title': translate('The swordsmaster\'s test'),
+        'title': translate('The swordmaster\'s test'),
         'chapter': 5
     },
     38: {

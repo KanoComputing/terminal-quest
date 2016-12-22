@@ -20,7 +20,23 @@ thicket = {
     "children": [
         {
             "name": "Rabbit",
-            "contents": get_story_file("Rabbit")
+            "contents": get_story_file("Rabbit"),
+            "challenges": [
+                {
+                    "challenge": 1,
+                    "step": 1,
+                    "exists": False
+                },
+                {
+                    "challenge": 40,
+                    "step": 1
+                },
+                {
+                    "challenge": 43,
+                    "step": 1,
+                    "exists": False
+                }
+            ]
         },
         {
             "name": "rabbithole",
@@ -49,6 +65,11 @@ thicket = {
                 {
                     "challenge": 41,
                     "step": 1
+                },
+                {
+                    "challenge": 43,
+                    "step": 1,
+                    "exists": False
                 }
             ]
         }
