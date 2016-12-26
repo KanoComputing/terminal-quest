@@ -6,10 +6,10 @@ from linux_story.common import get_username
 
 class IStep:
     highlighted_commands = []
-    print_text = [""]
+    print_text = None
     story = [""]
     start_dir = "~"
-    # dirs_to_attempt = ""
+    dirs_to_attempt = [""]
     end_dir = "~"
     commands = ""
     hints = [""]
@@ -22,13 +22,12 @@ class IStep:
     def __init__(self, client):
 
         self._client = client
-        self._location = PlayerLocation(self.start_dir)
+        self._location = PlayerLocation(self.start_dir, self.end_dir)
         self._last_user_input = ""
         self._is_finished = False
 
     def run(self):
-        print self.TerminalClass
-        self.TerminalClass(self, self._location).cmdloop()
+        self.TerminalClass(self, self._location, self.dirs_to_attempt).cmdloop()
 
     def next(self):
         raise Exception("IStep method not implemented")
@@ -56,11 +55,10 @@ class IStep:
         return self._location
 
     def is_finished_game(self):
-        print self._is_finished
         return self._is_finished
 
     def _is_at_end_dir(self):
-        return self._location.get_fake_path() == self.end_dir
+        return self._location.is_at_end_dir()
 
     def _default_check_command(self, last_user_input):
         command_validated = self._validate_check_command(last_user_input)
@@ -100,9 +98,9 @@ class IStep:
 
     def get_print_text(self):
         print_text = ""
-        coloured_username = "{{yb:" + get_username() + ":}} "
 
         if self.print_text:
+            coloured_username = "{{yb:" + get_username() + ":}} "
             print_text = coloured_username + "\n".join(self.print_text)
 
         return print_text

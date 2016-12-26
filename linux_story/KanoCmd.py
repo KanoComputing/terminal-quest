@@ -9,7 +9,7 @@ from linux_story.helper_functions import get_script_cmd, is_exe, colour_string_w
 
 class KanoCmd(Cmd):
 
-    def __init__(self, step, location):
+    def __init__(self, step, location, dirs_to_attempt):
         """
         :param step: IStep type
         :param location: PlayerLocation location
@@ -18,6 +18,7 @@ class KanoCmd(Cmd):
         self.__step = step
         self.__command_blocked = False
         self._location = location
+        self._dirs_to_attempt = dirs_to_attempt
         self.last_cmd_output = ""
 
         self._set_prompt()
