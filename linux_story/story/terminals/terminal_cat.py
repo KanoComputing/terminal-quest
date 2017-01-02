@@ -13,11 +13,7 @@ from linux_story.commands_real import shell_command
 class TerminalCat(TerminalLs):
     terminal_commands = ["ls", "cat"]
 
-    def do_cat(self, line, has_access=True):
-        if self.needs_sudo and not has_access:
-            # show cat error message
-            "cat: {}: Permission denied".format(line)
-
+    def do_cat(self, line):
         shell_command(self.real_path, line, "cat")
 
     def complete_cat(self, text, line, begidx, endidx):

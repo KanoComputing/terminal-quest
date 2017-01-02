@@ -55,8 +55,7 @@ class Step2(StepTemplateChmod):
         "Ah, it's the {{lb:private-section}}.",
         "The Rabbit looks very excited. His eyes are sparkling.",
         "",
-        "Unlock the {{lb:private-section}}.",
-        "You need to use the command that the swordmaster talked about..."
+        "Unlock the {{lb:private-section}}."
     ]
     start_dir = "~/town/east/library"
     end_dir = "~/town/east/library"
@@ -76,8 +75,6 @@ class Step2(StepTemplateChmod):
     ]
 
     hints = [
-        "{{rb:The command was}} {{lb:chmod}}{{rb:, and you need to enable "
-        "all the permissions.}}",
         "{{rb:The command is}} {{yb:chmod +rwx private-section}} {{rb:to "
         "enable all the permissions.}}"
     ]
@@ -88,13 +85,12 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        "Awesome, you unlocked it! {{lb:Let's go inside.}}"
+        "Awesome, you unlocked it! {{lb:Go inside the private-section.}}"
     ]
     start_dir = "~/town/east/library"
     end_dir = "~/town/east/library/private-section"
     hints = [
-        "{{rb:Use}} {{yb:cd private-section/}} {{rb:to go inside the}} "
-        "{{rb:private-section.}}"
+        "{{rb:Use}} {{yb:cd private-section/}} {{rb:to go inside.}}"
     ]
     file_list = [
         {
@@ -181,15 +177,13 @@ class RabbitTakesChest(StepTemplateChmod):
 
 class Step5(RabbitTakesChest):
     story = [
-        "You try and examine the contents of the chest, but the Rabbit snatches it and runs off!",
-        "",
-        "The place shivers...and then everything goes black."
+        "You try and examine the contents of the chest, but the Rabbit snatches it and runs off!"
     ]
 
 
 class Step6(RabbitTakesChest):
     story = [
-        "You see a chest.",
+        "You see a {{bb:chest}}.",
         "This looks like the treasure we were looking for.",
         "The Rabbit looks more excited than you've ever seen him before.",
         "He snatches the chest and runs off!"

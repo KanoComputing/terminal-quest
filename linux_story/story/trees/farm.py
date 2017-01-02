@@ -1,5 +1,63 @@
 from linux_story.common import get_story_file
 
+shelter = {
+    "name": ".shelter",
+    "challenges": [
+        {
+            "challenge": 1,
+            "step": 1,
+            "exists": False
+        },
+        {
+            "challenge": 21,
+            "step": 7
+        }
+    ],
+    "children": [
+        {
+            "name": "Cobweb",
+            "contents": get_story_file("Cobweb"),
+            "challenges": [
+                {
+                    "challenge": 21,
+                    "step": 10
+                }
+            ]
+        },
+        {
+            "name": "Trotter",
+            "contents": get_story_file("Trotter"),
+            "challenges": [
+                {
+                    "challenge": 21,
+                    "step": 10
+                }
+            ]
+        },
+        {
+            "name": "Daisy",
+            "contents": get_story_file("Daisy"),
+            "challenges": [
+                {
+                    "challenge": 21,
+                    "step": 10
+                }
+            ]
+        },
+        {
+            "name": "Ruth",
+            "contents": get_story_file("Ruth"),
+            "challenges": [
+                {
+                    "challenge": 21,
+                    "step": 10
+                }
+            ]
+        }
+    ]
+}
+
+
 farm = {
     "name": "farm",
     "challenges": [
@@ -23,54 +81,44 @@ farm = {
                 }
             ],
             "children": [
+                shelter,
                 {
-                    "name": ".shelter",
+                    "name": "Cobweb",
+                    "contents": get_story_file("Cobweb"),
                     "challenges": [
                         {
                             "challenge": 21,
-                            "step": 7
+                            "step": 10
                         }
-                    ],
-                    "children": [
+                    ]
+                },
+                {
+                    "name": "Trotter",
+                    "contents": get_story_file("Trotter"),
+                    "challenges": [
                         {
-                            "name": "Cobweb",
-                            "contents": get_story_file("Cobweb"),
-                            "challenges": [
-                                {
-                                    "challenge": 21,
-                                    "step": 10
-                                }
-                            ]
-                        },
+                            "challenge": 21,
+                            "step": 10
+                        }
+                    ]
+                },
+                {
+                    "name": "Daisy",
+                    "contents": get_story_file("Daisy"),
+                    "challenges": [
                         {
-                            "name": "Trotter",
-                            "contents": get_story_file("Trotter"),
-                            "challenges": [
-                                {
-                                    "challenge": 21,
-                                    "step": 10
-                                }
-                            ]
-                        },
+                            "challenge": 21,
+                            "step": 10
+                        }
+                    ]
+                },
+                {
+                    "name": "Ruth",
+                    "contents": get_story_file("Ruth"),
+                    "challenges": [
                         {
-                            "name": "Daisy",
-                            "contents": get_story_file("Daisy"),
-                            "challenges": [
-                                {
-                                    "challenge": 21,
-                                    "step": 10
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Ruth",
-                            "contents": get_story_file("Ruth"),
-                            "challenges": [
-                                {
-                                    "challenge": 21,
-                                    "step": 10
-                                }
-                            ]
+                            "challenge": 21,
+                            "step": 10
                         }
                     ]
                 }
@@ -112,6 +160,11 @@ farm = {
                     "name": "igloo",
                     "type": "directory",
                     "challenges": [
+                        {
+                            "challenge": 1,
+                            "step": 1,
+                            "exists": False
+                        },
                         {
                             "challenge": 20,
                             "step": 5

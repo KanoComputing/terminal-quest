@@ -1,6 +1,7 @@
 
 from cave import cave
 from clearing import clearing
+from rabbithole import rabbithole
 from linux_story.common import get_story_file
 
 
@@ -18,6 +19,7 @@ thicket = {
         }
     ],
     "children": [
+        rabbithole,
         {
             "name": "Rabbit",
             "contents": get_story_file("Rabbit"),
@@ -39,21 +41,6 @@ thicket = {
             ]
         },
         {
-            "name": "rabbithole",
-            "type": "directory",
-            "challenges": [
-                {
-                    "challenge": 40,
-                    "step": 1,
-                },
-                {
-                    "challenge": 41,
-                    "step": 1,
-                    "permissions": 0000
-                }
-            ]
-        },
-        {
             "name": "note",
             "contents": get_story_file("note_rabbithole"),
             "challenges": [
@@ -63,7 +50,7 @@ thicket = {
                     "exists": False
                 },
                 {
-                    "challenge": 41,
+                    "challenge": 40,
                     "step": 1
                 },
                 {

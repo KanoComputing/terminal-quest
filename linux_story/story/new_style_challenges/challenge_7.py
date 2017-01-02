@@ -6,7 +6,6 @@
 # A chapter of the story
 from linux_story.IStep import IStep
 from linux_story.story.new_terminals.terminal_cd import TerminalCd
-from linux_story.story.tasks.TaskTownHall import TaskTownHall
 
 
 class StepTemplateCd(IStep):

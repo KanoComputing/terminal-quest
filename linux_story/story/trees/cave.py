@@ -47,21 +47,6 @@ cage_room = {
                     "exists": False
                 }
             ]
-        },
-        {
-            "name": "lighter",
-            "contents": get_story_file("lighter"),
-            "challenges": [
-                {
-                    "challenge": 32,
-                    "step": 1
-                },
-                {
-                    "challenge": 36,
-                    "step": 2,
-                    "exists": False
-                }
-            ]
         }
     ]
 }
@@ -105,12 +90,12 @@ doorless_room = {
             "challenges": [
                 {
                     "challenge": 32,
-                    "step": 1,
-                    "exists": False
+                    "step": 1
                 },
                 {
                     "challenge": 36,
-                    "step": 2
+                    "step": 4,
+                    "permissions": 0755
                 }
             ]
         }
@@ -154,6 +139,10 @@ cave = {
         dark_room,
         cage_room,
         doorless_room,
-        chest
+        chest,
+        {
+            "name": "sign",
+            "contents": get_story_file("sign_cave")
+        }
     ]
 }

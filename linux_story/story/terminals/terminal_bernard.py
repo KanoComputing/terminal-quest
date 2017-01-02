@@ -28,8 +28,7 @@ class TerminalMkdirBernard(TerminalMkdirEleanor):
         else:
             return TerminalMkdirEleanor.block_command(self)
 
-    def autocomplete_files(self, text, line, begidx, endidx, only_dirs=False,
-                           only_exe=False):
+    def autocomplete_files(self, text, line, begidx, endidx, only_dirs=False, only_exe=False):
         # if the path we're checking is in Bernard's basement, we should
         # return the same text:
         # Bernard stopped you going in the basement.
@@ -57,8 +56,7 @@ class TerminalNanoBernard(TerminalNanoEleanor):
         else:
             return TerminalNanoEleanor.block_command(self)
 
-    def autocomplete_files(self, text, line, begidx, endidx, only_dirs=False,
-                           only_exe=False):
+    def autocomplete_files(self, text, line, begidx, endidx, only_dirs=False, only_exe=False):
         completions = TerminalNanoEleanor.autocomplete_files(
             self, text, line, begidx, endidx, only_dirs,
             only_exe

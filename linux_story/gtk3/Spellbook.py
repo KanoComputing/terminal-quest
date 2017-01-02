@@ -6,15 +6,7 @@
 
 
 import os
-import sys
-
 from gi.repository import Gtk, Gdk
-
-if __name__ == '__main__' and __package__ is None:
-    dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
 from linux_story.common import images_dir
 from linux_story.helper_functions import get_ascii_art
 
@@ -57,6 +49,9 @@ class Spellbook(Gtk.EventBox):
         self.connect('show', self.__on_show)
         self.grid.connect('show', self.__on_show)
         self.caps_lock_warning.connect('show', self.__on_show)
+
+        # default to normal theme
+        self.set_normal_theme()
 
     @staticmethod
     def __create_caps_lock_warning():
@@ -233,11 +228,11 @@ class Spellbook(Gtk.EventBox):
 
     def set_dark_theme(self):
         style_context = self.get_style_context()
-        if "dark" not in style_context.list_classes():
-            self.get_style_context().add_class("dark")
+        style_context.remove_class("normal")
+        style_context.add_class("dark")
 
     def set_normal_theme(self):
         style_context = self.get_style_context()
-        if "dark" in style_context.list_classes():
-            style_context.remove_class("dark")
+        style_context.remove_class("dark")
+        style_context.add_class("normal")
 

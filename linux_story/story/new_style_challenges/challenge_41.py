@@ -12,7 +12,7 @@ from linux_story.step_helper_functions import unblock_cd_commands
 GO_TO_THE_LIBRARY = [
     "The Rabbit wants to know where the Super User command is kept?",
     "....",
-    "Let's head to the {{lb:library}}.",
+    "Let's head to the {{bb:~/town/east/library}}.",
     "It looks as if the Rabbit will follow."
 ]
 
@@ -57,25 +57,22 @@ class Step1(StepTemplateChmod):
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"
     hints = [
-        "{{rb:Use}} {{yb:cat Rabbit}} {{rb:to examine the Rabbit.}}"
+        "{{rb:Use}} {{yb:cat Rabbit}} {{rb:to listen to the Rabbit.}}"
     ]
 
-    commands_done = {
-        "cat note":  False,
-        "cat Rabbit": False
-    }
+    read_note = False
+    commands = [
+        "cat Rabbit"
+    ]
 
     def check_command(self, line):
         if line == "cat note":
-            self.commands_done[line] = True
+            self.read_note = True
 
-        if line == "cat Rabbit":
-            return True
-
-        return False
+        return StepTemplateChmod.check_command(self, line)
 
     def next(self):
-        if self.commands_done["cat note"]:
+        if self.read_note:
             return 41, 4
         else:
             return 41, 2
@@ -87,6 +84,9 @@ class Step2(StepTemplateChmod):
     end_dir = "~/woods/thicket"
     commands = [
         "cat note"
+    ]
+    hints = [
+        "{{rb:Use}} {{yb:cat note}} {{rb:to examine the note.}}"
     ]
 
     def next(self):

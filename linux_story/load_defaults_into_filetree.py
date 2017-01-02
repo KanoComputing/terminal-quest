@@ -11,7 +11,7 @@ import shutil
 import stat
 
 from linux_story.get_defaults import get_default_file_dict
-from linux_story.common import tq_file_system
+from linux_story.common import tq_file_system, fake_home_dir
 from linux_story.helper_functions import get_path_to_file_in_system
 
 
@@ -19,6 +19,7 @@ def default_global_tree(challenge, step):
     """
     This creates the filetree from the yaml of challenge 1
     """
+    print "old style"
 
     # If we are loading from the default file system, we
     # don't want to pollute it with anything lingering
@@ -50,7 +51,6 @@ def create_item(dest_path, item_type="file", src_path="", item_perm=None):
     if os.path.exists(dest_path) and item_perm is not None:
         permissions = int(stat.S_IMODE(os.stat(dest_path).st_mode))
         if not permissions == item_perm:
-            print "dest_path: " + dest_path + " exists but permissions should change from " + str(permissions) + " to " + str(item_perm)
             os.chmod(dest_path, item_perm)
 
     elif not os.path.exists(dest_path):
@@ -64,13 +64,11 @@ def create_item(dest_path, item_type="file", src_path="", item_perm=None):
         # Lazy - just checking owner has write permissions
         # if len(permissions) < 3 or int(permissions[-3]) % 4 < 2:
         if not bool(mode & stat.S_IXUSR):
-            print "no execute permissions for: " + parent_dir
             os.chmod(parent_dir, 0755)
             permissions_changed = True
 
 
         if not bool(mode & stat.S_IWUSR):
-            print "no write permissions for: " + parent_dir
             os.chmod(parent_dir, 0755)
             permissions_changed = True
 
@@ -87,10 +85,6 @@ def create_item(dest_path, item_type="file", src_path="", item_perm=None):
             # change permissions of the parent directory back
             # print "changing parent dir " + parent_dir + " back to permissions " + str(parent_permissions)
             os.chmod(parent_dir, parent_permissions)
-
-    else:
-        if "chest" in dest_path:
-            print "path " + dest_path + " exists and has correct permisisons"
 
 
 def delete_item(path):
@@ -121,7 +115,7 @@ def split_path_and_add_dirs_to_tree(item_id, fake_path):
         dir_path = fake_path.split(dirs[i])[0] + dirs[i]
 
         # Create the directory in the file system
-        real_path = os.path.expanduser(dir_path.replace('~', '~/.linux-story'))
+        real_path = os.path.expanduser(dir_path.replace('~', fake_home_dir))
         create_item(real_path, item_type="directory")
 
 
@@ -162,7 +156,7 @@ def modify_file_tree(filesystem_dict):
                     fake_path = os.path.join(item_dict['path'], item_dict['name'])
                 else:
                     fake_path = os.path.join(item_dict['path'], item_id)
-                real_path = os.path.expanduser(fake_path.replace('~', '~/.linux-story'))
+                real_path = os.path.expanduser(fake_path.replace('~', fake_home_dir))
                 # Changes tree
                 split_path_and_add_dirs_to_tree(item_id, fake_path)
 

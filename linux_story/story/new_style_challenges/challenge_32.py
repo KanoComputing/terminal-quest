@@ -23,8 +23,7 @@ class Step1(StepTemplateNano):
     start_dir = "~/town/east/shed-shop/basement"
     end_dir = "~"
     hints = [
-        "{{rb:Remember, use}} {{yb:cd}} {{rb:by itself to go back to the "
-        "Windy Road ~}}"
+        "{{rb:Use}} {{yb:cd}} {{rb:by itself to go back to the Windy Road ~}}"
     ]
 
     file_list = [
@@ -38,12 +37,6 @@ class Step1(StepTemplateNano):
             "permissions": 0644,
             "type": "file",
             "contents": get_story_file("signpost")
-        },
-        {
-            "path": "~/woods/clearing/weed",
-            "permissions": 0644,
-            "type": "file",
-            "contents": get_story_file("weed")
         }
     ]
 
@@ -57,7 +50,7 @@ class Step1(StepTemplateNano):
 
 class Step2(StepTemplateNano):
     story = [
-        "Look around to see where the woods are."
+        "{{lb:Look around}} to see where the woods are."
     ]
     start_dir = "~"
     end_dir = "~"
@@ -75,8 +68,7 @@ class Step2(StepTemplateNano):
 
 class Step3(StepTemplateNano):
     story = [
-        "You see a set of trees in the distance. They seem very dark and "
-        "inhospitable, which is why you didn't notice them before.",
+        "You see the {{bb:woods}} in the distance, a set of dark and inhospitable trees.",
         "{{lb:Go into the woods}}."
     ]
     start_dir = "~"
@@ -95,7 +87,7 @@ class Step3(StepTemplateNano):
 # Should they use ls -a to find something hidden?
 class Step4(StepTemplateNano):
     story = [
-        "Look around and see where to go next."
+        "{{lb:Look around}} and see where to go next."
     ]
     start_dir = "~/woods"
     end_dir = "~/woods"
@@ -114,7 +106,7 @@ class Step4(StepTemplateNano):
 class Step5(StepTemplateNano):
     story = [
         "You see a {{bb:clearing}} which reminds you of a garden.",
-        "{{lb:Go into the}} {{bb:clearing}}"
+        "{{lb:Go into the}} {{bb:clearing}}{{lb:.}}"
     ]
     start_dir = "~/woods"
     end_dir = "~/woods/clearing"

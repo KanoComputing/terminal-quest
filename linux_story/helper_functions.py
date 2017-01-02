@@ -11,6 +11,7 @@ import os.path
 import gettext
 import re
 
+import sys
 from kano.colours import colourize256, decorate_string
 from kano.logging import logger
 from kano_profile.apps import \
@@ -177,7 +178,7 @@ def record_user_interaction(instance, base_name):
     """
 
     class_instance = instance.__class__.__name__
-    challenge_number = instance.challenge_number
+    challenge_number = instance.__module__.split("_")[-1]
     profile_var_name = "{} {} {}".format(
         base_name, challenge_number, class_instance
     )
@@ -194,6 +195,17 @@ def record_user_interaction(instance, base_name):
         increment_app_state_variable("linux-story", total_name, 1)
 
         # If total reaches a certain amount, then can award XP.
+
+
+def print_method_module(method):
+    def printer(self):
+        name = self.__module__
+        if name == '__main__':
+            filename = sys.modules[self.__module__].__file__
+            name = os.path.splitext(os.path.basename(filename))[0]
+        print name
+        return method(self)
+    return printer
 
 
 def get_ascii_art(name):

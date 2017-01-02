@@ -13,7 +13,7 @@ from gi.repository import Vte, GLib, Gdk, Pango
 
 class TerminalUi(Vte.Terminal):
 
-    def __init__(self, dark=False):
+    def __init__(self, width, height, dark=False):
         Vte.Terminal.__init__(self)
         self.__dark = dark
 
@@ -29,13 +29,7 @@ class TerminalUi(Vte.Terminal):
 
         # This prevents the user scrolling back through the history
         # self.set_scrollback_lines(0)
-
-        # OK. So, this is "required" as a quick fix to a bug where the terminal
-        # would wrap the line on itself. It is due to the MenuScreen and how the
-        # main window add/removes it. By setting the column and row count to large
-        # initial values, it will force to resize from large to smaller values as
-        # opposed from a default 80, 24.
-        self.set_size(1000, 1000)  # TODO: please fix this
+        self.set_size(width, height)
         self.__setup_appearance()
 
     def __setup_appearance(self):

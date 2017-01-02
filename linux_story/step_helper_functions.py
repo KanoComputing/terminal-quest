@@ -9,13 +9,17 @@
 import os
 
 
+def line_contains_dangerous_command(line):
+    return line[:3] in ["cd ", "mv ", "rm "]
+
+
 def unblock_commands(line, list_of_commands):
     """Blocks the command that start with cd and mv unless the command is in
     list_of_commands
     """
 
     line = line.strip()
-    if ("mv" in line or "cd" in line) and \
+    if line_contains_dangerous_command(line) and \
             line not in list_of_commands and \
             not line.strip() == 'mv --help':
 
@@ -31,7 +35,7 @@ def unblock_commands_with_cd_hint(line, list_of_commands):
         print _("You're close, but you entered an unexpected destination path. Try going somewhere else.")
         return True
 
-    elif ("mv" in line) and \
+    elif line_contains_dangerous_command(line) and \
             not line.strip() == 'mv --help':
 
         print _('Nice try! But you do not need that command for this challenge')
@@ -47,7 +51,7 @@ def unblock_commands_with_mkdir_hint(line, list_of_commands):
 
         return True
 
-    elif ("mv" in line or "cd" in line) and \
+    elif line_contains_dangerous_command(line) and \
             not line.strip() == 'mv --help':
 
         print _('Nice try! But you do not need that command for this challenge')
@@ -101,8 +105,7 @@ def find_common_parent(path1, path2):
     return common_path
 
 
-# TODO: this will break if we have two paths with directories with
-# the same name but in different places.
+# TODO: this will break if we have two paths with directories with the same name but in different places.
 def route_between_paths(start_path, end_path):
     """
     Args:
@@ -118,7 +121,6 @@ def route_between_paths(start_path, end_path):
         list of strings: listing every path you could hit on
         a direct route from start_path to end_path.
     """
-
     common_path = find_common_parent(start_path, end_path)
 
     start_split = start_path.split(common_path)

@@ -40,7 +40,7 @@ if __name__ == '__main__' and __package__ is None:
 # from kano_profile.apps import load_app_state_variable
 # from kano_profile.tracker import Tracker
 from linux_story.MessageServer import MessageServer
-from linux_story.dependencies import load_app_state_variable, Tracker, install_i18n
+from linux_story.dependencies import Tracker, install_i18n
 install_i18n('terminal-quest', LOCALE_PATH)
 
 # Track the user's progress

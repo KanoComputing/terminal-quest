@@ -5,7 +5,6 @@
 #
 # A chapter of the story
 
-from linux_story.Animation import Animation
 from linux_story.IStep import IStep
 from linux_story.helper_functions import wrap_in_box
 from linux_story.step_helper_functions import unblock_commands
@@ -18,7 +17,7 @@ class StepTemplateChmod(IStep):
 
 class Step1(StepTemplateChmod):
     story = [
-        "Look inside the dark room again."
+        "{{lb:Look inside}} the dark room again."
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -39,7 +38,7 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "You can see a sign. {{lb:Read the sign.}}"
+        "You can see a sign in the {{bb:dark-room}}. {{lb:Read the sign.}}"
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -57,8 +56,9 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = wrap_in_box([
-        _("{{gb:New Spell:}} Use {{yb:chmod +x}} to"),
-        _(" {{lb:unlock a room}}.")
+        _("{{gb:New Spell:}} Use"),
+        _("{{yb:chmod +x locked-room}}"),
+        _("to unlock the locked-room.")
     ])
     story += [
         "Use it on the {{bb:locked-room}}."
@@ -72,6 +72,7 @@ class Step3(StepTemplateChmod):
         "chmod +x locked-room",
         "chmod +x locked-room/"
     ]
+    highlighted_commands = "chmod"
 
     def next(self):
         return 35, 4
@@ -79,8 +80,6 @@ class Step3(StepTemplateChmod):
 
 class Step4(StepTemplateChmod):
     story = [
-        "{{gb:Congratulations, you learnt how to give yourself execute permissions to a directory.}}",
-        "",
         "Now you can {{lb:examine}} the items in the {{bb:locked-room}}.",
         "{{lb:Read the sign in the locked-room}}"
     ]
@@ -90,7 +89,7 @@ class Step4(StepTemplateChmod):
         "cat locked-room/sign"
     ]
     hints = [
-        "{{rb:Use}} {{yb:cat locked-room/sign}} {{rb:to examine the sign.}}"
+        "{{rb:Use}} {{yb:cat locked-room/sign}} {{rb:to read the sign.}}"
     ]
 
     def check_commmand(self, line):
@@ -106,8 +105,10 @@ class Step4(StepTemplateChmod):
 
 class Step5(StepTemplateChmod):
     story = wrap_in_box([
-        _("{{gb:New Spell:}} Type {{yb:chmod +w cage}}"),
-        _("to {{lb:unlock the cage.}}"),
+        _("{{gb:New Spell:}} Type"),
+        _("{{yb:chmod +w cage}}"),
+        _("to give write permissions to,"),
+        _("and thus unlock, the cage."),
     ])
     story += [
         "Try it out!"
@@ -145,19 +146,5 @@ class Step6(StepTemplateChmod):
         return unblock_commands(line, self.commands)
 
     def next(self):
-        return 35, 7
-
-
-class Step7(StepTemplateChmod):
-    story = [
-        "Bird: {{Bb:...thank you.}}",
-        "{{Bb:To progress, you need to}} {{lb:move the lighter into the locked-room}}",
-        "",
-        "{{gb:Press ENTER to continue.}}"
-    ]
-    start_dir = "~/woods/cave"
-    end_dir = "~/woods/cave"
-
-    def next(self):
-        Animation("bird-animation").play_across_screen(speed=10)
         return 36, 1
+

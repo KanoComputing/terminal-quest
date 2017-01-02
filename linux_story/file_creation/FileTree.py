@@ -10,6 +10,8 @@ import os
 import shutil
 import stat
 
+import errno
+
 from linux_story.common import fake_home_dir, tq_file_system, get_story_file
 
 
@@ -127,7 +129,18 @@ class FileTree:
         if os.path.exists(path) and not os.path.isdir(path):
             raise Exception("File " + path + " exists and should be a directory")
         if not os.path.exists(path):  # check permissions
-            os.mkdir(path, permissions)
+            FileTree.mkdir_p(path)
+            os.chmod(path, permissions)
+
+    @staticmethod
+    def mkdir_p(path):
+        try:
+            os.makedirs(path)
+        except OSError as exc:
+            if exc.errno == errno.EEXIST and os.path.isdir(path):
+                pass
+            else:
+                raise
 
     @staticmethod
     def __create_file(path, permissions, src_path):

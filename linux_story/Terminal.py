@@ -7,15 +7,7 @@
 
 
 import os
-import sys
 from cmd import Cmd
-
-from linux_story.file_creation.FileTree import FileTree
-
-if __name__ == '__main__' and __package__ is None:
-    dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
 
 from helper_functions import (
     get_script_cmd, is_exe, colour_string_with_preset
@@ -23,7 +15,7 @@ from helper_functions import (
 from linux_story.dependencies import load_app_state_variable, save_app_state_variable_with_dialog, \
     get_app_xp_for_challenge, Logger, translate
 from linux_story.MessageClient import MessageClient
-from common import get_username, fake_home_dir, tq_file_system
+from common import get_username, fake_home_dir
 from load_defaults_into_filetree import delete_item, modify_file_tree
 from linux_story.commands_real import run_executable
 import strings
@@ -49,8 +41,6 @@ class Terminal(Cmd):
     story_dict = {}
     deleted_items = []
     file_list = []
-    command_blocked = False
-    needs_sudo = False
 
     # Trying to merge Step and Terminal
     def __init__(self, xp=""):
@@ -58,7 +48,7 @@ class Terminal(Cmd):
         ##################################
         # Initialise the Step stuff first
         self.xp = xp
-        self.pipe_busy = False
+        self.__command_blocked = False
 
         # Currently this is passed to the Terminal class but NOT updated because we're making a copy.
         self.last_cmd_output = ""
@@ -75,14 +65,14 @@ class Terminal(Cmd):
         # real_path is the actual filename.
         self.real_path = self.generate_real_path(self.current_path)
 
-        self.delete_items()
         self.modify_file_tree()
+        self.delete_items()
 
         # if hints are a string
         if isinstance(self.hints, basestring):
             self.hints = [self.hints]
 
-        self._client = MessageClient()
+        self._client = MessageClient()  # Should this be fed in as an external dependency?
 
         ##################################
 
@@ -111,6 +101,7 @@ class Terminal(Cmd):
         return real_path.replace(fake_home_dir, '~')
 
     def set_prompt(self):
+        # Why is this done like this? Can we shorten this to just use the prompt?
         fake_cwd = self.real_path.replace(fake_home_dir, '~')
 
         if fake_cwd[-1] == '/':
@@ -317,7 +308,7 @@ class Terminal(Cmd):
     def send_normal_theme(self):
         self._client.set_normal_theme()
 
-    def get_xp(self):
+    def send_xp_info(self):
         """Look up XP earned after challenge
         """
         xp = get_app_xp_for_challenge("linux-story", str(self.challenge_number))
@@ -337,7 +328,7 @@ class Terminal(Cmd):
 
         if self.challenge_number > level:
             save_app_state_variable_with_dialog("linux-story", "level", self.challenge_number)
-            self.get_xp()
+            self.send_xp_info()
 
     #######################################################
     # File system functions
@@ -353,13 +344,8 @@ class Terminal(Cmd):
     def modify_file_tree(self):
         """If self.story_dict is specified, add files to the filetree
         """
-        if self.file_list:
-            file_tree = FileTree(None, tq_file_system)
-            for f in self.file_list:
-                if "type" in f and f["type"] == "file":
-                    file_tree.create_item(f["type"], f["path"], f["permissions"], f["contents"])
-                else:
-                    file_tree.create_item(f["type"], f["path"], f["permissions"], "")
+        if self.story_dict:
+            modify_file_tree(self.story_dict)
     #######################################################
     # Helper commands
 
@@ -481,7 +467,7 @@ class Terminal(Cmd):
     # Set whether command has been blocked
 
     def set_command_blocked(self, blocked):
-        self.command_blocked = blocked
+        self.__command_blocked = blocked
 
     def get_command_blocked(self):
-        return self.command_blocked
+        return self.__command_blocked

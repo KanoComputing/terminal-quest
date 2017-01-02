@@ -6,6 +6,11 @@ cage = {
     "name": "cage",
     "challenges": [
         {
+            "challenge": 1,
+            "step": 1,
+            "exists": False
+        },
+        {
             "challenge": 44,
             "step": 5,
             "permissions": 0500
@@ -60,11 +65,33 @@ rabbithole = {
         chest,
         {
             "name": "Rabbit",
-            "contents": get_story_file("Rabbit")
+            "contents": get_story_file("Rabbit"),
+            "challenges": [
+                {
+                    "challenge": 1,
+                    "step": 1,
+                    "exists": False
+                },
+                {
+                    "challenge": 44,
+                    "step": 5
+                }
+            ],
         },
         {
             "name": "bell",
-            "contents": get_story_file("bell")
+            "contents": get_story_file("bell"),
+            "challenges": [
+                {
+                    "challenge": 1,
+                    "step": 1,
+                    "exists": False
+                },
+                {
+                    "challenge": 44,
+                    "step": 5
+                }
+            ],
         }
     ],
     "challenges": [

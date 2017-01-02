@@ -27,8 +27,9 @@ class Step1(StepTemplateRm):
     hints = [
         "",
         "{{lb:You met the rabbit in the}} {{bb:~/woods/thicket}}",
-        "{{rb:Go to}} {{yb:~/woods/thicket}}"
+        "{{rb:Use}} {{yb:cd ~/woods/thicket}}"
     ]
+    dark_theme = True
 
     def block_command(self, line):
         return unblock_cd_commands(line)
@@ -55,6 +56,7 @@ class Step2(StepTemplateRm):
     hint = [
         "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     ]
+    dark_theme = True
 
     def next(self):
         return 44, 3
@@ -83,6 +85,7 @@ class Step3(StepTemplateRm):
     hints = [
         "{{rb:Use}} {{yb:cd rabbithole}} {{rb:to go inside the rabbithole.}}"
     ]
+    dark_theme = True
 
     def block_command(self, line):
         return unblock_cd_commands(line)
@@ -119,6 +122,7 @@ class Step4(StepTemplateRm):
     hints = [
         "{{rb:Use}} {{yb:chmod +rwx rabbithole}}"
     ]
+    dark_theme = True
 
     def next(self):
         return 44, 5
@@ -135,6 +139,7 @@ class Step5(StepTemplateRm):
         "cd rabbithole",
         "cd rabbithole/"
     ]
+    dark_theme = True
 
     file_list = [
         {

@@ -14,6 +14,7 @@ from linux_story.story.new_terminals.terminal_rm import TerminalRm
 
 class StepTemplateRm(IStep):
     TerminalClass = TerminalRm
+    dark_theme = True
 
 
 class StepPeopleInCage(StepTemplateRm):
@@ -23,7 +24,9 @@ class StepPeopleInCage(StepTemplateRm):
     }
 
     def check_command(self, line):
-        if line == "cat Rabbit":
+        if line in self.commands:
+            return StepTemplateRm.check_command(self, line)
+        elif line == "cat Rabbit":
             self.send_hint("Rabbit: {{Bb:...}}\nThe rabbit looks frustrated.")
         elif line == "cat bell":
             self.send_hint("The bell glows menacingly.")
@@ -47,9 +50,7 @@ class StepPeopleInCage(StepTemplateRm):
             "Edith": "Edith: {{Bb:You, " + get_username() + "! Get us out of here!}}",
             "Edward": "Edward: {{Bb:Edith dear, calm down...}}",
             "dog": "dog: {{Bb:Woof woof!}}",
-            "head-librarian": "head-librarian: {{Bb:Who are you?}}",
-            "swordmaster": "Swordmaster: {{Bb:" + get_username() + ", don't worry about us, we're safe. The "
-                                                                   "Rabbit hasn't figured the sudo password yet.}}"
+            "head-librarian": "head-librarian: {{Bb:Who are you?}}"
         }
         for person in people:
             if self._last_user_input == "cat cage/" + person:
@@ -69,6 +70,9 @@ class Step1(StepPeopleInCage):
         "ls",
         "ls ./",
         "ls ."
+    ]
+    hints = [
+        "{{rb:Look around with}} {{yb:ls}}"
     ]
 
     def next(self):

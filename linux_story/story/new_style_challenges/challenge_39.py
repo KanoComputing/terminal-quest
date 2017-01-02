@@ -16,7 +16,7 @@ class StepTemplateChmod(IStep):
 class Step1(StepTemplateChmod):
     story = [
         "You see a Masked Swordmaster watching you.",
-        "Listen to what he has to say."
+        "{{lb:Listen}} to what he has to say."
     ]
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
@@ -38,7 +38,7 @@ class Step2(StepTemplateChmod):
         "",
         "{{yb:1: I want to unlock the private section in the library.}}",
         "{{yb:2: Who are you?}}",
-        "{{yb:3: Have you been leaving me the strange notes?}}",
+        "{{yb:3: Have you been leaving me strange notes?}}",
         "",
         "Respond with {{yb:echo 1}}, {{yb:echo 2}}, or {{yb:echo 3}}."
     ]
@@ -47,10 +47,6 @@ class Step2(StepTemplateChmod):
     ]
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
-    hints = [
-        "{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} "
-        "{{yb:echo 3}}{{rb:.}}"
-    ]
     extra_hints = {
         "echo 2": "Swordmaster: {{Bb:I am one who has removed themselves from society. The few who know of me call me the Masked Swordmaster.}}",
         "echo 3": "Swordmaster: {{Bb:What notes?}}"
@@ -74,7 +70,7 @@ class Step3(StepTemplateChmod):
         "{{yb:I want to unlock the private section in the library.}}"
     ]
     story = [
-        "Swordmaster: {{Bb:Well, if you unlocked the chest in the}} {{lb:~/woods/cave}}"
+        "Swordmaster: {{Bb:Well, if you unlocked the chest in the}} {{bb:~/woods/cave}}"
         "{{Bb:, then you already know how.}}",
         "{{Bb:A note of caution: what is inside is both powerful and dangerous.}}"
         "",
@@ -139,13 +135,12 @@ class Step5(StepTemplateChmod):
         "How did I know your name? Use}} {{yb:ls -l}} {{Bb:to see.}}"
     ]
     commands = [
-        "ls -l"
+        "ls -l",
+        "ls -l .",
+        "ls -l ./"
     ]
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
-    hints = [
-        "Swordmaster: {{Bb:Use}} {{yb:ls -l}} {{Bb:}}"
-    ]
 
     file_list = [
         {

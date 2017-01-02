@@ -26,7 +26,7 @@ class Step1(StepTemplateChmod):
     end_dir = "~/woods/clearing"
 
     hints = [
-        "{{rb:Leave the house and go into the clearing with}} {{yb:cd ..}}"
+        "{{rb:Leave the house with}} {{yb:cd ..}}"
     ]
 
     file_list = [
@@ -126,7 +126,7 @@ class Step4(StepTemplateChmod):
 
 class Step5(StepTemplateChmod):
     story = [
-        "Look around."
+        "{{lb:Look around.}}"
     ]
     start_dir = "~/woods"
     end_dir = "~/woods"
@@ -146,7 +146,7 @@ class Step5(StepTemplateChmod):
 
 class Step6(StepTemplateChmod):
     story = [
-        "There's another note! Let's read it."
+        "There's another note! {{lb:Read}} it."
     ]
     start_dir = "~/woods"
     end_dir = "~/woods"
@@ -163,7 +163,7 @@ class Step6(StepTemplateChmod):
 
 class Step7(StepTemplateChmod):
     story = [
-        "Let's go into the thicket."
+        "Let's {{lb:go}} into the thicket."
     ]
     start_dir = "~/woods"
     end_dir = "~/woods/thicket"
@@ -180,7 +180,7 @@ class Step7(StepTemplateChmod):
 
 class Step8(StepTemplateChmod):
     story = [
-        "Look around."
+        "{{lb:Look around.}}"
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"

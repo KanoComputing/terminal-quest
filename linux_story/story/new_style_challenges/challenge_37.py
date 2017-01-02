@@ -17,25 +17,9 @@ class StepTemplateChmod(IStep):
 class Step1(StepTemplateChmod):
     story = [
         "You set off the firework!",
-        "{{gb:Congratulations, you learnt all the chmod commands.}}",
-        "{{lb:Go back into the cave.}}"
-    ]
-    start_dir = "~/woods/cave/locked-room"
-    end_dir = "~/woods/cave"
-    hints = [
-        "{{rb:Use}} {{yb:cd ..}} {{rb:to go back to the cave.}}"
-    ]
-
-    def block_command(self, line):
-        return unblock_cd_commands(line)
-
-    def next(self):
-        return 37, 2
-
-
-class Step2(StepTemplateChmod):
-    story = [
-        "{{gb:Thunk.}}",
+        "{{gb:You learnt all the chmod commands.}}",
+        "",
+        "{{lb:Thunk.}}",
         "",
         "Something new landed in front of you.",
         "{{lb:Look around}} to see what it is."
@@ -71,10 +55,10 @@ class Step2(StepTemplateChmod):
     ]
 
     def next(self):
-        return 37, 3
+        return 37, 2
 
 
-class Step3(StepTemplateChmod):
+class Step2(StepTemplateChmod):
     story = [
         "There is a {{bb:chest}} in front of you.",
         "{{lb:Look inside the chest.}}"
@@ -90,10 +74,10 @@ class Step3(StepTemplateChmod):
     ]
 
     def next(self):
-        return 37, 4
+        return 37, 3
 
 
-class Step4(StepTemplateChmod):
+class Step3(StepTemplateChmod):
     story = [
         "You can't see inside.",
         "It could be {{lb:it is missing all its permissions.}}",
@@ -122,10 +106,10 @@ class Step4(StepTemplateChmod):
     ]
 
     def next(self):
-        return 37, 5
+        return 37, 4
 
 
-class Step5(StepTemplateChmod):
+class Step4(StepTemplateChmod):
     story = [
         "{{gb:You opened it!}}",
         "Now {{lb:look inside}} the chest."
@@ -143,10 +127,10 @@ class Step5(StepTemplateChmod):
     ]
 
     def next(self):
-        return 37, 6
+        return 37, 5
 
 
-class Step6(StepTemplateChmod):
+class Step5(StepTemplateChmod):
     story = [
         "You see a riddle, and an answer. {{lb:Examine}} them."
     ]

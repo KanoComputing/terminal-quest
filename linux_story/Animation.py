@@ -79,7 +79,8 @@ class Animation:
         ascii_frames = self.load_animation()
         ascii_w = animation_width(ascii_frames)
         ascii_h = animation_height(ascii_frames)
-        h, w = self.__screen.getmaxyx()
+        w, h = get_width_height_of_screen()
+
         starty = startx = 0
         cycles = 0
 
@@ -111,11 +112,13 @@ class Animation:
         ascii_lr = self.load_animation()
         ascii_w = animation_width(ascii_lr)
         ascii_h = animation_height(ascii_lr)
+        debug("ascii_w = {}".format(ascii_w))
+        debug("ascii_h = {}".format(ascii_h))
 
         # reverse this if needs be
         ascii_rl = self.load_animation()
 
-        h, w = self.__screen.getmaxyx()
+        w, h = get_width_height_of_screen()
 
         if h < 18:
             return
@@ -228,7 +231,7 @@ class Animation:
             The frame is drawn from the [x,y] coordinates.
         """
 
-        h, w = self.__screen.getmaxyx()
+        w, h = get_width_height_of_screen()
 
         left_clip = 0
         if x < 0:
@@ -288,6 +291,11 @@ def debug(msg):
 
     with open(log, 'a') as f:
         f.write(str(msg) + '\n')
+
+
+def get_width_height_of_screen():
+    h, w = os.popen('stty size', 'r').read().split()
+    return int(w), int(h)
 
 
 if __name__ == "__main__":

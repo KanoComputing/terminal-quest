@@ -5,18 +5,11 @@
 #
 # The functions which starts off the game at the specified challenge and step.
 
-
-import os
 import sys
 
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
-from linux_story.load_defaults_into_filetree import default_global_tree
 from linux_story.common import tq_file_system
 from linux_story.file_creation.FileTree import FileTree
+from linux_story.load_defaults_into_filetree import default_global_tree
 from linux_story.story.trees.default_trees import tree
 
 
@@ -36,15 +29,19 @@ def launch_project(challenge_number=1, step_number=1):
     if challenge_number == 0:
         challenge_number = 1
         step_number = 1
-        # default_global_tree(1, 1)
 
-    # else:
-    #     default_global_tree(challenge_number, step_number)
+    if challenge_number <= 31:
+        default_global_tree(challenge_number, step_number)
+        step = get_step_class(challenge_number, step_number)
+        step()
+    else:
+        from linux_story.ChallengeController import ChallengeController
+        from linux_story.MessageClient import MessageClient
 
-    FileTree(tree, tq_file_system).parse_complete(challenge_number, step_number)
-
-    step = get_step_class(challenge_number, step_number)
-    step()
+        FileTree(tree, tq_file_system).parse_complete(challenge_number, step_number)
+        client = MessageClient()
+        controller = ChallengeController(client)
+        controller.run(challenge_number, step_number)
 
 
 def get_step_class(challenge_number, step_number):
@@ -62,9 +59,12 @@ def get_step_class(challenge_number, step_number):
     if challenge_number == 0:
         module_name = "story.challenges.introduction"
         step_class_name = "Step1"
-    else:
+    elif challenge_number <= 31:
         # If no fork, use this module name
         module_name = "story.challenges.challenge_{}".format(challenge_number)
+        step_class_name = "Step{}".format(step_number)
+    else:
+        module_name = "story.new_style_challenges.challenge_{}".format(challenge_number)
         step_class_name = "Step{}".format(step_number)
 
     try:

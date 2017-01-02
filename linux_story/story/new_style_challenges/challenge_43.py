@@ -28,6 +28,7 @@ class Step1(StepTemplateChmod):
         "You are standing alone in the library. The rabbit has stolen the command, and you have an increased sense of "
         "impending doom.",
         "The swordmaster runs into the room.",
+        "",
         "Swordmaster: {{Bb:What have you done?}}",
         "",
         "{{yb:1:}}" + REPLY_PRINT_TEXT,
@@ -50,6 +51,7 @@ class Step1(StepTemplateChmod):
     hints = [
         "Swordmaster: {{Bb:Speak with}} {{lb:echo}} {{Bb:and tell me!}}"
     ]
+    dark_theme = True
 
     def next(self):
         if self._last_user_input == "echo 2":
@@ -64,7 +66,7 @@ class Step100(StepTemplateChmod):
         "{{Bb:Tell me}} {{rb:the truth.}}",
         "{{Bb:You need my help to fix this....}}",
         "",
-        "{{yb:1:}}" + REPLY_PRINT_TEXT,
+        "{{yb:1:}} " + REPLY_PRINT_TEXT,
         "{{yb:2: Nothing.}}"
     ]
     commands = [
@@ -76,6 +78,7 @@ class Step100(StepTemplateChmod):
     hints = [
         "{{rb:Tell the swordmaster the truth, using}} {{yb:echo 1}}"
     ]
+    dark_theme = True
 
     def check_command(self, last_user_input):
         if last_user_input == "echo 2":
@@ -119,6 +122,7 @@ class Step2(StepTemplateChmod):
             "permissions": 0644
         }
     ]
+    dark_theme = True
 
     deleted_items = ["~/town/east/library/private-section/swordmaster"]
 
@@ -138,6 +142,7 @@ class Step3(StepTemplateChmod):
     commands = [
         "cat sword"
     ]
+    dark_theme = True
 
     hints = [
         "{{rb:Use}} {{yb:cat sword}} {{rb:to examine it.}}"
@@ -173,6 +178,7 @@ class Step4(StepTemplateRm):
         "",
         "{{rb:Use the command}} {{yb:rm note}}"
     ]
+    dark_theme = True
 
     def next(self):
         return 43, 5
@@ -189,8 +195,9 @@ class Step5(StepTemplateRm):
     ]
 
     hints = [
-        "Use the command {{lb:ls}}"
+        "{{rb:Use the command}} {{yb:ls}}"
     ]
+    dark_theme = True
 
     def next(self):
         return 44, 1

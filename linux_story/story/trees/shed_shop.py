@@ -9,7 +9,7 @@ shed_shop = {
             "challenges": [
                 {
                     "challenge": 23,
-                    "step": 4
+                    "step": 1
                 },
                 {
                     "challenge": 30,
@@ -19,12 +19,22 @@ shed_shop = {
             ]
         },
         {
+            "name": "Bernards-hat",
+            "contents": get_story_file("bernards-hat"),
+            "challenges": [
+                {
+                    "challenge": 30,
+                    "step": 1
+                }
+            ]
+        },
+        {
             "name": "best-shed-maker-in-the-world.sh",
             "contents": get_story_file("best-shed-maker-in-the-world.sh"),
             "challenges": [
                 {
                     "challenge": 23,
-                    "step": 4,
+                    "step": 1,
                     "permissions": 0755
                 }
             ]
@@ -34,8 +44,13 @@ shed_shop = {
             "contents": get_story_file("best-horn-in-the-world-incorrect.sh"),
             "challenges": [
                 {
+                    "challenge": 1,
+                    "step": 1,
+                    "exists": False
+                },
+                {
                     "challenge": 23,
-                    "step": 4,
+                    "step": 1,
                     "permissions": 0755
                 },
                 {
@@ -49,6 +64,11 @@ shed_shop = {
             "name": "best-horn-in-the-world.sh",
             "contents": get_story_file("best-horn-in-the-world-correct.sh"),
             "challenges": [
+                {
+                    "challenge": 1,
+                    "step": 1,
+                    "exists": False
+                },
                 {
                     "challenge": 27,
                     "step": 3,
@@ -66,7 +86,7 @@ shed_shop = {
                     "challenges": [
                         {
                             "challenge": 23,
-                            "step": 4
+                            "step": 1
                         }
                     ]
                 },
@@ -76,7 +96,7 @@ shed_shop = {
                     "challenges": [
                         {
                             "challenge": 23,
-                            "step": 4
+                            "step": 1
                         }
                     ]
                 },
@@ -87,7 +107,7 @@ shed_shop = {
                     "challenges": [
                         {
                             "challenge": 23,
-                            "step": 4
+                            "step": 1
                         }
                     ]
                 },

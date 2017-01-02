@@ -5,6 +5,7 @@ from linux_story.common import get_username
 from linux_story.file_creation.FileTree import delete_items
 from linux_story.file_creation.FileTree import modify_file_tree
 from linux_story.helper_functions import record_user_interaction
+from linux_story.step_helper_functions import unblock_commands
 from linux_story.story.StepNano import StepNano
 
 
@@ -13,7 +14,7 @@ class IStep:
     print_text = None
     story = [""]
     start_dir = "~"
-    dirs_to_attempt = [""]
+    dirs_to_attempt = None
     end_dir = "~"
     commands = ""
     hints = [""]
@@ -24,21 +25,31 @@ class IStep:
     prev_command = ""
     companion_speech = ""
     companion_command = ""
+    dark_theme = False
 
     def __init__(self, client):
+        self._client = client
+
         self._run_at_start()
-        self._nano = StepNano()
+        self.__set_theme()
+        self._location = PlayerLocation(self.start_dir, self.end_dir)
+        self._nano = StepNano(client, self, self._location)
         self._setup_nano()
         self.__modify_file_system()
 
         if isinstance(self.hints, basestring):
             raise Exception("Hint is a string! Bad Caroline!")
 
-        self._client = client
-        self._location = PlayerLocation(self.start_dir, self.end_dir)
         self._last_user_input = ""
         self._is_finished = False
         self.__command_blocked = False
+
+    def __set_theme(self):
+        if self.dark_theme:
+            self.send_dark_theme()
+
+    def get_nano_logic(self):
+        return self._nano
 
     def _run_at_start(self):
         # Hook to run at start
@@ -52,7 +63,11 @@ class IStep:
         delete_items(self.deleted_items)
         modify_file_tree(self.file_list)
 
+    def _run_after_text(self):
+        pass
+
     def run(self):
+        self._run_after_text()
         self.TerminalClass(self, self._location, self.dirs_to_attempt).cmdloop()
 
     def next(self):
@@ -62,7 +77,8 @@ class IStep:
         return self.check_output(last_cmd_output) or self.check_command(last_user_input)
 
     def block_command(self, last_user_input):
-        pass
+        # default behaviour
+        return unblock_commands(last_user_input, self.commands)
 
     def check_command(self, last_user_input):
         return self._default_check_command(last_user_input)
@@ -76,6 +92,9 @@ class IStep:
 
     def set_last_user_input(self, last_user_input):
         self._last_user_input = last_user_input
+
+    def get_last_user_input(self):
+        return self._last_user_input
 
     def get_location(self):
         return self._location
@@ -144,7 +163,16 @@ class IStep:
         return self.__command_blocked
 
     def _companion_speaks(self, line):
+        """
+        :param line: last line user typed
+        :return: boolean, depending on whether the companion spoke
+        """
         if line == self.companion_command and self.companion_speech:
             self.send_hint("\n" + self.companion_speech)
             record_user_interaction(self, "_".join(self.companion_command.split(" ")))
+            return True
+        return False
+
+    def check_nano_contents(self):
+        pass
 

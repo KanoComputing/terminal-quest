@@ -158,6 +158,8 @@ def launch_application(real_path, line, command_word=""):
     Returns:
         None.
     '''
+
+    line = line.replace('~', fake_home_dir)
     line = " ".join([command_word] + line.split(" "))
 
     p = subprocess.Popen(line, cwd=real_path, shell=True)

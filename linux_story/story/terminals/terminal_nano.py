@@ -13,8 +13,6 @@ import time
 import threading
 
 from kano.logging import logger
-
-from linux_story.story.terminals.terminal_echo import TerminalEcho
 from linux_story.commands_real import nano
 
 

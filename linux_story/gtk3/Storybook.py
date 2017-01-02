@@ -31,23 +31,15 @@ class Storybook(Gtk.TextView):
     on the left side of the application.
     '''
 
-    def __init__(self, width=None, height=None):
+    def __init__(self, width, height):
         Gtk.TextView.__init__(self)
         self.__generate_tags()
 
         # Remove the right click pop up
         self.connect("button-press-event", self.prevent_right_click)
 
-        screen = Gdk.Screen.get_default()
-
         self.width = width
         self.height = height
-
-        if not width:
-            self.width = screen.get_width() / 2
-
-        if not height:
-            height = screen.get_height() - 300
 
         self.set_size_request(self.width, height)
         font_desc = Pango.FontDescription()
@@ -68,15 +60,20 @@ class Storybook(Gtk.TextView):
         self.set_margin_left(10)
         self.set_margin_right(10)
 
+        self.set_normal_theme()
+
     def set_dark_theme(self):
         style_context = self.get_style_context()
         if "dark" not in style_context.list_classes():
             self.get_style_context().add_class("dark")
+            self.get_style_context().remove_class("normal")
 
     def set_normal_theme(self):
         style_context = self.get_style_context()
         if "dark" in style_context.list_classes():
-            style_context.remove_class("dark")
+            self.get_style_context().remove_class("dark")
+            self.get_style_context().add_class("normal")
+            self.show_all()
 
     def clear(self):
         '''Clear all text in spellbook

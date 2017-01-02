@@ -2,7 +2,7 @@ from linux_story.common import tq_file_system
 from linux_story.dependencies import load_app_state_variable, save_app_state_variable_with_dialog, \
     get_app_xp_for_challenge, translate
 from linux_story.file_creation.FileTree import FileTree
-from linux_story.launch_functions import get_new_step_class
+from linux_story.launch_functions import get_step_class
 from linux_story.story.trees.default_trees import tree
 
 
@@ -20,14 +20,14 @@ class ChallengeController(IController):
 
     def run(self, challenge=1, step=1):
         FileTree(tree, tq_file_system).parse_complete(challenge, step)
-        StepClass = get_new_step_class(challenge, step)
+        StepClass = get_step_class(challenge, step)
         step_instance = StepClass(self.__message_client)
         self.__send_start_challenge_data(step_instance, step_instance.TerminalClass.terminal_commands, challenge)
         step_instance.run()
         (new_challenge, new_step) = step_instance.next()
 
         while not step_instance.is_finished_game():
-            StepClass = get_new_step_class(new_challenge, new_step)
+            StepClass = get_step_class(new_challenge, new_step)
             step_instance = StepClass(self.__message_client)
             self.__send_start_challenge_data(step_instance, step_instance.TerminalClass.terminal_commands, new_challenge)
             self.__save_challenge(new_challenge, challenge)

@@ -130,6 +130,7 @@ class Step3(StepTemplateNano):
     end_dir = "~/woods/clearing"
 
     hints = [
+        "{{rb:There is a signpost in the garden.}} {{lb:Examine}} {{rb:it.}}",
         "{{rb:Examine that signpost with}} {{yb:cat signpost}}{{rb:.}}"
     ]
 
@@ -214,7 +215,8 @@ class Step7(StepTemplateNano):
     end_dir = "~/woods/cave"
     hints = [
         "Swordmaster: {{Bb:Head to the}} {{bb:~/woods/cave}} {{Bb:and stop hanging around outside my house!}}",
-        "{{yb:Head to}} {{bb:~/woods/cave}}"
+        "",
+        "{{rb:Head to}} {{bb:~/woods/cave}}"
     ]
 
     def check_command(self, line):
@@ -238,7 +240,7 @@ class Step8(StepTemplateNano):
     end_dir = "~/woods/cave"
     hints = [
         "Swordmaster: {{Bb:Head to the}} {{bb:~/woods/cave}} {{Bb:and stop hanging around outside my house!}}",
-        "{{yb:Head to}} {{bb:~/woods/cave}}"
+        "{{rb:Head to}} {{bb:~/woods/cave}}"
     ]
 
     def check_command(self, line):
@@ -256,7 +258,7 @@ class Step8(StepTemplateNano):
 
 class Step9(StepTemplateNano):
     story = [
-        "Look around."
+        "{{lb:Look around.}}"
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -264,6 +266,9 @@ class Step9(StepTemplateNano):
         "ls",
         "ls .",
         "ls ./"
+    ]
+    hints = [
+        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
     ]
 
     def next(self):

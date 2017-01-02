@@ -15,13 +15,7 @@ class TerminalChmod(TerminalNano):
         "ls", "cat", "cd", "mv", "echo", "mkdir", "nano", "chmod"
     ]
 
-    def do_chmod(self, line, has_access=True):
-
-        if self.needs_sudo and not has_access:
-            print ("chmod: changing permissions of '{}': Operation not "
-                   "permitted".format(line))
-            return
-
+    def do_chmod(self, line):
         shell_command(self.real_path, line, "chmod")
 
     def complete_chmod(self, text, line, begidx, endidx):

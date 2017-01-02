@@ -34,6 +34,8 @@ class MainWindow(Gtk.Window):
 
     CSS_FILE = os.path.join(css_dir, "style.css")
     COLOUR_CSS_FILE = os.path.join(css_dir, "colours.css")
+    NORMAL_CLASS = "normal"
+    DARK_CLASS = "dark"
 
     def __init__(self, queue, debug, challenge, step):
         Gtk.Window.__init__(self)
@@ -62,17 +64,15 @@ class MainWindow(Gtk.Window):
             self.__set_normal_theme()
 
     def __set_dark_theme(self):
-        style_context = self.get_style_context()
-        if "dark" not in style_context.list_classes():
-            self.get_style_context().add_class("dark")
+        self.get_style_context().add_class(self.DARK_CLASS)
+        self.get_style_context().remove_class(self.NORMAL_CLASS)
         self.__spellbook.set_dark_theme()
         self.__terminal.set_dark_theme()
         self.__story.set_dark_theme()
 
     def __set_normal_theme(self):
-        style_context = self.get_style_context()
-        if "dark" not in style_context.list_classes():
-            style_context.remove_class("dark")
+        self.get_style_context().add_class(self.NORMAL_CLASS)
+        self.get_style_context().remove_class(self.DARK_CLASS)
         self.__spellbook.set_normal_theme()
         self.__terminal.set_normal_theme()
         self.__story.set_normal_theme()
@@ -80,6 +80,7 @@ class MainWindow(Gtk.Window):
     def __setup_gtk_properties(self):
         self.connect('delete-event', self.__close_window)
         self.get_style_context().add_class("main_window")
+        self.get_style_context().add_class(self.NORMAL_CLASS)
         self.maximize()
         self.set_title("Terminal Quest")
         self.set_icon_name("linux-story")
@@ -100,7 +101,7 @@ class MainWindow(Gtk.Window):
         self.__setup_application_widgets()
         self.__start_script_in_terminal(challenge, step)
         self.show_all()
-        if False:
+        if not self.__debug:
             self.__terminal.hide()
             self.__spellbook.hide()
 
@@ -112,15 +113,15 @@ class MainWindow(Gtk.Window):
 
     def __setup_application_widgets(self):
         screen = Gdk.Screen.get_default()
+
+        self.__spellbook = Spellbook(is_caps_lock_on=self.__is_caps_lock_on)
+
         width = screen.get_width()
         height = screen.get_height()
-
-        self.__terminal = TerminalUi()
-        self.__spellbook = Spellbook(is_caps_lock_on=self.__is_caps_lock_on)
-        self.__story = Storybook(
-            width / 2 - 40,
-            height - self.__spellbook.HEIGHT - 2 * 44 - 10
-        )
+        terminal_width, terminal_height = width / 2 - 20, height - self.__spellbook.HEIGHT - 2 * 44 - 20
+        story_width, story_height = width / 2 - 20, height - self.__spellbook.HEIGHT - 2 * 44 - 10
+        self.__terminal = TerminalUi(terminal_width, terminal_height)
+        self.__story = Storybook(story_width, story_height)
 
         self.hbox = Gtk.Box()
 
@@ -128,6 +129,7 @@ class MainWindow(Gtk.Window):
         story_sw.apply_styling_to_screen()
         story_sw.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         story_sw.add(self.__story)
+        story_sw.set_size_request(story_width, story_height)
 
         left_background = Gtk.EventBox()
         left_background.get_style_context().add_class("story_background")
@@ -147,12 +149,6 @@ class MainWindow(Gtk.Window):
         right_background.add(self.__terminal)
 
         # Allow for margin on bottom and top bar.
-        self.__terminal.set_size_request(
-            width / 2 - 20, height - self.__spellbook.HEIGHT - 2 * 44 - 20
-        )
-        story_sw.set_size_request(
-            width / 2 - 20, height - self.__spellbook.HEIGHT - 2 * 44 - 10
-        )
 
     def on_caps_lock_changed(self, is_caps_lock_on):
         if self.__spellbook:
