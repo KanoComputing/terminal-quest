@@ -12,8 +12,11 @@ from cmd import Cmd
 from helper_functions import (
     get_script_cmd, is_exe, colour_string_with_preset
 )
-from linux_story.dependencies import load_app_state_variable, save_app_state_variable_with_dialog, \
-    get_app_xp_for_challenge, Logger, translate
+
+from kano_profile.apps import get_app_xp_for_challenge, load_app_state_variable
+from kano_profile.badges import save_app_state_variable_with_dialog
+
+from kano.logging import logger
 from linux_story.MessageClient import MessageClient
 from common import get_username, fake_home_dir
 from load_defaults_into_filetree import delete_item, modify_file_tree
@@ -313,7 +316,7 @@ class Terminal(Cmd):
         """
         xp = get_app_xp_for_challenge("linux-story", str(self.challenge_number))
         if xp > 0:
-            self.xp = translate("{{gb:Congratulations, you earned %d XP!}}\n\n") % xp
+            self.xp = _("{{gb:Congratulations, you earned %d XP!}}\n\n") % xp
 
     def exit(self):
         self._client.exit()
@@ -408,7 +411,7 @@ class Terminal(Cmd):
             return completions
 
         except Exception as e:
-            Logger.debug("Hit Exception in the autocomplete_files function {}".format(str(e)))
+            logger.debug("Hit Exception in the autocomplete_files function {}".format(str(e)))
 
     # Overwrite this to check for shell scripts instead.
     def completedefault(self, *ignored):

@@ -6,14 +6,9 @@
 import os
 import time
 from gi.repository import Gtk, Gdk, Pango
-
-if __name__ == '__main__' and __package__ is None:
-    dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
-from linux_story.dependencies import load_app_state_variable, Logger, apply_styling_to_screen, \
-    ScrolledWindow
+from kano.gtk3.apply_styles import apply_styling_to_screen
+from kano_profile.apps import load_app_state_variable
+from kano.gtk3.scrolled_window import ScrolledWindow
 from linux_story.gtk3.TerminalUi import TerminalUi
 from linux_story.gtk3.Spellbook import Spellbook
 from linux_story.gtk3.Storybook import Storybook
@@ -37,7 +32,7 @@ class MainWindow(Gtk.Window):
     NORMAL_CLASS = "normal"
     DARK_CLASS = "dark"
 
-    def __init__(self, queue, debug, challenge, step):
+    def __init__(self, queue, challenge, step, debug):
         Gtk.Window.__init__(self)
 
         self.__queue = queue

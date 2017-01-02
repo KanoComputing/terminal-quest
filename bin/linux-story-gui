@@ -36,12 +36,10 @@ if __name__ == '__main__' and __package__ is None:
     else:
         LOCALE_PATH = '/usr/share/locale'
 
-# import kano_i18n.init
-# from kano_profile.apps import load_app_state_variable
-# from kano_profile.tracker import Tracker
+import kano_i18n.init
+from kano_profile.tracker import Tracker
 from linux_story.MessageServer import MessageServer
-from linux_story.dependencies import Tracker, install_i18n
-install_i18n('terminal-quest', LOCALE_PATH)
+kano_i18n.init.install(name, path)('terminal-quest', LOCALE_PATH)
 
 # Track the user's progress
 kanotracker = Tracker()
@@ -50,9 +48,10 @@ kanotracker = Tracker()
 from linux_story.gtk3.MainWindow import MainWindow
 
 
-def main(debug=False, challenge=None, step=None):
+def main(challenge, step, debug=False):
+    print "challenge {}, step {}".format(challenge, step)
     queue = Queue.Queue(1)
-    window = MainWindow(queue, debug, challenge, step)
+    window = MainWindow(queue, challenge, step, debug)
     server = MessageServer(queue, window)
     server.start_in_separate_thread()
     window.connect("delete-event", server.shutdown)
@@ -95,6 +94,6 @@ if __name__ == "__main__":
         sys.settrace(tracefunc)
 
     try:
-        main(debug, challenge, step)
+        main(challenge, step, debug)
     finally:
         handle_cleanup()

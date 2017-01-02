@@ -1,19 +1,20 @@
+# ChallengeController.py
+#
+# Copyright (C) 2014-2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+
+
 from linux_story.common import tq_file_system
-from linux_story.dependencies import load_app_state_variable, save_app_state_variable_with_dialog, \
-    get_app_xp_for_challenge, translate
+from kano_profile.apps import get_app_xp_for_challenge, load_app_state_variable
+from kano_profile.badges import save_app_state_variable_with_dialog
 from linux_story.file_creation.FileTree import FileTree
 from linux_story.launch_functions import get_step_class
 from linux_story.story.trees.default_trees import tree
 
 
-class IController:
-
-    def run(self):
-        raise Exception("Not implemented")
-
-
 # noinspection PyPep8Naming
-class ChallengeController(IController):
+class ChallengeController:
 
     def __init__(self, message_client):
         self.__message_client = message_client
@@ -62,8 +63,11 @@ class ChallengeController(IController):
     @staticmethod
     def __get_xp(challenge):
         level = load_app_state_variable("linux-story", "level")
+        if level is None:
+            level = 1
+
         if challenge > level + 1:
             xp = get_app_xp_for_challenge("linux-story", str(challenge))
             if xp > 0:
-                return translate("{{gb:Congratulations, you earned %d XP!}}\n\n") % xp
+                return _("{{gb:Congratulations, you earned %d XP!}}\n\n") % xp
         return ""
