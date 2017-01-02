@@ -16,14 +16,14 @@ class StepTemplateNano(IStep):
 
 class Step1(StepTemplateNano):
     story = [
-        "Time to find the swordmaster.",
-        "Clara said that he was in the woods just off the {{lb:Windy Road}} {{yb:~}}.",
-        "Use {{yb:cd}} to head there now."
+        _("Time to find the swordmaster."),
+        _("Clara said that he was in the woods just off the {{lb:Windy Road}} {{yb:~}}."),
+        _("Use {{yb:cd}} to head there now.")
     ]
     start_dir = "~/town/east/shed-shop/basement"
     end_dir = "~"
     hints = [
-        "{{rb:Use}} {{yb:cd}} {{rb:by itself to go back to the Windy Road ~}}"
+        _("{{rb:Use}} {{yb:cd}} {{rb:by itself to go back to the Windy Road ~}}")
     ]
 
     file_list = [
@@ -50,7 +50,7 @@ class Step1(StepTemplateNano):
 
 class Step2(StepTemplateNano):
     story = [
-        "{{lb:Look around}} to see where the woods are."
+        _("{{lb:Look around}} to see where the woods are.")
     ]
     start_dir = "~"
     end_dir = "~"
@@ -59,7 +59,7 @@ class Step2(StepTemplateNano):
         "ls -a"
     ]
     hints = [
-        "{{rb:Look around using}} {{yb:ls}}"
+        _("{{rb:Look around using}} {{yb:ls}}")
     ]
 
     def next(self):
@@ -68,13 +68,13 @@ class Step2(StepTemplateNano):
 
 class Step3(StepTemplateNano):
     story = [
-        "You see the {{bb:woods}} in the distance, a set of dark and inhospitable trees.",
-        "{{lb:Go into the woods}}."
+        _("You see the {{bb:woods}} in the distance, a set of dark and inhospitable trees."),
+        _("{{lb:Go into the woods}}.")
     ]
     start_dir = "~"
     end_dir = "~/woods"
     hints = [
-        "{{rb:Use}} {{yb:cd woods/}} {{rb:to go to the woods.}}"
+        _("{{rb:Use}} {{yb:cd woods/}} {{rb:to go to the woods.}}")
     ]
 
     def block_command(self, line):
@@ -87,7 +87,7 @@ class Step3(StepTemplateNano):
 # Should they use ls -a to find something hidden?
 class Step4(StepTemplateNano):
     story = [
-        "{{lb:Look around}} and see where to go next."
+        _("{{lb:Look around}} and see where to go next.")
     ]
     start_dir = "~/woods"
     end_dir = "~/woods"
@@ -96,7 +96,7 @@ class Step4(StepTemplateNano):
         "ls -a"
     ]
     hints = [
-        "{{rb:Look around using}} {{yb:ls}}"
+        _("{{rb:Look around using}} {{yb:ls}}")
     ]
 
     def next(self):
@@ -105,8 +105,8 @@ class Step4(StepTemplateNano):
 
 class Step5(StepTemplateNano):
     story = [
-        "You see a {{bb:clearing}} which reminds you of a garden.",
-        "{{lb:Go into the}} {{bb:clearing}}{{lb:.}}"
+        _("You see a {{bb:clearing}} which reminds you of a garden."),
+        _("{{lb:Go into the}} {{bb:clearing}}{{lb:.}}")
     ]
     start_dir = "~/woods"
     end_dir = "~/woods/clearing"
@@ -115,7 +115,7 @@ class Step5(StepTemplateNano):
         "cd clearing"
     ]
     hints = [
-        "{{rb:Use}} {{yb:cd clearing/}} {{rb:to go into the clearing.}}"
+        _("{{rb:Use}} {{yb:cd clearing/}} {{rb:to go into the clearing.}}")
     ]
 
     def block_command(self, line):

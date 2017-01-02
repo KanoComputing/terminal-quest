@@ -21,8 +21,8 @@ class StepTemplateChmod(IStep):
 
 class Step1(StepTemplateNano):
     story = [
-        "There are three rooms.",
-        "First, {{lb:look inside the dark-room}}."
+        _("There are three rooms."),
+        _("First, {{lb:look inside the dark-room}}.")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -31,7 +31,7 @@ class Step1(StepTemplateNano):
         "ls dark-room/"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls dark-room/}} {{rb:to look inside the dark-room.}}"
+        _("{{rb:Use}} {{yb:ls dark-room/}} {{rb:to look inside the dark-room.}}")
     ]
 
     def next(self):
@@ -40,8 +40,8 @@ class Step1(StepTemplateNano):
 
 class Step2(StepTemplateNano):
     story = [
-        "The room is pitch black, and it is impossible to see anything inside.",
-        "Next, {{lb:look inside}} the {{bb:locked-room}}"
+        _("The room is pitch black, and it is impossible to see anything inside."),
+        _("Next, {{lb:look inside}} the {{bb:locked-room}}")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -50,7 +50,7 @@ class Step2(StepTemplateNano):
         "ls locked-room/"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls locked-room/}} {{rb:to look inside the locked-room.}}"
+        _("{{rb:Use}} {{yb:ls locked-room/}} {{rb:to look inside the locked-room.}}")
     ]
 
     def next(self):
@@ -59,8 +59,8 @@ class Step2(StepTemplateNano):
 
 class Step3(StepTemplateNano):
     story = [
-        "Peering through a grimy window, you can just make out the items inside.",
-        "{{lb:Examine the items inside}}."
+        _("Peering through a grimy window, you can just make out the items inside."),
+        _("{{lb:Examine the items inside}}.")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -69,7 +69,7 @@ class Step3(StepTemplateNano):
         "cat locked-room/firework"
     ]
     hints = [
-        "{{rb:Examine the sign with}} {{yb:cat locked-room/sign}}"
+        _("{{rb:Examine the sign with}} {{yb:cat locked-room/sign}}")
     ]
 
     def next(self):
@@ -78,15 +78,15 @@ class Step3(StepTemplateNano):
 
 class Step4(StepTemplateNano):
     story = [
-        "You are unable to make out the items in the room.",
-        "Maybe it would help if you went inside?",
-        "Try and {{lb:go inside}} the {{bb:locked-room}}."
+        _("You are unable to make out the items in the room."),
+        _("Maybe it would help if you went inside?"),
+        _("Try and {{lb:go inside}} the {{bb:locked-room}}.")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
     dirs_to_attempt = "~/woods/cave/locked-room"
     hints = [
-        "{{rb:Go inside the locked-room with}} {{yb:cd locked-room}}"
+        _("{{rb:Go inside the locked-room with}} {{yb:cd locked-room}}")
     ]
     commands = [
         "cd locked-room",
@@ -102,8 +102,8 @@ class Step4(StepTemplateNano):
 
 class Step5(StepTemplateNano):
     story = [
-        "The door is locked, so you can't go in.",
-        "Finally, {{lb:look inside}} the {{bb:cage}}."
+        _("The door is locked, so you can't go in."),
+        _("Finally, {{lb:look inside}} the {{bb:cage}}.")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -112,7 +112,7 @@ class Step5(StepTemplateNano):
         "ls cage/"
     ]
     hints = [
-        "{{rb:Look inside the cage with}} {{yb:ls cage}}"
+        _("{{rb:Look inside the cage with}} {{yb:ls cage}}")
     ]
 
     def next(self):
@@ -121,7 +121,7 @@ class Step5(StepTemplateNano):
 
 class Step6(StepTemplateNano):
     story = [
-        "There is a bird in the cage. {{lb:Examine}} the bird.",
+        _("There is a bird in the cage. {{lb:Examine}} the bird."),
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -129,7 +129,7 @@ class Step6(StepTemplateNano):
         "cat cage/bird"
     ]
     hints = [
-        "{{rb:Examine the bird with}} {{yb:cat cage/bird}}"
+        _("{{rb:Examine the bird with}} {{yb:cat cage/bird}}")
     ]
 
     def next(self):
@@ -138,10 +138,10 @@ class Step6(StepTemplateNano):
 
 class Step7(StepTemplateNano):
     story = [
-        "Bird: {{Bb:...Me...trapped..}}",
-        "{{Bb:Please help....get me out.}}",
+        _("Bird: {{Bb:...Me...trapped..}}"),
+        _("{{Bb:Please help....get me out.}}"),
         "",
-        "Help the bird by {{lb:moving}} the {{lb:bird}} outside the {{lb:cage}}."
+        _("Help the bird by {{lb:moving}} the {{lb:bird}} outside the {{lb:cage}}.")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -150,7 +150,7 @@ class Step7(StepTemplateNano):
         "mv cage/bird ./"
     ]
     hints = [
-        "{{rb:Move the bird outside the cage with}} {{yb:mv cage/bird ./}}"
+        _("{{rb:Move the bird outside the cage with}} {{yb:mv cage/bird ./}}")
     ]
 
     def block_command(self, line):

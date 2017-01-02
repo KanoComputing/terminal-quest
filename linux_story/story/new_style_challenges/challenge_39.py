@@ -15,14 +15,14 @@ class StepTemplateChmod(IStep):
 
 class Step1(StepTemplateChmod):
     story = [
-        "You see a Masked Swordmaster watching you.",
-        "{{lb:Listen}} to what he has to say."
+        _("You see a Masked Swordmaster watching you."),
+        _("{{lb:Listen}} to what he has to say.")
     ]
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
     hints = [
-        "{{rb:Use}} {{yb:cat swordmaster}} {{rb:to}} {{lb:listen}} "
-        "{{rb:to what the swordmaster has to say.}}"
+        _("{{rb:Use}} {{yb:cat swordmaster}} {{rb:to}} {{lb:listen}} "
+        "{{rb:to what the swordmaster has to say.}}")
     ]
     commands = [
         "cat swordmaster"
@@ -34,13 +34,13 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "{{wb:Swordmaster:}} {{Bb:Child, why do you seek me?}}",
+        _("{{wb:Swordmaster:}} {{Bb:Child, why do you seek me?}}"),
         "",
-        "{{yb:1: I want to unlock the private section in the library.}}",
-        "{{yb:2: Who are you?}}",
-        "{{yb:3: Have you been leaving me strange notes?}}",
+        _("{{yb:1: I want to unlock the private section in the library.}}"),
+        _("{{yb:2: Who are you?}}"),
+        _("{{yb:3: Have you been leaving me strange notes?}}"),
         "",
-        "Respond with {{yb:echo 1}}, {{yb:echo 2}}, or {{yb:echo 3}}."
+        _("Respond with {{yb:echo 1}}, {{yb:echo 2}}, or {{yb:echo 3}}.")
     ]
     commands = [
         "echo 1"
@@ -48,8 +48,8 @@ class Step2(StepTemplateChmod):
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
     extra_hints = {
-        "echo 2": "Swordmaster: {{Bb:I am one who has removed themselves from society. The few who know of me call me the Masked Swordmaster.}}",
-        "echo 3": "Swordmaster: {{Bb:What notes?}}"
+        "echo 2": _("Swordmaster: {{Bb:I am one who has removed themselves from society. The few who know of me call me the Masked Swordmaster.}}"),
+        "echo 3": _("Swordmaster: {{Bb:What notes?}}")
     }
 
     last_step = True
@@ -67,16 +67,16 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     print_text = [
-        "{{yb:I want to unlock the private section in the library.}}"
+        _("{{yb:I want to unlock the private section in the library.}}")
     ]
     story = [
-        "Swordmaster: {{Bb:Well, if you unlocked the chest in the}} {{bb:~/woods/cave}}"
-        "{{Bb:, then you already know how.}}",
-        "{{Bb:A note of caution: what is inside is both powerful and dangerous.}}"
+        _("Swordmaster: {{Bb:Well, if you unlocked the chest in the}} {{bb:~/woods/cave}}"
+        "{{Bb:, then you already know how.}}"),
+        _("{{Bb:A note of caution: what is inside is both powerful and dangerous.}}"),
         "",
-        "{{yb:1: What is inside the library that is so dangerous?}}",
-        "{{yb:2: Why do you live so far from other people?}}",
-        "{{yb:3: Do you know why people are disappearing?}}"
+        _("{{yb:1: What is inside the library that is so dangerous?}}"),
+        _("{{yb:2: Why do you live so far from other people?}}"),
+        _("{{yb:3: Do you know why people are disappearing?}}")
     ]
 
     commands = [
@@ -86,9 +86,9 @@ class Step3(StepTemplateChmod):
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
     extra_hints = {
-        "echo 1": "Swordmaster: {{Bb:A command that makes the wielder into a Super User and gives them tremendous power.}}",
-        "echo 2": "Swordmaster: {{Bb:Being a swordmaster, I have the ability to}} {{lb:remove}} {{Bb:others. "
-                  "This makes people uneasy around me, so I choose to live in the woods instead.}}"
+        "echo 1": _("Swordmaster: {{Bb:A command that makes the wielder into a Super User and gives them tremendous power.}}"),
+        "echo 2": _("Swordmaster: {{Bb:Being a swordmaster, I have the ability to}} {{lb:remove}} {{Bb:others. "
+                  "This makes people uneasy around me, so I choose to live in the woods instead.}}")
     }
 
     def check_command(self, line):
@@ -103,12 +103,12 @@ class Step3(StepTemplateChmod):
 
 class Step4(StepTemplateChmod):
     print_text = [
-        "{{yb:Do you know why people are disappearing?}}"
+        _("{{yb:Do you know why people are disappearing?}}")
     ]
     story = [
-        "Swordmaster: {{Bb:I wasn't aware people were disappearing. Is that what is causing that bell?",
-        "Perhaps it is good you are here then.",
-        "Tell me, what is your name?}}"
+        _("Swordmaster: {{Bb:I wasn't aware people were disappearing. Is that what is causing that bell?"),
+        _("Perhaps it is good you are here then."),
+        _("Tell me, what is your name?}}")
     ]
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
@@ -116,12 +116,14 @@ class Step4(StepTemplateChmod):
         "echo " + get_username()
     ]
     hints = [
-        "{{rb:Use}} {{yb:echo " + get_username() + "}} {{rb:to give your name.}}"
+        _("{{rb:Use}} {{yb:echo " + get_username() + "}} {{rb:to give your name.}}")
     ]
 
     def check_command(self, last_user_input):
         if last_user_input.startswith("echo") and last_user_input not in self.commands:
-            self.send_hint("Swordmaster: {{Bb:That's a strange name. Is that really your name?}}")
+            self.send_hint(
+                _("Swordmaster: {{Bb:That's a strange name. Is that really your name?}}")
+            )
             return
         return StepTemplateChmod.check_command(self, last_user_input)
 
@@ -131,8 +133,8 @@ class Step4(StepTemplateChmod):
 
 class Step5(StepTemplateChmod):
     story = [
-        "Swordmaster: {{Bb:I thought you might be. Few have the power to use the commands you used earlier.",
-        "How did I know your name? Use}} {{yb:ls -l}} {{Bb:to see.}}"
+        _("Swordmaster: {{Bb:I thought you might be. Few have the power to use the commands you used earlier."),
+        _("How did I know your name? Use}} {{yb:ls -l}} {{Bb:to see.}}")
     ]
     commands = [
         "ls -l",
@@ -157,10 +159,10 @@ class Step5(StepTemplateChmod):
 
 class Step6(StepTemplateChmod):
     story = [
-        "Swordmaster: {{Bb:Your name is written in this world, for anyone who knows where to look.}}",
+        _("Swordmaster: {{Bb:Your name is written in this world, for anyone who knows where to look.}}"),
         "{{Bb:...}}",
-        "{{Bb:...why is there a}} {{lb:note}} {{Bb:in this room?}}",
-        "{{Bb:Do you see it? Use}} {{lb:cat note}} {{Bb:to examine it.}}"
+        _("{{Bb:...why is there a}} {{lb:note}} {{Bb:in this room?}}"),
+        _("{{Bb:Do you see it? Use}} {{lb:cat note}} {{Bb:to examine it.}}")
     ]
     commands = [
         "cat note"

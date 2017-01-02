@@ -17,7 +17,7 @@ class StepTemplateChmod(IStep):
 
 class Step1(StepTemplateChmod):
     story = [
-        "{{lb:Look inside}} the dark room again."
+        _("{{lb:Look inside}} the dark room again.")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -29,7 +29,7 @@ class Step1(StepTemplateChmod):
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:ls dark-room}} {{rb:to look inside the dark-room.}}"
+        _("{{rb:Use}} {{yb:ls dark-room}} {{rb:to look inside the dark-room.}}")
     ]
 
     def next(self):
@@ -38,7 +38,7 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "You can see a sign in the {{bb:dark-room}}. {{lb:Read the sign.}}"
+        _("You can see a sign in the {{bb:dark-room}}. {{lb:Read the sign.}}")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -47,7 +47,7 @@ class Step2(StepTemplateChmod):
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:cat dark-room/sign}} {{rb:to read the sign.}}"
+        _("{{rb:Use}} {{yb:cat dark-room/sign}} {{rb:to read the sign.}}")
     ]
 
     def next(self):
@@ -61,12 +61,12 @@ class Step3(StepTemplateChmod):
         _("to unlock the locked-room.")
     ])
     story += [
-        "Use it on the {{bb:locked-room}}."
+        _("Use it on the {{bb:locked-room}}.")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
     hints = [
-        "{{rb:Unlock the locked-room with}} {{yb:chmod +x locked-room}}"
+        _("{{rb:Unlock the locked-room with}} {{yb:chmod +x locked-room}}")
     ]
     commands = [
         "chmod +x locked-room",
@@ -80,8 +80,8 @@ class Step3(StepTemplateChmod):
 
 class Step4(StepTemplateChmod):
     story = [
-        "Now you can {{lb:examine}} the items in the {{bb:locked-room}}.",
-        "{{lb:Read the sign in the locked-room}}"
+        _("Now you can {{lb:examine}} the items in the {{bb:locked-room}}."),
+        _("{{lb:Read the sign in the locked-room}}")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -89,7 +89,7 @@ class Step4(StepTemplateChmod):
         "cat locked-room/sign"
     ]
     hints = [
-        "{{rb:Use}} {{yb:cat locked-room/sign}} {{rb:to read the sign.}}"
+        _("{{rb:Use}} {{yb:cat locked-room/sign}} {{rb:to read the sign.}}")
     ]
 
     def check_commmand(self, line):
@@ -120,7 +120,7 @@ class Step5(StepTemplateChmod):
         "chmod +w cage/"
     ]
     hints = [
-        "{{rb:Use}} {{yb:chmod +w cage}} {{rb:to unlock the cage.}}"
+        _("{{rb:Use}} {{yb:chmod +w cage}} {{rb:to unlock the cage.}}")
     ]
 
     def next(self):
@@ -129,8 +129,8 @@ class Step5(StepTemplateChmod):
 
 class Step6(StepTemplateChmod):
     story = [
-        "Now you can help the bird escape from the cage.",
-        "{{lb:Move the bird outside the cage to where you are.}}"
+        _("Now you can help the bird escape from the cage."),
+        _("{{lb:Move the bird outside the cage to where you are.}}")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -139,7 +139,7 @@ class Step6(StepTemplateChmod):
         "mv cage/bird ./"
     ]
     hints = [
-        "{{rb:Use}} {{yb:mv cage/bird ./}} {{rb:to move the bird outside.}}"
+        _("{{rb:Use}} {{yb:mv cage/bird ./}} {{rb:to move the bird outside.}}")
     ]
 
     def block_command(self, line):

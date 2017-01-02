@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2017 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
@@ -16,9 +16,9 @@ class StepTemplateChmod(IStep):
 
 class Step1(StepTemplateChmod):
     story = [
-        "Bird: {{Bb:...thank you.}}",
-        "{{Bb:Do you like fireworks? There's one in the locked-room.",
-        "To blow it up, activate the lighter using}} {{yb:chmod +x}}"
+        _("Bird: {{Bb:...thank you.}}"),
+        _("{{Bb:Do you like fireworks? There's one in the locked-room."),
+        _("To blow it up, activate the lighter using}} {{yb:chmod +x}}")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -26,7 +26,7 @@ class Step1(StepTemplateChmod):
         "chmod +x locked-room/lighter"
     ]
     hints = [
-        "{{rb:Use}} {{yb:chmod +x locked-room/lighter}} {{rb:to activate the lighter.}}"
+        _("{{rb:Use}} {{yb:chmod +x locked-room/lighter}} {{rb:to activate the lighter.}}")
     ]
     highlighted_commands = "chmod"
 
@@ -42,7 +42,7 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "{{lb:Look in the locked-room}} to see what happened to the lighter."
+        _("{{lb:Look in the locked-room}} to see what happened to the lighter.")
     ]
 
     start_dir = "~/woods/cave"
@@ -54,7 +54,7 @@ class Step2(StepTemplateChmod):
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:ls locked-room/}} {{rb:to look in the locked-room.}}"
+        _("{{rb:Use}} {{yb:ls locked-room/}} {{rb:to look in the locked-room.}}")
     ]
 
     def next(self):
@@ -63,8 +63,8 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        "The lighter went {{gb:bright green}} after you activated it.",
-        "Now use it with {{yb:./locked-room/lighter}}"
+        _("The lighter went {{gb:bright green}} after you activated it."),
+        _("Now use it with {{yb:./locked-room/lighter}}")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"

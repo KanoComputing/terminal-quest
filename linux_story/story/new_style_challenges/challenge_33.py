@@ -16,7 +16,7 @@ class StepTemplateNano(IStep):
 
 class Step1(StepTemplateNano):
     story = [
-        "You are in a clearing. {{lb:Look around.}}",
+        _("You are in a clearing. {{lb:Look around.}}"),
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing"
@@ -25,7 +25,7 @@ class Step1(StepTemplateNano):
         "ls -a"
     ]
     hints = [
-        "{{rb:Look around the clearing with}} {{yb:ls}}"
+        _("{{rb:Look around the clearing with}} {{yb:ls}}")
     ]
 
     file_list = [
@@ -91,7 +91,7 @@ class Step1(StepTemplateNano):
 
 class Step2(StepTemplateNano):
     story = [
-        "There's a house in the clearing. Have a {{lb:look}} in the {{lb:house}}, or try and {{lb:go inside}}.",
+        _("There's a house in the clearing. Have a {{lb:look}} in the {{lb:house}}, or try and {{lb:go inside}}."),
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing"
@@ -105,7 +105,7 @@ class Step2(StepTemplateNano):
         "cd house/"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls house/}} {{rb:to look in the house.}}"
+        _("{{rb:Use}} {{yb:ls house/}} {{rb:to look in the house.}}")
     ]
 
     def block_command(self, line):
@@ -117,11 +117,11 @@ class Step2(StepTemplateNano):
 
 class Step3(StepTemplateNano):
     story = [
-        "Huh, you can't seem to look inside.",
-        "It is locked in the same way the {{bb:private-section}} in the library is.",
-        "Maybe there's a clue somewhere around here.",
+        _("Huh, you can't seem to look inside."),
+        _("It is locked in the same way the {{bb:private-section}} in the library is."),
+        _("Maybe there's a clue somewhere around here."),
         "",
-        "{{lb:Investigate}} the area and see if you can find any clues."
+        _("{{lb:Investigate}} the area and see if you can find any clues.")
     ]
     start_dir = "~/woods/clearing"
 
@@ -130,8 +130,8 @@ class Step3(StepTemplateNano):
     end_dir = "~/woods/clearing"
 
     hints = [
-        "{{rb:There is a signpost in the garden.}} {{lb:Examine}} {{rb:it.}}",
-        "{{rb:Examine that signpost with}} {{yb:cat signpost}}{{rb:.}}"
+        _("{{rb:There is a signpost in the garden.}} {{lb:Examine}} {{rb:it.}}"),
+        _("{{rb:Examine that signpost with}} {{yb:cat signpost}}{{rb:.}}")
     ]
 
     commands = [
@@ -141,7 +141,7 @@ class Step3(StepTemplateNano):
     # Perhaps a nice data structure could be if the list of commands were
     # paired with appropriate hints?
     paired_hints = {
-        "ls": "Try examining the individual items with {{lb:cat}}."
+        "ls": _("Try examining the individual items with {{lb:cat}}.")
     }
 
     def next(self):
@@ -150,7 +150,7 @@ class Step3(StepTemplateNano):
 
 class Step4(StepTemplateNano):
     story = [
-        "So the signpost has an instruction on it? Let's carry it out."
+        _("So the signpost has an instruction on it? Let's carry it out.")
     ]
 
     # It would be good if we could pass the current dir across and this would
@@ -159,7 +159,7 @@ class Step4(StepTemplateNano):
     end_dir = "~/woods/clearing"
 
     hints = [
-        "{{rb:Use}} {{yb:echo knock knock}} {{rb:to knock on the door.}}"
+        _("{{rb:Use}} {{yb:echo knock knock}} {{rb:to knock on the door.}}")
     ]
 
     commands = [
@@ -173,15 +173,15 @@ class Step4(StepTemplateNano):
 
 class Step5(StepTemplateNano):
     story = [
-        "You hear a deep voice on the other side of the door.",
+        _("You hear a deep voice on the other side of the door."),
         "",
-        "Swordmaster:",
-        "{{Bb:If you have me, you want to share me.",
-        "If you share me, you haven't got me.",
-        "What am I?}}",
+        _("Swordmaster:"),
+        _("{{Bb:If you have me, you want to share me."),
+        _("If you share me, you haven't got me."),
+        _("What am I?}}"),
         "",
-        "{{yb:1. What?}}",
-        "{{yb:2. I don't know}}"
+        _("{{yb:1. What?}}"),
+        _("{{yb:2. I don't know}}")
     ]
 
     start_dir = "~/woods/clearing"
@@ -196,8 +196,8 @@ class Step5(StepTemplateNano):
 
 class Step6(StepTemplateNano):
     story = [
-        "Swordmaster: {{Bb:...Did you complete the cave challenge?",
-        "Fine, here's another. Unlock the door to my house.}}"
+        _("Swordmaster: {{Bb:...Did you complete the cave challenge?"),
+        _("Fine, here's another. Unlock the door to my house.}}")
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing"
@@ -208,15 +208,15 @@ class Step6(StepTemplateNano):
 
 class Step7(StepTemplateNano):
     story = [
-        "Swordmaster: {{Bb:I thought so. You need to complete the challenges}} {{lb:in the cave in the woods}}",
-        "{{Bb:Come back when you've finished.}}"
+        _("Swordmaster: {{Bb:I thought so. You need to complete the challenges}} {{lb:in the cave in the woods}}"),
+        _("{{Bb:Come back when you've finished.}}")
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/cave"
     hints = [
-        "Swordmaster: {{Bb:Head to the}} {{bb:~/woods/cave}} {{Bb:and stop hanging around outside my house!}}",
+        _("Swordmaster: {{Bb:Head to the}} {{bb:~/woods/cave}} {{Bb:and stop hanging around outside my house!}}"),
         "",
-        "{{rb:Head to}} {{bb:~/woods/cave}}"
+        _("{{rb:Head to}} {{bb:~/woods/cave}}")
     ]
 
     def check_command(self, line):
@@ -234,18 +234,18 @@ class Step7(StepTemplateNano):
 
 class Step8(StepTemplateNano):
     story = [
-        "Swordmaster: {{Bb:That is not the answer! Find the answer}} {{lb:in the cave near the woods.}}"
+        _("Swordmaster: {{Bb:That is not the answer! Find the answer}} {{lb:in the cave near the woods.}}")
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/cave"
     hints = [
-        "Swordmaster: {{Bb:Head to the}} {{bb:~/woods/cave}} {{Bb:and stop hanging around outside my house!}}",
-        "{{rb:Head to}} {{bb:~/woods/cave}}"
+        _("Swordmaster: {{Bb:Head to the}} {{bb:~/woods/cave}} {{Bb:and stop hanging around outside my house!}}"),
+        _("{{rb:Head to}} {{bb:~/woods/cave}}")
     ]
 
     def check_command(self, line):
         if line == "echo knock knock":
-            self.send_hint("Swordmaster: {{Bb:Go and find the answer. Don't just stand there guessing.}}")
+            self.send_hint(_("Swordmaster: {{Bb:Go and find the answer. Don't just stand there guessing.}}"))
             return
         return StepTemplateNano.check_command(self, line)
 
@@ -258,7 +258,7 @@ class Step8(StepTemplateNano):
 
 class Step9(StepTemplateNano):
     story = [
-        "{{lb:Look around.}}"
+        _("{{lb:Look around.}}")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -268,7 +268,7 @@ class Step9(StepTemplateNano):
         "ls ./"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
 
     def next(self):

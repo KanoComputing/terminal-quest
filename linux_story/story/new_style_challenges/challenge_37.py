@@ -6,7 +6,6 @@
 # A chapter of the story
 from linux_story.IStep import IStep
 from linux_story.common import get_story_file
-from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.new_terminals.terminal_chmod import TerminalChmod
 
 
@@ -16,13 +15,13 @@ class StepTemplateChmod(IStep):
 
 class Step1(StepTemplateChmod):
     story = [
-        "You set off the firework!",
-        "{{gb:You learnt all the chmod commands.}}",
+        _("You set off the firework!"),
+        _("{{gb:You learnt all the chmod commands.}}"),
         "",
-        "{{lb:Thunk.}}",
+        _("{{lb:Thunk.}}"),
         "",
-        "Something new landed in front of you.",
-        "{{lb:Look around}} to see what it is."
+        _("Something new landed in front of you."),
+        _("{{lb:Look around}} to see what it is.")
     ]
     file_list = [
         {
@@ -46,7 +45,7 @@ class Step1(StepTemplateChmod):
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to see what landed in front of you.}}"
+        _("{{rb:Use}} {{yb:ls}} {{rb:to see what landed in front of you.}}")
     ]
     commands = [
         "ls",
@@ -60,13 +59,13 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "There is a {{bb:chest}} in front of you.",
-        "{{lb:Look inside the chest.}}"
+        _("There is a {{bb:chest}} in front of you."),
+        _("{{lb:Look inside the chest.}}")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
     hints = [
-        "{{rb:Use}} {{yb:ls chest}} {{rb:to see inside the chest.}}"
+        _("{{rb:Use}} {{yb:ls chest}} {{rb:to see inside the chest.}}")
     ]
     commands = [
         "ls chest",
@@ -79,11 +78,11 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        "You can't see inside.",
-        "It could be {{lb:it is missing all its permissions.}}",
+        _("You can't see inside."),
+        _("It could be {{lb:it is missing all its permissions.}}"),
         "",
-        "Try and open it.",
-        "{{lb:You need to combine the flags you learnt in the previous challenges.}}"
+        _("Try and open it."),
+        _("{{lb:You need to combine the flags you learnt in the previous challenges.}}")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -111,8 +110,8 @@ class Step3(StepTemplateChmod):
 
 class Step4(StepTemplateChmod):
     story = [
-        "{{gb:You opened it!}}",
-        "Now {{lb:look inside}} the chest."
+        _("{{gb:You opened it!}}"),
+        _("Now {{lb:look inside}} the chest.")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -123,7 +122,7 @@ class Step4(StepTemplateChmod):
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:ls chest/}} {{rb:to look inside the chest.}}"
+        _("{{rb:Use}} {{yb:ls chest/}} {{rb:to look inside the chest.}}")
     ]
 
     def next(self):
@@ -132,7 +131,7 @@ class Step4(StepTemplateChmod):
 
 class Step5(StepTemplateChmod):
     story = [
-        "You see a riddle, and an answer. {{lb:Examine}} them."
+        _("You see a riddle, and an answer. {{lb:Examine}} them.")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -140,12 +139,14 @@ class Step5(StepTemplateChmod):
         "cat chest/answer"
     ]
     hints = [
-        "{{rb:Use}} {{yb:cat chest/answer}} {{rb:to examine the answer in the chest.}}"
+        _("{{rb:Use}} {{yb:cat chest/answer}} {{rb:to examine the answer in the chest.}}")
     ]
 
     def check_command(self, last_user_input):
         if last_user_input == "cat chest/riddle":
-            self.send_hint("{{lb:That looks like the riddle the swordmaster asked you.}}")
+            self.send_hint(
+                _("{{lb:That looks like the riddle the swordmaster asked you.}}")
+            )
             return
         return StepTemplateChmod.check_command(self, last_user_input)
 
