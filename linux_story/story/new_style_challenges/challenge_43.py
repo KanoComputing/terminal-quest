@@ -20,19 +20,19 @@ class StepTemplateRm(IStep):
     TerminalClass = TerminalRm
 
 
-REPLY_PRINT_TEXT = "{{yb:A rabbit came and stole the command in front of us.}}"
+REPLY_PRINT_TEXT = _("{{yb:A rabbit came and stole the command in front of us.}}")
 
 
 class Step1(StepTemplateChmod):
     story = [
-        "You are standing alone in the library. The rabbit has stolen the command, and you have an increased sense of "
-        "impending doom.",
-        "The swordmaster runs into the room.",
+        _("You are standing alone in the library. The rabbit has stolen the command, and you have an "
+          "increased sense of impending doom."),
+        _("The swordmaster runs into the room."),
         "",
-        "Swordmaster: {{Bb:What have you done?}}",
+        _("Swordmaster: {{Bb:What have you done?}}"),
         "",
         "{{yb:1:}}" + REPLY_PRINT_TEXT,
-        "{{yb:2: Nothing.}}"
+        _("{{yb:2: Nothing.}}")
     ]
     start_dir = "~/town/east/library/private-section"
     end_dir = "~/town/east/library/private-section"
@@ -49,7 +49,7 @@ class Step1(StepTemplateChmod):
         "echo 2"
     ]
     hints = [
-        "Swordmaster: {{Bb:Speak with}} {{lb:echo}} {{Bb:and tell me!}}"
+        _("Swordmaster: {{Bb:Speak with}} {{lb:echo}} {{Bb:and tell me!}}")
     ]
     dark_theme = True
 
@@ -62,12 +62,12 @@ class Step1(StepTemplateChmod):
 
 class Step100(StepTemplateChmod):
     story = [
-        "Swordmaster: {{rb:ENOUGH!}}",
-        "{{Bb:Tell me}} {{rb:the truth.}}",
-        "{{Bb:You need my help to fix this....}}",
+        _("Swordmaster: {{rb:ENOUGH!}}"),
+        _("{{Bb:Tell me}} {{rb:the truth.}}"),
+        _("{{Bb:You need my help to fix this....}}"),
         "",
-        "{{yb:1:}} " + REPLY_PRINT_TEXT,
-        "{{yb:2: Nothing.}}"
+        _("{{yb:1:}} " + REPLY_PRINT_TEXT),
+        _("{{yb:2: Nothing.}}")
     ]
     commands = [
         "echo 1"
@@ -76,13 +76,15 @@ class Step100(StepTemplateChmod):
     end_dir = "~/town/east/library/private-section"
 
     hints = [
-        "{{rb:Tell the swordmaster the truth, using}} {{yb:echo 1}}"
+        _("{{rb:Tell the swordmaster the truth, using}} {{yb:echo 1}}")
     ]
     dark_theme = True
 
     def check_command(self, last_user_input):
         if last_user_input == "echo 2":
-            self.send_hint("Swordmaster: {{Bb:We both know that's not true....}}")
+            self.send_hint(
+                _("Swordmaster: {{Bb:We both know that's not true....}}")
+            )
             return
         return StepTemplateChmod.check_command(self, last_user_input)
 
@@ -93,16 +95,16 @@ class Step100(StepTemplateChmod):
 class Step2(StepTemplateChmod):
     print_text = [REPLY_PRINT_TEXT]
     story = [
-        "Swordmaster: {{Bb:I see.}}",
-        "{{Bb:I frequently see a white rabbit around my place. It must live close to my house.}}",
-        "{{Bb:It always seemed innocent before. I wonder what has changed?}}",
-        "{{Bb:Perhaps he is}} {{lb:possessed}}{{Bb:.}}",
+        _("Swordmaster: {{Bb:I see.}}"),
+        _("{{Bb:I frequently see a white rabbit around my place. It must live close to my house.}}"),
+        _("{{Bb:It always seemed innocent before. I wonder what has changed?}}"),
+        _("{{Bb:Perhaps he is}} {{lb:possessed}}{{Bb:.}}"),
         "",
-        "{{Bb:We must remove the source of the problem. I will teach you how to.}}",
+        _("{{Bb:We must remove the source of the problem. I will teach you how to.}}"),
         "",
-        "{{pb:Ding. Dong.}}",
+        _("{{pb:Ding. Dong.}}"),
         "",
-        "You heard the a bell. {{lb:Look around.}}"
+        _("You heard the a bell. {{lb:Look around.}}")
     ]
     start_dir = "~/town/east/library/private-section"
     end_dir = "~/town/east/library/private-section"
@@ -112,7 +114,7 @@ class Step2(StepTemplateChmod):
         "ls ./"
     ]
     hints = [
-        "Look around with {{yb:ls}}"
+        _("Look around with {{yb:ls}}")
     ]
     file_list = [
         {
@@ -132,10 +134,10 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        "The swordmaster has gone.",
+        _("The swordmaster has gone."),
         "",
-        "He left something behind. It looks like the {{lb:sword}} he carries around with him.",
-        "{{lb:Examine}} it."
+        _("He left something behind. It looks like the {{lb:sword}} he carries around with him."),
+        _("{{lb:Examine}} it.")
     ]
     start_dir = "~/town/east/library/private-section"
     end_dir = "~/town/east/library/private-section"
@@ -145,7 +147,7 @@ class Step3(StepTemplateChmod):
     dark_theme = True
 
     hints = [
-        "{{rb:Use}} {{yb:cat sword}} {{rb:to examine it.}}"
+        _("{{rb:Use}} {{yb:cat sword}} {{rb:to examine it.}}")
     ]
 
     def next(self):
@@ -154,7 +156,7 @@ class Step3(StepTemplateChmod):
 
 class Step4(StepTemplateRm):
     story = [
-        "It has a command inscribed on it.",
+        _("It has a command inscribed on it."),
         "....{{lb:rm}}...?"
     ]
 
@@ -164,8 +166,8 @@ class Step4(StepTemplateRm):
     ])
 
     story += [
-        "Use {{yb:rm note}}, to test the command out on the note.",
-        "Be careful though....it looks dangerous."
+        _("Use {{yb:rm note}}, to test the command out on the note."),
+        _("Be careful though....it looks dangerous.")
     ]
     start_dir = "~/town/east/library/private-section"
     end_dir = "~/town/east/library/private-section"
@@ -176,7 +178,7 @@ class Step4(StepTemplateRm):
 
     hints = [
         "",
-        "{{rb:Use the command}} {{yb:rm note}}"
+        _("{{rb:Use the command}} {{yb:rm note}}")
     ]
     dark_theme = True
 
@@ -186,7 +188,7 @@ class Step4(StepTemplateRm):
 
 class Step5(StepTemplateRm):
     story = [
-        "{{lb:Look around.}}"
+        _("{{lb:Look around.}}")
     ]
     start_dir = "~/town/east/library/private-section"
     end_dir = "~/town/east/library/private-section"
@@ -195,7 +197,7 @@ class Step5(StepTemplateRm):
     ]
 
     hints = [
-        "{{rb:Use the command}} {{yb:ls}}"
+        _("{{rb:Use the command}} {{yb:ls}}")
     ]
     dark_theme = True
 

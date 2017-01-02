@@ -10,20 +10,20 @@ from linux_story.step_helper_functions import unblock_cd_commands
 
 
 GO_TO_THE_LIBRARY = [
-    "The Rabbit wants to know where the Super User command is kept?",
+    _("The Rabbit wants to know where the Super User command is kept?"),
     "....",
-    "Let's head to the {{bb:~/town/east/library}}.",
-    "It looks as if the Rabbit will follow."
+    _("Let's head to the {{bb:~/town/east/library}}."),
+    _("It looks as if the Rabbit will follow.")
 ]
 
 RABBITS_ARE_QUIET = [
-    "Rabbit: {{Bb:...}}",
+    _("Rabbit: {{Bb:...}}"),
     "",
-    "It seems the Rabbit doesn't say very much.",
-    "That's quite normal for rabbits."
+    _("It seems the Rabbit doesn't say very much."),
+    _("That's quite normal for rabbits.")
 ]
 
-RABBIT_BLOCKING_RABBITHOLE = "The rabbit is in front of the rabbithole and won't let you pass."
+RABBIT_BLOCKING_RABBITHOLE = _("The rabbit is in front of the rabbithole and won't let you pass.")
 
 
 class TerminalRabbit(TerminalChmod):
@@ -50,14 +50,14 @@ class StepTemplateChmod(IStep):
 # Same as the towns people, and the last challenge?
 class Step1(StepTemplateChmod):
     story = [
-        "You see a Rabbit, a piece of paper and a rabbithole.",
-        "This Rabbit looks somewhat familiar...",
-        "{{lb:Listen}} to the Rabbit."
+        _("You see a Rabbit, a piece of paper and a rabbithole."),
+        _("This Rabbit looks somewhat familiar..."),
+        _("{{lb:Listen}} to the Rabbit.")
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"
     hints = [
-        "{{rb:Use}} {{yb:cat Rabbit}} {{rb:to listen to the Rabbit.}}"
+        _("{{rb:Use}} {{yb:cat Rabbit}} {{rb:to listen to the Rabbit.}}")
     ]
 
     read_note = False
@@ -79,14 +79,14 @@ class Step1(StepTemplateChmod):
 
 
 class Step2(StepTemplateChmod):
-    story = RABBITS_ARE_QUIET + ["", "{{lb:Examine}} the note."]
+    story = RABBITS_ARE_QUIET + ["", _("{{lb:Examine}} the note.")]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"
     commands = [
         "cat note"
     ]
     hints = [
-        "{{rb:Use}} {{yb:cat note}} {{rb:to examine the note.}}"
+        _("{{rb:Use}} {{yb:cat note}} {{rb:to examine the note.}}")
     ]
 
     def next(self):
@@ -98,7 +98,7 @@ class Step3(StepTemplateChmod):
     start_dir = "~/woods/thicket"
     end_dir = "~/town/east/library"
     hints = [
-        "{{rb:Use}} {{yb:cd ~/town/east/library}} {{rb:to go to the library}}"
+        _("{{rb:Use}} {{yb:cd ~/town/east/library}} {{rb:to go to the library}}")
     ]
     last_step = True
 
@@ -114,8 +114,8 @@ class Step4(StepTemplateChmod):
     start_dir = "~/woods/thicket"
     end_dir = "~/town/east/library"
     hints = [
-        "{{rb:Is this the same place the swordmaster referred to?}}"
-        "{{rb:Use}} {{yb:cd ~/town/east/library}} {{rb:to go to the library}}"
+        _("{{rb:Is this the same place the swordmaster referred to?}}"),
+        _("{{rb:Use}} {{yb:cd ~/town/east/library}} {{rb:to go to the library}}")
     ]
 
     def block_command(self, line):

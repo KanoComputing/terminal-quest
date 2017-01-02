@@ -5,7 +5,6 @@
 #
 # A chapter of the story
 
-import os
 import time
 from threading import Thread
 
@@ -22,7 +21,7 @@ class StepTemplateChmod(IStep):
 
 class Step1(StepTemplateChmod):
     story = [
-        "Now, which is the locked room? {{lb:Look around}} to remind yourself."
+        _("Now, which is the locked room? {{lb:Look around}} to remind yourself.")
     ]
     start_dir = "~/town/east/library"
     end_dir = "~/town/east/library"
@@ -31,7 +30,7 @@ class Step1(StepTemplateChmod):
         "ls -a"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
     file_list = [
         {
@@ -52,10 +51,10 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "Ah, it's the {{lb:private-section}}.",
-        "The Rabbit looks very excited. His eyes are sparkling.",
+        _("Ah, it's the {{lb:private-section}}."),
+        _("The Rabbit looks very excited. His eyes are sparkling."),
         "",
-        "Unlock the {{lb:private-section}}."
+        _("Unlock the {{lb:private-section}}.")
     ]
     start_dir = "~/town/east/library"
     end_dir = "~/town/east/library"
@@ -75,8 +74,8 @@ class Step2(StepTemplateChmod):
     ]
 
     hints = [
-        "{{rb:The command is}} {{yb:chmod +rwx private-section}} {{rb:to "
-        "enable all the permissions.}}"
+        _("{{rb:The command is}} {{yb:chmod +rwx private-section}} {{rb:to "
+        "enable all the permissions.}}")
     ]
 
     def next(self):
@@ -85,7 +84,7 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        "Awesome, you unlocked it! {{lb:Go inside the private-section.}}"
+        _("Awesome, you unlocked it! {{lb:Go inside the private-section.}}")
     ]
     start_dir = "~/town/east/library"
     end_dir = "~/town/east/library/private-section"
@@ -116,7 +115,7 @@ class Step3(StepTemplateChmod):
 
 class Step4(StepTemplateChmod):
     story = [
-        "Have a {{lb:look around.}}"
+        _("Have a {{lb:look around.}}")
     ]
     start_dir = "~/town/east/library/private-section"
     end_dir = "~/town/east/library/private-section"
@@ -146,7 +145,7 @@ class Step4(StepTemplateChmod):
     def block_command(self, line):
         if line == "cat chest/scroll":
             self.set_last_user_input(line)
-            print "The Rabbit snatched the chest away!"
+            print _("The Rabbit snatched the chest away!")
             return True
         return StepTemplateChmod.block_command(self, line)
 
@@ -177,22 +176,22 @@ class RabbitTakesChest(StepTemplateChmod):
 
 class Step5(RabbitTakesChest):
     story = [
-        "You try and examine the contents of the chest, but the Rabbit snatches it and runs off!"
+        _("You try and examine the contents of the chest, but the Rabbit snatches it and runs off!")
     ]
 
 
 class Step6(RabbitTakesChest):
     story = [
-        "You see a {{bb:chest}}.",
-        "This looks like the treasure we were looking for.",
-        "The Rabbit looks more excited than you've ever seen him before.",
-        "He snatches the chest and runs off!"
+        _("You see a {{bb:chest}}."),
+        _("This looks like the treasure we were looking for."),
+        _("The Rabbit looks more excited than you've ever seen him before."),
+        _("He snatches the chest and runs off!")
     ]
 
 
 class Step7(StepTemplateChmod):
     story = [
-        "A {{bb:note}} flutters in front of you. {{lb:Read it.}}"
+        _("A {{bb:note}} flutters in front of you. {{lb:Read it.}}")
     ]
 
     start_dir = "~/town/east/library/private-section"
@@ -203,7 +202,7 @@ class Step7(StepTemplateChmod):
     ]
 
     hints = [
-        "{{rb:Read the note with}} {{yb:cat note}}"
+        _("{{rb:Read the note with}} {{yb:cat note}}")
     ]
 
     file_list = [
@@ -222,7 +221,7 @@ class Step7(StepTemplateChmod):
 
 class Step8(StepTemplateChmod):
     story = [
-        "The place shivers...and then everything goes black."
+        _("The place shivers...and then everything goes black.")
     ]
 
     start_dir = "~/town/east/library/private-section"

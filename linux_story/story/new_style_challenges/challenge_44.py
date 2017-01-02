@@ -16,18 +16,18 @@ class StepTemplateRm(IStep):
 
 class Step1(StepTemplateRm):
     story = [
-        "You destroyed the note.",
+        _("You destroyed the note."),
         "",
-        "It is time to find that rabbit.",
-        "{{lb:Go to where you met the rabbit.}}"
+        _("It is time to find that rabbit."),
+        _("{{lb:Go to where you met the rabbit.}}")
     ]
     start_dir = "~/town/east/library/private-section"
     end_dir = "~/woods/thicket"
 
     hints = [
         "",
-        "{{lb:You met the rabbit in the}} {{bb:~/woods/thicket}}",
-        "{{rb:Use}} {{yb:cd ~/woods/thicket}}"
+        _("{{lb:You met the rabbit in the}} {{bb:~/woods/thicket}}"),
+        _("{{rb:Use}} {{yb:cd ~/woods/thicket}}")
     ]
     dark_theme = True
 
@@ -40,7 +40,7 @@ class Step1(StepTemplateRm):
 
 class Step2(StepTemplateRm):
     story = [
-        "{{lb:Look around.}}"
+        _("{{lb:Look around.}}")
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"
@@ -54,7 +54,7 @@ class Step2(StepTemplateRm):
     ]
 
     hint = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
     dark_theme = True
 
@@ -64,7 +64,7 @@ class Step2(StepTemplateRm):
 
 class Step3(StepTemplateRm):
     story = [
-        "You are outside the rabbithole. Try and {{lb:go inside.}}"
+        _("You are outside the rabbithole. Try and {{lb:go inside.}}")
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"
@@ -83,7 +83,7 @@ class Step3(StepTemplateRm):
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:cd rabbithole}} {{rb:to go inside the rabbithole.}}"
+        _("{{rb:Use}} {{yb:cd rabbithole}} {{rb:to go inside the rabbithole.}}")
     ]
     dark_theme = True
 
@@ -96,10 +96,10 @@ class Step3(StepTemplateRm):
 
 class Step4(StepTemplateRm):
     story = [
-        "It looks like it is locked to us. The rabbit must have learnt how to lock the directory.",
+        _("It looks like it is locked to us. The rabbit must have learnt how to lock the directory."),
         "",
-        "{{lb:Unlock it.}}",
-        "Use the same command you used to unlock the {{bb:private-section}}."
+        _("{{lb:Unlock it.}}"),
+        _("Use the same command you used to unlock the {{bb:private-section}}.")
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"
@@ -120,7 +120,7 @@ class Step4(StepTemplateRm):
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:chmod +rwx rabbithole}}"
+        _("{{rb:Use}} {{yb:chmod +rwx rabbithole}}")
     ]
     dark_theme = True
 
@@ -130,7 +130,7 @@ class Step4(StepTemplateRm):
 
 class Step5(StepTemplateRm):
     story = [
-        "{{lb:Go inside the rabbithole.}}"
+        _("{{lb:Go inside the rabbithole.}}")
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket/rabbithole"

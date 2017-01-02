@@ -16,17 +16,17 @@ class StepTemplateChmod(IStep):
 
 class Step1(StepTemplateChmod):
     story = [
-        "Swordsmaster:{{Bb:...this is very strange. I left the door open. Perhaps someone...or "
-        "something...sneaked in while we were talking.}}",
-        "{{Bb:You may need my help later. Come back if you are blocked by lack of knowledge.}}",
+        _("Swordsmaster:{{Bb:...this is very strange. I left the door open. Perhaps someone...or "
+        "something...sneaked in while we were talking.}}"),
+        _("{{Bb:You may need my help later. Come back if you are blocked by lack of knowledge.}}"),
         "",
-        "Time to head off - {{lb:leave}} the swordmaster's house."
+        _("Time to head off - {{lb:leave}} the swordmaster's house.")
     ]
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing"
 
     hints = [
-        "{{rb:Leave the house with}} {{yb:cd ..}}"
+        _("{{rb:Leave the house with}} {{yb:cd ..}}")
     ]
 
     file_list = [
@@ -70,7 +70,7 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        "{{lb:Look around}} and see if there are clues about where to go next."
+        _("{{lb:Look around}} and see if there are clues about where to go next.")
     ]
 
     start_dir = "~/woods/clearing"
@@ -81,7 +81,7 @@ class Step2(StepTemplateChmod):
     ]
 
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
 
     def next(self):
@@ -90,7 +90,7 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        "Another note! What does this say?"
+        _("Another note! What does this say?")
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing"
@@ -98,7 +98,7 @@ class Step3(StepTemplateChmod):
         "cat note"
     ]
     hints = [
-        "{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}"
+        _("{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}")
     ]
 
     def next(self):
@@ -107,14 +107,14 @@ class Step3(StepTemplateChmod):
 
 class Step4(StepTemplateChmod):
     story = [
-        "It looks like we should leave the clearing.",
-        "{{lb:Go back into the woods.}}"
+        _("It looks like we should leave the clearing."),
+        _("{{lb:Go back into the woods.}}")
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods"
 
     hints = [
-        "{{rb:Go back to the woods with}} {{yb:cd ../}}"
+        _("{{rb:Go back to the woods with}} {{yb:cd ../}}")
     ]
 
     def block_command(self, line):
@@ -126,7 +126,7 @@ class Step4(StepTemplateChmod):
 
 class Step5(StepTemplateChmod):
     story = [
-        "{{lb:Look around.}}"
+        _("{{lb:Look around.}}")
     ]
     start_dir = "~/woods"
     end_dir = "~/woods"
@@ -137,7 +137,7 @@ class Step5(StepTemplateChmod):
 
     # This text is used so much we can probably save it as "default ls hint"
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
 
     def next(self):
@@ -146,7 +146,7 @@ class Step5(StepTemplateChmod):
 
 class Step6(StepTemplateChmod):
     story = [
-        "There's another note! {{lb:Read}} it."
+        _("There's another note! {{lb:Read}} it.")
     ]
     start_dir = "~/woods"
     end_dir = "~/woods"
@@ -154,7 +154,7 @@ class Step6(StepTemplateChmod):
         "cat note"
     ]
     hints = [
-        "{{rb:Use}} {{yb:cat note}} {{rb:to examine the note.}}"
+        _("{{rb:Use}} {{yb:cat note}} {{rb:to examine the note.}}")
     ]
 
     def next(self):
@@ -163,12 +163,12 @@ class Step6(StepTemplateChmod):
 
 class Step7(StepTemplateChmod):
     story = [
-        "Let's {{lb:go}} into the thicket."
+        _("Let's {{lb:go}} into the thicket.")
     ]
     start_dir = "~/woods"
     end_dir = "~/woods/thicket"
     hints = [
-        "{{rb:Use}} {{yb:cd thicket}} {{rb:to go into the thicket.}}"
+        _("{{rb:Use}} {{yb:cd thicket}} {{rb:to go into the thicket.}}")
     ]
 
     def block_command(self, line):
@@ -180,7 +180,7 @@ class Step7(StepTemplateChmod):
 
 class Step8(StepTemplateChmod):
     story = [
-        "{{lb:Look around.}}"
+        _("{{lb:Look around.}}")
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"
@@ -189,7 +189,7 @@ class Step8(StepTemplateChmod):
         "ls -a"
     ]
     hints = [
-        "{{rb:Use}} {{yb:ls}} {{rb:to look around.}}"
+        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
 
     def next(self):
