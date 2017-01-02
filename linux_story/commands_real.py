@@ -104,7 +104,7 @@ def ls(real_loc, line, has_access=True):
 
 
 def shell_command(real_loc, line, command_word=""):
-    '''
+    """
     Suitable for launching commands which don't involve curses.
 
     Args:
@@ -114,12 +114,12 @@ def shell_command(real_loc, line, command_word=""):
 
     Returns:
         bool: False if error, True otherwise.
-    '''
+    """
 
     if command_word:
         line = command_word + " " + line
 
-    line = line.replace('~', tq_file_system)
+    line = line.replace('~', fake_home_dir)
     args = line.split(" ")
 
     # run the command

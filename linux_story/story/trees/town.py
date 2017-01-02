@@ -68,8 +68,14 @@ mayor = {
 }
 
 note_town = {
-    "name": "town",
+    "name": "note",
+    "contents": get_story_file("note_town"),
     "challenges": [
+        {
+            "challenge": 1,
+            "step": 1,
+            "exists": False
+        },
         {
             "challenge": 8,
             "step": 6
@@ -90,6 +96,7 @@ town = {
         young_girl,
         little_boy,
         note_town,
+        mayor,
         east
     ]
 }

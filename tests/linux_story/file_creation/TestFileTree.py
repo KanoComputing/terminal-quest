@@ -153,7 +153,7 @@ class TestFileTree(unittest.TestCase):
         os.chmod(house, 0755)
         self.assertTrue(os.path.exists(dad))
 
-    def test_containing_folder_outside_challenge_scope_then_children_are(self):
+    def test_containing_folder_outside_challenge_scope_then_child_file_is(self):
         tree = {
             "name": "~",
             "children": [
@@ -173,7 +173,62 @@ class TestFileTree(unittest.TestCase):
                     "children": [
                         {
                             "name": "Dad",
-                            "contents": get_story_file("Dad")
+                            "contents": get_story_file("Dad"),
+                            "challenges": [
+                                {
+                                    "challenge": 2,
+                                    "step": 1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+        FileTree(tree, self.__end_path).parse_complete(1, 9)
+        house = os.path.join(self.__end_path, "~/my-house")
+        dad = os.path.join(house, "Dad")
+        self.assertFalse(os.path.exists(house))
+        self.assertFalse(os.path.exists(dad))
+
+    def test_containing_folder_outside_challenge_scope_then_child_folder_is(self):
+        tree = {
+            "name": "~",
+            "children": [
+                {
+                    "name": "my-house",
+                    "challenges": [
+                        {
+                            "challenge": 1,
+                            "step": 1,
+                            "exists": False
+                        },
+                        {
+                            "challenge": 2,
+                            "step": 1
+                        }
+                    ],
+                    "children": [
+                        {
+                            "name": "greenhouse",
+                            "challenges": [
+                                {
+                                    "challenge": 2,
+                                    "step": 1
+                                }
+                            ],
+                            "children": [
+                                {
+                                    "name": "Dad",
+                                    "contents": get_story_file("Dad"),
+                                    "challenges": [
+                                        {
+                                            "challenge": 2,
+                                            "step": 1
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 }

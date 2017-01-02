@@ -5,6 +5,7 @@ from linux_story.commands_real import run_executable
 from linux_story.common import fake_home_dir, get_username
 from linux_story.dependencies import Logger
 from linux_story.helper_functions import get_script_cmd, is_exe, colour_string_with_preset
+import readline
 
 
 class KanoCmd(Cmd):
@@ -15,13 +16,14 @@ class KanoCmd(Cmd):
         :param location: PlayerLocation location
         """
         Cmd.__init__(self)
-        self.__step = step
+        self._step = step
         self.__command_blocked = False
         self._location = location
         self._dirs_to_attempt = dirs_to_attempt
         self.last_cmd_output = ""
 
         self._set_prompt()
+        self._autocomplete_dash_characters()
 
     def _set_prompt(self):
         # Why is this done like this? Can we shorten this to just use the prompt?
@@ -58,8 +60,8 @@ class KanoCmd(Cmd):
         Otherwise, it is run
         """
 
-        self.__step.set_last_user_input(line)
-        if self.__step.block_command(line.strip()):
+        self._step.set_last_user_input(line)
+        if self._step.block_command(line.strip()):
             self._set_command_blocked(True)
             return Cmd.precmd(self, "")
         else:
@@ -75,7 +77,7 @@ class KanoCmd(Cmd):
             return self.last_cmd_output
 
     def postcmd(self, stop, line):
-        return self.__step.is_finished_step(line, self.last_cmd_output)
+        return self._step.is_finished_step(line, self.last_cmd_output)
 
     def completedefault(self, *ignored):
         """ignored = [text, line, begidx, endidx]
@@ -197,4 +199,10 @@ class KanoCmd(Cmd):
         return self._location.get_real_path()
 
     def _set_command_blocked(self, blocked):
+        self._step.set_command_blocked(blocked)
         self.__command_blocked = blocked
+
+    def _autocomplete_dash_characters(self):
+        # This changes the special characters, so we can autocomplete on the - character
+        old_delims = readline.get_completer_delims()
+        readline.set_completer_delims(old_delims.replace('-', ''))

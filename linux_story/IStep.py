@@ -2,6 +2,10 @@
 
 from linux_story.PlayerLocation import PlayerLocation
 from linux_story.common import get_username
+from linux_story.file_creation.FileTree import delete_items
+from linux_story.file_creation.FileTree import modify_file_tree
+from linux_story.helper_functions import record_user_interaction
+from linux_story.story.StepNano import StepNano
 
 
 class IStep:
@@ -13,18 +17,40 @@ class IStep:
     end_dir = "~"
     commands = ""
     hints = [""]
-    # last_step = False
     output_condition = lambda x, y: False
-    # deleted_items = []
-    # file_list = []
+    deleted_items = None
+    file_list = None
     TerminalClass = None
+    prev_command = ""
+    companion_speech = ""
+    companion_command = ""
 
     def __init__(self, client):
+        self._run_at_start()
+        self._nano = StepNano()
+        self._setup_nano()
+        self.__modify_file_system()
+
+        if isinstance(self.hints, basestring):
+            raise Exception("Hint is a string! Bad Caroline!")
 
         self._client = client
         self._location = PlayerLocation(self.start_dir, self.end_dir)
         self._last_user_input = ""
         self._is_finished = False
+        self.__command_blocked = False
+
+    def _run_at_start(self):
+        # Hook to run at start
+        pass
+
+    def _setup_nano(self):
+        # override and set nano values in here.
+        pass
+
+    def __modify_file_system(self):
+        delete_items(self.deleted_items)
+        modify_file_tree(self.file_list)
 
     def run(self):
         self.TerminalClass(self, self._location, self.dirs_to_attempt).cmdloop()
@@ -59,6 +85,9 @@ class IStep:
 
     def _is_at_end_dir(self):
         return self._location.is_at_end_dir()
+
+    def get_fake_path(self):
+        return self._location.get_fake_path()
 
     def _default_check_command(self, last_user_input):
         command_validated = self._validate_check_command(last_user_input)
@@ -107,3 +136,15 @@ class IStep:
 
     def exit(self):
         self._client.exit()
+
+    def set_command_blocked(self, blocked):
+        self.__command_blocked = blocked
+
+    def get_command_blocked(self):
+        return self.__command_blocked
+
+    def _companion_speaks(self, line):
+        if line == self.companion_command and self.companion_speech:
+            self.send_hint("\n" + self.companion_speech)
+            record_user_interaction(self, "_".join(self.companion_command.split(" ")))
+

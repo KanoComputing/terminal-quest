@@ -6,5 +6,12 @@ east = {
     "children": [
         shed_shop,
         library
+    ],
+    "challenges": [
+        {
+            "challenge": 1,
+            "step": 1,
+            "exists": False
+        }
     ]
 }

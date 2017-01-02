@@ -25,6 +25,11 @@ house = {
     ],
     "challenges": [
         {
+            "challenge": 1,
+            "step": 1,
+            "exists": False
+        },
+        {
             "challenge": 32,
             "step": 1,
             "permissions": 0000
@@ -44,6 +49,17 @@ clearing = {
         {
             "name": "signpost",
             "contents": get_story_file("signpost")
+        }
+    ],
+    "challenges": [
+        {
+            "challenge": 1,
+            "step": 1,
+            "exists": False
+        },
+        {
+            "challenge": 32,
+            "step": 1
         }
     ]
 }

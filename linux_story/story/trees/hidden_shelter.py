@@ -39,6 +39,10 @@ dog_hidden_shelter = {
             "exists": False
         },
         {
+            "challenge": 12,
+            "step": 2
+        },
+        {
             "challenge": 22,
             "step": 2,
             "exists": False
@@ -144,8 +148,13 @@ basket_hidden_shelter = {
 
 
 tiny_chest = {
-    "name": "MV",
-    "contents": get_story_file("MV"),
+    "name": ".tiny-chest",
+    "children": [
+        {
+            "name": "MV",
+            "contents": get_story_file("MV")
+        }
+    ],
     "challenges": [
         {
             "challenge": 10,

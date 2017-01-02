@@ -10,6 +10,8 @@ import os
 import shutil
 import stat
 
+from linux_story.common import fake_home_dir, tq_file_system, get_story_file
+
 
 class FileTree:
     KEY_PERMISSIONS = "permissions"
@@ -204,3 +206,35 @@ def get_oct_permissions(path):
 
 def get_int_permissions(path):
     return int(os.stat(path).st_mode & 0777)
+
+
+def delete_items(items):
+    if not items:
+        return
+
+    for path in items:
+        real_path = os.path.expanduser(path.replace('~', fake_home_dir))
+        delete_item(real_path)
+
+
+def modify_file_tree(items):
+    if not items:
+        return
+
+    file_tree = FileTree(None, tq_file_system)
+    for f in items:
+        if "path" not in f:
+            raise Exception("Not all info available for item " + str(f))
+        if "type" not in f:
+            f["type"] = "file"
+        if f["type"] == "file" and "contents" not in f:
+            f["contents"] = get_story_file(f["path"].split("/")[-1])
+
+        if f["type"] == "directory":
+            f["contents"] = ""
+            if "permissions" not in f:
+                f["permissions"] = 0755
+        elif "permissions" not in f:
+                f["permissions"] = 0644
+
+        file_tree.create_item(f["type"], f["path"], f["permissions"], f["contents"])

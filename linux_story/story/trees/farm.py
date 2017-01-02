@@ -4,6 +4,11 @@ farm = {
     "name": "farm",
     "challenges": [
         {
+            "challenge": 1,
+            "step": 1,
+            "exists": False
+        },
+        {
             "challenge": 17,
             "step": 1
         }

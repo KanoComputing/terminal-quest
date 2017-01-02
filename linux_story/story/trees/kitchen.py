@@ -4,8 +4,7 @@ kitchen = {
     "name": "kitchen",
     "children": [
         {
-            "name": "empty-bottle",
-            "contents": get_story_file("empty-bottle"),
+            "name": "basket",
             "challenges": [
                 {
                     "challenge": 1,
@@ -20,6 +19,12 @@ kitchen = {
                     "challenge": 14,
                     "step": 4,
                     "exists": False
+                }
+            ],
+            "children": [
+                {
+                    "name": "empty-bottle",
+                    "contents": get_story_file("empty-bottle")
                 }
             ]
         },
@@ -120,7 +125,8 @@ kitchen = {
                 },
                 {
                     "challenge": 8,
-                    "step": 1
+                    "step": 1,
+                    "exists": False
                 }
             ]
         }

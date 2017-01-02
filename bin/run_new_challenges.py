@@ -9,6 +9,8 @@
 import sys
 import os
 
+import signal
+
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if __name__ == '__main__' and __package__ is None:
     if dir_path != '/usr':
@@ -17,14 +19,22 @@ if __name__ == '__main__' and __package__ is None:
     else:
         LOCALE_PATH = '/usr/share/locale'
 
-print sys.path
-
 
 from linux_story.ChallengeController import ChallengeController
 from linux_story.MessageClient import MessageClient
 
 
+# Reset the terminal. Not sure why this should be necessary,
+# but it seems to be:
+os.system('reset')
+
+
 def run_new_challenges():
+    def sigint_handler(signum, frame):
+        pass
+
+    signal.signal(signal.SIGINT, sigint_handler)
+
     client = MessageClient()
     controller = ChallengeController(client)
 
