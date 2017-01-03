@@ -5,13 +5,13 @@
 #
 # A chapter of the story
 
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.helper_functions import wrap_in_box
 from linux_story.step_helper_functions import unblock_commands
 from linux_story.story.new_terminals.terminal_chmod import TerminalChmod
 
 
-class StepTemplateChmod(IStep):
+class StepTemplateChmod(StepTemplate):
     TerminalClass = TerminalChmod
 
 

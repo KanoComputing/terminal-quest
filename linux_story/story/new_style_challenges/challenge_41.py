@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2017 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.story.terminals.terminal_chmod import TerminalChmod
 from linux_story.step_helper_functions import unblock_cd_commands
 
@@ -36,7 +36,7 @@ class TerminalRabbit(TerminalChmod):
             return completions
 
 
-class StepTemplateChmod(IStep):
+class StepTemplateChmod(StepTemplate):
     TerminalClass = TerminalChmod
 
     def block_command(self, line):
@@ -44,7 +44,7 @@ class StepTemplateChmod(IStep):
             print RABBIT_BLOCKING_RABBITHOLE
             return True
         else:
-            return IStep.block_command(self, line)
+            return StepTemplate.block_command(self, line)
 
 
 # Same as the towns people, and the last challenge?

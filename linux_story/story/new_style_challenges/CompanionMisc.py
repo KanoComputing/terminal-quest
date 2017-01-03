@@ -1,4 +1,4 @@
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.story.new_terminals.terminal_mkdir import TerminalMkdir
 from linux_story.story.new_terminals.terminal_nano import TerminalNano
 
@@ -25,7 +25,7 @@ class TerminalNanoBernard(TerminalNano):
         return bernard_autocomplete(completions)
 
 
-class StepTemplateEleanorBernard(IStep):
+class StepTemplateEleanorBernard(StepTemplate):
     companion_command = "cat Eleanor"
 
     def check_command(self, last_user_input):
@@ -38,7 +38,7 @@ class StepTemplateEleanorBernard(IStep):
             print bernard_text
             return True
         else:
-            return IStep.block_command(self, line)
+            return StepTemplate.block_command(self, line)
 
 
 class StepTemplateMkdir(StepTemplateEleanorBernard):

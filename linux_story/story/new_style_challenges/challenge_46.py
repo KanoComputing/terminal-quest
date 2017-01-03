@@ -5,11 +5,11 @@
 #
 # A chapter of the story
 from linux_story.Animation import Animation
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.story.new_terminals.terminal_rm import TerminalRm
 
 
-class StepTemplateRm(IStep):
+class StepTemplateRm(StepTemplate):
     TerminalClass = TerminalRm
 
 

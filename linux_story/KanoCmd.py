@@ -1,9 +1,16 @@
+# KanoCmd.py
+#
+# Copyright (C) 2014-2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+
+
 import os
 from cmd import Cmd
 
 from linux_story.commands_real import run_executable
 from linux_story.common import fake_home_dir, get_username
-from linux_story.dependencies import Logger
+from kano.logging import logger
 from linux_story.helper_functions import get_script_cmd, is_exe, colour_string_with_preset
 import readline
 
@@ -193,7 +200,7 @@ class KanoCmd(Cmd):
             return completions
 
         except Exception as e:
-            Logger.debug("Hit Exception in the autocomplete_files function {}".format(str(e)))
+            logger.debug("Hit Exception in the autocomplete_files function {}".format(str(e)))
 
     def _get_real_path(self):
         return self._location.get_real_path()

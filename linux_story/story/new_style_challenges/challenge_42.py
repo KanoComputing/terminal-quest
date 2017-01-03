@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright (C) 2014, 2015, 2016 Kano Computing Ltd.
+# Copyright (C) 2014-2017 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
@@ -9,13 +9,13 @@ import time
 from threading import Thread
 
 from linux_story.Animation import Animation
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.common import get_story_file
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.new_terminals.terminal_chmod import TerminalChmod
 
 
-class StepTemplateChmod(IStep):
+class StepTemplateChmod(StepTemplate):
     TerminalClass = TerminalChmod
 
 

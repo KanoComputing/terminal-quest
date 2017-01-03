@@ -9,13 +9,13 @@
 # Change this import statement, need to decide how to group the terminals
 # together
 import os
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.story.new_terminals.terminal_mv import TerminalMv
 from linux_story.common import tq_file_system
 from linux_story.step_helper_functions import unblock_commands
 
 
-class StepTemplateMv(IStep):
+class StepTemplateMv(StepTemplate):
     TerminalClass = TerminalMv
 
 

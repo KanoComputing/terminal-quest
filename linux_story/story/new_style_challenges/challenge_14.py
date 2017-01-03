@@ -6,13 +6,13 @@
 # A chapter of the story
 import os
 from kano.logging import logger
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.story.new_terminals.terminal_mv import TerminalMv
 from linux_story.common import fake_home_dir
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint, unblock_commands
 
 
-class StepTemplateMv(IStep):
+class StepTemplateMv(StepTemplate):
     TerminalClass = TerminalMv
 
 

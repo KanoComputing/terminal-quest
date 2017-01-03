@@ -4,12 +4,12 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.new_terminals.terminal_mkdir import TerminalMkdir
 
 
-class StepTemplateMkdir(IStep):
+class StepTemplateMkdir(StepTemplate):
     TerminalClass = TerminalMkdir
 
 

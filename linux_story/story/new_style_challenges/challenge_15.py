@@ -4,12 +4,12 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.story.new_terminals.terminal_mv import TerminalMv
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
-class StepTemplateMv(IStep):
+class StepTemplateMv(StepTemplate):
     TerminalClass = TerminalMv
 
 

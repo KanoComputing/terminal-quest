@@ -1,4 +1,8 @@
-
+# StepTemplate.py
+#
+# Copyright (C) 2014-2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
 
 from linux_story.PlayerLocation import PlayerLocation
 from linux_story.common import get_username
@@ -9,7 +13,7 @@ from linux_story.step_helper_functions import unblock_commands
 from linux_story.story.StepNano import StepNano
 
 
-class IStep:
+class StepTemplate:
     highlighted_commands = []
     print_text = None
     story = [""]

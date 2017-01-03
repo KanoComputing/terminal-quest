@@ -9,7 +9,7 @@
 import os
 import sys
 
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.dependencies import translate
 
 dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
@@ -22,7 +22,7 @@ from linux_story.sound_manager import SoundManager
 from linux_story.helper_functions import wrap_in_box
 
 
-class StepLs(IStep):
+class StepLs(StepTemplate):
     TerminalClass = TerminalLs
 
 

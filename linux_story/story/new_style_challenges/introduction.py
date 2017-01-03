@@ -9,10 +9,10 @@
 import os
 
 from linux_story import KanoCmd
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 
 
-class StepTemplateLs(IStep):
+class StepTemplateLs(StepTemplate):
     TerminalClass = KanoCmd
 
 

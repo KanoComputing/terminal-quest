@@ -7,11 +7,11 @@
 
 import os
 
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.story.new_terminals.terminal_echo import TerminalEcho
 
 
-class StepTemplateEcho(IStep):
+class StepTemplateEcho(StepTemplate):
     TerminalClass = TerminalEcho
 
 

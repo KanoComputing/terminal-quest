@@ -4,11 +4,11 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-
+from linux_story.ChallengeController import ChallengeController
+from linux_story.MessageClient import MessageClient
 from linux_story.story.terminals.terminal_nano import TerminalNano
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.sound_manager import SoundManager
-from linux_story.story.challenges.challenge_32 import Step1 as NextStep
 
 
 class StepTemplateNano(TerminalNano):
@@ -141,4 +141,6 @@ class Step5(StepTemplateNano):
     # Add all the new files here.
 
     def next(self):
-        NextStep(self.xp)
+        client = MessageClient()
+        controller = ChallengeController(client)
+        controller.run(32, 1)

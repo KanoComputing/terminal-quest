@@ -8,7 +8,7 @@
 
 from kano_profile.apps import save_app_state_variable, load_app_state_variable
 
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.common import get_story_file
 from linux_story.story.new_terminals.terminal_mv import TerminalMv
 from linux_story.story.new_terminals.terminal_echo import TerminalEcho
@@ -17,12 +17,12 @@ from linux_story.helper_functions import wrap_in_box
 
 
 # This is for the challenges that only need ls
-class StepTemplateMv(IStep):
+class StepTemplateMv(StepTemplate):
     TerminalClass = TerminalMv
 
 
 # This is for that challenges that need echo
-class StepTemplateEcho(IStep):
+class StepTemplateEcho(StepTemplate):
     TerminalClass = TerminalEcho
 
 

@@ -4,18 +4,18 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.helper_functions import wrap_in_box
 from linux_story.step_helper_functions import unblock_commands
 from linux_story.story.new_terminals.terminal_chmod import TerminalChmod
 from linux_story.story.new_terminals.terminal_nano import TerminalNano
 
 
-class StepTemplateNano(IStep):
+class StepTemplateNano(StepTemplate):
     TerminalClass = TerminalNano
 
 
-class StepTemplateChmod(IStep):
+class StepTemplateChmod(StepTemplate):
     TerminalClass = TerminalChmod
 
 

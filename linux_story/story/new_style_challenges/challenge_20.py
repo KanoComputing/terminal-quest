@@ -4,7 +4,7 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.common import get_story_file
 from linux_story.story.new_terminals.terminal_echo import TerminalEcho
 from linux_story.story.new_terminals.terminal_mkdir import TerminalMkdir
@@ -12,11 +12,11 @@ from linux_story.step_helper_functions import unblock_commands_with_mkdir_hint, 
 from linux_story.helper_functions import wrap_in_box
 
 
-class StepTemplateEcho(IStep):
+class StepTemplateEcho(StepTemplate):
     TerminalClass = TerminalEcho
 
 
-class StepTemplateMkdir(IStep):
+class StepTemplateMkdir(StepTemplate):
     TerminalClass = TerminalMkdir
 
 

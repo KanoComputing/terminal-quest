@@ -6,13 +6,13 @@
 # A chapter of the story
 
 
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from kano_profile.apps import save_app_state_variable
 from linux_story.helper_functions import wrap_in_box
 from linux_story.story.new_terminals.terminal_cat import TerminalCat
 
 
-class StepCat(IStep):
+class StepCat(StepTemplate):
     TerminalClass = TerminalCat
 
 

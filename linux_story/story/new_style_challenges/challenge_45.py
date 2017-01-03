@@ -4,7 +4,7 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.PlayerLocation import generate_real_path
 from linux_story.common import get_username
 from linux_story.helper_functions import has_write_permissions
@@ -12,7 +12,7 @@ from linux_story.step_helper_functions import unblock_commands
 from linux_story.story.new_terminals.terminal_rm import TerminalRm
 
 
-class StepTemplateRm(IStep):
+class StepTemplateRm(StepTemplate):
     TerminalClass = TerminalRm
     dark_theme = True
 

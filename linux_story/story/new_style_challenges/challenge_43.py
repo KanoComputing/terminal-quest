@@ -1,22 +1,22 @@
 #!/usr/bin/env python
 #
-# Copyright (C) 2014-2016 Kano Computing Ltd.
+# Copyright (C) 2014-2017 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
-from linux_story.IStep import IStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.common import get_story_file
 from linux_story.helper_functions import wrap_in_box
 from linux_story.story.new_terminals.terminal_chmod import TerminalChmod
 from linux_story.story.new_terminals.terminal_rm import TerminalRm
 
 
-class StepTemplateChmod(IStep):
+class StepTemplateChmod(StepTemplate):
     TerminalClass = TerminalChmod
 
 
-class StepTemplateRm(IStep):
+class StepTemplateRm(StepTemplate):
     TerminalClass = TerminalRm
 
 
