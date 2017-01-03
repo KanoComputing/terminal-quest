@@ -6,23 +6,14 @@
 # A chapter of the story
 
 
-import os
-import sys
-
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
+from linux_story.StepTemplate import StepTemplate
 from kano_profile.apps import save_app_state_variable
-
-from linux_story.story.terminals.terminal_cat import TerminalCat
-from linux_story.story.challenges.challenge_3 import Step1 as NextChallengeStep
 from linux_story.helper_functions import wrap_in_box
+from linux_story.story.terminals.terminal_cat import TerminalCat
 
 
-class StepCat(TerminalCat):
-    challenge_number = 2
+class StepCat(StepTemplate):
+    TerminalClass = TerminalCat
 
 
 # ----------------------------------------------------------------------------------------
@@ -48,13 +39,10 @@ class Step1(StepCat):
     end_dir = "~/my-house/my-room"
     commands = "cat alarm"
     highlighted_commands = ['cat']
-    hints = _("{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}")
-
-    def __init__(self, xp=""):
-        StepCat.__init__(self, xp)
+    hints = [_("{{rb:Type}} {{yb:cat alarm}} {{rb:to investigate the alarm.}}")]
 
     def next(self):
-        Step2()
+        return 2, 2
 
 
 class Step2(StepCat):
@@ -66,10 +54,12 @@ class Step2(StepCat):
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = ["ls wardrobe", "ls wardrobe/"]
-    hints = _("{{rb:Type}} {{yb:ls wardrobe/}} {{rb:to look for something to wear.}}")
+    hints = [
+        _("{{rb:Type}} {{yb:ls wardrobe/}} {{rb:to look for something to wear.}}")
+    ]
 
     def next(self):
-        Step3()
+        return 2, 3
 
 
 class Step3(StepCat):
@@ -80,10 +70,12 @@ class Step3(StepCat):
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat wardrobe/t-shirt"
-    hints = _("{{rb:Type}} {{yb:cat wardrobe/t-shirt}} {{rb:to investigate how it looks.}}")
+    hints = [
+        _("{{rb:Type}} {{yb:cat wardrobe/t-shirt}} {{rb:to investigate how it looks.}}")
+    ]
 
     def next(self):
-        Step4()
+        return 2, 4
 
 
 class Step4(StepCat):
@@ -97,26 +89,24 @@ class Step4(StepCat):
         "cat wardrobe/skirt",
         "cat wardrobe/trousers"
     ]
-    hints = _("{{rb:Type}} {{yb:cat wardrobe/trousers}} {{rb:or}} {{yb:cat wardrobe/skirt}} {{rb:to dress yourself.}}")
+    hints = [
+        _("{{rb:Type}} {{yb:cat wardrobe/trousers}} {{rb:or}} {{yb:cat wardrobe/skirt}} {{rb:to dress yourself.}}")
+    ]
     checked_outside_wardrobe = False
 
-    def check_command(self):
-        if self.last_user_input == self.commands[0]:
+    def check_command(self, line):
+        if line == self.commands[0]:
             save_app_state_variable('linux-story', 'outfit', 'skirt')
-        elif self.last_user_input == self.commands[1]:
+        elif line == self.commands[1]:
             save_app_state_variable('linux-story', 'outfit', 'trousers')
-        elif not self.checked_outside_wardrobe and \
-                (self.last_user_input == "cat trousers" or
-                 self.last_user_input == "cat skirt"):
-            self.send_text(
-                _("\n{{rb:You need to look in your}} {{bb:wardrobe}} {{rb:for that item.}}")
-            )
+        elif not self.checked_outside_wardrobe and (line == "cat trousers" or line == "cat skirt"):
+            self.send_hint(_("\n{{rb:You need to look in your}} {{bb:wardrobe}} {{rb:for that item.}}"))
             self.checked_outside_wardrobe = True
 
-        return StepCat.check_command(self)
+        return StepCat.check_command(self, line)
 
     def next(self):
-        Step5()
+        return 2, 5
 
 
 class Step5(StepCat):
@@ -129,9 +119,11 @@ class Step5(StepCat):
     commands = [
         "cat wardrobe/cap"
     ]
-    hints = _("{{rb:Type}} {{yb:cat wardrobe/cap}} {{rb:to}} {{lb:examine}} {{rb:the cap.}}")
+    hints = [
+        _("{{rb:Type}} {{yb:cat wardrobe/cap}} {{rb:to}} {{lb:examine}} {{rb:the cap.}}")
+    ]
 
     last_step = True
 
     def next(self):
-        NextChallengeStep(self.xp)
+        return 3, 1

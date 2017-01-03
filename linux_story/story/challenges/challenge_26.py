@@ -6,13 +6,9 @@
 # A chapter of the story
 
 
-from linux_story.story.terminals.terminal_bernard import TerminalMkdirBernard
-from linux_story.story.challenges.challenge_27 import Step1 as NextStep
+from linux_story.story.challenges.CompanionMisc import StepTemplateMkdir
+from linux_story.common import get_story_file
 from linux_story.step_helper_functions import unblock_cd_commands
-
-
-class StepTemplateMkdir(TerminalMkdirBernard):
-    challenge_number = 26
 
 
 # ----------------------------------------------------------------------------------------
@@ -20,8 +16,7 @@ class StepTemplateMkdir(TerminalMkdirBernard):
 
 class Step1(StepTemplateMkdir):
     story = [
-        _("You are back in town. {{bb:Eleanor}} waves her arms and points " +\
-        "at a building in the distance."),
+        _("You are back in town. {{bb:Eleanor}} waves her arms and points at a building in the distance."),
         _("\n{{lb:Look around}} to see where {{bb:Eleanor}} is pointing.")
     ]
 
@@ -38,21 +33,22 @@ class Step1(StepTemplateMkdir):
     ]
 
     deleted_items = ["~/town/east/shed-shop/Eleanor"]
-    story_dict = {
-        "Eleanor": {
-            "path": "~/town/east"
+    file_list = [
+        {
+            "path": "~/town/east/Eleanor",
+            "contents": get_story_file("Eleanor"),
+            "type": "file"
         }
-    }
-    eleanors_speech = _("Eleanor: {{Bb:The library is over there!}}")
+    ]
+    companion_speech = _("Eleanor: {{Bb:The library is over there!}}")
 
     def next(self):
-        Step2()
+        return 26, 2
 
 
 class Step2(StepTemplateMkdir):
     story = [
         _("You see the {{bb:library}} ahead."),
-
         _("Eleanor: {{Bb:\"There it is! The}} {{bb:library}} " +\
         "{{Bb:is right there! Let's}} {{lb:go inside.}}{{Bb:\"}}")
     ]
@@ -63,13 +59,13 @@ class Step2(StepTemplateMkdir):
     hints = [
         _("{{rb:Use}} {{yb:cd library}} {{rb:to go inside the library.}}")
     ]
-    eleanors_speech = _("Eleanor: {{Bb:I love the library! Let's go inside!}}")
+    companion_speech = _("Eleanor: {{Bb:I love the library! Let's go inside!}}")
 
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    def block_command(self, line):
+        return unblock_cd_commands(line)
 
     def next(self):
-        Step3()
+        return 26, 3
 
 
 class Step3(StepTemplateMkdir):
@@ -89,15 +85,16 @@ class Step3(StepTemplateMkdir):
         "ls -a"
     ]
     deleted_items = ["~/town/east/Eleanor"]
-    story_dict = {
-        "Eleanor": {
-            "path": "~/town/east/library"
+    file_list = [
+        {
+            "path": "~/town/east/library/Eleanor",
+            "contents": get_story_file("Eleanor")
         }
-    }
-    eleanors_speech = _("Eleanor: {{Bb:It's all echo-y-y-y-y..}}")
+    ]
+    companion_speech = _("Eleanor: {{Bb:It's all echo-y-y-y-y..}}")
 
     def next(self):
-        Step4()
+        return 26, 4
 
 
 class Step4(StepTemplateMkdir):
@@ -128,10 +125,10 @@ class Step4(StepTemplateMkdir):
         _("{{rb:Use}} {{yb:ls private-section/}} {{rb:to look in the " +\
         "private-section of the library.}}")
     ]
-    eleanors_speech = _("Eleanor: {{Bb:What's in the private-section?}}")
+    companion_speech = _("Eleanor: {{Bb:What's in the private-section?}}")
 
     def next(self):
-        Step5()
+        return 26, 5
 
 
 class Step5(StepTemplateMkdir):
@@ -142,7 +139,7 @@ class Step5(StepTemplateMkdir):
         _("\"Let's see if we can find something useful in the}} " +\
         "{{bb:public section.}}{{Bb:\"}}"),
 
-        _("\nUse {{yb:ls}} to look in the {{bb:public-section}}.")
+        _("\nUse {{lb:ls}} to look in the {{bb:public-section}}.")
     ]
 
     start_dir = "~/town/east/library"
@@ -158,10 +155,10 @@ class Step5(StepTemplateMkdir):
         _("{{rb:Use}} {{yb:ls public-section}} {{rb:to look in the public-" +\
         "section.}}")
     ]
-    eleanors_speech = _("Eleanor: {{Bb:What's in the public-section?}}")
+    companion_speech = _("Eleanor: {{Bb:What's in the public-section?}}")
 
     def next(self):
-        Step6()
+        return 26, 6
 
 
 class Step6(StepTemplateMkdir):
@@ -169,7 +166,7 @@ class Step6(StepTemplateMkdir):
         _("Eleanor: {{Bb:\"Wow, all the commands have disappeared."),
         _("I wonder if people have been stealing them?\"\n}}"),
 
-        _("{{Bb:\"What is that}} {{yb:NANO}} {{Bb:paper?\"}}\n"),
+        _("{{Bb:\"What is that}} {{lb:NANO}} {{Bb:paper?\"}}\n"),
         _("{{Bb:\"Let's}} {{lb:examine}} {{Bb:it.\"}}")
     ]
     start_dir = "~/town/east/library"
@@ -180,31 +177,29 @@ class Step6(StepTemplateMkdir):
     hints = [
         _("{{rb:Examine the NANO script with}} {{yb:cat public-section/NANO}}")
     ]
-    eleanors_speech = (
+    companion_speech = (
         _("Eleanor: {{Bb:The library should probably have introduced late " +\
         "fees.}}")
     )
 
     def next(self):
-        Step7()
+        return 26, 7
 
 
 class Step7(StepTemplateMkdir):
     story = [
-        _("Eleanor: {{Bb:So nano allows you to " +\
-        "edit files?}}"),
+        _("Eleanor: {{Bb:\"So nano allows you to edit files?}}"),
 
-        _("{{Bb:\"Maybe we could use this to fix that}} " +\
+        _("{{Bb:Maybe we could use this to fix that}} " +\
         "{{yb:best-horn-in-the-world.sh}} {{Bb:script?\"}}\n"),
 
         _("{{Bb:\"Let's}} {{lb:head back}} {{Bb:to the}} {{bb:shed-shop}}{{Bb:.\"}}")
     ]
     start_dir = "~/town/east/library"
     end_dir = "~/town/east/shed-shop"
-    eleanors_speech = (
+    companion_speech = (
         _("Eleanor: {{Bb:...do we have to go and see creepy Bernard again?}}")
     )
-    last_step = True
 
     path_hints = {
         "~/town/east/library": {
@@ -216,18 +211,18 @@ class Step7(StepTemplateMkdir):
         }
     }
 
-    def check_command(self):
-        if self.current_path == self.end_dir:
+    def check_command(self, line):
+        if self.get_fake_path() == self.end_dir:
             return True
-        elif "cd" in self.last_user_input and not self.get_command_blocked():
-            hint = self.path_hints[self.current_path]["not_blocked"]
+        elif "cd" in line and not self.get_command_blocked():
+            hint = self.path_hints[self.get_fake_path()]["not_blocked"]
         else:
-            hint = self.path_hints[self.current_path]["blocked"]
+            hint = self.path_hints[self.get_fake_path()]["blocked"]
 
-        self.send_text(hint)
+        self.send_hint(hint)
 
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    def block_command(self, line):
+        return unblock_cd_commands(line)
 
     def next(self):
-        NextStep(self.xp)
+        return 27, 1

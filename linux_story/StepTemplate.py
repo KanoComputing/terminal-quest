@@ -42,7 +42,7 @@ class StepTemplate:
         self.__modify_file_system()
 
         if isinstance(self.hints, basestring):
-            raise Exception("Hint is a string! Bad Caroline!")
+            raise Exception("Hint is a string! Make it a list")
 
         self._last_user_input = ""
         self._is_finished = False

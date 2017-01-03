@@ -9,11 +9,8 @@
 import os
 import stat
 from linux_story.commands_fake import cd
-from linux_story.story.terminals.terminal_cat import \
-    TerminalCat
-
-# New import
 from linux_story.step_helper_functions import route_between_paths
+from linux_story.story.terminals.terminal_cat import TerminalCat
 
 
 def not_locked(directory):
@@ -32,51 +29,44 @@ class TerminalCd(TerminalCat):
     terminal_commands = ["ls", "cat", "cd"]
 
     def do_cd(self, line):
-        if self.__check_cd():
-            self.set_command_blocked(False)
-            new_path = cd(self.real_path, line)
+        if self.__check_cd(line):
+            self._set_command_blocked(False)
+            new_path = cd(self._location.get_real_path(), line)
             if not not_locked(new_path):
-                self.set_command_blocked(True)
+                self._set_command_blocked(True)
                 print (
                     _("bash: cd: " + line + ": Permission denied")
                 )
             elif new_path:
-                self.real_path = new_path
-                self.current_path = self.generate_fake_path(self.real_path)
-                self.set_prompt()
+                self._location.set_real_path(new_path)
+                self._set_prompt()
         else:
-            self.set_command_blocked(True)
-            print (
-                _("Nice try! But you entered an unexpected destination path.")
-            )
+            self._set_command_blocked(True)
+            print (_("Nice try! But you entered an unexpected destination path."))
 
     def complete_cd(self, text, line, begidx, endidx):
         try:
-            return self.autocomplete_files(text, line, begidx, endidx, only_dirs=True)
+            return self._autocomplete_files(text, line, begidx, endidx, only_dirs=True)
         except Exception as e:
             print str(e)
 
-    def __check_cd(self):
+    def __check_cd(self, line):
         """If returns True, that means that cd will bring the user closer
         to their destination, so cd should be allowed to run with the
         user's choice of path.
         """
-        if not self.last_user_input.startswith("cd"):
-            return False
 
         # Get the current list of the paths that we're allowed to go on
-        route = route_between_paths(self.current_path, self.end_dir)
+        route = route_between_paths(self._location.get_fake_path(), self._location.get_end_dir())
 
-        if not route:
-            route = route_between_paths(self.current_path, self.dirs_to_attempt)
+        if not route and self._dirs_to_attempt:
+            route = route_between_paths(self._location.get_fake_path(), self._dirs_to_attempt)
 
-        user_path = self.last_user_input.replace("cd", "").strip()
-
-        if user_path:
-            if user_path.startswith("~"):
-                new_path = user_path
+        if line:
+            if line.startswith("~"):
+                new_path = line
             else:
-                new_path = os.path.join(self.current_path, user_path)
+                new_path = os.path.join(self._location.get_fake_path(), line)
         else:
             # If the user didn't enter a path, assume they want to go to
             # home folder

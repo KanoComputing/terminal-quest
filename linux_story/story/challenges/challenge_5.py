@@ -4,23 +4,13 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-
-
-import os
-import sys
-
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
-from linux_story.story.terminals.terminal_cd import TerminalCd
-from linux_story.story.challenges.challenge_6 import Step1 as NextChallengeStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.story.terminals.terminal_cd import TerminalCd
 
 
-class StepTemplateCd(TerminalCd):
-    challenge_number = 5
+class StepTemplateCd(StepTemplate):
+    TerminalClass = TerminalCd
 
 
 # ----------------------------------------------------------------------------------------
@@ -28,22 +18,21 @@ class StepTemplateCd(TerminalCd):
 
 class Step1(StepTemplateCd):
     story = [
-        _("{{wb:Mum:}} {{Bb:\"Hi sleepyhead, breakfast is nearly ready. Can you go and grab your Dad? I think he's in the}} {{bb:garden}}{{Bb:.\"}}\n"),
+        _("{{wb:Mum:}} {{Bb:\"Hi sleepyhead, breakfast is nearly ready. Can you go and grab your Dad? "
+          "I think he's in the}} {{bb:garden}}{{Bb:.\"}}\n"),
         _("Let's look for your {{bb:Dad}} in the {{bb:garden}}."),
         _("First we need to {{lb:leave}} the {{bb:kitchen}} using {{yb:cd ..}}\n")
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house"
     commands = ["cd ..", "cd ../"]
-    hints = _("{{rb:To leave the kitchen, type}} {{yb:cd ..}}")
+    hints = [_("{{rb:To leave the kitchen, type}} {{yb:cd ..}}")]
 
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        Step2()
+        return 5, 2
 
 
 class Step2(StepTemplateCd):
@@ -54,10 +43,10 @@ class Step2(StepTemplateCd):
     start_dir = "~/my-house"
     end_dir = "~/my-house"
     commands = "ls"
-    hints = _("{{rb:Type}} {{yb:ls}} {{rb:to look around you.}}")
+    hints = [_("{{rb:Type}} {{yb:ls}} {{rb:to look around you.}}")]
 
     def next(self):
-        Step3()
+        return 5, 3
 
 
 class Step3(StepTemplateCd):
@@ -68,15 +57,13 @@ class Step3(StepTemplateCd):
     start_dir = "~/my-house"
     end_dir = "~/my-house/garden"
     commands = ["cd garden", "cd garden/"]
-    hints = _("{{rb:Type}} {{yb:cd garden}} {{rb:to go into the garden.}}")
+    hints = [_("{{rb:Type}} {{yb:cd garden}} {{rb:to go into the garden.}}")]
 
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        Step4()
+        return 5, 4
 
 
 class Step4(StepTemplateCd):
@@ -86,10 +73,10 @@ class Step4(StepTemplateCd):
     start_dir = "~/my-house/garden"
     end_dir = "~/my-house/garden"
     commands = "ls"
-    hints = _("{{rb:To look for your Dad, type}} {{yb:ls}} {{rb:and press {{ob:Enter}}{{rb:.}}")
+    hints = [_("{{rb:To look for your Dad, type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")]
 
     def next(self):
-        Step5()
+        return 5, 5
 
 
 class Step5(StepTemplateCd):
@@ -102,15 +89,13 @@ class Step5(StepTemplateCd):
     start_dir = "~/my-house/garden"
     end_dir = "~/my-house/garden/greenhouse"
     commands = ["cd greenhouse", "cd greenhouse/"]
-    hints = _("{{rb:To go to the greenhouse, type}} {{yb:cd greenhouse}}")
+    hints = [_("{{rb:To go to the greenhouse, type}} {{yb:cd greenhouse}}")]
 
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        Step6()
+        return 5, 6
 
 
 class Step6(StepTemplateCd):
@@ -120,10 +105,10 @@ class Step6(StepTemplateCd):
     start_dir = "~/my-house/garden/greenhouse"
     end_dir = "~/my-house/garden/greenhouse"
     commands = "ls"
-    hints = _("{{rb:Type}} {{yb:ls}} {{rb:to look for your Dad.}}")
+    hints = [_("{{rb:Type}} {{yb:ls}} {{rb:to look for your Dad.}}")]
 
     def next(self):
-        Step7()
+        return 5, 7
 
 
 class Step7(StepTemplateCd):
@@ -135,10 +120,10 @@ class Step7(StepTemplateCd):
     start_dir = "~/my-house/garden/greenhouse"
     end_dir = "~/my-house/garden/greenhouse"
     commands = "cat note"
-    hints = _("{{rb:Type}} {{yb:cat note}} {{rb:to see what the note says!}}")
+    hints = [_("{{rb:Type}} {{yb:cat note}} {{rb:to see what the note says!}}")]
 
     def next(self):
-        Step8()
+        return 5, 8
 
 
 class Step8(StepTemplateCd):
@@ -148,15 +133,13 @@ class Step8(StepTemplateCd):
     start_dir = "~/my-house/garden/greenhouse"
     end_dir = "~/my-house/garden"
     commands = ["cd ..", "cd ../"]
-    hints = _("{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the garden.}}")
+    hints = [_("{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the garden.}}")]
 
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        Step9()
+        return 5, 9
 
 
 class Step9(StepTemplateCd):
@@ -167,15 +150,13 @@ class Step9(StepTemplateCd):
     start_dir = "~/my-house/garden"
     end_dir = "~/my-house"
     commands = ["cd ..", "cd ../"]
-    hints = _("{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the house.}}")
+    hints = [_("{{rb:Type}} {{yb:cd ..}} {{rb:to go back to the house.}}")]
 
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        Step10()
+        return 5, 10
 
 
 class Step10(StepTemplateCd):
@@ -185,14 +166,10 @@ class Step10(StepTemplateCd):
     start_dir = "~/my-house"
     end_dir = "~/my-house/kitchen"
     commands = ["cd kitchen", "cd kitchen/"]
-    hints = _("{{rb:Type}} {{yb:cd kitchen}} {{rb:to go back to the kitchen.}}")
+    hints = [_("{{rb:Type}} {{yb:cd kitchen}} {{rb:to go back to the kitchen.}}")]
 
-    last_step = True
-
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        NextChallengeStep(self.xp)
+        return 6, 1

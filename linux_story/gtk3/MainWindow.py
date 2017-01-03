@@ -5,16 +5,17 @@
 #
 import os
 import time
-from gi.repository import Gtk, Gdk, Pango
+from gi.repository import Gtk, Gdk, Pango, GObject
 from kano.gtk3.apply_styles import apply_styling_to_screen
 from kano_profile.apps import load_app_state_variable
 from kano.gtk3.scrolled_window import ScrolledWindow
+
+from linux_story.file_creation.FileTree import revert_to_default_permissions
 from linux_story.gtk3.TerminalUi import TerminalUi
 from linux_story.gtk3.Spellbook import Spellbook
 from linux_story.gtk3.Storybook import Storybook
-from linux_story.common import css_dir
+from linux_story.common import css_dir, tq_file_system
 from linux_story.gtk3.MenuScreen import MenuScreen
-from linux_story.load_defaults_into_filetree import revert_to_default_permissions
 
 
 def save_point_exists():
@@ -32,10 +33,13 @@ class MainWindow(Gtk.Window):
     NORMAL_CLASS = "normal"
     DARK_CLASS = "dark"
 
-    def __init__(self, queue, challenge, step, debug):
-        Gtk.Window.__init__(self)
+    __gsignals__ = {
+        # This returns an integer of the challenge the user wants to start from
+        'game_finished': (GObject.SIGNAL_RUN_FIRST, None, ()),
+    }
 
-        self.__queue = queue
+    def __init__(self, challenge, step, debug):
+        Gtk.Window.__init__(self)
 
         apply_styling_to_screen(self.CSS_FILE)
         apply_styling_to_screen(self.COLOUR_CSS_FILE)
@@ -44,6 +48,7 @@ class MainWindow(Gtk.Window):
         self.__setup_gtk_properties()
         self.__setup_keymap()
         self.is_busy = False
+        self.connect("game_finished", self.finish_app)
 
         if challenge and step:
             self.__start_game_from_challenge(challenge, step)
@@ -51,6 +56,9 @@ class MainWindow(Gtk.Window):
             self.__show_menu()
         else:
             self.__start_game_from_challenge("0", "1")
+
+    def finish_game(self):
+        self.emit("game-finished")
 
     def set_theme(self, dark=False):
         if dark:
@@ -184,12 +192,12 @@ class MainWindow(Gtk.Window):
 
         self.__terminal.launch_command(command)
 
-    def finish_app(self):
+    def finish_app(self, other):
         self.__stop_typing_in_terminal()
         self.__center_storybook()
         # TODO: update asset when we finish the last chapter in the storyline
-        self.__story.print_coming_soon(self, self.__terminal)
-        time.sleep(5)
+        self.__story.print_finished(self, self.__terminal)
+        time.sleep(3)
         self.__close_window()
 
     def show_hint(self, hint):
@@ -257,6 +265,7 @@ class MainWindow(Gtk.Window):
         Returns:
             None
         """
-        revert_to_default_permissions()
+
+        revert_to_default_permissions(tq_file_system)
         Gtk.main_quit()
 

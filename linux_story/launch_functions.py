@@ -9,7 +9,6 @@ import sys
 
 from linux_story.common import tq_file_system
 from linux_story.file_creation.FileTree import FileTree
-from linux_story.load_defaults_into_filetree import default_global_tree
 from linux_story.story.trees.default_trees import tree
 
 
@@ -25,16 +24,6 @@ def launch_project(challenge=1, step=1):
         None
     """
 
-    # For now, just show the default filesystem for that step.
-    # if challenge == 0:
-    #     challenge = 1
-    #     step = 1
-
-    # if challenge <= 31:
-    #     default_global_tree(challenge, step)
-    #     step = get_step_class(challenge, step)
-    #     step()
-    # else:
     from linux_story.ChallengeController import ChallengeController
     from linux_story.MessageClient import MessageClient
 
@@ -57,14 +46,10 @@ def get_step_class(challenge_number, step_number):
     """
 
     if challenge_number == 0:
-        module_name = "story.new_style_challenges.introduction"
+        module_name = "story.challenges.introduction"
         step_class_name = "Step1"
-    # elif challenge_number <= 31:
-    #     # If no fork, use this module name
-    #     module_name = "story.challenges.challenge_{}".format(challenge_number)
-    #     step_class_name = "Step{}".format(step_number)
     else:
-        module_name = "story.new_style_challenges.challenge_{}".format(challenge_number)
+        module_name = "story.challenges.challenge_{}".format(challenge_number)
         step_class_name = "Step{}".format(step_number)
 
     try:

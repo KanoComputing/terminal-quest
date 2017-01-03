@@ -4,15 +4,13 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-
-
+from linux_story.StepTemplate import StepTemplate
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.terminals.terminal_mkdir import TerminalMkdir
-from linux_story.story.challenges.challenge_23 import Step1 as NextStep
 
 
-class StepTemplateMkdir(TerminalMkdir):
-    challenge_number = 22
+class StepTemplateMkdir(StepTemplate):
+    TerminalClass = TerminalMkdir
 
 
 # ----------------------------------------------------------------------------------------
@@ -36,25 +34,23 @@ class Step1(StepTemplateMkdir):
         "cat Cobweb"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:cat}} {{rb:to examine an animal, e.g.}} " +\
-        "{{yb:cat Daisy}}{{rb:.}}")
+        _("{{rb:Use}} {{yb:cat}} {{rb:to examine an animal, e.g.}} {{yb:cat Daisy}}{{rb:.}}")
     ]
 
-    # Remove all the food
     deleted_items = [
         "~/town/.hidden-shelter/basket",
         "~/town/.hidden-shelter/apple"
     ]
 
     def next(self):
-        Step2()
+        return 22, 2
 
 
 class Step2(StepTemplateMkdir):
     story = [
         _("{{pb:Ding. Dong.}}\n"),
         _("Ruth: {{Bb:\"What?? I heard a bell! What does that mean?\"}}"),
-        _("\nQuick! {{lb:Look around}} and see if anyone is missing.")
+        _("Quick! {{lb:Look around}} and see if anyone is missing.")
     ]
 
     start_dir = "~/farm/barn/.shelter"
@@ -67,22 +63,20 @@ class Step2(StepTemplateMkdir):
         _("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
     ]
 
-    # Remove Edith
     deleted_items = [
         "~/town/.hidden-shelter/Edith"
     ]
 
     def next(self):
-        Step3()
+        return 22, 3
 
 
 class Step3(StepTemplateMkdir):
 
     story = [
         _("It appears that everyone is still here..."),
-        _("\n{{pb:Ding. Dong.}}\n"),
-        _("\nRuth: {{Bb:\"I heard it again! Is that the sound you heard when " +\
-        "my husband went missing?\"\n}}"),
+        _("{{pb:Ding. Dong.}}\n"),
+        _("Ruth: {{Bb:\"I heard it again! Is that the sound you heard when my husband went missing?\"\n}}"),
         _("Have another quick {{lb:look around}}.")
     ]
 
@@ -95,13 +89,12 @@ class Step3(StepTemplateMkdir):
     hints = [
         _("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
     ]
-    # Remove Edward
     deleted_items = [
         "~/town/.hidden-shelter/Edward"
     ]
 
     def next(self):
-        Step4()
+        return 22, 4
 
 
 # TODO: FIX THIS STEP
@@ -109,12 +102,12 @@ class Step4(StepTemplateMkdir):
     story = [
         _("Ruth: {{Bb:\"It's alright. We're all safe, everyone's still here. " +\
         "I wonder why it's ringing?\"}}"),
-        _("\nPerhaps we should investigate that sound. Who else do we " +\
+        _("Perhaps we should investigate that sound. Who else do we " +\
         "know?"),
         _("Maybe you should check back on the family in the " +\
         "{{bb:.hidden-shelter}} and talk to them with your new found voice."),
-
-        _("\nStart heading back to the {{bb:.hidden-shelter}} using {{yb:cd}}.")
+        "",
+        _("Start heading back to the {{bb:.hidden-shelter}} using {{yb:cd}}.")
     ]
 
     start_dir = "~/farm/barn/.shelter"
@@ -130,21 +123,19 @@ class Step4(StepTemplateMkdir):
         "~/town/.hidden-shelter/dog"
     ]
 
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    def block_command(self, line):
+        return unblock_cd_commands(line)
 
-    def check_command(self):
+    def check_command(self, line):
         # If the command passes, then print a nice hint.
-        if self.last_user_input.startswith("cd") and \
-                not self.get_command_blocked() and \
-                not self.current_path == self.end_dir:
+        if line.startswith("cd") and not self.get_command_blocked() and not self.get_fake_path() == self.end_dir:
             hint = _("\n{{gb:You travel back to tilde}}")
-            self.send_text(hint)
+            self.send_hint(hint)
         else:
-            return StepTemplateMkdir.check_command(self)
+            return StepTemplateMkdir.check_command(self, line)
 
     def next(self):
-        Step5()
+        return 22, 5
 
 
 class Step5(StepTemplateMkdir):
@@ -161,7 +152,6 @@ class Step5(StepTemplateMkdir):
     hints = [
         _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
-    last_step = True
 
     def next(self):
-        NextStep(self.xp)
+        return 23, 1

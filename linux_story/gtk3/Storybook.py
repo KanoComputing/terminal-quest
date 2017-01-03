@@ -46,9 +46,6 @@ class Storybook(Gtk.TextView):
         font_desc.set_family("monospace")
         font_desc.set_size(13*Pango.SCALE)
         self.override_font(font_desc)
-        # bg_colour = Gdk.RGBA()
-        # bg_colour.parse("#313131")
-        # self.override_background_color(Gtk.StateFlags.NORMAL, bg_colour)
         self.get_style_context().add_class("storybook_background")
         self.char_width = self.__get_char_width()
         self.set_can_focus(False)
@@ -204,7 +201,7 @@ class Storybook(Gtk.TextView):
         white_tag = self.__get_tag('white')
         textbuffer.insert_with_tags(end_iter, string, white_tag)
 
-    def print_coming_soon(self, window, terminal):
+    def print_finished(self, window, terminal):
         text = get_ascii_art('coming_soon')
         text_lines = text.splitlines()
         leading_newlines = len(text_lines)

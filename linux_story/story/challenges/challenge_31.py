@@ -4,15 +4,14 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-from linux_story.ChallengeController import ChallengeController
-from linux_story.MessageClient import MessageClient
-from linux_story.story.terminals.terminal_nano import TerminalNano
+from linux_story.StepTemplate import StepTemplate
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.sound_manager import SoundManager
+from linux_story.story.terminals.terminal_nano import TerminalNano
 
 
-class StepTemplateNano(TerminalNano):
-    challenge_number = 31
+class StepTemplateNano(StepTemplate):
+    TerminalClass = TerminalNano
 
 
 # ----------------------------------------------------------------------------------------
@@ -33,7 +32,7 @@ class Step1(StepTemplateNano):
     ]
 
     def next(self):
-        Step2()
+        return 31, 2
 
 
 class Step2(StepTemplateNano):
@@ -50,20 +49,17 @@ class Step2(StepTemplateNano):
         _("{{rb:Go into the basement with}} {{yb:cd basement}}")
     ]
 
-    def check_command(self):
-        if self.last_user_input == "cat bernards-hat":
-            self.send_text(
-                _("\nIs that Bernard\'s hat? " +\
-                "Strange he left it behind...")
-            )
+    def check_command(self, line):
+        if line == "cat Bernards-hat":
+            self.send_hint(_("\nIs that Bernard\'s hat? Strange he left it behind..."))
         else:
-            return TerminalNano.check_command(self)
+            return StepTemplateNano.check_command(self, line)
 
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    def block_command(self, line):
+        return unblock_cd_commands(line)
 
     def next(self):
-        Step3()
+        return 31, 3
 
 
 class Step3(StepTemplateNano):
@@ -80,13 +76,12 @@ class Step3(StepTemplateNano):
         _("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
     ]
 
-    def __init__(self, xp=""):
+    def _run_at_start(self):
         sound_manager = SoundManager()
         sound_manager.play_sound('steps')
-        StepTemplateNano.__init__(self, xp)
 
     def next(self):
-        Step4()
+        return 31, 4
 
 
 class Step4(StepTemplateNano):
@@ -105,42 +100,22 @@ class Step4(StepTemplateNano):
         _("{{rb:Use}} {{yb:cat}} {{rb:to examine the objects around you.}}")
     ]
 
-    def check_command(self):
-        if self.last_user_input in self.commands:
-            self.commands.remove(self.last_user_input)
+    def check_command(self, line):
+        if line in self.commands:
+            self.commands.remove(line)
 
             if not self.commands:
                 text = _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
-                self.send_text(text)
-
+                self.send_hint(text)
             else:
                 text = _("\n{{gb:Well done! Look at the other objects.}}")
-                self.send_text(text)
+                self.send_hint(text)
 
-        elif not self.last_user_input and not self.commands:
+        elif not line and not self.commands:
             return True
 
         else:
-            return StepTemplateNano.check_command(self)
+            return StepTemplateNano.check_command(self, line)
 
     def next(self):
-        Step5()
-
-
-class Step5(StepTemplateNano):
-    story = [
-        _("Enough wandering. Let's go and try and find the " +\
-        "{{bb:masked swordmaster}} near the woods, and see " +\
-        "what information he can tell us."),
-        _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
-    ]
-    start_dir = "~/town/east/shed-shop/basement"
-    end_dir = "~/town/east/shed-shop/basement"
-    # last_step = True
-
-    # Add all the new files here.
-
-    def next(self):
-        client = MessageClient()
-        controller = ChallengeController(client)
-        controller.run(32, 1)
+        return 32, 1

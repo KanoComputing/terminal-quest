@@ -6,13 +6,8 @@
 # A chapter of the story
 
 
-from linux_story.story.terminals.terminal_bernard import TerminalMkdirBernard
-from linux_story.story.challenges.challenge_26 import Step1 as NextStep
+from linux_story.story.challenges.CompanionMisc import StepTemplateMkdir
 from linux_story.step_helper_functions import unblock_cd_commands
-
-
-class StepTemplateMkdir(TerminalMkdirBernard):
-    challenge_number = 25
 
 
 # ----------------------------------------------------------------------------------------
@@ -48,22 +43,22 @@ class Step1(StepTemplateMkdir):
         "cat best-shed-maker-in-the-world.sh",
         "cat ./best-shed-maker-in-the-world.sh"
     ]
-    eleanors_speech = _("Eleanor: {{Bb:Bernard scares me a bit...}}")
+    companion_speech = _("Eleanor: {{Bb:Bernard scares me a bit...}}")
 
-    def check_command(self):
-        if self.last_user_input == "cat best-horn-in-the-world.sh" or \
-           self.last_user_input == "cat ./best-horn-in-the-world.sh":
+    def check_command(self, line):
+        if line == "cat best-horn-in-the-world.sh" or \
+                        line == "cat ./best-horn-in-the-world.sh":
 
-            self.send_text(
+            self.send_hint(
                 _("\n{{rb:You are reading the wrong file! " +\
                 "You want to read}} {{bb:best-shed-maker-in-the-world.sh}}" +\
                 "{{rb:.}}")
             )
         else:
-            return StepTemplateMkdir.check_command(self)
+            return StepTemplateMkdir.check_command(self, line)
 
     def next(self):
-        Step2()
+        return 25, 2
 
 
 class Step2(StepTemplateMkdir):
@@ -92,22 +87,22 @@ class Step2(StepTemplateMkdir):
     commands = [
         "./best-shed-maker-in-the-world.sh"
     ]
-    eleanors_speech = \
+    companion_speech = \
         _("Eleanor: {{Bb:Isn't that just the same as running}} " +\
         "{{yb:mkdir shed}}{{Bb:?}}")
 
-    def check_command(self):
-        if self.last_user_input == "./best-horn-in-the-world.sh":
-            self.send_text(
+    def check_command(self, line):
+        if line == "./best-horn-in-the-world.sh":
+            self.send_hint(
                 _("\n{{rb:You're trying to run the wrong script. " +\
                 "You want to run}} " +\
                 "{{yb:./best-shed-maker-in-the-world.sh}}")
             )
         else:
-            return StepTemplateMkdir.check_command(self)
+            return StepTemplateMkdir.check_command(self, line)
 
     def next(self):
-        Step3()
+        return 25, 3
 
 
 class Step3(StepTemplateMkdir):
@@ -123,10 +118,10 @@ class Step3(StepTemplateMkdir):
     hints = [
         _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
-    eleanors_speech = _("Eleanor: {{Bb:Ah, look over there!}}")
+    companion_speech = _("Eleanor: {{Bb:Ah, look over there!}}")
 
     def next(self):
-        Step4()
+        return 25, 4
 
 
 class Step4(StepTemplateMkdir):
@@ -149,17 +144,17 @@ class Step4(StepTemplateMkdir):
     commands = [
         "./best-shed-maker-in-the-world.sh"
     ]
-    eleanors_speech = _("Eleanor: {{Bb:I don't think this will work...}}")
+    companion_speech = _("Eleanor: {{Bb:I don't think this will work...}}")
 
     def next(self):
-        Step5()
+        return 25, 5
 
 
 class Step5(StepTemplateMkdir):
     story = [
         _("You get the error {{yb:mkdir: cannot create directory `shed': " +\
         "File exists}}"),
-        _("\nBernard: {{Bb:\"Of course it won't work a second time - " +\
+        _("\nBernard: {{Bb:\"Of course it won't work second time - " +\
         "you already have a shed!\""),
 
         _("\"I'm working on the next big thing,}} " +\
@@ -169,8 +164,8 @@ class Step5(StepTemplateMkdir):
         "I'm having some teething problems, " +\
         "but I'm sure I'll fix them soon.\"}}"),
 
-        _("\n{{lb:Examine}} {{bb:best-horn-in-the-world.sh}} and see if you " +\
-        "can identify the problem.\n"),
+        _("\n{{lb:Examine}} {{bb:best-horn-in-the-world.sh}} {{lb:and see if you " +\
+        "can identify the problem.}}\n"),
 
         _("{{gb:Remember to use}} {{ob:TAB}}{{gb:!}}")
     ]
@@ -188,24 +183,24 @@ class Step5(StepTemplateMkdir):
         "tool.}}")
     ]
 
-    eleanors_speech = (
+    companion_speech = (
         _("Eleanor: {{Bb:I think this tool is a bit broken.}}")
     )
 
-    def check_command(self):
-        if self.last_user_input == "cat best-shed-maker-in-the-world.sh" or \
-           self.last_user_input == "cat ./best-shed-maker-in-the-world.sh":
+    def check_command(self, line):
+        if line == "cat best-shed-maker-in-the-world.sh" or \
+           line == "cat ./best-shed-maker-in-the-world.sh":
 
-            self.send_text(
+            self.send_hint(
                 _("\n{{rb:You're examining the wrong tool. You want to look " +\
                 "at}} {{yb:best-horn-in-the-world.sh}}")
             )
 
         else:
-            return StepTemplateMkdir.check_command(self)
+            return StepTemplateMkdir.check_command(self, line)
 
     def next(self):
-        Step6()
+        return 25, 6
 
 
 class Step6(StepTemplateMkdir):
@@ -234,12 +229,18 @@ class Step6(StepTemplateMkdir):
         _("{{rb:Use}} {{yb:ls basement/}} {{rb:to look inside.}}")
     ]
 
-    eleanors_speech = (
+    companion_speech = (
         _("Eleanor: {{Bb:OooOOoh, are there sweets in there?}}")
     )
 
+    def check_command(self, line):
+        # Using self._last_user_input because the line param is empty from being blocked.
+        if self._last_user_input in self.commands:
+            return True
+        return StepTemplateMkdir.check_command(self, self._last_user_input)
+
     def next(self):
-        Step7()
+        return 25, 7
 
 
 class Step7(StepTemplateMkdir):
@@ -253,14 +254,12 @@ class Step7(StepTemplateMkdir):
     hints = [
         _("{{rb:Leave the shed-shop using}} {{yb:cd ..}}")
     ]
-    eleanors_speech = (
+    companion_speech = (
         _("Eleanor: {{Bb:\"Yay, I like the library. Let's go back to town!\"}}")
     )
 
-    last_step = True
-
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    def block_command(self, line):
+        return unblock_cd_commands(line)
 
     def next(self):
-        NextStep(self.xp)
+        return 26, 1

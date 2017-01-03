@@ -49,9 +49,8 @@ from linux_story.gtk3.MainWindow import MainWindow
 
 
 def main(challenge, step, debug=False):
-    print "challenge {}, step {}".format(challenge, step)
+    window = MainWindow(challenge, step, debug)
     queue = Queue.Queue(1)
-    window = MainWindow(queue, challenge, step, debug)
     server = MessageServer(queue, window)
     server.start_in_separate_thread()
     window.connect("delete-event", server.shutdown)

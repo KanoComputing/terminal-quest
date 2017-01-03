@@ -12,7 +12,7 @@ import time
 import traceback
 
 from linux_story.MyTCPHandler import MyTCPHandler
-from linux_story.dependencies import Logger
+from kano.logging import logger
 
 
 class MessageServer:
@@ -26,22 +26,28 @@ class MessageServer:
         self.__server = SocketServer.TCPServer((MessageServer.HOST, MessageServer.PORT), MyTCPHandler)
         self.__server.queue = queue
         self.__is_busy = False
+        self.__exiting = False
 
     def start_in_separate_thread(self):
         t = threading.Thread(target=self.__server.serve_forever)
         t.start()
 
     def shutdown(self, widget=None, event=None):
+        self.__exiting = True
         self.__server.socket.shutdown(socket.SHUT_RDWR)
         self.__server.socket.close()
         self.__server.shutdown()
 
     def check_queue(self):
+        if self.__exiting:
+            return False
+
         try:
             self.__is_busy = True
             data_dict = self.__server.queue.get(False, timeout=5.0)
             if 'exit' in data_dict.keys():
-                self.__window.finish_app()
+                self.__window.finish_game()
+                self.shutdown()
                 return False
             elif 'hint' in data_dict.keys():
                 self.__window.show_hint(data_dict["hint"])
@@ -53,12 +59,14 @@ class MessageServer:
             self.__is_busy = False
 
         except Queue.Empty:
-            pass
+            return True
         except Exception:
-            Logger.error('Unexpected error in MainWindow: check_queue: - [{}]'.format(traceback.format_exc()))
+            logger.error('Unexpected error in MainWindow: check_queue: - [{}]'.format(traceback.format_exc()))
+            return False
         finally:
             time.sleep(0.02)
-            return True
+
+        return True
 
     def check_if_busy(self):
         # have a socket to query?

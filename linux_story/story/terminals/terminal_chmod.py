@@ -6,8 +6,8 @@
 #
 # A terminal for one of the challenges
 
-from linux_story.story.terminals.terminal_nano import TerminalNano
 from linux_story.commands_real import shell_command
+from linux_story.story.terminals.terminal_nano import TerminalNano
 
 
 class TerminalChmod(TerminalNano):
@@ -16,8 +16,8 @@ class TerminalChmod(TerminalNano):
     ]
 
     def do_chmod(self, line):
-        shell_command(self.real_path, line, "chmod")
+        shell_command(self._location.get_real_path(), line, "chmod")
 
     def complete_chmod(self, text, line, begidx, endidx):
-        completions = self.autocomplete_files(text, line, begidx, endidx)
+        completions = self._autocomplete_files(text, line, begidx, endidx)
         return completions

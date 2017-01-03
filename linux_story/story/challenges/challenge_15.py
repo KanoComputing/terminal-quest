@@ -4,23 +4,13 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-
-
-import os
-import sys
-
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
+from linux_story.StepTemplate import StepTemplate
 from linux_story.story.terminals.terminal_mv import TerminalMv
-from linux_story.story.challenges.challenge_16 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 
 
-class StepTemplateMv(TerminalMv):
-    challenge_number = 15
+class StepTemplateMv(StepTemplate):
+    TerminalClass = TerminalMv
 
 
 # ----------------------------------------------------------------------------------------
@@ -49,7 +39,7 @@ class Step1(StepTemplateMv):
     ]
 
     def next(self):
-        Step2()
+        return 15, 2
 
 
 class Step2(StepTemplateMv):
@@ -72,7 +62,7 @@ class Step2(StepTemplateMv):
     ]
 
     def next(self):
-        Step3()
+        return 15, 3
 
 
 class Step3(StepTemplateMv):
@@ -92,7 +82,7 @@ class Step3(StepTemplateMv):
     ]
 
     def next(self):
-        Step4()
+        return 15, 4
 
 
 class Step4(StepTemplateMv):
@@ -114,13 +104,11 @@ class Step4(StepTemplateMv):
         _("{{rb:No shortcuts! Use}} {{yb:cd ~/my-house}} {{rb:to get back to your house in one step.}}")
     ]
 
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        Step5()
+        return 15, 5
 
 
 class Step5(StepTemplateMv):
@@ -137,8 +125,6 @@ class Step5(StepTemplateMv):
         _("{{rb:Use}} {{yb:ls -a my-room}} {{rb:to look for hidden files in}} {{lb:my-room}}{{rb:.}}")
     ]
 
-    last_step = True
-
     def check_output(self, output):
         # Need to check that .chest is shown in the output of the command
         if not output:
@@ -150,4 +136,4 @@ class Step5(StepTemplateMv):
         return False
 
     def next(self):
-        NextStep(self.xp)
+        return 16, 1

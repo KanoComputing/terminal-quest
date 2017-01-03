@@ -4,25 +4,13 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-
-
-import os
-import sys
-
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
+from linux_story.StepTemplate import StepTemplate
 from linux_story.story.terminals.terminal_mv import TerminalMv
-from linux_story.story.challenges.challenge_14 import Step1 as NextStep
-from linux_story.step_helper_functions import (
-    unblock_commands_with_cd_hint, unblock_commands
-)
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint, unblock_commands
 
 
-class StepTemplateMv(TerminalMv):
-    challenge_number = 13
+class StepTemplateMv(StepTemplate):
+    TerminalClass = TerminalMv
 
 
 # ----------------------------------------------------------------------------------------
@@ -61,11 +49,11 @@ class Step1(StepTemplateMv):
         "{{rb:to move the}} {{bb:basket}} {{rb:to the windy road}} {{bb:~}}")
     ]
 
-    def block_command(self):
-        return unblock_commands(self.last_user_input, self.commands)
+    def block_command(self, line):
+        return unblock_commands(line, self.commands)
 
     def next(self):
-        Step2()
+        return 13, 2
 
 
 class Step2(StepTemplateMv):
@@ -85,13 +73,11 @@ class Step2(StepTemplateMv):
         "to move yourself to the road ~}}")
     ]
 
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        Step3()
+        return 13, 3
 
 
 class Step3(StepTemplateMv):
@@ -110,7 +96,7 @@ class Step3(StepTemplateMv):
     ]
 
     def next(self):
-        Step4()
+        return 13, 4
 
 
 class Step4(StepTemplateMv):
@@ -138,11 +124,11 @@ class Step4(StepTemplateMv):
         "{{rb:to move the basket to your kitchen.}}"),
     ]
 
-    def block_command(self):
-        return unblock_commands(self.last_user_input, self.commands)
+    def block_command(self, line):
+        return unblock_commands(line, self.commands)
 
     def next(self):
-        Step5()
+        return 13, 5
 
 
 class Step5(StepTemplateMv):
@@ -162,12 +148,9 @@ class Step5(StepTemplateMv):
         _("{{rb:Use}} {{yb:cd my-house/kitchen}} " +\
         "{{rb:to go to your kitchen.}}"),
     ]
-    last_step = True
 
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        NextStep(self.xp)
+        return 14, 1

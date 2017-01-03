@@ -1,6 +1,6 @@
 # Spellbook.py
 #
-# Copyright (C) 2014-2016 Kano Computing Ltd.
+# Copyright (C) 2014-2017 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 
@@ -20,7 +20,7 @@ class Spellbook(Gtk.EventBox):
     CMD_HEIGHT = 80
     CMD_WIDTH = 80
     HEIGHT = 100
-    number_of_spells = 10
+    number_of_spells = 9
 
     def __init__(self, is_caps_lock_on=False):
         self.stop = False

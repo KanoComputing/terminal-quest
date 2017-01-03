@@ -6,8 +6,8 @@
 #
 # A terminal for one of the challenges
 
-from linux_story.story.terminals.terminal_chmod import TerminalChmod
 from linux_story.commands_real import shell_command
+from linux_story.story.terminals.terminal_chmod import TerminalChmod
 
 
 class TerminalRm(TerminalChmod):
@@ -15,9 +15,9 @@ class TerminalRm(TerminalChmod):
         "ls", "cat", "cd", "mv", "echo", "mkdir", "nano", "chmod", "rm"
     ]
 
-    def do_rm(self, line, has_access=True):
-        shell_command(self.real_path, line, "rm")
+    def do_rm(self, line):
+        shell_command(self._location.get_real_path(), line, "rm")
 
     def complete_rm(self, text, line, begidx, endidx):
-        completions = self.autocomplete_files(text, line, begidx, endidx)
+        completions = self._autocomplete_files(text, line, begidx, endidx)
         return completions

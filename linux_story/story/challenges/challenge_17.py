@@ -6,24 +6,24 @@
 # A chapter of the story
 
 
-from kano_profile.apps import \
-    save_app_state_variable, load_app_state_variable
+from kano_profile.apps import save_app_state_variable, load_app_state_variable
 
+from linux_story.StepTemplate import StepTemplate
+from linux_story.common import get_story_file
 from linux_story.story.terminals.terminal_mv import TerminalMv
 from linux_story.story.terminals.terminal_echo import TerminalEcho
-from linux_story.story.challenges.challenge_18 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.helper_functions import wrap_in_box
 
 
 # This is for the challenges that only need ls
-class StepTemplateMv(TerminalMv):
-    challenge_number = 17
+class StepTemplateMv(StepTemplate):
+    TerminalClass = TerminalMv
 
 
 # This is for that challenges that need echo
-class StepTemplateEcho(TerminalEcho):
-    challenge_number = 17
+class StepTemplateEcho(StepTemplate):
+    TerminalClass = TerminalEcho
 
 
 # ----------------------------------------------------------------------------------------
@@ -31,12 +31,32 @@ class StepTemplateEcho(TerminalEcho):
 
 class Step1(StepTemplateMv):
     story = [
-        _("You are in your room, standing in front of the {{bb:.chest}} containing all the commands you've learned so far.\n"),
+        _("You are in your room, standing in front of the {{bb:.chest}} containing all the commands you've "
+          "learned so far.\n"),
         _("Maybe something else is hidden in the house?\n"),
         _("{{lb:Look}} in the hallway {{lb:behind you}}. Remember, behind you is {{bb:..}}")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
+    file_list = [
+        {"path": "~/farm/barn/Cobweb"},
+        {"path": "~/farm/barn/Daisy"},
+        {"path": "~/farm/barn/Ruth"},
+        {"path": "~/farm/barn/Trotter"},
+        {"path": "~/farm/toolshed/MKDIR"},
+        {"path": "~/farm/toolshed/spanner"},
+        {"path": "~/farm/toolshed/hammer"},
+        {"path": "~/farm/toolshed/saw"},
+        {"path": "~/farm/toolshed/tape-measure"},
+        {
+            "path": "~/farm/farmhouse/bed",
+            "contents": get_story_file("bed_farmhouse")
+        },
+        {"path": "~/farm/toolshed/MKDIR"},
+        {"path": "~/my-house/parents-room/.safe/ECHO"},
+        {"path": "~/my-house/parents-room/.safe/mums-diary"},
+        {"path": "~/my-house/parents-room/.safe/map"}
+    ]
     hints = [
         _("{{rb:Look behind you with}} {{yb:ls ../}}")
     ]
@@ -46,7 +66,7 @@ class Step1(StepTemplateMv):
     ]
 
     def next(self):
-        Step2()
+        return 17, 2
 
 
 class Step2(StepTemplateMv):
@@ -59,28 +79,6 @@ class Step2(StepTemplateMv):
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/parents-room"
 
-    # This is for the people who are continuing to play from the
-    # beginning.
-    # At the start, add the farm directory to the file system
-    # Also add the map and journal in your Mum's room
-    story_dict = {
-        "Cobweb, Trotter, Daisy, Ruth": {
-            "path": "~/farm/barn"
-        },
-        "MKDIR, spanner, hammer, saw, tape-measure": {
-            "path": "~/farm/toolshed"
-        },
-        "farmhouse": {
-            "path": "~/farm",
-            "directory": True
-        },
-        # this should be added earlier on, but for people who have updated,
-        # we should figure out how to give them the correct file system
-        "ECHO, mums-diary, map": {
-            "path": "~/my-house/parents-room/.safe"
-        }
-    }
-
     path_hints = {
         "~/my-house/my-room": {
             "blocked": _("\n{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}")
@@ -91,21 +89,24 @@ class Step2(StepTemplateMv):
         }
     }
 
-    def check_command(self):
-        if self.current_path == self.end_dir:
+    def check_command(self, line):
+        if self._location.get_fake_path() == self.end_dir:
             return True
-        elif "cd" in self.last_user_input and not self.get_command_blocked():
-            hint = self.path_hints[self.current_path]["not_blocked"]
+        elif "cd" in self.get_last_user_input() and not self.get_command_blocked():
+            hint = self.path_hints[self._location.get_fake_path()]["not_blocked"]
         else:
-            hint = self.path_hints[self.current_path]["blocked"]
+            hint = self.path_hints[self._location.get_fake_path()]["blocked"]
 
-        self.send_text(hint)
+        self.send_hint(hint)
 
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    def block_command(self, line):
+        return unblock_cd_commands(line)
 
     def next(self):
         Step3()
+
+    def next(self):
+        return 17, 3
 
 
 class Step3(StepTemplateMv):
@@ -124,11 +125,11 @@ class Step3(StepTemplateMv):
         "ls -a ./"
     ]
 
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    def block_command(self, line):
+        return unblock_cd_commands(line)
 
     def next(self):
-        Step4()
+        return 17, 4
 
 
 class Step4(StepTemplateMv):
@@ -151,33 +152,10 @@ class Step4(StepTemplateMv):
     ]
 
     def next(self):
-        Step5()
+        return 17, 5
 
 
-# This class is here so if the user checks the diary,
-# they get told off
-class CheckDiaryStep(StepTemplateMv):
-    def __init__(self, check_diary=0):
-        self.check_diary = check_diary
-        StepTemplateMv.__init__(self)
-
-    def check_command(self):
-        checked_diary = load_app_state_variable(
-            "linux-story", "checked_mums_diary"
-        )
-        # Check to see if the kid reads his/her Mum's journal
-        if self.last_user_input == 'cat .safe/mums-diary' and \
-                not checked_diary:
-            self.send_hint(
-                _("\n{{rb:You read your Mum\'s diary!}} {{ob:Your nosiness has been recorded.}}")
-            )
-            save_app_state_variable("linux-story", "checked_mums_diary", True)
-            return False
-
-        return StepTemplateMv.check_command(self)
-
-
-class Step5(CheckDiaryStep):
+class Step5(StepTemplateMv):
     story = [
         _("So you found your {{bb:Mum's diary}}?"),
         _("You probably shouldn't read it...\n"),
@@ -192,11 +170,20 @@ class Step5(CheckDiaryStep):
 
     commands = "cat .safe/map"
 
+    def check_command(self, line):
+        checked_diary = load_app_state_variable("linux-story", "checked_mums_diary")
+        if line == 'cat .safe/mums-diary' and not checked_diary:
+            self.send_hint(_("\n{{rb:You read your Mum\'s diary!}} {{ob:Your nosiness has been recorded.}}"))
+            save_app_state_variable("linux-story", "checked_mums_diary", True)
+            return False
+
+        return StepTemplateMv.check_command(self, line)
+
     def next(self):
-        Step6(self.check_diary)
+        return 17, 6
 
 
-class Step6(CheckDiaryStep):
+class Step6(StepTemplateMv):
     story = [
         _("So there's a farm around here?"),
         _("Apparently it's not far from our house, just off the windy road...\n"),
@@ -212,7 +199,7 @@ class Step6(CheckDiaryStep):
     ]
 
     def next(self):
-        Step7()
+        return 17, 7
 
 
 class Step7(StepTemplateEcho):
@@ -236,7 +223,6 @@ class Step7(StepTemplateEcho):
     highlighted_commands = ['echo']
     start_dir = "~/my-house/parents-room"
     end_dir = "~/my-house/parents-room"
-    last_step = True
 
     def next(self):
-        NextStep(self.xp)
+        return 18, 1
