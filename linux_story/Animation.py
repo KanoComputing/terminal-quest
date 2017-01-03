@@ -1,7 +1,7 @@
 #
-# bird.py
+# Animation.py
 #
-# Copyright (C) 2014, 2015, 2016 Kano Computing Ltd.
+# Copyright (C) 2014-2017 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A simple running bird animation for terminal quest, heavily based on the rabbit animation.
@@ -10,17 +10,8 @@
 
 import time
 import curses
-
 import random
-
 import os
-import sys
-
-if __name__ == '__main__' and __package__ is None:
-    dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-    sys.path.insert(1, dir_path)
-    print sys.path
-
 from linux_story.helper_functions import get_path_to_file_in_system
 
 
@@ -112,8 +103,8 @@ class Animation:
         ascii_lr = self.load_animation()
         ascii_w = animation_width(ascii_lr)
         ascii_h = animation_height(ascii_lr)
-        debug("ascii_w = {}".format(ascii_w))
-        debug("ascii_h = {}".format(ascii_h))
+        # debug("ascii_w = {}".format(ascii_w))
+        # debug("ascii_h = {}".format(ascii_h))
 
         # reverse this if needs be
         ascii_rl = self.load_animation()
