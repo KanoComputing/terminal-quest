@@ -6,7 +6,7 @@
 
 
 from linux_story.common import tq_file_system
-from kano_profile.apps import get_app_xp_for_challenge, load_app_state_variable
+from kano_profile.apps import get_app_xp_for_challenge, load_app_state_variable, save_app_state_variable
 from kano_profile.badges import save_app_state_variable_with_dialog
 from linux_story.file_creation.FileTree import FileTree
 from linux_story.launch_functions import get_step_class
@@ -64,7 +64,8 @@ class ChallengeController:
     def __get_xp(challenge):
         level = load_app_state_variable("linux-story", "level")
         if level is None:
-            level = 1
+            save_app_state_variable("linux-story", "level", 0)
+            return ""
 
         if challenge > level + 1:
             xp = get_app_xp_for_challenge("linux-story", str(challenge))

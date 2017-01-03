@@ -1,3 +1,9 @@
+# hidden_shelter.py
+#
+# Copyright (C) 2014-2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+
 from linux_story.common import get_story_file
 
 eleanor_hidden_shelter = {
@@ -101,6 +107,11 @@ apple_hidden_shelter = {
         {
             "challenge": 11,
             "step": 6
+        },
+        {
+            "challenge": 23,
+            "step": 1,
+            "exists": False
         }
     ]
 }
@@ -118,9 +129,32 @@ apple_basket = {
         {
             "challenge": 11,
             "step": 6
+        },
+        {
+            "challenge": 23,
+            "step": 1,
+            "exists": False
         }
     ]
 }
+
+
+kitchen_food_challenges = [
+    {
+        "challenge": 1,
+        "step": 1,
+        "exists": False
+    },
+    {
+        "challenge": 14,
+        "step": 6
+    },
+    {
+        "challenge": 23,
+        "step": 1,
+        "exists": False
+    }
+]
 
 
 basket_hidden_shelter = {
@@ -142,7 +176,22 @@ basket_hidden_shelter = {
         }
     ],
     "children": [
-        apple_basket
+        apple_basket,
+        {
+            "name": "banana",
+            "contents": get_story_file("banana"),
+            "challenges": kitchen_food_challenges
+        },
+        {
+            "name": "cake",
+            "contents": get_story_file("cake"),
+            "challenges": kitchen_food_challenges
+        },
+        {
+            "name": "croissant",
+            "contents": get_story_file("croissant"),
+            "challenges": kitchen_food_challenges
+        }
     ]
 }
 
@@ -174,5 +223,16 @@ hidden_shelter = {
         edith_hidden_shelter,
         eleanor_hidden_shelter,
         edward_hidden_shelter
+    ],
+    "challenges": [
+        {
+            "challenge": 0,
+            "step": 1,
+            "exists": False
+        },
+        {
+            "challenge": 10,
+            "step": 1
+        }
     ]
 }

@@ -5,7 +5,7 @@
 #
 # A chapter of the story
 from linux_story.StepTemplate import StepTemplate
-from linux_story.story.terminals.terminal_chmod import TerminalChmod
+from linux_story.story.new_terminals.terminal_chmod import TerminalChmod
 from linux_story.step_helper_functions import unblock_cd_commands
 
 
@@ -100,7 +100,6 @@ class Step3(StepTemplateChmod):
     hints = [
         _("{{rb:Use}} {{yb:cd ~/town/east/library}} {{rb:to go to the library}}")
     ]
-    last_step = True
 
     def block_command(self, line):
         return unblock_cd_commands(line)

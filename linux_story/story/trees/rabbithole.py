@@ -1,3 +1,9 @@
+# rabbithole.py
+#
+# Copyright (C) 2014-2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+
 from linux_story.common import get_story_file
 from chest import chest
 
@@ -6,7 +12,7 @@ cage = {
     "name": "cage",
     "challenges": [
         {
-            "challenge": 1,
+            "challenge": 0,
             "step": 1,
             "exists": False
         },
@@ -68,7 +74,7 @@ rabbithole = {
             "contents": get_story_file("Rabbit"),
             "challenges": [
                 {
-                    "challenge": 1,
+                    "challenge": 0,
                     "step": 1,
                     "exists": False
                 },
@@ -83,13 +89,13 @@ rabbithole = {
             "contents": get_story_file("bell"),
             "challenges": [
                 {
-                    "challenge": 1,
+                    "challenge": 0,
                     "step": 1,
                     "exists": False
                 },
                 {
-                    "challenge": 44,
-                    "step": 5
+                    "challenge": 43,
+                    "step": 1
                 }
             ],
         }
@@ -100,11 +106,11 @@ rabbithole = {
             "step": 1,
             "permissions": 0755
         },
-        {
-            "challenge": 41,
-            "step": 1,
-            "permissions": 0000
-        },
+        # {
+        #     "challenge": 43,
+        #     "step": 1,
+        #     "permissions": 0000
+        # },
         {
             "challenge": 44,
             "step": 5,

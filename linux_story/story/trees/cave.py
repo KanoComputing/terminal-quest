@@ -1,3 +1,10 @@
+# cave.py
+#
+# Copyright (C) 2014-2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+
+
 from linux_story.common import get_story_file
 
 dark_room = {
@@ -116,7 +123,7 @@ chest = {
     ],
     "challenges": [
         {
-            "challenge": 1,
+            "challenge": 0,
             "step": 1,
             "exists": False
         },

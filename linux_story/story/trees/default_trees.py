@@ -1,3 +1,9 @@
+# default_trees.py
+#
+# Copyright (C) 2014-2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+
 from farm import farm
 from linux_story.common import get_story_file
 from my_house import my_house
@@ -13,7 +19,7 @@ basket = {
     "name": "basket",
     "challenges": [
         {
-            "challenge": 1,
+            "challenge": 0,
             "step": 1,
             "exists": False
         },

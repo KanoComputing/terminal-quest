@@ -118,18 +118,4 @@ class Step4(StepTemplateNano):
             return StepTemplateNano.check_command(self, line)
 
     def next(self):
-        return 31, 5
-
-
-class Step5(StepTemplateNano):
-    story = [
-        _("Enough wandering. Let's go and try and find the " +\
-        "{{bb:masked swordmaster}} near the woods, and see " +\
-        "what information he can tell us."),
-        _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
-    ]
-    start_dir = "~/town/east/shed-shop/basement"
-    end_dir = "~/town/east/shed-shop/basement"
-
-    def next(self):
         return 32, 1

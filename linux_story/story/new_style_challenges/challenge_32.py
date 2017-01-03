@@ -16,7 +16,7 @@ class StepTemplateNano(StepTemplate):
 
 class Step1(StepTemplateNano):
     story = [
-        _("Time to find the swordmaster."),
+        _("Enough wandering. Time to find the swordmaster."),
         _("Clara said that he was in the woods just off the {{lb:Windy Road}} {{yb:~}}."),
         _("Use {{yb:cd}} to head there now.")
     ]
@@ -37,6 +37,10 @@ class Step1(StepTemplateNano):
             "permissions": 0644,
             "type": "file",
             "contents": get_story_file("signpost")
+        },
+        {
+            "path": "~/woods/clearing/house/swordmaster",
+            "contents": get_story_file("swordmaster")
         }
     ]
 

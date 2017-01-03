@@ -36,12 +36,12 @@ if __name__ == '__main__' and __package__ is None:
     else:
         LOCALE_PATH = '/usr/share/locale'
 
-import kano_i18n.init
-from kano_profile.tracker import Tracker
 from linux_story.MessageServer import MessageServer
-kano_i18n.init.install(name, path)('terminal-quest', LOCALE_PATH)
 
-# Track the user's progress
+import kano_i18n.init
+kano_i18n.init.install('terminal-quest', LOCALE_PATH)
+
+from kano_profile.tracker import Tracker
 kanotracker = Tracker()
 
 

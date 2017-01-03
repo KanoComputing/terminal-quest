@@ -6,6 +6,7 @@
 # A chapter of the story
 from linux_story.StepTemplate import StepTemplate
 from linux_story.common import get_story_file
+from linux_story.file_creation.FileTree import modify_permissions
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.new_terminals.terminal_rm import TerminalRm
 
@@ -30,6 +31,15 @@ class Step1(StepTemplateRm):
         _("{{rb:Use}} {{yb:cd ~/woods/thicket}}")
     ]
     dark_theme = True
+
+    file_list = [
+        {
+            "path": "~/town/east/library/rabbithole/swordmaster",
+            "contents": get_story_file("swordmaster"),
+            "permissions": 0644,
+            "type": "file"
+        }
+    ]
 
     def block_command(self, line):
         return unblock_cd_commands(line)
@@ -73,13 +83,6 @@ class Step3(StepTemplateRm):
     commands = [
         "cd rabbithole",
         "cd rabbithole/"
-    ]
-    file_list = [
-        {
-            "type": "directory",
-            "path": "~/woods/thicket/rabbithole",
-            "permissions": 0000
-        }
     ]
 
     hints = [
@@ -215,14 +218,17 @@ class Step5(StepTemplateRm):
             "permissions": 0644
         },
         {
-            "path": "~/woods/thicket/rabbithole/cage/torn-note",
+            "path": "~/woods/thicket/rabbithole/chest/torn-note",
             "contents": get_story_file("torn-note")
         },
         {
-            "path": "~/woods/thicket/rabbithole/cage/torn-scroll",
+            "path": "~/woods/thicket/rabbithole/chest/torn-scroll",
             "contents": get_story_file("torn-sudo")
         }
     ]
+
+    def _run_after_text(self):
+        modify_permissions("~/woods/thicket/rabbithole/cage", 0500)
 
     def block_command(self, line):
         return unblock_cd_commands(line)

@@ -1,3 +1,8 @@
+# woods.py
+#
+# Copyright (C) 2014-2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
 
 from cave import cave
 from clearing import clearing
@@ -9,7 +14,7 @@ thicket = {
     "name": "thicket",
     "challenges": [
         {
-            "challenge": 1,
+            "challenge": 0,
             "step": 1,
             "exists": False
         },
@@ -25,7 +30,7 @@ thicket = {
             "contents": get_story_file("Rabbit"),
             "challenges": [
                 {
-                    "challenge": 1,
+                    "challenge": 0,
                     "step": 1,
                     "exists": False
                 },
@@ -34,7 +39,7 @@ thicket = {
                     "step": 1
                 },
                 {
-                    "challenge": 43,
+                    "challenge": 42,
                     "step": 1,
                     "exists": False
                 }
@@ -45,7 +50,7 @@ thicket = {
             "contents": get_story_file("note_rabbithole"),
             "challenges": [
                 {
-                    "challenge": 1,
+                    "challenge": 0,
                     "step": 1,
                     "exists": False
                 },
@@ -54,7 +59,7 @@ thicket = {
                     "step": 1
                 },
                 {
-                    "challenge": 43,
+                    "challenge": 42,
                     "step": 1,
                     "exists": False
                 }
@@ -68,7 +73,7 @@ woods = {
     "name": "woods",
     "challenges": [
         {
-            "challenge": 1,
+            "challenge": 0,
             "step": 1,
             "exists": False
         },
@@ -86,7 +91,7 @@ woods = {
             "name": "note",
             "challenges": [
                 {
-                    "challenge": 1,
+                    "challenge": 0,
                     "step": 1,
                     "exists": False
                 },

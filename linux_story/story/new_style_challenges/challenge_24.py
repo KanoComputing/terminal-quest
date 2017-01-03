@@ -99,8 +99,7 @@ class Step4(StepTemplateMkdir):
     end_dir = "~/town/east/shed-shop"
 
     hints = [
-        _("{{rb:Use}} {{yb:cat Bernard}} {{rb:to see what Bernard has " +\
-        "to say.}}")
+        _("{{rb:Use}} {{yb:cat Bernard}} {{rb:to see what Bernard has to say.}}")
     ]
 
     commands = [

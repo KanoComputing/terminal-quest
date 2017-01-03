@@ -45,12 +45,11 @@ class Step1(StepTemplateMkdir):
         {"path": "~/town/east/shed-shop/basement/bernards-diary-2"},
         {"path": "~/town/east/library/public-section/NANO"},
         {
-            "path": "~/town/east/library/private_section",
+            "path": "~/town/east/library/private-section",
             "type": "directory",
             "permissions": 0000
         },
-        {"path": "~/town/east/restaurant/.cellar/Clara"},
-        {"path": "~/town/Eleanor"}
+        {"path": "~/town/east/restaurant/.cellar/Clara"}
     ]
 
     def next(self):
@@ -168,6 +167,12 @@ class Step4(StepEleanorMkdir):
         "ls -a"
     ]
     deleted_items = ["~/town/.hidden-shelter/Eleanor"]
+    file_list = [
+        {
+            "path": "~/town/Eleanor",
+            "contents": get_story_file("Eleanor")
+        }
+    ]
 
     story = [
         _("Eleanor: {{Bb:\"Let's go to the}} {{bb:east}} {{Bb:of town.\"}}"),

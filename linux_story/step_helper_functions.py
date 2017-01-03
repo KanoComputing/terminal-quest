@@ -35,9 +35,7 @@ def unblock_commands_with_cd_hint(line, list_of_commands):
         print _("You're close, but you entered an unexpected destination path. Try going somewhere else.")
         return True
 
-    elif line_contains_dangerous_command(line) and \
-            not line.strip() == 'mv --help':
-
+    elif line in ["mv ", "rm "] and not line.strip() == 'mv --help':
         print _('Nice try! But you do not need that command for this challenge')
         return True
 

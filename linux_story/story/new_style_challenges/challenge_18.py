@@ -80,7 +80,8 @@ class Step3(StepTemplateEcho):
 
 class Step4(StepTemplateEcho):
     story = [
-        _("You walk up the path to the farm, {{lb:Look around.}}")
+        _("You walk up the path to the farm"),
+        _("{{lb:Look around.}}")
     ]
 
     commands = "ls"

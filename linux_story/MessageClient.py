@@ -1,6 +1,14 @@
+# MessageClient.py
+#
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# The functions which starts off the game at the specified challenge and step.
+
+
+from kano.logging import logger
 import json
 import socket
-from linux_story.dependencies import Logger
 
 
 class MessageClient:
@@ -55,8 +63,8 @@ class MessageClient:
             sock.close()
 
     def finish_if_server_ready(self, other_condition):
-        Logger.debug("server_busy = {}".format(self.__server_busy))
-        Logger.debug('other_condition = {}'.format(other_condition))
+        logger.debug("server_busy = {}".format(self.__server_busy))
+        logger.debug('other_condition = {}'.format(other_condition))
         will_finish = (not self.__server_busy and other_condition)
-        Logger.debug('will finish = {}'.format(will_finish))
+        logger.debug('will finish = {}'.format(will_finish))
         return will_finish

@@ -230,6 +230,11 @@ def delete_items(items):
         delete_item(real_path)
 
 
+def modify_permissions(fake_path, permission):
+    real_path = os.path.expanduser(fake_path.replace('~', fake_home_dir))
+    os.chmod(real_path, permission)
+
+
 def modify_file_tree(items):
     if not items:
         return

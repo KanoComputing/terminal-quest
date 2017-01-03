@@ -16,10 +16,11 @@ import readline
 
 
 class KanoCmd(Cmd):
+    terminal_commands = []
 
     def __init__(self, step, location, dirs_to_attempt):
         """
-        :param step: IStep type
+        :param step: StepTemplate type
         :param location: PlayerLocation location
         """
         Cmd.__init__(self)
@@ -67,8 +68,9 @@ class KanoCmd(Cmd):
         Otherwise, it is run
         """
 
+        line = line.strip()
         self._step.set_last_user_input(line)
-        if self._step.block_command(line.strip()):
+        if self._step.block_command(line):
             self._set_command_blocked(True)
             return Cmd.precmd(self, "")
         else:
@@ -84,7 +86,7 @@ class KanoCmd(Cmd):
             return self.last_cmd_output
 
     def postcmd(self, stop, line):
-        return self._step.is_finished_step(line, self.last_cmd_output)
+        return self._step.is_finished_step(line.strip(), self.last_cmd_output)
 
     def completedefault(self, *ignored):
         """ignored = [text, line, begidx, endidx]

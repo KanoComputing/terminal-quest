@@ -1,39 +1,49 @@
+# kitchen.py
+#
+# Copyright (C) 2014-2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+
+
 from linux_story.common import get_story_file
+
+
+basket = {
+    "name": "basket",
+    "challenges": [
+        {
+            "challenge": 0,
+            "step": 1,
+            "exists": False
+        },
+        {
+            "challenge": 13,
+            "step": 5
+        },
+        {
+            "challenge": 14,
+            "step": 4,
+            "exists": False
+        }
+    ],
+    "children": [
+        {
+            "name": "empty-bottle",
+            "contents": get_story_file("empty-bottle")
+        }
+    ]
+}
 
 kitchen = {
     "name": "kitchen",
     "children": [
-        {
-            "name": "basket",
-            "challenges": [
-                {
-                    "challenge": 1,
-                    "step": 1,
-                    "exists": False
-                },
-                {
-                    "challenge": 13,
-                    "step": 5
-                },
-                {
-                    "challenge": 14,
-                    "step": 4,
-                    "exists": False
-                }
-            ],
-            "children": [
-                {
-                    "name": "empty-bottle",
-                    "contents": get_story_file("empty-bottle")
-                }
-            ]
-        },
+        basket,
         {
             "name": "banana",
             "contents": get_story_file("banana"),
             "challenges": [
                 {
-                    "challenge": 1,
+                    "challenge": 0,
                     "step": 1
                 },
                 {
@@ -48,7 +58,7 @@ kitchen = {
             "contents": get_story_file("cake"),
             "challenges": [
                 {
-                    "challenge": 1,
+                    "challenge": 0,
                     "step": 1,
                 },
                 {
@@ -63,7 +73,7 @@ kitchen = {
             "contents": get_story_file("croissant"),
             "challenges": [
                 {
-                    "challenge": 1,
+                    "challenge": 0,
                     "step": 1
                 },
                 {
@@ -106,6 +116,11 @@ kitchen = {
             "contents": get_story_file("note_kitchen"),
             "challenges": [
                 {
+                    "challenge": 0,
+                    "step": 1,
+                    "exists": False
+                },
+                {
                     "challenge": 8,
                     "step": 1
                 },
@@ -120,7 +135,7 @@ kitchen = {
             "contents": get_story_file("Mum"),
             "challenges": [
                 {
-                    "challenge": 1,
+                    "challenge": 0,
                     "step": 1
                 },
                 {

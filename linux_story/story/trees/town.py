@@ -1,3 +1,10 @@
+# town.py
+#
+# Copyright (C) 2014-2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+
+
 from linux_story.common import get_story_file
 from hidden_shelter import hidden_shelter
 from east import east
@@ -8,7 +15,7 @@ grumpy_man = {
     "contents": get_story_file("grumpy-man"),
     "challenges": [
         {
-            "challenge": 1,
+            "challenge": 0,
             "step": 1
         },
         {
@@ -24,7 +31,7 @@ young_girl = {
     "contents": get_story_file("young-girl"),
     "challenges": [
         {
-            "challenge": 1,
+            "challenge": 0,
             "step": 1
         },
         {
@@ -40,7 +47,7 @@ little_boy = {
     "contents": get_story_file("little-boy"),
     "challenges": [
         {
-            "challenge": 1,
+            "challenge": 0,
             "step": 1
         },
         {
@@ -56,7 +63,7 @@ mayor = {
     "contents": get_story_file("Mayor"),
     "challenges": [
         {
-            "challenge": 1,
+            "challenge": 0,
             "step": 1
         },
         {
@@ -72,7 +79,7 @@ note_town = {
     "contents": get_story_file("note_town"),
     "challenges": [
         {
-            "challenge": 1,
+            "challenge": 0,
             "step": 1,
             "exists": False
         },
@@ -88,6 +95,48 @@ note_town = {
     ]
 }
 
+dog_town = {
+    "name": "dog",
+    "contents": get_story_file("dog"),
+    "challenges": [
+        {
+            "challenge": 0,
+            "step": 1,
+            "exists": False
+        },
+        {
+            "challenge": 11,
+            "step": 6
+        },
+        {
+            "challenge": 12,
+            "step": 2,
+            "exists": False
+        }
+    ]
+}
+
+eleanor_town = {
+    "name": "Eleanor",
+    "contents": get_story_file("Eleanor"),
+    "challenges": [
+        {
+            "challenge": 0,
+            "step": 1,
+            "exists": False
+        },
+        {
+            "challenge": 11,
+            "step": 6
+        },
+        {
+            "challenge": 12,
+            "step": 1,
+            "exists": False
+        }
+    ]
+}
+
 town = {
     "name": "town",
     "children": [
@@ -97,6 +146,8 @@ town = {
         little_boy,
         note_town,
         mayor,
-        east
+        east,
+        dog_town,
+        eleanor_town
     ]
 }

@@ -7,6 +7,7 @@
 
 from linux_story.StepTemplate import StepTemplate
 from linux_story.common import get_story_file
+from linux_story.file_creation.FileTree import modify_permissions
 from linux_story.helper_functions import wrap_in_box
 from linux_story.story.new_terminals.terminal_chmod import TerminalChmod
 from linux_story.story.new_terminals.terminal_rm import TerminalRm
@@ -20,7 +21,7 @@ class StepTemplateRm(StepTemplate):
     TerminalClass = TerminalRm
 
 
-REPLY_PRINT_TEXT = _("{{yb:A rabbit came and stole the command in front of us.}}")
+REPLY_PRINT_TEXT = _("{{yb:A rabbit came and stole the command in front of me.}}")
 
 
 class Step1(StepTemplateChmod):
@@ -52,6 +53,9 @@ class Step1(StepTemplateChmod):
         _("Swordmaster: {{Bb:Speak with}} {{lb:echo}} {{Bb:and tell me!}}")
     ]
     dark_theme = True
+
+    def _run_at_start(self):
+        modify_permissions("~/woods/thicket/rabbithole", 0000)
 
     def next(self):
         if self._last_user_input == "echo 2":
@@ -100,7 +104,7 @@ class Step2(StepTemplateChmod):
         _("{{Bb:It always seemed innocent before. I wonder what has changed?}}"),
         _("{{Bb:Perhaps he is}} {{lb:possessed}}{{Bb:.}}"),
         "",
-        _("{{Bb:We must remove the source of the problem. I will teach you how to.}}"),
+        _("{{Bb:We must remove the source of the problem. I will teach you how.}}"),
         "",
         _("{{pb:Ding. Dong.}}"),
         "",

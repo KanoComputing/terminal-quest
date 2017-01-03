@@ -1,6 +1,6 @@
 # launch_functions.py
 #
-# Copyright (C) 2014-2016 Kano Computing Ltd.
+# Copyright (C) 2014-2017 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # The functions which starts off the game at the specified challenge and step.
@@ -18,31 +18,30 @@ def launch_project(challenge=1, step=1):
     Start the game off form the specified challenge and step
 
     Args:
-        challenge_number (int)
-        step_number (int)
+        challenge (int)
+        step (int)
 
     Returns:
         None
     """
-    print "launch_project challenge {}, step {}".format(challenge, step)
 
     # For now, just show the default filesystem for that step.
-    if challenge == 0:
-        challenge = 1
-        step = 1
+    # if challenge == 0:
+    #     challenge = 1
+    #     step = 1
 
-    if challenge <= 31:
-        default_global_tree(challenge, step)
-        step = get_step_class(challenge, step)
-        step()
-    else:
-        from linux_story.ChallengeController import ChallengeController
-        from linux_story.MessageClient import MessageClient
+    # if challenge <= 31:
+    #     default_global_tree(challenge, step)
+    #     step = get_step_class(challenge, step)
+    #     step()
+    # else:
+    from linux_story.ChallengeController import ChallengeController
+    from linux_story.MessageClient import MessageClient
 
-        FileTree(tree, tq_file_system).parse_complete(challenge, step)
-        client = MessageClient()
-        controller = ChallengeController(client)
-        controller.run(challenge, step)
+    FileTree(tree, tq_file_system).parse_complete(challenge, step)
+    client = MessageClient()
+    controller = ChallengeController(client)
+    controller.run(challenge, step)
 
 
 def get_step_class(challenge_number, step_number):
@@ -58,12 +57,12 @@ def get_step_class(challenge_number, step_number):
     """
 
     if challenge_number == 0:
-        module_name = "story.challenges.introduction"
+        module_name = "story.new_style_challenges.introduction"
         step_class_name = "Step1"
-    elif challenge_number <= 31:
-        # If no fork, use this module name
-        module_name = "story.challenges.challenge_{}".format(challenge_number)
-        step_class_name = "Step{}".format(step_number)
+    # elif challenge_number <= 31:
+    #     # If no fork, use this module name
+    #     module_name = "story.challenges.challenge_{}".format(challenge_number)
+    #     step_class_name = "Step{}".format(step_number)
     else:
         module_name = "story.new_style_challenges.challenge_{}".format(challenge_number)
         step_class_name = "Step{}".format(step_number)

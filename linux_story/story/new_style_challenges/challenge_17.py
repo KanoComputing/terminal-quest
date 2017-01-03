@@ -31,7 +31,8 @@ class StepTemplateEcho(StepTemplate):
 
 class Step1(StepTemplateMv):
     story = [
-        _("You are in your room, standing in front of the {{bb:.chest}} containing all the commands you've learned so far.\n"),
+        _("You are in your room, standing in front of the {{bb:.chest}} containing all the commands you've "
+          "learned so far.\n"),
         _("Maybe something else is hidden in the house?\n"),
         _("{{lb:Look}} in the hallway {{lb:behind you}}. Remember, behind you is {{bb:..}}")
     ]
@@ -78,8 +79,31 @@ class Step2(StepTemplateMv):
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/parents-room"
 
+    path_hints = {
+        "~/my-house/my-room": {
+            "blocked": _("\n{{rb:Use}} {{yb:cd ..}} {{rb:to go back.}}")
+        },
+        "~/my-house": {
+            "not_blocked": _("\n{{gb:Now go into your}} {{lb:parents-room}}{{gb:.}}"),
+            "blocked": _("\n{{rb:Use}} {{yb:cd parents-room}} {{rb:to go in.}}")
+        }
+    }
+
+    def check_command(self, line):
+        if self._location.get_fake_path() == self.end_dir:
+            return True
+        elif "cd" in self.get_last_user_input() and not self.get_command_blocked():
+            hint = self.path_hints[self._location.get_fake_path()]["not_blocked"]
+        else:
+            hint = self.path_hints[self._location.get_fake_path()]["blocked"]
+
+        self.send_hint(hint)
+
     def block_command(self, line):
         return unblock_cd_commands(line)
+
+    def next(self):
+        Step3()
 
     def next(self):
         return 17, 3

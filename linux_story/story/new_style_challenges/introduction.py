@@ -1,22 +1,18 @@
 # introduction.py
 #
-# Copyright (C) 2014-2016 Kano Computing Ltd.
+# Copyright (C) 2014-2017 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
 
 
 import os
-
-from linux_story import KanoCmd
+from linux_story.KanoCmd import KanoCmd
 from linux_story.StepTemplate import StepTemplate
 
 
 class StepTemplateLs(StepTemplate):
     TerminalClass = KanoCmd
-
-
-# ----------------------------------------------------------------------------------------
 
 
 class Step1(StepTemplateLs):

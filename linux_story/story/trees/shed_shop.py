@@ -1,8 +1,44 @@
+# shed-shop.py
+#
+# Copyright (C) 2014-2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+
+
 from linux_story.common import get_story_file
 
 shed_shop = {
     "name": "shed-shop",
     "children": [
+        {
+            "name": "Eleanor",
+            "contents": get_story_file("Eleanor"),
+            "challenges": [
+                {
+                    "challenge": 0,
+                    "step": 1,
+                    "exists": False
+                },
+                {
+                    "challenge": 24,
+                    "step": 4
+                },
+                {
+                    "challenge": 26,
+                    "step": 1,
+                    "exists": False
+                },
+                {
+                    "challenge": 27,
+                    "step": 1
+                },
+                {
+                    "challenge": 28,
+                    "step": 1,
+                    "exists": False
+                }
+            ]
+        },
         {
             "name": "Bernard",
             "contents": get_story_file("Bernard"),
@@ -22,6 +58,11 @@ shed_shop = {
             "name": "Bernards-hat",
             "contents": get_story_file("bernards-hat"),
             "challenges": [
+                {
+                    "challenge": 0,
+                    "step": 1,
+                    "exists": False
+                },
                 {
                     "challenge": 30,
                     "step": 1
@@ -44,7 +85,7 @@ shed_shop = {
             "contents": get_story_file("best-horn-in-the-world-incorrect.sh"),
             "challenges": [
                 {
-                    "challenge": 1,
+                    "challenge": 0,
                     "step": 1,
                     "exists": False
                 },
@@ -65,7 +106,7 @@ shed_shop = {
             "contents": get_story_file("best-horn-in-the-world-correct.sh"),
             "challenges": [
                 {
-                    "challenge": 1,
+                    "challenge": 0,
                     "step": 1,
                     "exists": False
                 },
@@ -108,26 +149,6 @@ shed_shop = {
                         {
                             "challenge": 23,
                             "step": 1
-                        }
-                    ]
-                },
-                {
-                    "name": "shed",
-                    "type": "directory",
-                    "challenges": [
-                        {
-                            "challenge": 25,
-                            "step": 5
-                        }
-                    ]
-                },
-                {
-                    "name": "NANO",
-                    "contents": get_story_file("NANO"),
-                    "challenges": [
-                        {
-                            "challenge": 25,
-                            "step": 5
                         }
                     ]
                 }

@@ -7,6 +7,8 @@
 
 
 import os
+
+from linux_story.common import get_story_file
 from linux_story.story.new_style_challenges.CompanionMisc import StepTemplateEleanorBernard
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.new_terminals.terminal_nano import TerminalNano
@@ -39,7 +41,8 @@ class Step1(StepNano):
     ]
     file_list = [
         {
-            "path": "~/town.east/shed-shop/bernards-hat"
+            "path": "~/town.east/shed-shop/Bernards-hat",
+            "contents": get_story_file("bernards-hat")
         }
     ]
     companion_speech = _("Eleanor: {{Bb:......}}")
