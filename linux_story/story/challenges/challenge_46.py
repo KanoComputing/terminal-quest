@@ -76,11 +76,18 @@ class Step2(StepTemplateRm):
     hints = [
         _("{{rb:Use}} {{yb:cat chest/torn-scroll}} {{rb:to examine the contents.}}")
     ]
+    deleted_items = [
+        "~/woods/thicket/rabbithole/Rabbit"
+    ]
 
     file_list = [
         {
             "path": "~/woods/thicket/rabbithole/swordmaster",
             "contents": get_story_file("swordmaster-without-sword")
+        },
+        {
+            "path": "~/woods/thicket/rabbithole/Rabbit",
+            "contents": get_story_file("Rabbit-cute")
         }
     ]
 
@@ -98,8 +105,8 @@ class Step3(StepTemplateRm):
         _("The Rabbit sniffs around the chest."),
         _("It doesn't seem to recognise it."),
         "",
-        _("Swordmaster: {{Bb:It looks as though the command was torn in half.}}"),
-        _("{{Bb:Maybe the rabbit hid it when it was possessed. It doesn't look like it remembers.}}"),
+        _("Swordmaster: {{Bb:Half the command is missing! It looks as if it was torn in half.}}"),
+        _("{{Bb:Maybe the rabbit hid part of it when it was possessed. It doesn't look like it remembers.}}"),
         _("{{Bb:The command could be anywhere. Who knows where it is hidden....}}")
     ]
     start_dir = "~/woods/thicket/rabbithole"

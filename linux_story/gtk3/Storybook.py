@@ -190,9 +190,9 @@ class Storybook(Gtk.TextView):
         self.print_text(header)
 
     def print_text(self, string):
-        '''
+        """
         Mimic for python print function
-        '''
+        """
 
         # To mimic print function
         string = string + '\n'
