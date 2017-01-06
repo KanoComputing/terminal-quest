@@ -149,6 +149,5 @@ class Step6(StepTemplateChmod):
 
     def next(self):
         Animation("bird-animation").play_across_screen(speed=5)
-        time.sleep(1)
         return 36, 1
 

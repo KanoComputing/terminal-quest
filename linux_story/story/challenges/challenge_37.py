@@ -4,8 +4,10 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
+from linux_story.PlayerLocation import generate_real_path
 from linux_story.StepTemplate import StepTemplate
 from linux_story.common import get_story_file
+from linux_story.helper_functions import has_write_permissions, has_read_permissions, has_execute_permissions
 from linux_story.story.terminals.terminal_chmod import TerminalChmod
 
 
@@ -60,6 +62,7 @@ class Step1(StepTemplateChmod):
 class Step2(StepTemplateChmod):
     story = [
         _("There is a {{bb:chest}} in front of you."),
+        _("It is wrapped tightly by a big chain."),
         _("{{lb:Look inside the chest.}}")
     ]
     start_dir = "~/woods/cave"
@@ -78,31 +81,22 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        _("You can't see inside."),
-        _("It could be {{lb:it is missing all its permissions.}}"),
+        _("The chain won't budge. You cannot see inside, nor access its contents."),
         "",
-        _("Try and open it."),
-        _("{{lb:You need to combine the flags you learnt in the previous challenges.}}")
+        _("Break the chain."),
+        _("{{lb:You'll need to combine all the flags you learnt in the previous challenges.}}")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
-    commands = [
-        "chmod +rwx chest",
-        "chmod +wxr chest",
-        "chmod +xrw chest",
-        "chmod +rxw chest",
-        "chmod +xwr chest",
-        "chmod +wrx chest",
-        "chmod +rwx chest/",
-        "chmod +wxr chest/",
-        "chmod +xrw chest/",
-        "chmod +rxw chest/",
-        "chmod +xwr chest/",
-        "chmod +wrx chest/"
-    ]
     hints = [
         "{{rb:Use}} {{yb:chmod +rwx chest}} {{rb:to unlock the chest.}}"
     ]
+
+    def check_command(self, line):
+        chest = generate_real_path("~/woods/cave/chest")
+        if has_write_permissions(chest) and has_read_permissions(chest) and has_execute_permissions(chest):
+            return True
+        self.send_stored_hint()
 
     def next(self):
         return 37, 4
