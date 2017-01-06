@@ -12,6 +12,9 @@ import time
 import curses
 import random
 import os
+import sys
+import struct
+
 from linux_story.helper_functions import get_path_to_file_in_system
 
 
@@ -70,7 +73,10 @@ class Animation:
         ascii_frames = self.load_animation()
         ascii_w = animation_width(ascii_frames)
         ascii_h = animation_height(ascii_frames)
-        w, h = get_width_height_of_screen()
+        w, h = get_width_height_of_terminal()
+
+        if h < ascii_h or w < ascii_w:
+            debug("The height of the terminal is too small for the animation")
 
         starty = startx = 0
         cycles = 0
@@ -103,16 +109,14 @@ class Animation:
         ascii_lr = self.load_animation()
         ascii_w = animation_width(ascii_lr)
         ascii_h = animation_height(ascii_lr)
-        # debug("ascii_w = {}".format(ascii_w))
-        # debug("ascii_h = {}".format(ascii_h))
 
         # reverse this if needs be
         ascii_rl = self.load_animation()
 
-        w, h = get_width_height_of_screen()
+        w, h = get_width_height_of_terminal()
 
-        if h < 18:
-            return
+        if h < ascii_h or w < ascii_w:
+            debug("The height of the terminal is too small for the animation")
 
         # screen centre
         cx, cy = w / 2, h / 2
@@ -222,7 +226,7 @@ class Animation:
             The frame is drawn from the [x,y] coordinates.
         """
 
-        w, h = get_width_height_of_screen()
+        w, h = get_width_height_of_terminal()
 
         left_clip = 0
         if x < 0:
@@ -238,11 +242,40 @@ class Animation:
         n = 0
         for line in frame:
             clipped_line = line[left_clip:(animation_width - right_clip)]
-            # if len(clipped_line) > 0:
-            #     self.draw_fn(y + n, x, clipped_line)
-            #     n += 1
             self.draw_fn(y + n, x, clipped_line)
             n += 1
+
+
+def get_width_height_of_terminal():
+    """
+    Originally retrieved from:
+    http://stackoverflow.com/questions/566746/how-to-get-console-window-width-in-python
+
+    Curses.getmaxyx() did not pick up the correct width/height after resizing the terminal,
+    and os.popen(stty size) did not work for all cases.
+    """
+    def ioctl_GWINSZ(fd):
+        try:
+            import fcntl
+            import termios
+            cr = struct.unpack('hh', fcntl.ioctl(fd, termios.TIOCGWINSZ, '1234'))
+            return cr
+        except:
+            pass
+    cr = ioctl_GWINSZ(0) or ioctl_GWINSZ(1) or ioctl_GWINSZ(2)
+    if not cr:
+        try:
+            fd = os.open(os.ctermid(), os.O_RDONLY)
+            cr = ioctl_GWINSZ(fd)
+            os.close(fd)
+        except:
+            pass
+    if not cr:
+        try:
+            cr = (os.environ['LINES'], os.environ['COLUMNS'])
+        except:
+            return None
+    return int(cr[1]), int(cr[0])
 
 
 def randint(a, b):
@@ -276,17 +309,12 @@ def animation_height(animation):
 
 
 def debug(msg):
-    log = 'curses-log'
+    log = os.path.join(os.path.expanduser("~"), 'curses-log')
     if not os.path.exists(log):
         open(log, "w+").close()
 
     with open(log, 'a') as f:
         f.write(str(msg) + '\n')
-
-
-def get_width_height_of_screen():
-    h, w = os.popen('stty size', 'r').read().split()
-    return int(w), int(h)
 
 
 if __name__ == "__main__":

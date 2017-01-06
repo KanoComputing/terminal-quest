@@ -6,6 +6,7 @@
 # A chapter of the story
 from linux_story.Animation import Animation
 from linux_story.StepTemplate import StepTemplate
+from linux_story.common import get_story_file
 from linux_story.story.terminals.terminal_rm import TerminalRm
 
 
@@ -74,6 +75,13 @@ class Step2(StepTemplateRm):
     ]
     hints = [
         _("{{rb:Use}} {{yb:cat chest/torn-scroll}} {{rb:to examine the contents.}}")
+    ]
+
+    file_list = [
+        {
+            "path": "~/woods/thicket/rabbithole/swordmaster",
+            "contents": get_story_file("swordmaster-without-sword")
+        }
     ]
 
     def check_command(self, line):

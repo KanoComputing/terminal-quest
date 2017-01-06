@@ -10,10 +10,6 @@ from my_house import my_house
 from woods import woods
 from town import town
 
-# duplicates from FileTree
-TYPE_DIR = "directory"
-TYPE_FILE = "file"
-
 
 basket = {
     "name": "basket",

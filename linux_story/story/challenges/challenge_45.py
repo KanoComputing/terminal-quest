@@ -40,11 +40,10 @@ class StepPeopleInCage(StepTemplateRm):
             "Mum": _("Mum: {{Bb:" + get_username() + ", I'm so glad to see you're safe!}}"),
 
             "Dad": _("Dad: {{Bb:I was kidnapped by a rabbit! Although, I don't know how lucid that rabbit is "
-                     "right now. It looks almost possessed}}"),
+                     "right now.}}"),
 
             "grumpy-man": _("grumpy-man: {{Bb:My legs are fixed. I hope my wife knows I'm safe.}}"),
-            "Mayor": _("Mayor: {{Bb:When I get out of here, I'm going to bring in a law to hunt all rabbits."
-                     "I knew they were out to get us people!}}"),
+            "Mayor": _("Mayor: {{Bb:When I get out of here, I'm going to make a law to hunt all rabbits."),
             "little-boy": _("little-boy: {{Bb:I miss my mummy!}}"),
             "young-girl": _("young-girl: {{Bb:I miss my mummy!}}"),
             "Edith": _("Edith: {{Bb:You, " + get_username() + "! Get us out of here!}}"),

@@ -33,7 +33,7 @@ chapters = {
     6: {
         'start_challenge': 40,
         'end_challenge': 46,
-        'title': _('Meet the swordmaster')
+        'title': _('Fight the kidnapper')
     }
 }
 

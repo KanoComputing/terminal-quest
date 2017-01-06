@@ -46,7 +46,7 @@ library = {
                     "children": [
                         {
                             "name": "scroll",
-                            "contents": get_story_file("SUDO"),
+                            "contents": get_story_file("scroll"),
                         },
                         {
                             "name": "torn-note",

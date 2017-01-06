@@ -94,7 +94,7 @@ class Step3(StepTemplateChmod):
     file_list = [
         {
             "path": "~/town/east/library/private-section/chest/scroll",
-            "contents": get_story_file("SUDO"),
+            "contents": get_story_file("scroll"),
             "permissions": 0644,
             "type": "file"
         },

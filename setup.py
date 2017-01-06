@@ -11,7 +11,6 @@ import os
 
 
 def recursively_get_dirs(package_name, start_dir):
-    '''Gets all directories from a directory'''
 
     start_path = os.path.join(package_name, start_dir)
     paths = []
@@ -53,6 +52,7 @@ def get_locales():
 story = recursively_get_dirs("linux_story", "story")
 ascii_assets = recursively_get_dirs("linux_story", "ascii_assets")
 gtk3 = recursively_get_dirs("linux_story", "gtk3")
+file_creation = recursively_get_dirs("linux_story", "file_creation")
 media_images = recursively_get_dirs("", "media/images")
 media_sounds = recursively_get_dirs("", "media/sounds")
 icons = filter(is_image, recursively_get_dirs("", "icon"))
@@ -66,9 +66,9 @@ setup(name='Linux Story',
       url='https://github.com/KanoComputing/linux-tutorial',
       packages=['linux_story'],
       package_dir={'linux_story': 'linux_story'},
-      scripts=['bin/linux-story'],
+      scripts=['bin/linux-story', 'bin/linux-story-gui'],
       package_data={
-          'linux_story': story + ascii_assets + gtk3
+          'linux_story': story + ascii_assets + gtk3 + file_creation
       },
       data_files=[
           ('/usr/share/linux-story/media/images', media_images),

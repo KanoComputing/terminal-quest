@@ -259,7 +259,10 @@ class Step7(StepTemplateMkdir):
     )
 
     def block_command(self, line):
-        return unblock_cd_commands(line)
+        if line.startswith("cd"):
+            return unblock_cd_commands(line)
+        else:
+            return StepTemplateMkdir.block_command(self, line)
 
     def next(self):
         return 26, 1

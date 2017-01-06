@@ -184,7 +184,7 @@ class Step8(StepTemplateChmod):
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"
-    command = [
+    commands = [
         "ls",
         "ls -a"
     ]

@@ -26,7 +26,7 @@ class Step1(StepTemplateEcho):
         _("\"Wait, you're}} {{bb:Mum}}{{Bb:'s kid, aren't you!\""),
         _("\"...Yes? Do you have a tongue?\""),
         _("\"Is your name not}} {{yb:%s}}{{Bb:?\"}}") % username,
-        _("\n{{gb:Reply with}} {{yb:echo yes}} {{gb:or}} {{yb:echo no}}.")
+        _("\n{{gb:Reply with}} {{yb:echo yes}} {{gb:or}} {{yb:echo no}}{{gb:.}}")
     ]
 
     # Story has been moved to

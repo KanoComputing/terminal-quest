@@ -32,7 +32,7 @@ class Step1(StepTemplateChmod):
         "",
         _("Swordmaster: {{Bb:What have you done?}}"),
         "",
-        "{{yb:1:}}" + REPLY_PRINT_TEXT,
+        "{{yb:1:}} " + REPLY_PRINT_TEXT,
         _("{{yb:2: Nothing.}}")
     ]
     start_dir = "~/town/east/library/private-section"
@@ -118,7 +118,7 @@ class Step2(StepTemplateChmod):
         "ls ./"
     ]
     hints = [
-        _("Look around with {{yb:ls}}")
+        _("{{rb:Look around with}} {{yb:ls}}")
     ]
     file_list = [
         {

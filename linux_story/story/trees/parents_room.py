@@ -43,11 +43,6 @@ parents_room = {
             "name": "bed",
             "contents": get_story_file("bed_parents-room")
         },
-        safe,
-        {
-            "name": "mums-diary",
-            "contents": get_story_file("mums-diary"),
-
-        }
+        safe
     ]
 }

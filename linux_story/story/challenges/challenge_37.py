@@ -145,7 +145,7 @@ class Step5(StepTemplateChmod):
     def check_command(self, last_user_input):
         if last_user_input == "cat chest/riddle":
             self.send_hint(
-                _("{{lb:That looks like the riddle the swordmaster asked you.}}")
+                _("{{gb:That looks like the riddle the swordmaster asked you.}}")
             )
             return
         return StepTemplateChmod.check_command(self, last_user_input)

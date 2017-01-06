@@ -41,7 +41,7 @@ class Step1(StepNano):
     ]
     file_list = [
         {
-            "path": "~/town.east/shed-shop/Bernards-hat",
+            "path": "~/town/east/shed-shop/Bernards-hat",
             "contents": get_story_file("bernards-hat")
         }
     ]

@@ -28,7 +28,7 @@ class Step1(StepTemplateChmod):
     start_dir = "~/woods/cave"
     end_dir = "~/woods/clearing"
     hints = [
-        _("Head back to the {{lb:~/woods/clearing}} where the swordmaster lives."),
+        _("Head back to the {{bb:~/woods/clearing}} where the swordmaster lives."),
         _("{{rb:Use}} {{yb:cd ~/woods/clearing}} {{rb:to go back to the swordmaster's clearing.}}")
     ]
 
@@ -101,7 +101,7 @@ class Step4(StepTemplateChmod):
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing/house"
     hints = [
-        _("{{rb:Use}} {{yb:cd house}} {{rb:to go inside}}")
+        _("{{rb:Use}} {{yb:cd house}} {{rb:to go inside.}}")
     ]
 
     def block_command(self, line):
@@ -118,7 +118,7 @@ class Step5(StepTemplateChmod):
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
     hints = [
-        _("{{rb:Use}} {{yb:ls}} {{rb:to go inside}}")
+        _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
     commands = [
         "ls"

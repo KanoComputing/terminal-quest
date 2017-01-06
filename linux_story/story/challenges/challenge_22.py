@@ -129,7 +129,7 @@ class Step4(StepTemplateMkdir):
     def check_command(self, line):
         # If the command passes, then print a nice hint.
         if line.startswith("cd") and not self.get_command_blocked() and not self.get_fake_path() == self.end_dir:
-            hint = _("\n{{gb:You travel back to tilde}}")
+            hint = _("\n{{gb:Keep going.}}")
             self.send_hint(hint)
         else:
             return StepTemplateMkdir.check_command(self, line)

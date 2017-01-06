@@ -63,7 +63,7 @@ class Step2(StepTemplateRm):
         "ls -a ./"
     ]
 
-    hint = [
+    hints = [
         _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
     dark_theme = True
@@ -74,7 +74,8 @@ class Step2(StepTemplateRm):
 
 class Step3(StepTemplateRm):
     story = [
-        _("You are outside the rabbithole. Try and {{lb:go inside.}}")
+        _("You are outside the rabbithole. It has a large boulder in front of it."),
+        _("Try and {{lb:go inside.}}")
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"
@@ -99,7 +100,8 @@ class Step3(StepTemplateRm):
 
 class Step4(StepTemplateRm):
     story = [
-        _("It looks like it is locked to us. The rabbit must have learnt how to lock the directory."),
+        _("You cannot get past the boulder."),
+        _("It looks like the {{rb:rabbithole}} is completely inaccessible to us."),
         "",
         _("{{lb:Unlock it.}}"),
         _("Use the same command you used to unlock the {{bb:private-section}}.")
@@ -133,6 +135,7 @@ class Step4(StepTemplateRm):
 
 class Step5(StepTemplateRm):
     story = [
+        _("You pushed the boulder aside."),
         _("{{lb:Go inside the rabbithole.}}")
     ]
     start_dir = "~/woods/thicket"
@@ -141,6 +144,9 @@ class Step5(StepTemplateRm):
     commands = [
         "cd rabbithole",
         "cd rabbithole/"
+    ]
+    hints = [
+        "{{rb:Use}} {{yb:cd rabbithole}} {{rb:to go inside the rabbithole.}}"
     ]
     dark_theme = True
 
@@ -190,7 +196,7 @@ class Step5(StepTemplateRm):
         {
             "path": "~/woods/thicket/rabbithole/cage/grumpy-man",
             "type": "file",
-            "contents": get_story_file("grumpy-man"),
+            "contents": get_story_file("grumpy-man-fixed"),
             "permissions": 0644
         },
         {

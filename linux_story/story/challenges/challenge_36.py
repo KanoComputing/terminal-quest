@@ -6,6 +6,7 @@
 # A chapter of the story
 from linux_story.Animation import Animation
 from linux_story.StepTemplate import StepTemplate
+from linux_story.common import get_story_file
 from linux_story.step_helper_functions import unblock_commands
 from linux_story.story.terminals.terminal_chmod import TerminalChmod
 
@@ -16,9 +17,35 @@ class StepTemplateChmod(StepTemplate):
 
 class Step1(StepTemplateChmod):
     story = [
-        _("Bird: {{Bb:...thank you.}}"),
-        _("{{Bb:Do you like fireworks? There's one in the locked-room."),
-        _("To blow it up, activate the lighter using}} {{yb:chmod +x}}")
+        _("The bird dropped a {{bb:scroll}} in the {{bb:cage}}."),
+        _("{{lb:Examine}} the scroll.")
+    ]
+
+    start_dir = "~/woods/cave"
+    end_dir = "~/woods/cave"
+    commands = [
+        "cat cage/scroll"
+    ]
+    hints = [
+        _("{{rb:Use}} {{yb:cat cage/scroll}} {{rb:to examine the scroll.}}")
+    ]
+    file_list = [
+        {
+            "path": "~/woods/cave/cage/scroll",
+            "contents": get_story_file("scroll-cage")
+        }
+    ]
+    deleted_items = [
+        "~/woods/cave/bird"
+    ]
+
+    def next(self):
+        return 36, 2
+
+
+class Step2(StepTemplateChmod):
+    story = [
+        _("Follow the instructions. Use {{yb:chmod +x}} on the {{bb:lighter}} in the {{bb:locked-room}}.")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
@@ -30,17 +57,14 @@ class Step1(StepTemplateChmod):
     ]
     highlighted_commands = "chmod"
 
-    def _run_after_text(self):
-        Animation("bird-animation").play_across_screen(speed=10)
-
     def block_command(self, line):
         return unblock_commands(line, self.commands)
 
     def next(self):
-        return 36, 2
+        return 36, 3
 
 
-class Step2(StepTemplateChmod):
+class Step3(StepTemplateChmod):
     story = [
         _("{{lb:Look in the locked-room}} to see what happened to the lighter.")
     ]
@@ -58,10 +82,10 @@ class Step2(StepTemplateChmod):
     ]
 
     def next(self):
-        return 36, 3
+        return 36, 4
 
 
-class Step3(StepTemplateChmod):
+class Step4(StepTemplateChmod):
     story = [
         _("The lighter went {{gb:bright green}} after you activated it."),
         _("Now use it with {{yb:./locked-room/lighter}}")

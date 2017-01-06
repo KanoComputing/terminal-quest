@@ -54,11 +54,26 @@ cage_room = {
                     "exists": False
                 }
             ]
+        },
+        {
+            "name": "scroll",
+            "contents": get_story_file("scroll-cage"),
+            "challenges": [
+                {
+                    "challenge": 1,
+                    "step": 1,
+                    "exists": False
+                },
+                {
+                    "challenge": 36,
+                    "step": 1
+                }
+            ]
         }
     ]
 }
 
-doorless_room = {
+locked_room = {
     "name": "locked-room",
     "challenges": [
         {
@@ -145,7 +160,7 @@ cave = {
     "children": [
         dark_room,
         cage_room,
-        doorless_room,
+        locked_room,
         chest,
         {
             "name": "sign",

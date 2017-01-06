@@ -4,7 +4,9 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
+import time
 
+from linux_story.Animation import Animation
 from linux_story.StepTemplate import StepTemplate
 from linux_story.helper_functions import wrap_in_box
 from linux_story.step_helper_functions import unblock_commands
@@ -146,5 +148,7 @@ class Step6(StepTemplateChmod):
         return unblock_commands(line, self.commands)
 
     def next(self):
+        Animation("bird-animation").play_across_screen(speed=5)
+        time.sleep(1)
         return 36, 1
 

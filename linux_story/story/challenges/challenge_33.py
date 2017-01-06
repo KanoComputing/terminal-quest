@@ -45,7 +45,7 @@ class Step1(StepTemplateNano):
             "path": "~/woods/cave/dark-room/sign",
             "permissions": 0644,
             "type": "file",
-            "contents": get_story_file("w-sign")
+            "contents": get_story_file("x-sign")
         },
 
         {

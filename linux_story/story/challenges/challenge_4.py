@@ -117,7 +117,7 @@ class Step5(StepTemplateCd):
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "cat Mum"
-    hints = [_("{{rb:Stuck? Type:}} {{yb:cat Mum}}. {{rb:Don\'t forget the capital letter!}}")]
+    hints = [_("{{rb:Stuck? Type:}} {{yb:cat Mum}}{{rb:. Don\'t forget the capital letter!}}")]
 
     def next(self):
         return 5, 1
