@@ -4,9 +4,11 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
+from linux_story.PlayerLocation import generate_real_path
 from linux_story.StepTemplate import StepTemplate
 from linux_story.common import get_story_file
 from linux_story.file_creation.FileTree import modify_permissions
+from linux_story.helper_functions import has_write_permissions, has_read_permissions, has_execute_permissions
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.terminals.terminal_rm import TerminalRm
 
@@ -101,7 +103,7 @@ class Step3(StepTemplateRm):
 class Step4(StepTemplateRm):
     story = [
         _("You cannot get past the boulder."),
-        _("It looks like the {{rb:rabbithole}} is completely inaccessible to us."),
+        _("The {{bb:rabbithole}} is completely inaccessible."),
         "",
         _("{{lb:Unlock it.}}"),
         _("Use the same command you used to unlock the {{bb:private-section}}.")
@@ -109,25 +111,16 @@ class Step4(StepTemplateRm):
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket"
 
-    commands = [
-        "chmod +rwx rabbithole",
-        "chmod +rwx rabbithole/",
-        "chmod +rxw rabbithole",
-        "chmod +rxw rabbithole/",
-        "chmod +wxr rabbithole",
-        "chmod +wxr rabbithole/",
-        "chmod +wrx rabbithole",
-        "chmod +wrx rabbithole/",
-        "chmod +xwr rabbithole",
-        "chmod +xwr rabbithole/",
-        "chmod +xrw rabbithole",
-        "chmod +xrw rabbithole/"
-    ]
-
     hints = [
-        _("{{rb:Use}} {{yb:chmod +rwx rabbithole}}")
+        _("{{rb:Use}} {{yb:chmod +rwx rabbithole/}}")
     ]
     dark_theme = True
+
+    def check_command(self, line):
+        dir = generate_real_path("~/woods/thicket/rabbithole")
+        if has_write_permissions(dir) and has_read_permissions(dir) and has_execute_permissions(dir):
+            return True
+        self.send_stored_hint()
 
     def next(self):
         return 44, 5

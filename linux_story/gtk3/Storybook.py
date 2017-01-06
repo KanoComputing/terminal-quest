@@ -201,11 +201,16 @@ class Storybook(Gtk.TextView):
         white_tag = self.__get_tag('white')
         textbuffer.insert_with_tags(end_iter, string, white_tag)
 
+    def print_coming_soon(self, window, terminal):
+        self.__print_text_banner("coming_soon")
+
     def print_finished(self, window, terminal):
-        text = get_ascii_art('coming_soon')
+        self.__print_text_banner("finished_terminal_quest")
+
+    def __print_text_banner(self, filename):
+        text = get_ascii_art(filename)
         text_lines = text.splitlines()
         leading_newlines = len(text_lines)
-
         for i in xrange(leading_newlines, -1, -1):
             self.clear()
 

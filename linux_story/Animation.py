@@ -12,7 +12,6 @@ import time
 import curses
 import random
 import os
-import sys
 import struct
 
 from linux_story.helper_functions import get_path_to_file_in_system
@@ -123,11 +122,11 @@ class Animation:
 
         if start_direction == "left-to-right":
             startx = -ascii_w
-            rabbit = ascii_lr
+            animated_item = ascii_lr
             offset_diff = speed
         else:
             startx = w
-            rabbit = ascii_rl
+            animated_item = ascii_rl
             offset_diff = -speed
 
         starty = randint(0, h - ascii_h - 1)
@@ -141,9 +140,9 @@ class Animation:
                 self.draw_fn(starty + n, 0, " " * (w))
                 n += 1
 
-            self.draw_frame(rabbit[frame], startx + offsetx, starty, ascii_w)
+            self.draw_frame(animated_item[frame], startx + offsetx, starty, ascii_w)
             frame += 1
-            if frame >= len(rabbit):
+            if frame >= len(animated_item):
                 frame = 0
 
             offsetx += offset_diff
@@ -153,7 +152,7 @@ class Animation:
                 break
             # invert the direction lr -> rl
             elif startx + offsetx > w:
-                rabbit = ascii_rl
+                animated_item = ascii_rl
                 offset_diff = -offset_diff
                 starty = randint(0, h - ascii_h - 1)
                 cycle += 1
@@ -161,7 +160,7 @@ class Animation:
                     break
             # invert the direction rl -> lr
             elif startx + offsetx < -ascii_w:
-                rabbit = ascii_lr
+                animated_item = ascii_lr
                 offset_diff = -offset_diff
                 starty = randint(0, h - ascii_h - 1)
                 cycle += 1

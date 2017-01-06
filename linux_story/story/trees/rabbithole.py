@@ -106,11 +106,11 @@ rabbithole = {
             "step": 1,
             "permissions": 0755
         },
-        # {
-        #     "challenge": 43,
-        #     "step": 1,
-        #     "permissions": 0000
-        # },
+        {
+            "challenge": 43,
+            "step": 1,
+            "permissions": 0000
+        },
         {
             "challenge": 44,
             "step": 5,
