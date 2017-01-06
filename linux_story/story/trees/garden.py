@@ -24,7 +24,7 @@ greenhouse = {
             "contents": get_story_file("Dad"),
             "challenges": [
                 {
-                    "challenge": 1,
+                    "challenge": 0,
                     "step": 1
                 },
                 {

@@ -10,7 +10,7 @@ library = {
             "contents": get_story_file("Rabbit"),
             "challenges": [
                 {
-                    "challenge": 1,
+                    "challenge": 0,
                     "step": 1,
                     "exists": False
                 },
@@ -30,7 +30,7 @@ library = {
             "type": "directory",
             "challenges": [
                 {
-                    "challenge": 1,
+                    "challenge": 0,
                     "step": 1,
                     "permissions": 0000
                 },
@@ -55,7 +55,7 @@ library = {
                     ],
                     "challenges": [
                         {
-                            "challenge": 1,
+                            "challenge": 0,
                             "step": 1,
                             "exists": False
                         },
@@ -76,7 +76,7 @@ library = {
                     "contents": get_story_file("Rabbit"),
                     "challenges": [
                         {
-                            "challenge": 1,
+                            "challenge": 0,
                             "step": 1,
                             "exists": False
                         },
@@ -96,7 +96,7 @@ library = {
                     "contents": get_story_file("note_private-section"),
                     "challenges": [
                         {
-                            "challenge": 1,
+                            "challenge": 0,
                             "step": 1,
                             "exists": False
                         },
@@ -115,7 +115,7 @@ library = {
                     "contents": get_story_file("RM-sword"),
                     "challenges": [
                         {
-                            "challenge": 1,
+                            "challenge": 0,
                             "step": 1,
                             "exists": False
                         },

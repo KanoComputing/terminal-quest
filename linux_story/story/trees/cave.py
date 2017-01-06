@@ -60,7 +60,7 @@ cage_room = {
             "contents": get_story_file("scroll-cage"),
             "challenges": [
                 {
-                    "challenge": 1,
+                    "challenge": 0,
                     "step": 1,
                     "exists": False
                 },

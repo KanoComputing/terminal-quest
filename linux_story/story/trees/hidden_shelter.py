@@ -141,7 +141,7 @@ apple_basket = {
 
 kitchen_food_challenges = [
     {
-        "challenge": 1,
+        "challenge": 0,
         "step": 1,
         "exists": False
     },
