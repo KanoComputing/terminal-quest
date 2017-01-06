@@ -154,7 +154,7 @@ class Step5(StepTemplateMkdir):
     story = [
         _("You get the error {{yb:mkdir: cannot create directory `shed': " +\
         "File exists}}"),
-        _("\nBernard: {{Bb:\"Of course it won't work second time - " +\
+        _("\nBernard: {{Bb:\"Of course it won't work a second time - " +\
         "you already have a shed!\""),
 
         _("\"I'm working on the next big thing,}} " +\
