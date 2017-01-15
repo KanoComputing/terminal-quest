@@ -162,7 +162,7 @@ class Step4(StepTemplateSudo):
 class Step5(StepTemplateSudo):
     story = [
         "Swordmaster: {{Bb:\"Well done.\"}}",
-        "{{Bb:\"Let's go back to town. We should say hi to everyone.\"}}"
+        "{{Bb:\"Let's go back to}} {{bb:~/town}}{{Bb:. We should say hi to everyone.\"}}"
     ]
 
     start_dir = "~/woods/thicket/rabbithole"
@@ -257,7 +257,8 @@ class Step7(StepTemplateSudo):
         "cat Swordmaster": _("Swordmaster: {{Bb:\"You should be very proud of what you've achieved. You are indeed"
                              " something to be reckoned with.\"}}"),
         "cat Rabbit": _("Rabbit: {{Bb:....}}"),
-        "cat Mayor": _("Rabbit: {{Bb:....}}")
+        "cat Mayor": _("Mayor: {{Bb:I've been persuaded not to exterminate all rabbits. "
+                       "Thanks to you, we can all sleep safely.}}")
     }
 
     def check_command(self, line):
