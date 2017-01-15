@@ -193,7 +193,7 @@ challenges = {
         'chapter': 6
     },
     39: {
-        'title': _('Meet the swordmaster'),
+        'title': _('Meet the Swordmaster'),
         'chapter': 6
     },
     40: {

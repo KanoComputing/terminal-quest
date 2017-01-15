@@ -9,12 +9,16 @@ from linux_story.StepTemplate import StepTemplate
 from linux_story.common import get_story_file, get_username
 from linux_story.helper_functions import wrap_in_box
 from linux_story.step_helper_functions import unblock_cd_commands
-from linux_story.story.challenges.challenge_47 import StepTemplateSudo
+from linux_story.story.terminals.terminal_sudo import TerminalSudo
 from linux_story.story.terminals.terminal_rm import TerminalRm
 
 
 class StepTemplateRm(StepTemplate):
     TerminalClass = TerminalRm
+
+
+class StepTemplateSudo(StepTemplate):
+    TerminalClass = TerminalSudo
 
 
 class Step1(StepTemplateRm):
