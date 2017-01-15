@@ -16,7 +16,7 @@ class StepTemplateNano(StepTemplate):
 
 class Step1(StepTemplateNano):
     story = [
-        _("Enough wandering. Time to find the swordmaster."),
+        _("Enough wandering. Time to find the Swordmaster."),
         _("Clara said that he was in the woods just off the {{lb:Windy Road}} {{yb:~}}."),
         _("Use {{yb:cd}} to head there now.")
     ]

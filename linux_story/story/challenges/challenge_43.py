@@ -28,9 +28,9 @@ class Step1(StepTemplateChmod):
     story = [
         _("You are standing alone in the library. The rabbit has stolen the command, and you have an "
           "increased sense of impending doom."),
-        _("The swordmaster runs into the room."),
+        _("The Swordmaster runs into the room."),
         "",
-        _("Swordmaster: {{Bb:What have you done?}}"),
+        _("Swordmaster: {{Bb:\"What have you done?\"}}"),
         "",
         "{{yb:1:}} " + REPLY_PRINT_TEXT,
         _("{{yb:2: Nothing.}}")
@@ -39,7 +39,7 @@ class Step1(StepTemplateChmod):
     end_dir = "~/town/east/library/private-section"
     file_list = [
         {
-            "path": "~/town/east/library/private-section/swordmaster",
+            "path": "~/town/east/library/private-section/Swordmaster",
             "contents": get_story_file("swordmaster"),
             "permissions": 0644,
             "type": "file"
@@ -50,7 +50,7 @@ class Step1(StepTemplateChmod):
         "echo 2"
     ]
     hints = [
-        _("Swordmaster: {{Bb:Speak with}} {{lb:echo}} {{Bb:and tell me!}}")
+        _("Swordmaster: {{Bb:\"Speak with}} {{lb:echo}} {{Bb:and tell me!\"}}")
     ]
     dark_theme = True
 
@@ -66,9 +66,9 @@ class Step1(StepTemplateChmod):
 
 class Step100(StepTemplateChmod):
     story = [
-        _("Swordmaster: {{rb:ENOUGH!}}"),
-        _("{{Bb:Tell me}} {{rb:the truth.}}"),
-        _("{{Bb:You need my help to fix this....}}"),
+        _("Swordmaster: {{rb:\"ENOUGH!\"}}"),
+        _("{{Bb:\"Tell me}} {{rb:the truth.\"}}"),
+        _("{{Bb:\"You need my help to fix this....\"}}"),
         "",
         _("{{yb:1:}} " + REPLY_PRINT_TEXT),
         _("{{yb:2: Nothing.}}")
@@ -80,14 +80,14 @@ class Step100(StepTemplateChmod):
     end_dir = "~/town/east/library/private-section"
 
     hints = [
-        _("{{rb:Tell the swordmaster the truth, using}} {{yb:echo 1}}")
+        _("{{rb:Tell the Swordmaster the truth, using}} {{yb:echo 1}}")
     ]
     dark_theme = True
 
     def check_command(self, last_user_input):
         if last_user_input == "echo 2":
             self.send_hint(
-                _("Swordmaster: {{Bb:We both know that's not true....}}")
+                _("Swordmaster: {{Bb:\"We both know that's not true....\"}}")
             )
             return
         return StepTemplateChmod.check_command(self, last_user_input)
@@ -99,12 +99,12 @@ class Step100(StepTemplateChmod):
 class Step2(StepTemplateChmod):
     print_text = [REPLY_PRINT_TEXT]
     story = [
-        _("Swordmaster: {{Bb:I see.}}"),
-        _("{{Bb:I frequently see a white rabbit around my place. It must live close to my house.}}"),
-        _("{{Bb:It always seemed innocent before. I wonder what has changed?}}"),
-        _("{{Bb:Perhaps he is}} {{lb:possessed}}{{Bb:.}}"),
+        _("Swordmaster: {{Bb:\"I see.\"}}"),
+        _("{{Bb:\"I frequently see a white rabbit around my place. It must live close to my house.\"}}"),
+        _("{{Bb:\"It always seemed innocent before. I wonder what has changed?\"}}"),
+        _("{{Bb:\"Perhaps he is}} {{lb:possessed}}{{Bb:.\"}}"),
         "",
-        _("{{Bb:We must remove the source of the problem. I will teach you how.}}"),
+        _("{{Bb:\"We must remove the source of the problem. I will teach you how.\"}}"),
         "",
         _("{{pb:Ding. Dong.}}"),
         "",
@@ -130,7 +130,7 @@ class Step2(StepTemplateChmod):
     ]
     dark_theme = True
 
-    deleted_items = ["~/town/east/library/private-section/swordmaster"]
+    deleted_items = ["~/town/east/library/private-section/Swordmaster"]
 
     def next(self):
         return 43, 3
@@ -138,7 +138,7 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = [
-        _("The swordmaster has gone."),
+        _("The Swordmaster has gone."),
         "",
         _("He left something behind. It looks like the {{lb:sword}} he carries around with him."),
         _("{{lb:Examine}} it.")

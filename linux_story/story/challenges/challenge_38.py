@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# Copyright (C) 2014-2017 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
@@ -21,15 +21,15 @@ class StepTemplateChmod(StepTemplate):
 
 class Step1(StepTemplateChmod):
     story = [
-        _("{{gb:You've found the answer to the swordmaster's riddle!}}"),
+        _("{{gb:You've found the answer to the Swordmaster's riddle!}}"),
         "",
-        _("{{lb:Go back to the swordmaster's clearing.}}")
+        _("{{lb:Go back to the Swordmaster's clearing.}}")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/clearing"
     hints = [
-        _("Head back to the {{bb:~/woods/clearing}} where the swordmaster lives."),
-        _("{{rb:Use}} {{yb:cd ~/woods/clearing}} {{rb:to go back to the swordmaster's clearing.}}")
+        _("Head back to the {{bb:~/woods/clearing}} where the Swordmaster lives."),
+        _("{{rb:Use}} {{yb:cd ~/woods/clearing}} {{rb:to go back to the Swordmaster's clearing.}}")
     ]
 
     def block_command(self, line):
@@ -41,7 +41,7 @@ class Step1(StepTemplateChmod):
 
 class Step2(StepTemplateChmod):
     story = [
-        _("Knock on the swordmaster's door.")
+        _("Knock on the Swordmaster's door.")
     ]
     start_dir = "~/woods/clearing"
     end_dir = "~/woods/clearing"
@@ -49,7 +49,7 @@ class Step2(StepTemplateChmod):
         "echo knock knock"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:echo knock knock}} {{rb:to knock on the swordmaster's door.}}")
+        _("{{rb:Use}} {{yb:echo knock knock}} {{rb:to knock on the Swordmaster's door.}}")
     ]
 
     def next(self):

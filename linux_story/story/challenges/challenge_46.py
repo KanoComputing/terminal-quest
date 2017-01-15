@@ -59,12 +59,12 @@ class Step2(StepTemplateRm):
     story = [
         _("The anger behind the rabbit's eyes fades, and is replaced with confusion."),
         "",
-        _("The swordmaster runs into the room."),
+        _("The Swordmaster runs into the room."),
         "",
-        _("Swordmaster: {{Bb:You did it! The rabbit is free of the cursed bell, and you've saved everyone who was "
-        "kidnapped.}}"),
+        _("Swordmaster: {{Bb:\"You did it! The rabbit is free of the cursed bell, and you've saved everyone who was "
+          "kidnapped.\"}}"),
         "",
-        _("{{Bb:The chest the Rabbit stole is right here. Have you gone through the contents?}}"),
+        _("{{Bb:\"The chest the Rabbit stole is right here. Have you gone through the contents?\"}}"),
         "",
         _("{{lb:Examine the contents of the chest.}}")
     ]
@@ -82,7 +82,7 @@ class Step2(StepTemplateRm):
 
     file_list = [
         {
-            "path": "~/woods/thicket/rabbithole/swordmaster",
+            "path": "~/woods/thicket/rabbithole/Swordmaster",
             "contents": get_story_file("swordmaster-without-sword")
         },
         {
@@ -105,9 +105,9 @@ class Step3(StepTemplateRm):
         _("The Rabbit sniffs around the chest."),
         _("It doesn't seem to recognise it."),
         "",
-        _("Swordmaster: {{Bb:Half the command is missing! It looks as if it was torn in half.}}"),
+        _("Swordmaster: {{Bb:\"Half the command is missing! It looks as if it was torn in half.}}"),
         _("{{Bb:Maybe the rabbit hid part of it when it was possessed. It doesn't look like it remembers.}}"),
-        _("{{Bb:The command could be anywhere. Who knows where it is hidden....}}")
+        _("{{Bb:The command could be anywhere. Who knows where it is hidden....\"}}")
     ]
     start_dir = "~/woods/thicket/rabbithole"
     end_dir = "~/woods/thicket/rabbithole"

@@ -16,11 +16,11 @@ class StepTemplateChmod(StepTemplate):
 
 class Step1(StepTemplateChmod):
     story = [
-        _("Swordsmaster:{{Bb:...this is very strange. I left the door open. Perhaps someone...or "
-        "something...sneaked in while we were talking.}}"),
-        _("{{Bb:You may need my help later. Come back if you are blocked by lack of knowledge.}}"),
+        _("Swordsmaster:{{Bb:\"...this is very strange. I left the door open. Perhaps someone...or "
+          "something...sneaked in while we were talking.\"}}"),
+        _("{{Bb:\"You may need my help later. Come back if you are blocked by lack of knowledge.\"}}"),
         "",
-        _("Time to head off - {{lb:leave}} the swordmaster's house.")
+        _("Time to head off - {{lb:leave}} the Swordmaster's house.")
     ]
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing"

@@ -138,8 +138,8 @@ class Step6(StepTemplateNano):
 
 class Step7(StepTemplateNano):
     story = [
-        _("Bird: {{Bb:...Me...trapped..}}"),
-        _("{{Bb:Please help....get me out.}}"),
+        _("Bird: {{Bb:\"...Me...trapped..\"}}"),
+        _("{{Bb:\"Please help....get me out.\"}}"),
         "",
         _("Help the bird by {{lb:moving}} the {{lb:bird}} outside the {{lb:cage}}.")
     ]
@@ -164,10 +164,10 @@ class Step7(StepTemplateNano):
 class Step8(StepTemplateChmod):
     story = [
         "You are unable to move the bird outside the cage.",
-        "Bird: {{Bb:...didn't work....}}",
-        "{{Bb:...look in}} {{lb:dark-room}} {{Bb:to find help..}}",
-        "{{Bb:..use}} {{yb:chmod +r dark-room}} {{Bb:to switch lights on.}}",
-        "{{Bb:...get me out...and I'll help you.}}",
+        "Bird: {{Bb:\"...didn't work....\"}}",
+        "{{Bb:\"...look in}} {{lb:dark-room}} {{Bb:to find help..\"}}",
+        "{{Bb:\"..use}} {{yb:chmod +r dark-room}} {{Bb:to switch lights on.\"}}",
+        "{{Bb:\"...get me out...and I'll help you.\"}}",
         ""
     ]
     story += wrap_in_box([

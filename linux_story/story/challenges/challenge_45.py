@@ -102,17 +102,17 @@ class Step2(StepPeopleInCage):
 class Step3(StepPeopleInCage):
     story = [
         _("You see all the people who were kidnapped inside the cage."),
-        _("Swordmaster: {{Bb:Hey, listen, I have something important to say.}}"),
+        _("Swordmaster: {{Bb:\"Hey, listen, I have something important to say.\"}}"),
         "",
-        _("{{lb:Listen}} to what the swordmaster has to say.")
+        _("{{lb:Listen}} to what the Swordmaster has to say.")
     ]
     start_dir = "~/woods/thicket/rabbithole"
     end_dir = "~/woods/thicket/rabbithole"
     hints = [
-        _("{{rb:Use}} {{yb:cat cage/swordmaster}} {{rb:to listen to the swordmaster.}}")
+        _("{{rb:Use}} {{yb:cat cage/Swordmaster}} {{rb:to listen to the swordmaster.}}")
     ]
     commands = [
-        "cat cage/swordmaster"
+        "cat cage/Swordmaster"
     ]
 
     def next(self):
@@ -121,9 +121,9 @@ class Step3(StepPeopleInCage):
 
 class Step4(StepPeopleInCage):
     story = [
-        _("Swordmaster: {{Bb:Listen, the Rabbit is possessed.}}"),
-        _("{{Bb:I've seen this rabbit before in the woods, and it was innocent then.}}"),
-        _("{{Bb:I think}} {{lb:the bell}} {{Bb:is to blame here.}}"),
+        _("Swordmaster: {{Bb:\"Listen, the Rabbit is possessed.\"}}"),
+        _("{{Bb:\"I've seen this rabbit before in the woods, and it was innocent then.\"}}"),
+        _("{{Bb:\"I think}} {{lb:the bell}} {{Bb:is to blame here.\"}}"),
         "",
         _("{{lb:Examine}} the bell.")
     ]
@@ -144,16 +144,16 @@ class Step5(StepPeopleInCage):
     story = [
         _("The bell glows menacingly."),
         "",
-        _("Swordmaster: {{Bb:The rabbit hasn't figured out how to use what it stole.}}"),
-        _("{{Bb:Before it does, get us out of this cage. We're locked up in here.}}"),
+        _("Swordmaster: {{Bb:\"The rabbit hasn't figured out how to use what it stole.\"}}"),
+        _("{{Bb:\"Before it does, get us out of this cage. We're locked up in here.\"}}"),
         "",
         _("{{lb:You need to unlock the cage.}}")
     ]
     start_dir = "~/woods/thicket/rabbithole"
     end_dir = "~/woods/thicket/rabbithole"
     hints = [
-        _("Swordmaster: {{Bb:We're all trapped in here because the}} {{lb:write}} {{Bb:permissions are removed.}}"),
-        _("Swordmaster: {{Bb:To re-add the write permissions, use}} {{yb:chmod +w cage}}")
+        _("Swordmaster: {{Bb:\"We're all trapped in here because the}} {{lb:write}} {{Bb:permissions are removed.\"}}"),
+        _("Swordmaster: {{Bb:\"To re-add the write permissions, use}} {{yb:chmod +w cage}}{{Bb:\"}}")
     ]
 
     def check_command(self, line):
@@ -167,9 +167,9 @@ class Step5(StepPeopleInCage):
 
 class Step6(StepPeopleInCage):
     story = [
-        _("Swordmaster: {{Bb:Now move us to the}} {{bb:~/town.}}"),
-        _("{{Bb:To move a large group of people, use the}} {{lb:*}} {{Bb:character.}}"),
-        _("{{Bb:Use}} {{yb:mv cage/* ~/town}} {{Bb:to move all of us back to town.}}")
+        _("Swordmaster: {{Bb:\"Now move us to the}} {{bb:~/town.}}{{Bb:\"}}"),
+        _("{{Bb:\"To move a large group of people, use the}} {{lb:*}} {{Bb:character.\"}}"),
+        _("{{Bb:\"Use}} {{yb:mv cage/* ~/town}} {{Bb:to move all of us back to town.\"}}")
     ]
     start_dir = "~/woods/thicket/rabbithole"
     end_dir = "~/woods/thicket/rabbithole"

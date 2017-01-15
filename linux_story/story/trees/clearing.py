@@ -10,7 +10,7 @@ house = {
     "name": "house",
     "children": [
         {
-           "name": "swordmaster",
+           "name": "Swordmaster",
             "contents": get_story_file("swordmaster"),
             "challenges": [
                 {

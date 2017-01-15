@@ -4,7 +4,6 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-import time
 
 from linux_story.Animation import Animation
 from linux_story.StepTemplate import StepTemplate

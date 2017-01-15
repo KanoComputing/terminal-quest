@@ -211,7 +211,7 @@ class Step5(StepTemplateRm):
             "permissions": 0644
         },
         {
-            "path": "~/woods/thicket/rabbithole/cage/swordmaster",
+            "path": "~/woods/thicket/rabbithole/cage/Swordmaster",
             "contents": get_story_file("swordmaster-without-sword"),
             "type": "file",
             "permissions": 0644
