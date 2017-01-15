@@ -38,32 +38,6 @@ def cd(real_path, line, has_access=True):
     return new_path
 
 
-def sudo(real_path, line, success_cb, counter=0, *cb_args):
-    """
-    Ask the user for their password, and do not show answer.
-    If the user is successful, execute success_cb with success_args passed
-    """
-
-    if counter == 3:
-        print "sudo: 3 incorrect password attempts"
-        return
-
-    user = getpass.getuser()
-    password = getpass.getpass('[sudo] password for {}:'.format(user))
-
-    # For now hard code the password?
-    if password != "kano":
-        print "Sorry, try again."
-        counter += 1
-        return sudo(real_path, line, success_cb, counter)
-
-    logger.debug("successfully entered password = {}".format(password))
-    logger.debug("calling success cb = {}".format(cb_args))
-
-    if success_cb:
-        success_cb(*cb_args)
-
-
 # By using these python commands, we can more easily run tests on a mac.
 def cat(real_path):
     with open(real_path, "r") as f:

@@ -47,6 +47,7 @@ class StepTemplate:
         self._last_user_input = ""
         self._is_finished = False
         self.__command_blocked = False
+        self._terminal = self.TerminalClass(self, self._location, self.dirs_to_attempt, self._client)
 
     def __set_theme(self):
         if self.dark_theme:
@@ -72,7 +73,10 @@ class StepTemplate:
 
     def run(self):
         self._run_after_text()
-        self.TerminalClass(self, self._location, self.dirs_to_attempt).cmdloop()
+        self._terminal.cmdloop()
+
+    def terminal_command_passed(self):
+        return self._terminal.passed
 
     def next(self):
         raise Exception("IStep method not implemented")
@@ -115,9 +119,12 @@ class StepTemplate:
     def _default_check_command(self, last_user_input):
         command_validated = self._validate_check_command(last_user_input)
         end_dir_validated = self._validate_end_dir()
-        if not (command_validated and end_dir_validated):
+        terminal_command_passed = self.terminal_command_passed()
+        if not (command_validated and end_dir_validated and terminal_command_passed):
             self.send_stored_hint()
-        return self._client.finish_if_server_ready((command_validated and end_dir_validated))
+        return self._client.finish_if_server_ready(
+            (command_validated and end_dir_validated and terminal_command_passed)
+        )
 
     def _validate_check_command(self, last_user_input):
         command_validated = True

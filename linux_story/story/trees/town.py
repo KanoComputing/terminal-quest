@@ -10,7 +10,7 @@ from hidden_shelter import hidden_shelter
 from east import east
 
 
-grumpy_man = {
+grumpy_man_hurt = {
     "name": "grumpy-man",
     "contents": get_story_file("grumpy-man"),
     "challenges": [
@@ -22,6 +22,22 @@ grumpy_man = {
             "challenge": 8,
             "step": 1,
             "exists": False
+        }
+    ]
+}
+
+grumpy_man_fixed = {
+    "name": "grumpy-man",
+    "contents": get_story_file("grumpy-man-fixed"),
+    "challenges": [
+        {
+            "challenge": 0,
+            "step": 1,
+            "exists": False
+        },
+        {
+            "challenge": 46,
+            "step": 1
         }
     ]
 }
@@ -38,6 +54,10 @@ young_girl = {
             "challenge": 8,
             "step": 2,
             "exists": False
+        },
+        {
+            "challenge": 46,
+            "step": 1
         }
     ]
 }
@@ -54,6 +74,10 @@ little_boy = {
             "challenge": 8,
             "step": 3,
             "exists": False
+        },
+        {
+            "challenge": 46,
+            "step": 1
         }
     ]
 }
@@ -70,6 +94,10 @@ mayor = {
             "challenge": 8,
             "step": 6,
             "exists": False
+        },
+        {
+            "challenge": 46,
+            "step": 1
         }
     ]
 }
@@ -112,6 +140,10 @@ dog_town = {
             "challenge": 12,
             "step": 2,
             "exists": False
+        },
+        {
+            "challenge": 46,
+            "step": 1
         }
     ]
 }
@@ -133,21 +165,166 @@ eleanor_town = {
             "challenge": 12,
             "step": 1,
             "exists": False
+        },
+        {
+            "challenge": 46,
+            "step": 1
         }
     ]
 }
+
+
+clara = {
+    "name": "Clara",
+    "contents": get_story_file("Clara"),
+    "challenges": [
+        {
+            "challenge": 0,
+            "step": 1,
+            "exists": False
+        },
+        {
+            "challenge": 46,
+            "step": 1
+        }
+    ]
+}
+
+bernard = {
+    "name": "Bernard",
+    "contents": get_story_file("Bernard"),
+    "challenges": [
+        {
+            "challenge": 0,
+            "step": 1,
+            "exists": False
+        },
+        {
+            "challenge": 46,
+            "step": 1
+        }
+    ]
+}
+
+rabbit = {
+    "name": "Rabbit",
+    "contents": get_story_file("Rabbit"),
+    "challenges": [
+        {
+            "challenge": 0,
+            "step": 1,
+            "exists": False
+        },
+        {
+            "challenge": 46,
+            "step": 1
+        }
+    ]
+}
+
+
+swordmaster = {
+    "name": "Swordmaster",
+    "contents": get_story_file("swordmaster-without-sword"),
+    "challenges": [
+        {
+            "challenge": 0,
+            "step": 1,
+            "exists": False
+        },
+        {
+            "challenge": 46,
+            "step": 1
+        }
+    ]
+}
+
+edith = {
+    "name": "Edith",
+    "contents": get_story_file("Edith"),
+    "challenges": [
+        {
+            "challenge": 0,
+            "step": 1,
+            "exists": False
+        },
+        {
+            "challenge": 46,
+            "step": 1
+        }
+    ]
+}
+
+
+edward = {
+    "name": "Edward",
+    "contents": get_story_file("Edward"),
+    "challenges": [
+        {
+            "challenge": 0,
+            "step": 1,
+            "exists": False
+        },
+        {
+            "challenge": 46,
+            "step": 1
+        }
+    ]
+}
+
+dad = {
+    "name": "Dad",
+    "contents": get_story_file("Dad"),
+    "challenges": [
+        {
+            "challenge": 0,
+            "step": 1,
+            "exists": False
+        },
+        {
+            "challenge": 46,
+            "step": 1
+        }
+    ]
+}
+
+
+mum = {
+    "name": "Mum",
+    "contents": get_story_file("Mum"),
+    "challenges": [
+        {
+            "challenge": 0,
+            "step": 1,
+            "exists": False
+        },
+        {
+            "challenge": 46,
+            "step": 1
+        }
+    ]
+}
+
 
 town = {
     "name": "town",
     "children": [
         hidden_shelter,
-        grumpy_man,
+        grumpy_man_hurt,
+        grumpy_man_fixed,
         young_girl,
         little_boy,
         note_town,
         mayor,
         east,
         dog_town,
-        eleanor_town
+        eleanor_town,
+        edith,
+        edward,
+        swordmaster,
+        bernard,
+        rabbit,
+        dad,
+        mum
     ]
 }

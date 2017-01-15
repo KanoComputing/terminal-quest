@@ -217,12 +217,16 @@ class Step5(StepTemplateRm):
             "permissions": 0644
         },
         {
+            "path": "~/woods/thicket/rabbithole/cage/Bernard",
+            "contents": get_story_file("Bernard")
+        },
+        {
             "path": "~/woods/thicket/rabbithole/chest/torn-note",
             "contents": get_story_file("torn-note")
         },
         {
-            "path": "~/woods/thicket/rabbithole/chest/torn-scroll",
-            "contents": get_story_file("torn-sudo")
+            "path": "~/woods/thicket/rabbithole/chest/scroll",
+            "contents": get_story_file("scroll")
         }
     ]
 

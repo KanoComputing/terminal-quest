@@ -37,19 +37,20 @@ class StepPeopleInCage(StepTemplateRm):
 
     def cat_people(self):
         people = {
-            "Mum": _("Mum: {{Bb:" + get_username() + ", I'm so glad to see you're safe!}}"),
+            "Mum": _("Mum: {{Bb:\"" + get_username() + ", I'm so glad to see you're safe!\"}}"),
 
-            "Dad": _("Dad: {{Bb:I was kidnapped by a rabbit! Although, I don't know how lucid that rabbit is "
-                     "right now.}}"),
+            "Dad": _("Dad: {{Bb:\"I was kidnapped by a rabbit! Although, I don't know how lucid that rabbit is "
+                     "right now.\"}}"),
 
-            "grumpy-man": _("grumpy-man: {{Bb:My legs are fixed. I hope my wife knows I'm safe.}}"),
-            "Mayor": _("Mayor: {{Bb:When I get out of here, I'm going to make a law to hunt all rabbits."),
-            "little-boy": _("little-boy: {{Bb:I miss my mummy!}}"),
-            "young-girl": _("young-girl: {{Bb:I miss my mummy!}}"),
-            "Edith": _("Edith: {{Bb:You, " + get_username() + "! Get us out of here!}}"),
-            "Edward": _("Edward: {{Bb:Edith dear, calm down...}}"),
-            "dog": _("dog: {{Bb:Woof woof!}}"),
-            "head-librarian": _("head-librarian: {{Bb:Who are you?}}")
+            "grumpy-man": _("grumpy-man: {{Bb:\"My legs are fixed. I hope my wife knows I'm safe.\"}}"),
+            "Mayor": _("Mayor: {{Bb:\"When I get out of here, I'm going to make a law to hunt all rabbits.\""),
+            "little-boy": _("little-boy: {{Bb:\"I miss my mummy!\"}}"),
+            "young-girl": _("young-girl: {{Bb:\"I don't like being in here.\"}}"),
+            "Edith": _("Edith: {{Bb:\"You, " + get_username() + "! Get us out of here!\"}}"),
+            "Edward": _("Edward: {{Bb:\"Edith dear, calm down...\"}}"),
+            "dog": _("dog: {{Bb:\"Woof woof!\"}}"),
+            "Bernard": _("Bernard: {{Bb:\"After you left, I heard this bell noise and ended up here...what happened?\"}}"),
+            "head-librarian": _("head-librarian: {{Bb:\"Who are you?\"}}")
         }
         for person in people:
             if self._last_user_input == "cat cage/" + person:
@@ -168,7 +169,7 @@ class Step5(StepPeopleInCage):
 class Step6(StepPeopleInCage):
     story = [
         _("Swordmaster: {{Bb:\"Now move us to the}} {{bb:~/town.}}{{Bb:\"}}"),
-        _("{{Bb:\"To move a large group of people, use the}} {{lb:*}} {{Bb:character.\"}}"),
+        _("{{Bb:\"To move a large group of people, use the}} {{lb:*}} {{Bb:wildcard character.\"}}"),
         _("{{Bb:\"Use}} {{yb:mv cage/* ~/town}} {{Bb:to move all of us back to town.\"}}")
     ]
     start_dir = "~/woods/thicket/rabbithole"

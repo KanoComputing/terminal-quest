@@ -4,8 +4,8 @@ chest = {
     "name": "chest",
     "children": [
         {
-            "name": "torn-scroll",
-            "contents": get_story_file("torn-sudo"),
+            "name": "scroll",
+            "contents": get_story_file("scroll"),
         },
         {
             "name": "torn-note",

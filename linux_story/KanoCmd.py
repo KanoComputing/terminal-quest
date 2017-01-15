@@ -18,16 +18,20 @@ import readline
 class KanoCmd(Cmd):
     terminal_commands = []
 
-    def __init__(self, step, location, dirs_to_attempt):
+    def __init__(self, step, location, dirs_to_attempt, client):
         """
         :param step: StepTemplate type
         :param location: PlayerLocation location
         """
         Cmd.__init__(self)
+        self.passed = True
         self._step = step
         self.__command_blocked = False
         self._location = location
         self._dirs_to_attempt = dirs_to_attempt
+
+        # Allows terminal to send message to GUI if needed.
+        self._client = client
         self.last_cmd_output = ""
 
         self._set_prompt()

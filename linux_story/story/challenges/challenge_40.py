@@ -180,6 +180,7 @@ class Step7(StepTemplateChmod):
 
 class Step8(StepTemplateChmod):
     story = [
+        _("You push through into a dense patch of plants. The trees overshadow you."),
         _("{{lb:Look around.}}")
     ]
     start_dir = "~/woods/thicket"
