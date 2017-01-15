@@ -41,7 +41,7 @@ cage = {
             "contents": get_story_file("dog")
         },
         {
-            "name": "swordmaster",
+            "name": "Swordmaster",
             "contents": get_story_file("swordmaster-without-sword")
         },
         {
