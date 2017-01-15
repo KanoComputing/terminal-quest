@@ -49,7 +49,7 @@ class StepPeopleInCage(StepTemplateRm):
             "Edith": _("Edith: {{Bb:\"You, " + get_username() + "! Get us out of here!\"}}"),
             "Edward": _("Edward: {{Bb:\"Edith dear, calm down...\"}}"),
             "dog": _("dog: {{Bb:\"Woof woof!\"}}"),
-            "Bernard": _("Bernard: {{Bb:\"After you left, I heard this bell noise and ended up here...what happened?\"}}"),
+            "Bernard": _("Bernard: {{Bb:\"After you left, I heard this sound\"}}"),
             "head-librarian": _("head-librarian: {{Bb:\"Who are you?\"}}")
         }
         for person in people:

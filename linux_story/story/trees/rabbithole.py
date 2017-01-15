@@ -59,6 +59,14 @@ cage = {
         {
             "name": "Mayor",
             "contents": get_story_file("Mayor")
+        },
+        {
+            "name": "little-boy",
+            "contents": get_story_file("little-boy")
+        },
+        {
+            "name": "young-girl",
+            "contents": get_story_file("young-girl")
         }
     ]
 }
