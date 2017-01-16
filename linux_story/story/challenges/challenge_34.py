@@ -21,7 +21,7 @@ class StepTemplateChmod(StepTemplate):
 
 class Step1(StepTemplateNano):
     story = [
-        _("There are three rooms."),
+        _("There are three doors, leading to two rooms and a cage."),
         _("First, {{lb:look inside the dark-room}}.")
     ]
     start_dir = "~/woods/cave"
