@@ -11,3 +11,8 @@ Depends: ${misc:Depends}, python (>=2.7), gir1.2-vte-2.90,
  kano-profile (>=1.3-6), kano-toolset (>=2.4.0-1), kano-i18n
 Description: Story to teach people basic Linux commands
  via a text based adventure game style.
+
+Package: linux-story-i18n-orig
+Architecture: all
+Description: Data for working on translations of linux-story
+Multi-Arch: foreign

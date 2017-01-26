@@ -16,15 +16,22 @@ clean_locales:
 clean: clean_locales
 	rm -f messages.pot
 
+define generate-pypotfiles
+grep "env python" -rl --exclude=*.py --exclude=Makefile .. > PYPOTFILES
+find .. -name *.py >> PYPOTFILES
+endef
+
 define run-xgettext
 xgettext -f PYPOTFILES -L Python --force-po -o messages.pot \
-    --package-name=$(APPNAME) --copyright-holder=$(ORG)
+    --keyword=N_ --package-name=$(APPNAME) --copyright-holder=$(ORG)
 endef
 
 messages:
+	$(generate-pypotfiles)
 	$(run-xgettext)
 
 messages.pot:
+	$(generate-pypotfiles)
 	$(run-xgettext)
 
 %.po: messages.pot
