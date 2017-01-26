@@ -1,6 +1,7 @@
 #!/usr/bin/make -f
 
 %:
+	cd po && make messages.pot
 	cd po && make
 	dh $@ --with python2
 
