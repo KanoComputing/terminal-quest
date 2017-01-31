@@ -1,9 +1,10 @@
 #!/usr/bin/make -f
 
+export PYBUILD_DESTDIR=debian/linux-story/
 %:
 	cd po && make messages.pot
 	cd po && make
-	dh $@ --with python2
+	dh $@ --with python2  --buildsystem=pybuild
 
 override_dh_python2:
 	dh_python2 --no-shebang-rewrite
