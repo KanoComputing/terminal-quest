@@ -27,3 +27,5 @@ Options:
    -h, --help       Show this message.
    -d, --debug      Debug mode, don't hide the terminal and spellbook widgets by default at the start.
 ```
+
+Make sure your environment exposes `PYTHONIOENCODING=UTF-8` for correct i18n translations throughout the adventure.
