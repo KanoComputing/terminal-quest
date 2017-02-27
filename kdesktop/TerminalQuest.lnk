@@ -1,7 +1,7 @@
 table Icon
   Caption:
   AppID: terminal-[q]uest
-  Command: /usr/bin/kano-launcher /usr/bin/linux-story-gui
+  Command: /bin/bash -i -c "/usr/bin/kano-launcher /usr/bin/linux-story-gui"
   Singleton: true
   Icon: /usr/share/icons/Kano/88x88/apps/linux-story.png
   IconHover: /usr/share/icons/Kano/88x88/apps/linux-story-hover.png
