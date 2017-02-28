@@ -11,6 +11,28 @@ linux-story is installed by default on Kano OS, and is provided as a debian pack
  - Package name: linux-story
  - Executable: /usr/bin/linux-story-gui
 
+### A word about nano
+
+Terminal Quest currently comes with a custom build of the `nano` editor that integrates the adventure GUI workflow.
+It is packaged in binary form on this repo. If you need to recompile it for whatever reason:
+
+```
+$ sudo apt-get install build-essential automake autoconf libncurses-dev texinfo -y --no-install-recommends
+$ cd nano-2.2.6
+
+$ ./configure --disable-browser --disable-extra --disable-mouse --disable-glibtest (???)
+
+$ ./configure --disable-browser --disable-extra --disable-mouse --disable-glibtest
+$ make localedir=/usr/share/locale sysconfdir=/etc
+$ strip src/nano
+$ git add nano ; git commit ; git push
+```
+
+At the moment, `nano` will automatically pick up the translated messages from the official nano installed on Kano OS,
+hence picking up translation files from `/usr/share/locale`.
+
+FIXME: nano recompilation is not good - It decides to peek at `/usr/lib/locale/es_AR/LC_IDENTIFICATION` and gives up.
+
 # How Terminal Quest works
 For a more detailed breakdown, read the [development wiki page](https://github.com/KanoComputing/linux-tutorial/wiki/Development).
 
