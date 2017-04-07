@@ -29,15 +29,15 @@ class StepLs(TerminalLs):
 
 class Step1(StepLs):
     story = [
-        _("{{wb:Alarm}}: {{Bb:\"Beep beep beep! Beep beep beep!\"}}"),
-        _("{{wb:Radio}}: {{Bb:\"Good Morning, this is the 9am news.\"\n"),
+        _("{{wb:random alarm on your dresser}}: {{Bb:\"Beep beep beep! Beep beep beep!\"}}"),
+        _("{{wb:something}}: {{Bb:\"Good Morning, this is the 9am news.\"\n"),
         _("\"The town of Folderton has awoken to strange news. There have been reports of missing people and damaged buildings across the town, with more stories coming in as we speak.\""),  # noqa
         _("\n\"Mayor Hubert has called an emergency town meeting and we'll keep you posted as it happens...\"}}\n"),
         _("It's time to get up sleepy head!\n "),
     ]  # TODO: " \ is a hack in this array to stop word wrap code screwing up and adding new lines in where it shouldn't
 
     story += wrap_in_box([
-        _("{{gb:New Spell:}} Type {{yb:ls}} and press"),
+        _("{{gb:New command:}} Type {{yb:ls}} and press"),
         _("{{ob:Enter}} to {{lb:look around}}."),
     ])
 

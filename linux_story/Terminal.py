@@ -36,8 +36,8 @@ import readline
 
 
 class Terminal(Cmd):
-    terminal_commands = []
-    highlighted_commands = []
+    terminal_commands = [ls cat cd mv mkdir nano]
+    highlighted_commands = [ls cat cd mv mkdir nano]
     print_text = [""]
     story = [""]
     start_dir = "~"
