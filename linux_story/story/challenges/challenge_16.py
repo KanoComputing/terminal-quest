@@ -44,7 +44,8 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        _("There are some rolls of parchment, similar to what you found in the {{bb:.hidden-shelter}}\n"),
+        _("There are some scrolls, similar to what you found in the {{bb:.hidden-shelter}}. "
+          "They could contain more powerful commands.\n"),
         _("Use {{yb:cat}} to {{lb:read}} one of the scrolls.\n")
     ]
 

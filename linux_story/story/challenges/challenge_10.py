@@ -122,7 +122,7 @@ class Step2(StepTemplateCd):
             # If they have only just got to the home directory,
             # then they used an appropriate command
             if self.num_turns_in_home_dir == 0:
-                hint = _("{{gb:Good work! Now use}} {{yb:cd town}} {{gb:to head to town.}}")
+                hint = _("{{gb:Cool! Now use}} {{yb:cd town}} {{gb:to head to town.}}")
 
             # Otherwise give them a hint
             else:

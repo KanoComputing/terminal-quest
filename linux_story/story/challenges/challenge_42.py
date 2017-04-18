@@ -183,15 +183,16 @@ class Step5(RabbitTakesChest):
 class Step6(RabbitTakesChest):
     story = [
         _("You see a {{bb:chest}}."),
-        _("This looks like the treasure we were looking for."),
-        _("The Rabbit looks more excited than you've ever seen him before."),
-        _("He snatches the chest and runs off!")
+        _("It looks like it might contain the powers we need."),
+        _("The Rabbit's excitement grows, he jumps up and down. Then suddenly he snatches the chest and runs off!"),
+        "",
+        _("Press Enter to watch him run off.")
     ]
 
 
 class Step7(StepTemplateChmod):
     story = [
-        _("A {{bb:note}} flutters in front of you. {{lb:Read it.}}")
+        _("A {{bb:note}} flutters through the air. You catch it. {{lb:Read it}}.")
     ]
 
     start_dir = "~/town/east/library/private-section"
@@ -221,7 +222,8 @@ class Step7(StepTemplateChmod):
 
 class Step8(StepTemplateChmod):
     story = [
-        _("The place shivers...and then everything goes black.")
+        _("The world shivers...everything goes dark red"),
+        _("{{gb:Press Enter to continue.}}")
     ]
 
     start_dir = "~/town/east/library/private-section"

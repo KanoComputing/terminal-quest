@@ -18,9 +18,9 @@ class StepTemplateLs(StepTemplate):
 class Step1(StepTemplateLs):
     story = [
         _("Hello {}.").format("{{yb:" + os.environ['LOGNAME'] + "}}"),
-        _("Welcome to the dark side of your Kano."),
-        _("You've entered a perilous world where words wield power."),
-        _("Ready? Press {{gb:Enter}} to begin.")
+        _("Welcome to the Terminal."),
+        _("A wild and wondrous world where words wield power. These words are called commands."),
+        _("Want new powers? Press {{gb:Enter}} to begin.")
     ]
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"

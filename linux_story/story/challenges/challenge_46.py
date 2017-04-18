@@ -23,8 +23,8 @@ class StepTemplateSudo(StepTemplate):
 
 class Step1(StepTemplateRm):
     story = [
-        _("{{gb:You saved all the villagers.}}"),
-        _("You are alone with the Rabbit and the bell."),
+        _("{{gb:Brilliant! You saved all the villagers.}}"),
+        _("You are alone with the Rabbit and the bell. The Rabbit turns angrily and starts running towards you."),
         "",
         _("Time to end this.")
     ]
@@ -64,16 +64,13 @@ class Step1(StepTemplateRm):
 
 class Step2(StepTemplateRm):
     story = [
-        _("The anger behind the rabbit's eyes fades, and is replaced with confusion."),
+        _("The rabbit stops. The anger behind its eyes fades, replaced with confusion."),
         "",
-        _("The Swordmaster runs into the room."),
+        _("The Swordmaster runs into the rabbithole."),
         "",
-        _("Swordmaster: {{Bb:\"You did it! The rabbit is free of the cursed bell, and you've saved everyone who was "
-          "kidnapped.\"}}"),
+        _("Swordmaster: {{Bb:\"You did it! The rabbit is free from the cursed bell, and you saved everyone!\"}}"),
         "",
-        _("{{Bb:\"The chest the Rabbit stole is right here. Have you gone through the contents?\"}}"),
-        "",
-        _("{{lb:Examine the contents of the chest.}}")
+        _("{{Bb:\"The chest the rabbit stole is here, have you looked inside?\"}}")
     ]
     start_dir = "~/woods/thicket/rabbithole"
     end_dir = "~/woods/thicket/rabbithole"
@@ -109,16 +106,17 @@ class Step2(StepTemplateRm):
 
 class Step3(StepTemplateSudo):
     story = wrap_in_box([
-        _("{{gb:New Spell:}} Use {{yb:sudo}} to"),
+        _("{{gb:New Power:}} Use {{yb:sudo}} to"),
         _(" {{lb:make yourself into a Super User.}}")
     ])
     story += [
         _("Try it out. Use {{yb:sudo ls}} to look around."),
-        _("You will be prompted for a password."),
+        _("You will be asked for a password."),
         "",
         _("Swordmaster: {{Bb:The Rabbit couldn't guess the password.}}"),
         _("{{Bb:Can you figure it out?}}"),
-        ""
+        "",
+        _("Tip: The password will be invisible to keep it secret. It will look like you've typed nothing, so you need to be careful.")
     ]
     commands = [
         "sudo ls",
@@ -137,13 +135,14 @@ class Step3(StepTemplateSudo):
 
 class Step4(StepTemplateSudo):
     story = [
-        "Swordmaster: {{Bb:\"You may not notice a difference, but you became a Super User for a instant.}}",
-        "{{Bb:Knowing this command allows you to do things when all else fails.\"}}",
+        _("Swordmaster: {{Bb:\"Wow, you have some skills. You may not have noticed the change, but you became a "
+          "Super User for an instant!}}"),
+        _("{{Bb:Knowing this command gives you the power to do things when all else fails.\"}}"),
         "",
-        "{{gb:Congratulations, you learnt sudo!}}",
+        _("{{gb:Well done, you've learnt the power of sudo!}}"),
         "",
-        "{{Bb:\"You should}} {{lb:remove}} {{Bb:this chest so it cannot fall into enemy hands again.}}",
-        "{{Bb:To delete the whole chest, use}} {{yb:rm -r chest/}}{{Bb:. The -r flag is used for directories.\"}}"
+        _("Swordmaster: {{Bb:\"You should}} {{lb:remove}} {{Bb:this chest so it cannot fall into enemy hands again.}}"),
+        _("{{Bb:To delete the whole chest, use}} {{yb:rm -r chest/}}{{Bb:. The -r flag is used for directories.\"}}")
     ]
     commands = [
         "rm -r chest",
@@ -162,7 +161,7 @@ class Step4(StepTemplateSudo):
 class Step5(StepTemplateSudo):
     story = [
         "Swordmaster: {{Bb:\"Well done.\"}}",
-        "{{Bb:\"Let's go back to}} {{bb:~/town}}{{Bb:. We should say hi to everyone.\"}}"
+        "{{Bb:\"Let's go back to}} {{bb:~/town}}{{Bb:. Everyone will want to thank you!\"}}"
     ]
 
     start_dir = "~/woods/thicket/rabbithole"
@@ -191,7 +190,7 @@ class Step5(StepTemplateSudo):
 
 class Step6(StepTemplateSudo):
     story = [
-        _("The townspeople cheer as you walk into town."),
+        _("The towns people cheer as you walk into town."),
         _("{{lb:Look around.}}")
     ]
     commands = [
@@ -226,7 +225,8 @@ class Step6(StepTemplateSudo):
 
 class Step7(StepTemplateSudo):
     story = [
-        _("You see everyone you met on your journey lined up along the street, clapping and cheering."),
+        _("You see your Mum, Dad and everyone else you met on your adventure. They stand around you in the street "
+          "clapping and cheering."),
         _("Talk to everyone.")
     ]
     start_dir = "~/town"
@@ -238,24 +238,24 @@ class Step7(StepTemplateSudo):
 
     all_commands = {
         "cat Mum": _("Mum: {{Bb:I'm so proud of you " + get_username() + "!}}"),
-        "cat Dad": _("Dad: {{Bb:You know " + get_username() + "....you've done alright.}}"),
+        "cat Dad": _("Dad: {{Bb:I'm so proud of you!}}"),
         "cat grumpy-man": _("grumpy-man: {{Bb:\"Ruth told me about how you helped hide her and our animals. "
                             "Thank you!}}"),
-        "cat Ruth": _("Ruth: {{Bb:\"If you ever come by the farm, you can have a glass on milk on us!\"}}"),
+        "cat Ruth": _("Ruth: {{Bb:\"If you ever come by the farm, you can have a glass of milk on us!\"}}"),
         "cat little-boy": _("little-boy: {{Bb:\"Mummy is safe!\"}}"),
         "cat young-girl": _("young-girl: {{Bb:\"We found Mummy. I'm really glad she's safe.\"}}"),
-        "cat Edith": _("Edith: {{Bb:\"I'm so glad Eleanor is safe! And you too Edward.\"}}"),
-        "cat Edward": _("Edward: {{Bb:\"Now all this is over, we can go back to a proper house, instead of living"
-                        " in hiding.\"}}"),
-        "cat Eleanor": _("Eleanor: {{Bb:\"You found my parents! I knew they would be alright.\"}}"),
+        "cat Edith": _("Edith: {{Bb:\"I'm so glad Eleanor is safe! Thank you for saving Edward and I.\"}}"),
+        "cat Edward": _("Edward: {{Bb:\"Now all this is over, we can go back to our house and stop living in "
+                        "hiding.\"}}"),
+        "cat Eleanor": _("Eleanor: {{Bb:\"You found my parents! I knew they'd be alright.\"}}"),
         "cat dog": _("dog: {{Bb:\"Woof woof!\"}}"),
         "cat Bernard": _("Bernard: {{Bb:\"Who is that Masked Swordmaster? He looks oddly familiar.\"}}"),
         "cat Clara": _(
-            "Clara: {{Bb:\"You found my children! Oh I'm so relieved you two are ok! "
-            "Thank you " + get_username() + "\"}}"
+            "Clara: {{Bb:\"Eleanor helped me feel brave, but I'm so happy you found my children young-girl and "
+            "little-boy! Thank you " + get_username() + "\"}}"
         ),
-        "cat Swordmaster": _("Swordmaster: {{Bb:\"You should be very proud of what you've achieved. You are indeed"
-                             " something to be reckoned with.\"}}"),
+        "cat Swordmaster": _("Swordmaster: {{Bb:\"You've done well. You are indeed a force to be reckoned with."
+                             "Keep training and you'll become even more powerful.\"}}"),
         "cat Rabbit": _("Rabbit: {{Bb:....}}"),
         "cat Mayor": _("Mayor: {{Bb:I've been persuaded not to exterminate all rabbits. "
                        "Thanks to you, we can all sleep safely.}}")

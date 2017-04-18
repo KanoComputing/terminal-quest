@@ -15,11 +15,10 @@ class StepTemplateEcho(StepTemplate):
 
 # ----------------------------------------------------------------------------------------
 
-
 class Step1(StepTemplateEcho):
     story = [
         _("Woah! You spoke aloud into the empty room!\n"),
-        _("{{gb:You learnt the new skill echo!}}\n"),
+        _("{{gb:You learnt the new power {{lb:echo}}!}}\n"),
         _("This command can probably be used to talk to people."),
 
         _("\nNow let's head to {{bb:~}} to find that farm!"),

@@ -21,8 +21,7 @@ class Step1(StepTemplateChmod):
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
     hints = [
-        _("{{rb:Use}} {{yb:cat Swordmaster}} {{rb:to}} {{lb:listen}} "
-        "{{rb:to what the Swordmaster has to say.}}")
+        _("{{rb:Use}} {{yb:cat Swordmaster}} {{rb:to}} {{lb:listen}} {{rb:to what the Swordmaster has to say.}}")
     ]
     commands = [
         "cat Swordmaster"
@@ -87,8 +86,8 @@ class Step3(StepTemplateChmod):
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
     extra_hints = {
-        "echo 1": _("Swordmaster: {{Bb:\"A command that makes the wielder into a Super User and gives them "
-                    "tremendous power.\"}}"),
+        "echo 1": _("Swordmaster: \"A command that gives the wielder tremendous power, "
+                    "turning you into a Super User.\"}}"),
         "echo 2": _("Swordmaster: {{Bb:\"Being a swordmaster, I have the ability to}} {{lb:remove}} {{Bb:others. "
                     "This makes people uneasy around me, so I choose to live in the woods instead.\"}}")
     }

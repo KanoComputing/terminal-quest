@@ -37,10 +37,10 @@ class StepPeopleInCage(StepTemplateRm):
 
     def cat_people(self):
         people = {
-            "Mum": _("Mum: {{Bb:\"" + get_username() + ", I'm so glad to see you're safe!\"}}"),
+            "Mum": _("Mum: {{Bb:\"" + get_username() + ", I'm so glad to see you, but it's not safe here!\"}}"),
 
-            "Dad": _("Dad: {{Bb:\"I was kidnapped by a rabbit! Although, I don't know how lucid that rabbit is "
-                     "right now.\"}}"),
+            "Dad": _("Dad: {{Bb:\"" + get_username() + ", strangest thing happened. I was kidnapped by a rabbit! "
+                     "Although, it seems to be acting even stranger now.\"}}"),
 
             "grumpy-man": _("grumpy-man: {{Bb:\"My legs are fixed. I hope my wife knows I'm safe.\"}}"),
             "Mayor": _("Mayor: {{Bb:\"When I get out of here, I'm going to make a law to hunt all rabbits.\""),
@@ -81,8 +81,9 @@ class Step1(StepPeopleInCage):
 
 class Step2(StepPeopleInCage):
     story = [
-        _("You see the rabbit in front of you, a cage and a mysteriously glowing bell."),
-        _("Swordmaster: {{Bb:Hey! Inside the cage! We're all here!}}"),
+        _("You see the Rabbit, but it seems to be distracted."),
+        _("There is also a cage and a mysteriously glowing bell. You sneak over to the cage."),
+        _("Swordmaster: {{Bb:\"Psst! We're inside the cage!\"}}"),
         "",
         _("{{lb:Look inside the cage.}}")
     ]
@@ -102,10 +103,11 @@ class Step2(StepPeopleInCage):
 
 class Step3(StepPeopleInCage):
     story = [
-        _("You see all the people who were kidnapped inside the cage."),
-        _("Swordmaster: {{Bb:\"Hey, listen, I have something important to say.\"}}"),
+        _("You see all the people who disappeared, looking miserable, inside the cage. Including your Mum and Dad!"),
+        _("Swordmaster: {{Bb:\"Hey, listen. I have something to say\"}}"),
         "",
-        _("{{lb:Listen}} to what the Swordmaster has to say.")
+        _("Speak to your Mum and Dad. You can also listen to the other people trapped. "
+          "And when you're ready listen to what the Swordmaster has to say.")
     ]
     start_dir = "~/woods/thicket/rabbithole"
     end_dir = "~/woods/thicket/rabbithole"
@@ -122,9 +124,8 @@ class Step3(StepPeopleInCage):
 
 class Step4(StepPeopleInCage):
     story = [
-        _("Swordmaster: {{Bb:\"Listen, the Rabbit is possessed.\"}}"),
-        _("{{Bb:\"I've seen this rabbit before in the woods, and it was innocent then.\"}}"),
-        _("{{Bb:\"I think}} {{lb:the bell}} {{Bb:is to blame here.\"}}"),
+        _("Swordmaster: {{Bb:\"Listen, we don't have much time. But I think it's the bell, "
+          "it's controlling the Rabbit. It has mysterious powers.\"}}"),
         "",
         _("{{lb:Examine}} the bell.")
     ]
@@ -145,8 +146,8 @@ class Step5(StepPeopleInCage):
     story = [
         _("The bell glows menacingly."),
         "",
-        _("Swordmaster: {{Bb:\"The rabbit hasn't figured out how to use what it stole.\"}}"),
-        _("{{Bb:\"Before it does, get us out of this cage. We're locked up in here.\"}}"),
+        _("Swordmaster: {{Bb:\"The Rabbit hasn't figured out how to use the power it stole. But it will soon.\"}}"),
+        _("\"{{Bb:Before it does you must let us out of this cage, quietly.\"}}"),
         "",
         _("{{lb:You need to unlock the cage.}}")
     ]
@@ -169,8 +170,7 @@ class Step5(StepPeopleInCage):
 class Step6(StepPeopleInCage):
     story = [
         _("Swordmaster: {{Bb:\"Now move us to the}} {{bb:~/town.}}{{Bb:\"}}"),
-        _("{{Bb:\"To move a large group of people, use the}} {{lb:*}} {{Bb:wildcard character.\"}}"),
-        _("{{Bb:\"Use}} {{yb:mv cage/* ~/town}} {{Bb:to move all of us back to town.\"}}")
+        _("{{Bb:\"To move a large group of people use the *. Like this:}} {{yb:mv cage/* ~/town}}{{Bb:\"}}")
     ]
     start_dir = "~/woods/thicket/rabbithole"
     end_dir = "~/woods/thicket/rabbithole"

@@ -86,7 +86,8 @@ class Step3(StepTemplateNano):
 
 class Step4(StepTemplateNano):
     story = [
-        _("You see what looks like another tool and a couple of diaries.\n"),
+        _("You see what looks like another script and a couple of diaries."),
+        "",
         _("Shall we {{lb:examine}} them?")
     ]
     start_dir = "~/town/east/shed-shop/basement"

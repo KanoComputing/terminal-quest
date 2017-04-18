@@ -25,7 +25,7 @@ class Step1(StepTemplateCd):
         _("That's weird. No time for that now though - lets find {{bb:Mum}}.\n "),
     ]
     story += wrap_in_box([
-        _("{{gb:New Spell}}: {{yb:cd}} lets you {{lb:move}}"),
+        _("{{gb:New Power}}: {{yb:cd}} lets you {{lb:move}}"),
         _("between places."),
     ])
     story += [

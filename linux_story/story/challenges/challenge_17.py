@@ -28,11 +28,10 @@ class StepTemplateEcho(StepTemplate):
 
 # ----------------------------------------------------------------------------------------
 
-
 class Step1(StepTemplateMv):
     story = [
-        _("You are in your room, standing in front of the {{bb:.chest}} containing all the commands you've "
-          "learned so far.\n"),
+        _("You're in your room, standing in front of the {{bb:.chest}} containing all the commands "
+          "you've learned so far.\n"),
         _("Maybe something else is hidden in the house?\n"),
         _("{{lb:Look}} in the hallway {{lb:behind you}}. Remember, behind you is {{bb:..}}")
     ]
@@ -208,7 +207,7 @@ class Step7(StepTemplateEcho):
         _("Let's test this out. \n"),
     ]
     story += wrap_in_box([
-        _("{{gb:New Spell}}: {{yb:echo}} followed by words"),
+        _("{{gb:New Power}}: {{yb:echo}} followed by words"),
         _("lets you {{lb:speak}}"),
     ])
 

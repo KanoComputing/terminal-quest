@@ -25,10 +25,8 @@ story_replies = {
         {
             "user": _("\"How did he lock it?\""),
             "clara": \
-                _("Clara: {{Bb:\"I don't know, I wasn't senior enough " +\
-                "to be taught.\"}}" +\
-                "\n{{Bb:\"I think he was taught from a}} " +\
-                "{{bb:masked swordmaster}} {{Bb:living outside of town.\"}}")
+                _("Clara: {{Bb:\"I don't know, it's a very special lock. But, I think he learnt the secrets of the "
+                  "lock from a masked swordmaster living outside of town.\"}}")
         },
         {
             "user": _("\"Where would I find this masked swordmaster?\""),

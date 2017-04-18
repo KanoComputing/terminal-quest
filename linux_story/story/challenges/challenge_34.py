@@ -171,7 +171,7 @@ class Step8(StepTemplateChmod):
         ""
     ]
     story += wrap_in_box([
-        _("{{gb:New Spell:}} Use "),
+        _("{{gb:New Power:}} Use "),
         _("{{yb:chmod +r dark-room}} "),
         _("to allow yourself to {{lb:read}} "),
         _("the contents of dark-room.")

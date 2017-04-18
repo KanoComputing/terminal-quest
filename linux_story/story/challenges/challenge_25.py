@@ -64,14 +64,11 @@ class Step1(StepTemplateMkdir):
 class Step2(StepTemplateMkdir):
     story = [
         _("The tool has an inscription that reads \"mkdir shed\"."),
-        _("You recognise the command {{yb:mkdir}}. It's what you used " +\
-        "to help {{bb:Ruth}} in the farm."),
+        _("You recognise the command {{yb:mkdir}}. It's what you used to help {{bb:Ruth}} in the farm."),
 
-        _("\nBernard: {{Bb:It's like magic! Just run the command, " +\
-        "and you get a new shed.}}"),
-
-        _("{{Bb:Try it out! Use it with}} " +\
-        "{{yb:./best-shed-maker-in-the-world.sh}}"),
+        _("Bernard: {{Bb:\"This tool is called a script. It's incredible. Just run the command, "
+          "and you get a new shed.\"}}"),
+        _("{{Bb:\"Try it out. Use it with ./best-shed-maker-in-the-world.sh\"}}"),
 
         _("\n{{gb:Use}} {{ob:TAB}} {{gb:to speed up your typing.}}")
     ]
@@ -80,23 +77,19 @@ class Step2(StepTemplateMkdir):
     end_dir = "~/town/east/shed-shop"
 
     hints = [
-        _("{{rb:Do as Bernard says - use}} " +\
-        "{{yb:./best-shed-maker-in-the-world.sh}} " +\
-        "{{rb:to run his script}}")
+        _("{{rb:Do as Bernard says - use}} {{yb:./best-shed-maker-in-the-world.sh}} {{rb:to run his script}}")
     ]
     commands = [
         "./best-shed-maker-in-the-world.sh"
     ]
     companion_speech = \
-        _("Eleanor: {{Bb:Isn't that just the same as running}} " +\
-        "{{yb:mkdir shed}}{{Bb:?}}")
+        _("Eleanor: {{Bb:Isn't that just the same as running}} {{yb:mkdir shed}}{{Bb:?}}")
 
     def check_command(self, line):
         if line == "./best-horn-in-the-world.sh":
             self.send_hint(
-                _("\n{{rb:You're trying to run the wrong script. " +\
-                "You want to run}} " +\
-                "{{yb:./best-shed-maker-in-the-world.sh}}")
+                _("\n{{rb:You're trying to run the wrong script. You want to run}} "
+                  "{{yb:./best-shed-maker-in-the-world.sh}}")
             )
         else:
             return StepTemplateMkdir.check_command(self, line)
@@ -205,12 +198,11 @@ class Step5(StepTemplateMkdir):
 
 class Step6(StepTemplateMkdir):
     story = [
-        _("The tool reads {{yb:eco \"Honk!\"}}"),
+        _("The script reads {{yb:eco \"Honk!\"}}"),
         _("Maybe it should read {{yb:echo \"Honk!\"}} instead..."),
-        _("How could we make changes to this tool?"),
+        _("How could we make changes to this script?"),
         _("\nBernard: {{Bb:\"Ho ho, you look like you understand the problem.\"}}"),
-        _("Eleanor: {{Bb:\"If we need extra help, we can go to the " +\
-        "library, it was just outside.\"}}"),
+        _("Eleanor: {{Bb:\"If we need extra help, we can go to the library, it was just outside.\"}}"),
         _("\nBefore we go, have a {{lb:look}} in the {{bb:basement}}.")
     ]
 

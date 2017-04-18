@@ -51,7 +51,7 @@ class Step2(StepTemplateNano):
         _("Bernard: {{Bb:\"Hellooooo. You came back to fix my script!\"}}\n "),
     ]
     story += wrap_in_box([
-        _("{{gb:New Spell}}: {{yb:nano}} followed by an"),
+        _("{{gb:New Power}}: {{yb:nano}} followed by an"),
         _("object lets you {{lb:edit}} it"),
     ])
     story += [

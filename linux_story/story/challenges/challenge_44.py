@@ -19,9 +19,9 @@ class StepTemplateRm(StepTemplate):
 
 class Step1(StepTemplateRm):
     story = [
-        _("You destroyed the note."),
+        _("Woah! You destroyed the note."),
         "",
-        _("It is time to find that rabbit."),
+        _("It's time to find that rabbit and put an end to this madness."),
         _("{{lb:Go to where you met the rabbit.}}")
     ]
     start_dir = "~/town/east/library/private-section"
@@ -128,7 +128,7 @@ class Step4(StepTemplateRm):
 
 class Step5(StepTemplateRm):
     story = [
-        _("You pushed the boulder aside."),
+        _("You push the boulder. With some effort, it slowly moves aside. Light pours out from the crack."),
         _("{{lb:Go inside the rabbithole.}}")
     ]
     start_dir = "~/woods/thicket"

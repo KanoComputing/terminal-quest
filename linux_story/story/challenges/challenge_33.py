@@ -150,7 +150,7 @@ class Step3(StepTemplateNano):
 
 class Step4(StepTemplateNano):
     story = [
-        _("So the signpost has an instruction on it? Let's carry it out.")
+        _("Okay, the signpost has an instruction on it. Let's try it out.")
     ]
 
     # It would be good if we could pass the current dir across and this would

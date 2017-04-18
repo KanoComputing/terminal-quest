@@ -26,9 +26,8 @@ REPLY_PRINT_TEXT = _("{{yb:A rabbit came and stole the command in front of me.}}
 
 class Step1(StepTemplateChmod):
     story = [
-        _("You are standing alone in the library. The rabbit has stolen the command, and you have an "
-          "increased sense of impending doom."),
-        _("The Swordmaster runs into the room."),
+        _("You stand alone in the library. The Rabbit has stolen the command."),
+        _("There is a growing sense of impending doom. Then, the Swordmaster runs into the room."),
         "",
         _("Swordmaster: {{Bb:\"What have you done?\"}}"),
         "",
@@ -99,11 +98,9 @@ class Step100(StepTemplateChmod):
 class Step2(StepTemplateChmod):
     print_text = [REPLY_PRINT_TEXT]
     story = [
-        _("Swordmaster: {{Bb:\"I see.\"}}"),
-        _("{{Bb:\"I frequently see a white rabbit around my place. It must live close to my house.\"}}"),
-        _("{{Bb:\"It always seemed innocent before. I wonder what has changed?\"}}"),
-        _("{{Bb:\"Perhaps he is}} {{lb:possessed}}{{Bb:.\"}}"),
-        "",
+        _("Swordmaster: {{Bb:\"A Rabbit? Truth be told, I often see a white rabbit in a thicket near my house.\"}}"),
+        _("{{Bb:\"But it always seemed so innocent, I would never have guessed it could do something like this.\"}}"),
+        _("{{Bb:\"I wonder what has changed? Perhaps...hmm...the bell...\"}}"),
         _("{{Bb:\"We must remove the source of the problem. I will teach you how.\"}}"),
         "",
         _("{{pb:Ding. Dong.}}"),
@@ -165,7 +162,7 @@ class Step4(StepTemplateRm):
     ]
 
     story += wrap_in_box([
-        _("{{gb:New Spell:}} Use {{yb:rm}} to"),
+        _("{{gb:New Power:}} Use {{yb:rm}} to"),
         _(" {{lb:remove an item}}.")
     ])
 

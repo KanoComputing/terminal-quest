@@ -57,7 +57,7 @@ class Step2(StepTemplateChmod):
 
 class Step3(StepTemplateChmod):
     story = wrap_in_box([
-        _("{{gb:New Spell:}} Use"),
+        _("{{gb:New Power:}} Use"),
         _("{{yb:chmod +x locked-room}}"),
         _("to unlock the locked-room.")
     ])

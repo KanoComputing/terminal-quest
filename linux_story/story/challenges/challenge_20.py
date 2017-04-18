@@ -28,9 +28,9 @@ class Step1(StepTemplateEcho):
         _("{{yb:\"Some people survived by going into hiding.\"}}")
     ]
     story = [
-        _("Ruth: {{Bb:\"Oh! That reminds me, my husband used " +\
-        "to build special shelters to store crops in over winter. " +\
-        "I think he used a specific tool. " +\
+        _("Ruth: {{Bb:\"Oh! That reminds me, my husband used " +
+        "to build special shelters to store crops in over winter. " +
+        "I think he used a specific tool. " +
         "We should take a look in his toolshed to see if we can find it.\"}}"),
         _("\nUse the {{lb:cd}} command to go into the {{bb:toolshed}}.\n")
     ]
@@ -104,16 +104,15 @@ class Step2(StepTemplateEcho):
 
 class Step3(StepTemplateEcho):
     story = [
-        _("Ruth: {{Bb:\"Ah, look! There are some instructions " +\
-        "under}} {{bb:MKDIR}}{{Bb:.\"}}"),
+        _("Ruth: {{Bb:\"Ah, look! There are some instructions with the word}} {{bb:MKDIR}} {{Bb:on it.\"}}"),
         _("{{Bb:\"What does it say?\"}}"),
-        _("\n{{lb:Examine}} the {{bb:MKDIR}} instructions.")
+        "",
+        _("{{lb:Examine}} the {{bb:MKDIR}} instructions.")
     ]
     hints = [
-        _("Ruth: {{Bb:\"...you are able to read, yes? You use}} {{yb:cat}} " +\
-        "{{Bb:to read things.\"}}"),
-        _("Ruth: {{Bb:\"What do you kids learn in schools nowadays...\"" +\
-        "\n\"Just use}} {{yb:cat MKDIR}} {{Bb:to read the paper.\"}}"),
+        _("Ruth: {{Bb:\"...you are able to read, yes? You use}} {{yb:cat}} {{Bb:to read things.\"}}"),
+        _("Ruth: {{Bb:\"What do you kids learn in schools nowadays...\"}}"),
+        _("{{Bb:\"Just use}} {{yb:cat MKDIR}} {{Bb:to read the paper.\"}}"),
         _("{{rb:Use}} {{yb:cat MKDIR}} {{rb:to read it.}}")
     ]
     start_dir = "~/farm/toolshed"
@@ -128,13 +127,12 @@ class Step3(StepTemplateEcho):
 
 class Step4(StepTemplateMkdir):
     story = [
-        _("Ruth: {{Bb:\"This says you can make something using something " +\
-        "called}} {{yb:mkdir}}{{Bb:?\"}}"),
+        _("Ruth: {{Bb:\"This says you can make something using the word}} {{yb:mkdir}}{{Bb:?\"}}"),
         _("\nTry making an igloo using {{yb:mkdir igloo}}\n "),
     ]
 
     story += wrap_in_box([
-        _("{{gb:New Spell}}: {{yb:mkdir}} followed by a word"),
+        _("{{gb:New Power}}: {{yb:mkdir}} followed by a word"),
         _("lets you {{lb:create}} a shelter"),
     ])
 

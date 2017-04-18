@@ -80,25 +80,19 @@ class Step1(StepTemplateCd):
         return 11, 2
 
 
-# After we've heard some of the story from all the people
 class Step2(StepTemplateMv):
     story = [
         _("Edward looks like he has something he wants to say to you.\n"),
-        _("{{wb:Edward:}} {{Bb:\"Hi there. Can you help me with something?\""),
+        _("{{wb:Edward:}} {{Bb:\"Hey! Can you help me?\"}}"),
 
-        _("\"I learnt this spell for moving items from " +
-          "one place to another. But I can't seem to make it work.\""),
+        _("{{Bb:\"I've been trying to move this}} {{bb:apple}} {{Bb:into the}} {{bb:basket}}{{Bb:.\"}}}}"),
 
-        _("\"I've been trying to move this}} {{bb:apple}} {{Bb:into the}} " +
-          "{{bb:basket}}{{Bb:\"}}"),
-
-        _("{{Bb:\"I was told the command was}} {{yb:mv apple basket/}}{{Bb:\"}}"),
-        _("{{Bb:\"But I don't understand what that means. Do I say it? " +
-          "Or write it?\"}}\n"),
+        _("{{Bb:\"I was told the command}} {{yb:mv apple basket/}} {{Bb:would make it happen, but I can't seem to make "
+          "it work. Do you have the power to make it happen?\"}}\n"),
     ]
 
     story += wrap_in_box([
-        _("{{gb:New Spell}}: to {{lb:move}} objects, type {{yb:mv}}"),
+        _("{{gb:New Power}}: to {{lb:move}} objects, type {{yb:mv}}"),
         _("and the object name."),
     ])
 
@@ -166,14 +160,12 @@ class Step4(StepTemplateMv):
         return 11, 5
 
 
-# After cat-ing the person again?
 class Step5(StepTemplateMv):
     story = [
         _("{{gb:Excellent, you moved the apple into the basket!}}"),
-        _("\n{{wb:Edward:}} {{Bb:\"Hey, you did it! What was I doing wrong?\"}}"),
-        _("{{Bb:\"Can you move the apple from the basket back here?\"}}\n"),
-        _("{{lb:Move}} the {{bb:apple}} from the {{bb:basket}} to your current position. This is represented by {{bb:./}} \n"),
-        _("So {{yb:mv basket/apple ./}} is the full command. You need the {{bb:./}} !\n")
+        _("\n{{wb:Edward:}} {{Bb:\"Wow, you did it!\"}}"),
+        _("{{Bb:\"Can you also move the}} {{bb:apple}} {{Bb:from the}} {{bb:basket}} "
+          "{{Bb:back to here?\"}}\n")
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
@@ -182,7 +174,8 @@ class Step5(StepTemplateMv):
         "mv basket/apple ./"
     ]
     hints = [
-        _("{{rb:Use the command}} {{yb:mv basket/apple ./}} {{rb:to move the apple from the basket to your current position}} {{bb:./}}")
+        _("{{rb:Use the command}} {{yb:mv basket/apple ./}} {{rb:to move the apple from the basket to your current "
+          "position}} {{bb:./}}")
     ]
 
     def block_command(self, line):
@@ -230,8 +223,9 @@ class Step6(StepTemplateMv):
 
 class Step7(StepTemplateMv):
     story = [
-        _("{{wb:Edith:}} {{Bb:\"No!! Honey, come back!!\"}}"),
-        _("{{Bb:\"You there, save my little girl!\"}}\n"),
+        _("{{wb:Edith:}} {{Bb:\"No! Honey, come back!!!\"}}"),
+        _("{{Bb:\"You, please, save my little girl\"}}\n"),
+
         _("First, {{lb:look outside}} for {{bb:Eleanor}} with {{yb:ls ../}}"),
     ]
     start_dir = "~/town/.hidden-shelter"

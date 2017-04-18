@@ -128,7 +128,8 @@ class Step7(StepTemplateCd):
 
 class Step8(StepTemplateCd):
     story = [
-        _("Going back is super easy. Just type {{yb:cd ..}} to go back the way you came.\n")
+        _("Huh? That's weird."),
+        _("But going back is super easy. Just type {{yb:cd ..}} to go back the way you came.\n")
     ]
     start_dir = "~/my-house/garden/greenhouse"
     end_dir = "~/my-house/garden"

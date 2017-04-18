@@ -27,7 +27,7 @@ class Step1(StepCat):
     ]
 
     story += wrap_in_box([
-        _("{{gb:New Spell}}: to {{lb:examine}} objects, type"),
+        _("{{gb:New Power}}: to {{lb:examine}} objects, type"),
         _("{{yb:cat}} and the object name."),
     ])
 
@@ -111,7 +111,7 @@ class Step4(StepCat):
 
 class Step5(StepCat):
     story = [
-        _("Awesome, your outfit is nearly complete.\n"),
+        _("Awesome, you're nearly dressed to quest.\n"),
         _("Finally, check out that {{bb:cap}}.\n")
     ]
     start_dir = "~/my-house/my-room"

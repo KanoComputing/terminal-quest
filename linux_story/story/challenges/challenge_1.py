@@ -30,7 +30,7 @@ class Step1(StepLs):
     ]  # TODO: " \ is a hack in this array to stop word wrap code screwing up and adding new lines in where it shouldn't
 
     story += wrap_in_box([
-        _("{{gb:New Spell:}} Type {{yb:ls}} and press"),
+        _("{{gb:New Power:}} Type {{yb:ls}} and press"),
         _("{{ob:Enter}} to {{lb:look around}}."),
     ])
 
