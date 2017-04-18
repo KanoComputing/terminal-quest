@@ -59,9 +59,9 @@ class Step2(StepTemplateChmod):
 class Step3(StepTemplateChmod):
     story = [
         _("Swordmaster:"),
-        _("{{Bb:If you have me, you want to share me."),
+        _("{{Bb:\"If you have me, you want to share me."),
         _("If you share me, you haven't got me."),
-        _("What am I?}}"),
+        _("What am I?\"}}"),
         "",
         _("{{yb:1. A secret}}"),
         _("{{yb:2. I don't know}}"),
@@ -82,8 +82,8 @@ class Step3(StepTemplateChmod):
 
     def check_command(self, line):
         if line.startswith("echo ") and line not in self.commands:
-            self.send_hint("Swordmaster: {{Bb:Incorrect. Did you finish the challenges in the cave? "
-                           "The answer was in there.}}")
+            self.send_hint("Swordmaster: {{Bb:\"Incorrect. Did you finish the challenges in the cave? "
+                           "The answer was in there.\"}}")
         return StepTemplateChmod.check_command(self, line)
 
     def next(self):

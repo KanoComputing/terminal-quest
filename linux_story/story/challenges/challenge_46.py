@@ -237,8 +237,8 @@ class Step7(StepTemplateSudo):
     ]
 
     all_commands = {
-        "cat Mum": _("Mum: {{Bb:I'm so proud of you " + get_username() + "!}}"),
-        "cat Dad": _("Dad: {{Bb:I'm so proud of you!}}"),
+        "cat Mum": _("Mum: {{Bb:\"I'm so proud of you " + get_username() + "!\"}}"),
+        "cat Dad": _("Dad: {{Bb:\"I'm so proud of you!\"}}"),
         "cat grumpy-man": _("grumpy-man: {{Bb:\"Ruth told me about how you helped hide her and our animals. "
                             "Thank you!}}"),
         "cat Ruth": _("Ruth: {{Bb:\"If you ever come by the farm, you can have a glass of milk on us!\"}}"),
@@ -257,8 +257,8 @@ class Step7(StepTemplateSudo):
         "cat Swordmaster": _("Swordmaster: {{Bb:\"You've done well. You are indeed a force to be reckoned with."
                              "Keep training and you'll become even more powerful.\"}}"),
         "cat Rabbit": _("Rabbit: {{Bb:....}}"),
-        "cat Mayor": _("Mayor: {{Bb:I've been persuaded not to exterminate all rabbits. "
-                       "Thanks to you, we can all sleep safely.}}")
+        "cat Mayor": _("Mayor: {{Bb:\"I've been persuaded not to exterminate all rabbits. "
+                       "Thanks to you, we can all sleep safely.\"}}")
     }
 
     def check_command(self, line):

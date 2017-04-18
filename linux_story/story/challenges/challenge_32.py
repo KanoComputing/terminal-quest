@@ -39,7 +39,7 @@ class Step1(StepTemplateNano):
             "contents": get_story_file("signpost")
         },
         {
-            "path": "~/woods/clearing/house/swordmaster",
+            "path": "~/woods/clearing/house/Swordmaster",
             "contents": get_story_file("swordmaster")
         }
     ]

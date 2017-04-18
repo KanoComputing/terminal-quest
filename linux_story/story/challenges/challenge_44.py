@@ -36,7 +36,7 @@ class Step1(StepTemplateRm):
 
     file_list = [
         {
-            "path": "~/town/east/library/rabbithole/swordmaster",
+            "path": "~/town/east/library/rabbithole/Swordmaster",
             "contents": get_story_file("swordmaster"),
             "permissions": 0644,
             "type": "file"
