@@ -92,7 +92,6 @@ class StepNano:
         self.__goal_nano_filepath = goal_path
 
     def check_nano_content_default(self):
-        self.__log_to_file("in check_nano_content_default, " + self.get_nano_content())
         if not self.get_nano_running():
             if self.get_last_nano_filename() == self.get_goal_nano_save_name():
                 return True
@@ -204,14 +203,12 @@ class StepNano:
         if not os.path.exists(pipe_name):
             os.mkfifo(pipe_name)
         f = open(pipe_name)
-        open("/home/caroline/tq-log", "w+").close()
 
         while self.get_nano_running():
             time.sleep(0.2)
             line = None
 
             for line in iter(f.readline, ''):
-                self.__log_to_file(line)
                 data = ast.literal_eval(line)
 
                 if "contents" in data:
@@ -237,15 +234,9 @@ class StepNano:
             else:
                 # TODO: this doesn't get hit if the user does a backspace
                 if line:
-                    self.__log_to_file("line is " + str(line) + "\n")
                     self.__step.check_nano_contents()
                     if not self.get_nano_running():
                         return
-
-    def __log_to_file(self, line):
-        g = open("/home/caroline/tq-log", "a+")
-        g.write(line)
-        g.close()
 
     def __contents_changed(self, contents):
         # self.__cancelled_save()
