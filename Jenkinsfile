@@ -5,5 +5,5 @@ import build_deb_pkg
 
 
 stage ('Build') {
-    build_deb_pkg 'linux-story', env.BRANCH_NAME, 'scratch'
+    autobuild_repo_pkg 'linux-story'
 }
