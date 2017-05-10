@@ -1,27 +1,29 @@
- ,---------------------------------------------,
-/                                               \
-|   _       _____                               |
-|  | |     / ____|                              |
-|  | |    | (___                                |
-|  | |     \___ \                               |
-|  | |____ ____) |                              |
-|  |______|_____/                               |
-|                                               |
-|  This spell shows you your surroundings.      |
-|                                               |
-|  ls                                           |
-|  Shows you what is around your current        |
-|  position                                     |
-|                                               |
-|  ls -a                                        |
-|  Will show you hidden things in the           |
-|  current directory                            |
-|                                               |
-|  ls kitchen                                   |
-|  Shows you what is in the directory           |
-|  kitchen, assuming you are in my-house        |
-|                                               |
-|  ls ../                                       |
-|  Shows what's is in the directory behind you  |
-\                                              /
- `--------------------------------------------'
+ ,----------------------------------------,
+/                                          \
+|   _       _____                          |
+|  | |     / ____|                         |
+|  | |    | (___                           |
+|  | |     \___ \                          |
+|  | |____ ____) |                         |
+|  |______|_____/                          |
+|                                          |
+|  This wondrous word gives you the power  |
+|  to see your surroundings.               |
+|                                          |
+|  ls                                      |
+|  Shows you what is around your current   |
+|  position                                |
+|                                          |
+|  ls -a                                   |
+|  Will show you hidden things in the      |
+|  current directory                       |
+|                                          |
+|  ls kitchen                              |
+|  Shows you what is in the directory      |
+|  kitchen, assuming you are in my-house   |
+|                                          |
+|  ls ../                                  |
+|  Shows what's is in the directory behind |
+|  you                                     |
+\                                         /
+ `---------------------------------------'

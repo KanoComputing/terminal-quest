@@ -8,13 +8,15 @@
 
 import os
 
-from gi.repository import Vte, GLib
+from gi.repository import Vte, GLib, Gdk, Pango
 
 
 class TerminalUi(Vte.Terminal):
 
-    def __init__(self):
+    def __init__(self, width, height, dark=False):
         Vte.Terminal.__init__(self)
+        self.__dark = dark
+
         self.fork_command_full(
             Vte.PtyFlags.DEFAULT,
             os.environ['HOME'],
@@ -27,13 +29,30 @@ class TerminalUi(Vte.Terminal):
 
         # This prevents the user scrolling back through the history
         # self.set_scrollback_lines(0)
+        self.set_size(width, height)
+        self.__setup_appearance()
 
-        # OK. So, this is "required" as a quick fix to a bug where the terminal
-        # would wrap the line on itself. It is due to the MenuScreen and how the
-        # main window add/removes it. By setting the column and row count to large
-        # initial values, it will force to resize from large to smaller values as
-        # opposed from a default 80, 24.
-        self.set_size(1000, 1000)  # TODO: please fix this
+    def __setup_appearance(self):
+        self.__apply_fg_and_bg_colours()
+        self.set_margin_top(10)
+        self.set_margin_left(10)
+        self.set_margin_right(10)
+        font_desc = Pango.FontDescription()
+        font_desc.set_family("monospace")
+        font_desc.set_size(13 * Pango.SCALE)
+        self.set_font(font_desc)
+
+    def __apply_fg_and_bg_colours(self):
+        fg_color = Gdk.Color.parse("#ffffff")[1]
+        bg_color = self.__get_bg_colour()
+        self.set_colors(fg_color, bg_color, [])
+        self.show_all()
+
+    def __get_bg_colour(self):
+        if self.__dark:
+            return Gdk.Color.parse("#260000")[1]
+        else:
+            return Gdk.Color.parse("#262626")[1]
 
     def feed_child(self, command):
         Vte.Terminal.feed_child(self, command, len(command))
@@ -41,3 +60,11 @@ class TerminalUi(Vte.Terminal):
     def launch_command(self, command):
         command = "temp=$(tty) ; " + command + " > $temp | reset\n"
         self.feed_child(command)
+
+    def set_dark_theme(self):
+        self.__dark = True
+        self.__apply_fg_and_bg_colours()
+
+    def set_normal_theme(self):
+        self.__dark = False
+        self.__apply_fg_and_bg_colours()

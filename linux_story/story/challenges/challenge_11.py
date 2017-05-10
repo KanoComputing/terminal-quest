@@ -7,30 +7,20 @@
 
 
 import os
-import sys
-
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
+from linux_story.StepTemplate import StepTemplate
 from linux_story.story.terminals.terminal_cd import TerminalCd
-
-# Change this import statement, need to decide how to group the terminals
-# together
 from linux_story.story.terminals.terminal_mv import TerminalMv
-from linux_story.story.challenges.challenge_12 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_commands
-from linux_story.common import tq_file_system
+from linux_story.common import tq_file_system, get_story_file
 from linux_story.helper_functions import wrap_in_box
 
 
-class StepTemplateCd(TerminalCd):
-    challenge_number = 11
+class StepTemplateCd(StepTemplate):
+    TerminalClass = TerminalCd
 
 
-class StepTemplateMv(TerminalMv):
-    challenge_number = 11
+class StepTemplateMv(StepTemplate):
+    TerminalClass = TerminalMv
 
 
 # ----------------------------------------------------------------------------------------
@@ -47,75 +37,62 @@ class Step1(StepTemplateCd):
 
     # Use functions here
     all_commands = {
-        "cat Edith": _("\n{{wb:Edith:}} {{Bb:\"You found us! Edward, I told you to keep your voice down.\"}}"),
-        "cat Eleanor": _("\n{{wb:Eleanor:}} {{Bb:\"My mummy is scared the bell will find us if we go outside.\"}}"),
-        "cat Edward": _("\n{{wb:Edward:}} {{Bb:\"I'm sorry Edith...but I don't think they mean any harm. Maybe they could help us?\"}}"),
-        "cat dog": _("\n{{wb:Dog:}} {{Bb:\"Woof woof!\"}}")
+        "cat Edith": _("{{wb:Edith:}} {{Bb:\"You found us! Edward, I told you to keep your voice down.\"}}"),
+        "cat Eleanor": _("{{wb:Eleanor:}} {{Bb:\"My mummy is scared the bell will find us if we go outside.\"}}"),
+        "cat Edward": _("{{wb:Edward:}} {{Bb:\"I'm sorry Edith...but I don't think they mean any harm. "
+                        "Maybe they could help us?\"}}"),
+        "cat dog": _("{{wb:Dog:}} {{Bb:\"Woof woof!\"}}")
     }
 
-    def check_command(self):
+    def check_command(self, line):
 
         if not self.all_commands:
             return True
 
         # If they enter ls, say Well Done
-        if self.last_user_input == 'ls':
-            hint = _("\n{{gb:You look around.}}")
-            self.send_text(hint)
+        if line == 'ls':
+            hint = _("{{gb:You look around.}}")
+            self.send_hint(hint)
             return False
 
-        # check through list of commands
-        end_dir_validated = False
-        self.hints = [
-            _("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % self.all_commands.keys()[0]
-        ]
-
-        end_dir_validated = self.current_path == self.end_dir
+        end_dir_validated = self.get_fake_path() == self.end_dir
 
         # if the validation is included
-        if self.last_user_input in self.all_commands.keys() and \
-                end_dir_validated:
+        if line in self.all_commands.keys() and end_dir_validated:
             # Print hint from person
-            hint = "\n" + self.all_commands[self.last_user_input]
-
-            self.all_commands.pop(self.last_user_input, None)
+            hint = self.all_commands[self._last_user_input]
+            self.all_commands.pop(self._last_user_input, None)
 
             if len(self.all_commands) > 0:
-                hint += _("\n{{gb:Well done! Check on %d more.}}\n") % len(self.all_commands)
+                hint += _("\n{{gb:Well done! Check on %d more.}}") % len(self.all_commands)
             else:
                 hint += _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
 
-            self.send_text(hint)
+            self.send_hint(hint)
 
         else:
-            self.send_text("\n" + self.hints[0])
+            self.send_hint(_("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % self.all_commands.keys()[0])
 
         # Don't pass unless the user has emptied self.all_commands
         return False
 
     def next(self):
-        Step2()
+        return 11, 2
 
 
-# After we've heard some of the story from all the people
 class Step2(StepTemplateMv):
     story = [
         _("Edward looks like he has something he wants to say to you.\n"),
-        _("{{wb:Edward:}} {{Bb:\"Hi there. Can you help me with something?\""),
+        _("{{wb:Edward:}} {{Bb:\"Hey! Can you help me?\"}}"),
 
-        _("\"I learnt this spell for moving items from " +
-          "one place to another. But I can't seem to make it work.\""),
+        _("{{Bb:\"I've been trying to move this}} {{bb:apple}} {{Bb:into the}} {{bb:basket}}{{Bb:.\"}}}}"),
 
-        _("\"I've been trying to move this}} {{bb:apple}} {{Bb:into the}} " +
-          "{{bb:basket}}{{Bb:\"}}"),
-
-        _("{{Bb:\"I was told the command was}} {{yb:mv apple basket/}}{{Bb:\"}}"),
-        _("{{Bb:\"But I don't understand what that means. Do I say it? " +
-          "Or write it?\"}}\n"),
+        _("{{Bb:\"I was told the command}} {{yb:mv apple basket/}} {{Bb:would make it happen, but I can't seem to make "
+          "it work. Do you have the power to make it happen?\"}}\n"),
     ]
 
     story += wrap_in_box([
-        _("{{gb:New Spell}}: to {{lb:move}} objects, type {{yb:mv}}"),
+        _("{{gb:New Power}}: to {{lb:move}} objects, type {{yb:mv}}"),
         _("and the object name."),
     ])
 
@@ -129,15 +106,12 @@ class Step2(StepTemplateMv):
     hints = [
         _("{{rb:Use the command}} {{yb:mv apple basket/}} {{rb:to move the apple into the basket.}}")
     ]
-    # This is to add the apple into the virtual tree
-    # we would like to integrate when using mv with the tree
-    # automatically
 
-    def block_command(self):
-        return unblock_commands(self.last_user_input, self.commands)
+    def block_command(self, line):
+        return unblock_commands(line, self.commands)
 
     def next(self):
-        Step3()
+        return 11, 3
 
 
 class Step3(StepTemplateMv):
@@ -153,14 +127,16 @@ class Step3(StepTemplateMv):
     hints = [
         _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
     ]
-    story_dict = {
-        "apple": {
-            "path": "~/town/.hidden-shelter/basket"
+    file_list = [
+        {
+            "path": "~/town/.hidden-shelter/basket/apple",
+            "contents": get_story_file("apple"),
+            "type": "file"
         }
-    }
+    ]
 
     def next(self):
-        Step4()
+        return 11, 4
 
 
 class Step4(StepTemplateMv):
@@ -181,17 +157,15 @@ class Step4(StepTemplateMv):
     ]
 
     def next(self):
-        Step5()
+        return 11, 5
 
 
-# After cat-ing the person again?
 class Step5(StepTemplateMv):
     story = [
         _("{{gb:Excellent, you moved the apple into the basket!}}"),
-        _("\n{{wb:Edward:}} {{Bb:\"Hey, you did it! What was I doing wrong?\"}}"),
-        _("{{Bb:\"Can you move the apple from the basket back here?\"}}\n"),
-        _("{{lb:Move}} the {{bb:apple}} from the {{bb:basket}} to your current position. This is represented by {{bb:./}} \n"),
-        _("So {{yb:mv basket/apple ./}} is the full command. You need the {{bb:./}} !\n")
+        _("\n{{wb:Edward:}} {{Bb:\"Wow, you did it!\"}}"),
+        _("{{Bb:\"Can you also move the}} {{bb:apple}} {{Bb:from the}} {{bb:basket}} "
+          "{{Bb:back to here?\"}}\n")
     ]
     start_dir = "~/town/.hidden-shelter"
     end_dir = "~/town/.hidden-shelter"
@@ -200,19 +174,20 @@ class Step5(StepTemplateMv):
         "mv basket/apple ./"
     ]
     hints = [
-        _("{{rb:Use the command}} {{yb:mv basket/apple ./}} {{rb:to move the apple from the basket to your current position}} {{bb:./}}")
+        _("{{rb:Use the command}} {{yb:mv basket/apple ./}} {{rb:to move the apple from the basket to your current "
+          "position}} {{bb:./}}")
     ]
 
-    def block_command(self):
-        if self.last_user_input == "mv basket/apple":
+    def block_command(self, line):
+        if line == "mv basket/apple":
             hint = _("{{gb:Nearly! The full command is}} {{yb:mv basket/apple ./}} {{gb:- don't forget the dot!}}")
             self.send_hint(hint)
             return True
         else:
-            return unblock_commands(self.last_user_input, self.commands)
+            return unblock_commands(line, self.commands)
 
     def next(self):
-        Step6()
+        return 11, 6
 
 
 class Step6(StepTemplateMv):
@@ -224,14 +199,10 @@ class Step6(StepTemplateMv):
         _("\n{{bb:Eleanor}} follows her {{bb:dog}} and leaves the {{bb:.hidden-shelter}}."),
         _("{{lb:Look around}} to check this.\n")
     ]
-    story_dict = {
-        "Eleanor": {
-            "path": "~/town"
-        },
-        "dog": {
-            "path": "~/town"
-        }
-    }
+    file_list = [
+        {"path": "~/town/Eleanor"},
+        {"path": "~/town/dog"}
+    ]
     deleted_items = [
         '~/town/.hidden-shelter/Eleanor',
         '~/town/.hidden-shelter/dog'
@@ -247,13 +218,14 @@ class Step6(StepTemplateMv):
     ]
 
     def next(self):
-        Step7()
+        return 11, 7
 
 
 class Step7(StepTemplateMv):
     story = [
-        _("{{wb:Edith:}} {{Bb:\"No!! Honey, come back!!\"}}"),
-        _("{{Bb:\"You there, save my little girl!\"}}\n"),
+        _("{{wb:Edith:}} {{Bb:\"No! Honey, come back!!!\"}}"),
+        _("{{Bb:\"You, please, save my little girl\"}}\n"),
+
         _("First, {{lb:look outside}} for {{bb:Eleanor}} with {{yb:ls ../}}"),
     ]
     start_dir = "~/town/.hidden-shelter"
@@ -269,7 +241,7 @@ class Step7(StepTemplateMv):
     ]
 
     def next(self):
-        Step8()
+        return 11, 8
 
 
 class Step8(StepTemplateMv):
@@ -291,20 +263,19 @@ class Step8(StepTemplateMv):
     hints = [
         _("{{rb:Quick! Use}} {{yb:mv ../Eleanor ./}} {{rb:to move the little girl back to safety.}}")
     ]
-    last_step = True
-    girl_file = os.path.join(tq_file_system, 'town/.hidden-shelter/Eleanor')
+    girl_file = os.path.join(tq_file_system, '~/town/.hidden-shelter/Eleanor')
 
-    def block_command(self):
-        return unblock_commands(self.last_user_input, self.commands)
+    def block_command(self, line):
+        return unblock_commands(line, self.commands)
 
-    def check_command(self):
+    def check_command(self, line):
 
         if os.path.exists(self.girl_file):
             return True
 
         else:
-            self.send_hint()
+            self.send_stored_hint()
             return False
 
     def next(self):
-        NextStep(self.xp)
+        return 12, 1

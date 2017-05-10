@@ -1,20 +1,12 @@
 # Spellbook.py
 #
-# Copyright (C) 2014-2016 Kano Computing Ltd.
+# Copyright (C) 2014-2017 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 
 
 import os
-import sys
-
 from gi.repository import Gtk, Gdk
-
-if __name__ == '__main__' and __package__ is None:
-    dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
 from linux_story.common import images_dir
 from linux_story.helper_functions import get_ascii_art
 
@@ -28,7 +20,7 @@ class Spellbook(Gtk.EventBox):
     CMD_HEIGHT = 80
     CMD_WIDTH = 80
     HEIGHT = 100
-    number_of_spells = 7
+    number_of_spells = 10
 
     def __init__(self, is_caps_lock_on=False):
         self.stop = False
@@ -58,7 +50,11 @@ class Spellbook(Gtk.EventBox):
         self.grid.connect('show', self.__on_show)
         self.caps_lock_warning.connect('show', self.__on_show)
 
-    def __create_caps_lock_warning(self):
+        # default to normal theme
+        self.set_normal_theme()
+
+    @staticmethod
+    def __create_caps_lock_warning():
         box = Gtk.Box()
         box.get_style_context().add_class("caps_lock_warning")
         box.set_margin_top(10)
@@ -223,3 +219,20 @@ class Spellbook(Gtk.EventBox):
             locked_box = self.__create_spell("...", locked=True)
             self.grid.attach(locked_box, left, 0, 1, 1)
             left += 1
+
+    def __set_theme(self):
+        if self.dark:
+            self.set_dark_theme()
+        else:
+            self.set_normal_theme()
+
+    def set_dark_theme(self):
+        style_context = self.get_style_context()
+        style_context.remove_class("normal")
+        style_context.add_class("dark")
+
+    def set_normal_theme(self):
+        style_context = self.get_style_context()
+        style_context.remove_class("dark")
+        style_context.add_class("normal")
+

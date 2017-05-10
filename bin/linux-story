@@ -31,7 +31,6 @@ from linux_story.common import get_max_challenge_number
 # but it seems to be:
 os.system('reset')
 
-# TODO: this should be moved so this logic is in linux-story-gui
 if __name__ == "__main__":
     def sigint_handler(signum, frame):
         pass

@@ -4,23 +4,14 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-
-
-import os
-import sys
-
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
-from linux_story.story.terminals.terminal_cd import TerminalCd
-from linux_story.story.challenges.challenge_10 import Step1 as NextStep
+from linux_story.StepTemplate import StepTemplate
+from linux_story.common import get_story_file
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.story.terminals.terminal_cd import TerminalCd
 
 
-class StepTemplateCd(TerminalCd):
-    challenge_number = 9
+class StepTemplateCd(StepTemplate):
+    TerminalClass = TerminalCd
 
 
 # ----------------------------------------------------------------------------------------
@@ -34,15 +25,13 @@ class Step1(StepTemplateCd):
     start_dir = "~/town"
     end_dir = "~"
     commands = ["cd ..", "cd ../", "cd"]
-    hints = _("{{rb:Use}} {{yb:cd ..}} {{rb:to start heading back home.}}")
+    hints = [_("{{rb:Use}} {{yb:cd ..}} {{rb:to start heading back home.}}")]
 
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        Step2()
+        return 9, 2
 
 
 class Step2(StepTemplateCd):
@@ -57,22 +46,20 @@ class Step2(StepTemplateCd):
     hints = [
         _("{{rb:Use}} {{yb:cd my-house/kitchen}} {{rb:to go to the kitchen.}}")
     ]
-    story_dict = {
-        "note_kitchen": {
-            "name": "note",
-            "path": "~/my-house/kitchen"
+    file_list = [
+        {
+            "path": "~/my-house/kitchen/note",
+            "contents": get_story_file("note_kitchen"),
+            "type": "file"
         }
-    }
-    # Remove the note as well.
+    ]
     deleted_items = ['~/my-house/kitchen/Mum', '~/town/note']
 
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        Step3()
+        return 9, 3
 
 
 class Step3(StepTemplateCd):
@@ -87,7 +74,7 @@ class Step3(StepTemplateCd):
     ]
 
     def next(self):
-        Step4()
+        return 9, 4
 
 
 class Step4(StepTemplateCd):
@@ -99,8 +86,7 @@ class Step4(StepTemplateCd):
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "cat note"
-    hints = _("{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}")
-    last_step = True
+    hints = [_("{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}")]
 
     def next(self):
-        NextStep(self.xp)
+        return 10, 1

@@ -8,18 +8,17 @@
 
 import os
 
-# At this point, Bernard disappears, so no need to keep blocking access to
-# his basement.
-from linux_story.story.terminals.terminal_eleanor import TerminalNanoEleanor
-from linux_story.story.challenges.challenge_31 import Step1 as NextStep
+from linux_story.common import get_story_file
+from linux_story.story.challenges.CompanionMisc import StepTemplateEleanorBernard
 from linux_story.step_helper_functions import unblock_cd_commands
-
-
-class StepNano(TerminalNanoEleanor):
-    challenge_number = 30
+from linux_story.story.terminals.terminal_nano import TerminalNano
 
 
 # ----------------------------------------------------------------------------------------
+
+
+class StepNano(StepTemplateEleanorBernard):
+    TerminalClass = TerminalNano
 
 
 class Step1(StepNano):
@@ -40,15 +39,16 @@ class Step1(StepNano):
     deleted_items = [
         "~/town/east/shed-shop/Bernard"
     ]
-    story_dict = {
-        "bernards-hat": {
-            "path": "~/town/east/shed-shop"
+    file_list = [
+        {
+            "path": "~/town/east/shed-shop/Bernards-hat",
+            "contents": get_story_file("bernards-hat")
         }
-    }
-    eleanors_speech = _("Eleanor: {{Bb:......}}")
+    ]
+    companion_speech = _("Eleanor: {{Bb:......}}")
 
     def next(self):
-        Step2()
+        return 30, 2
 
 
 class Step2(StepNano):
@@ -64,12 +64,12 @@ class Step2(StepNano):
     hints = [
         _("{{rb:Use}} {{yb:cat Clara}} {{rb:to see what Clara has to say.}}")
     ]
-    eleanors_speech = \
+    companion_speech = \
         _("Eleanor: {{Bb:\"....I was so scared. I don't think I want to go " +\
         "outside now.\"}}")
 
     def next(self):
-        Step3()
+        return 30, 3
 
 
 class Step3(StepNano):
@@ -96,31 +96,25 @@ class Step3(StepNano):
         _("{{rb:Use}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} " +\
         "{{yb:echo 3}} {{rb:to reply to Clara.}}")
     ]
-    eleanors_speech = (
+    companion_speech = (
         _("Eleanor: {{Bb:\"I'm happy to stay here. I like Clara.\"}}")
     )
 
-    def check_command(self):
-        if self.last_user_input == "echo 2":
+    def check_command(self, line):
+        if line == "echo 2":
             text = (
                 _("\nClara: {{Bb:\"Please let me look after her. " +\
                 "I don't think it's safe for her to go outside.\"}}")
             )
-            self.send_text(text)
-        elif self.last_user_input == "echo 3":
+            self.send_hint(text)
+        elif line == "echo 3":
             text = _("\nEleanor: {{Bb:\"I'm happy to stay here. I like Clara.\"}}")
-            self.send_text(text)
-        # elif self.last_user_input == "echo 4":
-        #    text = (
-        #        _("\nClara: {{Bb:There's loads of food here, look in the}} " +\
-        #        "{{lb:larder}} {{Bb:if you don't believe me.}}")
-        #    )
-        #    self.send_text(text)
+            self.send_hint(text)
         else:
-            return StepNano.check_command(self)
+            return StepNano.check_command(self, line)
 
     def next(self):
-        Step4()
+        return 30, 4
 
 
 class Step4(StepNano):
@@ -130,12 +124,11 @@ class Step4(StepNano):
         "here?\"}}"),
         _("Clara: {{Bb:\"Where are you going to go now?\"}}"),
         _("\nLet's head back to see {{bb:Bernard}} and see if he's heard of " +\
-        "the {{bb:masked swordsmaster}}.\n"),
+        "the {{bb:masked swordmaster}}.\n"),
         _("{{lb:Head to the}} {{bb:shed-shop.}}")
     ]
     start_dir = "~/town/east/restaurant/.cellar"
     end_dir = "~/town/east/shed-shop"
-    last_step = True
 
     path_hints = {
         "~/town/east/restaurant/.cellar": {
@@ -151,18 +144,18 @@ class Step4(StepNano):
         }
     }
 
-    def check_command(self):
-        if self.current_path == self.end_dir:
+    def check_command(self, line):
+        if self.get_fake_path() == self.end_dir:
             return True
-        elif "cd" in self.last_user_input and not self.get_command_blocked():
-            hint = self.path_hints[self.current_path]["not_blocked"]
+        elif "cd" in line and not self.get_command_blocked():
+            hint = self.path_hints[self.get_fake_path()]["not_blocked"]
         else:
-            hint = self.path_hints[self.current_path]["blocked"]
+            hint = self.path_hints[self.get_fake_path()]["blocked"]
 
-        self.send_text(hint)
+        self.send_hint(hint)
 
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    def block_command(self, line):
+        return unblock_cd_commands(line)
 
     def next(self):
-        NextStep(self.xp)
+        return 31, 1

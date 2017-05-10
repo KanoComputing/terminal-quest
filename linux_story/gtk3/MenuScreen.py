@@ -6,23 +6,8 @@
 # Shows the menu for selecting the appropriate challenge
 
 
-import os
-import sys
-
-if __name__ == '__main__' and __package__ is None:
-    dir_path = os.path.abspath(
-        os.path.join(
-            os.path.dirname(__file__),
-            '../..'
-        )
-    )
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
 from gi.repository import Gtk, GObject
-
 from kano_profile.apps import load_app_state_variable
-
 from linux_story.common import get_max_challenge_number
 from linux_story.titles import challenges, chapters
 
@@ -42,9 +27,7 @@ class MenuScreen(Gtk.Alignment):
     height = 200
 
     def __init__(self):
-        Gtk.Alignment.__init__(
-            self, xalign=0.5, yalign=0.5, xscale=0, yscale=0
-        )
+        Gtk.Alignment.__init__(self, xalign=0.5, yalign=0.5, xscale=0, yscale=0)
 
         self.background = Gtk.EventBox()
         self.background.get_style_context().add_class("menu_background")
@@ -57,9 +40,7 @@ class MenuScreen(Gtk.Alignment):
         self.max_challenge = get_max_challenge_number()
 
         # Get the last unlocked challenge.
-        self.last_unlocked_challenge = load_app_state_variable(
-            'linux-story', 'level'
-        )
+        self.last_unlocked_challenge = load_app_state_variable('linux-story', 'level')
 
         if self.last_unlocked_challenge:
 
@@ -73,9 +54,9 @@ class MenuScreen(Gtk.Alignment):
             self.continue_story_or_select_chapter_menu()
 
     def continue_story_or_select_chapter_menu(self, widget=None):
-        '''This gives the user a simple option of just continuing the story
+        """This gives the user a simple option of just continuing the story
         from where they left off, or selecting the chapter manually.
-        '''
+        """
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         header = self.create_menu_header(
@@ -133,9 +114,9 @@ class MenuScreen(Gtk.Alignment):
         return vbox
 
     def replace_menu(self, new_menu):
-        '''Unpack the widget in self.background, and
+        """Unpack the widget in self.background, and
         pack the new widget in.
-        '''
+        """
         for child in self.background.get_children():
             self.background.remove(child)
 
@@ -149,8 +130,8 @@ class MenuScreen(Gtk.Alignment):
         self.show_challenge_menu(challenge_number)
 
     def show_challenge_menu(self, challenge_number):
-        '''Show a menu for the challenges available in a certain chapter
-        '''
+        """Show a menu for the challenges available in a certain chapter
+        """
 
         self.menu = self.create_challenge_menu(challenge_number)
         self.replace_menu(self.menu)
@@ -175,8 +156,8 @@ class MenuScreen(Gtk.Alignment):
         self.show_all()
 
     def create_menu(self, title, start, end, create_button_cb, back_button_cb):
-        '''Create a menu of buttons
-        '''
+        """Create a menu of buttons
+        """
 
         # hbox is the total container, grid is the container that has all
         # the buttons
@@ -207,9 +188,7 @@ class MenuScreen(Gtk.Alignment):
         align.add(vbox)
         align.set_padding(10, 10, 0, 0)
 
-        self.back_btn.connect(
-            'clicked', back_button_cb
-        )
+        self.back_btn.connect('clicked', back_button_cb)
 
         row = 0
         column = 0
@@ -234,8 +213,8 @@ class MenuScreen(Gtk.Alignment):
         return align
 
     def create_chapter_menu(self):
-        '''Create a menu of the available chapters
-        '''
+        """Create a menu of the available chapters
+        """
 
         num_of_chapters = len(chapters)
         menu = self.create_menu(

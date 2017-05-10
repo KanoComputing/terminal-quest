@@ -31,37 +31,46 @@ class Storybook(Gtk.TextView):
     on the left side of the application.
     '''
 
-    def __init__(self, width=None, height=None):
+    def __init__(self, width, height):
         Gtk.TextView.__init__(self)
         self.__generate_tags()
 
         # Remove the right click pop up
         self.connect("button-press-event", self.prevent_right_click)
 
-        screen = Gdk.Screen.get_default()
-
         self.width = width
         self.height = height
-
-        if not width:
-            self.width = screen.get_width() / 2
-
-        if not height:
-            height = screen.get_height() - 300
 
         self.set_size_request(self.width, height)
         font_desc = Pango.FontDescription()
         font_desc.set_family("monospace")
         font_desc.set_size(13*Pango.SCALE)
         self.override_font(font_desc)
-        bg_colour = Gdk.RGBA()
-        bg_colour.parse("#313131")
-        self.override_background_color(Gtk.StateFlags.NORMAL, bg_colour)
+        self.get_style_context().add_class("storybook_background")
         self.char_width = self.__get_char_width()
         self.set_can_focus(False)
         self.language = self.__get_language()
 
         self.sounds_manager = SoundManager()
+
+        self.set_margin_top(10)
+        self.set_margin_left(10)
+        self.set_margin_right(10)
+
+        self.set_normal_theme()
+
+    def set_dark_theme(self):
+        style_context = self.get_style_context()
+        if "dark" not in style_context.list_classes():
+            self.get_style_context().add_class("dark")
+            self.get_style_context().remove_class("normal")
+
+    def set_normal_theme(self):
+        style_context = self.get_style_context()
+        if "dark" in style_context.list_classes():
+            self.get_style_context().remove_class("dark")
+            self.get_style_context().add_class("normal")
+            self.show_all()
 
     def clear(self):
         '''Clear all text in spellbook
@@ -181,9 +190,9 @@ class Storybook(Gtk.TextView):
         self.print_text(header)
 
     def print_text(self, string):
-        '''
+        """
         Mimic for python print function
-        '''
+        """
 
         # To mimic print function
         string = string + '\n'
@@ -193,10 +202,15 @@ class Storybook(Gtk.TextView):
         textbuffer.insert_with_tags(end_iter, string, white_tag)
 
     def print_coming_soon(self, window, terminal):
-        text = get_ascii_art('coming_soon')
+        self.__print_text_banner("coming_soon")
+
+    def print_finished(self, window, terminal):
+        self.__print_text_banner("finished_terminal_quest")
+
+    def __print_text_banner(self, filename):
+        text = get_ascii_art(filename)
         text_lines = text.splitlines()
         leading_newlines = len(text_lines)
-
         for i in xrange(leading_newlines, -1, -1):
             self.clear()
 
@@ -313,7 +327,7 @@ class Storybook(Gtk.TextView):
                 # need to cut out the part from the {{ to the :
                 colon_index = string.find(":")
 
-                # This should always be satified.
+                # This should always be satisfied.
                 if not colon_index == -1:
                     # This is so we don't include the colon when we
                     # are slicing the strings.
@@ -389,8 +403,8 @@ class Storybook(Gtk.TextView):
         return new_string
 
     def __get_colour_from_id(self, colour_id='w'):
-        '''Look up what letter corresponds to what colour
-        '''
+        """Look up what letter corresponds to what colour
+        """
 
         pairs = {
             'r': 'red',

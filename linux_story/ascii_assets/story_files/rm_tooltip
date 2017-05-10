@@ -1,0 +1,18 @@
+ _____  __  __
+|  __ \|  \/  |
+| |__) | \  / |
+|  _  /| |\/| |
+| | \ \| |  | |
+|_|  \_\_|  |_|
+
+
+This command gives you the power to remove items.
+
+
+Examples
+
+rm spell
+This removes the item spell.
+
+rm -r wardrobe/
+This removes the wardrobe and all contents of wardrobe.

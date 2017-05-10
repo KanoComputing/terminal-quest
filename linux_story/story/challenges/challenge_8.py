@@ -4,22 +4,13 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-
-
-import os
-import sys
-
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
+from linux_story.StepTemplate import StepTemplate
+from linux_story.common import get_story_file
 from linux_story.story.terminals.terminal_cd import TerminalCd
-from linux_story.story.challenges.challenge_9 import Step1 as NextChallengeStep
 
 
-class StepTemplateCd(TerminalCd):
-    challenge_number = 8
+class StepTemplateCd(StepTemplate):
+    TerminalClass = TerminalCd
 
 
 # ----------------------------------------------------------------------------------------
@@ -35,12 +26,11 @@ class Step1(StepTemplateCd):
     start_dir = "~/town"
     end_dir = "~/town"
     commands = "ls"
-    hints = _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
+    hints = [_("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")]
     deleted_items = ["~/town/grumpy-man"]
 
     def next(self):
-        # This was the code we had originally. Did the bell ring properly?
-        Step2()
+        return 8, 2
 
 
 class Step2(StepTemplateCd):
@@ -55,11 +45,11 @@ class Step2(StepTemplateCd):
     start_dir = "~/town"
     end_dir = "~/town"
     commands = "ls"
-    hints = _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
+    hints = [_("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")]
     deleted_items = ["~/town/little-boy"]
 
     def next(self):
-        Step3()
+        return 8, 3
 
 
 class Step3(StepTemplateCd):
@@ -74,11 +64,11 @@ class Step3(StepTemplateCd):
     start_dir = "~/town"
     end_dir = "~/town"
     commands = "ls"
-    hints = _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
+    hints = [_("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")]
     deleted_items = ["~/town/young-girl"]
 
     def next(self):
-        Step4()
+        return 8, 4
 
 
 class Step4(StepTemplateCd):
@@ -90,10 +80,10 @@ class Step4(StepTemplateCd):
     start_dir = "~/town"
     end_dir = "~/town"
     commands = "cat Mayor"
-    hints = _("{{rb:Use}} {{yb:cat Mayor}} {{rb:to talk to the Mayor.}}")
+    hints = [_("{{rb:Use}} {{yb:cat Mayor}} {{rb:to talk to the Mayor.}}")]
 
     def next(self):
-        Step5()
+        return 8, 5
 
 
 class Step5(StepTemplateCd):
@@ -106,17 +96,18 @@ class Step5(StepTemplateCd):
     start_dir = "~/town"
     end_dir = "~/town"
     commands = "ls"
-    hints = _("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
+    hints = [_("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")]
     deleted_items = ["~/town/Mayor"]
-    story_dict = {
-        "note_town": {
-            "name": "note",
-            "path": "~/town"
+    file_list = [
+        {
+            "path": "~/town/note",
+            "contents": get_story_file("note_town"),
+            "type": "file"
         }
-    }
+    ]
 
     def next(self):
-        Step6()
+        return 8, 6
 
 
 class Step6(StepTemplateCd):
@@ -128,8 +119,7 @@ class Step6(StepTemplateCd):
     start_dir = "~/town"
     end_dir = "~/town"
     commands = "cat note"
-    hints = _("{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}")
-    last_step = True
+    hints = [_("{{rb:Use}} {{yb:cat note}} {{rb:to read the note.}}")]
 
     def next(self):
-        NextChallengeStep(self.xp)
+        return 9, 1

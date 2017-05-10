@@ -4,15 +4,8 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-
-
-from linux_story.story.terminals.terminal_eleanor import TerminalMkdirEleanor
-from linux_story.story.challenges.challenge_25 import Step1 as NextStep
 from linux_story.step_helper_functions import unblock_cd_commands
-
-
-class StepTemplateMkdir(TerminalMkdirEleanor):
-    challenge_number = 24
+from linux_story.story.challenges.CompanionMisc import StepTemplateMkdir
 
 
 # ----------------------------------------------------------------------------------------
@@ -36,18 +29,12 @@ class Step1(StepTemplateMkdir):
         _("{{rb:Look around with}} {{yb:ls}}{{rb:.}}")
     ]
     deleted_items = ["~/town/Eleanor"]
-    story_dict = {
-        "Eleanor": {
-            "path": "~/town/east"
-        }
-    }
+    file_list = [{"path": "~/town/east/Eleanor"}]
 
-    eleanors_speech = \
-        _("Eleanor: {{Bb:I can't see my parents anywhere...but there's " +\
-        "a weird building there.}}")
+    companion_speech = _("Eleanor: {{Bb:I can't see my parents anywhere...but there's a weird building there.}}")
 
     def next(self):
-        Step2()
+        return 24, 2
 
 
 class Step2(StepTemplateMkdir):
@@ -63,13 +50,13 @@ class Step2(StepTemplateMkdir):
         _("{{rb:Use}} {{yb:cd shed-shop}} {{rb:to go in the shed-shop.}}")
     ]
 
-    eleanors_speech = _("Eleanor: {{Bb:Do you think they sell candy?}}")
+    companion_speech = _("Eleanor: {{Bb:Do you think they sell candy?}}")
 
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    def block_command(self, line):
+        return unblock_cd_commands(line)
 
     def next(self):
-        Step3()
+        return 24, 3
 
 
 # Duplicate of Step1, except that self.next is changed
@@ -93,22 +80,17 @@ class Step3(StepTemplateMkdir):
         "ls -a"
     ]
     deleted_items = ["~/town/east/Eleanor"]
-    story_dict = {
-        "Eleanor": {
-            "path": "~/town/east/shed-shop"
-        }
-    }
-    eleanors_speech = _("Eleanor: {{Bb:Ah..ah...achoo!! It's so dusty in here!}}")
+    file_list = [{"path": "~/town/east/shed-shop/Eleanor"}]
+    companion_speech = _("Eleanor: {{Bb:Ah..ah...achoo!! It's so dusty in here!}}")
 
     def next(self):
-        Step4()
+        return 24, 4
 
 
 class Step4(StepTemplateMkdir):
 
     story = [
-        _("You see a man called {{bb:Bernard}}, a door and a " +\
-        "couple of tools."),
+        _("You see a man called {{bb:Bernard}}, a door and a couple of tools."),
         _("\nThe tools show up as {{gb:green}} in the Terminal."),
         _("\n{{lb:Listen}} to what {{bb:Bernard}} has to say.")
     ]
@@ -117,18 +99,13 @@ class Step4(StepTemplateMkdir):
     end_dir = "~/town/east/shed-shop"
 
     hints = [
-        _("{{rb:Use}} {{yb:cat Bernard}} {{rb:to see what Bernard has " +\
-        "to say.}}")
+        _("{{rb:Use}} {{yb:cat Bernard}} {{rb:to see what Bernard has to say.}}")
     ]
 
     commands = [
         "cat Bernard"
     ]
-    eleanors_speech = \
-        _("Eleanor: {{Bb:My}} {{lb:cat}} {{Bb:used to be a great " +\
-        "listener, I'd tell her everything.}}")
-
-    last_step = True
+    companion_speech = _("Eleanor: {{Bb:My}} {{lb:cat}} {{Bb:used to be a great listener, I'd tell her everything.}}")
 
     def next(self):
-        NextStep(self.xp)
+        return 25, 1

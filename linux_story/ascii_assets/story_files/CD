@@ -1,26 +1,26 @@
- ,---------------------------------------------.
-/                                               \
-|    _____ _____                                |
-|   / ____|  __ \                               |
-|  | |    | |  | |                              |
-|  | |    | |  | |                              |
-|  | |____| |__| |                              |
-|   \_____|_____/                               |
-|                                               |
-|  This spell gives you the power to move.      |
-|                                               |
-|  cd                                           |
-|  This takes you the home directory            |
-|                                               |
-|  cd ../                                       |
-|  This moves you back a directory              |
-|                                               |
-|  cd hidey-hole                                |
-|  This will move you inside hidey-hole,        |
-|  assuming you are next to it                  |
-|                                               |
-|  cd ~/wood/treehouse                          |
-|  This will move you ~/wood/treehouse          |
-|  regardless of your current position          |
-\                                               /
- `---------------------------------------------'
+ ,----------------------------------------.
+/                                          \
+|    _____ _____                           |
+|   / ____|  __ \                          |
+|  | |    | |  | |                         |
+|  | |    | |  | |                         |
+|  | |____| |__| |                         |
+|   \_____|_____/                          |
+|                                          |
+|  cd gives you the power to move.         |
+|                                          |
+|  cd                                      |
+|  This takes you the home directory       |
+|                                          |
+|  cd ../                                  |
+|  This moves you back a directory         |
+|                                          |
+|  cd hidey-hole                           |
+|  This will move you inside hidey-hole,   |
+|  assuming you are next to it             |
+|                                          |
+|  cd ~/wood/treehouse                     |
+|  This will move you ~/wood/treehouse     |
+|  regardless of your current position     |
+\                                          /
+ `----------------------------------------'

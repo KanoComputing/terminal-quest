@@ -5,25 +5,12 @@
 #
 # A chapter of the story
 
-
-import os
-import sys
-
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
-# from linux_story.Step import Step
+from linux_story.StepTemplate import StepTemplate
 from linux_story.story.terminals.terminal_cat import TerminalCat
-from linux_story.story.challenges.challenge_4 import Step1 as NextChallengeStep
 
 
-class StepTemplateCat(TerminalCat):
-    challenge_number = 3
-
-
-# ----------------------------------------------------------------------------------------
+class StepTemplateCat(StepTemplate):
+    TerminalClass = TerminalCat
 
 
 class Step1(StepTemplateCat):
@@ -35,10 +22,10 @@ class Step1(StepTemplateCat):
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = ["ls shelves", "ls shelves/"]
-    hints = _("{{rb:Type}} {{yb:ls shelves/}} {{rb:to look at your books.}}")
+    hints = [_("{{rb:Type}} {{yb:ls shelves/}} {{rb:to look at your books.}}")]
 
     def next(self):
-        Step2()
+        return 3, 2
 
 
 class Step2(StepTemplateCat):
@@ -51,10 +38,10 @@ class Step2(StepTemplateCat):
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat shelves/comic-book"
-    hints = _("{{rb:Type}} {{yb:cat shelves/comic-book}} {{rb:to read the comic.}}")
+    hints = [_("{{rb:Type}} {{yb:cat shelves/comic-book}} {{rb:to read the comic.}}")]
 
     def next(self):
-        Step3()
+        return 3, 3
 
 
 class Step3(StepTemplateCat):
@@ -66,9 +53,7 @@ class Step3(StepTemplateCat):
     start_dir = "~/my-house/my-room"
     end_dir = "~/my-house/my-room"
     commands = "cat shelves/note"
-    hints = _("{{rb:Type}} {{yb:cat shelves/note}} {{rb:to read the note.}}")
-
-    last_step = True
+    hints = [_("{{rb:Type}} {{yb:cat shelves/note}} {{rb:to read the note.}}")]
 
     def next(self):
-        NextChallengeStep(self.xp)
+        return 4, 1

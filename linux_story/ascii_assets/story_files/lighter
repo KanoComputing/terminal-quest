@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#  ___    A
+#  | |   {*}
+#  | |  __V__
+#  |_|o_|%%%|0_
+#     |       |
+#     |       |
+#     |_______|
+
+python - <<END
+
+import os
+import sys
+from linux_story.Animation import Animation
+
+Animation("firework-animation").play_finite(cycles=1)
+
+END

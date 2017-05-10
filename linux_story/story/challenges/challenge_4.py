@@ -6,23 +6,15 @@
 # A chapter of the story
 
 
-import os
-import sys
-
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
-# from linux_story.Step import Step
+from linux_story.StepTemplate import StepTemplate
+from linux_story.common import get_story_file
 from linux_story.story.terminals.terminal_cd import TerminalCd
-from linux_story.story.challenges.challenge_5 import Step1 as NextChallengeStep
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
 from linux_story.helper_functions import wrap_in_box
 
 
-class StepTemplateCd(TerminalCd):
-    challenge_number = 4
+class StepTemplateCd(StepTemplate):
+    TerminalClass = TerminalCd
 
 
 # ----------------------------------------------------------------------------------------
@@ -33,7 +25,7 @@ class Step1(StepTemplateCd):
         _("That's weird. No time for that now though - lets find {{bb:Mum}}.\n "),
     ]
     story += wrap_in_box([
-        _("{{gb:New Spell}}: {{yb:cd}} lets you {{lb:move}}"),
+        _("{{gb:New Power}}: {{yb:cd}} lets you {{lb:move}}"),
         _("between places."),
     ])
     story += [
@@ -54,13 +46,11 @@ class Step1(StepTemplateCd):
         _("{{rb:Type}} {{yb:cd ..}} {{rb:to leave your room.}}")
     ]
 
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        Step2()
+        return 4, 2
 
 
 class Step2(StepTemplateCd):
@@ -71,17 +61,18 @@ class Step2(StepTemplateCd):
     start_dir = "~/my-house"
     end_dir = "~/my-house"
     commands = "ls"
-    hints = _("{{rb:Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")
-    story_dict = {
-        "note_greenhouse": {
-            "name": "note",
-            "path": "~/my-house/garden/greenhouse"
+    hints = [_("{{rb:Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")]
+    file_list = [
+        {
+            "path": "~/my-house/garden/greenhouse/note",
+            "contents": get_story_file("note_greenhouse"),
+            "type": "file"
         }
-    }
+    ]
     deleted_items = ['~/my-house/garden/greenhouse/Dad']
 
     def next(self):
-        Step3()
+        return 4, 3
 
 
 class Step3(StepTemplateCd):
@@ -97,13 +88,11 @@ class Step3(StepTemplateCd):
     commands = ["cd kitchen", "cd kitchen/"]
     hints = [_("{{rb:Type}} {{yb:cd kitchen}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")]
 
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        Step4()
+        return 4, 4
 
 
 class Step4(StepTemplateCd):
@@ -114,10 +103,10 @@ class Step4(StepTemplateCd):
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "ls"
-    hints = _("{{rb:Can't find her? Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")
+    hints = [_("{{rb:Can't find her? Type}} {{yb:ls}} {{rb:and press}} {{ob:Enter}}{{rb:.}}")]
 
     def next(self):
-        Step5()
+        return 4, 5
 
 
 class Step5(StepTemplateCd):
@@ -128,9 +117,7 @@ class Step5(StepTemplateCd):
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
     commands = "cat Mum"
-    hints = _("{{rb:Stuck? Type:}} {{yb:cat Mum}}. {{rb:Don\'t forget the capital letter!}}")
-
-    last_step = True
+    hints = [_("{{rb:Stuck? Type:}} {{yb:cat Mum}}{{rb:. Don\'t forget the capital letter!}}")]
 
     def next(self):
-        NextChallengeStep(self.xp)
+        return 5, 1

@@ -6,24 +6,17 @@
 # A chapter of the story
 
 
-import os
-import sys
-
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
 # Change this import statement, need to decide how to group the terminals
 # together
+import os
+from linux_story.StepTemplate import StepTemplate
 from linux_story.story.terminals.terminal_mv import TerminalMv
-from linux_story.story.challenges.challenge_13 import Step1 as NextStep
 from linux_story.common import tq_file_system
 from linux_story.step_helper_functions import unblock_commands
 
 
-class StepTemplateMv(TerminalMv):
-    challenge_number = 12
+class StepTemplateMv(StepTemplate):
+    TerminalClass = TerminalMv
 
 
 # ----------------------------------------------------------------------------------------
@@ -54,11 +47,11 @@ class Step1(StepTemplateMv):
     ]
     dog_file = os.path.join(tq_file_system, 'town/.hidden-shelter/dog')
 
-    def block_command(self):
-        return unblock_commands(self.last_user_input, self.commands)
+    def block_command(self, line):
+        return unblock_commands(line, self.commands)
 
     def next(self):
-        Step2()
+        return 12, 2
 
 
 # Save both the dog and the little girl
@@ -88,15 +81,14 @@ class Step2(StepTemplateMv):
         _("{{gb:Edward looks like he has something he wants to say. " +\
         "Listen to Edward with}} {{yb:cat Edward}}")
     ]
-    last_step = True
 
-    def show_hint(self):
-        if self.last_user_input in self.all_commands.keys():
-            hint = self.all_commands[self.last_user_input]
+    def check_command(self, line):
+        line = line.strip()
+        if line in self.all_commands.keys():
+            hint = self.all_commands[line]
             self.send_hint(hint)
-        else:
-            # Show default hints.
-            self.send_hint()
+            return
+        return StepTemplateMv.check_command(self, line)
 
     def next(self):
-        NextStep(self.xp)
+        return 13, 1
