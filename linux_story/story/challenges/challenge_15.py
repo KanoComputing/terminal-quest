@@ -54,7 +54,7 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        _("What's that! There's {{bb:.tiny-chest}} in the corner of the shelter"),
+        _("What's that! There's {{bb:.tiny-chest}} in the corner of the shelter."),
         _("Have a {{lb:look inside}} the {{bb:.tiny-chest}}.")
     ]
 
