@@ -4113,7 +4113,7 @@ msgstr ""
 
 #: ../linux_story/story/challenges/challenge_23.py:160
 msgid "Eleanor: {{Bb:\"Let's go to the}} {{bb:east}} {{Bb:of town.\"}}"
-msgstr "Eleanor: {{Bb:\"Vayamos a la parte}} {{bb:este}} {{Bb:del pueblo.\"}}"
+msgstr "Eleanor: {{Bb:\"Vayamos a la parte}} {{bb:east}} {{Bb:del pueblo.\"}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:162
 msgid ""
@@ -4146,7 +4146,7 @@ msgstr "Hay una estrecha carretera que conduce a otra parte del pueblo."
 
 #: ../linux_story/story/challenges/challenge_23.py:213
 msgid "This must take us to the {{bb:east}} part.\n"
-msgstr "Esta debe llevarnos a la parte {{bb:este}}.\n"
+msgstr "Esta debe llevarnos a la parte {{bb:east}}.\n"
 
 #: ../linux_story/story/challenges/challenge_23.py:214
 msgid "Eleanor: {{Bb:Let's go there and see if we can find my parents.}}"
@@ -4158,15 +4158,15 @@ msgid ""
 "{{lb:Go}} into the {{bb:east}} of town."
 msgstr ""
 "\n"
-"{{lb:Ve}} a la parte {{bb:este}} del pueblo."
+"{{lb:Ve}} a la parte {{bb:east}} del pueblo."
 
 #: ../linux_story/story/challenges/challenge_23.py:222
 msgid "{{rb:Use}} {{lb:cd}} {{rb:to go into the east part of town}}"
-msgstr "{{rb:Usa}} {{lb:cd}} {{rb:para ir a la parte este del pueblo}}"
+msgstr "{{rb:Usa}} {{lb:cd}} {{rb:para ir a la parte east del pueblo}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:224
 msgid "{{rb:Use}} {{yb:cd east}} {{rb:}}"
-msgstr "{{rb:Usa}} {{yb:cd este}} {{rb:}}"
+msgstr "{{rb:Usa}} {{yb:cd east}} {{rb:}}"
 
 #: ../linux_story/story/challenges/challenge_23.py:229
 msgid ""
