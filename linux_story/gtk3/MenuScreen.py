@@ -389,7 +389,7 @@ class MenuScreen(Gtk.Alignment):
         else:
             self.info_description.hide()
 
-    def show_focused_button_info(self, *_):
+    def show_focused_button_info(self, *dummy):
         # Get the focused button in the button_grid
         for child in self.button_grid.get_children():
             if child.has_focus():
