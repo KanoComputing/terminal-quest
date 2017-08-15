@@ -106,7 +106,7 @@ class Step4(StepTemplateChmod):
 
 class Step5(StepTemplateChmod):
     story = wrap_in_box([
-        _("{{gb:New Spell:}} Type"),
+        _("{{gb:New Power:}} Type"),
         _("{{yb:chmod +w cage}}"),
         _("to give write permissions to,"),
         _("and thus unlock, the cage."),
