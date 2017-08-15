@@ -258,7 +258,7 @@ class Step8(StepTemplateNano):
 
 class Step9(StepTemplateNano):
     story = [
-        _("{{lb:You walk slowly into the cave. It has a musty smell."),
+        _("{{lb:You walk slowly into the cave. It has a musty smell.}}"),
         _("{{Bb:Look around.}}")
     ]
     start_dir = "~/woods/cave"
