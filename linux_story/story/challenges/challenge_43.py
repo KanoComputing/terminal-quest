@@ -158,7 +158,7 @@ class Step3(StepTemplateChmod):
 class Step4(StepTemplateRm):
     story = [
         _("It has a command inscribed on it."),
-        "....{{lb:rm}}...?"
+        "....{{lb:rm}}...?\n"
     ]
 
     story += wrap_in_box([
