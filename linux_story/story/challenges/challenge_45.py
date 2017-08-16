@@ -43,7 +43,7 @@ class StepPeopleInCage(StepTemplateRm):
                      "Although, it seems to be acting even stranger now.\"}}"),
 
             "grumpy-man": _("grumpy-man: {{Bb:\"My legs are fixed. I hope my wife knows I'm safe.\"}}"),
-            "Mayor": _("Mayor: {{Bb:\"When I get out of here, I'm going to make a law to hunt all rabbits.\""),
+            "Mayor": _("Mayor: {{Bb:\"When I get out of here, I'm going to make a law to hunt all rabbits.\"}}"),
             "little-boy": _("little-boy: {{Bb:\"I miss my mummy!\"}}"),
             "young-girl": _("young-girl: {{Bb:\"I don't like being in here.\"}}"),
             "Edith": _("Edith: {{Bb:\"You, " + get_username() + "! Get us out of here!\"}}"),
