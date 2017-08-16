@@ -29,6 +29,10 @@ cage = {
     ],
     "children": [
         {
+            "name": "Bernard",
+            "contents": get_story_file("Bernard")
+        },
+        {
             "name": "Edith",
             "contents": get_story_file("Edith")
         },
