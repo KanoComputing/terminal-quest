@@ -85,7 +85,7 @@ class Step2(StepTemplateMv):
         _("Edward looks like he has something he wants to say to you.\n"),
         _("{{wb:Edward:}} {{Bb:\"Hey! Can you help me?\"}}"),
 
-        _("{{Bb:\"I've been trying to move this}} {{bb:apple}} {{Bb:into the}} {{bb:basket}}{{Bb:.\"}}}}"),
+        _("{{Bb:\"I've been trying to move this}} {{bb:apple}} {{Bb:into the}} {{bb:basket}}{{Bb:.\"}}"),
 
         _("{{Bb:\"I was told the command}} {{yb:mv apple basket/}} {{Bb:would make it happen, but I can't seem to make "
           "it work. Do you have the power to make it happen?\"}}\n"),
