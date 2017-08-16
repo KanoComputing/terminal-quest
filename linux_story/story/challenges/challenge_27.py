@@ -126,7 +126,7 @@ class Step4(StepTemplateNano):
 
         _("What would you like to ask him?"),
 
-        _("\n{{yb:1 \"How did you create your tools?\"}}"),
+        _("\n{{yb:1: \"How did you create your tools?\"}}"),
 
         _("{{yb:2: \"What's the next big tool you want to create?\"}}"),
 
