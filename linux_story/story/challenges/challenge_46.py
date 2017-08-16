@@ -254,7 +254,7 @@ class Step7(StepTemplateSudo):
             "Clara: {{Bb:\"Eleanor helped me feel brave, but I'm so happy you found my children young-girl and "
             "little-boy! Thank you " + get_username() + "\"}}"
         ),
-        "cat Swordmaster": _("Swordmaster: {{Bb:\"You've done well. You are indeed a force to be reckoned with."
+        "cat Swordmaster": _("Swordmaster: {{Bb:\"You've done well. You are indeed a force to be reckoned with. "
                              "Keep training and you'll become even more powerful.\"}}"),
         "cat Rabbit": _("Rabbit: {{Bb:....}}"),
         "cat Mayor": _("Mayor: {{Bb:\"I've been persuaded not to exterminate all rabbits. "
