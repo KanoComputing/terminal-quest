@@ -47,7 +47,7 @@ class Step2(StepTemplateChmod):
     start_dir = "~/woods/clearing/house"
     end_dir = "~/woods/clearing/house"
     extra_hints = {
-        "echo 2": _("Swordmaster: {{Bb:\"I am one who has removed themselves from society. "
+        "echo 2": _("Swordmaster: {{Bb:\"I have fled the outside world to make my home here in this peaceful wood. "
                     "The few who know of me call me the Masked Swordmaster.\"}}"),
         "echo 3": _("Swordmaster: {{Bb:\"What notes?\"}}")
     }

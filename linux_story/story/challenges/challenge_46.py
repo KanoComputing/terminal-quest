@@ -39,7 +39,6 @@ class Step1(StepTemplateRm):
     ]
     dark_theme = True
 
-
     def block_command(self, line):
         if line == "rm Rabbit":
             print _("The rabbit dodged the attack!")
@@ -126,7 +125,8 @@ class Step3(StepTemplateSudo):
     start_dir = "~/woods/thicket/rabbithole"
     end_dir = "~/woods/thicket/rabbithole"
     hints = [
-        "{{rb:Try again! Use}} {{yb:sudo ls}} {{rb:and guess a password.}}"
+        "{{rb:Try again! Use}} {{yb:sudo ls}}{{rb:. The default password is}} {{yb:kano}}"
+        "{{rb:. If you've changed the password, try that here instead.}}"
     ]
 
     def next(self):
@@ -141,17 +141,17 @@ class Step4(StepTemplateSudo):
         "",
         _("{{gb:Well done, you've learnt the power of sudo!}}"),
         "",
-        _("Swordmaster: {{Bb:\"You should}} {{lb:remove}} {{Bb:this chest so it cannot fall into enemy hands again.}}"),
-        _("{{Bb:To delete the whole chest, use}} {{yb:rm -r chest/}}{{Bb:. The -r flag is used for directories.\"}}")
+        _("Swordmaster: {{Bb:\"You should turn into a Super User and}} {{lb:remove}} {{Bb:this chest so it cannot fall into enemy hands again.}}"),
+        _("{{Bb:To delete the whole chest, use}} {{yb:sudo rm -r chest/}}{{Bb:. The -r flag is used for directories.\"}}")
     ]
     commands = [
-        "rm -r chest",
-        "rm -r chest/"
+        "sudo rm -r chest",
+        "sudo rm -r chest/"
     ]
     start_dir = "~/woods/thicket/rabbithole"
     end_dir = "~/woods/thicket/rabbithole"
     hints = [
-        "{{rb:Use}} {{yb:rm -r chest}} {{rb:to remove the chest and its contents.}}"
+        "{{rb:Use}} {{yb:sudo rm -r chest}} {{rb:to remove the chest and its contents.}}"
     ]
 
     def next(self):
@@ -237,8 +237,15 @@ class Step7(StepTemplateSudo):
     ]
 
     all_commands = {
-        "cat Mum": _("Mum: {{Bb:\"I'm so proud of you " + get_username() + "!\"}}"),
-        "cat Dad": _("Dad: {{Bb:\"I'm so proud of you!\"}}"),
+        "cat Mum": _("Mum: {{Bb:\"I'm so proud of you " + get_username() + "! You saved Folderton!\"}}"),
+        "cat Dad": _("Dad: {{Bb:\"I never thought my kid would grow up to be a Super User!\"}}"),
+        "cat Mayor": _("Mayor: {{Bb:\"Now that you're a Super User, you must always remember:\n"
+                       " 1. Respect the privacy of others.\n"
+                       " 2. Think before you type.\n"
+                       " 3. With great power comes great responsibility.\"}}")
+    }
+
+    other_commands = {
         "cat grumpy-man": _("grumpy-man: {{Bb:\"Ruth told me about how you helped hide her and our animals. "
                             "Thank you!}}"),
         "cat Ruth": _("Ruth: {{Bb:\"If you ever come by the farm, you can have a glass of milk on us!\"}}"),
@@ -256,9 +263,7 @@ class Step7(StepTemplateSudo):
         ),
         "cat Swordmaster": _("Swordmaster: {{Bb:\"You've done well. You are indeed a force to be reckoned with. "
                              "Keep training and you'll become even more powerful.\"}}"),
-        "cat Rabbit": _("Rabbit: {{Bb:....}}"),
-        "cat Mayor": _("Mayor: {{Bb:\"I've been persuaded not to exterminate all rabbits. "
-                       "Thanks to you, we can all sleep safely.\"}}")
+        "cat Rabbit": _("Rabbit: {{Bb:....}}")
     }
 
     def check_command(self, line):
@@ -270,6 +275,10 @@ class Step7(StepTemplateSudo):
         # If they enter ls, say Well Done
         if line == 'ls':
             hint = _("\n{{gb:You look around.}}")
+            self.send_hint(hint)
+            return False
+        elif line in self.other_commands:
+            hint = "\n" + self.other_commands[line]
             self.send_hint(hint)
             return False
 
@@ -285,7 +294,7 @@ class Step7(StepTemplateSudo):
             self.all_commands.pop(line, None)
 
             if len(self.all_commands) == 0:
-                hint += _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
+                hint += _("\n\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
 
             self.send_hint(hint)
         else:

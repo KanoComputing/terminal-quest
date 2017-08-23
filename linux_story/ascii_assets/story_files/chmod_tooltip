@@ -22,3 +22,6 @@ makes locked-room/ executable, so you can enter and view the contents
 
 <span foreground="yellow">chmod +x lighter</span>
 activates lighter executable, so you run it as a script.
+
+<span foreground="yellow">chmod +rwx chest</span>
+gives you full access to the locked chest.

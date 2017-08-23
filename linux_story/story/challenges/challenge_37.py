@@ -84,12 +84,11 @@ class Step3(StepTemplateChmod):
         _("The chain won't budge. You cannot see inside, nor access its contents."),
         "",
         _("Break the chain."),
-        _("{{lb:You'll need to combine all the chmod flags you've just learnt.}}")
+        _("{{lb:You'll need to combine all the chmod flags you've just learned: r, w, and x.}}")
     ]
     start_dir = "~/woods/cave"
     end_dir = "~/woods/cave"
     hints = [
-        "{{lb:r, w and x}} {{rb:were the flags.}}",
         "{{rb:Use}} {{yb:chmod +rwx chest}} {{rb:to unlock the chest.}}"
     ]
 
