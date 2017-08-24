@@ -305,6 +305,8 @@ class Step7(StepTemplateSudo):
         return False
 
     def next(self):
+        from kano_profile.badges import save_app_state_variable_with_dialog
+        save_app_state_variable_with_dialog('linux-story', 'finished', 'challenge_46')
         self._is_finished = True
         self.exit()
         return -1, -1
