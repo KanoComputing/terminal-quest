@@ -24,8 +24,9 @@ Options:
 import os
 import sys
 import docopt
+from gi.repository import Gtk, GLib
+import Queue
 
-from gi.repository import Gtk
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -35,42 +36,25 @@ if __name__ == '__main__' and __package__ is None:
     else:
         LOCALE_PATH = '/usr/share/locale'
 
+from linux_story.MessageServer import MessageServer
+
 import kano_i18n.init
 kano_i18n.init.install('terminal-quest', LOCALE_PATH)
 
-from linux_story.gtk3.MainWindow import MainWindow
-from kano_profile.apps import load_app_state_variable
-
-# Track the user's progress
 from kano_profile.tracker import Tracker
 kanotracker = Tracker()
 
 
-def main(debug=False, challenge=None, step=None):
-    win = MainWindow(debug)
+from linux_story.gtk3.MainWindow import MainWindow
 
-    # If the application is launched with two arguments, then this is
-    # debugging and we want to launch the application directly from the level
-    # specified
-    if challenge and step:
-        win.setup_application_widgets()
-        win.start_script_in_terminal(challenge, step)
 
-    else:
-        # Show the selection menu for the unlocked challenges
-
-        # Get the last unlocked challenge.
-        last_unlocked_challenge = load_app_state_variable(
-            'linux-story', 'level'
-        )
-
-        if last_unlocked_challenge:
-            # With this data, we need to decide which chapters are locked.
-            win.show_menu()
-
-        else:
-            win.setup_application_widgets()
-            win.start_script_in_terminal("0", "1")
+def main(challenge, step, debug=False):
+    window = MainWindow(challenge, step, debug)
+    queue = Queue.Queue(1)
+    server = MessageServer(queue, window)
+    server.start_in_separate_thread()
+    window.connect("delete-event", server.shutdown)
+    GLib.idle_add(server.check_queue)
 
     os.system("kano-stop-splash")
     Gtk.main()
@@ -109,6 +93,6 @@ if __name__ == "__main__":
         sys.settrace(tracefunc)
 
     try:
-        main(debug, challenge, step)
+        main(challenge, step, debug)
     finally:
         handle_cleanup()

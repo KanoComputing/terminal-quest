@@ -4,27 +4,16 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-
-
 import os
-import sys
-
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
 from kano.logging import logger
-
+from linux_story.StepTemplate import StepTemplate
 from linux_story.story.terminals.terminal_mv import TerminalMv
-from linux_story.common import tq_file_system
-from linux_story.story.challenges.challenge_15 import Step1 as NextStep
-from linux_story.step_helper_functions import \
-    unblock_commands_with_cd_hint, unblock_commands
+from linux_story.common import fake_home_dir
+from linux_story.step_helper_functions import unblock_commands_with_cd_hint, unblock_commands
 
 
-class StepTemplateMv(TerminalMv):
-    challenge_number = 14
+class StepTemplateMv(StepTemplate):
+    TerminalClass = TerminalMv
 
 
 # ----------------------------------------------------------------------------------------
@@ -32,8 +21,7 @@ class StepTemplateMv(TerminalMv):
 
 class Step1(StepTemplateMv):
     story = [
-        _("Let's {{lb:look around}} to see what food is " +\
-        "available in the {{bb:kitchen}}.\n")
+        _("Let's {{lb:look around}} to see what food is available in the {{bb:kitchen}}.\n")
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
@@ -42,20 +30,18 @@ class Step1(StepTemplateMv):
         "ls -a"
     ]
     hints = [
-        _("{{rb:Use}} {{yb:ls}} {{rb:to have a}} {{lb:look around}} " +\
-        "{{rb:the kitchen.}}")
+        _("{{rb:Use}} {{yb:ls}} {{rb:to have a}} {{lb:look around}} {{rb:the kitchen.}}")
     ]
 
     def next(self):
-        Step2()
+        return 14, 2
 
 
 # Move three pieces of food into the basket
 class Step2(StepTemplateMv):
     story = [
         _("{{lb:Move}} three pieces of food into your {{bb:basket}}.\n"),
-        _("You can move multiple items using {{yb:mv <item1> <item2>" +\
-        " <item3> basket/}}\n")
+        _("You can move multiple items using {{yb:mv item1 item2 item3 basket/}} e.g. mv banana cake milk basket/\n")
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
@@ -69,20 +55,23 @@ class Step2(StepTemplateMv):
         'sandwich'
     ]
     unmovable_items = {
-        "newspaper": _("{{rb:They asked for food, they probably shouldn't " +\
-        "eat the newspaper.}}"),
+        "newspaper": _("{{rb:They asked for food, they probably shouldn't "
+            "eat the newspaper.}}"),
         "oven": _("{{rb:This is a bit heavy for you to carry!}}"),
         "table": _("{{rb:This is a bit heavy for you to carry!}}")
     }
     moved_items = []
 
-    def block_command(self):
-        separate_words = self.last_user_input.split(' ')
-        should_block = True
+    def block_command(self, line):
+        if not line:
+            return False
 
-        if "cd" in self.last_user_input:
+        separate_words = line.split(' ')
+        should_block = False
+
+        if "cd" in line:
             return True   # block the CD command here
-        elif "ls" in self.last_user_input:
+        elif "ls" in line:
             return False  # do not block the LS command
 
         if separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
@@ -91,15 +80,13 @@ class Step2(StepTemplateMv):
                 if item not in self.passable_items:
                     if item in self.unmovable_items:
                         self.send_hint(self.unmovable_items[item])
-                        break
+                        return True
                     else:
                         hint = _("{{rb:You\'re trying to move something that " +\
                                 "isn\'t in the folder.\nTry using}} " +\
                                 "{{yb:mv %s basket/}}") % self.passable_items[0]
                         self.send_hint(hint)
-                        break
-
-            should_block = False
+                        return True
 
         else:
             # print a message in the terminal to show that it failed
@@ -108,15 +95,12 @@ class Step2(StepTemplateMv):
 
         return should_block
 
-    def check_command(self):
-        separate_words = self.last_user_input.split()
+    def check_command(self, line):
+        separate_words = line.split(" ")
         all_items = []
 
-        if self.get_command_blocked():
-            hint = _("{{rb:Try using}} {{yb:mv %s basket/}}") % self.passable_items[0]
-
-        elif separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
-                                            separate_words[-1] == 'basket/'):
+        if separate_words[0] == 'mv' and (separate_words[-1] == 'basket' or
+                                          separate_words[-1] == 'basket/'):
             for item in separate_words[1:-1]:
                 all_items.append(item)
 
@@ -132,17 +116,16 @@ class Step2(StepTemplateMv):
                                  " made a typo - [{}]".format(item, e))
 
             if items_moved:
-                hint = _("\n{{gb:Well done! Keep going.}}")
+                hint = _("{{gb:Well done! Keep going.}}")
 
         else:
-            hint = _("{{rb:Try using}} {{yb:mv %s basket/}}") \
-                   % self.passable_items[0]
+            hint = _("{{rb:Try using}} {{yb:mv %s basket/}}") % self.passable_items[0]
 
         self.send_hint(hint)
 
     # Check that the basket folder contains the correct number of files?
     def check_output(self, output):
-        basket_dir = os.path.join(tq_file_system, 'my-house/kitchen/basket')
+        basket_dir = os.path.join(fake_home_dir, 'my-house/kitchen/basket')
         food_files = [
             f for f in os.listdir(basket_dir)
             if os.path.isfile(os.path.join(basket_dir, f))
@@ -154,7 +137,7 @@ class Step2(StepTemplateMv):
             return False
 
     def next(self):
-        Step3()
+        return 14, 3
 
 
 class Step3(StepTemplateMv):
@@ -172,15 +155,14 @@ class Step3(StepTemplateMv):
         "mv basket/ ~/"
     ]
     hints = [
-        _("{{rb:Use the command}} {{yb:mv basket ~/}} " +\
-        "{{rb:to move the basket to the windy road ~}}")
+        _("{{rb:Use the command}} {{yb:mv basket ~/}} {{rb:to move the basket to the windy road ~}}")
     ]
 
-    def block_command(self):
-        return unblock_commands(self.last_user_input, self.commands)
+    def block_command(self, line):
+        return unblock_commands(line, self.commands)
 
     def next(self):
-        Step4()
+        return 14, 4
 
 
 class Step4(StepTemplateMv):
@@ -199,13 +181,11 @@ class Step4(StepTemplateMv):
         "to move yourself to the road ~}}")
     ]
 
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        Step5()
+        return 14, 5
 
 
 class Step5(StepTemplateMv):
@@ -231,11 +211,11 @@ class Step5(StepTemplateMv):
         "{{rb:to move the basket to the family.}}")
     ]
 
-    def block_command(self):
-        return unblock_commands(self.last_user_input, self.commands)
+    def block_command(self, line):
+        return unblock_commands(line, self.commands)
 
     def next(self):
-        Step6()
+        return 14, 6
 
 
 class Step6(StepTemplateMv):
@@ -256,13 +236,11 @@ class Step6(StepTemplateMv):
         "{{rb:to be reunited with the family.}}"),
     ]
 
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        Step7()
+        return 14, 7
 
 
 class Step7(StepTemplateMv):
@@ -291,16 +269,14 @@ class Step7(StepTemplateMv):
             "excited.\n}}")
     }
 
-    last_step = True
-
-    def check_command(self):
+    def check_command(self, line):
         if not self.allowed_commands:
             return True
 
-        if self.last_user_input in self.allowed_commands.keys():
+        if line in self.allowed_commands.keys():
 
-            hint = self.allowed_commands[self.last_user_input]
-            del self.allowed_commands[self.last_user_input]
+            hint = self.allowed_commands[line]
+            del self.allowed_commands[line]
             num_people = len(self.allowed_commands.keys())
 
             if num_people == 0:
@@ -318,4 +294,4 @@ class Step7(StepTemplateMv):
         self.send_hint(hint)
 
     def next(self):
-        NextStep(self.xp)
+        return 15, 1

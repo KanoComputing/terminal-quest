@@ -1,0 +1,2 @@
+Removing read permissions stops you being able to see the contents of files or directories.
+This is useful if you want to hide information from snoopers.

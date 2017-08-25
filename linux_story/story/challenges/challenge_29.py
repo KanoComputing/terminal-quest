@@ -8,12 +8,10 @@
 
 import os
 
-from linux_story.story.terminals.terminal_bernard import TerminalNanoBernard
-from linux_story.story.challenges.challenge_30 import Step1 as NextStep
+from linux_story.story.challenges.CompanionMisc import StepTemplateNano
 from linux_story.helper_functions import record_user_interaction
 
 
-# Can't get all the information with this system unless you are interested.
 story_replies = {
     "echo 1": [
         {
@@ -27,16 +25,14 @@ story_replies = {
         {
             "user": _("\"How did he lock it?\""),
             "clara": \
-                _("Clara: {{Bb:\"I don't know, I wasn't senior enough " +\
-                "to be taught.\"}}" +\
-                "\n{{Bb:\"I think he was taught from a}} " +\
-                "{{bb:masked swordsmaster}} {{Bb:living outside of town.\"}}")
+                _("Clara: {{Bb:\"I don't know, it's a very special lock. But, I think he learnt the secrets of the "
+                  "lock from a masked swordmaster living outside of town.\"}}")
         },
         {
-            "user": _("\"Where would I find this masked swordsmaster?\""),
+            "user": _("\"Where would I find this masked swordmaster?\""),
             "clara": \
                 _("Clara: {{Bb:\"He said the}} " +\
-                "{{bb:masked swordsmaster}} {{Bb:lived in the woods.\"}}" +\
+                "{{bb:masked swordmaster}} {{Bb:lived in the woods.\"}}" +\
                 "\n{{Bb:\"I presume he meant the woods just off the}} " +\
                 "{{lb:Windy Road}}{{Bb:? The one " +\
                 "near the farm and that funny lonely house outside town.\"}}")
@@ -110,7 +106,7 @@ def create_story(step):
         _("{{yb:3: %s}}") % story_replies["echo 3"][0]["user"]
     ]
 
-    return (print_text, story)
+    return print_text, story
 
 
 # Want to eliminate the story that the user has already seen
@@ -122,11 +118,7 @@ def pop_story(user_input):
         return reply
 
 
-class StepNano(TerminalNanoBernard):
-    challenge_number = 29
-
-
-class StepNanoStory(StepNano):
+class StepNanoStory(StepTemplateNano):
     commands = [
         "echo 1"
     ]
@@ -134,49 +126,36 @@ class StepNanoStory(StepNano):
     start_dir = "~/town/east/restaurant/.cellar"
     end_dir = "~/town/east/restaurant/.cellar"
     hints = [
-        _("{{rb:Talk to Clara using}} {{yb:echo 1}}{{rb:,}} " +\
-        "{{yb:echo 2}} {{rb:or}} {{yb:echo 3}}{{rb:.}}")
+        _("{{rb:Talk to Clara using}} {{yb:echo 1}}{{rb:,}} {{yb:echo 2}} {{rb:or}} {{yb:echo 3}}{{rb:.}}")
     ]
+    step_number = None
 
-    def __init__(self, xp="", step_number=None):
-        self.echo_hit = {
-            "echo 2": True,
-            "echo 3": True
-        }
 
-        if step_number:
-            self.print_text = [create_story(step_number)[0]]
-            self.story = create_story(step_number)[1]
-
-        StepNano.__init__(self, "")
-
-    def check_command(self):
-
+    def story_check_command(self, line, echo_hit):
         # If self.last_user_input equal to "echo 1" or "echo 3"
-        if self.last_user_input in story_replies:
+        if line in story_replies:
 
-            if self.last_user_input == "echo 1":
+            if line == "echo 1":
                 return True
 
             else:
-                if self.echo_hit[self.last_user_input]:
-                    self.echo_hit[self.last_user_input] = False
-                    reply = pop_story(self.last_user_input)["clara"]
-                    self.send_text("\n\n" + reply)
+                if echo_hit[line]:
+                    echo_hit[line] = False
+                    reply = pop_story(line)["clara"]
+                    self.send_hint("\n\n" + reply)
 
                     # Record that the user got optional info
                     # Replace spaces with underscores
-                    user_input = "_".join(self.last_user_input.split(" "))
+                    user_input = "_".join(line.split(" "))
                     state_name = "clara_%s" % user_input
                     record_user_interaction(self, state_name)
                 else:
-                    self.send_text(
-                        _("\n{{rb:You've already asked Clara that. " +\
-                        "Ask her something else.}}")
+                    self.send_hint(
+                        _("\n{{rb:You've already asked Clara that. Ask her something else.}}")
                     )
 
         else:
-            return TerminalNanoBernard.check_command(self)
+            return StepTemplateNano.check_command(self, line)
 
 
 # ----------------------------------------------------------------------------------------
@@ -201,38 +180,66 @@ class Step1(StepNanoStory):
         _("\nUse {{yb:echo}} to ask {{bb:Clara}} a question.")
     ]
 
-    eleanors_speech = \
-        _("Eleanor: {{Bb:\"I'm not scared anymore, I like Clara.\"}}")
+    companion_speech = _("Eleanor: {{Bb:\"I'm not scared anymore, I like Clara.\"}}")
+
+    def _run_at_start(self):
+        self.echo_hit = {
+            "echo 2": True,
+            "echo 3": True
+        }
+
+    def check_command(self, last_user_input):
+        return self.story_check_command(last_user_input, self.echo_hit)
 
     def next(self):
-        Step2(step_number=2)
+        return 29, 2
 
 
 class Step2(StepNanoStory):
+    companion_speech = _("Eleanor: {{Bb:\"What is so dangerous in the private-section?\"}}")
 
-    eleanors_speech = \
-        _("Eleanor: {{Bb:\"What is so dangerous in the private-section?\"}}")
+    def _run_at_start(self):
+        self.echo_hit = {
+            "echo 2": True,
+            "echo 3": True
+        }
+
+        self.print_text = [create_story(2)[0]]
+        self.story = create_story(2)[1]
+
+    def check_command(self, last_user_input):
+        return self.story_check_command(last_user_input, self.echo_hit)
 
     def next(self):
-        Step3(step_number=3)
+        return 29, 3
 
 
 class Step3(StepNanoStory):
+    companion_speech = _("Eleanor: {{Bb:\"Do we want to unlock something so dangerous?\"}}")
 
-    eleanors_speech = \
-        _("Eleanor: {{Bb:\"Do we want to unlock something so dangerous?\"}}")
+    def _run_at_start(self):
+        self.echo_hit = {
+            "echo 2": True,
+            "echo 3": True
+        }
+
+        self.print_text = [create_story(3)[0]]
+        self.story = create_story(3)[1]
+
+    def check_command(self, last_user_input):
+        return self.story_check_command(last_user_input, self.echo_hit)
 
     def next(self):
-        Step4()
+        return 29, 4
 
 
 class Step4(StepNanoStory):
     last_step = True
 
-    print_text = _("{{yb:\"Where would I find this masked swordsmaster?\"}}"),
+    print_text = _("{{yb:\"Where would I find this masked swordmaster?\"}}"),
     story = [
         _("Clara: {{Bb:\"He said the}} " +\
-        "{{bb:masked swordsmaster}} {{Bb:lived in the woods.\"}}"),
+        "{{bb:masked swordmaster}} {{Bb:lived in the woods.\"}}"),
 
         _("{{Bb:\"I presume he meant the woods just off the}} " +\
         "{{bb:Windy Road}}{{Bb:? The one " +\
@@ -241,10 +248,9 @@ class Step4(StepNanoStory):
         _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
     ]
 
-    eleanors_speech = _("Eleanor: {{Bb:\"A masked swordmaster??\"}}")
+    companion_speech = _("Eleanor: {{Bb:\"A masked swordmaster??\"}}")
 
-    def check_command(self):
-        return True
+    commands = []
 
     def next(self):
-        NextStep(self.xp)
+        return 30, 1

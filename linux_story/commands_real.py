@@ -7,20 +7,17 @@
 
 
 import os
-import traceback
 import subprocess
 
-from kano.logging import logger
-
 from helper_functions import colour_file_dir, debugger
-from linux_story.common import tq_file_system
+from linux_story.common import tq_file_system, fake_home_dir
 from linux_story.sound_manager import SoundManager
 
 
 sounds_manager = SoundManager()
 
 
-def ls(real_loc, line):
+def ls(real_loc, line, has_access=True):
     '''
     Prints out the coloured output of the ls command.
 
@@ -33,11 +30,15 @@ def ls(real_loc, line):
         str of the output printed to the terminal.
     '''
 
+    if not has_access:
+        print "ls: cannot open directory {}: Permission denied".format(line)
+        return
+
     new_loc = real_loc
     get_all_info = False
     new_lines = False
     args = ["ls"]
-    line = line.replace('~', tq_file_system)
+    line = line.replace('~', fake_home_dir)
 
     if line:
         args = line.split(" ")
@@ -75,7 +76,6 @@ def ls(real_loc, line):
     # Need to filter output
     files = orig_output.split('\n')
     coloured_files = []
-    coloured_output = ""
     output = " ".join(files)
 
     if get_all_info:
@@ -103,29 +103,8 @@ def ls(real_loc, line):
     return output
 
 
-def sudo(real_path, line):
-    '''
-    Args:
-        real_path (str): filepath for the current location of the user.
-        line (str): the line the user entered following sudo.
-
-    Return:
-        None
-    '''
-    allowed_commands = ["chmod", "touch", "mkdir"]
-
-    # take the list of elements
-    elements = line.split(" ")
-
-    # take the command we're sudo-ing
-    command = elements[0]
-
-    if command in allowed_commands:
-        shell_command(real_path, line, "sudo")
-
-
 def shell_command(real_loc, line, command_word=""):
-    '''
+    """
     Suitable for launching commands which don't involve curses.
 
     Args:
@@ -135,12 +114,12 @@ def shell_command(real_loc, line, command_word=""):
 
     Returns:
         bool: False if error, True otherwise.
-    '''
+    """
 
     if command_word:
         line = command_word + " " + line
 
-    line = line.replace('~', tq_file_system)
+    line = line.replace('~', fake_home_dir)
     args = line.split(" ")
 
     # run the command
@@ -150,7 +129,7 @@ def shell_command(real_loc, line, command_word=""):
     stdout, stderr = p.communicate()
 
     if stderr:
-        print stderr.strip().replace(tq_file_system, '~')
+        print stderr.strip().replace(fake_home_dir, '~')
         return False
 
     if stdout:
@@ -179,6 +158,8 @@ def launch_application(real_path, line, command_word=""):
     Returns:
         None.
     '''
+
+    line = line.replace('~', fake_home_dir)
     line = " ".join([command_word] + line.split(" "))
 
     p = subprocess.Popen(line, cwd=real_path, shell=True)

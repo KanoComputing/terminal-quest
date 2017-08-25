@@ -4,16 +4,10 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-
-
-from linux_story.story.terminals.terminal_bernard import TerminalNanoBernard
-from linux_story.story.challenges.challenge_29 import Step1 as NextStep
+from linux_story.story.challenges.CompanionMisc import StepTemplateNano
+from linux_story.common import get_story_file
 from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.sound_manager import SoundManager
-
-
-class StepTemplateNano(TerminalNanoBernard):
-    challenge_number = 28
 
 
 # ----------------------------------------------------------------------------------------
@@ -34,22 +28,22 @@ class Step1(StepTemplateNano):
     ]
 
     deleted_items = ["~/town/east/shed-shop/Eleanor"]
-    story_dict = {
-        "Eleanor": {
-            "path": "~/town/east"
+    file_list = [
+        {
+            "path": "~/town/east/Eleanor",
+            "contents": get_story_file("Eleanor")
         }
-    }
+    ]
 
     commands = [
         "ls",
         "ls -a"
     ]
 
-    eleanors_speech = \
-        _("Eleanor: {{Bb:\"I'm hungry. Can you see anywhere we could eat?\"}}")
+    companion_speech = _("Eleanor: {{Bb:\"I'm hungry. Can you see anywhere we could eat?\"}}")
 
     def next(self):
-        Step2()
+        return 28, 2
 
 
 class Step2(StepTemplateNano):
@@ -65,15 +59,13 @@ class Step2(StepTemplateNano):
         _("{{rb:Use}} {{yb:cd restaurant}} {{rb:to go into the restaurant.}}")
     ]
 
-    eleanors_speech = (
-        _("Eleanor: {{Bb:Ooh, do you think they'll have a sandwich anywhere?}}")
-    )
+    companion_speech = (_("Eleanor: {{Bb:Ooh, do you think they'll have a sandwich anywhere?}}"))
 
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    def block_command(self, line):
+        return unblock_cd_commands(line)
 
     def next(self):
-        Step3()
+        return 28, 3
 
 
 class Step3(StepTemplateNano):
@@ -86,8 +78,7 @@ class Step3(StepTemplateNano):
     end_dir = "~/town/east/restaurant"
 
     hints = [
-        _("Eleanor: {{Bb:Do you remember how you found me?" +\
-        " You used}} {{yb:ls -a}} {{Bb:right?}}")
+        _("Eleanor: {{Bb:Do you remember how you found me? You used}} {{yb:ls -a}} {{Bb:right?}}")
     ]
 
     commands = [
@@ -95,16 +86,18 @@ class Step3(StepTemplateNano):
     ]
 
     deleted_items = ["~/town/east/Eleanor"]
-    story_dict = {
-        "Eleanor": {
-            "path": "~/town/east/restaurant"
+    file_list = [
+        {
+            "path": "~/town/east/restaurant/Eleanor",
+            "contents": get_story_file("Eleanor"),
+            "type": "file"
         }
-    }
+    ]
 
-    eleanors_speech = _("Eleanor: {{Bb:It seems really empty here...}}")
+    companion_speech = _("Eleanor: {{Bb:It seems really empty here...}}")
 
     def next(self):
-        Step4()
+        return 28, 4
 
 
 class Step4(StepTemplateNano):
@@ -120,13 +113,13 @@ class Step4(StepTemplateNano):
         _("{{rb:Go in the wine cellar using}} {{yb:cd .cellar}}{{rb:.}}")
     ]
 
-    eleanors_speech = _("Eleanor: {{Bb:I'm scared...can you hold my hand?}}")
+    companion_speech = _("Eleanor: {{Bb:I'm scared...can you hold my hand?}}")
 
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    def block_command(self, line):
+        return unblock_cd_commands(line)
 
     def next(self):
-        Step5()
+        return 28, 5
 
 
 class Step5(StepTemplateNano):
@@ -143,25 +136,26 @@ class Step5(StepTemplateNano):
     ]
 
     deleted_items = ["~/town/east/restaurant/Eleanor"]
-    story_dict = {
-        "Eleanor": {
-            "path": "~/town/east/restaurant/.cellar"
+    file_list = [
+        {
+            "path": "~/town/east/restaurant/.cellar/Eleanor",
+            "contents": get_story_file("Eleanor"),
+            "type": "file"
         }
-    }
+    ]
     commands = [
         "ls",
         "ls -a"
     ]
 
-    eleanors_speech = _("Eleanor: {{Bb:\"...is there someone there?\"}}")
+    companion_speech = _("Eleanor: {{Bb:\"...is there someone there?\"}}")
 
-    def __init__(self, xp=""):
+    def _run_at_start(self):
         sound_manager = SoundManager()
         sound_manager.play_sound('steps')
-        StepTemplateNano.__init__(self, xp)
 
     def next(self):
-        Step6()
+        return 28, 6
 
 
 class Step6(StepTemplateNano):
@@ -181,10 +175,7 @@ class Step6(StepTemplateNano):
     commands = [
         "cat Clara"
     ]
-    eleanors_speech = \
-        _("Eleanor: {{Bb:\"...oh! I think I recognise that woman!\"}}")
-
-    last_step = True
+    companion_speech = _("Eleanor: {{Bb:\"...oh! I think I recognise that woman!\"}}")
 
     def next(self):
-        NextStep(self.xp)
+        return 29, 1

@@ -11,6 +11,7 @@ import os.path
 import gettext
 import re
 
+import sys
 from kano.colours import colourize256, decorate_string
 from kano.logging import logger
 from kano_profile.apps import \
@@ -27,16 +28,16 @@ FORMATTING_END = re.compile(r"}}")
 
 
 def debugger(text):
-    '''
+    """
     Change first line to "if True:" to show all the debugging lines.
-    '''
+    """
 
     if False:
         print text
 
 
 def get_script_cmd(string, real_path):
-    '''
+    """
     Checks whether the path (from the user's point of view)
     is an executable.
 
@@ -51,7 +52,7 @@ def get_script_cmd(string, real_path):
         tuple = (bool, str):
             The first argument says if the script is a valid executable.
             The second argument gives the full filepath of the executable.
-    '''
+    """
 
     is_script = False
 
@@ -77,7 +78,7 @@ def is_exe(fpath):
 
 
 def colour_file_dir(path, f):
-    '''
+    """
     Colourize the files and directories consistently
 
     Args:
@@ -87,7 +88,7 @@ def colour_file_dir(path, f):
     Returns:
         str: the filename with the appropriate appended substrings to
             make it appear the correct colour in a terminal.
-    '''
+    """
 
     if os.path.isfile(path) and is_exe(path):
         f = colour_string_with_preset(f, "green", False)
@@ -102,7 +103,7 @@ def colour_file_dir(path, f):
 
 
 def colour_string_with_preset(string, colour_name="white", input_fn=True):
-    '''
+    """
     Args:
         string (str): the string we want to colourise.
         colour_name (str): takes the values "yellow", "white", "blue", "green"
@@ -110,7 +111,7 @@ def colour_string_with_preset(string, colour_name="white", input_fn=True):
 
     Returns:
         str: string which will appear with specified colour in a terminal.
-    '''
+    """
 
     colours = {
         "yellow": 226,
@@ -167,17 +168,17 @@ def colourize_input256(string, fg_num=None, bg_num=None, bold=False):
 
 
 def record_user_interaction(instance, base_name):
-    '''
+    """
     This is to store some of the user actions, so we can determine
     if the user does the optional side quests.
 
     Args:
         The class instance.
         base_name (str): a string for the identity of the command.
-    '''
+    """
 
     class_instance = instance.__class__.__name__
-    challenge_number = instance.challenge_number
+    challenge_number = instance.__module__.split("_")[-1]
     profile_var_name = "{} {} {}".format(
         base_name, challenge_number, class_instance
     )
@@ -194,6 +195,17 @@ def record_user_interaction(instance, base_name):
         increment_app_state_variable("linux-story", total_name, 1)
 
         # If total reaches a certain amount, then can award XP.
+
+
+def print_method_module(method):
+    def printer(self):
+        name = self.__module__
+        if name == '__main__':
+            filename = sys.modules[self.__module__].__file__
+            name = os.path.splitext(os.path.basename(filename))[0]
+        print name
+        return method(self)
+    return printer
 
 
 def get_ascii_art(name):
@@ -319,3 +331,19 @@ def wrap_in_box(lines):
     new_lines = map(format_line, lines)
 
     return [outer_line] + new_lines + [outer_line + "\n"]
+
+
+def is_executable(path):
+    return os.path.isfile(path) and has_execute_permissions(path)
+
+
+def has_read_permissions(path):
+    return os.access(path, os.R_OK)
+
+
+def has_write_permissions(path):
+    return os.access(path, os.W_OK)
+
+
+def has_execute_permissions(path):
+    return os.access(path, os.X_OK)

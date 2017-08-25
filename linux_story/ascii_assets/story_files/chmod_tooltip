@@ -1,0 +1,27 @@
+   _____ _    _ __  __  ____  _____
+  / ____| |  | |  \/  |/ __ \|  __ \
+ | |    | |__| | \  / | |  | | |  | |
+ | |    |  __  | |\/| | |  | | |  | |
+ | |____| |  | | |  | | |__| | |__| |
+  \_____|_|  |_|_|  |_|\____/|_____/
+
+
+This command gives you the power to lock and unlock files.
+
+
+Examples
+
+<span foreground="yellow">chmod +r dark-room</span>
+allows you to read the contents of dark-room/
+
+<span foreground="yellow">chmod +w cage</span>
+allows you to write to the cage/ directory
+
+<span foreground="yellow">chmod +x locked-room</span>
+makes locked-room/ executable, so you can enter and view the contents
+
+<span foreground="yellow">chmod +x lighter</span>
+activates lighter executable, so you run it as a script.
+
+<span foreground="yellow">chmod +rwx chest</span>
+gives you full access to the locked chest.

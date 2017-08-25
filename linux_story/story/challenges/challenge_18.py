@@ -4,26 +4,21 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-
-
-from linux_story.step_helper_functions import (
-    unblock_cd_commands
-)
+from linux_story.StepTemplate import StepTemplate
+from linux_story.step_helper_functions import unblock_cd_commands
 from linux_story.story.terminals.terminal_echo import TerminalEcho
-from linux_story.story.challenges.challenge_19 import Step1 as NextStep
 
 
-class StepTemplateEcho(TerminalEcho):
-    challenge_number = 18
+class StepTemplateEcho(StepTemplate):
+    TerminalClass = TerminalEcho
 
 
 # ----------------------------------------------------------------------------------------
 
-
 class Step1(StepTemplateEcho):
     story = [
         _("Woah! You spoke aloud into the empty room!\n"),
-        _("{{gb:You learnt the new skill echo!}}\n"),
+        _("{{gb:You learnt the new power}} {{lb:echo}}{{gb:!}}\n"),
         _("This command can probably be used to talk to people."),
 
         _("\nNow let's head to {{bb:~}} to find that farm!"),
@@ -37,11 +32,11 @@ class Step1(StepTemplateEcho):
     start_dir = "~/my-house/parents-room"
     end_dir = "~"
 
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    def block_command(self, line):
+        return unblock_cd_commands(line)
 
     def next(self):
-        Step2()
+        return 18, 2
 
 
 class Step2(StepTemplateEcho):
@@ -60,7 +55,7 @@ class Step2(StepTemplateEcho):
     end_dir = '~'
 
     def next(self):
-        Step3()
+        return 18, 3
 
 
 class Step3(StepTemplateEcho):
@@ -75,16 +70,17 @@ class Step3(StepTemplateEcho):
         _("{{rb:Use}} {{yb:cd farm}} {{rb:to head to the farm.}}")
     ]
 
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    def block_command(self, line):
+        return unblock_cd_commands(line)
 
     def next(self):
-        Step4()
+        return 18, 4
 
 
 class Step4(StepTemplateEcho):
     story = [
-        _("You walk up the path to the farm, {{lb:Look around.}}")
+        _("You walk up the path to the farm"),
+        _("{{lb:Look around.}}")
     ]
 
     commands = "ls"
@@ -93,7 +89,7 @@ class Step4(StepTemplateEcho):
     hints = [_("{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")]
 
     def next(self):
-        Step5()
+        return 18, 5
 
 
 class Step5(StepTemplateEcho):
@@ -107,7 +103,7 @@ class Step5(StepTemplateEcho):
     counter = 0
 
     def finished_challenge(self, line):
-        output = self.check_output(self.last_cmd_output)
+        output = self.check_output(line)
         if not output:
             # If Ruth not in output, check if command is ls
             self.check_command()
@@ -120,32 +116,26 @@ class Step5(StepTemplateEcho):
 
         return False
 
-    def check_command(self):
-        if self.last_user_input == 'ls' or 'ls ' in self.last_user_input:
+    def check_command(self, line):
+        if line == 'ls' or 'ls ' in line:
             self.counter += 1
 
             if self.counter >= 3:
-                self.send_text(
-                    _("\n{{rb:Use}} {{yb:ls barn}} {{rb:to look in the barn.}}")
-                )
+                self.send_hint(_("\n{{rb:Use}} {{yb:ls barn}} {{rb:to look in the barn.}}"))
             if self.counter == 2:
-                self.send_text(
-                    _("\n{{rb:Have you looked in the}} {{bb:barn}} {{rb:yet?}}")
-                )
+                self.send_hint(_("\n{{rb:Have you looked in the}} {{bb:barn}} {{rb:yet?}}"))
             elif self.counter == 1:
-                self.send_text(
-                    _("\n{{rb:There is no one here. You should look somewhere else.}}")
-                )
+                self.send_hint(_("\n{{rb:There is no one here. You should look somewhere else.}}"))
 
         else:
-            self.send_text("\n{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
+            self.send_hint("\n{{rb:Use}} {{yb:ls}} {{rb:to look around.}}")
 
-    def block_command(self):
-        if "mv" in self.last_user_input:
+    def block_command(self, line):
+        if "mv" in line:
             return True
 
     def next(self):
-        Step6()
+        return 18, 6
 
 
 class Step6(StepTemplateEcho):
@@ -161,24 +151,18 @@ class Step6(StepTemplateEcho):
         _("{{rb:Use}} {{yb:cd barn}} {{rb:to walk into the barn.}}")
     ]
 
-    def block_command(self):
-        return unblock_cd_commands(self.last_user_input)
+    def block_command(self, line):
+        return unblock_cd_commands(line)
 
     def next(self):
-        Step7()
+        return 18, 7
 
 
 class Step7(StepTemplateEcho):
 
     story = [
-        # _("In the barn, you see a woman tending some animals."),
-        # _("You walk into the barn to have a closer look."),
-        _("{{lb:Examine}} everyone in the {{bb:barn}} using "
-        "the {{yb:cat}} command.")
+        _("{{lb:Examine}} everyone in the {{bb:barn}} using the {{yb:cat}} command.")
     ]
-
-    # what is this?
-    last_challenge = True
 
     all_commands = {
         "cat Ruth": _("Ruth: {{Bb:\"Ah! Who are you?!\"}}"),
@@ -189,38 +173,35 @@ class Step7(StepTemplateEcho):
 
     start_dir = "~/farm/barn"
     end_dir = "~/farm/barn"
-    last_step = True
 
     hints = [
         _("{{rb:If you've forgotten who's in the barn, use}} {{yb:ls}} {{rb:to remind yourself.}}")
     ]
 
-    # TODO: move this into step_helper_functions, used a few too
-    # many times outside.
-    def check_command(self):
+    # TODO: move this into step_helper_functions, used a few too many times outside.
+    def check_command(self, line):
 
         # If we've emptied the list of available commands, then pass the level
         if not self.all_commands:
             return True
 
         # If they enter ls, say Well Done
-        if self.last_user_input == 'ls':
+        if line == 'ls':
             hint = _("\n{{gb:You look around.}}")
-            self.send_text(hint)
+            self.send_hint(hint)
             return False
 
         # check through list of commands
-        end_dir_validated = False
-        end_dir_validated = self.current_path == self.end_dir
+        end_dir_validated = self.get_fake_path() == self.end_dir
 
         # if the validation is included
-        if self.last_user_input in self.all_commands.keys() and \
+        if self._last_user_input in self.all_commands.keys() and \
                 end_dir_validated:
 
             # Print hint from person
-            hint = "\n" + self.all_commands[self.last_user_input]
+            hint = "\n" + self.all_commands[self._last_user_input]
 
-            self.all_commands.pop(self.last_user_input, None)
+            self.all_commands.pop(self._last_user_input, None)
 
             if len(self.all_commands) == 1:
                 hint += _("\n{{gb:Well done! Have a look at one more.}}")
@@ -229,19 +210,16 @@ class Step7(StepTemplateEcho):
             else:
                 hint += _("\n{{gb:Press}} {{ob:Enter}} {{gb:to continue.}}")
 
-            self.send_text(hint)
+            self.send_hint(hint)
 
         else:
             if not self.hints:
                 self.hints = [
                     _("{{rb:Use}} {{yb:%s}} {{rb:to progress.}}") % self.all_commands.keys()[0]
                 ]
-            self.send_hint()
+            self.send_stored_hint()
             self.hints.pop()
-
-        # Always return False unless the list of valid commands have been
-        # emptied
         return False
 
     def next(self):
-        NextStep(self.xp)
+        return 19, 1

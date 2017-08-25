@@ -69,19 +69,18 @@ def get_default_file_dict(challenge_number, step_number):
 
 
 def get_default_tree_filename():
-    '''
+    """
     Returns:
         str: filepath to yaml containing the default tree information.
-    '''
+    """
 
     current_dir = os.path.abspath(os.path.dirname(__file__))
-    default_tree_config = os.path.join(current_dir,
-                                       "story/trees/default_trees.yaml")
+    default_tree_config = os.path.join(current_dir, "story/trees/default_trees.yaml")
     return default_tree_config
 
 
 def filter_later_challenges(data_dict, current_challenge, current_step):
-    '''
+    """
     This is the first filter though the default yaml. It removes the
     information about all later challenges/steps.
 
@@ -121,7 +120,7 @@ def filter_later_challenges(data_dict, current_challenge, current_step):
         dict: Return a dictionary with the names separated
             (instead of being muddled up together) and cuts out all the
             challenges and steps which are greater than the one specified.
-    '''
+    """
 
     current_challenge = int(current_challenge)
     current_step = int(current_step)
@@ -180,7 +179,7 @@ def filter_later_challenges(data_dict, current_challenge, current_step):
 
 
 def get_relevant_challenge(draft_story_dict):
-    '''
+    """
     Order the array of dictiories by the challenge, and then step.
     We can then take the last element of the ordered dictionaries, and this
     will be the relevent challenge.
@@ -194,7 +193,7 @@ def get_relevant_challenge(draft_story_dict):
     Returns:
         dict: Of the same form but only with information about the specified
             challenges.
-    '''
+    """
 
     story_dict = {}
     for name, file_dict in draft_story_dict.iteritems():

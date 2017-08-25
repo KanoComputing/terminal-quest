@@ -4,23 +4,13 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # A chapter of the story
-
-
-import os
-import sys
-
-dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-if __name__ == '__main__' and __package__ is None:
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
-from linux_story.story.terminals.terminal_cd import TerminalCd
-from linux_story.story.challenges.challenge_11 import Step1 as NextStep
+from linux_story.StepTemplate import StepTemplate
 from linux_story.step_helper_functions import unblock_commands_with_cd_hint
+from linux_story.story.terminals.terminal_cd import TerminalCd
 
 
-class StepTemplateCd(TerminalCd):
-    challenge_number = 10
+class StepTemplateCd(StepTemplate):
+    TerminalClass = TerminalCd
 
 
 # ----------------------------------------------------------------------------------------
@@ -47,45 +37,42 @@ class Step1(StepTemplateCd):
     end_dir = "~/my-house/kitchen"
     counter = 0
     deleted_items = ["~/my-house/kitchen/note"]
-    story_dict = {
-        "Eleanor, Edward, Edith, apple, dog": {
-            "path": "~/town/.hidden-shelter",
-        },
-        "empty-bottle": {
-            "path": "~/town/.hidden-shelter/basket"
-        },
-        "MV": {
-            "path": "~/town/.hidden-shelter/.tiny-chest"
-        }
-    }
-    # for check_command logic
+    file_list = [
+        {"path": "~/town/.hidden-shelter/Eleanor"},
+        {"path": "~/town/.hidden-shelter/Edward"},
+        {"path": "~/town/.hidden-shelter/Edith"},
+        {"path": "~/town/.hidden-shelter/apple"},
+        {"path": "~/town/.hidden-shelter/dog"},
+        {"path": "~/town/.hidden-shelter/basket/empty-bottle"},
+        {"path": "~/town/.hidden-shelter/.tiny-chest/MV"},
+    ]
     first_time = True
 
-    def check_command(self):
+    def check_command(self, line):
 
-        if self.last_user_input in self.allowed_commands:
+        if line in self.allowed_commands:
             self.counter += 1
-            self.allowed_commands.remove(self.last_user_input)
-            hint = _("\n{{gb:Well done! Just look at one more item.}}")
+            self.allowed_commands.remove(line)
+            hint = _("{{gb:Well done! Just look at one more item.}}")
 
         else:
             if self.first_time:
-                hint = _("\n{{rb:Use}} {{yb:cat}} {{rb:to look at two of the " +\
+                hint = _("{{rb:Use}} {{yb:cat}} {{rb:to look at two of the " +\
                          "objects around you.}}")
             else:
-                hint = _("\n{{rb:Use the command}} {{yb:%s}} {{rb:to progress.}}")\
+                hint = _("{{rb:Use the command}} {{yb:%s}} {{rb:to progress.}}")\
                         % self.allowed_commands[0]
 
         level_up = (self.counter >= 2)
 
         if not level_up:
-            self.send_text(hint)
+            self.send_hint(hint)
             self.first_time = False
         else:
             return level_up
 
     def next(self):
-        Step2()
+        return 10, 2
 
 
 class Step2(StepTemplateCd):
@@ -109,48 +96,47 @@ class Step2(StepTemplateCd):
     ]
     num_turns_in_home_dir = 0
 
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
-    def show_hint(self):
+    def check_command(self, line):
+        if self.get_fake_path() == self.end_dir:
+            return True
+
+        hint = ""
 
         # decide command needed to get to next part of town
-        if self.current_path == '~/my-house/kitchen' or \
-                self.current_path == '~/my-house':
+        if self.get_fake_path() == '~/my-house/kitchen' or self.get_fake_path() == '~/my-house':
 
             # If the last command the user used was to get here
             # then congratulate them
-            if self.last_user_input == "cd .." or \
-                    self.last_user_input == 'cd ../':
-                hint = _("\n{{gb:Good work! Now replay the last command using " +\
+            if line == "cd .." or line == 'cd ../':
+                hint = _("{{gb:Good work! Now replay the last command using " +\
                          "the}} {{ob:UP}} {{gb:arrow on your keyboard.}}")
 
             # Otherwise, give them a hint
             else:
-                hint = _("\n{{rb:Use}} {{yb:cd ..}} {{rb:to make your way to town.}}")
+                hint = _("{{rb:Use}} {{yb:cd ..}} {{rb:to make your way to town.}}")
 
-        elif self.current_path == '~':
+        elif self.get_fake_path() == '~':
             # If they have only just got to the home directory,
             # then they used an appropriate command
             if self.num_turns_in_home_dir == 0:
-                hint = _("\n{{gb:Good work! Now use}} {{yb:cd town}} {{gb:" +\
-                         "to head to town.}}")
+                hint = _("{{gb:Cool! Now use}} {{yb:cd town}} {{gb:to head to town.}}")
 
             # Otherwise give them a hint
             else:
-                hint = _("\n{{rb:Use}} {{yb:cd town}} {{rb:to go into town.}}")
+                hint = _("{{rb:Use}} {{yb:cd town}} {{rb:to go into town.}}")
 
             # So we can keep track of the number of turns they've been in the
             # home directory
             self.num_turns_in_home_dir += 1
 
         # print the hint
-        self.send_text(hint)
+        self.send_hint(hint)
 
     def next(self):
-        Step3()
+        return 10, 3
 
 
 class Step3(StepTemplateCd):
@@ -160,10 +146,10 @@ class Step3(StepTemplateCd):
     start_dir = "~/town"
     end_dir = "~/town"
     commands = "ls"
-    hints = _("{{rb:Use}} {{yb:ls}} {{rb:to have a look around the town.}}")
+    hints = [_("{{rb:Use}} {{yb:ls}} {{rb:to have a look around the town.}}")]
 
     def next(self):
-        Step4()
+        return 10, 4
 
 
 class Step4(StepTemplateCd):
@@ -183,7 +169,7 @@ class Step4(StepTemplateCd):
     ]
 
     def next(self):
-        Step5()
+        return 10, 5
 
 
 class Step5(StepTemplateCd):
@@ -205,13 +191,11 @@ class Step5(StepTemplateCd):
         "{{rb:to go inside.}}")
     ]
 
-    def block_command(self):
-        return unblock_commands_with_cd_hint(
-            self.last_user_input, self.commands
-        )
+    def block_command(self, line):
+        return unblock_commands_with_cd_hint(line, self.commands)
 
     def next(self):
-        Step6()
+        return 10, 6
 
 
 class Step6(StepTemplateCd):
@@ -227,7 +211,6 @@ class Step6(StepTemplateCd):
     hints = [
         _("{{rb:Use}} {{yb:ls}} {{rb:to have a look around you.}}")
     ]
-    last_step = True
 
     def next(self):
-        NextStep(self.xp)
+        return 11, 1

@@ -1,163 +1,163 @@
 # MainWindow.py
 #
-# Copyright (C) 2014-2016 Kano Computing Ltd.
+# Copyright (C) 2014-2017 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
-
-
 import os
-import sys
 import time
-import Queue
-import socket
-import threading
-# import subprocess
-import traceback
-
-from gi.repository import Gtk, Gdk, GLib, Pango
-
-if __name__ == '__main__' and __package__ is None:
-    dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-    if dir_path != '/usr':
-        sys.path.insert(1, dir_path)
-
+from gi.repository import Gtk, Gdk, Pango, GObject
 from kano.gtk3.apply_styles import apply_styling_to_screen
+from kano_profile.apps import load_app_state_variable
 from kano.gtk3.scrolled_window import ScrolledWindow
-from kano.logging import logger
 
-from linux_story.socket_functions import create_server
+from linux_story.file_creation.FileTree import revert_to_default_permissions
 from linux_story.gtk3.TerminalUi import TerminalUi
 from linux_story.gtk3.Spellbook import Spellbook
 from linux_story.gtk3.Storybook import Storybook
-# from linux_story.gtk3.FinishDialog import FinishDialog
-from linux_story.common import css_dir
+from linux_story.common import css_dir, tq_file_system
 from linux_story.gtk3.MenuScreen import MenuScreen
-from linux_story.load_defaults_into_filetree import \
-    revert_to_default_permissions
 
 
-class GenericWindow(Gtk.Window):
+def save_point_exists():
+    return load_app_state_variable('linux-story', 'level')
 
-    CSS_FILE = os.path.join(
-        css_dir,
-        "style.css"
-    )
-    COLOUR_CSS_FILE = os.path.join(
-        css_dir,
-        "colours.css"
-    )
 
-    def __init__(self):
+def user_used_echo(data_dict):
+    return "print_text" in data_dict and data_dict["print_text"]
+
+
+class MainWindow(Gtk.Window):
+
+    CSS_FILE = os.path.join(css_dir, "style.css")
+    COLOUR_CSS_FILE = os.path.join(css_dir, "colours.css")
+    NORMAL_CLASS = "normal"
+    DARK_CLASS = "dark"
+
+    __gsignals__ = {
+        # This returns an integer of the challenge the user wants to start from
+        'game_finished': (GObject.SIGNAL_RUN_FIRST, None, ()),
+    }
+
+    def __init__(self, challenge, step, debug):
+        Gtk.Window.__init__(self)
+
         apply_styling_to_screen(self.CSS_FILE)
         apply_styling_to_screen(self.COLOUR_CSS_FILE)
 
-        Gtk.Window.__init__(self)
-        self.connect('delete-event', self.close_window)
+        self.__debug = debug
+        self.__setup_gtk_properties()
+        self.__setup_keymap()
+        self.is_busy = False
+        self.connect("game_finished", self.finish_app)
+
+        if challenge and step:
+            self.__start_game_from_challenge(challenge, step)
+        elif save_point_exists():
+            self.__show_menu()
+        else:
+            self.__start_game_from_challenge("0", "1")
+
+    def finish_game(self):
+        self.emit("game-finished")
+
+    def set_theme(self, dark=False):
+        if dark:
+            self.__set_dark_theme()
+        else:
+            self.__set_normal_theme()
+
+    def __set_dark_theme(self):
+        self.get_style_context().add_class(self.DARK_CLASS)
+        self.get_style_context().remove_class(self.NORMAL_CLASS)
+        self.__spellbook.set_dark_theme()
+        self.__terminal.set_dark_theme()
+        self.__story.set_dark_theme()
+
+    def __set_normal_theme(self):
+        self.get_style_context().add_class(self.NORMAL_CLASS)
+        self.get_style_context().remove_class(self.DARK_CLASS)
+        self.__spellbook.set_normal_theme()
+        self.__terminal.set_normal_theme()
+        self.__story.set_normal_theme()
+
+    def __setup_gtk_properties(self):
+        self.connect('delete-event', self.__close_window)
         self.get_style_context().add_class("main_window")
+        self.get_style_context().add_class(self.NORMAL_CLASS)
         self.maximize()
         self.set_title("Terminal Quest")
         self.set_icon_name("linux-story")
 
-        # using the Gdk.Keymap to get events about the Caps Lock state
+    def __setup_keymap(self):
         keymap = Gdk.Keymap.get_for_display(self.get_display())
-        keymap.connect('state-changed', self._on_keymap_state_changed)
-        self.is_caps_lock_on = keymap.get_caps_lock_state()
+        keymap.connect('state-changed', self.__on_keymap_state_changed)
+        self.__is_caps_lock_on = keymap.get_caps_lock_state()
 
-    def _on_keymap_state_changed(self, keymap=None):
+    def __on_keymap_state_changed(self, keymap=None):
         is_caps_lock_on = keymap.get_caps_lock_state()
 
-        if self.is_caps_lock_on != is_caps_lock_on:
-            self.is_caps_lock_on = is_caps_lock_on
+        if self.__is_caps_lock_on != is_caps_lock_on:
+            self.__is_caps_lock_on = is_caps_lock_on
             self.on_caps_lock_changed(is_caps_lock_on)
 
-    def on_caps_lock_changed(self, is_caps_lock_on):
-        pass
+    def __start_game_from_challenge(self, challenge, step):
+        self.__setup_application_widgets()
+        self.__start_script_in_terminal(challenge, step)
+        self.show_all()
+        if not self.__debug:
+            self.__terminal.hide()
+            self.__spellbook.hide()
 
+    def __show_menu(self):
+        menu = MenuScreen()
+        menu.connect('challenge_selected', self.__replace_widget_with_challenge)
+        self.add(menu)
+        self.show_all()
 
-class MainWindow(GenericWindow):
-    '''Window class that contains all the elements in the application
-    '''
-
-    def __init__(self, debug=False):
-        GenericWindow.__init__(self)
-
-        # This decides whether the spellbook and terminal are hidden
-        # Should also write to logs.
-        self.debug = debug
-
-    def set_cursor_invisible(self, *_):
-        blank_cursor = Gdk.Cursor(Gdk.CursorType.BLANK_CURSOR)
-        self.get_window().set_cursor(blank_cursor)
-
-    def setup_application_widgets(self):
+    def __setup_application_widgets(self):
         screen = Gdk.Screen.get_default()
+
+        self.__spellbook = Spellbook(is_caps_lock_on=self.__is_caps_lock_on)
+
         width = screen.get_width()
         height = screen.get_height()
+        terminal_width, terminal_height = width / 2 - 20, height - self.__spellbook.HEIGHT - 2 * 44 - 20
+        story_width, story_height = width / 2 - 20, height - self.__spellbook.HEIGHT - 2 * 44 - 10
+        self.__terminal = TerminalUi(terminal_width, terminal_height)
+        self.__story = Storybook(story_width, story_height)
 
-        self.terminal = TerminalUi()
-        fg_color = Gdk.Color.parse("#ffffff")[1]
-        bg_color = Gdk.Color.parse("#262626")[1]
-        self.terminal.set_colors(fg_color, bg_color, [])
-        self.terminal.set_margin_top(10)
-        self.terminal.set_margin_left(10)
-        self.terminal.set_margin_right(10)
-        # Set the terminal font size. There is 
-        # probably a way of doing this with css to avoid hard coding
-        # But I have not found it yet.
-        font_desc = Pango.FontDescription()
-        font_desc.set_family("monospace")
-        font_desc.set_size(13*Pango.SCALE)
-        self.terminal.set_font(font_desc)
-
-
-        self.spellbook = Spellbook(is_caps_lock_on=self.is_caps_lock_on)
-
-        self.story = Storybook(
-            width / 2 - 40,
-            height - self.spellbook.HEIGHT - 2 * 44 - 10
-        )
-        self.story.set_margin_top(10)
-        self.story.set_margin_left(10)
-        self.story.set_margin_right(10)
+        self.hbox = Gtk.Box()
 
         story_sw = ScrolledWindow()
         story_sw.apply_styling_to_screen()
         story_sw.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-        story_sw.add(self.story)
+        story_sw.add(self.__story)
+        story_sw.set_size_request(story_width, story_height)
 
         left_background = Gtk.EventBox()
         left_background.get_style_context().add_class("story_background")
+        left_background.add(story_sw)
+
         right_background = Gtk.EventBox()
         right_background.get_style_context().add_class("terminal_background")
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.add(vbox)
 
-        self.hbox = Gtk.Box()
-
         vbox.pack_start(self.hbox, False, False, 0)
-        vbox.pack_start(self.spellbook, False, False, 0)
+        vbox.pack_start(self.__spellbook, False, False, 0)
         self.hbox.pack_start(left_background, False, False, 0)
         self.hbox.pack_start(right_background, False, False, 0)
 
-        left_background.add(story_sw)
-        right_background.add(self.terminal)
+        right_background.add(self.__terminal)
 
         # Allow for margin on bottom and top bar.
-        self.terminal.set_size_request(
-            width / 2 - 20, height - self.spellbook.HEIGHT - 2 * 44 - 20
-        )
-        story_sw.set_size_request(
-            width / 2 - 20, height - self.spellbook.HEIGHT - 2 * 44 - 10
-        )
-
-        self.run_server()
 
     def on_caps_lock_changed(self, is_caps_lock_on):
-        if self.spellbook:
-            self.spellbook.caps_lock_changed(is_caps_lock_on)
+        if self.__spellbook:
+            self.__spellbook.caps_lock_changed(is_caps_lock_on)
 
-    def start_script_in_terminal(self, challenge_number="", step_number=""):
+    def __start_script_in_terminal(self, challenge_number="", step_number=""):
         '''
         This function currently creates the thread that runs the
         storyline in the TerminalUi class and attaches an event listener
@@ -190,187 +190,72 @@ class MainWindow(GenericWindow):
             step_number
         )
 
-        self.terminal.launch_command(command)
+        self.__terminal.launch_command(command)
 
-        GLib.idle_add(self.check_queue)
+    def finish_app(self, other):
+        self.__stop_typing_in_terminal()
+        self.__center_storybook()
+        # TODO: update asset when we finish the last chapter in the storyline
+        self.__story.print_finished(self, self.__terminal)
+        time.sleep(3)
+        self.__close_window()
+
+    def show_hint(self, hint):
+        self.__stop_typing_in_terminal()
+        self.__story.type_coloured_text(hint)
+        self.__show_terminal()
+
+    def __show_terminal(self):
+        self.__terminal.show_all()
+        self.__terminal.set_sensitive(True)
+        self.__terminal.grab_focus()
+
+    def start_new_challenge(self, data_dict):
+        self.__story.clear()
+        self.__stop_typing_in_terminal()
+        self.__story.print_challenge_title(data_dict['challenge'])
+        if 'xp' in data_dict and data_dict['xp']:
+            self.__show_earned_xp(data_dict['xp'])
+        self.__show_echo_choice(data_dict)
+        self.__story.type_coloured_text(data_dict['story'])
+        self.__repack_spells(data_dict["spells"], data_dict["highlighted"])
+        self.__show_terminal()
         self.show_all()
 
-        # This to hide the spellbook and terminal from view until the story has
-        # finished displaying.
-        # In debug mode, we don't want to hide it.
-        if not self.debug:
-            self.terminal.hide()
-            self.spellbook.hide()
+    def __stop_typing_in_terminal(self):
+        self.__terminal.set_sensitive(False)
 
-    def check_queue(self):
-        '''
-        This receives the messages sent from the script running in the
-        terminal. From these messages we can decide how to update the GUI.
-        '''
+    def __show_earned_xp(self, xp):
+        self.__story.type_coloured_text(xp)
 
-        try:
-            # Give it a timeout so it doesn't hang indefinitely
-            # Don't block the queue - if a value is available, return
-            # immediately.
-            data_dict = self.queue.get(False, timeout=5.0)
+    def __show_echo_choice(self, data_dict):
+        if user_used_echo(data_dict):
+            self.__story.print_coloured_text(data_dict["print_text"] + "\n\n")
 
-            if 'exit' in data_dict.keys():
-                self.finish_app()
+    def __repack_spells(self, spells, highlighted_spells):
+        self.__spellbook.repack_spells(spells, highlighted_spells)
 
-            elif 'hint' in data_dict.keys():  # TODO: get the command and highlight it
-                self.stop_typing_in_terminal()
-                self.type_text(data_dict['hint'])
-                self.show_terminal()
-
-            # This is for when we've started a new challenge.
-            else:
-                self.story.clear()
-
-                if 'challenge' in data_dict.keys() and \
-                   'story' in data_dict.keys() and \
-                   'spells' in data_dict.keys():
-
-                    self.stop_typing_in_terminal()
-
-                    # Print the challenge title at the top of the screen
-                    challenge = data_dict['challenge']
-                    self.print_challenge_title(challenge)
-
-                    if 'xp' in data_dict and data_dict['xp']:
-                        self.type_text(data_dict['xp'])
-
-                    # If we have have just used echo in the previous
-                    # challenge, we should print out the user's choice
-                    if "print_text" in data_dict and data_dict["print_text"]:
-                        # Automatically stick a double newline at the end of
-                        # the user text to save us having to do it ourselves.
-                        self.print_coloured_text(
-                            data_dict["print_text"] + "\n\n"
-                        )
-
-                    self.type_text(data_dict['story'])
-
-                    # Repack the spells (commands) into the spellbook
-                    spells = data_dict['spells']
-                    highlighted_spells = data_dict['highlighted_spells']
-                    self.repack_spells(spells, highlighted_spells)
-
-                    # Refresh terminal - useful for the first challenge
-                    self.show_terminal()
-                    self.show_all()
-
-        except Queue.Empty:
-            pass
-        except Exception:
-            logger.error('Unexpected error in MainWindow: check_queue:'
-                         ' - [{}]'.format(traceback.format_exc()))
-        finally:
-            time.sleep(0.02)
-            return True
-
-    def type_text(self, text):
-        '''Wrapper function for the story member variable
-        '''
-        self.story.type_coloured_text(text)
-
-    def print_challenge_title(self, number):
-        '''Prints the ascii art challenge title at the start
-        '''
-        self.story.print_challenge_title(number)
-
-    def print_coloured_text(self, text):
-        self.story.print_coloured_text(text)
-
-    def repack_spells(self, spells, highlighted_spells):
-        '''Wrapper function for repacking the spells
-        '''
-        self.spellbook.repack_spells(spells, highlighted_spells)
-
-    def show_terminal(self):
-        '''Wrapper function for showing terminal
-        Only used at the beginning after story has loaded
-        '''
-
-        self.terminal.show_all()
-        self.terminal.set_sensitive(True)
-        self.terminal.grab_focus()
-
-    def stop_typing_in_terminal(self):
-        '''Wrapper function to stop people typing in terminal
-        while story or hint is being shown
-        '''
-        self.terminal.set_sensitive(False)
-
-    def run_server(self):
-        '''
-        Start the server, and pass a Queue to it,
-        so the script running in the terminal can
-        send messages to the MainWindow class.
-        '''
-
-        self.queue = Queue.Queue(1)
-        self.server = create_server(self.queue)
-        t = threading.Thread(target=self.server.serve_forever)
-        t.daemon = True
-        t.start()
-
-    def center_storybook(self):
+    def __center_storybook(self):
         """
         Centers the StoryBook in the window by hiding the Terminal.
         """
-        self.terminal.hide()
+        self.__terminal.hide()
         self.hbox.set_halign(Gtk.Align.CENTER)
 
-    def show_menu(self):
-        '''
-        Show the menu that allows the user to pick the challenge
-        they want to start from.
-        '''
-
-        self.menu = MenuScreen()
-        self.menu.connect(
-            'challenge_selected', self.replace_menu_with_challenge
-        )
-        self.add(self.menu)
-        self.show_all()
-
-    def replace_menu_with_challenge(self, widget, challenge_number):
-        '''
+    def __replace_widget_with_challenge(self, widget, challenge_number):
+        """
         Remove the menu and launch the selected challenge.
 
         Args:
             widget (Gtk.Widget): The button that was clicked.
             challenge_number (int)
-        '''
+        """
 
-        self.remove(self.menu)
-        self.setup_application_widgets()
-        self.start_script_in_terminal(str(challenge_number), "1")
+        self.remove(widget)
+        self.__start_game_from_challenge(str(challenge_number), "1")
 
-    def finish_app(self):
-        '''
-        After the user has finished the storyline, show a animation.
-
-        NOTE: Commented code below pops-up a dialog to ask for feedback.
-              Uncomment to enable the feature.
-        '''
-
-        self.stop_typing_in_terminal()
-        self.center_storybook()
-        # TODO: update asset when we finish the last chapter in the storyline
-        self.story.print_coming_soon(self, self.terminal)
-
-        time.sleep(5)
-        self.close_window()
-
-        # kdialog = FinishDialog()
-        # response = kdialog.run()
-
-        # if response == 'feedback':
-        #     subprocess.Popen('/usr/bin/kano-feedback')
-
-    def close_window(self, widget=None, event=None):
-        '''
+    def __close_window(self, widget=None, event=None):
+        """
         Shut the server down and kills the application.
 
         Args:
@@ -379,15 +264,8 @@ class MainWindow(GenericWindow):
 
         Returns:
             None
-        '''
+        """
 
-        if hasattr(self, "server"):
-            self.server.socket.shutdown(socket.SHUT_RDWR)
-            self.server.socket.close()
-            self.server.shutdown()
-
-        # Do this AFTER the server shutdown, so if this goes wrong,
-        # we can quickly relaunch TQ.
-        revert_to_default_permissions()
-
+        revert_to_default_permissions(tq_file_system)
         Gtk.main_quit()
+

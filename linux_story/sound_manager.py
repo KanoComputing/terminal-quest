@@ -66,7 +66,7 @@ class SoundManager(object):
 
     # for Storybook text
     story_text_sound = {
-        'New Spell': 'new_command',
+        'New Power': 'new_command',
         'Ding. Dong.': 'bell'
     }
 

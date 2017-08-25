@@ -36,11 +36,15 @@ images_dir = os.path.join(common_media_dir, 'images')
 # /home/user/
 home_folder = os.path.expanduser('~')
 
-# This is where the filetree that the user interacts with.
+# This is where the file tree that the user interacts with.
 tq_file_system = os.path.join(home_folder, '.linux-story')
 
 # The contents of this folder are backed up online
 tq_backup_folder = os.path.join(home_folder, 'Terminal-Quest-content')
+
+dark_css_class = "dark"
+
+fake_home_dir = os.path.join(tq_file_system, "~")
 
 
 def get_max_challenge_number():
@@ -50,7 +54,7 @@ def get_max_challenge_number():
             kano-profile.
     '''
 
-    # Hardcoded path, perhapes change it later
+    # Hardcoded path, perhaps change it later
     path = "/usr/share/kano-profile/rules/app_profiles.json"
     f = open(path)
     str_data = f.read()
@@ -60,3 +64,11 @@ def get_max_challenge_number():
     max_level = dict_data['linux-story']['max-level']
 
     return max_level
+
+
+def get_username():
+    return os.environ["LOGNAME"]
+
+
+def get_story_file(name):
+    return os.path.join(fallback_story_files_dir, name)

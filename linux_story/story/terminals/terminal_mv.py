@@ -6,16 +6,19 @@
 # A terminal for one of the challenges
 
 
+from linux_story.commands_real import shell_command, launch_application
 from linux_story.story.terminals.terminal_cd import TerminalCd
-from linux_story.commands_real import shell_command
 
 
 class TerminalMv(TerminalCd):
     terminal_commands = ["ls", "cat", "cd", "mv"]
 
     def do_mv(self, line):
-        shell_command(self.real_path, line, "mv")
+        if "*" in line:
+            launch_application(self._location.get_real_path(), line, "mv")
+        else:
+            shell_command(self._location.get_real_path(), line, "mv")
 
     def complete_mv(self, text, line, begidx, endidx):
-        completions = self.autocomplete_files(text, line, begidx, endidx)
+        completions = self._autocomplete_files(text, line, begidx, endidx)
         return completions
