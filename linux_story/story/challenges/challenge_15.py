@@ -44,7 +44,7 @@ class Step1(StepTemplateMv):
 
 class Step2(StepTemplateMv):
     story = [
-        _("What's that? There's {{bb:.tiny-chest}} in the corner of the shelter"),
+        _("What's that? There's a {{bb:.tiny-chest}} in the corner of the shelter."),
         _("Have a {{lb:look inside}} the {{bb:.tiny-chest}}.")
     ]
 
@@ -67,7 +67,7 @@ class Step2(StepTemplateMv):
 
 class Step3(StepTemplateMv):
     story = [
-        _("You see a special looking scroll with a stamp that says {{bb:MV}}"),
+        _("You see a special looking scroll with a stamp that says {{bb:MV}}."),
         _("{{lb:Read}} what it says.")
     ]
 
@@ -88,8 +88,8 @@ class Step3(StepTemplateMv):
 class Step4(StepTemplateMv):
     story = [
 
-        _("{{wb:Edward:}} {{Bb:\"Hey, that's our .tiny-chest. We use it to keep things safe. "),
-        _("That MV command is how I found out about moving objects with mv."),
+        _("{{wb:Edward:}} {{Bb:\"Hey, that's our}} {{bb:.tiny-chest}}{{Bb:. We use it to keep things safe."),
+        _("That MV command is how I found out about moving objects with}} {{yb:mv}}{{Bb:."),
         _("It's probably more useful to you, please take it as a thank you for saving us.\"}}"),
         "",
         _("\nMaybe you should go back to {{bb:my-house}} to look for more hidden items."),

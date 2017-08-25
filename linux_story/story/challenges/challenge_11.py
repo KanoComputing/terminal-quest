@@ -224,7 +224,7 @@ class Step6(StepTemplateMv):
 class Step7(StepTemplateMv):
     story = [
         _("{{wb:Edith:}} {{Bb:\"No! Honey, come back!!!\"}}"),
-        _("{{Bb:\"You, please, save my little girl\"}}\n"),
+        _("{{Bb:\"You, please, save my little girl!\"}}\n"),
 
         _("First, {{lb:look outside}} for {{bb:Eleanor}} with {{yb:ls ../}}"),
     ]

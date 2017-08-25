@@ -104,7 +104,7 @@ class Step2(StepPeopleInCage):
 class Step3(StepPeopleInCage):
     story = [
         _("You see all the people who disappeared, looking miserable, inside the cage. Including your Mum and Dad!"),
-        _("Swordmaster: {{Bb:\"Hey, listen. I have something to say\"}}"),
+        _("Swordmaster: {{Bb:\"Hey, listen. I have something to say.\"}}"),
         "",
         _("Speak to your Mum and Dad. You can also listen to the other people trapped. "
           "And when you're ready listen to what the Swordmaster has to say.")
@@ -169,7 +169,7 @@ class Step5(StepPeopleInCage):
 
 class Step6(StepPeopleInCage):
     story = [
-        _("Swordmaster: {{Bb:\"Now move us to the}} {{bb:~/town.}}{{Bb:\"}}"),
+        _("Swordmaster: {{Bb:\"Now move us to the}} {{bb:~/town}}{{Bb:\"}}"),
         _("{{Bb:\"To move a large group of people use the *. Like this:}} {{yb:mv cage/* ~/town}}{{Bb:\"}}")
     ]
     start_dir = "~/woods/thicket/rabbithole"

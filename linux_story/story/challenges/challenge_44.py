@@ -129,7 +129,7 @@ class Step4(StepTemplateRm):
 class Step5(StepTemplateRm):
     story = [
         _("You push the boulder. With some effort, it slowly moves aside. Light pours out from the crack."),
-        _("{{lb:Go inside the rabbithole.}}")
+        _("{{lb:Go inside the}} {{bb:rabbithole}}{{lb:.}}")
     ]
     start_dir = "~/woods/thicket"
     end_dir = "~/woods/thicket/rabbithole"

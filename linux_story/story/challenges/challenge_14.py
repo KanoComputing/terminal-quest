@@ -40,7 +40,7 @@ class Step1(StepTemplateMv):
 # Move three pieces of food into the basket
 class Step2(StepTemplateMv):
     story = [
-        _("{{lb:Move}} three pieces of food into your {{bb:basket}}\n"),
+        _("{{lb:Move}} three pieces of food into your {{bb:basket}}.\n"),
         _("You can move multiple items using {{yb:mv item1 item2 item3 basket/}} e.g. mv banana cake milk basket/\n")
     ]
     start_dir = "~/my-house/kitchen"
@@ -55,8 +55,8 @@ class Step2(StepTemplateMv):
         'sandwich'
     ]
     unmovable_items = {
-        "newspaper": _("{{rb:They asked for food, they probably shouldn't " +\
-        "eat the newspaper.}}"),
+        "newspaper": _("{{rb:They asked for food, they probably shouldn't "
+            "eat the newspaper.}}"),
         "oven": _("{{rb:This is a bit heavy for you to carry!}}"),
         "table": _("{{rb:This is a bit heavy for you to carry!}}")
     }

@@ -222,7 +222,8 @@ class Step7(StepTemplateChmod):
 
 class Step8(StepTemplateChmod):
     story = [
-        _("The world shivers...everything goes dark red"),
+        _("The world shivers... everything goes dark red"),
+        "",
         _("{{gb:Press Enter to continue.}}")
     ]
 
