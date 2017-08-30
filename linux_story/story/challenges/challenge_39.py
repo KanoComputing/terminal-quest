@@ -125,7 +125,6 @@ class Step4(StepTemplateChmod):
             self.send_hint(
                 _("Swordmaster: {{Bb:\"That's a strange name. Is that really your name?\"}}")
             )
-            return
         return StepTemplateChmod.check_command(self, last_user_input)
 
     def next(self):
