@@ -1,8 +1,9 @@
 linux-story (3.14.0-0) unstable; urgency=low
 
   * Applied changes from v3.9.1 es_AR backports to latest
+  * Added Loading animation splash window
 
- -- Team Kano <dev@kano.me>  Mon, 16 Oct 2017 15:12:00 +0100
+ -- Team Kano <dev@kano.me>  Mon, 16 Nov 2017 17:04:00 +0100
 
 linux-story (3.9.1-0) unstable; urgency=low
 
