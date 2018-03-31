@@ -30,6 +30,25 @@ In this example, we're going to add a French translation:
     # run the app like this:
     LC_ALL=fr_FR.utf8 /path/to/repo/bin/linux-story-gui
 
+## Transifex client setup
+
+Install transifex client according to the instructions in: 
+[Installing the Client]()https://docs.transifex.com/client/init),
+or through [pipsi](): 
+
+    curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python
+    pipsi install transifex-client 
+
+Then get [your transifex api key](https://www.transifex.com/user/settings/api/)
+and initialize the client:
+
+    tx init
+
+push new language to the transifex service     
+
+    tx push -tl fr
+
+
 ## How to make sure your code is i18n-aware
 
 Add the gettext `_()` macro to all the user-visible message strings in your Python. List the Python source files that contain message strings in `PYPOTFILES`.
