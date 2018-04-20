@@ -1,7 +1,7 @@
 /*
 # style.css
 #
-# Copyright (C) 2014-2016 Kano Computing Ltd.
+# Copyright (C) 2014-2018 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # This controls the styling of the MultilineEntry custom widget.
@@ -11,6 +11,7 @@
  * {
  	/* Remove annoying focus borders around buttons */
 	-GtkWidget-focus-line-width: 0px;
+    /*TODO replace above with?: outline-width: 0px;*/
 }
 
 .normal.main_window {
@@ -73,7 +74,8 @@
     border-width: 3px;
     border-radius: 0px;
     color: #ffffff;
-    font: monospace 10px;
+    font-family: monospace;
+    font-size: 10pt;
 }
 
 .normal.tooltip {
@@ -88,15 +90,18 @@
 
 .spell_label {
 	color: #cccccc;
-	font: Bariol 13px;
+	font-family: Bariol;
+    font-size: 13pt;
 }
 
 .spell_command {
 	color: #ffffff;
-	font: Bariol Bold 17px;
+	font-family: Bariol;
+    font-size: 17pt;
+    font-weight: bold;
 }
 
-.normal.spellbook_background, .normal. spellbook_background {
+.normal.spellbook_background, .normal .spellbook_background {
 	background: @spellbook_background;
 }
 
@@ -106,14 +111,15 @@
 
 .caps_lock_warning {
     color: #ffffff;
-    font: Bariol 14px;
+    font-family: Bariol;
+    font-size: 14pt;
 }
 
-.normal .caps_lock_warning {
+.normal.caps_lock_warning {
     background: @caps_lock_warning_background;
 }
 
-.dark .caps_lock_warning {
+.dark.caps_lock_warning {
     background: @dark_caps_lock_warning_background;
 }
 
@@ -126,29 +132,39 @@
 
 .menu_title {
 	color: #ffffff;
-	font: Bariol Bold 20;
+	font-family: Bariol;
+    font-size: 20pt;
+    font-weight: bold;
 }
 
 .menu_description {
 	color: #ffffff;
-	font: Bariol Bold 16;
+	font-family: Bariol;
+    font-size: 16pt;
+    font-weight: bold;
 }
 
 .info_title {
 	/* Currently a repeat of the menu title styling */
 	color: #ffffff;
-	font: Bariol Bold 20;
+	font-family: Bariol;
+    font-size: 20pt;
+    font-weight: bold;
 }
 
 .info_description {
 	/* Currently a repeat of the menu description styling */
 	color: #ffffff;
-	font: Bariol Bold 16;
+	font-family: Bariol;
+    font-size: 16pt;
+    font-weight: bold;
 }
 
 .menu_button {
 	background: @spell_icon_background;
-	font: Bariol bold 14;
+	font-family: Bariol;
+    font-size: 14pt;
+    font-weight: bold;
 	border-style: solid;
 	border-color: transparent;
 	border-width: 5px;
@@ -168,11 +184,11 @@
 	border-radius: 2px;
 }
 
-.menu_button:insensitive {
+.menu_button:disabled {
 	background: @spell_icon_background_locked;
 }
 
-.menu_button GtkLabel:insensitive {
+.menu_button GtkLabel:disabled {
 	color: @spell_label_background_locked;
 	background: transparent;
 }
