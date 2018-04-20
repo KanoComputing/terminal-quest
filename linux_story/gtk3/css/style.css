@@ -9,29 +9,29 @@
 
 
  * {
- 	/* Remove annoying focus borders around buttons */
-	-GtkWidget-focus-line-width: 0px;
+    /* Remove annoying focus borders around buttons */
+    -GtkWidget-focus-line-width: 0px;
     /*TODO replace above with?: outline-width: 0px;*/
 }
 
 .normal.main_window {
-	background: @story_background;
+    background: @story_background;
 }
 
 .dark.main_window {
-	background: @dark_story_background;
+    background: @dark_story_background;
 }
 
 .normal .terminal_background {
-	background: @terminal_background;
+    background: @terminal_background;
 }
 
 .dark .terminal_background {
-	background: @dark_terminal_background;
+    background: @dark_terminal_background;
 }
 
 .normal.story_background {
-	background: @story_background;
+    background: @story_background;
 }
 
 .dark.story_background {
@@ -39,35 +39,35 @@
 }
 
 .normal .spell_icon_background {
-	background: @spell_icon_background;
+    background: @spell_icon_background;
 }
 
 .dark .spell_icon_background {
-	background: @dark_spell_icon_background;
+    background: @dark_spell_icon_background;
 }
 
 .normal .spell_icon_background.locked {
-	background: @spell_icon_background_locked;
+    background: @spell_icon_background_locked;
 }
 
 .dark .spell_icon_background.locked {
-	background: @dark_spell_icon_background_locked;
+    background: @dark_spell_icon_background_locked;
 }
 
 .normal .spell_label_background {
-	background: @spell_label_background;
+    background: @spell_label_background;
 }
 
 .dark .spell_label_background {
-	background: @dark_spell_label_background;
+    background: @dark_spell_label_background;
 }
 
 .normal .spell_label_background.locked {
-	background: @spell_label_background_locked;
+    background: @spell_label_background_locked;
 }
 
 .dark .spell_label_background.locked {
-	background: @dark_spell_label_background_locked;
+    background: @dark_spell_label_background_locked;
 }
 
 .tooltip {
@@ -89,24 +89,24 @@
 }
 
 .spell_label {
-	color: #cccccc;
-	font-family: Bariol;
+    color: #cccccc;
+    font-family: Bariol;
     font-size: 13pt;
 }
 
 .spell_command {
-	color: #ffffff;
-	font-family: Bariol;
+    color: #ffffff;
+    font-family: Bariol;
     font-size: 17pt;
     font-weight: bold;
 }
 
 .normal.spellbook_background, .normal .spellbook_background {
-	background: @spellbook_background;
+    background: @spellbook_background;
 }
 
 .dark.spellbook_background, .dark .spellbook_background {
-	background: @dark_spellbook_background;
+    background: @dark_spellbook_background;
 }
 
 .caps_lock_warning {
@@ -124,73 +124,73 @@
 }
 
 .menu_background {
-	background: @spellbook_background;
-	border-style: solid;
-	border-radius: 3px;
-	border-width: 5px;
+    background: @spellbook_background;
+    border-style: solid;
+    border-radius: 3px;
+    border-width: 5px;
 }
 
 .menu_title {
-	color: #ffffff;
-	font-family: Bariol;
+    color: #ffffff;
+    font-family: Bariol;
     font-size: 20pt;
     font-weight: bold;
 }
 
 .menu_description {
-	color: #ffffff;
-	font-family: Bariol;
+    color: #ffffff;
+    font-family: Bariol;
     font-size: 16pt;
     font-weight: bold;
 }
 
 .info_title {
-	/* Currently a repeat of the menu title styling */
-	color: #ffffff;
-	font-family: Bariol;
+    /* Currently a repeat of the menu title styling */
+    color: #ffffff;
+    font-family: Bariol;
     font-size: 20pt;
     font-weight: bold;
 }
 
 .info_description {
-	/* Currently a repeat of the menu description styling */
-	color: #ffffff;
-	font-family: Bariol;
+    /* Currently a repeat of the menu description styling */
+    color: #ffffff;
+    font-family: Bariol;
     font-size: 16pt;
     font-weight: bold;
 }
 
 .menu_button {
-	background: @spell_icon_background;
-	font-family: Bariol;
+    background: @spell_icon_background;
+    font-family: Bariol;
     font-size: 14pt;
     font-weight: bold;
-	border-style: solid;
-	border-color: transparent;
-	border-width: 5px;
-	border-radius: 2px;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 5px;
+    border-radius: 2px;
     box-shadow: none;
 }
 
 .menu_button GtkLabel {
-	color: #ffffff;
+    color: #ffffff;
 }
 
 /*********** Focus styling *********/
 .menu_button:focus, .menu_button:hover  {
-	border-color: #B1B3C9;
-	border-width: 5px;
-	border-style: solid;
-	border-radius: 2px;
+    border-color: #B1B3C9;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 2px;
 }
 
 .menu_button:disabled {
-	background: @spell_icon_background_locked;
+    background: @spell_icon_background_locked;
 }
 
 .menu_button GtkLabel:disabled {
-	color: @spell_label_background_locked;
-	background: transparent;
+    color: @spell_label_background_locked;
+    background: transparent;
 }
 
 .normal .storybook_background, .normal.storybook_background {
