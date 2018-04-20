@@ -1,3 +1,9 @@
+linux-story (4.0.0-0) unstable; urgency=low
+
+  * Fixed Gtk3 styling and import issues for packages in Stretch
+
+ -- Team Kano <dev@kano.me>  Fri, 20 Apr 2018 19:40:00 +0100
+
 linux-story (3.15.0-0) unstable; urgency=low
 
   * Fixed app icon on the Desktop to be the same as on Dashboard

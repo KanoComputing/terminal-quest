@@ -2,7 +2,7 @@
 
 # linux-story-gui
 #
-# Copyright (C) 2014-2016 Kano Computing Ltd.
+# Copyright (C) 2014-2018 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # Launches linux tutorial in a Gtk application
@@ -24,9 +24,12 @@ Options:
 import os
 import sys
 import docopt
-from gi.repository import Gtk, GLib
 import Queue
 
+from gi import require_version
+require_version('Gtk', '3.0')
+
+from gi.repository import Gtk, GLib
 
 if __name__ == '__main__' and __package__ is None:
     dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
