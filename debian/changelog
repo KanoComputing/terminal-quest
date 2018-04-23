@@ -1,6 +1,7 @@
 linux-story (4.0.0-0) unstable; urgency=low
 
   * Fixed Gtk3 styling and import issues for packages in Stretch
+  * Updated debian dependencies for the project
 
  -- Team Kano <dev@kano.me>  Fri, 20 Apr 2018 19:40:00 +0100
 
