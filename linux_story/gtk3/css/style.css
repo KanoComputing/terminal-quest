@@ -8,10 +8,9 @@
 */
 
 
- * {
+* {
     /* Remove annoying focus borders around buttons */
-    -GtkWidget-focus-line-width: 0px;
-    /*TODO replace above with?: outline-width: 0px;*/
+    outline-width: 0px;
 }
 
 .normal.main_window {
@@ -35,6 +34,14 @@
 }
 
 .dark.story_background {
+    background: @dark_story_background;
+}
+
+.normal .storybook_background text {
+    background: @story_background;
+}
+
+.dark .storybook_background text {
     background: @dark_story_background;
 }
 
@@ -70,7 +77,7 @@
     background: @dark_spell_label_background_locked;
 }
 
-.tooltip {
+tooltip {
     border-width: 3px;
     border-radius: 0px;
     color: #ffffff;
@@ -78,12 +85,12 @@
     font-size: 10pt;
 }
 
-.normal.tooltip {
+.normal tooltip {
     background: @spell_tooltip_background;
     border-color: @spell_tooltip_border;
 }
 
-.dark.tooltip {
+.dark tooltip {
     background: @dark_spell_tooltip_background;
     border-color: @dark_spell_tooltip_border;
 }
@@ -96,16 +103,16 @@
 
 .spell_command {
     color: #ffffff;
-    font-family: Bariol;
+    font-family: Bariol bold;
     font-size: 17pt;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
-.normal.spellbook_background, .normal .spellbook_background {
+.normal .spellbook_background, .normal.spellbook_background {
     background: @spellbook_background;
 }
 
-.dark.spellbook_background, .dark .spellbook_background {
+.dark .spellbook_background, .dark.spellbook_background {
     background: @dark_spellbook_background;
 }
 
@@ -132,39 +139,40 @@
 
 .menu_title {
     color: #ffffff;
-    font-family: Bariol;
+    font-family: Bariol bold;
     font-size: 20pt;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
 .menu_description {
     color: #ffffff;
-    font-family: Bariol;
+    font-family: Bariol bold;
     font-size: 16pt;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
 .info_title {
     /* Currently a repeat of the menu title styling */
     color: #ffffff;
-    font-family: Bariol;
+    font-family: Bariol bold;
     font-size: 20pt;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
 .info_description {
     /* Currently a repeat of the menu description styling */
     color: #ffffff;
-    font-family: Bariol;
+    font-family: Bariol bold;
     font-size: 16pt;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
 .menu_button {
     background: @spell_icon_background;
-    font-family: Bariol;
+    color: #ffffff;
+    font-family: Bariol bold;
     font-size: 14pt;
-    font-weight: bold;
+    /*font-weight: bold;*/
     border-style: solid;
     border-color: transparent;
     border-width: 5px;
@@ -191,12 +199,4 @@
 .menu_button GtkLabel:disabled {
     color: @spell_label_background_locked;
     background: transparent;
-}
-
-.normal .storybook_background, .normal.storybook_background {
-    background: @story_background;
-}
-
-.dark .storybook_background, .dark.storybook_background {
-    background: @dark_story_background;
 }

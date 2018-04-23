@@ -44,7 +44,7 @@ class Storybook(Gtk.TextView):
         self.set_size_request(self.width, height)
         font_desc = Pango.FontDescription()
         font_desc.set_family("monospace")
-        font_desc.set_size(13*Pango.SCALE)
+        font_desc.set_size(13 * Pango.SCALE)
         self.override_font(font_desc)
         self.get_style_context().add_class("storybook_background")
         self.char_width = self.__get_char_width()
@@ -61,16 +61,13 @@ class Storybook(Gtk.TextView):
 
     def set_dark_theme(self):
         style_context = self.get_style_context()
-        if "dark" not in style_context.list_classes():
-            self.get_style_context().add_class("dark")
-            self.get_style_context().remove_class("normal")
+        style_context.remove_class("normal")
+        style_context.add_class("dark")
 
     def set_normal_theme(self):
         style_context = self.get_style_context()
-        if "dark" in style_context.list_classes():
-            self.get_style_context().remove_class("dark")
-            self.get_style_context().add_class("normal")
-            self.show_all()
+        style_context.remove_class("dark")
+        style_context.add_class("normal")
 
     def clear(self):
         '''Clear all text in spellbook
