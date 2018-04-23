@@ -235,4 +235,3 @@ class Spellbook(Gtk.EventBox):
         style_context = self.get_style_context()
         style_context.remove_class("dark")
         style_context.add_class("normal")
-
