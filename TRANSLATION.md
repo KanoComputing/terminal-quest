@@ -18,7 +18,7 @@ In this example, we're going to add a French translation:
     make messages
     
     # create fr.po from messages.pot:
-    msginit -l fr_FR.utf8
+    msginit -l fr_FR.utf8 --input messages.pot
     
     # now use your favourite editor to translate fr.po
     
