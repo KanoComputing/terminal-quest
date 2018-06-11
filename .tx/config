@@ -1,0 +1,10 @@
+[main]
+host = https://www.transifex.com
+
+[terminal-quest.messages-pot]
+file_filter = po/<lang>.po
+minimum_perc = 0
+source_file = po/messages.pot
+source_lang = en
+type = PO
+
