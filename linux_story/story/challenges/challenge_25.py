@@ -198,7 +198,7 @@ class Step5(StepTemplateMkdir):
 
 class Step6(StepTemplateMkdir):
     story = [
-        _("The script reads {{yb:eco \"Honk!\"}}"),
+        _("The script reads {{yb:echo \"Honk!\"}}"),
         _("Maybe it should read {{yb:echo \"Honk!\"}} instead..."),
         _("How could we make changes to this script?"),
         _("\nBernard: {{Bb:\"Ho ho, you look like you understand the problem.\"}}"),
