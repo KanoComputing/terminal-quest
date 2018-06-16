@@ -41,7 +41,7 @@ class Step1(StepTemplateMv):
 class Step2(StepTemplateMv):
     story = [
         _("{{lb:Move}} three pieces of food into your {{bb:basket}}.\n"),
-        _("You can move multiple items using {{yb:mv item1 item2 item3 basket/}} e.g. mv banana cake milk basket/\n")
+        _("You can move multiple items using {{yb:mv item1 item2 item3 basket/}} --for example: mv banana cake milk basket/\n")
     ]
     start_dir = "~/my-house/kitchen"
     end_dir = "~/my-house/kitchen"
