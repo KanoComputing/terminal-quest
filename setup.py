@@ -58,23 +58,24 @@ media_sounds = recursively_get_dirs("", "media/sounds")
 icons = filter(is_image, recursively_get_dirs("", "icon"))
 kdesktop = recursively_get_dirs("", "kdesktop")
 
-setup(name='Linux Story',
-      version='1.2',
-      description='Story to teach people basic Linux commands',
-      author='Team Kano',
-      author_email='dev@kano.me',
-      url='https://github.com/KanoComputing/linux-tutorial',
-      packages=['linux_story'],
-      package_dir={'linux_story': 'linux_story'},
-      scripts=['bin/linux-story', 'bin/linux-story-gui'],
-      package_data={
-          'linux_story': story + ascii_assets + gtk3 + file_creation
-      },
-      data_files=[
-          ('/usr/share/linux-story/media/images', media_images),
-          ('/usr/share/linux-story/media/sounds', media_sounds),
-          ('/usr/share/kano-desktop/kdesk/kdesktop/', kdesktop),
-          ('/usr/share/icons/Kano/88x88/apps', icons),
-          ('/usr/share/linux-story', ['nano-2.2.6/src/nano'])
-      ] + get_locales()
-      )
+setup(
+    name='Linux Story',
+    version='1.2',
+    description='Story to teach people basic Linux commands',
+    author='Team Kano',
+    author_email='dev@kano.me',
+    url='https://github.com/KanoComputing/linux-tutorial',
+    packages=['linux_story'],
+    package_dir={'linux_story': 'linux_story'},
+    scripts=['bin/linux-story', 'bin/linux-story-gui'],
+    package_data={
+        'linux_story': story + ascii_assets + gtk3 + file_creation
+    },
+    data_files=[
+        ('/usr/share/linux-story/media/images', media_images),
+        ('/usr/share/linux-story/media/sounds', media_sounds),
+        ('/usr/share/kano-desktop/kdesk/kdesktop/', kdesktop),
+        ('/usr/share/icons/Kano/88x88/apps', icons),
+        ('/usr/share/linux-story', ['nano-2.2.6/src/nano'])
+    ] + get_locales()
+)
