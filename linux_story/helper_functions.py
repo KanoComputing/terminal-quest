@@ -323,7 +323,7 @@ def wrap_in_box(lines):
 
     def format_line(line):
         num_padding = max_characters - len(strip_formatting(line))
-        return "| {} |".format(line + (" " * num_padding))
+        return u"| {} |".format(line + (" " * num_padding))
 
     max_characters = reduce(reduction, lines, 0)
     outer_line = " {} ".format("-" * (max_characters + 2))
